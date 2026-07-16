@@ -1,27 +1,66 @@
-import { Link } from "react-router-dom";
+import articles from "../articleRegistry";
 
-export default function Sidebar() {
-  return (
-    <div
-      style={{
-        width: 240,
-        padding: 20,
-        borderRight: "1px solid #ddd",
-      }}
-    >
-      <h2>Knowledge Hub</h2>
+export default function Sidebar({onSelect}){
 
-      <p>
-        <Link to="/">Home</Link>
-      </p>
+    const groups={};
 
-      <p>
-        <Link to="/finance">Finance</Link>
-      </p>
+    articles.forEach(a=>{
 
-      <p>
-        <Link to="/health">Health</Link>
-      </p>
-    </div>
-  );
+        if(!groups[a.category]){
+
+            groups[a.category]=[];
+
+        }
+
+        groups[a.category].push(a);
+
+    });
+
+    return (
+
+        <div style={{
+            width:280,
+            overflow:"auto",
+            borderRight:"1px solid #ddd",
+            padding:20
+        }}>
+
+            <h2>Knowledge Hub</h2>
+
+            {
+
+                Object.entries(groups).map(([category,list])=>(
+
+                    <div key={category}>
+
+                        <h3>{category}</h3>
+
+                        {
+
+                            list.map(article=>(
+
+                                <p
+                                    key={article.slug}
+                                    style={{cursor:"pointer"}}
+                                    onClick={()=>onSelect(article)}
+                                >
+
+                                    {article.title}
+
+                                </p>
+
+                            ))
+
+                        }
+
+                    </div>
+
+                ))
+
+            }
+
+        </div>
+
+    );
+
 }

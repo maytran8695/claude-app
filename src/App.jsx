@@ -1,7 +1,53 @@
-import articles from "./utils/articleLoader";
+import { useState } from "react";
 
-console.log(articles);
+import Sidebar from "./components/Sidebar";
 
-export default function App() {
-    return <h1>Hello</h1>;
+import ArticlePage from "./components/ArticlePage";
+
+export default function App(){
+
+    const [selected,setSelected]=useState(null);
+
+    return(
+
+        <div style={{
+
+            display:"flex",
+
+            height:"100vh"
+
+        }}>
+
+            <Sidebar onSelect={setSelected}/>
+
+            <div style={{
+
+                flex:1,
+
+                overflow:"auto",
+
+                padding:30
+
+            }}>
+
+                {
+
+                    selected
+
+                    ?
+
+                    <ArticlePage loader={selected.loader}/>
+
+                    :
+
+                    <h1>Select an article</h1>
+
+                }
+
+            </div>
+
+        </div>
+
+    );
+
 }
