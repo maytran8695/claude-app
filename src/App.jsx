@@ -1,16 +1,15 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 
 // =========================================================================
-// 1. QUÉT ĐỘNG TOÀN BỘ FILE JSX TRONG THƯ MỤC ARTICLES (KHÔNG CẦN HARDCODE)
+// 1. QUÉT ĐỘNG TOÀN BỘ FILE JSX TRONG THƯ MỤC ARTICLES (TỰ ĐỘNG)
 // =========================================================================
 const articleModules = import.meta.glob('./articles/**/*.jsx', { eager: true });
 
-// Tự động phân tích đường dẫn và nạp component thực tế từ thư mục của bạn
 const articles = Object.entries(articleModules).map(([path, module]) => {
   const fileNameWithExt = path.split('/').pop();
   const id = fileNameWithExt.replace('.jsx', '');
   
-  // Chuyển tên file thành Tiêu đề đẹp (ví dụ: "DongGiao_DGC" -> "Dong Giao DGC")
+  // Format lại tiêu đề cho đẹp mắt
   const title = id
     .replace(/([A-Z])/g, ' $1')
     .replace(/_/g, ' ')
@@ -18,28 +17,104 @@ const articles = Object.entries(articleModules).map(([path, module]) => {
     .trim()
     .replace(/\b\w/g, c => c.toUpperCase());
 
-  // Trích xuất component từ file (ưu tiên export default, nếu không có thì lấy export đầu tiên)
   const Component = module.default || Object.values(module).find(val => typeof val === 'function');
 
-  // Xác định chuyên mục dựa trên thư mục con (ví dụ: articles/finance/DGC.jsx -> Chuyên mục "Finance")
+  // Lấy tên thư mục con làm Chuyên mục (mặc định là 'Chung')
   const pathParts = path.split('/');
-  const category = pathParts.length > 3 ? pathParts[pathParts.length - 2] : 'Chung';
+  const rawCategory = pathParts.length > 3 ? pathParts[pathParts.length - 2] : 'Chung';
+  
+  // Chuẩn hóa tên Category
+  let category = rawCategory.charAt(0).toUpperCase() + rawCategory.slice(1);
+  if (category.toLowerCase() === 'finance') category = 'Finance';
+  if (category.toLowerCase() === 'language') category = 'Language';
+  if (category.toLowerCase() === 'health') category = 'Health';
 
   return {
     id,
     title,
-    category: category.charAt(0).toUpperCase() + category.slice(1),
-    path,
+    category,
     Component
   };
-}).filter(item => item.Component !== undefined); // Chỉ giữ lại các file có Component hợp lệ
+}).filter(item => item.Component !== undefined);
+
+// Định nghĩa màu sắc sinh động riêng biệt cho từng Chuyên mục lớn
+const categoryThemes = {
+  Finance: {
+    text: 'text-emerald-600 dark:text-emerald-400',
+    bg: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+    badge: 'bg-emerald-500',
+    border: 'border-emerald-500/20',
+    icon: '📊'
+  },
+  Language: {
+    text: 'text-blue-600 dark:text-blue-400',
+    bg: 'bg-blue-50 text-blue-700 border-blue-200',
+    badge: 'bg-blue-500',
+    border: 'border-blue-500/20',
+    icon: '🌐'
+  },
+  Health: {
+    text: 'text-rose-600 dark:text-rose-400',
+    bg: 'bg-rose-50 text-rose-700 border-rose-200',
+    badge: 'bg-rose-500',
+    border: 'border-rose-500/20',
+    icon: '❤️'
+  },
+  Default: {
+    text: 'text-indigo-600 dark:text-indigo-400',
+    bg: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+    badge: 'bg-indigo-500',
+    border: 'border-indigo-500/20',
+    icon: '📂'
+  }
+};
+
+const getTheme = (cat) => categoryThemes[cat] || categoryThemes.Default;
 
 function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [searchTerm, setSearchTerm] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  
+  // Tab được chọn trên Dashboard chính (All, Finance, Language,...)
+  const [activeDashboardTab, setActiveDashboardTab] = useState('All');
 
-  // Bộ lọc tìm kiếm bài viết nhanh
+  // =========================================================================
+  // LOGIC KÉO THẢ CHIỀU RỘNG SIDEBAR (RESIZABLE SIDEBAR)
+  // =========================================================================
+  const [sidebarWidth, setSidebarWidth] = useState(280); // Mặc định 280px
+  const isResizing = useRef(false);
+
+  const startResizing = useCallback((e) => {
+    isResizing.current = true;
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none'; // Tránh bôi đen chữ khi kéo
+  }, []);
+
+  const stopResizing = useCallback(() => {
+    isResizing.current = false;
+    document.body.style.cursor = 'default';
+    document.body.style.userSelect = 'auto';
+  }, []);
+
+  const resize = useCallback((e) => {
+    if (!isResizing.current) return;
+    // Giới hạn chiều rộng sidebar từ 200px đến 500px
+    if (e.clientX >= 200 && e.clientX <= 500) {
+      setSidebarWidth(e.clientX);
+    }
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('mousemove', resize);
+    window.addEventListener('mouseup', stopResizing);
+    return () => {
+      window.removeEventListener('mousemove', resize);
+      window.removeEventListener('mouseup', stopResizing);
+    };
+  }, [resize, stopResizing]);
+
+  // Lọc bài viết theo ô tìm kiếm
   const filteredArticles = useMemo(() => {
     return articles.filter(art => 
       art.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -47,7 +122,13 @@ function App() {
     );
   }, [searchTerm]);
 
-  // Nhóm các bài viết theo Chuyên mục thư mục
+  // Lấy danh sách các categories duy nhất hiện có
+  const uniqueCategories = useMemo(() => {
+    const cats = new Set(articles.map(art => art.category));
+    return ['All', ...Array.from(cats)];
+  }, []);
+
+  // Nhóm các bài viết theo chuyên mục để hiển thị sidebar
   const groupedArticles = useMemo(() => {
     const groups = {};
     filteredArticles.forEach(art => {
@@ -62,15 +143,14 @@ function App() {
   const activeArticle = articles.find(art => art.id === activeTab);
 
   return (
-    <div className="flex h-screen bg-slate-50 text-slate-900 font-sans overflow-hidden">
+    <div className="flex h-screen bg-slate-50 text-slate-900 overflow-hidden">
       
       {/* ==========================================
-          SIDEBAR DỰA TRÊN THƯ MỤC THỰC TẾ
+          SIDEBAR KÉO THẢ CHIỀU RỘNG
           ========================================== */}
       <div 
-        className={`${
-          isSidebarOpen ? 'w-64 md:w-72' : 'w-0 md:w-16'
-        } shrink-0 bg-white border-r border-slate-200 flex flex-col h-full transition-all duration-300 ease-in-out z-30`}
+        style={{ width: isSidebarOpen ? `${sidebarWidth}px` : '64px' }}
+        className="relative shrink-0 bg-white border-r border-slate-200 flex flex-col h-full z-30 transition-shadow duration-200"
       >
         {/* Header Sidebar */}
         <div className="h-16 border-b border-slate-200 flex items-center justify-between px-4 shrink-0">
@@ -81,7 +161,7 @@ function App() {
               </div>
               <div>
                 <h1 className="font-bold text-slate-800 text-sm leading-none">Workspace</h1>
-                <span className="text-[10px] text-slate-400 font-medium">maytran8695</span>
+                <span className="text-[10px] text-slate-400 font-medium">Đồng bộ tự động</span>
               </div>
             </div>
           ) : (
@@ -98,7 +178,7 @@ function App() {
           </button>
         </div>
 
-        {/* Thanh tìm kiếm bài viết */}
+        {/* Thanh tìm kiếm */}
         {isSidebarOpen && (
           <div className="p-3 border-b border-slate-100 shrink-0">
             <div className="relative">
@@ -116,15 +196,15 @@ function App() {
           </div>
         )}
 
-        {/* Danh sách Menu động */}
-        <div className="flex-1 overflow-y-auto p-3 space-y-4">
+        {/* Menu & Danh mục bài viết */}
+        <div className="flex-1 overflow-y-auto p-3 space-y-5">
           {isSidebarOpen && (
             <div className="space-y-1">
               <button
                 onClick={() => setActiveTab('dashboard')}
-                className={`w-full text-left px-3 py-2 rounded-lg text-xs font-semibold flex items-center gap-2 transition-all ${
+                className={`w-full text-left px-3 py-2.5 rounded-lg text-xs font-bold flex items-center gap-2 transition-all ${
                   activeTab === 'dashboard' 
-                    ? 'bg-indigo-50 text-indigo-700' 
+                    ? 'bg-indigo-50 text-indigo-700 shadow-sm' 
                     : 'text-slate-600 hover:bg-slate-50'
                 }`}
               >
@@ -133,39 +213,36 @@ function App() {
             </div>
           )}
 
-          {/* Hiển thị danh mục & bài viết thực tế quét được */}
+          {/* Các chuyên mục bài viết (Màu sắc sinh động, Font chữ to hơn) */}
           {isSidebarOpen ? (
-            Object.entries(groupedArticles).map(([category, items]) => (
-              <div key={category} className="space-y-1">
-                <h3 className="px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                  📂 {category}
-                </h3>
-                <div className="space-y-0.5">
-                  {items.map(item => (
-                    <button
-                      key={item.id}
-                      onClick={() => setActiveTab(item.id)}
-                      className={`w-full text-left px-3 py-1.5 rounded-lg text-xs transition-all flex items-center justify-between group ${
-                        activeTab === item.id
-                          ? 'bg-indigo-600 text-white font-medium shadow-sm'
-                          : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
-                      }`}
-                    >
-                      <span className="truncate max-w-[180px]">{item.title}</span>
-                      <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-mono ${
-                        activeTab === item.id 
-                          ? 'bg-indigo-700 text-indigo-100' 
-                          : 'bg-slate-100 text-slate-500 group-hover:bg-slate-200'
-                      }`}>
-                        JSX
-                      </span>
-                    </button>
-                  ))}
+            Object.entries(groupedArticles).map(([category, items]) => {
+              const theme = getTheme(category);
+              return (
+                <div key={category} className="space-y-2 pt-2">
+                  <h3 className={`px-2 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 ${theme.text}`}>
+                    <span>{theme.icon}</span>
+                    <span>{category}</span>
+                  </h3>
+                  <div className="space-y-1">
+                    {items.map(item => (
+                      <button
+                        key={item.id}
+                        onClick={() => setActiveTab(item.id)}
+                        className={`w-full text-left px-3 py-2 rounded-lg text-xs transition-all flex items-center justify-between group ${
+                          activeTab === item.id
+                            ? 'bg-indigo-600 text-white font-medium shadow-sm'
+                            : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                        }`}
+                      >
+                        <span className="truncate pr-2">{item.title}</span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))
+              );
+            })
           ) : (
-            /* Khi Sidebar thu nhỏ */
+            /* Sidebar khi thu gọn */
             <div className="flex flex-col items-center gap-3">
               <button 
                 onClick={() => setActiveTab('dashboard')}
@@ -177,42 +254,39 @@ function App() {
                 🏠
               </button>
               <div className="w-8 border-b border-slate-200" />
-              {articles.map(item => (
-                <button
-                  key={item.id}
-                  onClick={() => setActiveTab(item.id)}
-                  className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold transition-all ${
-                    activeTab === item.id ? 'bg-indigo-600 text-white' : 'hover:bg-slate-100 text-slate-500'
-                  }`}
-                  title={item.title}
-                >
-                  {item.title.substring(0, 2)}
-                </button>
-              ))}
-            </div>
-          )}
-
-          {isSidebarOpen && filteredArticles.length === 0 && (
-            <div className="text-center py-6">
-              <p className="text-[11px] text-slate-400">Không tìm thấy bài viết nào.</p>
+              {articles.map(item => {
+                const theme = getTheme(item.category);
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => setActiveTab(item.id)}
+                    className={`w-9 h-9 rounded-lg flex items-center justify-center text-xs font-bold transition-all ${
+                      activeTab === item.id ? 'bg-indigo-600 text-white' : 'hover:bg-slate-100 text-slate-500'
+                    }`}
+                    title={item.title}
+                  >
+                    {theme.icon}
+                  </button>
+                );
+              })}
             </div>
           )}
         </div>
 
-        {/* Footer Sidebar */}
+        {/* Thanh cầm kéo giãn kích thước (Gờ kéo thả) */}
         {isSidebarOpen && (
-          <div className="p-3 border-t border-slate-100 bg-slate-50/50 text-[10px] text-slate-400 flex justify-between items-center shrink-0">
-            <span>Quét được: {articles.length} bài viết</span>
-            <span className="font-mono text-emerald-500">● Đã đồng bộ</span>
-          </div>
+          <div 
+            onMouseDown={startResizing}
+            className="absolute top-0 right-0 w-1.5 h-full cursor-col-resize hover:bg-indigo-500/30 active:bg-indigo-600/50 transition-colors z-40"
+          />
         )}
       </div>
 
       {/* ==========================================
-          VÙNG HIỂN THỊ NỘI DUNG CHÍNH (MAIN AREA)
+          VÙNG HIỂN THỊ CHÍNH (RESPONSIVE FULL-SIZE)
           ========================================== */}
       <div className="flex-1 flex flex-col h-full overflow-hidden">
-        {/* Top Navbar */}
+        {/* Navbar đầu trang */}
         <header className="h-16 border-b border-slate-200 bg-white flex items-center justify-between px-6 shrink-0 z-20">
           <div className="flex items-center gap-3">
             <button 
@@ -221,28 +295,22 @@ function App() {
             >
               ☰
             </button>
-            <h2 className="font-semibold text-slate-800 text-sm">
+            <h2 className="font-bold text-slate-800 text-sm">
               {activeArticle ? activeArticle.title : 'Workspace Tài Liệu'}
             </h2>
           </div>
-          
-          <span className="text-[11px] bg-indigo-50 text-indigo-600 px-2.5 py-1 rounded-full font-mono font-medium">
-            Tải động hoạt động (Dynamic Import)
-          </span>
         </header>
 
         {/* Khung nội dung */}
         <main className="flex-1 overflow-y-auto bg-slate-50 p-6">
           {activeArticle ? (
-            <div className="max-w-5xl mx-auto bg-white rounded-xl border border-slate-200/80 shadow-sm p-6 md:p-8 min-h-full">
-              {/* Thanh điều hướng nhanh của bài viết */}
+            /* TRANG NỘI DUNG (FULL WIDTH RESPONSIVE THEO SIDEBAR) */
+            <div className="w-full bg-white rounded-xl border border-slate-200/80 shadow-sm p-6 md:p-8 min-h-full transition-all">
+              {/* Header bài viết đã được lược bỏ thông tin file thừa */}
               <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-4 mb-6">
-                <div className="flex items-center gap-2 text-xs text-slate-400">
-                  <span>Vị trí file:</span>
-                  <span className="bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono text-[10px]">
-                    {activeArticle.path}
-                  </span>
-                </div>
+                <span className={`text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider ${getTheme(activeArticle.category).bg}`}>
+                  {getTheme(activeArticle.category).icon} {activeArticle.category}
+                </span>
                 <button 
                   onClick={() => setActiveTab('dashboard')}
                   className="text-xs text-indigo-600 hover:text-indigo-800 font-medium transition-colors"
@@ -251,56 +319,81 @@ function App() {
                 </button>
               </div>
 
-              {/* KHU VỰC HIỂN THỊ NỘI DUNG FILE JSX THỰC TẾ TỪ CLAUDE */}
-              <div className="prose prose-slate max-w-none">
+              {/* Tải Component thực tế từ Claude */}
+              <div className="prose prose-slate max-w-none w-full">
                 <activeArticle.Component />
               </div>
             </div>
           ) : (
-            /* TRANG TỔNG QUAN (DASHBOARD) KHI CHƯA CHỌN BÀI VIẾT */
-            <div className="max-w-5xl mx-auto space-y-6">
+            /* ==========================================
+                TRANG TỔNG QUAN (DASHBOARD) THEO CÁC TAB LỚN
+                ========================================== */
+            <div className="w-full space-y-6 transition-all">
+              {/* Banner */}
               <div className="bg-gradient-to-r from-indigo-600 to-violet-600 rounded-xl p-6 md:p-8 text-white shadow-sm">
-                <h1 className="text-xl md:text-2xl font-bold">Thư viện bài viết từ Claude 👋</h1>
+                <h1 className="text-xl md:text-2xl font-bold">Thư viện bài viết tích hợp 📝</h1>
                 <p className="text-indigo-100 text-xs md:text-sm mt-1 max-w-xl">
-                  Hệ thống tự động phát hiện mọi bài viết trong <code className="bg-indigo-700/50 px-1.5 py-0.5 rounded text-white font-mono text-xs">src/articles/</code> và kết xuất trực tiếp lên web.
+                  Giao diện đồng bộ tự động toàn bộ cấu trúc bài viết của bạn. Chọn theo các chuyên mục bên dưới để đọc nhanh.
                 </p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  <span className="bg-white/10 backdrop-blur-md text-white text-[11px] px-2.5 py-1 rounded-full">
-                    📂 {articles.length} bài viết thực tế sẵn có
-                  </span>
-                </div>
               </div>
 
-              {/* Danh sách các bài viết thực tế dưới dạng thẻ grid */}
-              <div className="space-y-3">
-                <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Danh Sách Bài Viết Đang Có</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {articles.map(art => (
-                    <div 
-                      key={art.id} 
-                      onClick={() => setActiveTab(art.id)}
-                      className="bg-white p-4 rounded-xl border border-slate-200/80 shadow-sm hover:shadow-md hover:border-indigo-200 cursor-pointer transition-all flex flex-col justify-between group"
+              {/* Bộ điều khiển Tab chính trên Dashboard */}
+              <div className="border-b border-slate-200 flex items-center gap-1 overflow-x-auto pb-1 shrink-0">
+                {uniqueCategories.map(cat => {
+                  const theme = getTheme(cat);
+                  const isSelected = activeDashboardTab === cat;
+                  return (
+                    <button
+                      key={cat}
+                      onClick={() => setActiveDashboardTab(cat)}
+                      className={`px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 whitespace-nowrap ${
+                        isSelected 
+                          ? `${theme.bg} shadow-sm border` 
+                          : 'text-slate-500 hover:bg-slate-100 hover:text-slate-800'
+                      }`}
                     >
-                      <div>
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-[10px] bg-slate-100 text-slate-500 px-2 py-0.5 rounded font-mono uppercase font-bold tracking-wider">
-                            {art.category}
-                          </span>
-                          <span className="text-xs opacity-0 group-hover:opacity-100 text-indigo-600 transition-all">
-                            Đọc bài →
-                          </span>
-                        </div>
-                        <h4 className="font-bold text-slate-800 text-sm mb-1 group-hover:text-indigo-600 transition-colors">
-                          {art.title}
-                        </h4>
-                        <p className="text-[11px] text-slate-400 font-mono truncate">
-                          File: {art.id}.jsx
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                      <span>{theme.icon}</span>
+                      <span>{cat === 'All' ? 'Tất cả bài viết' : cat}</span>
+                    </button>
+                  );
+                })}
               </div>
+
+              {/* Danh sách các bài viết đã được lọc theo Tab (Không lộ file hay định dạng) */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {articles
+                  .filter(art => activeDashboardTab === 'All' || art.category === activeDashboardTab)
+                  .map(art => {
+                    const theme = getTheme(art.category);
+                    return (
+                      <div 
+                        key={art.id} 
+                        onClick={() => setActiveTab(art.id)}
+                        className="bg-white p-5 rounded-xl border border-slate-200/80 shadow-sm hover:shadow-md hover:border-indigo-300 cursor-pointer transition-all flex flex-col justify-between group"
+                      >
+                        <div>
+                          <div className="flex items-center justify-between mb-3">
+                            <span className={`text-[10px] px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider ${theme.bg}`}>
+                              {theme.icon} {art.category}
+                            </span>
+                            <span className="text-xs opacity-0 group-hover:opacity-100 text-indigo-600 transition-all font-medium">
+                              Đọc bài →
+                            </span>
+                          </div>
+                          <h4 className="font-bold text-slate-800 text-sm group-hover:text-indigo-600 transition-colors line-clamp-2">
+                            {art.title}
+                          </h4>
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+
+              {articles.filter(art => activeDashboardTab === 'All' || art.category === activeDashboardTab).length === 0 && (
+                <div className="text-center py-12 bg-white rounded-xl border border-dashed border-slate-200">
+                  <p className="text-sm text-slate-400">Không tìm thấy bài viết nào trong chuyên mục này.</p>
+                </div>
+              )}
             </div>
           )}
         </main>
