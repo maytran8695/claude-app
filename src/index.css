@@ -21,3 +21,51 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
+
+/* src/index.css */
+
+/* Định dạng đồng bộ cho toàn bộ bài viết */
+.article-content {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  color: #334155; /* slate-700 */
+}
+
+/* Định dạng tiêu đề trong bài viết */
+.article-content h1, 
+.article-content h2, 
+.article-content h3 {
+  color: #0f172a; /* slate-900 */
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.article-content h2 {
+  @apply text-lg border-b border-slate-100 pb-2 mt-8 mb-4;
+}
+
+/* Đồng bộ định dạng Table (Cực kỳ quan trọng cho bảng tài chính/từ vựng) */
+.article-content table {
+  @apply w-full border-collapse my-6 text-left text-xs;
+}
+
+.article-content th {
+  @apply bg-slate-50 text-slate-700 font-bold px-4 py-3 border-b border-slate-200 uppercase tracking-wider text-[10px];
+}
+
+.article-content td {
+  @apply px-4 py-3 border-b border-slate-100 text-slate-600 align-top leading-relaxed;
+}
+
+/* Hiệu ứng hover hàng cho bảng */
+.article-content tr:hover td {
+  @apply bg-slate-50/50;
+}
+
+/* Sửa lỗi mất dấu chấm tròn của danh sách */
+.article-content ul {
+  @apply list-disc pl-5 mb-4 space-y-2 text-sm text-slate-600;
+}
+
+.article-content ol {
+  @apply list-decimal pl-5 mb-4 space-y-2 text-sm text-slate-600;
+}
