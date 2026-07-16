@@ -1,40 +1,7 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
+import articles from "./utils/articleLoader";
 
-import Layout from "./components/Layout";
-
-import Home from "./pages/Home";
-import Finance from "./pages/Finance";
-import Health from "./pages/Health";
+console.log(articles);
 
 export default function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-
-        <Route element={<Layout />}>
-
-          <Route
-            path="/"
-            element={<Home />}
-          />
-
-          <Route
-            path="/finance"
-            element={<Finance />}
-          />
-
-          <Route
-            path="/health"
-            element={<Health />}
-          />
-
-        </Route>
-
-      </Routes>
-    </BrowserRouter>
-  );
+    return <h1>Hello</h1>;
 }
