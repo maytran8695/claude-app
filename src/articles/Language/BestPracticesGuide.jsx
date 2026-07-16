@@ -413,7 +413,7 @@ const CSS = `
 * { box-sizing: border-box; }
 .root {
   --ink:${INK}; --paper:${PAPER}; --panel:${PANEL}; --rule:${RULE}; --muted:${MUTED}; --accent:${ACCENT};
-  display: flex; height: calc(100vh - 220px); min-height: 520px; overflow: hidden;
+  display: flex;
   background: var(--paper); color: var(--ink);
   font-family: 'Spline Sans', sans-serif;
   font-size: 15px; line-height: 1.55;
@@ -421,10 +421,11 @@ const CSS = `
 
 /* rail */
 .rail {
-  width: 250px; flex-shrink: 0; height: 100%;
+  width: 250px; flex-shrink: 0;
   background: var(--ink); color: #E8E3D6;
   display: flex; flex-direction: column;
   padding: 22px 0 0;
+  position: sticky; top: 0; max-height: 100vh; overflow-y: auto;
 }
 .brand { display: flex; gap: 11px; align-items: center; padding: 0 20px 20px; }
 .brand-mark {
@@ -435,7 +436,7 @@ const CSS = `
 }
 .brand-t { font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: 0.18em; color: #E9B778; }
 .brand-s { font-size: 12px; color: #A9A392; margin-top: 2px; line-height: 1.3; }
-.rail nav { flex: 1; overflow-y: auto; padding: 6px 0; }
+.rail nav { flex: 1; padding: 6px 0; }
 .nav-item {
   width: 100%; text-align: left; border: none; background: transparent; cursor: pointer;
   color: #C4BEAE; display: flex; align-items: center; gap: 11px;
@@ -461,7 +462,7 @@ const CSS = `
 }
 
 /* stage */
-.stage { flex: 1; overflow-y: auto; padding: 40px 52px 80px; }
+.stage { flex: 1; padding: 40px 52px 80px; }
 .stage-head { max-width: 820px; margin-bottom: 26px; }
 .stage-eyebrow {
   font-family: 'Spline Sans Mono', monospace; font-size: 12px; letter-spacing: 0.22em;

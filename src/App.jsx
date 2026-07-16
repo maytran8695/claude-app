@@ -267,6 +267,12 @@ function App() {
   
   const [searchTerm, setSearchTerm] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const contentScrollRef = useRef(null);
+
+  // Cuộn về đầu trang mỗi khi đổi bài viết
+  useEffect(() => {
+    if (contentScrollRef.current) contentScrollRef.current.scrollTop = 0;
+  }, [activeTab]);
 
   // =========================================================================
   // LOGIC KÉO THẢ CHIỀU RỘNG SIDEBAR (RESIZABLE SIDEBAR)
@@ -470,24 +476,19 @@ function App() {
               </div>
             </div>
 
-            {/* Vùng Cuộn Chứa Card Bài Viết */}
-            <div className="flex-1 overflow-y-auto p-6 md:p-10">
-              {/* Chiếc Card trắng tinh tế nổi lên trên nền xám nhạt */}
-              <div className="max-w-5xl mx-auto w-full bg-white rounded-2xl border border-slate-200/40 p-8 md:p-12 shadow-[0_8px_30px_rgb(0,0,0,0.015)] min-h-full">
-                
-                {/* Ép layout và áp dụng CSS Custom Overrides */}
-                <div className="w-full text-left article-content max-w-none 
-                  [&_*]:text-left 
-                  [&_div]:max-w-none [&_div]:mx-0 [&_div]:w-full
-                  [&_section]:max-w-none [&_section]:mx-0 [&_section]:w-full
-                  [&_p]:max-w-none [&_p]:mx-0 [&_p]:w-full
-                  [&_img]:mx-0 [&_img]:max-w-full
-                  [&_table]:w-full [&_table]:mx-0
-                  [&_h1]:text-left [&_h2]:text-left [&_h3]:text-left"
-                >
-                  <activeArticle.Component />
-                </div>
-
+            {/* Vùng Cuộn Duy Nhất Chứa Nội Dung Bài Viết (full-bleed, không card) */}
+            <div ref={contentScrollRef} className="flex-1 overflow-y-auto">
+              {/* Ép layout và áp dụng CSS Custom Overrides */}
+              <div className="w-full h-full text-left article-content max-w-none
+                [&_*]:text-left
+                [&_div]:max-w-none [&_div]:mx-0
+                [&_section]:max-w-none [&_section]:mx-0 [&_section]:w-full
+                [&_p]:max-w-none [&_p]:mx-0 [&_p]:w-full
+                [&_img]:mx-0 [&_img]:max-w-full
+                [&_table]:w-full [&_table]:mx-0
+                [&_h1]:text-left [&_h2]:text-left [&_h3]:text-left"
+              >
+                <activeArticle.Component />
               </div>
             </div>
 

@@ -3335,7 +3335,7 @@ function SectionCard({ s }) {
   return (
     <div className="rounded-md overflow-hidden" style={{ background: C.panel, border: `1px solid ${C.line}` }}>
       <button onClick={() => setOpen(!open)} className="w-full flex items-center justify-between gap-3 px-4 py-3 text-left">
-        <span style={{ fontFamily: serif, color: C.ink, fontSize: 16 }}>{s.heading}</span>
+        <span className="min-w-0" style={{ fontFamily: serif, color: C.ink, fontSize: 16 }}>{s.heading}</span>
         <div className="flex items-center gap-3 shrink-0">
           <EvidenceBar level={s.evidence} />
           {open ? <ChevronUp size={16} color={C.inkDim} /> : <ChevronDown size={16} color={C.inkDim} />}
