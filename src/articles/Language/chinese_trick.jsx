@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 
 const FONT_IMPORT = `
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Noto+Serif:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Serif:ital@0;1&display=swap');
 `;
 
 const CONF = {
@@ -319,7 +319,7 @@ export default function HanVietKey() {
     phoneticGroups.length + sandhiRules.length + measureWords.length + minimalPairs.length + chengyuList.length;
 
   return (
-    <div style={{ minHeight: "100vh", background: "#EDE6D8", fontFamily: "Inter, sans-serif" }}>
+    <div style={{ background: "#EDE6D8", fontFamily: "Inter, sans-serif" }}>
       <style>{FONT_IMPORT}</style>
 
       <div style={{ background: "#22201C", padding: "36px 24px 30px", position: "relative", overflow: "hidden" }}>

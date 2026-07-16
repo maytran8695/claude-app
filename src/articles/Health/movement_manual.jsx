@@ -150,7 +150,7 @@ export default function App() {
   const [part, setPart] = useState(0);
 
   return (
-    <div style={{ fontFamily: "var(--font-sans)", padding: "1.5rem 0", maxWidth: 680 }}>
+    <div style={{ fontFamily: "var(--font-sans)" }}>
       {/* ===== TAB BREADCRUMB — colored boxes at very top ===== */}
       <div style={{ display: "flex", flexWrap: "wrap", gap: 7, marginBottom: "1.5rem" }}>
         {PARTS.map((p) => {

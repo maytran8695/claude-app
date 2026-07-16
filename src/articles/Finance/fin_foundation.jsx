@@ -2061,9 +2061,9 @@ export default function Tap1Foundations() {
   const currentSection = sections.find(s => s.id === activeSection);
 
   return (
-    <div style={{ display: "flex", minHeight: "100vh", fontFamily: "var(--font-sans, system-ui)", background: "var(--surface-0, #f5f5f0)" }}>
+    <div style={{ display: "flex", fontFamily: "var(--font-sans, system-ui)", background: "var(--surface-0, #f5f5f0)" }}>
       {/* Sidebar */}
-      <div style={{ width: "240px", flexShrink: 0, background: "var(--surface-2, #fff)", borderRight: "0.5px solid var(--border, #e0e0d8)", padding: "1.5rem 0", position: "sticky", top: 0, height: "100vh", overflowY: "auto" }}>
+      <div style={{ width: "240px", flexShrink: 0, background: "var(--surface-2, #fff)", borderRight: "0.5px solid var(--border, #e0e0d8)", padding: "1.5rem 0", position: "sticky", top: 0, overflowY: "auto", maxHeight: "100vh" }}>
         <div style={{ padding: "0 1rem 1rem", borderBottom: "0.5px solid var(--border, #e0e0d8)", marginBottom: "0.5rem" }}>
           <p style={{ fontSize: "11px", fontWeight: 600, color: "#185FA5", textTransform: "uppercase", letterSpacing: "0.06em", margin: 0 }}>Tập 1</p>
           <p style={{ fontSize: "14px", color: "var(--text-primary, #1a1a1a)", margin: "4px 0 0", lineHeight: 1.4, fontWeight: 500 }}>Nền tảng Tài chính</p>

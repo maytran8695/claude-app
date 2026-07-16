@@ -454,7 +454,7 @@ export default function MacroQuarterlyReview() {
   }
 
   return (
-    <div style={{ fontFamily: "'IBM Plex Sans', 'Segoe UI', sans-serif", background: "#f1f5f9", minHeight: "100vh", padding: "18px 14px 40px", color: "#1e293b" }}>
+    <div style={{ fontFamily: "'IBM Plex Sans', 'Segoe UI', sans-serif", background: "#f1f5f9", padding: "18px 14px 40px", color: "#1e293b" }}>
       {/* Header */}
       <div style={{ background: "#0f172a", borderRadius: 16, padding: "16px 18px", marginBottom: 14 }}>
         <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 3, color: "#64748b", textTransform: "uppercase" }}>Macro Review — Thực chiến</div>

@@ -518,8 +518,8 @@ export default function LovePhilosophyDeep() {
   const showP = (g) => pg === "all" || pg === g;
 
   return (
-    <div style={{ fontFamily: SERIF, background: PAPER, minHeight: "100vh", color: INK }}>
-      <div style={{ maxWidth: 980, margin: "0 auto", padding: "26px 16px 60px" }}>
+    <div style={{ fontFamily: SERIF, background: PAPER, color: INK }}>
+      <div style={{ padding: "26px 16px 60px" }}>
         <div style={{ marginBottom: 16 }}>
           <div style={{ fontFamily: SANS, fontSize: 10.5, letterSpacing: "0.09em", textTransform: "uppercase", color: MUTE, fontWeight: 700, marginBottom: 8 }}>Triết học · Tâm lý · Thực hành về Tình yêu</div>
           <h1 style={{ fontSize: 29, lineHeight: 1.16, margin: 0, fontWeight: 600, letterSpacing: "-0.01em" }}>Hiểu tình yêu,<br />rồi thực hành nó</h1>

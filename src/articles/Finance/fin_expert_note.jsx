@@ -3480,15 +3480,15 @@ export default function FinanceKnowledgeBase() {
 
   if (!loaded) {
     return (
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh", color: "var(--text-muted, #888)", fontSize: "13px" }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "300px", color: "var(--text-muted, #888)", fontSize: "13px" }}>
         Đang tải...
       </div>
     );
   }
 
   return (
-    <div style={{ display: "flex", minHeight: "100vh", fontFamily: "var(--font-sans, system-ui)", background: "var(--surface-0, #f5f5f0)" }}>
-      
+    <div style={{ display: "flex", fontFamily: "var(--font-sans, system-ui)", background: "var(--surface-0, #f5f5f0)" }}>
+
       {/* Sidebar */}
       <div style={{
         width: "220px",
@@ -3498,7 +3498,7 @@ export default function FinanceKnowledgeBase() {
         padding: "1.5rem 0",
         position: "sticky",
         top: 0,
-        height: "100vh",
+        maxHeight: "100vh",
         overflowY: "auto"
       }}>
         <div style={{ padding: "0 1rem 1rem", borderBottom: "0.5px solid var(--border, #e0e0d8)", marginBottom: "0.5rem" }}>

@@ -1042,7 +1042,7 @@ export default function App() {
   const [activeSector, setActiveSector] = useState("steel");
   const current = SECTORS.find(s => s.id === activeSector);
   return (
-    <div style={{ padding: "14px 0", maxWidth: 700, fontFamily: "var(--font-sans)" }}>
+    <div style={{ fontFamily: "var(--font-sans)" }}>
       <div style={{ marginBottom: 14 }}>
         <div style={{ fontSize: 15, fontWeight: 600, color: "var(--text-primary)", marginBottom: 2 }}>Vietnam Industry Primers — Deep Edition</div>
         <div style={{ fontSize: 11, color: "var(--text-muted)" }}>8 ngành · 7 lớp phân tích · Định giá + Kịch bản Bull/Base/Bear · Mid-2026</div>

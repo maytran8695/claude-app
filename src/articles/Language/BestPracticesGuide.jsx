@@ -413,7 +413,7 @@ const CSS = `
 * { box-sizing: border-box; }
 .root {
   --ink:${INK}; --paper:${PAPER}; --panel:${PANEL}; --rule:${RULE}; --muted:${MUTED}; --accent:${ACCENT};
-  display: flex; height: 100vh; overflow: hidden;
+  display: flex; height: calc(100vh - 220px); min-height: 520px; overflow: hidden;
   background: var(--paper); color: var(--ink);
   font-family: 'Spline Sans', sans-serif;
   font-size: 15px; line-height: 1.55;

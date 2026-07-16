@@ -750,7 +750,7 @@ export default function MacroVNFrameworkExpert() {
   ];
 
   return (
-    <div style={{ fontFamily: "'IBM Plex Sans', 'Segoe UI', sans-serif", background: "#f1f5f9", minHeight: "100vh", padding: "18px 13px 40px", color: "#1e293b" }}>
+    <div style={{ fontFamily: "'IBM Plex Sans', 'Segoe UI', sans-serif", background: "#f1f5f9", padding: "18px 13px 40px", color: "#1e293b" }}>
 
       <div style={{ background: "#fff", borderRadius: 16, padding: "16px 18px", marginBottom: 12, border: "1.5px solid #e2e8f0" }}>
         <div style={{ fontSize: 9.5, fontWeight: 700, letterSpacing: 3, color: "#94a3b8", textTransform: "uppercase" }}>Macro Framework · Vietnam · Expert Edition</div>

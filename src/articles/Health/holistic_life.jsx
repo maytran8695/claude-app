@@ -3842,14 +3842,14 @@ export default function App() {
     ...PILLARS.map((p) => ({ id: p.id, num: p.num, label: SHORT[p.id] || p.title, icon: p.icon })),
   ];
   return (
-    <div style={{ background: C.bg, minHeight: "100vh" }} className="w-full">
+    <div style={{ background: C.bg }} className="w-full">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap');
         * { box-sizing: border-box; }
         ::-webkit-scrollbar { height: 6px; width: 6px; }
         ::-webkit-scrollbar-thumb { background: ${C.line}; border-radius: 3px; }
       `}</style>
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+      <div className="px-4 sm:px-6 py-8">
         <header className="mb-6">
           <div style={{ fontFamily: mono, color: C.goldDim, fontSize: 11, letterSpacing: "0.12em" }} className="uppercase mb-2">
             Hồ sơ nghiên cứu · cấp chuyên gia · Actionable + 8 trụ cột
