@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { MainLayout } from './components/layout/MainLayout';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './components/ui/Card';
-import { Button } from './components/ui/Button';
-import { Badge } from './components/ui/Badge';
+// ĐÃ SỬA: Đường dẫn chuẩn trực tiếp vào thư mục components của bạn
+import { MainLayout } from './components/Layout'; 
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './components/Card'; 
+import { Button } from './components/Button'; 
+import { Badge } from './components/Badge'; 
 
 // VÍ DỤ IMPORT CÁC FILE JSX TỪ CLAUDE BẰNG CÁCH KHAI BÁO DƯỚI ĐÂY:
 // import AnalyticsPage from './pages/Analytics'; // Khi bạn có file Analytics tải từ Claude
