@@ -1056,7 +1056,7 @@ export default function App() {
   const [stock, setStock] = useState("hpg");
   const order = ["hpg", "acb", "gmd", "msn", "dhg", "ree", "bmp", "dbc"];
   return (
-    <div style={{ fontFamily: "var(--font-sans)" }}>
+    <div style={{ fontFamily: "var(--font-sans)", padding: "18px 14px 40px" }}>
       <div style={{ marginBottom: 12 }}>
         <div style={{ fontSize: 15, fontWeight: 600, color: "var(--text-primary)" }}>Stock Deep-Dive · Bộ 8 mã + đối thủ cạnh tranh</div>
         <div style={{ fontSize: 11, color: "var(--text-muted)" }}>Thép · Ngân hàng · Cảng · Holding · Dược · Năng lượng · VLXD · Chăn nuôi — GMD & DHG có sub-tab đối thủ</div>

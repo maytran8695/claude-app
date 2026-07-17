@@ -150,25 +150,25 @@ export default function App() {
   const [part, setPart] = useState(0);
 
   return (
-    <div style={{ fontFamily: "var(--font-sans)" }}>
+    <div style={{ fontFamily: "var(--font-sans)", padding: "18px 14px 40px" }}>
       {/* ===== TAB BREADCRUMB — colored boxes at very top ===== */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 7, marginBottom: "1.5rem" }}>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: "2rem" }}>
         {PARTS.map((p) => {
           const active = part === p.id;
           return (
             <button key={p.id} onClick={() => setPart(p.id)} style={{
-              display: "flex", alignItems: "center", gap: 7,
-              padding: "8px 13px", borderRadius: 10, cursor: "pointer",
-              fontSize: 12.5, fontWeight: 600,
+              display: "flex", alignItems: "center", gap: 9,
+              padding: "11px 19px", borderRadius: 12, cursor: "pointer",
+              fontSize: 14, fontWeight: 700,
               background: active ? p.accent.border : p.accent.soft,
               color: active ? "#fff" : p.accent.text,
-              border: `1px solid ${active ? p.accent.border : p.accent.bg}`,
-              boxShadow: active ? `0 1px 3px ${p.accent.bg}` : "none",
+              border: `1.5px solid ${active ? p.accent.border : p.accent.bg}`,
+              boxShadow: active ? `0 2px 8px ${p.accent.bg}` : "none",
               transition: "all 0.15s",
             }}>
               <span style={{
                 display: "inline-flex", alignItems: "center", justifyContent: "center",
-                minWidth: 20, height: 20, borderRadius: 6, fontSize: 11, fontWeight: 700,
+                minWidth: 25, height: 25, borderRadius: 7, fontSize: 12.5, fontWeight: 800,
                 background: active ? "rgba(255,255,255,0.25)" : p.accent.bg,
                 color: active ? "#fff" : p.accent.mid,
               }}>{p.num}</span>
