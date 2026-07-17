@@ -464,7 +464,13 @@ const ADVANCED_TOPICS = [
     vnContext: "Khối ngoại mua/bán ròng: HOSE, HNX hàng ngày. FDI giải ngân: Bộ Tài chính hàng tháng — đọc cột 'vốn thực hiện'. Kiều hối: World Bank, NHNN. Chênh lệch lãi suất VND–USD: so lãi suất tiền gửi 12M VND với Fed Funds. VIX và DXY: theo dõi hàng ngày như chỉ báo dẫn cho FII." },
 ];
 
+
 // ══════════════ UI COMPONENTS ══════════════
+// Tái cấu trúc điều hướng: bỏ kiểu accordion lồng nhau (Khối > Mục > Mục con
+// > tab chi tiết — 4 cấp bấm mở), thay bằng breadcrumb 2 cấp phẳng:
+// Tab chính (section) → Tab phụ (subsection) → nội dung chi tiết (vẫn giữ
+// nguyên cụm tab Bản chất/Cơ chế/Sai lầm/Tín hiệu/Dữ liệu ở tầng lá, vì đó
+// là 1 hàng tab phẳng chứ không phải một lớp accordion nữa).
 
 function TagBadge({ label, color }) {
   return <span style={{ fontSize: 9, fontWeight: 600, letterSpacing: 0.3, padding: "2px 8px", borderRadius: 20, background: color + "15", color, border: `1px solid ${color}35` }}>{label}</span>;
@@ -510,6 +516,9 @@ function DataBox({ text }) {
   );
 }
 
+// Hàng tab phẳng ở tầng lá — Bản chất/Cơ chế/Sai lầm/Tín hiệu/Dữ liệu.
+// Đây KHÔNG phải một lớp accordion mới — chỉ là 1 hàng nút chuyển nội dung,
+// giống hệt kiểu tab dùng xuyên suốt các file khác trong app.
 function DetailPanel({ tabs, color }) {
   const [tab, setTab] = useState("def");
   const list = [
@@ -517,13 +526,13 @@ function DetailPanel({ tabs, color }) {
     { id: "signals", label: "Tín hiệu" }, { id: "vnContext", label: "Dữ liệu" },
   ].filter(t => tabs[t.id]);
   return (
-    <div style={{ margin: "0 0 10px 10px", border: `1.5px solid ${color}30`, borderRadius: 10, overflow: "hidden" }}>
+    <div style={{ border: `1.5px solid ${color}30`, borderRadius: 10, overflow: "hidden" }}>
       <div style={{ display: "flex", borderBottom: `1px solid ${color}20`, background: color + "08" }}>
         {list.map(t => (
-          <button key={t.id} onClick={() => setTab(t.id)} style={{ flex: 1, textAlign: "center", border: "none", cursor: "pointer", padding: "7px 1px", fontSize: 9.5, fontWeight: tab === t.id ? 700 : 500, color: tab === t.id ? color : "#94a3b8", background: tab === t.id ? "#fff" : "transparent", borderBottom: tab === t.id ? `2px solid ${color}` : "2px solid transparent" }}>{t.label}</button>
+          <button key={t.id} onClick={() => setTab(t.id)} style={{ flex: 1, textAlign: "center", border: "none", cursor: "pointer", padding: "8px 1px", fontSize: 10.5, fontWeight: tab === t.id ? 700 : 500, color: tab === t.id ? color : "#94a3b8", background: tab === t.id ? "#fff" : "transparent", borderBottom: tab === t.id ? `2px solid ${color}` : "2px solid transparent" }}>{t.label}</button>
         ))}
       </div>
-      <div style={{ padding: "12px 12px 8px" }}>
+      <div style={{ padding: "13px 13px 9px" }}>
         {tab === "def" && <p style={{ margin: 0, fontSize: 12.5, color: "#374151", lineHeight: 1.75 }}>{tabs.def}</p>}
         {tab === "deep" && tabs.deep.map((d, i) => (
           <div key={i} style={{ marginBottom: 13 }}>
@@ -539,202 +548,184 @@ function DetailPanel({ tabs, color }) {
   );
 }
 
-function ChildPanel({ item, parentColor, onSelect, selected }) {
-  const active = selected?.id === item.id;
+// Nội dung tab "Tỷ giá & Cán cân" — không có tab phụ (subsection), vì bản
+// thân nó là 1 khối duy nhất, hiển thị trực tiếp qua 4 tab lá.
+function ExchangeDetail({ data }) {
+  const [tab, setTab] = useState("points");
+  const list = [{ id: "points", l: "Cơ chế" }, { id: "pitfalls", l: "Sai lầm" }, { id: "signals", l: "Tín hiệu" }, { id: "data", l: "Dữ liệu" }];
   return (
     <div>
-      <button onClick={() => onSelect(active ? null : item)} style={{ width: "100%", textAlign: "left", border: "none", cursor: "pointer", padding: "9px 11px", borderRadius: 8, marginBottom: 4, background: active ? (item.color || parentColor) + "12" : "#f8fafc", borderLeft: `3px solid ${active ? (item.color || parentColor) : "#e2e8f0"}`, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
-        <span style={{ fontSize: 12, fontWeight: 600, color: active ? (item.color || parentColor) : "#1e293b", lineHeight: 1.4 }}>{item.label}</span>
-        <span style={{ fontSize: 11, color: "#94a3b8", flexShrink: 0 }}>{active ? "▾" : "▸"}</span>
-      </button>
-      {active && item.tabs && <DetailPanel tabs={item.tabs} color={item.color || parentColor} />}
+      <div style={{ padding: "12px 14px", background: data.lightBg, border: `1px solid ${data.border}`, borderRadius: 10, marginBottom: 12 }}>
+        <p style={{ margin: 0, fontSize: 12.5, color: "#374151", lineHeight: 1.75 }}>{data.def}</p>
+      </div>
+      <div style={{ display: "flex", gap: 4, marginBottom: 12 }}>
+        {list.map(t => (
+          <button key={t.id} onClick={() => setTab(t.id)} style={{ flex: 1, textAlign: "center", border: "none", cursor: "pointer", borderRadius: 8, padding: "8px 2px", fontSize: 11, fontWeight: tab === t.id ? 700 : 500, color: tab === t.id ? "#fff" : data.color, background: tab === t.id ? data.color : data.lightBg }}>{t.l}</button>
+        ))}
+      </div>
+      {tab === "points" && data.points.map((p, i) => {
+        const warn = p.title.startsWith("⚠");
+        return (
+          <div key={i} style={{ marginBottom: 11, padding: "11px 12px", borderRadius: 10, background: warn ? "#fef2f2" : data.lightBg, border: `1px solid ${warn ? "#fca5a5" : data.border}` }}>
+            <div style={{ fontSize: 12, fontWeight: 700, color: warn ? "#dc2626" : data.color, marginBottom: 5, lineHeight: 1.4 }}>{p.title}</div>
+            <div style={{ fontSize: 12.5, color: "#374151", lineHeight: 1.75 }}>{p.body}</div>
+          </div>
+        );
+      })}
+      {tab === "pitfalls" && <PitfallList items={data.pitfalls} />}
+      {tab === "signals" && data.signals.map((s, i) => <SignalItem key={i} s={s} />)}
+      {tab === "data" && <DataBox text={data.vnContext} />}
     </div>
   );
 }
 
-function Section({ section, color, lightBg }) {
-  const [open, setOpen] = useState(true);
-  const [selected, setSelected] = useState(null);
+// Nội dung 1 "chủ thể" đã chọn ở tab phụ — hiển thị phẳng, không còn bọc
+// trong accordion riêng như ActorCard cũ.
+function ActorDetail({ a }) {
   return (
-    <div style={{ marginBottom: 8 }}>
-      <button onClick={() => { setOpen(o => !o); setSelected(null); }} style={{ width: "100%", textAlign: "left", cursor: "pointer", padding: "11px 12px", borderRadius: 10, background: open ? lightBg : "#fff", border: `1.5px solid ${open ? color + "60" : "#e2e8f0"}`, display: "flex", flexDirection: "column", gap: 5 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
-          <div style={{ display: "flex", flexDirection: "column", gap: 5, flex: 1 }}>
-            <span style={{ fontSize: 13, fontWeight: 700, color: open ? color : "#1e293b" }}>{section.title}</span>
-            {section.tag && <TagBadge label={section.tag} color={section.tagColor || color} />}
-          </div>
-          <span style={{ fontSize: 15, color, fontWeight: 700, flexShrink: 0 }}>{open ? "−" : "+"}</span>
+    <div>
+      <div style={{ fontSize: 13, fontWeight: 800, color: a.color, letterSpacing: 0.3, marginBottom: 4 }}>{a.name}</div>
+      <div style={{ fontSize: 12.5, color: "#64748b", marginBottom: 13, lineHeight: 1.55 }}>{a.goal}</div>
+      <div style={{ fontSize: 10.5, fontWeight: 700, color: "#475569", marginBottom: 7 }}>CÔNG CỤ</div>
+      {a.tools.map((t, i) => (
+        <div key={i} style={{ display: "flex", gap: 7, alignItems: "flex-start", marginBottom: 6 }}>
+          <div style={{ width: 5, height: 5, borderRadius: "50%", background: a.color, marginTop: 6, flexShrink: 0 }} />
+          <div style={{ fontSize: 12.5, color: "#374151", lineHeight: 1.6 }}>{t}</div>
         </div>
-      </button>
-      {open && (
-        <div style={{ padding: "11px 12px 4px", borderLeft: `2px solid ${color}30`, marginLeft: 10 }}>
-          <p style={{ margin: "0 0 11px", fontSize: 12.5, color: "#475569", lineHeight: 1.75 }}>{section.def}</p>
-          {section.children.map(c => <ChildPanel key={c.id} item={c} parentColor={color} onSelect={setSelected} selected={selected} />)}
-        </div>
-      )}
+      ))}
+      <div style={{ marginTop: 11, padding: "10px 12px", background: "#fffbeb", border: "1px solid #fcd34d", borderRadius: 8 }}>
+        <div style={{ fontSize: 10, fontWeight: 700, color: "#92400e", marginBottom: 4 }}>⚡ ĐÁNH ĐỔI CỐT LÕI</div>
+        <div style={{ fontSize: 12.5, color: "#78350f", lineHeight: 1.65 }}>{a.tension}</div>
+      </div>
+      <div style={{ marginTop: 8, padding: "10px 12px", background: "#eef2ff", border: "1px solid #c7d2fe", borderRadius: 8 }}>
+        <div style={{ fontSize: 10, fontWeight: 700, color: "#4338ca", marginBottom: 4 }}>🔍 CÁCH ĐỌC HÀNH ĐỘNG CỦA HỌ</div>
+        <div style={{ fontSize: 12.5, color: "#312e81", lineHeight: 1.65 }}>{a.tell}</div>
+      </div>
     </div>
   );
 }
 
-function MainBlock({ data, open, onToggle }) {
-  return (
-    <div style={{ border: `2px solid ${open ? data.color : data.border}`, borderRadius: 14, overflow: "hidden", background: "#fff", marginBottom: 12 }}>
-      <button onClick={onToggle} style={{ width: "100%", border: "none", cursor: "pointer", padding: "14px 16px", background: open ? data.lightBg : "#fff", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <div style={{ textAlign: "left" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-            <span style={{ fontSize: 16, fontWeight: 800, color: data.color }}>{data.label}</span>
-            <span style={{ fontSize: 10.5, color: "#94a3b8" }}>({data.sublabel})</span>
-          </div>
-          <div style={{ fontSize: 11, color: "#64748b", marginTop: 2 }}>{data.desc}</div>
-        </div>
-        <span style={{ fontSize: 18, color: data.color, fontWeight: 700 }}>{open ? "−" : "+"}</span>
-      </button>
-      {open && <div style={{ padding: "12px 14px 8px", borderTop: `1px solid ${data.border}` }}>{data.sections.map(s => <Section key={s.id} section={s} color={data.color} lightBg={data.lightBg} />)}</div>}
-    </div>
-  );
-}
-
-function ExchangeBlock({ data, open, onToggle }) {
-  const [tab, setTab] = useState("points");
-  return (
-    <div style={{ border: `2px solid ${open ? data.color : data.border}`, borderRadius: 14, overflow: "hidden", background: "#fff", marginBottom: 12 }}>
-      <button onClick={onToggle} style={{ width: "100%", border: "none", cursor: "pointer", padding: "14px 16px", background: open ? data.lightBg : "#fff", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <div style={{ textAlign: "left" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-            <span style={{ fontSize: 16, fontWeight: 800, color: data.color }}>{data.label}</span>
-            <span style={{ fontSize: 10.5, color: "#94a3b8" }}>({data.sublabel})</span>
-          </div>
-          <div style={{ fontSize: 11, color: "#64748b", marginTop: 2 }}>Ràng buộc trói buộc nhất của CSTT Việt Nam</div>
-        </div>
-        <span style={{ fontSize: 18, color: data.color, fontWeight: 700 }}>{open ? "−" : "+"}</span>
-      </button>
-      {open && (
-        <div style={{ borderTop: `1px solid ${data.border}` }}>
-          <div style={{ padding: "12px 14px", background: data.lightBg, borderBottom: `1px solid ${data.border}` }}>
-            <p style={{ margin: 0, fontSize: 12.5, color: "#374151", lineHeight: 1.75 }}>{data.def}</p>
-          </div>
-          <div style={{ display: "flex", borderBottom: `1px solid ${data.border}`, background: "#fff" }}>
-            {[{ id: "points", l: "Cơ chế" }, { id: "pitfalls", l: "Sai lầm" }, { id: "signals", l: "Tín hiệu" }, { id: "data", l: "Dữ liệu" }].map(t => (
-              <button key={t.id} onClick={() => setTab(t.id)} style={{ flex: 1, textAlign: "center", border: "none", cursor: "pointer", padding: "8px 2px", fontSize: 10.5, fontWeight: tab === t.id ? 700 : 500, color: tab === t.id ? data.color : "#94a3b8", background: tab === t.id ? data.lightBg : "transparent", borderBottom: tab === t.id ? `2px solid ${data.color}` : "2px solid transparent" }}>{t.l}</button>
-            ))}
-          </div>
-          <div style={{ padding: "12px 14px 10px" }}>
-            {tab === "points" && data.points.map((p, i) => {
-              const warn = p.title.startsWith("⚠");
-              return (
-                <div key={i} style={{ marginBottom: 11, padding: "11px 12px", borderRadius: 10, background: warn ? "#fef2f2" : data.lightBg, border: `1px solid ${warn ? "#fca5a5" : data.border}` }}>
-                  <div style={{ fontSize: 12, fontWeight: 700, color: warn ? "#dc2626" : data.color, marginBottom: 5, lineHeight: 1.4 }}>{p.title}</div>
-                  <div style={{ fontSize: 12.5, color: "#374151", lineHeight: 1.75 }}>{p.body}</div>
-                </div>
-              );
-            })}
-            {tab === "pitfalls" && <PitfallList items={data.pitfalls} />}
-            {tab === "signals" && data.signals.map((s, i) => <SignalItem key={i} s={s} />)}
-            {tab === "data" && <DataBox text={data.vnContext} />}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function ActorCard({ a }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div style={{ border: `1.5px solid ${open ? a.color : a.border}`, borderRadius: 10, overflow: "hidden", marginBottom: 8 }}>
-      <button onClick={() => setOpen(o => !o)} style={{ width: "100%", border: "none", cursor: "pointer", padding: "11px 12px", background: open ? a.bg : "#fff", display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
-        <div style={{ textAlign: "left", flex: 1 }}>
-          <div style={{ fontSize: 11, fontWeight: 800, color: a.color, letterSpacing: 0.3 }}>{a.name}</div>
-          <div style={{ fontSize: 11, color: "#64748b", marginTop: 3, lineHeight: 1.45 }}>{a.goal}</div>
-        </div>
-        <span style={{ color: a.color, fontWeight: 700, fontSize: 15, flexShrink: 0 }}>{open ? "−" : "+"}</span>
-      </button>
-      {open && (
-        <div style={{ padding: "11px 12px", borderTop: `1px solid ${a.border}` }}>
-          <div style={{ fontSize: 10.5, fontWeight: 700, color: "#475569", marginBottom: 6 }}>CÔNG CỤ</div>
-          {a.tools.map((t, i) => (
-            <div key={i} style={{ display: "flex", gap: 7, alignItems: "flex-start", marginBottom: 5 }}>
-              <div style={{ width: 5, height: 5, borderRadius: "50%", background: a.color, marginTop: 6, flexShrink: 0 }} />
-              <div style={{ fontSize: 12, color: "#374151", lineHeight: 1.55 }}>{t}</div>
-            </div>
-          ))}
-          <div style={{ marginTop: 10, padding: "9px 11px", background: "#fffbeb", border: "1px solid #fcd34d", borderRadius: 8 }}>
-            <div style={{ fontSize: 10, fontWeight: 700, color: "#92400e", marginBottom: 4 }}>⚡ ĐÁNH ĐỔI CỐT LÕI</div>
-            <div style={{ fontSize: 12, color: "#78350f", lineHeight: 1.6 }}>{a.tension}</div>
-          </div>
-          <div style={{ marginTop: 7, padding: "9px 11px", background: "#eef2ff", border: "1px solid #c7d2fe", borderRadius: 8 }}>
-            <div style={{ fontSize: 10, fontWeight: 700, color: "#4338ca", marginBottom: 4 }}>🔍 CÁCH ĐỌC HÀNH ĐỘNG CỦA HỌ</div>
-            <div style={{ fontSize: 12, color: "#312e81", lineHeight: 1.6 }}>{a.tell}</div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function AdvancedSection({ topic }) {
-  const [open, setOpen] = useState(false);
+// Nội dung 1 chuyên đề nâng cao đã chọn — hiển thị phẳng, không còn bọc
+// trong accordion riêng như AdvancedSection cũ.
+function AdvancedDetail({ topic }) {
   const [tab, setTab] = useState("mechanics");
   const ts = {
     concept: { bg: "#eff6ff", border: "#93c5fd", label: "#1d4ed8", icon: "📐" },
     warning: { bg: "#fef2f2", border: "#fca5a5", label: "#dc2626", icon: "⚠️" },
     signal: { bg: "#f0fdf4", border: "#86efac", label: "#15803d", icon: "📡" },
   };
+  const list = [{ id: "mechanics", l: "Cơ chế" }, { id: "signals", l: "Tín hiệu" }, { id: "vnContext", l: "Dữ liệu" }];
   return (
-    <div style={{ border: `1.5px solid ${open ? topic.color : topic.border}`, borderRadius: 12, overflow: "hidden", marginBottom: 10, background: "#fff" }}>
-      <button onClick={() => setOpen(o => !o)} style={{ width: "100%", border: "none", cursor: "pointer", padding: "12px 14px", background: open ? topic.bg : "#fff", display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
-        <div style={{ textAlign: "left", flex: 1 }}>
-          <div style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
-            <span style={{ fontSize: 15, lineHeight: 1.3 }}>{topic.icon}</span>
-            <span style={{ fontSize: 12.5, fontWeight: 800, color: open ? topic.color : "#1e293b", lineHeight: 1.35 }}>{topic.title}</span>
-          </div>
-          <div style={{ fontSize: 10.5, color: "#64748b", marginTop: 4, paddingLeft: 23, lineHeight: 1.45 }}>{topic.subtitle}</div>
+    <div>
+      <div style={{ display: "flex", alignItems: "flex-start", gap: 9 }}>
+        <span style={{ fontSize: 19, lineHeight: 1.2 }}>{topic.icon}</span>
+        <div>
+          <div style={{ fontSize: 14.5, fontWeight: 800, color: topic.color, lineHeight: 1.3 }}>{topic.title}</div>
+          <div style={{ fontSize: 11, color: "#64748b", marginTop: 3, lineHeight: 1.45 }}>{topic.subtitle}</div>
         </div>
-        <span style={{ fontSize: 16, color: topic.color, fontWeight: 700, flexShrink: 0 }}>{open ? "−" : "+"}</span>
-      </button>
-      {open && (
-        <div style={{ borderTop: `1px solid ${topic.border}` }}>
-          <div style={{ padding: "12px 14px 10px", background: "#f8fafc", borderBottom: `1px solid ${topic.border}` }}>
-            <div style={{ fontSize: 9.5, fontWeight: 700, color: topic.color, textTransform: "uppercase", letterSpacing: 1, marginBottom: 5 }}>Tổng quan</div>
-            <p style={{ margin: 0, fontSize: 12.5, color: "#374151", lineHeight: 1.75 }}>{topic.overview}</p>
+      </div>
+      <div style={{ padding: "12px 13px", background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 10, margin: "11px 0" }}>
+        <div style={{ fontSize: 9.5, fontWeight: 700, color: topic.color, textTransform: "uppercase", letterSpacing: 1, marginBottom: 5 }}>Tổng quan</div>
+        <p style={{ margin: 0, fontSize: 12.5, color: "#374151", lineHeight: 1.75 }}>{topic.overview}</p>
+      </div>
+      <div style={{ display: "flex", gap: 4, marginBottom: 12 }}>
+        {list.map(t => (
+          <button key={t.id} onClick={() => setTab(t.id)} style={{ flex: 1, textAlign: "center", border: "none", cursor: "pointer", borderRadius: 8, padding: "8px 3px", fontSize: 11, fontWeight: tab === t.id ? 700 : 500, color: tab === t.id ? "#fff" : topic.color, background: tab === t.id ? topic.color : topic.bg }}>{t.l}</button>
+        ))}
+      </div>
+      {tab === "mechanics" && topic.sections.map((s, i) => {
+        const st = ts[s.type] || ts.concept;
+        return (
+          <div key={i} style={{ marginBottom: 12, padding: "11px 12px", background: st.bg, border: `1px solid ${st.border}`, borderRadius: 10 }}>
+            <div style={{ display: "flex", gap: 7, alignItems: "flex-start", marginBottom: 5 }}>
+              <span style={{ fontSize: 12, marginTop: 1 }}>{st.icon}</span>
+              <span style={{ fontSize: 12, fontWeight: 700, color: st.label, lineHeight: 1.45 }}>{s.title}</span>
+            </div>
+            <div style={{ fontSize: 12.5, color: "#374151", lineHeight: 1.75, paddingLeft: 19 }}>{s.body}</div>
           </div>
-          <div style={{ display: "flex", borderBottom: `1px solid ${topic.border}`, background: topic.bg }}>
-            {[{ id: "mechanics", l: "Cơ chế" }, { id: "signals", l: "Tín hiệu" }, { id: "vnContext", l: "Dữ liệu" }].map(t => (
-              <button key={t.id} onClick={() => setTab(t.id)} style={{ flex: 1, textAlign: "center", border: "none", cursor: "pointer", padding: "8px 3px", fontSize: 11, fontWeight: tab === t.id ? 700 : 500, color: tab === t.id ? topic.color : "#94a3b8", background: tab === t.id ? "#fff" : "transparent", borderBottom: tab === t.id ? `2px solid ${topic.color}` : "2px solid transparent" }}>{t.l}</button>
-            ))}
-          </div>
-          <div style={{ padding: "12px 14px 8px" }}>
-            {tab === "mechanics" && topic.sections.map((s, i) => {
-              const st = ts[s.type] || ts.concept;
-              return (
-                <div key={i} style={{ marginBottom: 12, padding: "11px 12px", background: st.bg, border: `1px solid ${st.border}`, borderRadius: 10 }}>
-                  <div style={{ display: "flex", gap: 7, alignItems: "flex-start", marginBottom: 5 }}>
-                    <span style={{ fontSize: 12, marginTop: 1 }}>{st.icon}</span>
-                    <span style={{ fontSize: 12, fontWeight: 700, color: st.label, lineHeight: 1.45 }}>{s.title}</span>
-                  </div>
-                  <div style={{ fontSize: 12.5, color: "#374151", lineHeight: 1.75, paddingLeft: 19 }}>{s.body}</div>
-                </div>
-              );
-            })}
-            {tab === "signals" && topic.signals.map((s, i) => <SignalItem key={i} s={s} />)}
-            {tab === "vnContext" && <DataBox text={topic.vnContext} />}
-          </div>
-        </div>
-      )}
+        );
+      })}
+      {tab === "signals" && topic.signals.map((s, i) => <SignalItem key={i} s={s} />)}
+      {tab === "vnContext" && <DataBox text={topic.vnContext} />}
     </div>
   );
+}
+
+// Hàng breadcrumb dùng chung cho cả cấp 1 (tab chính) và cấp 2 (tab phụ).
+function Breadcrumb({ items, activeId, onSelect, size = "md", ghost = false }) {
+  const sm = size === "sm";
+  return (
+    <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: sm ? 14 : 16 }}>
+      {items.map(it => {
+        const active = it.id === activeId;
+        return (
+          <button key={it.id} onClick={() => onSelect(it.id)} style={{
+            display: "flex", alignItems: "center", gap: 6,
+            padding: ghost ? "6px 13px" : sm ? "6px 12px" : "8px 15px",
+            borderRadius: 20, cursor: "pointer",
+            fontSize: sm ? 11.5 : ghost ? 12 : 12.5, fontWeight: active ? 700 : 500,
+            background: active ? it.color : (ghost ? "transparent" : "#fff"),
+            color: active ? "#fff" : (ghost ? "#94a3b8" : "#475569"),
+            border: `1px solid ${active ? it.color : "#e2e8f0"}`,
+            transition: "all .15s", whiteSpace: "nowrap",
+          }}>
+            {it.icon && <span>{it.icon}</span>}{it.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+// ══════════════ ĐIỀU HƯỚNG CHÍNH — 2 CẤP: TAB CHÍNH → TAB PHỤ ══════════════
+// Mỗi "tab chính" trước đây là 1 Khối/Mục phải bấm mở accordion mới thấy;
+// giờ là 1 nút bấm chọn thẳng. "Mục con" trước đây phải bấm mở thêm 1 lớp
+// accordion (ChildPanel) nữa mới đọc được; giờ là "tab phụ" — chọn thẳng,
+// nội dung hiện ngay bên dưới.
+// "group: core" — đúng 6 tab chính nguyên bản (Kinh tế Thực × 3 + Kinh tế
+// Tài chính × 3). "group: extra" — 3 mục bổ sung (Tỷ giá, Chủ thể, Chuyên đề
+// nâng cao), tách hàng riêng bên dưới để không lẫn vào "6 tab chính".
+const TOP_TABS = [
+  { id: "demand", label: "Tổng cầu", color: "#6366f1", kind: "section", group: "core", section: DATA.realEconomy.sections[0] },
+  { id: "price", label: "Giá cả & Lạm phát", color: "#dc2626", kind: "section", group: "core", section: DATA.realEconomy.sections[1] },
+  { id: "supply", label: "Cung & Sản xuất", color: "#16a34a", kind: "section", group: "core", section: DATA.realEconomy.sections[2] },
+  { id: "credit_creation", label: "Tạo tiền tín dụng", color: "#7c3aed", kind: "section", group: "core", section: DATA.financial.sections[0] },
+  { id: "rates", label: "Lãi suất & Truyền dẫn", color: "#f59e0b", kind: "section", group: "core", section: DATA.financial.sections[1] },
+  { id: "plumbing", label: "Money Plumbing", color: "#0891b2", kind: "section", group: "core", section: DATA.financial.sections[2] },
+  { id: "exchange", label: "Tỷ giá & Cán cân", color: DATA.exchange.color, kind: "exchange", group: "extra" },
+  { id: "actors", label: "Chủ thể", color: "#4f46e5", kind: "actors", group: "extra" },
+  { id: "advanced", label: "Chuyên đề nâng cao", color: "#0f172a", kind: "advanced", group: "extra" },
+];
+const CORE_TABS = TOP_TABS.filter(t => t.group === "core");
+const EXTRA_TABS = TOP_TABS.filter(t => t.group === "extra");
+
+function subListOf(tab) {
+  if (tab.kind === "section") return tab.section.children.map(c => ({ id: c.id, label: c.label, color: c.color || tab.color }));
+  if (tab.kind === "actors") return ACTORS.map(a => ({ id: a.name, label: a.name, color: a.color }));
+  if (tab.kind === "advanced") return ADVANCED_TOPICS.map(t => ({ id: t.id, label: t.title.split(" — ")[0], color: t.color, icon: t.icon }));
+  return null;
 }
 
 // ══════════════ MAIN COMPONENT ══════════════
 
 export default function MacroVNFrameworkExpert() {
-  // Mặc định mở sẵn 2 khối chính (realEconomy, financial) — auto-expand 1 level
-  // xuống 6 tab/section chính bên trong, thay vì phải bấm mở từng khối.
-  const [openBlocks, setOpenBlocks] = useState({ realEconomy: true, financial: true });
-  const [showActors, setShowActors] = useState(false);
-  const [showAdvanced, setShowAdvanced] = useState(false);
-  const [showUpdates, setShowUpdates] = useState(true);
-  const toggle = id => setOpenBlocks(p => ({ ...p, [id]: !p[id] }));
+  const [topId, setTopId] = useState("demand");
+  const [subId, setSubId] = useState(DATA.realEconomy.sections[0].children[0].id);
+
+  const top = TOP_TABS.find(t => t.id === topId);
+  const subs = subListOf(top);
+
+  const selectTop = (id) => {
+    setTopId(id);
+    const t = TOP_TABS.find(x => x.id === id);
+    const list = subListOf(t);
+    setSubId(list ? list[0].id : null);
+    window.__scrollArticleToTop?.();
+  };
+  const selectSub = (id) => {
+    setSubId(id);
+    window.__scrollArticleToTop?.();
+  };
 
   const UPDATES = [
     { t: "Nâng hạng FTSE hiệu lực 21/9/2026", d: "Công bố 7/10/2025, xác nhận sau rà soát tháng 3/2026. Đưa vào rổ theo nhiều giai đoạn tới 2027. Danh sách cổ phiếu công bố 21/8/2026.", c: "#16a34a" },
@@ -770,56 +761,65 @@ export default function MacroVNFrameworkExpert() {
         ))}
       </div>
 
-      <div style={{ border: "1.5px solid #86efac", borderRadius: 12, overflow: "hidden", marginBottom: 12, background: "#fff" }}>
-        <button onClick={() => setShowUpdates(o => !o)} style={{ width: "100%", border: "none", cursor: "pointer", padding: "11px 14px", background: showUpdates ? "#f0fdf4" : "#fff", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div style={{ textAlign: "left" }}>
-            <div style={{ fontSize: 12.5, fontWeight: 800, color: "#15803d" }}>📌 Thay đổi quan trọng 2025–2026</div>
-            <div style={{ fontSize: 10.5, color: "#64748b", marginTop: 2 }}>Những thứ làm lỗi thời phần lớn tài liệu macro VN hiện có</div>
-          </div>
-          <span style={{ fontSize: 15, color: "#15803d", fontWeight: 700 }}>{showUpdates ? "−" : "+"}</span>
-        </button>
-        {showUpdates && (
-          <div style={{ padding: "11px 14px 8px", borderTop: "1px solid #86efac" }}>
-            {UPDATES.map((u, i) => (
-              <div key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start", padding: "7px 0", borderBottom: i < UPDATES.length - 1 ? "1px solid #f1f5f9" : "none" }}>
-                <div style={{ width: 6, height: 6, borderRadius: "50%", background: u.c, marginTop: 6, flexShrink: 0 }} />
-                <div>
-                  <div style={{ fontSize: 11.5, fontWeight: 700, color: "#1e293b", lineHeight: 1.4 }}>{u.t}</div>
-                  <div style={{ fontSize: 11, color: "#64748b", marginTop: 2, lineHeight: 1.55 }}>{u.d}</div>
-                </div>
-              </div>
-            ))}
-          </div>
+      {/* TAB CHÍNH — cấp 1: đúng 6 tab gốc (Kinh tế Thực × 3 + Kinh tế Tài chính × 3) */}
+      <div className="mobile-static" style={{ position: "sticky", top: 0, zIndex: 20, background: "#f1f5f9", paddingTop: 4, paddingBottom: 4 }}>
+        <Breadcrumb items={CORE_TABS} activeId={topId} onSelect={selectTop} />
+        {/* Hàng phụ — 3 mục bổ sung, tách riêng để không lẫn với 6 tab chính ở trên */}
+        <Breadcrumb items={EXTRA_TABS} activeId={topId} onSelect={selectTop} ghost />
+      </div>
+
+      <div style={{ background: "#fff", border: "1.5px solid #e2e8f0", borderRadius: 14, padding: "16px 16px 14px" }}>
+        {/* TAB PHỤ — cấp 2 (chỉ hiện khi tab chính có nhiều hơn 1 mục con) */}
+        {subs && subs.length > 1 && (
+          <Breadcrumb items={subs} activeId={subId} onSelect={selectSub} size="sm" />
         )}
+
+        {top.kind === "section" && (() => {
+          const child = top.section.children.find(c => c.id === subId) || top.section.children[0];
+          return (
+            <div>
+              <p style={{ margin: "0 0 14px", fontSize: 12.5, color: "#475569", lineHeight: 1.75 }}>{top.section.def}</p>
+              {top.section.tag && <div style={{ marginBottom: 10 }}><TagBadge label={top.section.tag} color={top.section.tagColor || top.color} /></div>}
+              <div style={{ fontSize: 14, fontWeight: 800, color: child.color || top.color, marginBottom: 9 }}>{child.label}</div>
+              <DetailPanel tabs={child.tabs} color={child.color || top.color} />
+            </div>
+          );
+        })()}
+
+        {top.kind === "exchange" && <ExchangeDetail data={DATA.exchange} />}
+
+        {top.kind === "actors" && (() => {
+          const actor = ACTORS.find(a => a.name === subId) || ACTORS[0];
+          return <ActorDetail a={actor} />;
+        })()}
+
+        {top.kind === "advanced" && (() => {
+          const topic = ADVANCED_TOPICS.find(t => t.id === subId) || ADVANCED_TOPICS[0];
+          return <AdvancedDetail topic={topic} />;
+        })()}
       </div>
 
-      <MainBlock data={DATA.realEconomy} open={!!openBlocks.realEconomy} onToggle={() => toggle("realEconomy")} />
-      <MainBlock data={DATA.financial} open={!!openBlocks.financial} onToggle={() => toggle("financial")} />
-      <ExchangeBlock data={DATA.exchange} open={!!openBlocks.exchange} onToggle={() => toggle("exchange")} />
-
-      <div style={{ border: `1.5px solid ${showActors ? "#6366f1" : "#e2e8f0"}`, borderRadius: 14, overflow: "hidden", background: "#fff", marginBottom: 12 }}>
-        <button onClick={() => setShowActors(o => !o)} style={{ width: "100%", border: "none", cursor: "pointer", padding: "14px 16px", background: showActors ? "#eef2ff" : "#fff", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div style={{ textAlign: "left" }}>
-            <div style={{ fontSize: 14.5, fontWeight: 800, color: "#4f46e5" }}>Các chủ thể & cách đọc họ</div>
-            <div style={{ fontSize: 10.5, color: "#64748b", marginTop: 2 }}>Mục tiêu · Công cụ · Đánh đổi · Dấu hiệu nhận biết ý định</div>
-          </div>
-          <span style={{ fontSize: 18, color: "#4f46e5", fontWeight: 700 }}>{showActors ? "−" : "+"}</span>
-        </button>
-        {showActors && <div style={{ padding: "12px 14px 8px", borderTop: "1px solid #e0e7ff" }}>{ACTORS.map(a => <ActorCard key={a.name} a={a} />)}</div>}
+      {/* "Thay đổi quan trọng" dời xuống cuối trang — chỉ là tư liệu tham khảo,
+          không nên chắn ngang phía trên trước cụm tab điều hướng chính. */}
+      <div style={{ border: "1.5px solid #86efac", borderRadius: 12, overflow: "hidden", marginTop: 16, background: "#fff" }}>
+        <div style={{ padding: "11px 14px", background: "#f0fdf4" }}>
+          <div style={{ fontSize: 12.5, fontWeight: 800, color: "#15803d" }}>📌 Thay đổi quan trọng 2025–2026</div>
+          <div style={{ fontSize: 10.5, color: "#64748b", marginTop: 2 }}>Những thứ làm lỗi thời phần lớn tài liệu macro VN hiện có</div>
+        </div>
+        <div style={{ padding: "11px 14px 8px", borderTop: "1px solid #86efac" }}>
+          {UPDATES.map((u, i) => (
+            <div key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start", padding: "7px 0", borderBottom: i < UPDATES.length - 1 ? "1px solid #f1f5f9" : "none" }}>
+              <div style={{ width: 6, height: 6, borderRadius: "50%", background: u.c, marginTop: 6, flexShrink: 0 }} />
+              <div>
+                <div style={{ fontSize: 11.5, fontWeight: 700, color: "#1e293b", lineHeight: 1.4 }}>{u.t}</div>
+                <div style={{ fontSize: 11, color: "#64748b", marginTop: 2, lineHeight: 1.55 }}>{u.d}</div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
-      <div style={{ border: "2px solid #1e293b", borderRadius: 14, overflow: "hidden", background: "#fff", marginBottom: 12 }}>
-        <button onClick={() => setShowAdvanced(o => !o)} style={{ width: "100%", border: "none", cursor: "pointer", padding: "14px 16px", background: showAdvanced ? "#0f172a" : "#fff", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div style={{ textAlign: "left" }}>
-            <div style={{ fontSize: 14.5, fontWeight: 800, color: showAdvanced ? "#f1f5f9" : "#0f172a" }}>🧠 Chuyên đề nâng cao</div>
-            <div style={{ fontSize: 10.5, color: showAdvanced ? "#64748b" : "#475569", marginTop: 2, lineHeight: 1.45 }}>FTSE · Regime z-score · Reflexivity · Rủi ro hệ thống · Carry &amp; dòng vốn</div>
-          </div>
-          <span style={{ fontSize: 18, color: showAdvanced ? "#94a3b8" : "#1e293b", fontWeight: 700 }}>{showAdvanced ? "−" : "+"}</span>
-        </button>
-        {showAdvanced && <div style={{ padding: "12px 14px 8px", borderTop: "2px solid #1e293b", background: "#f8fafc" }}>{ADVANCED_TOPICS.map(t => <AdvancedSection key={t.id} topic={t} />)}</div>}
-      </div>
-
-      <div style={{ padding: "11px 13px", background: "#fffbeb", border: "1px solid #fcd34d", borderRadius: 10, marginBottom: 10 }}>
+      <div style={{ padding: "11px 13px", background: "#fffbeb", border: "1px solid #fcd34d", borderRadius: 10, marginTop: 14, marginBottom: 10 }}>
         <div style={{ fontSize: 10, fontWeight: 700, color: "#92400e", marginBottom: 4 }}>⚠ VỀ SỐ LIỆU</div>
         <div style={{ fontSize: 11, color: "#78350f", lineHeight: 1.65 }}>Các mốc định lượng cập nhật tới 07/2026 và sẽ lỗi thời. Cơ chế thì bền; con số thì không. Luôn kiểm chứng lại mức dự trữ, lãi suất OMO, tỷ giá trung tâm và trạng thái chính sách trước khi ra quyết định.</div>
       </div>

@@ -3678,34 +3678,6 @@ function GlossarySection({ pillarId }) {
   );
 }
 
-function Legend({ kind }) {
-  const items =
-    kind === "leverage"
-      ? [
-          { c: C.green, t: "Đòn bẩy cao" },
-          { c: C.orange, t: "Vừa" },
-          { c: C.red, t: "Thấp / nên tránh" },
-        ]
-      : [
-          { c: C.green, t: "Bằng chứng mạnh" },
-          { c: C.orange, t: "Vừa" },
-          { c: C.red, t: "Còn tranh cãi" },
-        ];
-  return (
-    <div className="flex items-center gap-4 flex-wrap px-3 py-2 rounded-md" style={{ background: C.panelAlt, border: `1px solid ${C.line}` }}>
-      <span style={{ fontFamily: mono, color: C.inkDim, fontSize: 10, letterSpacing: "0.06em" }} className="uppercase">
-        Sắp xếp theo
-      </span>
-      {items.map((it, i) => (
-        <div key={i} className="flex items-center gap-1.5">
-          <span style={{ width: 8, height: 8, borderRadius: 2, background: it.c }} />
-          <span style={{ fontFamily: mono, color: C.inkDim, fontSize: 10.5 }}>{it.t}</span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 function PillarView({ pillar }) {
   return (
     <div className="flex flex-col gap-5">
@@ -3714,7 +3686,6 @@ function PillarView({ pillar }) {
         <h2 style={{ fontFamily: serif, color: C.ink, fontSize: 26, margin: 0 }}>{pillar.title}</h2>
         <span style={{ fontFamily: mono, color: C.inkDim, fontSize: 12 }}>— {pillar.subtitle}</span>
       </div>
-      <Legend kind="evidence" />
       {pillar.groups.map((g, gi) => (
         <div key={gi} className="flex flex-col gap-2">
           <div style={{ fontFamily: mono, color: C.inkDim, fontSize: 11, letterSpacing: "0.06em" }} className="uppercase mt-1">

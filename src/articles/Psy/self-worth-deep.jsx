@@ -76,7 +76,7 @@ export default function SelfWorthDeep() {
         </div>
 
         {/* PRIMARY NAV */}
-        <div className="mobile-static" style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 10, borderBottom: `1px solid ${LINE}`, paddingBottom: 14, position: "sticky", top: 0, zIndex: 10, background: PAPER }}>
+        <div className="mobile-static" style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 10, borderBottom: `1px solid ${LINE}`, paddingTop: 10, paddingBottom: 14, position: "sticky", top: 0, zIndex: 10, background: PAPER }}>
           {PRIMARY.map((p) => (
             <button key={p.id} onClick={() => { setPrimary(p.id); setSub(p.subs[0].id); window.__scrollArticleToTop?.(); }}
               style={{

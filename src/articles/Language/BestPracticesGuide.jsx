@@ -373,7 +373,7 @@ const CSS = `
   background: var(--panel); border: 1px solid var(--rule); border-radius: 8px;
   padding: 10px 14px; margin-top: 10px;
 }
-.grp-sources .grp-title { border-bottom: none; margin-bottom: 4px; font-size: 14px; color: var(--muted); }
+.grp-sources .grp-title { border-bottom: none; margin: 0 0 4px; font-size: 14px; color: var(--muted); }
 .grp-sources .blk-h3 { font-size: 11.5px; color: var(--muted); margin: 10px 0 3px; }
 .grp-sources .blk-p,
 .grp-sources .blk-note,
