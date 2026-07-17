@@ -632,17 +632,17 @@ function App() {
 
             {/* Header dính phía trên */}
             <div className={`sticky top-0 h-16 ${T.headerBg} backdrop-blur-md border-b ${T.border} px-8 z-20 flex items-center justify-between shrink-0`}>
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                  className={`p-1.5 rounded-lg ${T.surfaceHover} ${T.muted} md:hidden`}
-                >
+              <button
+                onClick={() => { if (isMobile) setIsSidebarOpen(!isSidebarOpen); }}
+                className="flex items-center gap-3 bg-transparent border-0 p-0 text-left md:cursor-default"
+              >
+                <span className={`p-1.5 rounded-lg ${T.surfaceHover} ${T.muted} md:hidden`}>
                   <Menu size={18} />
-                </button>
+                </span>
                 <h1 className={`text-xl md:text-2xl font-extrabold tracking-tight ${T.ink}`}>
                   {activeArticle.title}
                 </h1>
-              </div>
+              </button>
             </div>
 
             {/* Vùng Cuộn Duy Nhất Chứa Nội Dung Bài Viết (full-bleed, không card) —

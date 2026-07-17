@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { Menu } from "lucide-react";
+import { FinIcon } from "./finIcons";
 
 const sections = [
   {
@@ -3543,7 +3545,7 @@ export default function FinanceKnowledgeBase() {
               {getSectionTitle(currentSection)}
             </div>
           </div>
-          <i className="ti ti-selector" aria-hidden="true" style={{ fontSize: "16px", color: "var(--text-muted, #888)", flexShrink: 0 }} />
+          <Menu size={17} strokeWidth={2} color="var(--text-muted, #888)" style={{ flexShrink: 0 }} />
         </div>
       </button>
 
@@ -3572,7 +3574,7 @@ export default function FinanceKnowledgeBase() {
             <p style={{ fontSize: "13px", color: "var(--text-secondary, #666)", margin: "4px 0 0", lineHeight: 1.4 }}>Harvard Expert Notes</p>
           </div>
           <button onClick={() => setMobileNavOpen(false)} aria-label="Đóng" style={{ width: "28px", height: "28px", borderRadius: "8px", border: "0.5px solid var(--border, #e0e0d8)", background: "var(--surface-1, #f5f5f0)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", flexShrink: 0, color: "var(--text-secondary, #666)" }}>
-            <i className="ti ti-x" aria-hidden="true" style={{ fontSize: "14px" }} />
+            <FinIcon name="ti-x" size={14} />
           </button>
         </div>
         <div style={{ padding: "0.5rem 0" }}>
@@ -3585,9 +3587,9 @@ export default function FinanceKnowledgeBase() {
                   onClick={() => toggleGroup(group.groupId)}
                   style={{ display: "flex", alignItems: "center", gap: "8px", width: "100%", padding: "10px 1rem", border: "none", background: hasActive ? `${group.color}11` : "transparent", cursor: "pointer", textAlign: "left" }}
                 >
-                  <i className={`ti ${group.icon}`} aria-hidden="true" style={{ fontSize: "15px", color: group.color, flexShrink: 0 }} />
+                  <FinIcon name={group.icon} size={15} color={group.color} style={{ flexShrink: 0 }} />
                   <span style={{ fontSize: "12px", fontWeight: 600, color: group.color, lineHeight: 1.3, flex: 1 }}>{group.label}</span>
-                  <i className={`ti ${isExpanded ? "ti-chevron-up" : "ti-chevron-down"}`} aria-hidden="true" style={{ fontSize: "13px", color: "var(--text-muted, #888)", flexShrink: 0 }} />
+                  <FinIcon name={isExpanded ? "ti-chevron-up" : "ti-chevron-down"} size={13} color="var(--text-muted, #888)" style={{ flexShrink: 0 }} />
                 </button>
                 {isExpanded && group.items.map(section => (
                   <button
@@ -3595,7 +3597,6 @@ export default function FinanceKnowledgeBase() {
                     onClick={() => selectSectionMobile(section.id)}
                     style={{ display: "flex", alignItems: "center", gap: "10px", width: "100%", padding: "8px 1rem 8px 2.1rem", border: "none", background: activeSection === section.id ? `${group.color}15` : "transparent", cursor: "pointer", textAlign: "left", borderLeft: activeSection === section.id ? `3px solid ${group.color}` : "3px solid transparent" }}
                   >
-                    <i className={`ti ${section.icon}`} aria-hidden="true" style={{ fontSize: "14px", color: activeSection === section.id ? group.color : "var(--text-secondary, #666)", flexShrink: 0 }} />
                     <span style={{ fontSize: "12.5px", fontWeight: activeSection === section.id ? 500 : 400, color: activeSection === section.id ? group.color : "var(--text-primary, #1a1a1a)", lineHeight: 1.3 }}>{getSectionTitle(section)}</span>
                   </button>
                 ))}
@@ -3608,7 +3609,6 @@ export default function FinanceKnowledgeBase() {
               onClick={() => selectSectionMobile(section.id)}
               style={{ display: "flex", alignItems: "center", gap: "10px", width: "100%", padding: "10px 1rem", border: "none", background: activeSection === section.id ? section.bg : "transparent", cursor: "pointer", textAlign: "left", borderLeft: activeSection === section.id ? `3px solid ${section.color}` : "3px solid transparent" }}
             >
-              <i className={`ti ${section.icon}`} aria-hidden="true" style={{ fontSize: "16px", color: activeSection === section.id ? section.color : "var(--text-secondary, #666)", flexShrink: 0 }} />
               <span style={{ fontSize: "13px", fontWeight: activeSection === section.id ? 500 : 400, color: activeSection === section.id ? section.color : "var(--text-primary, #1a1a1a)", lineHeight: 1.3 }}>{getSectionTitle(section)}</span>
             </button>
           ))}
@@ -3654,9 +3654,9 @@ export default function FinanceKnowledgeBase() {
                   textAlign: "left"
                 }}
               >
-                <i className={`ti ${group.icon}`} aria-hidden="true" style={{ fontSize: "15px", color: group.color, flexShrink: 0 }} />
+                <FinIcon name={group.icon} size={15} color={group.color} style={{ flexShrink: 0 }} />
                 <span style={{ fontSize: "12px", fontWeight: 600, color: group.color, lineHeight: 1.3, flex: 1 }}>{group.label}</span>
-                <i className={`ti ${isExpanded ? "ti-chevron-up" : "ti-chevron-down"}`} aria-hidden="true" style={{ fontSize: "13px", color: "var(--text-muted, #888)", flexShrink: 0 }} />
+                <FinIcon name={isExpanded ? "ti-chevron-up" : "ti-chevron-down"} size={13} color="var(--text-muted, #888)" style={{ flexShrink: 0 }} />
               </button>
               {isExpanded && group.items.map(section => (
                 <button
@@ -3676,7 +3676,6 @@ export default function FinanceKnowledgeBase() {
                     transition: "background 0.15s"
                   }}
                 >
-                  <i className={`ti ${section.icon}`} aria-hidden="true" style={{ fontSize: "14px", color: activeSection === section.id ? group.color : "var(--text-secondary, #666)", flexShrink: 0 }} />
                   <span style={{ fontSize: "12.5px", fontWeight: activeSection === section.id ? 500 : 400, color: activeSection === section.id ? group.color : "var(--text-primary, #1a1a1a)", lineHeight: 1.3 }}>{getSectionTitle(section)}</span>
                 </button>
               ))}
@@ -3702,7 +3701,6 @@ export default function FinanceKnowledgeBase() {
               transition: "background 0.15s"
             }}
           >
-            <i className={`ti ${section.icon}`} aria-hidden="true" style={{ fontSize: "16px", color: activeSection === section.id ? section.color : "var(--text-secondary, #666)", flexShrink: 0 }} />
             <span style={{ fontSize: "13px", fontWeight: activeSection === section.id ? 500 : 400, color: activeSection === section.id ? section.color : "var(--text-primary, #1a1a1a)", lineHeight: 1.3 }}>{getSectionTitle(section)}</span>
           </button>
         ))}
@@ -3733,7 +3731,7 @@ export default function FinanceKnowledgeBase() {
               opacity: 0.5
             }}
           >
-            <i className="ti ti-pencil" aria-hidden="true" style={{ fontSize: "14px" }} />
+            <FinIcon name="ti-pencil" size={14} />
             Chỉnh sửa nội dung
           </button>
         </div>
@@ -3745,9 +3743,9 @@ export default function FinanceKnowledgeBase() {
         {/* Breadcrumb — trên mobile trùng với thanh dropdown ở trên nên bị ẩn (xem CSS .fen-breadcrumb-text) */}
         {currentSection.groupLabel && (
           <div className="fen-breadcrumb-text" style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "0.6rem", fontSize: "11.5px", color: (currentSection.groupColor || currentSection.color), fontWeight: 600 }}>
-            <i className={`ti ${currentSection.groupIcon}`} aria-hidden="true" style={{ fontSize: "13px" }} />
+            <FinIcon name={currentSection.groupIcon} size={13} />
             <span>{currentSection.groupLabel}</span>
-            <i className="ti ti-chevron-right" aria-hidden="true" style={{ fontSize: "11px", color: "var(--text-muted, #888)" }} />
+            <FinIcon name="ti-chevron-right" size={11} color="var(--text-muted, #888)" />
             <span style={{ color: "var(--text-secondary, #666)", fontWeight: 400 }}>{getSectionTitle(currentSection)}</span>
           </div>
         )}
@@ -3761,7 +3759,6 @@ export default function FinanceKnowledgeBase() {
           marginBottom: "1.5rem"
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            <i className={`ti ${currentSection.icon}`} aria-hidden="true" style={{ fontSize: "22px", color: (currentSection.groupColor || currentSection.color) }} />
             {editMode ? (
               <h1
                 contentEditable
@@ -3817,10 +3814,10 @@ export default function FinanceKnowledgeBase() {
                     }}>{String(idx + 1).padStart(2, "0")}</span>
                     <span style={{ fontSize: "14px", fontWeight: 500, color: "var(--text-primary, #1a1a1a)" }}>{subTitle}</span>
                     {hasEdit && (
-                      <i className="ti ti-edit-circle" aria-hidden="true" title="Đã chỉnh sửa" style={{ fontSize: "13px", color: (currentSection.groupColor || currentSection.color) }} />
+                      <FinIcon name="ti-edit-circle" title="Đã chỉnh sửa" size={13} color={(currentSection.groupColor || currentSection.color)} />
                     )}
                   </div>
-                  <i className={`ti ${isOpen ? "ti-chevron-up" : "ti-chevron-down"}`} aria-hidden="true" style={{ fontSize: "16px", color: "var(--text-muted, #888)", flexShrink: 0 }} />
+                  <FinIcon name={isOpen ? "ti-chevron-up" : "ti-chevron-down"} size={16} color="var(--text-muted, #888)" style={{ flexShrink: 0 }} />
                 </button>
                 
                 {isOpen && (
@@ -3870,7 +3867,7 @@ export default function FinanceKnowledgeBase() {
                               onClick={saveSubEdit}
                               style={{ display: "flex", alignItems: "center", gap: "6px", padding: "8px 14px", border: "none", borderRadius: "8px", background: (currentSection.groupColor || currentSection.color), color: "#fff", fontSize: "13px", fontWeight: 500, cursor: "pointer" }}
                             >
-                              <i className="ti ti-device-floppy" aria-hidden="true" style={{ fontSize: "14px" }} />
+                              <FinIcon name="ti-device-floppy" size={14} />
                               Lưu thay đổi
                             </button>
                             {hasEdit && (
@@ -3878,13 +3875,13 @@ export default function FinanceKnowledgeBase() {
                                 onClick={resetSubEdit}
                                 style={{ display: "flex", alignItems: "center", gap: "6px", padding: "8px 14px", border: "0.5px solid var(--border-strong, #ccc)", borderRadius: "8px", background: "transparent", color: "var(--text-secondary, #666)", fontSize: "13px", cursor: "pointer" }}
                               >
-                                <i className="ti ti-rotate" aria-hidden="true" style={{ fontSize: "14px" }} />
+                                <FinIcon name="ti-rotate" size={14} />
                                 Khôi phục bản gốc
                               </button>
                             )}
                             {savedFlash && (
                               <span style={{ fontSize: "12px", color: (currentSection.groupColor || currentSection.color), display: "flex", alignItems: "center", gap: "4px" }}>
-                                <i className="ti ti-check" aria-hidden="true" style={{ fontSize: "13px" }} />
+                                <FinIcon name="ti-check" size={13} />
                                 Đã lưu
                               </span>
                             )}
@@ -3921,7 +3918,7 @@ export default function FinanceKnowledgeBase() {
               }}
               style={{ display: "flex", alignItems: "center", gap: "6px", padding: "8px 14px", border: "0.5px solid var(--border-strong, #ccc)", borderRadius: "var(--radius, 8px)", background: "transparent", cursor: "pointer", fontSize: "13px", color: "var(--text-primary, #1a1a1a)" }}
             >
-              <i className="ti ti-arrow-left" aria-hidden="true" style={{ fontSize: "14px" }} />
+              <FinIcon name="ti-arrow-left" size={14} />
               {getSectionTitle(sections[sections.findIndex(s => s.id === activeSection) - 1])}
             </button>
           ) : <div />}
@@ -3937,7 +3934,7 @@ export default function FinanceKnowledgeBase() {
               style={{ display: "flex", alignItems: "center", gap: "6px", padding: "8px 14px", border: "0.5px solid var(--border-strong, #ccc)", borderRadius: "var(--radius, 8px)", background: "transparent", cursor: "pointer", fontSize: "13px", color: "var(--text-primary, #1a1a1a)" }}
             >
               {getSectionTitle(sections[sections.findIndex(s => s.id === activeSection) + 1])}
-              <i className="ti ti-arrow-right" aria-hidden="true" style={{ fontSize: "14px" }} />
+              <FinIcon name="ti-arrow-right" size={14} />
             </button>
           )}
         </div>
@@ -4098,7 +4095,7 @@ function AnnotatedSegment({ text, annotations, annotationReplies, onAddReply, on
           title="Có phản biện học thuật — nhấn để xem"
         >
           {text.slice(m.start, m.end)}
-          <i className="ti ti-message-circle-exclamation" aria-hidden="true" style={{ fontSize: "11px", color: sevColor, marginLeft: "3px", verticalAlign: "middle" }} />
+          <FinIcon name="ti-message-circle-exclamation" size={11} color={sevColor} style={{ marginLeft: "3px", verticalAlign: "middle" }} />
           {replyCount > 0 && (
             <span style={{ fontSize: "9.5px", fontWeight: 700, color: "#fff", background: sevColor, borderRadius: "8px", padding: "0px 5px", marginLeft: "3px", verticalAlign: "middle" }}>
               {replyCount}
@@ -4128,19 +4125,19 @@ function AnnotatedSegment({ text, annotations, annotationReplies, onAddReply, on
             {/* System annotation — read-only, cannot be edited */}
             <span style={{ display: "block", padding: "10px 12px" }}>
               <span style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "5px" }}>
-                <i className={`ti ${m.ann.severity === "error" ? "ti-alert-triangle" : "ti-info-circle"}`} aria-hidden="true" style={{ fontSize: "13px", color: sevColor }} />
+                <FinIcon name={m.ann.severity === "error" ? "ti-alert-triangle" : "ti-info-circle"} size={13} color={sevColor} />
                 <strong style={{ fontSize: "11px", fontWeight: 600, color: sevColor, textTransform: "uppercase", letterSpacing: "0.03em" }}>
                   {m.ann.severity === "error" ? "Phản biện hệ thống: Sai về bản chất" : "Phản biện hệ thống: Cần làm rõ sắc thái"}
                 </strong>
                 <span style={{ display: "flex", alignItems: "center", gap: "2px", marginLeft: "4px", fontSize: "10px", color: "var(--text-muted, #888)", border: "0.5px solid var(--border, #e0e0d8)", borderRadius: "4px", padding: "1px 5px" }}>
-                  <i className="ti ti-lock" aria-hidden="true" style={{ fontSize: "9px" }} />
+                  <FinIcon name="ti-lock" size={9} />
                   Khóa
                 </span>
                 <button
                   onClick={() => setOpenIdx(null)}
                   style={{ marginLeft: "auto", border: "none", background: "transparent", cursor: "pointer", padding: "2px", color: "var(--text-muted, #888)" }}
                 >
-                  <i className="ti ti-x" aria-hidden="true" style={{ fontSize: "13px" }} />
+                  <FinIcon name="ti-x" size={13} />
                 </button>
               </span>
               <span style={{ display: "block" }}>{m.ann.critique}</span>
@@ -4224,7 +4221,7 @@ function ReplyThread({ annotationId, replies, color, onAdd, onEdit, onDelete }) 
               ) : (
                 <span style={{ display: "block" }}>
                   <span style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "2px" }}>
-                    <i className="ti ti-user-circle" aria-hidden="true" style={{ fontSize: "13px", color: "var(--text-muted, #888)" }} />
+                    <FinIcon name="ti-user-circle" size={13} color="var(--text-muted, #888)" />
                     <strong style={{ fontSize: "11.5px", fontWeight: 600, color: "var(--text-primary, #1a1a1a)" }}>Bạn</strong>
                     <span style={{ fontSize: "10px", color: "var(--text-muted, #888)" }}>
                       {formatTime(reply.createdAt)}{reply.editedAt ? " (đã sửa)" : ""}
@@ -4235,14 +4232,14 @@ function ReplyThread({ annotationId, replies, color, onAdd, onEdit, onDelete }) 
                         title="Tính năng chỉnh sửa không khả dụng ở bản web tĩnh này"
                         style={{ border: "none", background: "transparent", cursor: "not-allowed", padding: "1px", color: "var(--text-muted, #888)", opacity: 0.5 }}
                       >
-                        <i className="ti ti-pencil" aria-hidden="true" style={{ fontSize: "12px" }} />
+                        <FinIcon name="ti-pencil" size={12} />
                       </button>
                       <button
                         disabled
                         title="Tính năng xóa không khả dụng ở bản web tĩnh này"
                         style={{ border: "none", background: "transparent", cursor: "not-allowed", padding: "1px", color: "var(--text-muted, #888)", opacity: 0.5 }}
                       >
-                        <i className="ti ti-trash" aria-hidden="true" style={{ fontSize: "12px" }} />
+                        <FinIcon name="ti-trash" size={12} />
                       </button>
                     </span>
                   </span>

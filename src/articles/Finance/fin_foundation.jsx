@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Menu } from "lucide-react";
+import { FinIcon } from "./finIcons";
 
 // ============================================================
 // TẬP 1 — NỀN TẢNG TÀI CHÍNH (Financial Foundations)
@@ -2113,7 +2115,7 @@ export default function Tap1Foundations() {
               {currentSection.label}
             </div>
           </div>
-          <i className="ti ti-selector" aria-hidden="true" style={{ fontSize: "16px", color: "var(--text-muted, #888)", flexShrink: 0 }} />
+          <Menu size={17} strokeWidth={2} color="var(--text-muted, #888)" style={{ flexShrink: 0 }} />
         </div>
       </button>
 
@@ -2143,7 +2145,7 @@ export default function Tap1Foundations() {
             <p style={{ fontSize: "11px", color: "var(--text-muted, #888)", margin: "4px 0 0" }}>Tầng 0 · {sections.length} chủ đề</p>
           </div>
           <button onClick={() => setMobileNavOpen(false)} aria-label="Đóng" style={{ width: "28px", height: "28px", borderRadius: "8px", border: "0.5px solid var(--border, #e0e0d8)", background: "var(--surface-1, #f5f5f0)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", flexShrink: 0, color: "var(--text-secondary, #666)" }}>
-            <i className="ti ti-x" aria-hidden="true" style={{ fontSize: "14px" }} />
+            <FinIcon name="ti-x" size={14} />
           </button>
         </div>
         <div style={{ padding: "0.5rem 0" }}>
@@ -2153,7 +2155,7 @@ export default function Tap1Foundations() {
               onClick={() => selectSectionMobile(section.id)}
               style={{ display: "flex", alignItems: "center", gap: "10px", width: "100%", padding: "10px 1rem", border: "none", background: activeSection === section.id ? `${section.groupColor}15` : "transparent", cursor: "pointer", textAlign: "left", borderLeft: activeSection === section.id ? `3px solid ${section.groupColor}` : "3px solid transparent" }}
             >
-              <i className={`ti ${section.icon}`} aria-hidden="true" style={{ fontSize: "16px", color: activeSection === section.id ? section.groupColor : "var(--text-secondary, #666)", flexShrink: 0 }} />
+              <FinIcon name={section.icon} size={16} color={activeSection === section.id ? section.groupColor : "var(--text-secondary, #666)"} style={{ flexShrink: 0 }} />
               <span style={{ fontSize: "12.5px", fontWeight: activeSection === section.id ? 500 : 400, color: activeSection === section.id ? section.groupColor : "var(--text-primary, #111827)", lineHeight: 1.3 }}>{section.label}</span>
             </button>
           ))}
@@ -2173,7 +2175,7 @@ export default function Tap1Foundations() {
         {sections.map(section => (
           <button key={section.id} onClick={() => { setActiveSection(section.id); setOpenSubsection(null); window.__scrollArticleToTop?.(); }}
             style={{ display: "flex", alignItems: "center", gap: "10px", width: "100%", padding: "10px 1rem", border: "none", background: activeSection === section.id ? `${section.groupColor}15` : "transparent", cursor: "pointer", textAlign: "left", borderLeft: activeSection === section.id ? `3px solid ${section.groupColor}` : "3px solid transparent" }}>
-            <i className={`ti ${section.icon}`} aria-hidden="true" style={{ fontSize: "16px", color: activeSection === section.id ? section.groupColor : "var(--text-secondary, #666)", flexShrink: 0 }} />
+            <FinIcon name={section.icon} size={16} color={activeSection === section.id ? section.groupColor : "var(--text-secondary, #666)"} style={{ flexShrink: 0 }} />
             <span style={{ fontSize: "12.5px", fontWeight: activeSection === section.id ? 500 : 400, color: activeSection === section.id ? section.groupColor : "var(--text-primary, #111827)", lineHeight: 1.3 }}>{section.label}</span>
           </button>
         ))}
@@ -2185,15 +2187,15 @@ export default function Tap1Foundations() {
       {/* Main */}
       <div className="tf-content" style={{ flex: 1, padding: "2rem", minWidth: 0 }}>
         <div className="tf-breadcrumb-text" style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "0.6rem", fontSize: "11.5px", color: currentSection.groupColor, fontWeight: 600 }}>
-          <i className={`ti ${currentSection.groupIcon}`} aria-hidden="true" style={{ fontSize: "13px" }} />
+          <FinIcon name={currentSection.groupIcon} size={13} />
           <span>{currentSection.groupLabel}</span>
-          <i className="ti ti-chevron-right" aria-hidden="true" style={{ fontSize: "11px", color: "var(--text-muted, #888)" }} />
+          <FinIcon name="ti-chevron-right" size={11} color="var(--text-muted, #888)" />
           <span style={{ color: "var(--text-secondary, #666)", fontWeight: 400 }}>{currentSection.label}</span>
         </div>
 
         <div className="tf-header-box" style={{ padding: "1rem 1.5rem", background: `${(currentSection.groupColor || currentSection.color)}15`, borderRadius: "12px", border: `0.5px solid ${(currentSection.groupColor || currentSection.color)}33`, marginBottom: "1.5rem" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            <i className={`ti ${currentSection.icon}`} aria-hidden="true" style={{ fontSize: "22px", color: (currentSection.groupColor || currentSection.color) }} />
+            <FinIcon name={currentSection.icon} size={22} color={(currentSection.groupColor || currentSection.color)} />
             <h1 style={{ fontSize: "18px", fontWeight: 500, color: "var(--text-primary, #111827)", margin: 0 }}>{currentSection.title}</h1>
           </div>
         </div>
@@ -2210,7 +2212,7 @@ export default function Tap1Foundations() {
                     <span style={{ fontSize: "11px", fontWeight: 500, padding: "2px 8px", borderRadius: "20px", background: isOpen ? (currentSection.groupColor || currentSection.color) : "var(--surface-1, #f5f5f0)", color: isOpen ? "#fff" : "var(--text-muted, #888)" }}>{String(idx + 1).padStart(2, "0")}</span>
                     <span style={{ fontSize: "14px", fontWeight: 500, color: "var(--text-primary, #111827)" }}>{sub.title}</span>
                   </div>
-                  <i className={`ti ${isOpen ? "ti-chevron-up" : "ti-chevron-down"}`} aria-hidden="true" style={{ fontSize: "16px", color: "var(--text-muted, #888)", flexShrink: 0 }} />
+                  <FinIcon name={isOpen ? "ti-chevron-up" : "ti-chevron-down"} size={16} color="var(--text-muted, #888)" style={{ flexShrink: 0 }} />
                 </button>
                 {isOpen && (
                   <div style={{ padding: "0 1.25rem 1.25rem" }}>
@@ -2228,13 +2230,13 @@ export default function Tap1Foundations() {
           {sections.findIndex(s => s.id === activeSection) > 0 ? (
             <button onClick={() => { const i = sections.findIndex(s => s.id === activeSection); setActiveSection(sections[i - 1].id); setOpenSubsection(null); window.__scrollArticleToTop?.(); }}
               style={{ display: "flex", alignItems: "center", gap: "6px", padding: "8px 14px", border: "0.5px solid var(--border-strong, #ccc)", borderRadius: "8px", background: "transparent", cursor: "pointer", fontSize: "13px", color: "var(--text-primary, #111827)" }}>
-              <i className="ti ti-arrow-left" aria-hidden="true" style={{ fontSize: "14px" }} />{sections[sections.findIndex(s => s.id === activeSection) - 1].label}
+              <FinIcon name="ti-arrow-left" size={14} />{sections[sections.findIndex(s => s.id === activeSection) - 1].label}
             </button>
           ) : <div />}
           {sections.findIndex(s => s.id === activeSection) < sections.length - 1 && (
             <button onClick={() => { const i = sections.findIndex(s => s.id === activeSection); setActiveSection(sections[i + 1].id); setOpenSubsection(null); window.__scrollArticleToTop?.(); }}
               style={{ display: "flex", alignItems: "center", gap: "6px", padding: "8px 14px", border: "0.5px solid var(--border-strong, #ccc)", borderRadius: "8px", background: "transparent", cursor: "pointer", fontSize: "13px", color: "var(--text-primary, #111827)" }}>
-              {sections[sections.findIndex(s => s.id === activeSection) + 1].label}<i className="ti ti-arrow-right" aria-hidden="true" style={{ fontSize: "14px" }} />
+              {sections[sections.findIndex(s => s.id === activeSection) + 1].label}<FinIcon name="ti-arrow-right" size={14} />
             </button>
           )}
         </div>
@@ -2303,14 +2305,14 @@ function AnnotatedSegment({ text, annotations }) {
           style={{ background: sevBg, color: "var(--text-primary, #111827)", borderBottom: `2px solid ${sevColor}`, padding: "0 2px", cursor: "pointer", borderRadius: "2px" }}
           title="Có lưu ý học thuật — nhấn để xem">
           {text.slice(m.start, m.end)}
-          <i className="ti ti-message-circle-exclamation" aria-hidden="true" style={{ fontSize: "11px", color: sevColor, marginLeft: "3px", verticalAlign: "middle" }} />
+          <FinIcon name="ti-message-circle-exclamation" size={11} color={sevColor} style={{ marginLeft: "3px", verticalAlign: "middle" }} />
         </mark>
         {isOpen && (
           <span onClick={(e) => e.stopPropagation()} style={{ display: "block", position: "relative", marginTop: "6px", marginBottom: "6px", padding: "10px 12px", background: "#fff", border: `1px solid ${sevColor}55`, borderLeft: `3px solid ${sevColor}`, borderRadius: "8px", fontSize: "12.5px", lineHeight: 1.6, color: "var(--text-primary, #111827)", boxShadow: "0 2px 10px rgba(0,0,0,0.08)", maxWidth: "640px" }}>
             <span style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "5px" }}>
-              <i className={`ti ${m.ann.severity === "error" ? "ti-alert-triangle" : "ti-info-circle"}`} aria-hidden="true" style={{ fontSize: "13px", color: sevColor }} />
+              <FinIcon name={m.ann.severity === "error" ? "ti-alert-triangle" : "ti-info-circle"} size={13} color={sevColor} />
               <strong style={{ fontSize: "11px", fontWeight: 600, color: sevColor, textTransform: "uppercase", letterSpacing: "0.03em" }}>{m.ann.severity === "error" ? "Lưu ý: Sai về bản chất" : "Lưu ý học thuật: Giới hạn áp dụng"}</strong>
-              <button onClick={() => setOpenIdx(null)} style={{ marginLeft: "auto", border: "none", background: "transparent", cursor: "pointer", padding: "2px", color: "var(--text-muted, #888)" }}><i className="ti ti-x" aria-hidden="true" style={{ fontSize: "13px" }} /></button>
+              <button onClick={() => setOpenIdx(null)} style={{ marginLeft: "auto", border: "none", background: "transparent", cursor: "pointer", padding: "2px", color: "var(--text-muted, #888)" }}><FinIcon name="ti-x" size={13} /></button>
             </span>
             {m.ann.critique}
           </span>
