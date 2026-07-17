@@ -14,10 +14,10 @@ const sections = [
     groupId: "L0",
     groupLabel: "Lớp 0: Bản đồ Kiến trúc Tổng thể",
     groupIcon: "ti-map-2",
-    groupColor: "#1A1A1A",
+    groupColor: "#111827",
     label: "Bản đồ Kiến trúc Tổng thể",
     icon: "ti-hierarchy-3",
-    color: "#1A1A1A",
+    color: "#111827",
     bg: "#F0F0EC",
     title: "Kiến trúc Tổng thể: Từ Lý thuyết đến Quyết định Đầu tư Thực chiến",
     subsections: [
@@ -73,10 +73,10 @@ const sections = [
     groupId: "L1",
     groupLabel: "Lớp 1: Lý thuyết (Theory Layer)",
     groupIcon: "ti-atom",
-    groupColor: "#185FA5",
+    groupColor: "#1D4ED8",
     label: "Giá trị thời gian của tiền",
     icon: "ti-clock-dollar",
-    color: "#185FA5",
+    color: "#1D4ED8",
     bg: "#E6F1FB",
     title: "Giá trị Thời gian của Tiền (Time Value of Money)",
     subsections: [
@@ -188,10 +188,10 @@ Rất nhiều "khoản đầu tư có lời" thực ra âm sau khi trừ đủ 3
     groupId: "L1",
     groupLabel: "Lớp 1: Lý thuyết (Theory Layer)",
     groupIcon: "ti-atom",
-    groupColor: "#185FA5",
+    groupColor: "#1D4ED8",
     label: "Rủi ro, Lợi nhuận & Thống kê",
     icon: "ti-chart-dots",
-    color: "#0F6E56",
+    color: "#047857",
     bg: "#E1F5EE",
     title: "Rủi ro – Lợi nhuận & Nền tảng Thống kê cho Đầu tư",
     subsections: [
@@ -293,7 +293,7 @@ Rủi ro là xác suất không đạt được MỤC TIÊU cụ thể (đủ ti
     groupId: "L1",
     groupLabel: "Lớp 1: Lý thuyết (Theory Layer)",
     groupIcon: "ti-atom",
-    groupColor: "#185FA5",
+    groupColor: "#1D4ED8",
     label: "Danh mục & CAPM",
     icon: "ti-chart-pie",
     color: "#854F0B",
@@ -402,7 +402,7 @@ Lợi nhuận = Rf + β×(Rm−Rf) + s×SMB + h×HML
     groupId: "L1",
     groupLabel: "Lớp 1: Lý thuyết (Theory Layer)",
     groupIcon: "ti-atom",
-    groupColor: "#185FA5",
+    groupColor: "#1D4ED8",
     label: "EMH vs Tài chính Hành vi",
     icon: "ti-brain",
     color: "#993C1D",
@@ -492,10 +492,10 @@ Lợi nhuận = Rf + β×(Rm−Rf) + s×SMB + h×HML
     groupId: "L1",
     groupLabel: "Lớp 1: Lý thuyết (Theory Layer)",
     groupIcon: "ti-atom",
-    groupColor: "#185FA5",
+    groupColor: "#1D4ED8",
     label: "Định giá & Trái phiếu",
     icon: "ti-calculator",
-    color: "#534AB7",
+    color: "#6D28D9",
     bg: "#EEEDFE",
     title: "Nền tảng Định giá (DCF, Tương đối) & Thu nhập Cố định",
     subsections: [
@@ -586,7 +586,7 @@ Lợi nhuận = Rf + β×(Rm−Rf) + s×SMB + h×HML
     groupId: "L1",
     groupLabel: "Lớp 1: Lý thuyết (Theory Layer)",
     groupIcon: "ti-atom",
-    groupColor: "#185FA5",
+    groupColor: "#1D4ED8",
     label: "Công cụ Phái sinh: Nền tảng",
     icon: "ti-git-branch",
     color: "#993C1D",
@@ -646,7 +646,7 @@ Lợi nhuận = Rf + β×(Rm−Rf) + s×SMB + h×HML
     groupId: "L1",
     groupLabel: "Lớp 1: Lý thuyết (Theory Layer)",
     groupIcon: "ti-atom",
-    groupColor: "#185FA5",
+    groupColor: "#1D4ED8",
     label: "Định giá Phái sinh: Trực giác Chuyên sâu",
     icon: "ti-function",
     color: "#993C1D",
@@ -684,7 +684,7 @@ Lợi nhuận = Rf + β×(Rm−Rf) + s×SMB + h×HML
     groupId: "L1",
     groupLabel: "Lớp 1: Lý thuyết (Theory Layer)",
     groupIcon: "ti-atom",
-    groupColor: "#185FA5",
+    groupColor: "#1D4ED8",
     label: "Kinh tế Vĩ mô Nền tảng",
     icon: "ti-world-latitude",
     color: "#0C447C",
@@ -765,10 +765,10 @@ Lợi nhuận = Rf + β×(Rm−Rf) + s×SMB + h×HML
     groupId: "L1",
     groupLabel: "Lớp 1: Lý thuyết (Theory Layer)",
     groupIcon: "ti-atom",
-    groupColor: "#185FA5",
+    groupColor: "#1D4ED8",
     label: "Kinh tế học Vi mô Nền tảng",
     icon: "ti-building-factory",
-    color: "#0F6E56",
+    color: "#047857",
     bg: "#E1F5EE",
     title: "Kinh tế học Vi mô Nền tảng: Nền móng để hiểu Doanh nghiệp & Ngành",
     subsections: [
@@ -814,7 +814,7 @@ Lợi nhuận = Rf + β×(Rm−Rf) + s×SMB + h×HML
     groupId: "L1",
     groupLabel: "Lớp 1: Lý thuyết (Theory Layer)",
     groupIcon: "ti-atom",
-    groupColor: "#185FA5",
+    groupColor: "#1D4ED8",
     label: "Tài chính Quốc tế & Tỷ giá",
     icon: "ti-currency-dollar",
     color: "#0C447C",
@@ -871,7 +871,7 @@ Lợi nhuận = Rf + β×(Rm−Rf) + s×SMB + h×HML
     groupId: "L1",
     groupLabel: "Lớp 1: Lý thuyết (Theory Layer)",
     groupIcon: "ti-atom",
-    groupColor: "#185FA5",
+    groupColor: "#1D4ED8",
     label: "Phương pháp Định lượng Nâng cao",
     icon: "ti-math-symbols",
     color: "#993C1D",
@@ -913,10 +913,10 @@ Lợi nhuận = Rf + β×(Rm−Rf) + s×SMB + h×HML
     groupId: "L2",
     groupLabel: "Lớp 2: Phân tích Chứng khoán (Security Analysis)",
     groupIcon: "ti-search",
-    groupColor: "#0F6E56",
+    groupColor: "#047857",
     label: "Universe, Benchmark & Screening",
     icon: "ti-filter",
-    color: "#0F6E56",
+    color: "#047857",
     bg: "#E1F5EE",
     title: "Universe, Benchmark & Screening: Nơi Mọi Nghiên cứu Nghiêm túc Bắt đầu",
     subsections: [
@@ -953,10 +953,10 @@ Lợi nhuận = Rf + β×(Rm−Rf) + s×SMB + h×HML
     groupId: "L2",
     groupLabel: "Lớp 2: Phân tích Chứng khoán (Security Analysis)",
     groupIcon: "ti-search",
-    groupColor: "#0F6E56",
+    groupColor: "#047857",
     label: "Phân tích Ngành & Cầu nối Vĩ mô",
     icon: "ti-transition-right",
-    color: "#0F6E56",
+    color: "#047857",
     bg: "#E1F5EE",
     title: "Phân tích Ngành & Cầu nối Vĩ mô-Cổ phiếu (Industry & Macro Analysis)",
     subsections: [
@@ -992,10 +992,10 @@ Lợi nhuận = Rf + β×(Rm−Rf) + s×SMB + h×HML
     groupId: "L2",
     groupLabel: "Lớp 2: Phân tích Chứng khoán (Security Analysis)",
     groupIcon: "ti-search",
-    groupColor: "#0F6E56",
+    groupColor: "#047857",
     label: "Phân tích BCTC có Hệ thống",
     icon: "ti-report-analytics",
-    color: "#0F6E56",
+    color: "#047857",
     bg: "#E1F5EE",
     title: "Phân tích Báo cáo Tài chính có Hệ thống: Khung DuPont & Tỷ số",
     subsections: [
@@ -1056,10 +1056,10 @@ DSO (kỳ thu tiền bình quân), DIO (kỳ tồn kho bình quân), DPO (kỳ p
     groupId: "L2",
     groupLabel: "Lớp 2: Phân tích Chứng khoán (Security Analysis)",
     groupIcon: "ti-search",
-    groupColor: "#0F6E56",
+    groupColor: "#047857",
     label: "Lăng kính Reported-Adjusted-Economic",
     icon: "ti-eye-check",
-    color: "#0F6E56",
+    color: "#047857",
     bg: "#E1F5EE",
     title: "Lăng kính Ba Tầng: Reported vs Adjusted vs Economic Earnings",
     subsections: [
@@ -1089,10 +1089,10 @@ DSO (kỳ thu tiền bình quân), DIO (kỳ tồn kho bình quân), DPO (kỳ p
     groupId: "L2",
     groupLabel: "Lớp 2: Phân tích Chứng khoán (Security Analysis)",
     groupIcon: "ti-search",
-    groupColor: "#0F6E56",
+    groupColor: "#047857",
     label: "Dự phóng: Base/Bull/Bear",
     icon: "ti-timeline",
-    color: "#0F6E56",
+    color: "#047857",
     bg: "#E1F5EE",
     title: "Dự phóng Tài chính: Mô hình theo Driver & Tư duy Ba Kịch bản",
     subsections: [
@@ -1125,10 +1125,10 @@ DSO (kỳ thu tiền bình quân), DIO (kỳ tồn kho bình quân), DPO (kỳ p
     groupId: "L2",
     groupLabel: "Lớp 2: Phân tích Chứng khoán (Security Analysis)",
     groupIcon: "ti-search",
-    groupColor: "#0F6E56",
+    groupColor: "#047857",
     label: "Corporate Finance & Phân bổ Vốn",
     icon: "ti-building-skyscraper",
-    color: "#A32D2D",
+    color: "#9F1239",
     bg: "#FAE8E8",
     title: "Corporate Finance: Doanh nghiệp Phân bổ Vốn Như thế nào & Vì sao Quan trọng với Cổ đông",
     subsections: [
@@ -1180,10 +1180,10 @@ DSO (kỳ thu tiền bình quân), DIO (kỳ tồn kho bình quân), DPO (kỳ p
     groupId: "L2",
     groupLabel: "Lớp 2: Phân tích Chứng khoán (Security Analysis)",
     groupIcon: "ti-search",
-    groupColor: "#0F6E56",
+    groupColor: "#047857",
     label: "Residual Income & Valuation Stack",
     icon: "ti-stack-3",
-    color: "#0F6E56",
+    color: "#047857",
     bg: "#E1F5EE",
     title: "Residual Income Model & Kỷ luật 'Valuation Stack' (≥ 2 Phương pháp)",
     subsections: [
@@ -1213,7 +1213,7 @@ DSO (kỳ thu tiền bình quân), DIO (kỳ tồn kho bình quân), DPO (kỳ p
     groupId: "L2",
     groupLabel: "Lớp 2: Phân tích Chứng khoán (Security Analysis)",
     groupIcon: "ti-search",
-    groupColor: "#0F6E56",
+    groupColor: "#047857",
     label: "Tài sản Thay thế & Đặc tính",
     icon: "ti-diamond",
     color: "#854F0B",
@@ -1275,10 +1275,10 @@ DSO (kỳ thu tiền bình quân), DIO (kỳ tồn kho bình quân), DPO (kỳ p
     groupId: "L2",
     groupLabel: "Lớp 2: Phân tích Chứng khoán (Security Analysis)",
     groupIcon: "ti-search",
-    groupColor: "#0F6E56",
+    groupColor: "#047857",
     label: "Phân tích Rủi ro Cấp Cổ phiếu",
     icon: "ti-alert-hexagon",
-    color: "#0F6E56",
+    color: "#047857",
     bg: "#E1F5EE",
     title: "Phân tích Rủi ro Cấp Cổ phiếu: Systematic vs Idiosyncratic (trước khi đưa vào Danh mục)",
     subsections: [
@@ -1306,10 +1306,10 @@ DSO (kỳ thu tiền bình quân), DIO (kỳ tồn kho bình quân), DPO (kỳ p
     groupId: "L2",
     groupLabel: "Lớp 2: Phân tích Chứng khoán (Security Analysis)",
     groupIcon: "ti-search",
-    groupColor: "#0F6E56",
+    groupColor: "#047857",
     label: "Xây dựng Luận điểm Đầu tư",
     icon: "ti-target-arrow",
-    color: "#0F6E56",
+    color: "#047857",
     bg: "#E1F5EE",
     title: "Xây dựng Luận điểm Đầu tư (Investment Thesis Construction): Cấu trúc 5 Câu hỏi Bắt buộc",
     subsections: [
@@ -1357,10 +1357,10 @@ DSO (kỳ thu tiền bình quân), DIO (kỳ tồn kho bình quân), DPO (kỳ p
     groupId: "L3",
     groupLabel: "Lớp 3: Xây dựng Danh mục (Portfolio Construction)",
     groupIcon: "ti-stack-2",
-    groupColor: "#534AB7",
+    groupColor: "#6D28D9",
     label: "Quản trị Rủi ro & Position Sizing",
     icon: "ti-shield-half",
-    color: "#A32D2D",
+    color: "#9F1239",
     bg: "#FAE8E8",
     title: "Quản trị Rủi ro & Phân bổ Vốn (Position Sizing)",
     subsections: [
@@ -1453,10 +1453,10 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
     groupId: "L3",
     groupLabel: "Lớp 3: Xây dựng Danh mục (Portfolio Construction)",
     groupIcon: "ti-stack-2",
-    groupColor: "#534AB7",
+    groupColor: "#6D28D9",
     label: "SAA vs TAA",
     icon: "ti-arrows-split",
-    color: "#534AB7",
+    color: "#6D28D9",
     bg: "#EEEDFE",
     title: "Strategic vs Tactical Asset Allocation: Hai Tốc độ Ra quyết định Song song",
     subsections: [
@@ -1486,10 +1486,10 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
     groupId: "L3",
     groupLabel: "Lớp 3: Xây dựng Danh mục (Portfolio Construction)",
     groupIcon: "ti-stack-2",
-    groupColor: "#534AB7",
+    groupColor: "#6D28D9",
     label: "Tối ưu hóa Danh mục Thực hành",
     icon: "ti-adjustments",
-    color: "#534AB7",
+    color: "#6D28D9",
     bg: "#EEEDFE",
     title: "Portfolio Optimization trong Thực hành: Từ Lý thuyết Markowitz đến Ràng buộc Thực tế",
     subsections: [
@@ -1523,7 +1523,7 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
     groupId: "L3",
     groupLabel: "Lớp 3: Xây dựng Danh mục (Portfolio Construction)",
     groupIcon: "ti-stack-2",
-    groupColor: "#534AB7",
+    groupColor: "#6D28D9",
     label: "Quản lý Danh mục Trái phiếu Chủ động",
     icon: "ti-file-invoice",
     color: "#0C447C",
@@ -1565,7 +1565,7 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
     groupId: "L3",
     groupLabel: "Lớp 3: Xây dựng Danh mục (Portfolio Construction)",
     groupIcon: "ti-stack-2",
-    groupColor: "#534AB7",
+    groupColor: "#6D28D9",
     label: "Alternative Investments có Hệ thống",
     icon: "ti-building-warehouse",
     color: "#854F0B",
@@ -1607,10 +1607,10 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
     groupId: "L3",
     groupLabel: "Lớp 3: Xây dựng Danh mục (Portfolio Construction)",
     groupIcon: "ti-stack-2",
-    groupColor: "#534AB7",
+    groupColor: "#6D28D9",
     label: "Đầu tư Quốc tế có Hệ thống",
     icon: "ti-globe",
-    color: "#534AB7",
+    color: "#6D28D9",
     bg: "#EEEDFE",
     title: "Đầu tư Quốc tế & Đa dạng hóa Toàn cầu: Khung Tư duy Tổ chức",
     subsections: [
@@ -1648,10 +1648,10 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
     groupId: "L3",
     groupLabel: "Lớp 3: Xây dựng Danh mục (Portfolio Construction)",
     groupIcon: "ti-stack-2",
-    groupColor: "#534AB7",
+    groupColor: "#6D28D9",
     label: "Cấu trúc Thị trường & Giao dịch",
     icon: "ti-building-bank",
-    color: "#534AB7",
+    color: "#6D28D9",
     bg: "#EEEDFE",
     title: "Cấu trúc Thị trường & Cách Giao dịch Thực sự Vận hành",
     subsections: [
@@ -1703,10 +1703,10 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
     groupId: "L3",
     groupLabel: "Lớp 3: Xây dựng Danh mục (Portfolio Construction)",
     groupIcon: "ti-stack-2",
-    groupColor: "#534AB7",
+    groupColor: "#6D28D9",
     label: "Hoạch định Tài chính Cá nhân",
     icon: "ti-wallet",
-    color: "#0F6E56",
+    color: "#047857",
     bg: "#E1F5EE",
     title: "Hoạch định Tài chính Cá nhân: Đưa Lý thuyết vào Cuộc sống Thực",
     subsections: [
@@ -1754,10 +1754,10 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
     groupId: "L4",
     groupLabel: "Lớp 4: Quản trị (Governance)",
     groupIcon: "ti-gavel",
-    groupColor: "#A32D2D",
+    groupColor: "#9F1239",
     label: "Đo lường Hiệu suất Danh mục",
     icon: "ti-chart-line",
-    color: "#0F6E56",
+    color: "#047857",
     bg: "#E1F5EE",
     title: "Đo lường & Quy kết Hiệu suất Danh mục (Performance Measurement & Attribution)",
     subsections: [
@@ -1799,10 +1799,10 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
     groupId: "L4",
     groupLabel: "Lớp 4: Quản trị (Governance)",
     groupIcon: "ti-gavel",
-    groupColor: "#A32D2D",
+    groupColor: "#9F1239",
     label: "Risk Control cấp Tổ chức",
     icon: "ti-radar-2",
-    color: "#A32D2D",
+    color: "#9F1239",
     bg: "#FAE8E8",
     title: "Risk Control & Monitoring: Giám sát Rủi ro Liên tục ở Cấp Tổ chức",
     subsections: [
@@ -1832,10 +1832,10 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
     groupId: "L4",
     groupLabel: "Lớp 4: Quản trị (Governance)",
     groupIcon: "ti-gavel",
-    groupColor: "#A32D2D",
+    groupColor: "#9F1239",
     label: "Investment Committee & Model Governance",
     icon: "ti-users-group",
-    color: "#A32D2D",
+    color: "#9F1239",
     bg: "#FAE8E8",
     title: "Investment Committee (IC) & Model Governance: Cơ chế Ra quyết định Tập thể",
     subsections: [
@@ -1865,10 +1865,10 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
     groupId: "L4",
     groupLabel: "Lớp 4: Quản trị (Governance)",
     groupIcon: "ti-gavel",
-    groupColor: "#A32D2D",
+    groupColor: "#9F1239",
     label: "Đạo đức & Chuẩn mực Nghề nghiệp",
     icon: "ti-scale",
-    color: "#A32D2D",
+    color: "#9F1239",
     bg: "#FAE8E8",
     title: "Đạo đức & Chuẩn mực Nghề nghiệp trong Đầu tư (Ethics & Professional Standards)",
     subsections: [
@@ -1907,10 +1907,10 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
     groupId: "L4",
     groupLabel: "Lớp 4: Quản trị (Governance)",
     groupIcon: "ti-gavel",
-    groupColor: "#A32D2D",
+    groupColor: "#9F1239",
     label: "Mẫu Báo cáo Nghiên cứu Chuẩn hóa",
     icon: "ti-file-text",
-    color: "#A32D2D",
+    color: "#9F1239",
     bg: "#FAE8E8",
     title: "Mẫu Báo cáo Nghiên cứu Chuẩn hóa (Standardized Equity Research Template A-G)",
     subsections: [
@@ -1945,10 +1945,10 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
     groupId: "L4",
     groupLabel: "Lớp 4: Quản trị (Governance)",
     groupIcon: "ti-gavel",
-    groupColor: "#A32D2D",
+    groupColor: "#9F1239",
     label: "Kiến trúc Macro Dashboard",
     icon: "ti-layout-dashboard",
-    color: "#A32D2D",
+    color: "#9F1239",
     bg: "#FAE8E8",
     title: "Kiến trúc Macro Dashboard: Nén Toàn bộ Lớp 1 (Vĩ mô) thành 6 Tab Giám sát Hàng ngày",
     subsections: [
@@ -1986,10 +1986,10 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
     groupId: "L4",
     groupLabel: "Lớp 4: Quản trị (Governance)",
     groupIcon: "ti-gavel",
-    groupColor: "#A32D2D",
+    groupColor: "#9F1239",
     label: "Kiến trúc Portfolio Dashboard",
     icon: "ti-layout-grid",
-    color: "#A32D2D",
+    color: "#9F1239",
     bg: "#FAE8E8",
     title: "Kiến trúc Portfolio Dashboard: Nén Toàn bộ Lớp 3+4 thành 5 Góc nhìn Giám sát",
     subsections: [
@@ -2063,17 +2063,17 @@ export default function Tap1Foundations() {
   return (
     <div style={{ display: "flex", fontFamily: "var(--font-sans, system-ui)", background: "var(--surface-0, #f5f5f0)" }}>
       {/* Sidebar */}
-      <div style={{ width: "240px", flexShrink: 0, background: "var(--surface-2, #fff)", borderRight: "0.5px solid var(--border, #e0e0d8)", padding: "1.5rem 0", position: "sticky", top: 0, overflowY: "auto", maxHeight: "100vh" }}>
+      <div className="mobile-static" style={{ width: "240px", flexShrink: 0, background: "var(--surface-2, #fff)", borderRight: "0.5px solid var(--border, #e0e0d8)", padding: "1.5rem 0", position: "sticky", top: 0, overflowY: "auto", maxHeight: "100vh" }}>
         <div style={{ padding: "0 1rem 1rem", borderBottom: "0.5px solid var(--border, #e0e0d8)", marginBottom: "0.5rem" }}>
-          <p style={{ fontSize: "11px", fontWeight: 600, color: "#185FA5", textTransform: "uppercase", letterSpacing: "0.06em", margin: 0 }}>Tập 1</p>
-          <p style={{ fontSize: "14px", color: "var(--text-primary, #1a1a1a)", margin: "4px 0 0", lineHeight: 1.4, fontWeight: 500 }}>Nền tảng Tài chính</p>
+          <p style={{ fontSize: "11px", fontWeight: 600, color: "#1D4ED8", textTransform: "uppercase", letterSpacing: "0.06em", margin: 0 }}>Tập 1</p>
+          <p style={{ fontSize: "14px", color: "var(--text-primary, #111827)", margin: "4px 0 0", lineHeight: 1.4, fontWeight: 500 }}>Nền tảng Tài chính</p>
           <p style={{ fontSize: "11px", color: "var(--text-muted, #888)", margin: "4px 0 0" }}>Tầng 0 · 6 chủ đề · Trình độ trung cấp</p>
         </div>
         {sections.map(section => (
           <button key={section.id} onClick={() => { setActiveSection(section.id); setOpenSubsection(0); }}
-            style={{ display: "flex", alignItems: "center", gap: "10px", width: "100%", padding: "10px 1rem", border: "none", background: activeSection === section.id ? section.bg : "transparent", cursor: "pointer", textAlign: "left", borderLeft: activeSection === section.id ? `3px solid ${section.color}` : "3px solid transparent" }}>
-            <i className={`ti ${section.icon}`} aria-hidden="true" style={{ fontSize: "16px", color: activeSection === section.id ? section.color : "var(--text-secondary, #666)", flexShrink: 0 }} />
-            <span style={{ fontSize: "12.5px", fontWeight: activeSection === section.id ? 500 : 400, color: activeSection === section.id ? section.color : "var(--text-primary, #1a1a1a)", lineHeight: 1.3 }}>{section.label}</span>
+            style={{ display: "flex", alignItems: "center", gap: "10px", width: "100%", padding: "10px 1rem", border: "none", background: activeSection === section.id ? `${section.groupColor}15` : "transparent", cursor: "pointer", textAlign: "left", borderLeft: activeSection === section.id ? `3px solid ${section.groupColor}` : "3px solid transparent" }}>
+            <i className={`ti ${section.icon}`} aria-hidden="true" style={{ fontSize: "16px", color: activeSection === section.id ? section.groupColor : "var(--text-secondary, #666)", flexShrink: 0 }} />
+            <span style={{ fontSize: "12.5px", fontWeight: activeSection === section.id ? 500 : 400, color: activeSection === section.id ? section.groupColor : "var(--text-primary, #111827)", lineHeight: 1.3 }}>{section.label}</span>
           </button>
         ))}
         <div style={{ margin: "1rem 1rem 0", padding: "0.75rem", background: "var(--surface-1, #f5f5f0)", borderRadius: "8px", border: "0.5px solid var(--border, #e0e0d8)" }}>
@@ -2090,10 +2090,10 @@ export default function Tap1Foundations() {
           <span style={{ color: "var(--text-secondary, #666)", fontWeight: 400 }}>{currentSection.label}</span>
         </div>
 
-        <div style={{ padding: "1rem 1.5rem", background: currentSection.bg, borderRadius: "12px", border: `0.5px solid ${currentSection.color}33`, marginBottom: "1.5rem" }}>
+        <div style={{ padding: "1rem 1.5rem", background: `${(currentSection.groupColor || currentSection.color)}15`, borderRadius: "12px", border: `0.5px solid ${(currentSection.groupColor || currentSection.color)}33`, marginBottom: "1.5rem" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            <i className={`ti ${currentSection.icon}`} aria-hidden="true" style={{ fontSize: "22px", color: currentSection.color }} />
-            <h1 style={{ fontSize: "18px", fontWeight: 500, color: "var(--text-primary, #1a1a1a)", margin: 0 }}>{currentSection.title}</h1>
+            <i className={`ti ${currentSection.icon}`} aria-hidden="true" style={{ fontSize: "22px", color: (currentSection.groupColor || currentSection.color) }} />
+            <h1 style={{ fontSize: "18px", fontWeight: 500, color: "var(--text-primary, #111827)", margin: 0 }}>{currentSection.title}</h1>
           </div>
         </div>
 
@@ -2102,19 +2102,19 @@ export default function Tap1Foundations() {
             const isOpen = openSubsection === idx;
             const subAnnos = annotations[`${currentSection.id}:${idx}`] || [];
             return (
-              <div key={idx} style={{ background: "var(--surface-2, #fff)", border: `0.5px solid ${isOpen ? currentSection.color + "66" : "var(--border, #e0e0d8)"}`, borderRadius: "12px", overflow: "hidden" }}>
+              <div key={idx} style={{ background: "var(--surface-2, #fff)", border: `0.5px solid ${isOpen ? (currentSection.groupColor || currentSection.color) + "66" : "var(--border, #e0e0d8)"}`, borderRadius: "12px", overflow: "hidden" }}>
                 <button onClick={() => setOpenSubsection(isOpen ? null : idx)}
-                  style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", padding: "1rem 1.25rem", border: "none", background: isOpen ? currentSection.bg : "transparent", cursor: "pointer", textAlign: "left" }}>
+                  style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", padding: "1rem 1.25rem", border: "none", background: isOpen ? `${(currentSection.groupColor || currentSection.color)}15` : "transparent", cursor: "pointer", textAlign: "left" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                    <span style={{ fontSize: "11px", fontWeight: 500, padding: "2px 8px", borderRadius: "20px", background: isOpen ? currentSection.color : "var(--surface-1, #f5f5f0)", color: isOpen ? "#fff" : "var(--text-muted, #888)" }}>{String(idx + 1).padStart(2, "0")}</span>
-                    <span style={{ fontSize: "14px", fontWeight: 500, color: "var(--text-primary, #1a1a1a)" }}>{sub.title}</span>
+                    <span style={{ fontSize: "11px", fontWeight: 500, padding: "2px 8px", borderRadius: "20px", background: isOpen ? (currentSection.groupColor || currentSection.color) : "var(--surface-1, #f5f5f0)", color: isOpen ? "#fff" : "var(--text-muted, #888)" }}>{String(idx + 1).padStart(2, "0")}</span>
+                    <span style={{ fontSize: "14px", fontWeight: 500, color: "var(--text-primary, #111827)" }}>{sub.title}</span>
                   </div>
                   <i className={`ti ${isOpen ? "ti-chevron-up" : "ti-chevron-down"}`} aria-hidden="true" style={{ fontSize: "16px", color: "var(--text-muted, #888)", flexShrink: 0 }} />
                 </button>
                 {isOpen && (
                   <div style={{ padding: "0 1.25rem 1.25rem" }}>
-                    <div style={{ borderTop: `0.5px solid ${currentSection.color}33`, paddingTop: "1rem" }}>
-                      <FormattedContent content={sub.content} color={currentSection.color} subAnnotations={subAnnos} />
+                    <div style={{ borderTop: `0.5px solid ${(currentSection.groupColor || currentSection.color)}33`, paddingTop: "1rem" }}>
+                      <FormattedContent content={sub.content} color={(currentSection.groupColor || currentSection.color)} subAnnotations={subAnnos} />
                     </div>
                   </div>
                 )}
@@ -2126,13 +2126,13 @@ export default function Tap1Foundations() {
         <div style={{ display: "flex", justifyContent: "space-between", marginTop: "2rem", paddingTop: "1.5rem", borderTop: "0.5px solid var(--border, #e0e0d8)" }}>
           {sections.findIndex(s => s.id === activeSection) > 0 ? (
             <button onClick={() => { const i = sections.findIndex(s => s.id === activeSection); setActiveSection(sections[i - 1].id); setOpenSubsection(0); }}
-              style={{ display: "flex", alignItems: "center", gap: "6px", padding: "8px 14px", border: "0.5px solid var(--border-strong, #ccc)", borderRadius: "8px", background: "transparent", cursor: "pointer", fontSize: "13px", color: "var(--text-primary, #1a1a1a)" }}>
+              style={{ display: "flex", alignItems: "center", gap: "6px", padding: "8px 14px", border: "0.5px solid var(--border-strong, #ccc)", borderRadius: "8px", background: "transparent", cursor: "pointer", fontSize: "13px", color: "var(--text-primary, #111827)" }}>
               <i className="ti ti-arrow-left" aria-hidden="true" style={{ fontSize: "14px" }} />{sections[sections.findIndex(s => s.id === activeSection) - 1].label}
             </button>
           ) : <div />}
           {sections.findIndex(s => s.id === activeSection) < sections.length - 1 && (
             <button onClick={() => { const i = sections.findIndex(s => s.id === activeSection); setActiveSection(sections[i + 1].id); setOpenSubsection(0); }}
-              style={{ display: "flex", alignItems: "center", gap: "6px", padding: "8px 14px", border: "0.5px solid var(--border-strong, #ccc)", borderRadius: "8px", background: "transparent", cursor: "pointer", fontSize: "13px", color: "var(--text-primary, #1a1a1a)" }}>
+              style={{ display: "flex", alignItems: "center", gap: "6px", padding: "8px 14px", border: "0.5px solid var(--border-strong, #ccc)", borderRadius: "8px", background: "transparent", cursor: "pointer", fontSize: "13px", color: "var(--text-primary, #111827)" }}>
               {sections[sections.findIndex(s => s.id === activeSection) + 1].label}<i className="ti ti-arrow-right" aria-hidden="true" style={{ fontSize: "14px" }} />
             </button>
           )}
@@ -2154,16 +2154,16 @@ function FormattedContent({ content, color, subAnnotations = [] }) {
     } else if (line.startsWith("- ") || line.startsWith("• ")) {
       const listItems = [];
       while (i < lines.length && (lines[i].trim().startsWith("- ") || lines[i].trim().startsWith("• "))) { listItems.push(lines[i].trim().slice(2)); i++; }
-      elements.push(<ul key={i} style={{ margin: "0.4rem 0", paddingLeft: "1.2rem" }}>{listItems.map((item, j) => <li key={j} style={{ fontSize: "13px", color: "var(--text-primary, #1a1a1a)", lineHeight: 1.7, marginBottom: "2px" }}><InlineFormatted text={item} annotations={subAnnotations} /></li>)}</ul>);
+      elements.push(<ul key={i} style={{ margin: "0.4rem 0", paddingLeft: "1.2rem" }}>{listItems.map((item, j) => <li key={j} style={{ fontSize: "13px", color: "var(--text-primary, #111827)", lineHeight: 1.7, marginBottom: "2px" }}><InlineFormatted text={item} annotations={subAnnotations} /></li>)}</ul>);
       continue;
     } else if (line.includes(" | ") && line.includes("|")) {
       const tableLines = [];
       while (i < lines.length && lines[i].trim().includes("|")) { tableLines.push(lines[i].trim()); i++; }
       const rows = tableLines.filter(r => !r.match(/^\|[\s\-|]+\|$/));
-      elements.push(<div key={i} style={{ overflowX: "auto", margin: "0.75rem 0" }}><table style={{ width: "100%", borderCollapse: "collapse", fontSize: "12px" }}><tbody>{rows.map((row, ri) => { const cells = row.split("|").filter(c => c.trim() !== ""); return <tr key={ri} style={{ borderBottom: "0.5px solid var(--border, #e0e0d8)", background: ri === 0 ? `${color}11` : "transparent" }}>{cells.map((cell, ci) => { const Tag = ri === 0 ? "th" : "td"; return <Tag key={ci} style={{ padding: "6px 10px", textAlign: "left", fontWeight: ri === 0 ? 500 : 400, color: "var(--text-primary, #1a1a1a)" }}>{cell.trim()}</Tag>; })}</tr>; })}</tbody></table></div>);
+      elements.push(<div key={i} style={{ overflowX: "auto", margin: "0.75rem 0" }}><table style={{ width: "100%", borderCollapse: "collapse", fontSize: "12px" }}><tbody>{rows.map((row, ri) => { const cells = row.split("|").filter(c => c.trim() !== ""); return <tr key={ri} style={{ borderBottom: "0.5px solid var(--border, #e0e0d8)", background: ri === 0 ? `${color}11` : "transparent" }}>{cells.map((cell, ci) => { const Tag = ri === 0 ? "th" : "td"; return <Tag key={ci} style={{ padding: "6px 10px", textAlign: "left", fontWeight: ri === 0 ? 500 : 400, color: "var(--text-primary, #111827)" }}>{cell.trim()}</Tag>; })}</tr>; })}</tbody></table></div>);
       continue;
     } else {
-      elements.push(<p key={i} style={{ fontSize: "13px", color: "var(--text-primary, #1a1a1a)", lineHeight: 1.75, margin: "0.4rem 0" }}><InlineFormatted text={line} annotations={subAnnotations} /></p>);
+      elements.push(<p key={i} style={{ fontSize: "13px", color: "var(--text-primary, #111827)", lineHeight: 1.75, margin: "0.4rem 0" }}><InlineFormatted text={line} annotations={subAnnotations} /></p>);
     }
     i++;
   }
@@ -2194,18 +2194,18 @@ function AnnotatedSegment({ text, annotations }) {
   matches.forEach((m, mi) => {
     if (m.start > cursor) pieces.push(<span key={`t${mi}`}>{text.slice(cursor, m.start)}</span>);
     const isOpen = openIdx === m.annIdx;
-    const sevColor = m.ann.severity === "error" ? "#A32D2D" : "#A66A1E";
+    const sevColor = m.ann.severity === "error" ? "#9F1239" : "#A66A1E";
     const sevBg = m.ann.severity === "error" ? "#FAE8E8" : "#FAEEDA";
     pieces.push(
       <span key={`m${mi}`} style={{ position: "relative", display: "inline" }}>
         <mark onClick={(e) => { e.stopPropagation(); setOpenIdx(isOpen ? null : m.annIdx); }}
-          style={{ background: sevBg, color: "var(--text-primary, #1a1a1a)", borderBottom: `2px solid ${sevColor}`, padding: "0 2px", cursor: "pointer", borderRadius: "2px" }}
+          style={{ background: sevBg, color: "var(--text-primary, #111827)", borderBottom: `2px solid ${sevColor}`, padding: "0 2px", cursor: "pointer", borderRadius: "2px" }}
           title="Có lưu ý học thuật — nhấn để xem">
           {text.slice(m.start, m.end)}
           <i className="ti ti-message-circle-exclamation" aria-hidden="true" style={{ fontSize: "11px", color: sevColor, marginLeft: "3px", verticalAlign: "middle" }} />
         </mark>
         {isOpen && (
-          <span onClick={(e) => e.stopPropagation()} style={{ display: "block", position: "relative", marginTop: "6px", marginBottom: "6px", padding: "10px 12px", background: "#fff", border: `1px solid ${sevColor}55`, borderLeft: `3px solid ${sevColor}`, borderRadius: "8px", fontSize: "12.5px", lineHeight: 1.6, color: "var(--text-primary, #1a1a1a)", boxShadow: "0 2px 10px rgba(0,0,0,0.08)", maxWidth: "640px" }}>
+          <span onClick={(e) => e.stopPropagation()} style={{ display: "block", position: "relative", marginTop: "6px", marginBottom: "6px", padding: "10px 12px", background: "#fff", border: `1px solid ${sevColor}55`, borderLeft: `3px solid ${sevColor}`, borderRadius: "8px", fontSize: "12.5px", lineHeight: 1.6, color: "var(--text-primary, #111827)", boxShadow: "0 2px 10px rgba(0,0,0,0.08)", maxWidth: "640px" }}>
             <span style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "5px" }}>
               <i className={`ti ${m.ann.severity === "error" ? "ti-alert-triangle" : "ti-info-circle"}`} aria-hidden="true" style={{ fontSize: "13px", color: sevColor }} />
               <strong style={{ fontSize: "11px", fontWeight: 600, color: sevColor, textTransform: "uppercase", letterSpacing: "0.03em" }}>{m.ann.severity === "error" ? "Lưu ý: Sai về bản chất" : "Lưu ý học thuật: Giới hạn áp dụng"}</strong>

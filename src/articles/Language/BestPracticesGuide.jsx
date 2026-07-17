@@ -225,7 +225,9 @@ function PracticeTracker({ section }) {
           className="tk-goal"
           placeholder="VD: nói 5 phút/ngày + 20 thẻ Anki + 1 đoạn shadowing"
           value={goal}
-          onChange={(e) => { setGoal(e.target.value); persist({ grid, lang, goal: e.target.value }); }}
+          disabled
+          title="Tính năng lưu tiến độ cần lưu trữ của claude.ai, không khả dụng ở bản web tĩnh này"
+          style={{ cursor: "not-allowed", opacity: 0.6 }}
         />
       </div>
 
@@ -264,8 +266,9 @@ function PracticeTracker({ section }) {
                 <button
                   key={i}
                   className={"tk-cell" + (on ? " on" : "")}
-                  style={on ? { background: h.tone, borderColor: h.tone } : {}}
-                  onClick={() => toggle(h.id, i)}
+                  style={on ? { background: h.tone, borderColor: h.tone, cursor: "not-allowed", opacity: 0.6 } : { cursor: "not-allowed", opacity: 0.6 }}
+                  disabled
+                  title="Tính năng lưu tiến độ cần lưu trữ của claude.ai, không khả dụng ở bản web tĩnh này"
                   aria-label={h.label + " " + d}
                 >
                   {on ? "✓" : ""}
@@ -277,11 +280,7 @@ function PracticeTracker({ section }) {
       </div>
 
       <div className="tk-foot">
-        {loaded ? (
-          <span>Đã lưu tự động cho tuần bắt đầu {wk}. Mỗi tuần mới, bảng làm mới nhưng dữ liệu cũ vẫn được giữ.</span>
-        ) : (
-          <span>Đang tải…</span>
-        )}
+        <span>Tuần bắt đầu {wk}. Tính năng lưu tiến độ tạm khóa ở bản web tĩnh này.</span>
       </div>
 
       <div className="tk-manifesto">
@@ -550,7 +549,7 @@ const CSS = `
 
 @media (max-width: 780px) {
   .root { flex-direction: column; }
-  .rail { width: 100%; height: auto; flex-direction: column; padding-bottom: 6px; }
+  .rail { width: 100%; height: auto; flex-direction: column; padding-bottom: 6px; position: static; }
   .rail nav { display: flex; overflow-x: auto; padding: 4px 8px; }
   .nav-item { flex-direction: column; align-items: flex-start; white-space: nowrap; min-width: 120px; gap: 2px; padding: 8px 12px; }
   .nav-item.on::before { display: none; }

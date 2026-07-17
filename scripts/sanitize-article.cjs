@@ -96,6 +96,45 @@ function stripDuplicateGlobalFonts(src) {
   return { src, changed };
 }
 
+function stripRootMaxWidthAuto(src) {
+  let changed = false;
+  const returnIdx = src.search(/\breturn\s*\(/);
+  if (returnIdx === -1) return { src, changed };
+
+  // Walk JSX opening tags after `return (`: the 1st is the component's own
+  // root div. Only act when the 2nd tag — its literal first child, whatever
+  // it is — is itself a <div style={{...maxWidth...margin:...auto...}}>.
+  // This is the "duplicate centered wrapper that fights the shell's own
+  // width" anti-pattern (seen in love.jsx, self-worth-deep.jsx). Deliberate,
+  // repeated maxWidth+margin:auto used deeper/multiple times for a reading
+  // column (e.g. chinese_trick.jsx) never matches, because there the 2nd tag
+  // is something else (<style>, a banner <div>, etc.), not this wrapper.
+  const tagRe = /<([A-Za-z][A-Za-z0-9.]*)\b[^>]*>/g;
+  tagRe.lastIndex = returnIdx;
+  const first = tagRe.exec(src);
+  if (!first) return { src, changed };
+  const second = tagRe.exec(src);
+  if (!second) return { src, changed };
+
+  const tag = second[0];
+  if (second[1] !== "div") return { src, changed };
+  if (!/maxWidth/.test(tag) || !/margin:\s*["']0(?:px)?\s+auto["']/.test(tag)) {
+    return { src, changed };
+  }
+
+  let fixed = tag
+    .replace(/\s*maxWidth:\s*["']?\d+(?:px)?["']?,?/, "")
+    .replace(/\s*margin:\s*["']0(?:px)?\s+auto["'],?/, "")
+    .replace(/,(\s*}})/, "$1")
+    .replace(/(\{\{)\s*,/, "$1 ");
+
+  if (fixed !== tag) {
+    src = src.slice(0, second.index) + fixed + src.slice(second.index + tag.length);
+    changed = true;
+  }
+  return { src, changed };
+}
+
 function collectWarnings(src, filePath) {
   const warnings = [];
   const lines = src.split("\n");
@@ -113,6 +152,29 @@ function collectWarnings(src, filePath) {
       warnings.push(`  L${n}: maxWidth:${maxWidthNum[1]} (raw number, no margin:auto nearby) — check if this narrows the root wrapper without centering it (left-aligned mess).`);
     }
   });
+
+  // Tab/breadcrumb row detection: an array .map(...) rendering <button> elements
+  // (the pill-nav pattern used everywhere in this app — love.jsx, movement_manual.jsx,
+  // big_nations.jsx, etc.) that ISN'T sticky. Flag only — whether a given row should
+  // be the sticky "primary" breadcrumb needs a human's eyes (a file can have several
+  // .map->button rows and only the top one should stick).
+  {
+    const mapButtonRe = /\.map\(\([^)]*\)\s*=>\s*[\s\S]{0,150}?<button\b/g;
+    const seenLines = new Set();
+    let mb;
+    while ((mb = mapButtonRe.exec(src))) {
+      const windowStart = Math.max(0, mb.index - 1000);
+      const before = src.slice(windowStart, mb.index);
+      if (/position:\s*["']?sticky/.test(before)) continue;
+      const lineNo = src.slice(0, mb.index).split("\n").length;
+      if (seenLines.has(lineNo)) continue;
+      seenLines.add(lineNo);
+      warnings.push(
+        `  L${lineNo}: array.map(...) → <button> row (looks like a tab/breadcrumb selector) with no position:sticky nearby.\n` +
+        `    → if this is the primary section nav, consider making it sticky (see love.jsx/movement_manual.jsx) and add className="mobile-static" (src/index.css) so it un-stickies on phones.`
+      );
+    }
+  }
 
   // Vars the file defines itself (e.g. `.root{--acc:${ACC}; ...}` or `--acc:#fff;`)
   // are not "missing" — exclude them from the warning.
@@ -148,7 +210,9 @@ function processFile(filePath, doFix) {
   src = r2.src;
   const r3 = stripDuplicateGlobalFonts(src);
   src = r3.src;
-  anyFixed = r1.changed || r2.changed || r3.changed;
+  const r4 = stripRootMaxWidthAuto(src);
+  src = r4.src;
+  anyFixed = r1.changed || r2.changed || r3.changed || r4.changed;
 
   const warnings = collectWarnings(src, filePath);
 
@@ -156,6 +220,7 @@ function processFile(filePath, doFix) {
   if (r1.changed) console.log("  ✔ fixed: sticky panel height:100vh -> maxHeight:100vh (+overflow-y:auto)");
   if (r2.changed) console.log("  ✔ fixed: stripped stray height/minHeight:100vh");
   if (r3.changed) console.log("  ✔ fixed: removed duplicate global font (Inter / Plus Jakarta Sans) from font import");
+  if (r4.changed) console.log("  ✔ fixed: removed root-level maxWidth+margin:auto wrapper (was capping content width against the shell)");
   if (!anyFixed) console.log("  (no mechanical fixes needed)");
 
   if (warnings.length) {

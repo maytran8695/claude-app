@@ -4510,7 +4510,7 @@ export default function App() {
   return (
     <div style={{background:APP_BG,fontFamily:"'Inter',system-ui,sans-serif",color:APP_BRIGHT}}>
       {/* LEVEL 1 — REGION SELECTOR */}
-      <div style={{background:"#08080d",borderBottom:`1px solid ${APP_BORDER}`,
+      <div className="mobile-static" style={{background:"#08080d",borderBottom:`1px solid ${APP_BORDER}`,
         padding:"14px 24px 0 24px",position:"sticky",top:0,zIndex:200}}>
         <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:12}}>
           <div style={{width:3,height:30,background:"linear-gradient(180deg,#4f8fef 0%,#e05252 25%,#d13b4a 50%,#ffcc00 75%,#f0a0b5 100%)",borderRadius:2}}/>
@@ -4538,7 +4538,7 @@ export default function App() {
       </div>
 
       {/* LEVEL 2 — TAB SELECTOR WITHIN REGION */}
-      <div style={{background: region.bgGrad, borderBottom:`1px solid ${APP_BORDER}`,
+      <div className="mobile-static" style={{background: region.bgGrad, borderBottom:`1px solid ${APP_BORDER}`,
         padding:"12px 24px", position:"sticky", top:73, zIndex:150}}>
         <div style={{display:"flex",gap:4,overflowX:"auto"}}>
           {region.tabs.map((t) => (

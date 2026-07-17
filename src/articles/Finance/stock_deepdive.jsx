@@ -1061,7 +1061,7 @@ export default function App() {
         <div style={{ fontSize: 15, fontWeight: 600, color: "var(--text-primary)" }}>Stock Deep-Dive · Bộ 8 mã + đối thủ cạnh tranh</div>
         <div style={{ fontSize: 11, color: "var(--text-muted)" }}>Thép · Ngân hàng · Cảng · Holding · Dược · Năng lượng · VLXD · Chăn nuôi — GMD & DHG có sub-tab đối thủ</div>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 5, marginBottom: 14, position: "sticky", top: 0, zIndex: 10, background: "#fff", padding: "10px 0", borderBottom: "1px solid #eee" }}>
+      <div className="mobile-static" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 5, marginBottom: 14, position: "sticky", top: 0, zIndex: 10, background: "#fff", padding: "10px 0", borderBottom: "1px solid #eee" }}>
         {order.map(id => {
           const s = STOCKS[id];
           return (

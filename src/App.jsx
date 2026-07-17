@@ -121,27 +121,31 @@ const articles = [...rawArticles].sort((a, b) => {
 // Định nghĩa màu sắc sinh động động theo từng Chuyên mục (Accent Themes)
 const categoryThemes = {
   Finance: {
-    text: 'text-emerald-600 dark:text-emerald-400',
-    bg: 'bg-emerald-50 text-emerald-700 border-emerald-200/60',
-    bgActive: 'bg-emerald-600 text-white shadow-md shadow-emerald-600/15',
+    // Đỏ — trùng màu tab "Thép" trong vietnam_industry_primers.jsx (#B34040)
+    text: 'text-[#B34040]',
+    bg: 'bg-[#B34040]/10 text-[#8A3232] border-[#B34040]/30',
+    bgActive: 'bg-[#B34040] text-white shadow-md shadow-[#B34040]/20',
     icon: '📊'
   },
   Health: {
-    text: 'text-rose-600 dark:text-rose-400',
-    bg: 'bg-rose-50 text-rose-700 border-rose-200/60',
-    bgActive: 'bg-rose-600 text-white shadow-md shadow-rose-600/15',
+    // Vàng — trùng màu tab "Actionable" trong holistic_life.jsx (C.gold = #B4863C)
+    text: 'text-[#B4863C]',
+    bg: 'bg-[#B4863C]/10 text-[#8A6B2F] border-[#B4863C]/30',
+    bgActive: 'bg-[#B4863C] text-white shadow-md shadow-[#B4863C]/20',
     icon: '❤️'
   },
   Language: {
-    text: 'text-blue-600 dark:text-blue-400',
-    bg: 'bg-blue-50 text-blue-700 border-blue-200/60',
-    bgActive: 'bg-blue-600 text-white shadow-md shadow-blue-600/15',
+    // Xanh navy/cobalt — sang hơn xanh dương mặc định
+    text: 'text-[#22436B]',
+    bg: 'bg-[#22436B]/10 text-[#22436B] border-[#22436B]/30',
+    bgActive: 'bg-[#22436B] text-white shadow-md shadow-[#22436B]/20',
     icon: '🌐'
   },
   Psy: {
-    text: 'text-pink-600 dark:text-pink-400',
-    bg: 'bg-pink-50 text-pink-700 border-pink-200/60',
-    bgActive: 'bg-pink-600 text-white shadow-md shadow-pink-600/15',
+    // Xanh teal — trùng màu tab "Bản chất" trong love.jsx (TAB_ACCENT = #356158)
+    text: 'text-[#356158]',
+    bg: 'bg-[#356158]/10 text-[#356158] border-[#356158]/30',
+    bgActive: 'bg-[#356158] text-white shadow-md shadow-[#356158]/20',
     icon: '📂'
   },
   Default: {

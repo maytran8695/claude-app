@@ -88,3 +88,15 @@
 .article-content ol {
   @apply list-decimal pl-5 mb-4 space-y-2 text-sm text-slate-600;
 }
+
+/* Tắt "dính" (position:sticky) cho breadcrumb/sidebar nội bộ của bài viết trên
+   màn hình nhỏ — trên mobile những thanh này cứ chiếm chỗ vĩnh viễn khi cuộn,
+   rất phí diện tích màn hình hẹp. Trên tablet/desktop trở lên vẫn dính bình
+   thường. Dùng !important vì các file bài viết set position bằng inline
+   style={{}}, chỉ có !important mới thắng được inline style.
+   Gắn class "mobile-static" vào cùng phần tử có position:sticky. */
+@media (max-width: 767px) {
+  .mobile-static {
+    position: static !important;
+  }
+}

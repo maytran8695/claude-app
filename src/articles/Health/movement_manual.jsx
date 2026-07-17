@@ -152,7 +152,7 @@ export default function App() {
   return (
     <div style={{ fontFamily: "var(--font-sans)", padding: "18px 14px 40px" }}>
       {/* ===== TAB BREADCRUMB — colored boxes at very top ===== */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: "2rem", position: "sticky", top: 0, zIndex: 10, background: "#fff", padding: "10px 0", borderBottom: "1px solid #eee" }}>
+      <div className="mobile-static" style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: "2rem", position: "sticky", top: 0, zIndex: 10, background: "#fff", padding: "10px 0", borderBottom: "1px solid #eee" }}>
         {PARTS.map((p) => {
           const active = part === p.id;
           return (
@@ -166,12 +166,6 @@ export default function App() {
               boxShadow: active ? `0 2px 8px ${p.accent.bg}` : "none",
               transition: "all 0.15s",
             }}>
-              <span style={{
-                display: "inline-flex", alignItems: "center", justifyContent: "center",
-                minWidth: 25, height: 25, borderRadius: 7, fontSize: 12.5, fontWeight: 800,
-                background: active ? "rgba(255,255,255,0.25)" : p.accent.bg,
-                color: active ? "#fff" : p.accent.mid,
-              }}>{p.num}</span>
               {p.short}
             </button>
           );

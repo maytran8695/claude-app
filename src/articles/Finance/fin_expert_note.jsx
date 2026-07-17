@@ -6,10 +6,10 @@ const sections = [
     groupId: "g1",
     groupLabel: "Tầng 1: Trật tự Toàn cầu",
     groupIcon: "ti-world",
-    groupColor: "#534AB7",
+    groupColor: "#6D28D9",
     label: "#3 Địa chính trị (1/2)",
     icon: "ti-globe",
-    color: "#534AB7",
+    color: "#6D28D9",
     bg: "#EEEDFE",
     title: "Địa chính trị & Dầu mỏ: Trật tự thế giới đang định hình lại (Phần 1)",
     subsections: [
@@ -140,10 +140,10 @@ Tiền tệ dễ dãi sau GFC 2008 + Covid + chiến tranh Ukraine + Green Trans
     groupId: "g1",
     groupLabel: "Tầng 1: Trật tự Toàn cầu",
     groupIcon: "ti-world",
-    groupColor: "#534AB7",
+    groupColor: "#6D28D9",
     label: "#3 Địa chính trị (2/2)",
     icon: "ti-world-pin",
-    color: "#993C1D",
+    color: "#B91C1C",
     bg: "#FAECE7",
     title: "Địa chính trị & Dầu mỏ: Trật tự thế giới đang định hình lại (Phần 2)",
     subsections: [
@@ -372,7 +372,7 @@ Công thức (M2 × Velocity) cần vượt ngưỡng đặc trưng mới gây l
     groupId: "g1",
     groupLabel: "Tầng 1: Trật tự Toàn cầu",
     groupIcon: "ti-world",
-    groupColor: "#534AB7",
+    groupColor: "#6D28D9",
     label: "Thuế đối ứng 46% & Margin Call",
     icon: "ti-receipt-tax",
     color: "#A32D2D",
@@ -484,10 +484,10 @@ Tổng XK dệt may sang Mỹ: $16.2 tỷ/năm. Ước tính cần ~200,000 lao 
     groupId: "g1",
     groupLabel: "Tầng 1: Trật tự Toàn cầu",
     groupIcon: "ti-world",
-    groupColor: "#534AB7",
+    groupColor: "#6D28D9",
     label: "Reciprocal Tariffs: Phân tích sâu",
     icon: "ti-scale",
-    color: "#0F6E56",
+    color: "#047857",
     bg: "#E1F5EE",
     title: "Reciprocal Tariffs: Toán học, Động cơ & Chiến tranh Công nghệ Mỹ-Trung",
     subsections: [
@@ -633,10 +633,10 @@ Trả lời: **Có, nhưng theo hình thức "quốc hữu hóa chiến lược 
     groupId: "g2",
     groupLabel: "Tầng 2: Hệ thống Tiền tệ & Thanh khoản",
     groupIcon: "ti-coin",
-    groupColor: "#185FA5",
+    groupColor: "#1D4ED8",
     label: "#1 Tiền tệ",
     icon: "ti-coin",
-    color: "#185FA5",
+    color: "#1D4ED8",
     bg: "#E6F1FB",
     title: "Tiền tệ: SBV qua các giai đoạn 2022-2026",
     subsections: [
@@ -755,10 +755,10 @@ Một chuyên gia cho rằng vòng quay tiền chậm hiện nay (dưới 1 lầ
     groupId: "g2",
     groupLabel: "Tầng 2: Hệ thống Tiền tệ & Thanh khoản",
     groupIcon: "ti-coin",
-    groupColor: "#185FA5",
+    groupColor: "#1D4ED8",
     label: "#2 Phái sinh",
     icon: "ti-arrows-shuffle",
-    color: "#993C1D",
+    color: "#B91C1C",
     bg: "#FAECE7",
     title: "Phái sinh: Sòng bạc lớn nhất toàn cầu",
     subsections: [
@@ -903,10 +903,10 @@ Câu hỏi mở: nếu canh bạc này sập, chính phủ có in tiền gấp 1
     groupId: "g2",
     groupLabel: "Tầng 2: Hệ thống Tiền tệ & Thanh khoản",
     groupIcon: "ti-coin",
-    groupColor: "#185FA5",
+    groupColor: "#1D4ED8",
     label: "QE / QT / Liquidity",
     icon: "ti-arrows-exchange",
-    color: "#185FA5",
+    color: "#1D4ED8",
     bg: "#E6F1FB",
     title: "QE – QT – RRP – Reserve: Cơ chế vận hành thanh khoản USD",
     subsections: [
@@ -979,10 +979,10 @@ RRP hoạt động như "lớp đệm" hấp thụ QT trước Reserve:
     groupId: "g2",
     groupLabel: "Tầng 2: Hệ thống Tiền tệ & Thanh khoản",
     groupIcon: "ti-coin",
-    groupColor: "#185FA5",
+    groupColor: "#1D4ED8",
     label: "Ngân hàng VN",
     icon: "ti-building-bank",
-    color: "#534AB7",
+    color: "#6D28D9",
     bg: "#EEEDFE",
     title: "Phân tích Ngân hàng Việt Nam: LDR, NIM, CASA, Tín dụng",
     subsections: [
@@ -1058,10 +1058,10 @@ Nếu đồng thời:
     groupId: "g2",
     groupLabel: "Tầng 2: Hệ thống Tiền tệ & Thanh khoản",
     groupIcon: "ti-coin",
-    groupColor: "#185FA5",
+    groupColor: "#1D4ED8",
     label: "Checklist & Dashboard Thanh khoản",
     icon: "ti-dashboard",
-    color: "#185FA5",
+    color: "#1D4ED8",
     bg: "#E6F1FB",
     title: "Framework theo dõi Thanh khoản & Dòng tiền: Checklist thực chiến",
     subsections: [
@@ -1184,10 +1184,10 @@ Theo dõi: lợi suất Treasury, dòng vốn nước ngoài ròng (TIC), dealer
     groupId: "g2",
     groupLabel: "Tầng 2: Hệ thống Tiền tệ & Thanh khoản",
     groupIcon: "ti-coin",
-    groupColor: "#185FA5",
+    groupColor: "#1D4ED8",
     label: "AHS Trading: Macro Desk & Narrative",
     icon: "ti-chart-candle",
-    color: "#534AB7",
+    color: "#6D28D9",
     bg: "#EEEDFE",
     title: "AHS Trading: Tư duy Macro Desk, Narrative Cycle & Options Mechanics",
     subsections: [
@@ -1339,10 +1339,10 @@ Rate hike/cut ≠ Currency move. Thay vào đó: Currency move = Surprise + Chan
     groupId: "g3",
     groupLabel: "Tầng 3: Kinh tế Việt Nam",
     groupIcon: "ti-flag",
-    groupColor: "#0F6E56",
+    groupColor: "#047857",
     label: "#4 Vĩ mô (Hồ Quốc Tuấn)",
     icon: "ti-chart-dots",
-    color: "#0F6E56",
+    color: "#047857",
     bg: "#E1F5EE",
     title: "Vĩ mô toàn cầu: Góc nhìn Hồ Quốc Tuấn",
     subsections: [
@@ -1437,7 +1437,7 @@ Nguyên nhân cốt lõi: xu thế dân số thay đổi (demographic trend shif
     groupId: "g3",
     groupLabel: "Tầng 3: Kinh tế Việt Nam",
     groupIcon: "ti-flag",
-    groupColor: "#0F6E56",
+    groupColor: "#047857",
     label: "Lebanon Crisis",
     icon: "ti-alert-triangle",
     color: "#A32D2D",
@@ -1509,7 +1509,7 @@ Trong mô hình rủi ro, sovereign debt exposure của NHTM thường được 
     groupId: "g3",
     groupLabel: "Tầng 3: Kinh tế Việt Nam",
     groupIcon: "ti-flag",
-    groupColor: "#0F6E56",
+    groupColor: "#047857",
     label: "Macro & Crisis",
     icon: "ti-world",
     color: "#3B6D11",
@@ -1594,10 +1594,10 @@ Vay mượn → Tăng chi tiêu → Tăng thu nhập/giá tài sản → Tăng k
     groupId: "g3",
     groupLabel: "Tầng 3: Kinh tế Việt Nam",
     groupIcon: "ti-flag",
-    groupColor: "#0F6E56",
+    groupColor: "#047857",
     label: "Dự báo 2025: Nhiều góc nhìn",
     icon: "ti-telescope",
-    color: "#534AB7",
+    color: "#6D28D9",
     bg: "#EEEDFE",
     title: "Dự Báo - YT: Tổng hợp góc nhìn nhiều chuyên gia 2025",
     subsections: [
@@ -1679,7 +1679,7 @@ Vay mượn → Tăng chi tiêu → Tăng thu nhập/giá tài sản → Tăng k
     groupId: "g3",
     groupLabel: "Tầng 3: Kinh tế Việt Nam",
     groupIcon: "ti-flag",
-    groupColor: "#0F6E56",
+    groupColor: "#047857",
     label: "Leonard Trinh: Kinh tế & Địa chính trị VN",
     icon: "ti-building-bank",
     color: "#A32D2D",
@@ -1775,10 +1775,10 @@ Vay mượn → Tăng chi tiêu → Tăng thu nhập/giá tài sản → Tăng k
     groupId: "g4",
     groupLabel: "Tầng 4: Thị trường & Định giá",
     groupIcon: "ti-chart-bar",
-    groupColor: "#993C1D",
+    groupColor: "#B91C1C",
     label: "Đầu tư Chứng khoán",
     icon: "ti-chart-line",
-    color: "#0F6E56",
+    color: "#047857",
     bg: "#E1F5EE",
     title: "Triết lý Đầu tư Giá trị: DCF, Moat, Xác suất",
     subsections: [
@@ -1871,10 +1871,10 @@ Nghịch lý: NĐT cá nhân (vốn nhỏ) có LỢI THẾ vào cổ phiếu sma
     groupId: "g4",
     groupLabel: "Tầng 4: Thị trường & Định giá",
     groupIcon: "ti-chart-bar",
-    groupColor: "#993C1D",
+    groupColor: "#B91C1C",
     label: "VNINDEX 2026",
     icon: "ti-trending-up",
-    color: "#854F0B",
+    color: "#B45309",
     bg: "#FAEEDA",
     title: "Chiến lược VNINDEX 2026: Báo cáo chiến lược toàn diện",
     subsections: [
@@ -2116,10 +2116,10 @@ Nợ công: Mỹ ~130% GDP, Nhật >250%, TQ >80% chính thức (có thể 120% 
     groupId: "g4",
     groupLabel: "Tầng 4: Thị trường & Định giá",
     groupIcon: "ti-chart-bar",
-    groupColor: "#993C1D",
+    groupColor: "#B91C1C",
     label: "Trí tuệ Tài chính (Sách)",
     icon: "ti-book",
-    color: "#993C1D",
+    color: "#B91C1C",
     bg: "#FAECE7",
     title: "Financial Intelligence: Trí tuệ tài chính cho nhà quản lý",
     subsections: [
@@ -2209,10 +2209,10 @@ Mục tiêu mọi nhà quản lý: giảm chu kỳ phải thu, tăng chu kỳ ph
     groupId: "g4",
     groupLabel: "Tầng 4: Thị trường & Định giá",
     groupIcon: "ti-chart-bar",
-    groupColor: "#993C1D",
+    groupColor: "#B91C1C",
     label: "Phân tích BCTC (Case Study)",
     icon: "ti-file-analytics",
-    color: "#993C1D",
+    color: "#B91C1C",
     bg: "#FAECE7",
     title: "Phân tích Báo cáo Tài chính: Case Studies & Mô hình đánh giá",
     subsections: [
@@ -2289,7 +2289,7 @@ Tăng từ 570 đồng (2010) lên 75,200 đồng (2023) = +13,000% trong 13 nă
     groupId: "g4",
     groupLabel: "Tầng 4: Thị trường & Định giá",
     groupIcon: "ti-chart-bar",
-    groupColor: "#993C1D",
+    groupColor: "#B91C1C",
     label: "Phân tích Định lượng & Case khác",
     icon: "ti-math-function",
     color: "#0C447C",
@@ -2417,10 +2417,10 @@ Bạc có leverage cao nhất do market cap nhỏ (~$1.4 tỷ năm 2026) và m�
     groupId: "g5",
     groupLabel: "Tầng 5: Chiến lược Cá nhân",
     groupIcon: "ti-user-circle",
-    groupColor: "#854F0B",
+    groupColor: "#B45309",
     label: "Tâm sự & Kế hoạch TC cá nhân",
     icon: "ti-piggy-bank",
-    color: "#854F0B",
+    color: "#B45309",
     bg: "#FAEEDA",
     title: "Tâm sự đầu tư & Kế hoạch tài chính cá nhân (NY Others)",
     subsections: [
@@ -2499,7 +2499,7 @@ Bạc có leverage cao nhất do market cap nhỏ (~$1.4 tỷ năm 2026) và m�
     groupId: "g5",
     groupLabel: "Tầng 5: Chiến lược Cá nhân",
     groupIcon: "ti-user-circle",
-    groupColor: "#854F0B",
+    groupColor: "#B45309",
     label: "Lịch sử Vàng, BĐS & Lãi suất VN",
     icon: "ti-chart-histogram",
     color: "#D85A30",
@@ -2571,10 +2571,10 @@ Bạc có leverage cao nhất do market cap nhỏ (~$1.4 tỷ năm 2026) và m�
     groupId: "g5",
     groupLabel: "Tầng 5: Chiến lược Cá nhân",
     groupIcon: "ti-user-circle",
-    groupColor: "#854F0B",
+    groupColor: "#B45309",
     label: "VN 2025: Outlook & Phân bổ tài sản",
     icon: "ti-coins",
-    color: "#0F6E56",
+    color: "#047857",
     bg: "#E1F5EE",
     title: "Việt Nam 2025: Triển vọng kinh tế & Chiến lược phân bổ tài sản chi tiết",
     subsections: [
@@ -2676,10 +2676,10 @@ Bạc có leverage cao nhất do market cap nhỏ (~$1.4 tỷ năm 2026) và m�
     groupId: "g5",
     groupLabel: "Tầng 5: Chiến lược Cá nhân",
     groupIcon: "ti-user-circle",
-    groupColor: "#854F0B",
+    groupColor: "#B45309",
     label: "Góc nhìn khác: Vốn ảo, BĐS, Triết học",
     icon: "ti-book-2",
-    color: "#854F0B",
+    color: "#B45309",
     bg: "#FAEEDA",
     title: "Tổng hợp góc nhìn: Vốn ảo, Chu kỳ BĐS, Địa chính trị Á-Âu & Triết học Kinh tế",
     subsections: [
@@ -3490,7 +3490,7 @@ export default function FinanceKnowledgeBase() {
     <div style={{ display: "flex", fontFamily: "var(--font-sans, system-ui)", background: "var(--surface-0, #f5f5f0)" }}>
 
       {/* Sidebar */}
-      <div style={{
+      <div className="mobile-static" style={{
         width: "220px",
         flexShrink: 0,
         background: "var(--surface-2, #fff)",
@@ -3540,15 +3540,15 @@ export default function FinanceKnowledgeBase() {
                     width: "100%",
                     padding: "8px 1rem 8px 2.1rem",
                     border: "none",
-                    background: activeSection === section.id ? section.bg : "transparent",
+                    background: activeSection === section.id ? `${group.color}15` : "transparent",
                     cursor: "pointer",
                     textAlign: "left",
-                    borderLeft: activeSection === section.id ? `3px solid ${section.color}` : "3px solid transparent",
+                    borderLeft: activeSection === section.id ? `3px solid ${group.color}` : "3px solid transparent",
                     transition: "background 0.15s"
                   }}
                 >
-                  <i className={`ti ${section.icon}`} aria-hidden="true" style={{ fontSize: "14px", color: activeSection === section.id ? section.color : "var(--text-secondary, #666)", flexShrink: 0 }} />
-                  <span style={{ fontSize: "12.5px", fontWeight: activeSection === section.id ? 500 : 400, color: activeSection === section.id ? section.color : "var(--text-primary, #1a1a1a)", lineHeight: 1.3 }}>{getSectionTitle(section)}</span>
+                  <i className={`ti ${section.icon}`} aria-hidden="true" style={{ fontSize: "14px", color: activeSection === section.id ? group.color : "var(--text-secondary, #666)", flexShrink: 0 }} />
+                  <span style={{ fontSize: "12.5px", fontWeight: activeSection === section.id ? 500 : 400, color: activeSection === section.id ? group.color : "var(--text-primary, #1a1a1a)", lineHeight: 1.3 }}>{getSectionTitle(section)}</span>
                 </button>
               ))}
             </div>
@@ -3582,10 +3582,11 @@ export default function FinanceKnowledgeBase() {
           <p style={{ fontSize: "11px", color: "var(--text-muted, #888)", margin: 0, lineHeight: 1.5 }}>{sections.length} chủ đề • {groupedSections.length} tầng kiến thức • Ghi chép thô từ chuyên gia • Không khuyến nghị đầu tư</p>
         </div>
 
-        {/* Edit mode toggle */}
+        {/* Edit mode toggle — disabled: relies on window.storage (Claude Artifact only), not available in this static site */}
         <div style={{ margin: "0.75rem 1rem 0" }}>
           <button
-            onClick={() => setEditMode(m => !m)}
+            disabled
+            title="Tính năng chỉnh sửa cần lưu trữ của claude.ai, không khả dụng ở bản web tĩnh này"
             style={{
               width: "100%",
               display: "flex",
@@ -3594,16 +3595,17 @@ export default function FinanceKnowledgeBase() {
               gap: "6px",
               padding: "8px 10px",
               borderRadius: "var(--radius, 8px)",
-              border: editMode ? "0.5px solid #185FA5" : "0.5px solid var(--border-strong, #ccc)",
-              background: editMode ? "#185FA5" : "transparent",
-              color: editMode ? "#fff" : "var(--text-primary, #1a1a1a)",
+              border: "0.5px solid var(--border-strong, #ccc)",
+              background: "transparent",
+              color: "var(--text-muted, #888)",
               fontSize: "12px",
               fontWeight: 500,
-              cursor: "pointer"
+              cursor: "not-allowed",
+              opacity: 0.5
             }}
           >
-            <i className={`ti ${editMode ? "ti-pencil-check" : "ti-pencil"}`} aria-hidden="true" style={{ fontSize: "14px" }} />
-            {editMode ? "Đang chỉnh sửa" : "Chỉnh sửa nội dung"}
+            <i className="ti ti-pencil" aria-hidden="true" style={{ fontSize: "14px" }} />
+            Chỉnh sửa nội dung
           </button>
         </div>
       </div>
@@ -3613,7 +3615,7 @@ export default function FinanceKnowledgeBase() {
         
         {/* Breadcrumb */}
         {currentSection.groupLabel && (
-          <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "0.6rem", fontSize: "11.5px", color: currentSection.groupColor, fontWeight: 600 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "0.6rem", fontSize: "11.5px", color: (currentSection.groupColor || currentSection.color), fontWeight: 600 }}>
             <i className={`ti ${currentSection.groupIcon}`} aria-hidden="true" style={{ fontSize: "13px" }} />
             <span>{currentSection.groupLabel}</span>
             <i className="ti ti-chevron-right" aria-hidden="true" style={{ fontSize: "11px", color: "var(--text-muted, #888)" }} />
@@ -3624,19 +3626,19 @@ export default function FinanceKnowledgeBase() {
         {/* Header */}
         <div style={{
           padding: "1rem 1.5rem",
-          background: currentSection.bg,
+          background: `${(currentSection.groupColor || currentSection.color)}15`,
           borderRadius: "12px",
-          border: `0.5px solid ${currentSection.color}33`,
+          border: `0.5px solid ${(currentSection.groupColor || currentSection.color)}33`,
           marginBottom: "1.5rem"
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            <i className={`ti ${currentSection.icon}`} aria-hidden="true" style={{ fontSize: "22px", color: currentSection.color }} />
+            <i className={`ti ${currentSection.icon}`} aria-hidden="true" style={{ fontSize: "22px", color: (currentSection.groupColor || currentSection.color) }} />
             {editMode ? (
               <h1
                 contentEditable
                 suppressContentEditableWarning
                 onBlur={(e) => saveSectionTitle(e.currentTarget.textContent)}
-                style={{ fontSize: "18px", fontWeight: 500, color: "var(--text-primary, #1a1a1a)", margin: 0, outline: "none", borderBottom: "1px dashed " + currentSection.color, cursor: "text", flex: 1 }}
+                style={{ fontSize: "18px", fontWeight: 500, color: "var(--text-primary, #1a1a1a)", margin: 0, outline: "none", borderBottom: "1px dashed " + (currentSection.groupColor || currentSection.color), cursor: "text", flex: 1 }}
               >
                 {getSectionTitle(currentSection)}
               </h1>
@@ -3656,7 +3658,7 @@ export default function FinanceKnowledgeBase() {
             return (
               <div key={idx} style={{
                 background: "var(--surface-2, #fff)",
-                border: `0.5px solid ${isOpen ? currentSection.color + "66" : "var(--border, #e0e0d8)"}`,
+                border: `0.5px solid ${isOpen ? (currentSection.groupColor || currentSection.color) + "66" : "var(--border, #e0e0d8)"}`,
                 borderRadius: "12px",
                 overflow: "hidden",
                 transition: "border-color 0.2s"
@@ -3670,7 +3672,7 @@ export default function FinanceKnowledgeBase() {
                     width: "100%",
                     padding: "1rem 1.25rem",
                     border: "none",
-                    background: isOpen ? `${currentSection.bg}` : "transparent",
+                    background: isOpen ? `${(currentSection.groupColor || currentSection.color)}15` : "transparent",
                     cursor: "pointer",
                     textAlign: "left"
                   }}
@@ -3681,12 +3683,12 @@ export default function FinanceKnowledgeBase() {
                       fontWeight: 500,
                       padding: "2px 8px",
                       borderRadius: "20px",
-                      background: isOpen ? currentSection.color : "var(--surface-1, #f5f5f0)",
+                      background: isOpen ? (currentSection.groupColor || currentSection.color) : "var(--surface-1, #f5f5f0)",
                       color: isOpen ? "#fff" : "var(--text-muted, #888)"
                     }}>{String(idx + 1).padStart(2, "0")}</span>
                     <span style={{ fontSize: "14px", fontWeight: 500, color: "var(--text-primary, #1a1a1a)" }}>{subTitle}</span>
                     {hasEdit && (
-                      <i className="ti ti-edit-circle" aria-hidden="true" title="Đã chỉnh sửa" style={{ fontSize: "13px", color: currentSection.color }} />
+                      <i className="ti ti-edit-circle" aria-hidden="true" title="Đã chỉnh sửa" style={{ fontSize: "13px", color: (currentSection.groupColor || currentSection.color) }} />
                     )}
                   </div>
                   <i className={`ti ${isOpen ? "ti-chevron-up" : "ti-chevron-down"}`} aria-hidden="true" style={{ fontSize: "16px", color: "var(--text-muted, #888)", flexShrink: 0 }} />
@@ -3694,7 +3696,7 @@ export default function FinanceKnowledgeBase() {
                 
                 {isOpen && (
                   <div style={{ padding: "0 1.25rem 1.25rem" }}>
-                    <div style={{ borderTop: `0.5px solid ${currentSection.color}33`, paddingTop: "1rem" }}>
+                    <div style={{ borderTop: `0.5px solid ${(currentSection.groupColor || currentSection.color)}33`, paddingTop: "1rem" }}>
                       {editMode ? (
                         <div>
                           <label style={{ fontSize: "11px", fontWeight: 500, color: "var(--text-muted, #888)", textTransform: "uppercase", letterSpacing: "0.04em" }}>Tiêu đề mục</label>
@@ -3707,7 +3709,7 @@ export default function FinanceKnowledgeBase() {
                               fontWeight: 500,
                               padding: "8px 10px",
                               margin: "4px 0 12px",
-                              border: `0.5px solid ${currentSection.color}66`,
+                              border: `0.5px solid ${(currentSection.groupColor || currentSection.color)}66`,
                               borderRadius: "8px",
                               outline: "none",
                               color: "var(--text-primary, #1a1a1a)",
@@ -3725,7 +3727,7 @@ export default function FinanceKnowledgeBase() {
                               lineHeight: 1.6,
                               padding: "10px",
                               margin: "4px 0 12px",
-                              border: `0.5px solid ${currentSection.color}66`,
+                              border: `0.5px solid ${(currentSection.groupColor || currentSection.color)}66`,
                               borderRadius: "8px",
                               outline: "none",
                               color: "var(--text-primary, #1a1a1a)",
@@ -3737,7 +3739,7 @@ export default function FinanceKnowledgeBase() {
                           <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
                             <button
                               onClick={saveSubEdit}
-                              style={{ display: "flex", alignItems: "center", gap: "6px", padding: "8px 14px", border: "none", borderRadius: "8px", background: currentSection.color, color: "#fff", fontSize: "13px", fontWeight: 500, cursor: "pointer" }}
+                              style={{ display: "flex", alignItems: "center", gap: "6px", padding: "8px 14px", border: "none", borderRadius: "8px", background: (currentSection.groupColor || currentSection.color), color: "#fff", fontSize: "13px", fontWeight: 500, cursor: "pointer" }}
                             >
                               <i className="ti ti-device-floppy" aria-hidden="true" style={{ fontSize: "14px" }} />
                               Lưu thay đổi
@@ -3752,7 +3754,7 @@ export default function FinanceKnowledgeBase() {
                               </button>
                             )}
                             {savedFlash && (
-                              <span style={{ fontSize: "12px", color: currentSection.color, display: "flex", alignItems: "center", gap: "4px" }}>
+                              <span style={{ fontSize: "12px", color: (currentSection.groupColor || currentSection.color), display: "flex", alignItems: "center", gap: "4px" }}>
                                 <i className="ti ti-check" aria-hidden="true" style={{ fontSize: "13px" }} />
                                 Đã lưu
                               </span>
@@ -3762,7 +3764,7 @@ export default function FinanceKnowledgeBase() {
                       ) : (
                         <FormattedContent
                           content={subContent}
-                          color={currentSection.color}
+                          color={(currentSection.groupColor || currentSection.color)}
                           subAnnotations={annotations[`${currentSection.id}:${idx}`] || []}
                           annotationReplies={annotationReplies}
                           onAddReply={addReply}
@@ -4098,16 +4100,16 @@ function ReplyThread({ annotationId, replies, color, onAdd, onEdit, onDelete }) 
                     </span>
                     <span style={{ display: "flex", gap: "8px", marginLeft: "auto" }}>
                       <button
-                        onClick={() => { setEditingId(reply.id); setEditDraft(reply.text); }}
-                        title="Sửa"
-                        style={{ border: "none", background: "transparent", cursor: "pointer", padding: "1px", color: "var(--text-muted, #888)" }}
+                        disabled
+                        title="Tính năng chỉnh sửa không khả dụng ở bản web tĩnh này"
+                        style={{ border: "none", background: "transparent", cursor: "not-allowed", padding: "1px", color: "var(--text-muted, #888)", opacity: 0.5 }}
                       >
                         <i className="ti ti-pencil" aria-hidden="true" style={{ fontSize: "12px" }} />
                       </button>
                       <button
-                        onClick={() => onDelete(annotationId, reply.id)}
-                        title="Xóa"
-                        style={{ border: "none", background: "transparent", cursor: "pointer", padding: "1px", color: "var(--text-muted, #888)" }}
+                        disabled
+                        title="Tính năng xóa không khả dụng ở bản web tĩnh này"
+                        style={{ border: "none", background: "transparent", cursor: "not-allowed", padding: "1px", color: "var(--text-muted, #888)", opacity: 0.5 }}
                       >
                         <i className="ti ti-trash" aria-hidden="true" style={{ fontSize: "12px" }} />
                       </button>
@@ -4123,42 +4125,39 @@ function ReplyThread({ annotationId, replies, color, onAdd, onEdit, onDelete }) 
         </span>
       )}
 
-      {/* Add new reply box */}
+      {/* Add new reply box — disabled: relies on window.storage (Claude Artifact only), not available in this static site */}
       <span style={{ display: "flex", gap: "6px", padding: "8px 12px 10px", alignItems: "flex-start" }}>
         <input
-          value={draft}
-          onChange={(e) => setDraft(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && draft.trim()) {
-              onAdd(annotationId, draft);
-              setDraft("");
-            }
-          }}
-          placeholder="Trả lời bình luận này..."
+          value=""
+          disabled
+          placeholder="Tính năng bình luận không khả dụng ở bản web tĩnh này"
+          title="Tính năng bình luận cần lưu trữ của claude.ai, không khả dụng ở bản web tĩnh này"
           style={{
             flex: 1,
             fontSize: "12px",
             padding: "6px 9px",
-            border: "0.5px solid var(--border-strong, #ccc)",
+            border: "0.5px solid var(--border, #e0e0d8)",
             borderRadius: "6px",
             outline: "none",
-            color: "var(--text-primary, #1a1a1a)",
-            boxSizing: "border-box"
+            color: "var(--text-muted, #888)",
+            boxSizing: "border-box",
+            cursor: "not-allowed"
           }}
         />
         <button
-          onClick={() => { if (draft.trim()) { onAdd(annotationId, draft); setDraft(""); } }}
-          disabled={!draft.trim()}
+          disabled
+          title="Tính năng bình luận cần lưu trữ của claude.ai, không khả dụng ở bản web tĩnh này"
           style={{
             fontSize: "11px",
             fontWeight: 500,
             padding: "6px 12px",
             border: "none",
             borderRadius: "6px",
-            background: draft.trim() ? color : "var(--border, #e0e0d8)",
+            background: "var(--border, #e0e0d8)",
             color: "#fff",
-            cursor: draft.trim() ? "pointer" : "default",
-            flexShrink: 0
+            cursor: "not-allowed",
+            flexShrink: 0,
+            opacity: 0.6
           }}
         >
           Gửi

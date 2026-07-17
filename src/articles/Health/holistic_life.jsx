@@ -3758,7 +3758,7 @@ function ActionableGroup({ pillarName, items }) {
   return (
     <div className="flex flex-col gap-2">
       <button onClick={() => setOpen(!open)} className="w-full flex items-center justify-between gap-2 mt-2 py-1.5 px-1">
-        <span style={{ fontFamily: mono, color: C.inkDim, fontSize: 11, letterSpacing: "0.06em" }} className="uppercase">
+        <span style={{ fontFamily: mono, color: C.inkDim, fontSize: 15, fontWeight: 700, letterSpacing: "0.06em" }} className="uppercase">
           {pillarName} <span style={{ opacity: 0.6 }}>· {items.length}</span>
         </span>
         {open ? <ChevronUp size={14} color={C.inkDim} /> : <ChevronDown size={14} color={C.inkDim} />}
@@ -3837,7 +3837,7 @@ export default function App() {
     meaning: "Ý nghĩa",
   };
   const tabs = [
-    { id: "actionable", num: "00", label: "Actionable", icon: ListChecks },
+    { id: "actionable", num: "00", label: "ACTIONABLE", icon: ListChecks },
     ...PILLARS.map((p) => ({ id: p.id, num: p.num, label: SHORT[p.id] || p.title, icon: p.icon })),
   ];
   return (
@@ -3852,7 +3852,7 @@ export default function App() {
         <header className="mb-4">
           <h1 style={{ fontFamily: serif, color: C.ink, fontSize: 32, lineHeight: 1.15 }}>Khung Sống Lành Mạnh Toàn Diện</h1>
         </header>
-        <nav className="flex flex-wrap gap-2 mb-4" style={{ position: "sticky", top: 0, zIndex: 10, background: C.bg, padding: "10px 0", borderBottom: `1px solid ${C.line}` }}>
+        <nav className="flex flex-wrap gap-2 mb-4 mobile-static" style={{ position: "sticky", top: 0, zIndex: 10, background: C.bg, padding: "10px 0", borderBottom: `1px solid ${C.line}` }}>
           {tabs.map((t) => {
             const Icon = t.icon;
             const isActive = active === t.id;
@@ -3866,7 +3866,7 @@ export default function App() {
               }}>
                 <Icon size={15} color={isActive ? "#FFFFFF" : C.inkDim} />
                 <span style={{ fontFamily: mono, fontSize: 12.5, fontWeight: 700, color: isActive ? "#FFFFFF" : C.ink, letterSpacing: "0.02em" }} className="whitespace-nowrap">
-                  {t.num} · {t.label}
+                  {t.label}
                 </span>
               </button>
             );

@@ -63,7 +63,7 @@ export default function SelfWorthDeep() {
 
   return (
     <div style={{ fontFamily: SERIF, background: PAPER, color: INK }}>
-      <div style={{ maxWidth: 1000, margin: "0 auto", padding: "26px 16px 60px" }}>
+      <div style={{ padding: "26px 16px 60px" }}>
         <div style={{ marginBottom: 18 }}>
           <div style={{ fontFamily: SANS, fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: MUTE, marginBottom: 8 }}>
             Self-Worth · Self-Love · Self-Confidence — A Multidimensional Inquiry
@@ -76,7 +76,7 @@ export default function SelfWorthDeep() {
         </div>
 
         {/* PRIMARY NAV */}
-        <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 10, borderBottom: `1px solid ${LINE}`, paddingBottom: 14 }}>
+        <div className="mobile-static" style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 10, borderBottom: `1px solid ${LINE}`, paddingBottom: 14, position: "sticky", top: 0, zIndex: 10, background: PAPER }}>
           {PRIMARY.map((p) => (
             <button key={p.id} onClick={() => { setPrimary(p.id); setSub(p.subs[0].id); }}
               style={{

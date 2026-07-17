@@ -529,7 +529,7 @@ export default function LovePhilosophyDeep() {
           </p>
         </div>
 
-        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 28, position: "sticky", top: 0, zIndex: 10, background: PAPER, padding: "10px 0", borderBottom: `1px solid ${LINE}` }}>
+        <div className="mobile-static" style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 28, position: "sticky", top: 0, zIndex: 10, background: PAPER, padding: "10px 0", borderBottom: `1px solid ${LINE}` }}>
           {TABS.map((t) => (
             <button key={t.id} onClick={() => setTab(t.id)}
               style={{ fontFamily: SANS, fontSize: 14, padding: "11px 20px", borderRadius: 9, cursor: "pointer",

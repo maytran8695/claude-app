@@ -1047,7 +1047,7 @@ export default function App() {
         <div style={{ fontSize: 15, fontWeight: 600, color: "var(--text-primary)", marginBottom: 2 }}>Vietnam Industry Primers — Deep Edition</div>
         <div style={{ fontSize: 11, color: "var(--text-muted)" }}>8 ngành · 7 lớp phân tích · Định giá + Kịch bản Bull/Base/Bear · Mid-2026</div>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 6, marginBottom: 16, position: "sticky", top: 0, zIndex: 10, background: "#fff", padding: "10px 0", borderBottom: "1px solid #eee" }}>
+      <div className="mobile-static" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 6, marginBottom: 16, position: "sticky", top: 0, zIndex: 10, background: "#fff", padding: "10px 0", borderBottom: "1px solid #eee" }}>
         {SECTORS.map(s => (
           <button key={s.id} onClick={() => setActiveSector(s.id)} style={{ padding: "8px 10px", borderRadius: 8, cursor: "pointer", fontSize: 12, fontWeight: 500, textAlign: "center", background: activeSector === s.id ? s.accent : "var(--surface-1)", color: activeSector === s.id ? "#fff" : "var(--text-secondary)", border: "0.5px solid " + (activeSector === s.id ? s.accent : "var(--border)"), transition: "all 0.14s" }}>
             <span style={{ marginRight: 4 }}>{s.icon}</span>{s.label}

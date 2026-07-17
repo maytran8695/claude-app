@@ -466,7 +466,7 @@ export default function MacroQuarterlyReview() {
             placeholder="2026-Q1"
             style={{ background: "#1e293b", border: "1px solid #334155", borderRadius: 8, padding: "6px 10px", color: "#f8fafc", fontSize: 13, fontWeight: 700, width: 110, fontFamily: "inherit" }}
           />
-          <button onClick={save} style={{ background: "#22c55e", border: "none", borderRadius: 8, padding: "7px 14px", color: "#fff", fontSize: 12, fontWeight: 700, cursor: "pointer" }}>Lưu</button>
+          <button disabled title="Tính năng lưu cần lưu trữ của claude.ai, không khả dụng ở bản web tĩnh này" style={{ background: "#334155", border: "none", borderRadius: 8, padding: "7px 14px", color: "#94a3b8", fontSize: 12, fontWeight: 700, cursor: "not-allowed", opacity: 0.6 }}>Lưu</button>
           <button onClick={newQuarter} style={{ background: "#334155", border: "none", borderRadius: 8, padding: "7px 12px", color: "#cbd5e1", fontSize: 12, fontWeight: 600, cursor: "pointer" }}>+ Mới</button>
           {saveMsg && <span style={{ fontSize: 11, color: saveMsg.startsWith("✓") ? "#4ade80" : "#f87171", fontWeight: 600 }}>{saveMsg}</span>}
         </div>
@@ -631,7 +631,7 @@ export default function MacroQuarterlyReview() {
                 </div>
               )}
 
-              <button onClick={save} style={{ width: "100%", padding: "13px", borderRadius: 12, border: "none", background: "#22c55e", color: "#fff", fontSize: 14, fontWeight: 700, cursor: "pointer" }}>
+              <button disabled title="Tính năng lưu cần lưu trữ của claude.ai, không khả dụng ở bản web tĩnh này" style={{ width: "100%", padding: "13px", borderRadius: 12, border: "none", background: "#334155", color: "#94a3b8", fontSize: 14, fontWeight: 700, cursor: "not-allowed", opacity: 0.6 }}>
                 💾 Lưu snapshot {quarter}
               </button>
             </>

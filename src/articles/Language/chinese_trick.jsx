@@ -342,7 +342,7 @@ export default function HanVietKey() {
         </div>
       </div>
 
-      <div style={{ background: "#22201C", borderTop: "1px solid #3A362F", position: "sticky", top: 0, zIndex: 10 }}>
+      <div className="mobile-static" style={{ background: "#22201C", borderTop: "1px solid #3A362F", position: "sticky", top: 0, zIndex: 10 }}>
         <div style={{ maxWidth: "820px", margin: "0 auto", display: "flex", overflowX: "auto" }}>
           {TABS.map((t) => (
             <button key={t.id} onClick={() => setTab(t.id)}
