@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, useEffect, useRef, lazy, Suspense } from 'react';
+import React, { useState, useMemo, useCallback, useEffect, useLayoutEffect, useRef, lazy, Suspense } from 'react';
 
 // =========================================================================
 // 1. QUÉT ĐỘNG TOÀN BỘ FILE JSX TRONG THƯ MỤC ARTICLES (lazy-load từng bài)
@@ -139,9 +139,9 @@ const categoryThemes = {
     icon: '🌐'
   },
   Psy: {
-    text: 'text-purple-600 dark:text-purple-400',
-    bg: 'bg-purple-50 text-purple-700 border-purple-200/60',
-    bgActive: 'bg-purple-600 text-white shadow-md shadow-purple-600/15',
+    text: 'text-pink-600 dark:text-pink-400',
+    bg: 'bg-pink-50 text-pink-700 border-pink-200/60',
+    bgActive: 'bg-pink-600 text-white shadow-md shadow-pink-600/15',
     icon: '📂'
   },
   Default: {
@@ -270,13 +270,34 @@ function App() {
   });
   
   const [searchTerm, setSearchTerm] = useState('');
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
+  // =========================================================================
+  // RESPONSIVE: trên mobile, sidebar là overlay (drawer) đóng mặc định;
+  // trên desktop, sidebar nằm cố định trong layout, mở mặc định.
+  // =========================================================================
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(() => !(typeof window !== 'undefined' && window.innerWidth < 768));
   const contentScrollRef = useRef(null);
 
-  // Cuộn về đầu trang mỗi khi đổi bài viết
-  useEffect(() => {
+  // Cuộn về đầu trang mỗi khi đổi bài viết (useLayoutEffect + overflow-anchor:none
+  // trên vùng cuộn để trình duyệt không tự "bù" lại vị trí cuộn cũ khi nội dung mới nạp)
+  useLayoutEffect(() => {
     if (contentScrollRef.current) contentScrollRef.current.scrollTop = 0;
   }, [activeTab]);
+
+  // Chọn bài viết: cuộn về đầu NGAY tại thời điểm click (không đợi effect chạy
+  // sau khi lazy-load xong, tránh trường hợp bị "giữ" vị trí cuộn cũ), và trên
+  // mobile tự đóng drawer để lộ nội dung ngay.
+  const selectArticle = useCallback((id) => {
+    if (contentScrollRef.current) contentScrollRef.current.scrollTop = 0;
+    setActiveTab(id);
+    if (window.innerWidth < 768) setIsSidebarOpen(false);
+  }, []);
 
   // =========================================================================
   // LOGIC KÉO THẢ CHIỀU RỘNG SIDEBAR (RESIZABLE SIDEBAR)
@@ -338,12 +359,23 @@ function App() {
   return (
     <div className="flex h-screen bg-slate-50 text-slate-900 overflow-hidden font-sans">
       
+      {/* Lớp phủ mờ phía sau sidebar khi mở dạng overlay trên mobile */}
+      {isSidebarOpen && isMobile && (
+        <div
+          className="fixed inset-0 bg-black/30 z-30 md:hidden"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
+
       {/* ==========================================
           1. SIDEBAR SANG XỊN MỊN (DRAG TO RESIZE)
+          Mobile: overlay trượt vào từ trái. Desktop: nằm trong layout, kéo giãn được.
           ========================================== */}
-      <div 
-        style={{ width: isSidebarOpen ? `${sidebarWidth}px` : '68px' }}
-        className="relative shrink-0 bg-white border-r border-slate-200/60 flex flex-col h-full z-30 transition-[width] duration-150 ease-out"
+      <div
+        style={!isMobile ? { width: isSidebarOpen ? `${sidebarWidth}px` : '68px' } : undefined}
+        className={`bg-white border-r border-slate-200/60 flex flex-col h-full transition-transform md:transition-[width] duration-200 ease-out
+          fixed md:relative inset-y-0 left-0 z-40 md:z-30 w-[82vw] max-w-[300px] md:w-auto md:shrink-0
+          ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
       >
         {/* Header Sidebar */}
         <div className="h-16 border-b border-slate-200/60 flex items-center justify-between px-4 shrink-0">
@@ -353,7 +385,7 @@ function App() {
                 M
               </div>
               <div>
-                <h1 className="font-bold text-slate-800 text-sm leading-none">Workspace</h1>
+                <h1 className="font-bold text-slate-800 text-sm leading-none">MayWorkSpace</h1>
                 <span className="text-[10px] text-slate-400 font-semibold tracking-wide">STUDY HUB</span>
               </div>
             </div>
@@ -409,7 +441,7 @@ function App() {
                       return (
                         <button
                           key={item.id}
-                          onClick={() => setActiveTab(item.id)}
+                          onClick={() => selectArticle(item.id)}
                           className={`w-full text-left px-3 py-1.5 rounded-lg text-xs transition-all flex items-center justify-between group font-medium ${
                             isSelected
                               ? `${theme.bgActive} font-semibold` // Đổi màu Active động theo Chuyên mục
@@ -453,7 +485,7 @@ function App() {
         {isSidebarOpen && (
           <div 
             onMouseDown={startResizing}
-            className="absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-slate-300 active:bg-slate-400/80 transition-colors z-40"
+            className="hidden md:block absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-slate-300 active:bg-slate-400/80 transition-colors z-40"
           />
         )}
       </div>
@@ -466,7 +498,7 @@ function App() {
           <div className="flex-1 flex flex-col h-full overflow-hidden">
             
             {/* Header dính phía trên */}
-            <div className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-slate-200/40 px-8 py-5 z-20 flex items-center justify-between shrink-0">
+            <div className="sticky top-0 h-16 bg-white/80 backdrop-blur-md border-b border-slate-200/40 px-8 z-20 flex items-center justify-between shrink-0">
               <div className="flex items-center gap-3">
                 <button 
                   onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -481,7 +513,7 @@ function App() {
             </div>
 
             {/* Vùng Cuộn Duy Nhất Chứa Nội Dung Bài Viết (full-bleed, không card) */}
-            <div ref={contentScrollRef} className="flex-1 overflow-y-auto">
+            <div ref={contentScrollRef} className="flex-1 overflow-y-auto" style={{ overflowAnchor: 'none' }}>
               {/* Ép layout và áp dụng CSS Custom Overrides */}
               <div className="w-full h-full text-left article-content max-w-none
                 [&_*]:text-left

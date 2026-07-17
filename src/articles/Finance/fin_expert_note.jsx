@@ -3609,7 +3609,7 @@ export default function FinanceKnowledgeBase() {
       </div>
 
       {/* Main content */}
-      <div style={{ flex: 1, padding: "2rem", maxWidth: "820px" }}>
+      <div style={{ flex: 1, padding: "2rem" }}>
         
         {/* Breadcrumb */}
         {currentSection.groupLabel && (
@@ -3623,13 +3623,13 @@ export default function FinanceKnowledgeBase() {
 
         {/* Header */}
         <div style={{
-          padding: "1.25rem 1.5rem",
+          padding: "1rem 1.5rem",
           background: currentSection.bg,
           borderRadius: "12px",
           border: `0.5px solid ${currentSection.color}33`,
           marginBottom: "1.5rem"
         }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "6px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
             <i className={`ti ${currentSection.icon}`} aria-hidden="true" style={{ fontSize: "22px", color: currentSection.color }} />
             {editMode ? (
               <h1
@@ -3644,9 +3644,6 @@ export default function FinanceKnowledgeBase() {
               <h1 style={{ fontSize: "18px", fontWeight: 500, color: "var(--text-primary, #1a1a1a)", margin: 0 }}>{getSectionTitle(currentSection)}</h1>
             )}
           </div>
-          <p style={{ fontSize: "13px", color: "var(--text-secondary, #666)", margin: 0 }}>
-            {currentSection.subsections.length} phần {editMode ? "• Nhấn vào tiêu đề để đổi tên • Mở mục để sửa nội dung" : "• Nhấn vào từng mục để xem chi tiết"}
-          </p>
         </div>
 
         {/* Subsections */}

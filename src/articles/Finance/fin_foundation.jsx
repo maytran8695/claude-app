@@ -2082,7 +2082,7 @@ export default function Tap1Foundations() {
       </div>
 
       {/* Main */}
-      <div style={{ flex: 1, padding: "2rem", maxWidth: "820px" }}>
+      <div style={{ flex: 1, padding: "2rem" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "0.6rem", fontSize: "11.5px", color: currentSection.groupColor, fontWeight: 600 }}>
           <i className={`ti ${currentSection.groupIcon}`} aria-hidden="true" style={{ fontSize: "13px" }} />
           <span>{currentSection.groupLabel}</span>
@@ -2090,12 +2090,11 @@ export default function Tap1Foundations() {
           <span style={{ color: "var(--text-secondary, #666)", fontWeight: 400 }}>{currentSection.label}</span>
         </div>
 
-        <div style={{ padding: "1.25rem 1.5rem", background: currentSection.bg, borderRadius: "12px", border: `0.5px solid ${currentSection.color}33`, marginBottom: "1.5rem" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "6px" }}>
+        <div style={{ padding: "1rem 1.5rem", background: currentSection.bg, borderRadius: "12px", border: `0.5px solid ${currentSection.color}33`, marginBottom: "1.5rem" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
             <i className={`ti ${currentSection.icon}`} aria-hidden="true" style={{ fontSize: "22px", color: currentSection.color }} />
             <h1 style={{ fontSize: "18px", fontWeight: 500, color: "var(--text-primary, #1a1a1a)", margin: 0 }}>{currentSection.title}</h1>
           </div>
-          <p style={{ fontSize: "13px", color: "var(--text-secondary, #666)", margin: 0 }}>{currentSection.subsections.length} phần · Nhấn để mở rộng</p>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>

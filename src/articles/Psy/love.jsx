@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 const ACCENT = "#4A7C74";
+const TAB_ACCENT = "#356158"; // đậm hơn ACCENT một tone để breadcrumb không chìm vào nền PAPER
 const INK = "#25302E";
 const MUTE = "#8AA09A";
 const GREEN = "#3E7C6A";
@@ -532,9 +533,9 @@ export default function LovePhilosophyDeep() {
           {TABS.map((t) => (
             <button key={t.id} onClick={() => setTab(t.id)}
               style={{ fontFamily: SANS, fontSize: 14, padding: "11px 20px", borderRadius: 9, cursor: "pointer",
-                border: `1.5px solid ${tab === t.id ? ACCENT : LINE}`, background: tab === t.id ? ACCENT : CARD,
+                border: `1.5px solid ${tab === t.id ? TAB_ACCENT : LINE}`, background: tab === t.id ? TAB_ACCENT : CARD,
                 color: tab === t.id ? "#fff" : "#5A6B66", fontWeight: tab === t.id ? 700 : 600,
-                boxShadow: tab === t.id ? `0 2px 10px ${ACCENT}33` : "none" }}>
+                boxShadow: tab === t.id ? `0 2px 10px ${TAB_ACCENT}33` : "none" }}>
               {t.vi}
             </button>
           ))}
