@@ -4528,7 +4528,7 @@ export default function App() {
       {/* Gộp LEVEL 1 + LEVEL 2 vào chung 1 khối sticky top:0 — tránh phải đoán
           trước chiều cao của LEVEL 1 (dễ lệch mỗi khi chỉnh padding/nội dung),
           2 hàng tự xếp chồng theo flow bình thường bên trong khối luôn đứng yên. */}
-      <div className="mobile-static" style={{position:"sticky",top:0,zIndex:200,background:"#FCFBF8"}}>
+      <div className="mobile-static" style={{position:"sticky",top:0,zIndex:20,background:"#FCFBF8"}}>
         {/* LEVEL 1 — REGION SELECTOR */}
         <div style={{borderBottom:`1px solid ${APP_BORDER}`,padding:"14px 24px 0 24px"}}>
           <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:12}}>

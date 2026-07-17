@@ -522,11 +522,7 @@ export default function LovePhilosophyDeep() {
     <div style={{ fontFamily: SERIF, background: PAPER, color: INK }}>
       <div style={{ padding: "26px 16px 60px" }}>
         <div style={{ marginBottom: 16 }}>
-          <div style={{ fontFamily: SANS, fontSize: 10.5, letterSpacing: "0.09em", textTransform: "uppercase", color: MUTE, fontWeight: 700, marginBottom: 8 }}>Triết học · Tâm lý · Thực hành về Tình yêu</div>
-          <h1 style={{ fontSize: 29, lineHeight: 1.16, margin: 0, fontWeight: 600, letterSpacing: "-0.01em" }}>Hiểu tình yêu,<br />rồi thực hành nó</h1>
-          <p style={{ fontFamily: SANS, fontSize: 13.4, color: "#5A6B66", marginTop: 11, maxWidth: 700, lineHeight: 1.65 }}>
-            Năm phần, mỗi phần trả lời một câu hỏi: tình yêu <b>là</b> gì · nó <b>vận hành</b> thế nào · <b>sống</b> với nó ra sao · khi nó <b>hỏng</b> thì làm gì · và <b>làm</b> gì mỗi ngày.
-          </p>
+          <h1 style={{ fontSize: 29, lineHeight: 1.16, margin: 0, fontWeight: 600, letterSpacing: "-0.01em" }}>Tình yêu Trong Triết học - Tâm lý - Thực hành</h1>
         </div>
 
         <div className="mobile-static" style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 28, position: "sticky", top: 0, zIndex: 10, background: PAPER, padding: "10px 0", borderBottom: `1px solid ${LINE}` }}>

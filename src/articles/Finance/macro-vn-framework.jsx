@@ -318,7 +318,7 @@ const DATA = {
 
   exchange: {
     id: "exchange", label: "Tỷ giá & Cán cân đối ngoại", sublabel: "FX & External Balance",
-    color: "#7c3aed", lightBg: "#faf5ff", border: "#c4b5fd",
+    color: "#5B3FA0", lightBg: "#faf5ff", border: "#c4b5fd",
     def: "Tỷ giá là ràng buộc TRÓI BUỘC NHẤT của chính sách tiền tệ VN — trói buộc hơn lạm phát. Nếu phải chọn MỘT biến để dự báo hành động của SBV, hãy chọn tỷ giá và dự trữ ngoại hối, không phải CPI. Đây là điểm phân biệt người phân tích VN chuyên nghiệp với người áp mô hình phương Tây.",
     points: [
       { title: "Cơ chế tỷ giá trung tâm: managed float với neo mềm", body: "Từ 4/1/2016, SBV công bố tỷ giá trung tâm hàng ngày, tham chiếu rổ tiền tệ của các đối tác thương mại chính, diễn biến cung cầu trong nước và cân đối vĩ mô. Ngân hàng thương mại giao dịch trong biên độ quanh tỷ giá trung tâm; biên độ đã nới lên ±5% từ tháng 10/2022. Bản chất: neo mềm có thể điều chỉnh, không phải thả nổi. Nó mua được ổn định danh nghĩa nhưng đánh đổi bằng độc lập tiền tệ và dự trữ." },
@@ -347,27 +347,27 @@ const DATA = {
 };
 
 const ACTORS = [
-  { name: "NGÂN HÀNG NHÀ NƯỚC (SBV)", color: "#dc2626", bg: "#fef2f2", border: "#fca5a5",
+  { name: "NGÂN HÀNG NHÀ NƯỚC (SBV)", color: "#B34040", bg: "#fef2f2", border: "#fca5a5",
     goal: "Đa mục tiêu theo Luật NHNN — không có mandate lạm phát đơn nhất như Fed",
     tools: ["Lãi suất OMO & tín phiếu (công cụ vận hành thật sự)", "Lãi suất điều hành (tín hiệu, thay đổi hiếm)", "Tỷ giá trung tâm + can thiệp giao ngay và kỳ hạn có huỷ ngang", "Công cụ an toàn vĩ mô: LDR, trần vốn ngắn hạn cho vay dài hạn, bộ đệm vốn", "Định hướng tín dụng (room, đang chuyển sang dựa trên rủi ro)"],
     tension: "Ràng buộc trói buộc nhất là TỶ GIÁ, không phải lạm phát. Dự trữ chỉ ~2,2–2,5 tháng nhập khẩu → dư địa can thiệp mỏng → phải nới lỏng bằng công cụ ẩn thay vì hạ lãi suất công khai.",
     tell: "Khi SBV nới bằng macroprudential (nâng trần LDR, nâng trần vốn ngắn hạn cho vay dài hạn) thay vì hạ lãi suất → tỷ giá đang là ràng buộc. Khi SBV phát hành tín phiếu trở lại → đã chuyển sang phòng thủ tỷ giá." },
-  { name: "KHO BẠC NHÀ NƯỚC", color: "#16a34a", bg: "#f0fdf4", border: "#86efac",
+  { name: "KHO BẠC NHÀ NƯỚC", color: "#1A7A5E", bg: "#f0fdf4", border: "#86efac",
     goal: "Tài trợ ngân sách với chi phí thấp, đảm bảo giải ngân theo kế hoạch",
     tools: ["Phát hành TPCP qua đấu thầu tại HNX", "Quản lý số dư tiền gửi tại ngân hàng thương mại (khác Mỹ: không gửi tại NHTW)", "Lịch giải ngân đầu tư công (dồn về cuối năm)"],
     tension: "Tiền Kho bạc gửi tại NHTM là nguồn vốn ngân hàng. Khi Kho bạc rút để giải ngân, thanh khoản ngân hàng biến động — tạo nhịp mùa vụ độc lập với SBV. Phát hành TPCP nhiều → crowding out tín dụng tư nhân.",
     tell: "Đấu thầu TPCP ế nhiều phiên = thị trường không chấp nhận lợi suất chào → lợi suất sẽ bị đẩy lên. Giải ngân ĐTC tăng tốc Q4 = thanh khoản được bơm từ kênh tài khoá." },
-  { name: "NGÂN HÀNG THƯƠNG MẠI", color: "#2563eb", bg: "#eff6ff", border: "#93c5fd",
+  { name: "NGÂN HÀNG THƯƠNG MẠI", color: "#1E5AA8", bg: "#eff6ff", border: "#93c5fd",
     goal: "Tối đa ROE trong ràng buộc CAR, LDR và định hướng tín dụng",
     tools: ["Tạo tiền qua cho vay (không phải trung gian tiền gửi)", "Điều chỉnh cơ cấu cho vay để tối ưu RWA và NIM", "Nắm giữ TPCP (tiết kiệm vốn + tài sản thế chấp OMO)", "Phát hành trái phiếu, tăng vốn cấp 2"],
     tension: "NIM cao đòi hỏi cho vay rủi ro cao và chênh lệch kỳ hạn lớn — cả hai đều làm tăng credit cost và IRRBB. Trần vốn ngắn hạn cho vay dài hạn nới lên 40% (6/2026) cho phép ăn dày hơn, nhưng chất thêm rủi ro kỳ hạn kiểu SVB.",
     tell: "Nợ nhóm 2 tăng trong khi NPL công bố ổn định = chất lượng đang xấu, sẽ lộ sau ~2 quý. CASA sụt khi lãi suất tăng = NIM sắp bị ép." },
-  { name: "HỘ GIA ĐÌNH / NGƯỜI GỬI TIỀN", color: "#0891b2", bg: "#f0fdff", border: "#a5f3fc",
+  { name: "HỘ GIA ĐÌNH / NGƯỜI GỬI TIỀN", color: "#A0522D", bg: "#f0fdff", border: "#a5f3fc",
     goal: "Lợi suất thực dương, an toàn vốn, thanh khoản",
     tools: ["Chuyển dịch giữa tiền gửi, vàng, USD, BĐS, chứng khoán", "Lựa chọn kỳ hạn (CASA vs tiền gửi có kỳ hạn)"],
     tension: "Khi lãi suất thực âm, dòng tiền chạy khỏi ngân hàng sang tài sản → đẩy giá tài sản, làm khó SBV. Khi lãi suất tiết kiệm hấp dẫn, tiền rút khỏi chứng khoán → thanh khoản thị trường cạn. Tiền gửi dân cư đạt kỷ lục trên 10,38 triệu tỷ đồng (1/2026) — phản ánh tâm lý phòng thủ.",
     tell: "Tiền gửi dân cư tăng kỷ lục khi lãi suất thấp = e ngại rủi ro, chưa sẵn sàng vào tài sản. Đây là 'thuốc súng khô' — có thể chảy vào chứng khoán khi niềm tin quay lại." },
-  { name: "KHỐI NGOẠI (FDI + FII)", color: "#f59e0b", bg: "#fffbeb", border: "#fcd34d",
+  { name: "KHỐI NGOẠI (FDI + FII)", color: "#B87000", bg: "#fffbeb", border: "#fcd34d",
     goal: "Lợi suất điều chỉnh rủi ro, gồm rủi ro tỷ giá và khả năng chuyển vốn về",
     tools: ["FDI: quyết định đặt nhà máy, quy mô giải ngân, chuyển lợi nhuận về nước", "FII: mua bán trên HOSE/HNX qua ngân hàng lưu ký", "Carry trade: vay USD rẻ, nắm tài sản VND lợi suất cao"],
     tension: "FDI ổn định nhưng lợi nhuận chuyển về nước bào mòn cán cân vãng lai. FII biến động theo chu kỳ tài chính toàn cầu (DXY, VIX) hơn là theo yếu tố cơ bản VN. Carry trade bất đối xứng: lãi chậm, lỗ nhanh — unwind gây sụp tỷ giá.",
@@ -375,7 +375,7 @@ const ACTORS = [
 ];
 
 const ADVANCED_TOPICS = [
-  { id: "ftse", icon: "🚀", color: "#16a34a", bg: "#f0fdf4", border: "#86efac",
+  { id: "ftse", icon: "🚀", color: "#B34040", bg: "#f0fdf4", border: "#86efac",
     title: "Nâng hạng FTSE — cơ chế dòng vốn thật, không phải câu chuyện",
     subtitle: "Hiệu lực 21/9/2026 · Sự kiện lớn nhất của TTCK VN trong thập kỷ",
     overview: "FTSE Russell công bố nâng hạng VN từ Cận biên lên Mới nổi Thứ cấp ngày 7/10/2025, xác nhận giữ nguyên lộ trình sau kỳ rà soát giữa kỳ tháng 3/2026. Cổ phiếu VN chính thức vào các rổ chỉ số FTSE từ thứ Hai 21/9/2026, triển khai nhiều giai đoạn tới 2027. VN-Index tăng hơn 4% trong phiên 8/4/2026 khi tin xác nhận công bố. Điều quan trọng: phần lớn phân tích phổ thông đang phóng đại quy mô dòng vốn thụ động và bỏ qua dòng bán ra từ quỹ cận biên.",
@@ -393,7 +393,7 @@ const ADVANCED_TOPICS = [
       { label: "Dòng vốn chủ động vào bền vững sau 2–3 quý", type: "bull", text: "Đây mới là xác nhận thật. Quỹ EM chủ động thấy VN đáng nắm dựa trên cơ bản, không chỉ vì chỉ số bắt buộc." },
     ],
     vnContext: "Mốc theo dõi: 21/8/2026 công bố danh sách cổ phiếu vào rổ; 21/9/2026 hiệu lực giai đoạn 1; hoàn tất dự kiến trong 2027. Theo dõi tỷ trọng VN trong FTSE Emerging (~0,227%), khối ngoại mua/bán ròng hàng ngày (HOSE), và quan trọng nhất — ĐỘ RỘNG thị trường để phân biệt dòng tiền thật với méo mó chỉ số." },
-  { id: "regime", icon: "🧭", color: "#3b82f6", bg: "#eff6ff", border: "#93c5fd",
+  { id: "regime", icon: "🧭", color: "#D4820A", bg: "#eff6ff", border: "#93c5fd",
     title: "Macro Regime — nhận diện bằng z-score, không bằng mức tuyệt đối",
     subtitle: "Regime là phân phối, không phải điểm. Đây là chỗ nghiệp dư hay sai nhất.",
     overview: "Regime không phải 'GDP > 6% thì tốt'. Regime là trạng thái mà trong đó QUAN HỆ giữa các biến số thay đổi — cùng một tin tức tạo phản ứng giá khác nhau ở regime khác nhau. Nhận diện regime đòi hỏi so sánh biến số với chính lịch sử của nó (z-score), không phải với ngưỡng cố định.",
@@ -410,7 +410,7 @@ const ADVANCED_TOPICS = [
       { label: "Credit impulse đảo dương + đơn hàng mới PMI đảo chiều", type: "bull", text: "Tín hiệu sớm nhất của chuyển pha sang phục hồi. Bắt đầu xây vị thế cyclicals 1–2 quý trước khi GDP xác nhận." },
     ],
     vnContext: "Tự dựng z-score trong Google Sheet: lấy chuỗi 5 năm của PMI, CPI lõi, tăng trưởng tín dụng, IIP; tính μ và σ cuộn 36–60 tháng; z = (giá trị hiện tại − μ)/σ. Regime score = trung bình z của nhóm. Cập nhật hàng quý. Đây là cách các quỹ macro thực sự làm." },
-  { id: "reflexivity", icon: "🔄", color: "#7c3aed", bg: "#faf5ff", border: "#c4b5fd",
+  { id: "reflexivity", icon: "🔄", color: "#1A7A5E", bg: "#faf5ff", border: "#c4b5fd",
     title: "Reflexivity — và cách đo đòn bẩy ĐÚNG ở thị trường VN",
     subtitle: "Soros, Minsky, và lỗi mẫu số mà gần như mọi báo cáo VN đều mắc",
     overview: "Lý thuyết cổ điển: giá phản ánh giá trị. Soros: giá TẠO RA giá trị, vì giá ảnh hưởng đến tài sản thế chấp, chi phí vốn và hành vi. Vòng phản hồi này khiến bong bóng kéo dài lâu hơn logic cho phép và vỡ nhanh hơn mô hình dự báo. Ở VN, việc đo đòn bẩy sai mẫu số khiến người ta liên tục đánh giá thấp mức độ căng của thị trường.",
@@ -427,7 +427,7 @@ const ADVANCED_TOPICS = [
       { label: "Narrative mới xuất hiện sau bust, cơ bản cải thiện thật", type: "bull", text: "Có thể là giai đoạn 1 của chu kỳ mới — thời điểm rủi ro/lợi nhuận tốt nhất. Nâng hạng FTSE có thể đóng vai trò này nếu đi kèm cải thiện lợi nhuận doanh nghiệp." },
     ],
     vnContext: "Dư nợ margin: tổng hợp từ BCTC quý các CTCK. Free float: ước tính từ tỷ lệ sở hữu Nhà nước + cổ đông lớn + room ngoại đã dùng. Tỷ trọng retail: ước tính từ báo cáo VCSC/SSI. Số tài khoản mở mới: VSD công bố hàng tháng." },
-  { id: "systemrisk", icon: "⚡", color: "#dc2626", bg: "#fef2f2", border: "#fca5a5",
+  { id: "systemrisk", icon: "⚡", color: "#B87000", bg: "#fef2f2", border: "#fca5a5",
     title: "Rollover, CAR, Nợ bền vững & Neo tỷ giá — bốn ràng buộc và điểm gãy",
     subtitle: "Khủng hoảng không xảy ra khi một ràng buộc căng. Nó xảy ra khi bốn cái căng cùng lúc.",
     overview: "Từng ràng buộc riêng lẻ đều quản lý được. Nguy hiểm nằm ở TƯƠNG QUAN: khi tỷ giá căng buộc SBV thắt, lãi suất tăng làm rollover khó hơn, vỡ nợ đẩy NPL lên, NPL ăn vào CAR, CAR thấp buộc ngân hàng co tín dụng, kinh tế yếu làm thu ngân sách giảm, thâm hụt tài khoá tăng, phát hành TPCP nhiều hơn, lãi suất tăng thêm. Vòng lặp khép kín.",
@@ -445,7 +445,7 @@ const ADVANCED_TOPICS = [
       { label: "Dự trữ dưới 2,5 tháng NK + tỷ giá NHTM áp trần biên độ", type: "bear", text: "Không gian cho khủng hoảng tự ứng nghiệm (thế hệ 2). Cần vị thế phòng thủ nghiêm túc: vàng, USD, giảm đòn bẩy VND." },
     ],
     vnContext: "Lịch đáo hạn TPDN: VBMA, FiinRatings tổng hợp theo quý. CAR và nợ nhóm 2: BCTC quý ngân hàng. Nợ công: Bộ Tài chính, và báo cáo Article IV của IMF. Xếp hạng tín nhiệm quốc gia: Moody's, S&P, Fitch — theo dõi cả TRIỂN VỌNG (outlook), không chỉ bậc xếp hạng." },
-  { id: "carry", icon: "🌊", color: "#0891b2", bg: "#f0fdff", border: "#a5f3fc",
+  { id: "carry", icon: "🌊", color: "#A0522D", bg: "#f0fdff", border: "#a5f3fc",
     title: "Carry trade & Dòng vốn — bất đối xứng và cơ chế unwind",
     subtitle: "Lợi nhuận nhỏ giọt, thua lỗ ập đến. Hiểu cấu trúc payoff trước khi hiểu dòng tiền.",
     overview: "Carry trade là chiến lược vay đồng tiền lãi suất thấp, đầu tư đồng tiền lãi suất cao, ăn chênh lệch. Nó hoạt động miễn là tỷ giá không phá vỡ giả định. Cấu trúc payoff giống BÁN QUYỀN CHỌN: thu phí đều đặn, chịu rủi ro đuôi lớn. Ở VN, carry trade quy mô nhỏ hơn Thổ Nhĩ Kỳ hay Brazil vì kiểm soát vốn, nhưng cơ chế và bài học vẫn áp dụng cho FII và tiền gửi ngoại tệ.",
@@ -476,19 +476,23 @@ function TagBadge({ label, color }) {
   return <span style={{ fontSize: 9, fontWeight: 600, letterSpacing: 0.3, padding: "2px 8px", borderRadius: 20, background: color + "15", color, border: `1px solid ${color}35` }}>{label}</span>;
 }
 
+// Sai lầm/Tín hiệu/Dữ liệu — trước đây mỗi mục con bọc riêng 1 box màu, nhiều
+// box nhỏ chồng lên nhau nhìn rối mắt. Giờ viết plain text, chỉ giữ icon/màu
+// chữ để phân biệt loại (bull/bear/neutral...), khung box chung đã có ở
+// section cha (xem NumberedSection) nên không cần bọc thêm ở đây.
 function SignalItem({ s }) {
   const c = {
-    bull: { bg: "#f0fdf4", border: "#86efac", label: "#15803d", icon: "▲" },
-    bear: { bg: "#fef2f2", border: "#fca5a5", label: "#dc2626", icon: "▼" },
-    neutral: { bg: "#f8fafc", border: "#e2e8f0", label: "#64748b", icon: "■" },
-  }[s.type] || { bg: "#f8fafc", border: "#e2e8f0", label: "#64748b", icon: "■" };
+    bull: { label: "#15803d", icon: "▲" },
+    bear: { label: "#dc2626", icon: "▼" },
+    neutral: { label: "#64748b", icon: "■" },
+  }[s.type] || { label: "#64748b", icon: "■" };
   return (
-    <div style={{ background: c.bg, border: `1px solid ${c.border}`, borderRadius: 8, padding: "9px 11px", marginBottom: 6 }}>
-      <div style={{ display: "flex", gap: 6, alignItems: "flex-start", marginBottom: 4 }}>
+    <div style={{ marginBottom: 10 }}>
+      <div style={{ display: "flex", gap: 6, alignItems: "flex-start", marginBottom: 3 }}>
         <span style={{ fontSize: 9, fontWeight: 800, color: c.label, marginTop: 2 }}>{c.icon}</span>
         <span style={{ fontSize: 11.5, fontWeight: 700, color: c.label, lineHeight: 1.35 }}>{s.label}</span>
       </div>
-      <div style={{ fontSize: 12, color: "#374151", lineHeight: 1.55, paddingLeft: 15 }}>{s.text}</div>
+      <div style={{ fontSize: 12, color: "#374151", lineHeight: 1.6, paddingLeft: 15 }}>{s.text}</div>
     </div>
   );
 }
@@ -496,11 +500,10 @@ function SignalItem({ s }) {
 function PitfallList({ items }) {
   return (
     <div>
-      <div style={{ fontSize: 10.5, fontWeight: 700, color: "#b45309", marginBottom: 8, letterSpacing: 0.5 }}>⚠ NGƯỜI TA HAY HIỂU SAI ĐIỀU NÀY</div>
       {items.map((p, i) => (
-        <div key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start", padding: "8px 10px", marginBottom: 6, background: "#fffbeb", border: "1px solid #fcd34d", borderRadius: 8 }}>
+        <div key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start", marginBottom: 8 }}>
           <span style={{ fontSize: 10, fontWeight: 800, color: "#b45309", marginTop: 2, flexShrink: 0 }}>✕</span>
-          <span style={{ fontSize: 12, color: "#78350f", lineHeight: 1.6 }}>{p}</span>
+          <span style={{ fontSize: 12, color: "#374151", lineHeight: 1.6 }}>{p}</span>
         </div>
       ))}
     </div>
@@ -508,83 +511,98 @@ function PitfallList({ items }) {
 }
 
 function DataBox({ text }) {
+  return <div style={{ fontSize: 12, color: "#374151", lineHeight: 1.7 }}>{text}</div>;
+}
+
+// Box đánh số dùng cho SECTION (ví dụ: từng mục con trong 1 tab chính, từng
+// chủ thể trong tab Chủ thể) — KHÔNG dùng cho subsection bên trong 1 section
+// (Bản chất/Cơ chế/Sai lầm/Tín hiệu/Dữ liệu... — những cái đó chỉ là nhãn
+// chữ, không đánh số, không bọc box, xem FlatDetail bên dưới).
+function NumberedSection({ n, label, color, children }) {
   return (
-    <div style={{ padding: "10px 12px", background: "#f0f9ff", border: "1px solid #bae6fd", borderRadius: 8 }}>
-      <div style={{ fontSize: 10.5, fontWeight: 700, color: "#0369a1", marginBottom: 5 }}>📡 NGUỒN & CÁCH THEO DÕI</div>
-      <div style={{ fontSize: 12, color: "#0c4a6e", lineHeight: 1.7 }}>{text}</div>
+    <div style={{ border: `1.5px solid ${color}30`, borderRadius: 12, padding: "14px 15px" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 9, marginBottom: 12 }}>
+        <span style={{ width: 22, height: 22, borderRadius: "50%", background: color, color: "#fff", fontSize: 11, fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{n}</span>
+        <span style={{ fontSize: 14, fontWeight: 800, color, lineHeight: 1.3 }}>{label}</span>
+      </div>
+      {children}
     </div>
   );
 }
 
-// Hàng tab phẳng ở tầng lá — Bản chất/Cơ chế/Sai lầm/Tín hiệu/Dữ liệu.
-// Đây KHÔNG phải một lớp accordion mới — chỉ là 1 hàng nút chuyển nội dung,
-// giống hệt kiểu tab dùng xuyên suốt các file khác trong app.
-function DetailPanel({ tabs, color }) {
-  const [tab, setTab] = useState("def");
+// Bản chất/Cơ chế/Sai lầm/Tín hiệu/Dữ liệu — trước đây là 1 hàng tab phải bấm
+// chuyển qua lại; giờ viết thẳng thành subsection nối tiếp nhau (chỉ có nhãn
+// chữ màu, KHÔNG đánh số, KHÔNG bọc box — số + box chỉ dành cho section cha
+// bọc ngoài, xem nơi gọi FlatDetail), đọc lướt hết một mạch không cần bấm.
+function FlatDetail({ tabs, color }) {
   const list = [
     { id: "def", label: "Bản chất" }, { id: "deep", label: "Cơ chế" }, { id: "pitfalls", label: "Sai lầm" },
     { id: "signals", label: "Tín hiệu" }, { id: "vnContext", label: "Dữ liệu" },
   ].filter(t => tabs[t.id]);
   return (
-    <div style={{ border: `1.5px solid ${color}30`, borderRadius: 10, overflow: "hidden" }}>
-      <div style={{ display: "flex", borderBottom: `1px solid ${color}20`, background: color + "08" }}>
-        {list.map(t => (
-          <button key={t.id} onClick={() => setTab(t.id)} style={{ flex: 1, textAlign: "center", border: "none", cursor: "pointer", padding: "8px 1px", fontSize: 10.5, fontWeight: tab === t.id ? 700 : 500, color: tab === t.id ? color : "#94a3b8", background: tab === t.id ? "#fff" : "transparent", borderBottom: tab === t.id ? `2px solid ${color}` : "2px solid transparent" }}>{t.label}</button>
-        ))}
-      </div>
-      <div style={{ padding: "13px 13px 9px" }}>
-        {tab === "def" && <p style={{ margin: 0, fontSize: 12.5, color: "#374151", lineHeight: 1.75 }}>{tabs.def}</p>}
-        {tab === "deep" && tabs.deep.map((d, i) => (
-          <div key={i} style={{ marginBottom: 13 }}>
-            <div style={{ fontSize: 12, fontWeight: 700, color: "#1e293b", marginBottom: 4, lineHeight: 1.4 }}>{d.title}</div>
-            <div style={{ fontSize: 12.5, color: "#475569", lineHeight: 1.75 }}>{d.body}</div>
-          </div>
-        ))}
-        {tab === "pitfalls" && <PitfallList items={tabs.pitfalls} />}
-        {tab === "signals" && tabs.signals.map((s, i) => <SignalItem key={i} s={s} />)}
-        {tab === "vnContext" && <DataBox text={tabs.vnContext} />}
-      </div>
+    <div>
+      {list.map((t, i) => (
+        <div key={t.id} style={{ marginTop: i > 0 ? 16 : 0 }}>
+          <div style={{ fontSize: 10.5, fontWeight: 700, color, textTransform: "uppercase", letterSpacing: 1, marginBottom: 7 }}>{t.label}</div>
+          {t.id === "def" && <p style={{ margin: 0, fontSize: 12.5, color: "#374151", lineHeight: 1.75 }}>{tabs.def}</p>}
+          {t.id === "deep" && tabs.deep.map((d, i2) => (
+            <div key={i2} style={{ marginBottom: 13 }}>
+              <div style={{ fontSize: 12, fontWeight: 700, color: "#1e293b", marginBottom: 4, lineHeight: 1.4 }}>{d.title}</div>
+              <div style={{ fontSize: 12.5, color: "#475569", lineHeight: 1.75 }}>{d.body}</div>
+            </div>
+          ))}
+          {t.id === "pitfalls" && <PitfallList items={tabs.pitfalls} />}
+          {t.id === "signals" && tabs.signals.map((s, i2) => <SignalItem key={i2} s={s} />)}
+          {t.id === "vnContext" && <DataBox text={tabs.vnContext} />}
+        </div>
+      ))}
     </div>
   );
 }
 
 // Nội dung tab "Tỷ giá & Cán cân" — không có tab phụ (subsection), vì bản
 // thân nó là 1 khối duy nhất, hiển thị trực tiếp qua 4 tab lá.
+// Trước đây "Cơ chế/Sai lầm/Tín hiệu/Dữ liệu" là 1 hàng tab riêng (level 3
+// bên trong Tổng quan → Tỷ giá & Cán cân) — giờ viết thẳng thành section
+// đánh số nối tiếp nhau, giống hệt cách 6 tab chính (FlatDetail) đã làm.
 function ExchangeDetail({ data }) {
-  const [tab, setTab] = useState("points");
-  const list = [{ id: "points", l: "Cơ chế" }, { id: "pitfalls", l: "Sai lầm" }, { id: "signals", l: "Tín hiệu" }, { id: "data", l: "Dữ liệu" }];
+  const list = [
+    { id: "def", label: "Bản chất" }, { id: "points", label: "Cơ chế" },
+    { id: "pitfalls", label: "Sai lầm" }, { id: "signals", label: "Tín hiệu" }, { id: "data", label: "Dữ liệu" },
+  ];
   return (
     <div>
-      <div style={{ padding: "12px 14px", background: data.lightBg, border: `1px solid ${data.border}`, borderRadius: 10, marginBottom: 12 }}>
-        <p style={{ margin: 0, fontSize: 12.5, color: "#374151", lineHeight: 1.75 }}>{data.def}</p>
-      </div>
-      <div style={{ display: "flex", gap: 4, marginBottom: 12 }}>
-        {list.map(t => (
-          <button key={t.id} onClick={() => setTab(t.id)} style={{ flex: 1, textAlign: "center", border: "none", cursor: "pointer", borderRadius: 8, padding: "8px 2px", fontSize: 11, fontWeight: tab === t.id ? 700 : 500, color: tab === t.id ? "#fff" : data.color, background: tab === t.id ? data.color : data.lightBg }}>{t.l}</button>
-        ))}
-      </div>
-      {tab === "points" && data.points.map((p, i) => {
-        const warn = p.title.startsWith("⚠");
-        return (
-          <div key={i} style={{ marginBottom: 11, padding: "11px 12px", borderRadius: 10, background: warn ? "#fef2f2" : data.lightBg, border: `1px solid ${warn ? "#fca5a5" : data.border}` }}>
-            <div style={{ fontSize: 12, fontWeight: 700, color: warn ? "#dc2626" : data.color, marginBottom: 5, lineHeight: 1.4 }}>{p.title}</div>
-            <div style={{ fontSize: 12.5, color: "#374151", lineHeight: 1.75 }}>{p.body}</div>
-          </div>
-        );
-      })}
-      {tab === "pitfalls" && <PitfallList items={data.pitfalls} />}
-      {tab === "signals" && data.signals.map((s, i) => <SignalItem key={i} s={s} />)}
-      {tab === "data" && <DataBox text={data.vnContext} />}
+      {list.map((t, i) => (
+        <div key={t.id} style={{ marginTop: i > 0 ? 16 : 0 }}>
+          <div style={{ fontSize: 10.5, fontWeight: 700, color: data.color, textTransform: "uppercase", letterSpacing: 1, marginBottom: 7 }}>{t.label}</div>
+          {t.id === "def" && <p style={{ margin: 0, fontSize: 12.5, color: "#374151", lineHeight: 1.75 }}>{data.def}</p>}
+          {t.id === "points" && data.points.map((p, j) => {
+            const warn = p.title.startsWith("⚠");
+            return (
+              <div key={j} style={{ marginBottom: 11 }}>
+                <div style={{ fontSize: 12, fontWeight: 700, color: warn ? "#dc2626" : data.color, marginBottom: 4, lineHeight: 1.4 }}>{p.title}</div>
+                <div style={{ fontSize: 12.5, color: "#374151", lineHeight: 1.75 }}>{p.body}</div>
+              </div>
+            );
+          })}
+          {t.id === "pitfalls" && <PitfallList items={data.pitfalls} />}
+          {t.id === "signals" && data.signals.map((s, j) => <SignalItem key={j} s={s} />)}
+          {t.id === "data" && <DataBox text={data.vnContext} />}
+        </div>
+      ))}
     </div>
   );
 }
 
 // Nội dung 1 "chủ thể" đã chọn ở tab phụ — hiển thị phẳng, không còn bọc
 // trong accordion riêng như ActorCard cũ.
+// Tên chủ thể giờ là nhãn của NumberedSection bọc ngoài (xem nơi gọi), nên
+// ở đây không lặp lại nữa. ĐÁNH ĐỔI CỐT LÕI / CÁCH ĐỌC HÀNH ĐỘNG CỦA HỌ
+// trước đây mỗi cái bọc 1 box màu riêng — giờ là subsection chữ thường,
+// không bọc box, đồng bộ với CÔNG CỤ ở trên.
 function ActorDetail({ a }) {
   return (
     <div>
-      <div style={{ fontSize: 13, fontWeight: 800, color: a.color, letterSpacing: 0.3, marginBottom: 4 }}>{a.name}</div>
       <div style={{ fontSize: 12.5, color: "#64748b", marginBottom: 13, lineHeight: 1.55 }}>{a.goal}</div>
       <div style={{ fontSize: 10.5, fontWeight: 700, color: "#475569", marginBottom: 7 }}>CÔNG CỤ</div>
       {a.tools.map((t, i) => (
@@ -593,51 +611,44 @@ function ActorDetail({ a }) {
           <div style={{ fontSize: 12.5, color: "#374151", lineHeight: 1.6 }}>{t}</div>
         </div>
       ))}
-      <div style={{ marginTop: 11, padding: "10px 12px", background: "#fffbeb", border: "1px solid #fcd34d", borderRadius: 8 }}>
-        <div style={{ fontSize: 10, fontWeight: 700, color: "#92400e", marginBottom: 4 }}>⚡ ĐÁNH ĐỔI CỐT LÕI</div>
-        <div style={{ fontSize: 12.5, color: "#78350f", lineHeight: 1.65 }}>{a.tension}</div>
-      </div>
-      <div style={{ marginTop: 8, padding: "10px 12px", background: "#eef2ff", border: "1px solid #c7d2fe", borderRadius: 8 }}>
-        <div style={{ fontSize: 10, fontWeight: 700, color: "#4338ca", marginBottom: 4 }}>🔍 CÁCH ĐỌC HÀNH ĐỘNG CỦA HỌ</div>
-        <div style={{ fontSize: 12.5, color: "#312e81", lineHeight: 1.65 }}>{a.tell}</div>
-      </div>
+      <div style={{ fontSize: 10.5, fontWeight: 700, color: "#475569", marginTop: 14, marginBottom: 7 }}>⚡ ĐÁNH ĐỔI CỐT LÕI</div>
+      <div style={{ fontSize: 12.5, color: "#374151", lineHeight: 1.65 }}>{a.tension}</div>
+      <div style={{ fontSize: 10.5, fontWeight: 700, color: "#475569", marginTop: 14, marginBottom: 7 }}>🔍 CÁCH ĐỌC HÀNH ĐỘNG CỦA HỌ</div>
+      <div style={{ fontSize: 12.5, color: "#374151", lineHeight: 1.65 }}>{a.tell}</div>
     </div>
   );
 }
 
 // Nội dung 1 chuyên đề nâng cao đã chọn — hiển thị phẳng, không còn bọc
-// trong accordion riêng như AdvancedSection cũ.
+// trong accordion riêng như AdvancedSection cũ. Trước đây "Cơ chế/Tín hiệu/
+// Dữ liệu" là 1 hàng tab riêng (khiến tổng chiều sâu điều hướng thành 4 cấp:
+// Tổng quan → Chuyên đề nâng cao → [chuyên đề] → tab này) — giờ gộp lại
+// thành các section nối tiếp, mỗi mục đánh dấu bằng tiêu đề màu/chữ đậm.
 function AdvancedDetail({ topic }) {
-  const [tab, setTab] = useState("mechanics");
   const ts = {
     concept: { bg: "#eff6ff", border: "#93c5fd", label: "#1d4ed8", icon: "📐" },
     warning: { bg: "#fef2f2", border: "#fca5a5", label: "#dc2626", icon: "⚠️" },
     signal: { bg: "#f0fdf4", border: "#86efac", label: "#15803d", icon: "📡" },
   };
-  const list = [{ id: "mechanics", l: "Cơ chế" }, { id: "signals", l: "Tín hiệu" }, { id: "vnContext", l: "Dữ liệu" }];
   return (
     <div>
-      <div style={{ display: "flex", alignItems: "flex-start", gap: 9 }}>
+      <div style={{ display: "flex", alignItems: "flex-start", gap: 9, marginBottom: 12 }}>
         <span style={{ fontSize: 19, lineHeight: 1.2 }}>{topic.icon}</span>
         <div>
           <div style={{ fontSize: 14.5, fontWeight: 800, color: topic.color, lineHeight: 1.3 }}>{topic.title}</div>
           <div style={{ fontSize: 11, color: "#64748b", marginTop: 3, lineHeight: 1.45 }}>{topic.subtitle}</div>
         </div>
       </div>
-      <div style={{ padding: "12px 13px", background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 10, margin: "11px 0" }}>
-        <div style={{ fontSize: 9.5, fontWeight: 700, color: topic.color, textTransform: "uppercase", letterSpacing: 1, marginBottom: 5 }}>Tổng quan</div>
-        <p style={{ margin: 0, fontSize: 12.5, color: "#374151", lineHeight: 1.75 }}>{topic.overview}</p>
-      </div>
-      <div style={{ display: "flex", gap: 4, marginBottom: 12 }}>
-        {list.map(t => (
-          <button key={t.id} onClick={() => setTab(t.id)} style={{ flex: 1, textAlign: "center", border: "none", cursor: "pointer", borderRadius: 8, padding: "8px 3px", fontSize: 11, fontWeight: tab === t.id ? 700 : 500, color: tab === t.id ? "#fff" : topic.color, background: tab === t.id ? topic.color : topic.bg }}>{t.l}</button>
-        ))}
-      </div>
-      {tab === "mechanics" && topic.sections.map((s, i) => {
+
+      <div style={{ fontSize: 10.5, fontWeight: 700, color: topic.color, textTransform: "uppercase", letterSpacing: 1, marginBottom: 7 }}>Tổng quan</div>
+      <p style={{ margin: 0, fontSize: 12.5, color: "#374151", lineHeight: 1.75 }}>{topic.overview}</p>
+
+      <div style={{ fontSize: 10.5, fontWeight: 700, color: topic.color, textTransform: "uppercase", letterSpacing: 1, margin: "16px 0 7px" }}>Cơ chế</div>
+      {topic.sections.map((s, i) => {
         const st = ts[s.type] || ts.concept;
         return (
-          <div key={i} style={{ marginBottom: 12, padding: "11px 12px", background: st.bg, border: `1px solid ${st.border}`, borderRadius: 10 }}>
-            <div style={{ display: "flex", gap: 7, alignItems: "flex-start", marginBottom: 5 }}>
+          <div key={i} style={{ marginBottom: 11 }}>
+            <div style={{ display: "flex", gap: 7, alignItems: "flex-start", marginBottom: 4 }}>
               <span style={{ fontSize: 12, marginTop: 1 }}>{st.icon}</span>
               <span style={{ fontSize: 12, fontWeight: 700, color: st.label, lineHeight: 1.45 }}>{s.title}</span>
             </div>
@@ -645,8 +656,12 @@ function AdvancedDetail({ topic }) {
           </div>
         );
       })}
-      {tab === "signals" && topic.signals.map((s, i) => <SignalItem key={i} s={s} />)}
-      {tab === "vnContext" && <DataBox text={topic.vnContext} />}
+
+      <div style={{ fontSize: 10.5, fontWeight: 700, color: topic.color, textTransform: "uppercase", letterSpacing: 1, margin: "16px 0 7px" }}>Tín hiệu</div>
+      {topic.signals.map((s, i) => <SignalItem key={i} s={s} />)}
+
+      <div style={{ fontSize: 10.5, fontWeight: 700, color: topic.color, textTransform: "uppercase", letterSpacing: 1, margin: "16px 0 7px" }}>Dữ liệu</div>
+      <DataBox text={topic.vnContext} />
     </div>
   );
 }
@@ -662,12 +677,18 @@ function Breadcrumb({ items, activeId, onSelect, size = "md", ghost = false }) {
           <button key={it.id} onClick={() => onSelect(it.id)} style={{
             display: "flex", alignItems: "center", gap: 6,
             padding: ghost ? "6px 13px" : sm ? "6px 12px" : "8px 15px",
-            borderRadius: 20, cursor: "pointer",
-            fontSize: sm ? 11.5 : ghost ? 12 : 12.5, fontWeight: active ? 700 : 500,
+            // Level 1 (size mặc định) bo tròn hết cỡ dạng viên thuốc; level 2
+            // (size="sm") bo góc vuông vắn hơn hẳn — phân biệt 2 cấp bằng mắt
+            // ngay cả khi không nhìn màu/độ đậm.
+            borderRadius: sm ? 8 : 20, cursor: "pointer",
+            // fontWeight CỐ ĐỊNH (không đổi theo active) — chữ đậm hơn chiếm nhiều
+            // bề ngang hơn, nếu đổi theo trạng thái sẽ làm nút tự đổi kích thước
+            // và đẩy các nút bên cạnh dịch chuyển mỗi lần bấm, nhìn như bị "nháy".
+            fontSize: sm ? 11.5 : ghost ? 12 : 12.5, fontWeight: 600,
             background: active ? it.color : (ghost ? "transparent" : "#fff"),
             color: active ? "#fff" : (ghost ? "#94a3b8" : "#475569"),
             border: `1px solid ${active ? it.color : "#e2e8f0"}`,
-            transition: "all .15s", whiteSpace: "nowrap",
+            transition: "background .15s, color .15s, border-color .15s", whiteSpace: "nowrap",
           }}>
             {it.icon && <span>{it.icon}</span>}{it.label}
           </button>
@@ -677,32 +698,47 @@ function Breadcrumb({ items, activeId, onSelect, size = "md", ghost = false }) {
   );
 }
 
-// ══════════════ ĐIỀU HƯỚNG CHÍNH — 2 CẤP: TAB CHÍNH → TAB PHỤ ══════════════
+// ══════════════ ĐIỀU HƯỚNG CHÍNH — 1 HÀNG TAB CHÍNH, TỐI ĐA 3 CẤP ══════════════
 // Mỗi "tab chính" trước đây là 1 Khối/Mục phải bấm mở accordion mới thấy;
 // giờ là 1 nút bấm chọn thẳng. "Mục con" trước đây phải bấm mở thêm 1 lớp
 // accordion (ChildPanel) nữa mới đọc được; giờ là "tab phụ" — chọn thẳng,
 // nội dung hiện ngay bên dưới.
-// "group: core" — đúng 6 tab chính nguyên bản (Kinh tế Thực × 3 + Kinh tế
-// Tài chính × 3). "group: extra" — 3 mục bổ sung (Tỷ giá, Chủ thể, Chuyên đề
-// nâng cao), tách hàng riêng bên dưới để không lẫn vào "6 tab chính".
+// "Tổng quan" gộp chung: Ba luận điểm cốt lõi, Tỷ giá & Cán cân, Chủ thể,
+// Chuyên đề nâng cao, Thay đổi quan trọng 2025–2026, Về số liệu — tất cả
+// từng là box/tab rời rạc, giờ gom vào 1 tab duy nhất, đứng chung 1 hàng
+// breadcrumb với 6 tab chính còn lại, giữ sticky ở đầu trang.
+// Đúng 2 cấp tab: TOP_TABS (cấp 1) → subs của từng tab (cấp 2, xem subListOf).
+// Dưới cấp 2 không còn tab nào nữa — chỉ còn subsection chữ thường (FlatDetail)
+// hoặc section đánh số xếp chồng (Chủ thể trong Tổng quan).
+// "Chuyên đề nâng cao" trước đây nằm trong Tổng quan, giờ tách thành 1 tab
+// cấp 1 riêng, đứng cuối hàng, viết hoa toàn bộ để phân biệt với 6 tab gốc.
+// Bảng màu mượn từ vietnam_industry_primers.jsx (tông trầm, sang trọng hơn
+// hẳn màu sáng/rực mặc định) — mỗi tab 1 màu riêng, không trùng.
 const TOP_TABS = [
-  { id: "demand", label: "Tổng cầu", color: "#6366f1", kind: "section", group: "core", section: DATA.realEconomy.sections[0] },
-  { id: "price", label: "Giá cả & Lạm phát", color: "#dc2626", kind: "section", group: "core", section: DATA.realEconomy.sections[1] },
-  { id: "supply", label: "Cung & Sản xuất", color: "#16a34a", kind: "section", group: "core", section: DATA.realEconomy.sections[2] },
-  { id: "credit_creation", label: "Tạo tiền tín dụng", color: "#7c3aed", kind: "section", group: "core", section: DATA.financial.sections[0] },
-  { id: "rates", label: "Lãi suất & Truyền dẫn", color: "#f59e0b", kind: "section", group: "core", section: DATA.financial.sections[1] },
-  { id: "plumbing", label: "Money Plumbing", color: "#0891b2", kind: "section", group: "core", section: DATA.financial.sections[2] },
-  { id: "exchange", label: "Tỷ giá & Cán cân", color: DATA.exchange.color, kind: "exchange", group: "extra" },
-  { id: "actors", label: "Chủ thể", color: "#4f46e5", kind: "actors", group: "extra" },
-  { id: "advanced", label: "Chuyên đề nâng cao", color: "#0f172a", kind: "advanced", group: "extra" },
+  { id: "overview", label: "Tổng quan", color: "#1E5AA8", kind: "overview" },
+  { id: "demand", label: "Tổng cầu", color: "#B34040", kind: "section", section: DATA.realEconomy.sections[0] },
+  { id: "price", label: "Giá cả & Lạm phát", color: "#D4820A", kind: "section", section: DATA.realEconomy.sections[1] },
+  { id: "supply", label: "Cung & Sản xuất", color: "#1A7A5E", kind: "section", section: DATA.realEconomy.sections[2] },
+  { id: "credit_creation", label: "Tạo tiền tín dụng", color: "#B87000", kind: "section", section: DATA.financial.sections[0] },
+  { id: "rates", label: "Lãi suất & Truyền dẫn", color: "#A0522D", kind: "section", section: DATA.financial.sections[1] },
+  { id: "plumbing", label: "Money Plumbing", color: "#5B3FA0", kind: "section", section: DATA.financial.sections[2] },
+  { id: "advanced", label: "CHUYÊN ĐỀ NÂNG CAO", color: "#0E7C86", kind: "advanced" },
 ];
-const CORE_TABS = TOP_TABS.filter(t => t.group === "core");
-const EXTRA_TABS = TOP_TABS.filter(t => t.group === "extra");
+// "Ba luận điểm cốt lõi" và "Thay đổi quan trọng 2025–2026" trước đây luôn
+// hiện cùng lúc trên mọi tab phụ — giờ gộp chung 1 tab phụ, chỉ hiện khi
+// chọn đúng tab phụ đó, không lẫn vào "Tỷ giá & Cán cân" / "Chủ thể".
+const OVERVIEW_SUBS = [
+  { id: "thesis", label: "Ba luận điểm cốt lõi & Thay đổi 2025–2026", color: "#1E5AA8" },
+  { id: "exchange", label: "Tỷ giá & Cán cân", color: DATA.exchange.color },
+  { id: "actors", label: "Chủ thể", color: "#0E7C86" },
+];
 
+// Tab con (cấp 2) luôn dùng ĐÚNG màu của tab cha (cấp 1) — bỏ qua màu riêng
+// (nếu có) trong dữ liệu, để cả cụm tab cha-con nhìn liền một khối màu.
 function subListOf(tab) {
-  if (tab.kind === "section") return tab.section.children.map(c => ({ id: c.id, label: c.label, color: c.color || tab.color }));
-  if (tab.kind === "actors") return ACTORS.map(a => ({ id: a.name, label: a.name, color: a.color }));
-  if (tab.kind === "advanced") return ADVANCED_TOPICS.map(t => ({ id: t.id, label: t.title.split(" — ")[0], color: t.color, icon: t.icon }));
+  if (tab.kind === "section") return tab.section.children.map(c => ({ id: c.id, label: c.label, color: tab.color }));
+  if (tab.kind === "overview") return OVERVIEW_SUBS.map(s => ({ ...s, color: tab.color }));
+  if (tab.kind === "advanced") return ADVANCED_TOPICS.map(t => ({ id: t.id, label: t.title.split(" — ")[0], color: tab.color, icon: t.icon }));
   return null;
 }
 
@@ -718,8 +754,12 @@ export default function MacroVNFrameworkExpert() {
   const selectTop = (id) => {
     setTopId(id);
     const t = TOP_TABS.find(x => x.id === id);
-    const list = subListOf(t);
-    setSubId(list ? list[0].id : null);
+    if (t.kind === "overview") {
+      setSubId("thesis");
+    } else {
+      const list = subListOf(t);
+      setSubId(list ? list[0].id : null);
+    }
     window.__scrollArticleToTop?.();
   };
   const selectSub = (id) => {
@@ -751,80 +791,79 @@ export default function MacroVNFrameworkExpert() {
         <p style={{ fontSize: 11.5, color: "#64748b", margin: 0, lineHeight: 1.5 }}>Mỗi mục có 5 lớp: <strong>Bản chất → Cơ chế → Sai lầm → Tín hiệu → Dữ liệu</strong>. Tab "Sai lầm" là nơi chứa giá trị lớn nhất.</p>
       </div>
 
-      <div style={{ background: "#0f172a", borderRadius: 12, padding: "13px 15px", marginBottom: 12 }}>
-        <div style={{ fontSize: 9.5, fontWeight: 700, letterSpacing: 2, color: "#64748b", textTransform: "uppercase", marginBottom: 7 }}>Ba luận điểm cốt lõi</div>
-        {CORE.map(x => (
-          <div key={x.n} style={{ display: "flex", gap: 9, alignItems: "flex-start", marginBottom: 9 }}>
-            <div style={{ width: 18, height: 18, borderRadius: "50%", background: "#fbbf24", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, fontWeight: 800, color: "#0f172a", flexShrink: 0, marginTop: 1 }}>{x.n}</div>
-            <div style={{ fontSize: 12, color: "#cbd5e1", lineHeight: 1.6 }}><strong style={{ color: "#f1f5f9" }}>{x.t}</strong> — {x.d}</div>
-          </div>
-        ))}
-      </div>
-
-      {/* TAB CHÍNH — cấp 1: đúng 6 tab gốc (Kinh tế Thực × 3 + Kinh tế Tài chính × 3) */}
+      {/* TAB CHÍNH (cấp 1) + TAB PHỤ (cấp 2) — cả 2 hàng đứng ngay trên nền trang,
+          KHÔNG bọc trong box nội dung, giống cách ChunkAtlas_EN.jsx đang làm. */}
       <div className="mobile-static" style={{ position: "sticky", top: 0, zIndex: 20, background: "#f1f5f9", paddingTop: 4, paddingBottom: 4 }}>
-        <Breadcrumb items={CORE_TABS} activeId={topId} onSelect={selectTop} />
-        {/* Hàng phụ — 3 mục bổ sung, tách riêng để không lẫn với 6 tab chính ở trên */}
-        <Breadcrumb items={EXTRA_TABS} activeId={topId} onSelect={selectTop} ghost />
-      </div>
-
-      <div style={{ background: "#fff", border: "1.5px solid #e2e8f0", borderRadius: 14, padding: "16px 16px 14px" }}>
-        {/* TAB PHỤ — cấp 2 (chỉ hiện khi tab chính có nhiều hơn 1 mục con) */}
+        <Breadcrumb items={TOP_TABS} activeId={topId} onSelect={selectTop} />
         {subs && subs.length > 1 && (
           <Breadcrumb items={subs} activeId={subId} onSelect={selectSub} size="sm" />
         )}
+      </div>
 
+      <div style={{ background: "#fff", border: "1.5px solid #e2e8f0", borderRadius: 14, padding: "16px 16px 14px" }}>
         {top.kind === "section" && (() => {
           const child = top.section.children.find(c => c.id === subId) || top.section.children[0];
           return (
             <div>
               <p style={{ margin: "0 0 14px", fontSize: 12.5, color: "#475569", lineHeight: 1.75 }}>{top.section.def}</p>
-              {top.section.tag && <div style={{ marginBottom: 10 }}><TagBadge label={top.section.tag} color={top.section.tagColor || top.color} /></div>}
-              <div style={{ fontSize: 14, fontWeight: 800, color: child.color || top.color, marginBottom: 9 }}>{child.label}</div>
-              <DetailPanel tabs={child.tabs} color={child.color || top.color} />
+              {top.section.tag && <div style={{ marginBottom: 14 }}><TagBadge label={top.section.tag} color={top.section.tagColor || top.color} /></div>}
+              <FlatDetail tabs={child.tabs} color={top.color} />
             </div>
           );
         })()}
 
-        {top.kind === "exchange" && <ExchangeDetail data={DATA.exchange} />}
+        {top.kind === "overview" && (
+          <div>
+            {subId === "thesis" && (
+              <div>
+                {CORE.map((x, i) => (
+                  <div key={x.n} style={{ display: "flex", gap: 10, alignItems: "flex-start", marginTop: i > 0 ? 14 : 0 }}>
+                    <div style={{ width: 20, height: 20, borderRadius: "50%", background: "#0f172a", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10.5, fontWeight: 800, color: "#fbbf24", flexShrink: 0, marginTop: 1 }}>{x.n}</div>
+                    <div style={{ fontSize: 12.5, color: "#374151", lineHeight: 1.65 }}><strong style={{ color: "#0f172a" }}>{x.t}</strong> — {x.d}</div>
+                  </div>
+                ))}
 
-        {top.kind === "actors" && (() => {
-          const actor = ACTORS.find(a => a.name === subId) || ACTORS[0];
-          return <ActorDetail a={actor} />;
-        })()}
+                <div style={{ border: "1.5px solid #86efac", borderRadius: 12, overflow: "hidden", background: "#fff", marginTop: 20 }}>
+                  <div style={{ padding: "11px 14px", background: "#f0fdf4" }}>
+                    <div style={{ fontSize: 12.5, fontWeight: 800, color: "#15803d" }}>📌 Thay đổi quan trọng 2025–2026</div>
+                    <div style={{ fontSize: 10.5, color: "#64748b", marginTop: 2 }}>Những thứ làm lỗi thời phần lớn tài liệu macro VN hiện có</div>
+                  </div>
+                  <div style={{ padding: "11px 14px 8px", borderTop: "1px solid #86efac" }}>
+                    {UPDATES.map((u, i) => (
+                      <div key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start", padding: "7px 0", borderBottom: i < UPDATES.length - 1 ? "1px solid #f1f5f9" : "none" }}>
+                        <div style={{ width: 6, height: 6, borderRadius: "50%", background: u.c, marginTop: 6, flexShrink: 0 }} />
+                        <div>
+                          <div style={{ fontSize: 11.5, fontWeight: 700, color: "#1e293b", lineHeight: 1.4 }}>{u.t}</div>
+                          <div style={{ fontSize: 11, color: "#64748b", marginTop: 2, lineHeight: 1.55 }}>{u.d}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {subId === "exchange" && <ExchangeDetail data={{ ...DATA.exchange, color: top.color }} />}
+
+            {/* 5 chủ thể — mỗi chủ thể là 1 section đánh số riêng, không bọc tab
+                vì mỗi hồ sơ khá ngắn, đọc lướt hết cả 5 tiện hơn phải bấm. */}
+            {subId === "actors" && ACTORS.map((a, i) => (
+              <div key={a.name} style={{ marginTop: i > 0 ? 14 : 0 }}>
+                <NumberedSection n={i + 1} label={a.name} color={a.color}>
+                  <ActorDetail a={a} />
+                </NumberedSection>
+              </div>
+            ))}
+          </div>
+        )}
 
         {top.kind === "advanced" && (() => {
           const topic = ADVANCED_TOPICS.find(t => t.id === subId) || ADVANCED_TOPICS[0];
-          return <AdvancedDetail topic={topic} />;
+          return <AdvancedDetail topic={{ ...topic, color: top.color }} />;
         })()}
       </div>
 
-      {/* "Thay đổi quan trọng" dời xuống cuối trang — chỉ là tư liệu tham khảo,
-          không nên chắn ngang phía trên trước cụm tab điều hướng chính. */}
-      <div style={{ border: "1.5px solid #86efac", borderRadius: 12, overflow: "hidden", marginTop: 16, background: "#fff" }}>
-        <div style={{ padding: "11px 14px", background: "#f0fdf4" }}>
-          <div style={{ fontSize: 12.5, fontWeight: 800, color: "#15803d" }}>📌 Thay đổi quan trọng 2025–2026</div>
-          <div style={{ fontSize: 10.5, color: "#64748b", marginTop: 2 }}>Những thứ làm lỗi thời phần lớn tài liệu macro VN hiện có</div>
-        </div>
-        <div style={{ padding: "11px 14px 8px", borderTop: "1px solid #86efac" }}>
-          {UPDATES.map((u, i) => (
-            <div key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start", padding: "7px 0", borderBottom: i < UPDATES.length - 1 ? "1px solid #f1f5f9" : "none" }}>
-              <div style={{ width: 6, height: 6, borderRadius: "50%", background: u.c, marginTop: 6, flexShrink: 0 }} />
-              <div>
-                <div style={{ fontSize: 11.5, fontWeight: 700, color: "#1e293b", lineHeight: 1.4 }}>{u.t}</div>
-                <div style={{ fontSize: 11, color: "#64748b", marginTop: 2, lineHeight: 1.55 }}>{u.d}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div style={{ padding: "11px 13px", background: "#fffbeb", border: "1px solid #fcd34d", borderRadius: 10, marginTop: 14, marginBottom: 10 }}>
-        <div style={{ fontSize: 10, fontWeight: 700, color: "#92400e", marginBottom: 4 }}>⚠ VỀ SỐ LIỆU</div>
-        <div style={{ fontSize: 11, color: "#78350f", lineHeight: 1.65 }}>Các mốc định lượng cập nhật tới 07/2026 và sẽ lỗi thời. Cơ chế thì bền; con số thì không. Luôn kiểm chứng lại mức dự trữ, lãi suất OMO, tỷ giá trung tâm và trạng thái chính sách trước khi ra quyết định.</div>
-      </div>
-
-      <div style={{ textAlign: "center", fontSize: 10, color: "#94a3b8", lineHeight: 1.6 }}>
+      <div style={{ textAlign: "center", fontSize: 10, color: "#94a3b8", lineHeight: 1.6, marginTop: 14 }}>
         Map 1 · Cơ chế vận hành macro VN<br />Dùng kèm Map 2 (chu kỳ) và công cụ review định kỳ
       </div>
     </div>

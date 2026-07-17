@@ -65,14 +65,7 @@ export default function SelfWorthDeep() {
     <div style={{ fontFamily: SERIF, background: PAPER, color: INK }}>
       <div style={{ padding: "26px 16px 60px" }}>
         <div style={{ marginBottom: 18 }}>
-          <div style={{ fontFamily: SANS, fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: MUTE, marginBottom: 8 }}>
-            Self-Worth · Self-Love · Self-Confidence — A Multidimensional Inquiry
-          </div>
-          <h1 style={{ fontSize: 27, lineHeight: 1.2, margin: 0, fontWeight: 600 }}>Giá Trị Bản Thân — Phân Tích Đa Chiều</h1>
-          <p style={{ fontFamily: SANS, fontSize: 13, color: "#57605A", marginTop: 8, maxWidth: 700, lineHeight: 1.65 }}>
-            Từ tâm lý học thực chứng (Neff, Branden, Bandura, Crocker) đến triết học hiện sinh, Phật giáo, xã hội học phê phán —
-            và quan trọng nhất: cách biến tất cả thành thực hành sống được mỗi ngày.
-          </p>
+          <h1 style={{ fontSize: 27, lineHeight: 1.2, margin: 0, fontWeight: 600 }}>Self-Worth · Self-Love · Self-Confidence</h1>
         </div>
 
         {/* PRIMARY NAV */}

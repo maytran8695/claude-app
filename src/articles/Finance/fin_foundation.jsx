@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Menu } from "lucide-react";
-import { FinIcon } from "./finIcons";
+import { FinIcon } from "../../components/finIcons";
 
 // ============================================================
 // TẬP 1 — NỀN TẢNG TÀI CHÍNH (Financial Foundations)

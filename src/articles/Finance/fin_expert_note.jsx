@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu } from "lucide-react";
-import { FinIcon } from "./finIcons";
+import { FinIcon } from "../../components/finIcons";
 
 const sections = [
   {

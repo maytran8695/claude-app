@@ -6,6 +6,31 @@
   }
 }
 
+/* Tắt hiệu ứng "nháy" xám/xanh mặc định của trình duyệt (WebKit/mobile) khi
+   chạm/click vào bất kỳ phần tử nào — không có dòng này, mọi thẻ, badge,
+   nút bấm... đều chớp sáng một nhịp mỗi khi bấm vào. */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Riêng thẻ <button>: trình duyệt (đặc biệt Safari/Chrome desktop) còn tự vẽ
+   thêm khung "appearance" mặc định + outline focus mỗi khi bấm, đè lên style
+   tuỳ biến trong 1 khung hình rồi biến mất ngay — nhìn giống bị "nháy". Tắt
+   appearance mặc định và chỉ hiện outline khi điều hướng bằng bàn phím
+   (:focus-visible), không hiện khi bấm chuột/chạm tay. */
+button {
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+}
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
 /* Tinh chỉnh thanh cuộn siêu mỏng đẹp */
 ::-webkit-scrollbar {
   width: 6px;
