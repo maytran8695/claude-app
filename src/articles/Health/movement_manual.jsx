@@ -201,7 +201,7 @@ function Part0() {
     <div>
       {/* Masthead — only on intro tab */}
       <div style={{ fontSize: 11, letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--color-text-tertiary)", marginBottom: 6 }}>Cẩm nang cá nhân hóa</div>
-      <h1 style={{ fontSize: 24, fontWeight: 700, color: "var(--color-text-primary)", marginBottom: 8, lineHeight: 1.25 }}>Vận động & sức khỏe thể chất dài hạn</h1>
+      <h1 style={{ fontSize: 24, fontWeight: 700, color: "var(--color-text-primary)", margin: "0 0 8px", lineHeight: 1.25 }}>Vận động & sức khỏe thể chất dài hạn</h1>
       <p style={{ fontSize: 14, color: "var(--color-text-secondary)", lineHeight: 1.65, marginBottom: "1.75rem" }}>
         Dành cho người trưởng thành bận rộn, với các khuyến nghị điều chỉnh cho người bị thoát vị đĩa đệm thắt lưng. Tài liệu xây khung tư duy để tự thiết kế và duy trì một đời sống vận động bền vững — bất kể chọn chạy bộ, cầu lông, bơi, tai chi hay tập kháng lực.
       </p>

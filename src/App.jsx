@@ -185,25 +185,27 @@ function App() {
         color: #334155; /* slate-700 */
         line-height: 1.75;
       }
-      
-      .article-content h1, 
-      .article-content h2, 
-      .article-content h3 {
+
+      /* Bọc :where() để đưa độ đặc thù (specificity) của các rule fallback này về 0 —
+         chỉ áp dụng khi bài viết KHÔNG tự định nghĩa style riêng cho heading của nó.
+         Trước đây các rule này dùng "element + class" (vd ".article-content h2") có
+         độ đặc thù cao hơn nhiều class riêng của từng bài (vd ".p-t", ".stage-title"),
+         nên vô tình đè mất margin/màu mà từng file đã tự căn chỉnh, gây khoảng cách
+         quá lớn phía trên tiêu đề ở nhiều bài viết. */
+      :where(.article-content h1, .article-content h2, .article-content h3) {
         color: #0f172a; /* slate-900 */
         font-weight: 700;
-        margin-top: 2rem;
-        margin-bottom: 1rem;
+        margin-top: 1.25rem;
+        margin-bottom: 0.75rem;
       }
 
-      .article-content h1 { font-size: 1.875rem; }
-      .article-content h2 { 
-        font-size: 1.35rem; 
-        border-b: 1px solid #f1f5f9; 
-        padding-bottom: 0.5rem; 
-        margin-top: 2.5rem;
+      :where(.article-content h1) { font-size: 1.875rem; }
+      :where(.article-content h2) {
+        font-size: 1.35rem;
+        padding-bottom: 0.5rem;
       }
-      .article-content h3 { font-size: 1.15rem; }
-      .article-content p { margin-bottom: 1.25rem; }
+      :where(.article-content h3) { font-size: 1.15rem; }
+      :where(.article-content p) { margin-bottom: 1.25rem; }
 
       /* Định dạng bảng biểu Tài chính / Ngoại ngữ đồng đều cực đẹp */
       .article-content table {
@@ -546,15 +548,11 @@ function App() {
                           <button
                             key={item.id}
                             onClick={() => selectArticle(item.id)}
-                            className={`relative w-full text-left pl-4 pr-3 py-1.5 rounded-lg text-xs transition-colors ${
+                            className={`w-full text-left px-3 py-1.5 rounded-lg text-xs transition-colors ${
                               isSelected ? 'font-semibold' : `font-medium ${T.muted} ${T.hoverInk} ${T.surfaceHover}`
                             }`}
                             style={isSelected ? { background: `${accent}17`, color: accent } : undefined}
                           >
-                            <span
-                              className="absolute left-1 top-1/2 -translate-y-1/2 rounded-full"
-                              style={{ width: isSelected ? 5 : 4, height: isSelected ? 5 : 4, background: isSelected ? accent : (darkMode ? '#4A4E58' : '#C7C2B4') }}
-                            />
                             <span className="truncate block">{item.title}</span>
                           </button>
                         );
@@ -650,7 +648,9 @@ function App() {
             {/* Vùng Cuộn Duy Nhất Chứa Nội Dung Bài Viết (full-bleed, không card) —
                 Bên trong Suspense là vùng nội dung bài viết, luôn giữ theme sáng
                 riêng của từng file, KHÔNG bị ảnh hưởng bởi dark mode của khung app. */}
-            <div ref={contentScrollRef} className="flex-1 overflow-y-auto bg-slate-50/50" style={{ overflowAnchor: 'none' }}>
+            {/* bg-slate-50 phải là màu ĐẶC (không dùng /opacity) để chặn hoàn toàn màu nền tối
+                của khung app phía sau lộ ra qua — đảm bảo dark mode không ảnh hưởng nội dung bài viết */}
+            <div ref={contentScrollRef} className="flex-1 overflow-y-auto bg-slate-50 text-slate-800" style={{ overflowAnchor: 'none' }}>
               {/* Ép layout và áp dụng CSS Custom Overrides */}
               <div className="w-full h-full text-left article-content max-w-none
                 [&_*]:text-left

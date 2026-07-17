@@ -267,7 +267,7 @@ export default function SelfWorthDeep() {
           <div style={{ display: "grid", gap: 18 }}>
 
             <div>
-              <h2 style={{ fontSize: 19, fontWeight: 600, marginBottom: 4 }}>Self-worth vững vs. mong manh (fragile)</h2>
+              <h2 style={{ fontSize: 19, fontWeight: 600, margin: "0 0 4px" }}>Self-worth vững vs. mong manh (fragile)</h2>
               <p style={{ fontFamily: SANS, fontSize: 12.5, color: MUTE, marginTop: 0, marginBottom: 12 }}>Nhiều người 'có vẻ tự tin' nhưng là tự tin mong manh — cuộn ngang để xem</p>
               <div style={{ overflowX: "auto", border: `1px solid ${LINE}`, borderRadius: 4 }}>
                 <table style={{ borderCollapse: "collapse", width: "100%", minWidth: 640, fontSize: 13, fontFamily: SANS }}>

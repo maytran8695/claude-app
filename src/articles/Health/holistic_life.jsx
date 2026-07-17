@@ -3711,7 +3711,7 @@ function PillarView({ pillar }) {
     <div className="flex flex-col gap-5">
       <div className="flex items-baseline gap-3 mb-1 flex-wrap">
         <span style={{ fontFamily: mono, color: C.goldDim, fontSize: 13 }}>{pillar.num}</span>
-        <h2 style={{ fontFamily: serif, color: C.ink, fontSize: 26 }}>{pillar.title}</h2>
+        <h2 style={{ fontFamily: serif, color: C.ink, fontSize: 26, margin: 0 }}>{pillar.title}</h2>
         <span style={{ fontFamily: mono, color: C.inkDim, fontSize: 12 }}>— {pillar.subtitle}</span>
       </div>
       <Legend kind="evidence" />
@@ -3787,7 +3787,7 @@ function ActionableView() {
     <div className="flex flex-col gap-5">
       <div className="flex items-baseline gap-3 mb-1 flex-wrap">
         <span style={{ fontFamily: mono, color: C.goldDim, fontSize: 13 }}>00</span>
-        <h2 style={{ fontFamily: serif, color: C.ink, fontSize: 26 }}>Actionable Practices</h2>
+        <h2 style={{ fontFamily: serif, color: C.ink, fontSize: 26, margin: 0 }}>Actionable Practices</h2>
         <span style={{ fontFamily: mono, color: C.inkDim, fontSize: 12 }}>— sắp theo đòn bẩy: cao → vừa → thấp</span>
       </div>
       <div className="rounded-md p-4" style={{ background: "rgba(214,166,76,0.08)", border: `1px solid ${C.gold}` }}>
@@ -3850,7 +3850,7 @@ export default function App() {
       `}</style>
       <div className="px-4 sm:px-6 py-8">
         <header className="mb-4">
-          <h1 style={{ fontFamily: serif, color: C.ink, fontSize: 32, lineHeight: 1.15 }}>Khung Sống Lành Mạnh Toàn Diện</h1>
+          <h1 style={{ fontFamily: serif, color: C.ink, fontSize: 32, lineHeight: 1.15, margin: 0 }}>Khung Sống Lành Mạnh Toàn Diện</h1>
         </header>
         <nav className="flex flex-wrap gap-1.5 mb-4 mobile-static" style={{ position: "sticky", top: 0, zIndex: 10, background: C.bg, padding: "10px 0", borderBottom: `1px solid ${C.line}` }}>
           {tabs.map((t) => {
