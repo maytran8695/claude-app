@@ -2058,12 +2058,113 @@ const annotations = {
 export default function Tap1Foundations() {
   const [activeSection, setActiveSection] = useState(sections[0].id);
   const [openSubsection, setOpenSubsection] = useState(null);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const currentSection = sections.find(s => s.id === activeSection);
 
+  // Chọn 1 mục trong drawer mobile: giống hệt logic chọn ở sidebar desktop,
+  // cộng thêm tự đóng drawer lại (setMobileNavOpen(false) vô hại trên desktop).
+  const selectSectionMobile = (id) => {
+    setActiveSection(id);
+    setOpenSubsection(null);
+    setMobileNavOpen(false);
+    window.__scrollArticleToTop?.();
+  };
+
   return (
-    <div style={{ display: "flex", fontFamily: "var(--font-sans, system-ui)", background: "var(--surface-0, #f5f5f0)" }}>
-      {/* Sidebar */}
-      <div className="mobile-static" style={{ width: "240px", flexShrink: 0, background: "var(--surface-2, #fff)", borderRight: "0.5px solid var(--border, #e0e0d8)", padding: "1.5rem 0", position: "sticky", top: 0, overflowY: "auto", maxHeight: "100vh" }}>
+    <div className="tf-root" style={{ display: "flex", fontFamily: "var(--font-sans, system-ui)", background: "var(--surface-0, #f5f5f0)" }}>
+      <style>{`
+        /* Trên điện thoại: sidebar dọc chiếm quá nhiều chỗ ngang, khó đọc nội dung.
+           Ẩn sidebar, thay bằng 1 thanh dropdown gọn trên đầu — bấm vào mở drawer
+           trượt từ trái (không dùng icon ☰ để tránh trùng với nút ☰ đổi bài viết
+           của App.jsx). Nội dung chi tiết full-screen bên dưới. */
+        @media (max-width: 767px) {
+          .tf-root { display: block !important; }
+          .tf-sidebar-desktop { display: none !important; }
+          .tf-trigger-mobile { display: flex !important; }
+          .tf-content { padding: 1.25rem 1rem !important; }
+          /* Trùng lặp với thanh dropdown mobile ở trên nên ẩn breadcrumb text đi */
+          .tf-breadcrumb-text { display: none !important; }
+          /* Bỏ khung màu cho tiêu đề trên mobile để đỡ nặng, chỉ giữ icon + chữ */
+          .tf-header-box { background: transparent !important; border: none !important; padding: 0.25rem 0 1rem !important; }
+        }
+        @media (min-width: 768px) {
+          .tf-trigger-mobile { display: none !important; }
+          .tf-drawer, .tf-drawer-backdrop { display: none !important; }
+        }
+      `}</style>
+
+      {/* Thanh dropdown — chỉ hiện trên mobile, bấm để mở drawer chọn mục */}
+      <button
+        className="tf-trigger-mobile"
+        onClick={() => setMobileNavOpen(true)}
+        style={{
+          display: "none", width: "100%", alignItems: "center", gap: "10px",
+          position: "sticky", top: 0, zIndex: 30,
+          background: "var(--surface-2, #fff)", borderBottom: "0.5px solid var(--border, #e0e0d8)",
+          padding: "10px 14px", border: "none", borderBottomWidth: "0.5px", cursor: "pointer", textAlign: "left"
+        }}
+      >
+        <div style={{ flex: 1, minWidth: 0, border: "1px solid var(--border-strong, #ccc)", borderRadius: "10px", padding: "9px 11px", display: "flex", alignItems: "center", gap: "10px", background: "var(--surface-1, #f5f5f0)" }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: "9.5px", fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", color: currentSection.groupColor, marginBottom: "2px" }}>
+              {currentSection.groupLabel}
+            </div>
+            <div style={{ fontSize: "13px", fontWeight: 600, color: "var(--text-primary, #111827)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+              {currentSection.label}
+            </div>
+          </div>
+          <i className="ti ti-selector" aria-hidden="true" style={{ fontSize: "16px", color: "var(--text-muted, #888)", flexShrink: 0 }} />
+        </div>
+      </button>
+
+      {/* Lớp phủ mờ + drawer trượt từ trái — chỉ hoạt động trên mobile */}
+      <div
+        className="tf-drawer-backdrop"
+        onClick={() => setMobileNavOpen(false)}
+        style={{
+          display: mobileNavOpen ? "block" : "none",
+          position: "fixed", inset: 0, background: "rgba(20,20,15,0.42)", zIndex: 198
+        }}
+      />
+      <div
+        className="tf-drawer"
+        style={{
+          position: "fixed", top: 0, bottom: 0, left: 0, width: "84%", maxWidth: "300px",
+          background: "var(--surface-2, #fff)", borderRight: "0.5px solid var(--border, #e0e0d8)",
+          zIndex: 199, overflowY: "auto",
+          transform: mobileNavOpen ? "translateX(0)" : "translateX(-100%)",
+          transition: "transform 0.25s cubic-bezier(.32,.72,0,1)"
+        }}
+      >
+        <div style={{ padding: "1rem 1rem 0.75rem", borderBottom: "0.5px solid var(--border, #e0e0d8)", display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "10px" }}>
+          <div>
+            <p style={{ fontSize: "11px", fontWeight: 600, color: "#1D4ED8", textTransform: "uppercase", letterSpacing: "0.06em", margin: 0 }}>Tập 1</p>
+            <p style={{ fontSize: "13px", color: "var(--text-primary, #111827)", margin: "4px 0 0", lineHeight: 1.4, fontWeight: 500 }}>Nền tảng Tài chính</p>
+            <p style={{ fontSize: "11px", color: "var(--text-muted, #888)", margin: "4px 0 0" }}>Tầng 0 · {sections.length} chủ đề</p>
+          </div>
+          <button onClick={() => setMobileNavOpen(false)} aria-label="Đóng" style={{ width: "28px", height: "28px", borderRadius: "8px", border: "0.5px solid var(--border, #e0e0d8)", background: "var(--surface-1, #f5f5f0)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", flexShrink: 0, color: "var(--text-secondary, #666)" }}>
+            <i className="ti ti-x" aria-hidden="true" style={{ fontSize: "14px" }} />
+          </button>
+        </div>
+        <div style={{ padding: "0.5rem 0" }}>
+          {sections.map(section => (
+            <button
+              key={section.id}
+              onClick={() => selectSectionMobile(section.id)}
+              style={{ display: "flex", alignItems: "center", gap: "10px", width: "100%", padding: "10px 1rem", border: "none", background: activeSection === section.id ? `${section.groupColor}15` : "transparent", cursor: "pointer", textAlign: "left", borderLeft: activeSection === section.id ? `3px solid ${section.groupColor}` : "3px solid transparent" }}
+            >
+              <i className={`ti ${section.icon}`} aria-hidden="true" style={{ fontSize: "16px", color: activeSection === section.id ? section.groupColor : "var(--text-secondary, #666)", flexShrink: 0 }} />
+              <span style={{ fontSize: "12.5px", fontWeight: activeSection === section.id ? 500 : 400, color: activeSection === section.id ? section.groupColor : "var(--text-primary, #111827)", lineHeight: 1.3 }}>{section.label}</span>
+            </button>
+          ))}
+        </div>
+        <div style={{ margin: "1rem 1rem", padding: "0.75rem", background: "var(--surface-1, #f5f5f0)", borderRadius: "8px", border: "0.5px solid var(--border, #e0e0d8)" }}>
+          <p style={{ fontSize: "11px", color: "var(--text-muted, #888)", margin: 0, lineHeight: 1.5 }}>Nền tảng lý thuyết đã kiểm chứng · Đọc trước Tập 2 (Vĩ mô ứng dụng)</p>
+        </div>
+      </div>
+
+      {/* Sidebar — chỉ hiện trên desktop */}
+      <div className="tf-sidebar-desktop mobile-static" style={{ width: "240px", flexShrink: 0, background: "var(--surface-2, #fff)", borderRight: "0.5px solid var(--border, #e0e0d8)", padding: "1.5rem 0", position: "sticky", top: 0, overflowY: "auto", maxHeight: "100vh" }}>
         <div style={{ padding: "0 1rem 1rem", borderBottom: "0.5px solid var(--border, #e0e0d8)", marginBottom: "0.5rem" }}>
           <p style={{ fontSize: "11px", fontWeight: 600, color: "#1D4ED8", textTransform: "uppercase", letterSpacing: "0.06em", margin: 0 }}>Tập 1</p>
           <p style={{ fontSize: "14px", color: "var(--text-primary, #111827)", margin: "4px 0 0", lineHeight: 1.4, fontWeight: 500 }}>Nền tảng Tài chính</p>
@@ -2082,15 +2183,15 @@ export default function Tap1Foundations() {
       </div>
 
       {/* Main */}
-      <div style={{ flex: 1, padding: "2rem" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "0.6rem", fontSize: "11.5px", color: currentSection.groupColor, fontWeight: 600 }}>
+      <div className="tf-content" style={{ flex: 1, padding: "2rem", minWidth: 0 }}>
+        <div className="tf-breadcrumb-text" style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "0.6rem", fontSize: "11.5px", color: currentSection.groupColor, fontWeight: 600 }}>
           <i className={`ti ${currentSection.groupIcon}`} aria-hidden="true" style={{ fontSize: "13px" }} />
           <span>{currentSection.groupLabel}</span>
           <i className="ti ti-chevron-right" aria-hidden="true" style={{ fontSize: "11px", color: "var(--text-muted, #888)" }} />
           <span style={{ color: "var(--text-secondary, #666)", fontWeight: 400 }}>{currentSection.label}</span>
         </div>
 
-        <div style={{ padding: "1rem 1.5rem", background: `${(currentSection.groupColor || currentSection.color)}15`, borderRadius: "12px", border: `0.5px solid ${(currentSection.groupColor || currentSection.color)}33`, marginBottom: "1.5rem" }}>
+        <div className="tf-header-box" style={{ padding: "1rem 1.5rem", background: `${(currentSection.groupColor || currentSection.color)}15`, borderRadius: "12px", border: `0.5px solid ${(currentSection.groupColor || currentSection.color)}33`, marginBottom: "1.5rem" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
             <i className={`ti ${currentSection.icon}`} aria-hidden="true" style={{ fontSize: "22px", color: (currentSection.groupColor || currentSection.color) }} />
             <h1 style={{ fontSize: "18px", fontWeight: 500, color: "var(--text-primary, #111827)", margin: 0 }}>{currentSection.title}</h1>
