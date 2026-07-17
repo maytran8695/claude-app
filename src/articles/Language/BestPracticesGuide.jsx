@@ -197,7 +197,6 @@ export default function BestPracticesGuide() {
 
       <main className="stage" ref={scrollRef}>
         <header className="stage-head">
-          <div className="stage-eyebrow">{eyebrow(section.title)}</div>
           <h1 className="stage-title">{cleanTitle(section.title)}</h1>
         </header>
 
@@ -253,17 +252,6 @@ function navLabel(title, i) {
     "Hệ thống thực hành": { num: "05", label: "Hệ thống" },
   };
   return NAV[title] || { num: String(i).padStart(2, "0"), label: title.slice(0, 24) };
-}
-function eyebrow(title) {
-  const EB = {
-    "Tóm tắt điều hành": "TỔNG QUAN",
-    "Nền tảng khoa học": "PHẦN 01",
-    "Chuyển di ngôn ngữ mẹ đẻ": "PHẦN 02",
-    "Nguyên tắc thực hành": "PHẦN 03",
-    "Lộ trình theo ngôn ngữ": "PHẦN 04",
-    "Hệ thống thực hành": "PHẦN 05",
-  };
-  return EB[title] || "";
 }
 function cleanTitle(title) {
   return title;
@@ -324,10 +312,6 @@ const CSS = `
 /* stage */
 .stage { padding: 24px 40px 80px; }
 .stage-head { margin-bottom: 26px; }
-.stage-eyebrow {
-  font-family: Georgia, serif; font-size: 12px; letter-spacing: 0.22em;
-  color: var(--accent); text-transform: uppercase; margin-bottom: 8px;
-}
 .stage-title {
   font-family: Georgia, serif; font-weight: 600; font-size: 33px; line-height: 1.12;
   margin: 0; letter-spacing: -0.01em;

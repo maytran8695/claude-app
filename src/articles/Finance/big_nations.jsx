@@ -7,10 +7,10 @@ import {
 
 /* ==================== TRUNG QUỐC (CN) ==================== */
 const CN_C = {
-  bg:"#04081a", panel:"#080f1e", card:"#0d1628", card2:"#111e33",
-  border:"#182840", text:"#7a8fa6", bright:"#dde5f0", dim:"#3d5068",
-  muted:"#506070", gold:"#d4a843", red:"#e05252", green:"#3cb87a",
-  blue:"#4a9eff", purple:"#9f7ae8", orange:"#e8853c", teal:"#2abfbf",
+  bg:"#FAF9F6", panel:"#FFFFFF", card:"#FFFFFF", card2:"#F3F6FB",
+  border:"#E3E7EE", text:"#5B6472", bright:"#161A20", dim:"#8B93A0",
+  muted:"#6B7280", gold:"#A9791E", red:"#B8433D", green:"#1F8F5C",
+  blue:"#2568B3", purple:"#6D4FC4", orange:"#C36A2E", teal:"#1A8F8F",
 };
 
 const CN_GDP_DATA = [
@@ -93,7 +93,7 @@ const CN_Metric = ({label,value,sub,color=CN_C.blue,warn}) => (
   </div>
 );
 const CN_Badge = ({level}) => {
-  const m={"Rất Cao":"#ff4040",Cao:CN_C.red,"Trung Bình":CN_C.gold,Thấp:CN_C.green};
+  const m={"Rất Cao":"#B8222C",Cao:CN_C.red,"Trung Bình":CN_C.gold,Thấp:CN_C.green};
   const c=m[level]||CN_C.gold;
   return <span style={{background:c+"20",color:c,border:`1px solid ${c}40`,
     borderRadius:4,padding:"2px 8px",fontSize:10,fontWeight:700}}>{level}</span>;
@@ -1254,10 +1254,10 @@ const CN_CONTENT = [
 
 /* ==================== MỸ (US) ==================== */
 const US_C = {
-  bg:"#050a14", panel:"#0a1120", card:"#0e1830", card2:"#132038",
-  border:"#1c3050", text:"#7d93ad", bright:"#e4ecf7", dim:"#425a78",
-  muted:"#587090", navy:"#2f5aa8", red:"#e2534f", green:"#42b97a",
-  blue:"#4f9fef", purple:"#a67aec", orange:"#e8933f", gold:"#d9b545",
+  bg:"#FAF9F6", panel:"#FFFFFF", card:"#FFFFFF", card2:"#F2F5FA",
+  border:"#E2E6EE", text:"#5B6472", bright:"#161A20", dim:"#8B93A0",
+  muted:"#6B7280", navy:"#2A4E8C", red:"#B8443F", green:"#238F5E",
+  blue:"#2A6BB8", purple:"#7255C9", orange:"#C46E30", gold:"#A9821E",
 };
 
 const US_DEBT_GDP = [
@@ -1332,7 +1332,7 @@ const US_Metric = ({label,value,sub,color=US_C.blue,warn}) => (
   </div>
 );
 const US_Badge = ({level}) => {
-  const m={"Rất Cao":"#ff4040",Cao:US_C.red,"Trung Bình":US_C.gold,Thấp:US_C.green};
+  const m={"Rất Cao":"#B8222C",Cao:US_C.red,"Trung Bình":US_C.gold,Thấp:US_C.green};
   const c=m[level]||US_C.gold;
   return <span style={{background:c+"20",color:c,border:`1px solid ${c}40`,
     borderRadius:4,padding:"2px 8px",fontSize:10,fontWeight:700}}>{level}</span>;
@@ -2061,10 +2061,10 @@ const US_CONTENT = [
 
 /* ==================== NGA (RU) ==================== */
 const RU_C = {
-  bg:"#0a0606", panel:"#120a0a", card:"#180d0d", card2:"#1e1212",
-  border:"#3a1c1c", text:"#a08080", bright:"#f2e4e0", dim:"#6b4444",
-  muted:"#8a5a5a", crimson:"#c23b3b", gold:"#d4a13e", green:"#4aab6e",
-  blue:"#4f8fd4", purple:"#9a6fce", orange:"#d97b3e", steel:"#5c7a94",
+  bg:"#FAF7F6", panel:"#FFFFFF", card:"#FFFFFF", card2:"#FBF2F1",
+  border:"#EDE0DE", text:"#6B5A58", bright:"#211615", dim:"#9C8886",
+  muted:"#7D6664", crimson:"#A83636", gold:"#A0791E", green:"#288A5A",
+  blue:"#3A70B0", purple:"#6E52AE", orange:"#B86A2E", steel:"#4C6478",
 };
 
 const RU_GDP_DATA = [
@@ -2132,7 +2132,7 @@ const RU_Metric = ({label,value,sub,color=RU_C.blue,warn}) => (
   </div>
 );
 const RU_Badge = ({level}) => {
-  const m={"Rất Cao":"#ff3030",Cao:RU_C.crimson,"Trung Bình":RU_C.gold,Thấp:RU_C.green};
+  const m={"Rất Cao":"#B8222C",Cao:RU_C.crimson,"Trung Bình":RU_C.gold,Thấp:RU_C.green};
   const c=m[level]||RU_C.gold;
   return <span style={{background:c+"20",color:c,border:`1px solid ${c}40`,
     borderRadius:4,padding:"2px 8px",fontSize:10,fontWeight:700}}>{level}</span>;
@@ -2774,11 +2774,11 @@ const RU_CONTENT = [
 
 /* ==================== LIÊN MINH CHÂU ÂU (EU) ==================== */
 const EU_C = {
-  bg:"#05070f", panel:"#0a0e1c", card:"#0e1428", card2:"#131a33",
-  border:"#1c2645", text:"#7d8bab", bright:"#e6ebf7", dim:"#42507a",
-  muted:"#5a6890", navy:"#3355bb", gold:"#d9b545", red:"#e2534f",
-  green:"#42b97a", blue:"#4f8fef", purple:"#a67aec", orange:"#e8933f",
-  euBlue:"#003399", euGold:"#ffcc00",
+  bg:"#FAF9F6", panel:"#FFFFFF", card:"#FFFFFF", card2:"#F2F4FB",
+  border:"#E2E5EF", text:"#5B6472", bright:"#161A20", dim:"#8B93A0",
+  muted:"#6B7280", navy:"#2C4CA0", gold:"#A9821E", red:"#B8443F",
+  green:"#238F5E", blue:"#2A6BB8", purple:"#7255C9", orange:"#C46E30",
+  euBlue:"#003399", euGold:"#A88400",
 };
 
 const EU_GDP_GROWTH = [
@@ -2848,7 +2848,7 @@ const EU_Metric = ({label,value,sub,color=EU_C.blue,warn}) => (
   </div>
 );
 const EU_Badge = ({level}) => {
-  const m={"Rất Cao":"#ff4040",Cao:EU_C.red,"Trung Bình":EU_C.gold,Thấp:EU_C.green};
+  const m={"Rất Cao":"#B8222C",Cao:EU_C.red,"Trung Bình":EU_C.gold,Thấp:EU_C.green};
   const c=m[level]||EU_C.gold;
   return <span style={{background:c+"20",color:c,border:`1px solid ${c}40`,
     borderRadius:4,padding:"2px 8px",fontSize:10,fontWeight:700}}>{level}</span>;
@@ -3391,10 +3391,10 @@ const EU_CONTENT = [
 
 /* ==================== NHẬT BẢN (JP) ==================== */
 const JP_C = {
-  bg:"#07070a", panel:"#0d0d12", card:"#121218", card2:"#181822",
-  border:"#28283a", text:"#8a8a9e", bright:"#f0f0f5", dim:"#4a4a60",
-  muted:"#62627e", crimson:"#d13b4a", gold:"#d9a545", blue:"#4f8fef",
-  green:"#42b97a", purple:"#a67aec", orange:"#e8933f", sakura:"#f0a0b5",
+  bg:"#FAF9F7", panel:"#FFFFFF", card:"#FFFFFF", card2:"#F5F3F6",
+  border:"#E6E4EA", text:"#605E6A", bright:"#18171D", dim:"#96939E",
+  muted:"#77748A", crimson:"#B83A47", gold:"#A9821E", blue:"#2A6BB8",
+  green:"#238F5E", purple:"#7255C9", orange:"#C46E30", sakura:"#C25577",
   ink:"#2a3550",
 };
 
@@ -3468,7 +3468,7 @@ const JP_Metric = ({label,value,sub,color=JP_C.blue,warn}) => (
   </div>
 );
 const JP_Badge = ({level}) => {
-  const m={"Rất Cao":"#ff4040",Cao:JP_C.crimson,"Trung Bình":JP_C.gold,Thấp:JP_C.green};
+  const m={"Rất Cao":"#B8222C",Cao:JP_C.crimson,"Trung Bình":JP_C.gold,Thấp:JP_C.green};
   const c=m[level]||JP_C.gold;
   return <span style={{background:c+"20",color:c,border:`1px solid ${c}40`,
     borderRadius:4,padding:"2px 8px",fontSize:10,fontWeight:700}}>{level}</span>;
@@ -3936,11 +3936,11 @@ const JP_CONTENT = [
 
 /* ==================== TỔNG QUAN TOÀN CẦU (GL) ==================== */
 const GL_C = {
-  bg:"#05050a", panel:"#0a0a14", card:"#0e0e1a", card2:"#141422",
-  border:"#242438", text:"#8888a0", bright:"#eeeef5", dim:"#4a4a68",
-  muted:"#62628a", gold:"#d9b04a",
-  us:"#4f8fef", cn:"#e05252", ru:"#d13b4a", eu:"#ffcc00", jp:"#f0a0b5",
-  red:"#e2534f", green:"#42b97a", blue:"#4f8fef", purple:"#a67aec", orange:"#e8933f",
+  bg:"#FAF9F6", panel:"#FFFFFF", card:"#FFFFFF", card2:"#F3F3F8",
+  border:"#E4E4EE", text:"#5F5F72", bright:"#16161F", dim:"#8E8EA0",
+  muted:"#6E6E86", gold:"#A9821E",
+  us:"#2A6BB8", cn:"#B8433D", ru:"#B83A47", eu:"#A88400", jp:"#C25577",
+  red:"#B8443F", green:"#238F5E", blue:"#2A6BB8", purple:"#7255C9", orange:"#C46E30",
 };
 
 const GL_GDP_SHARE = [
@@ -4014,7 +4014,7 @@ const GL_Metric = ({label,value,sub,color=GL_C.blue,warn}) => (
   </div>
 );
 const GL_Badge = ({level}) => {
-  const m={"Rất Cao":"#ff4040",Cao:GL_C.red,"Trung Bình":GL_C.gold,Thấp:GL_C.green};
+  const m={"Rất Cao":"#B8222C",Cao:GL_C.red,"Trung Bình":GL_C.gold,Thấp:GL_C.green};
   const c=m[level]||GL_C.gold;
   return <span style={{background:c+"20",color:c,border:`1px solid ${c}40`,
     borderRadius:4,padding:"2px 8px",fontSize:10,fontWeight:700}}>{level}</span>;
@@ -4461,41 +4461,41 @@ const GL_CONTENT = [
 const REGIONS = [
   {
     id: "cn", label: "Trung Quốc", icon: "🇨🇳",
-    accent: CN_C.gold, bgGrad: "linear-gradient(135deg,#0c1628 0%,#080f1e 100%)",
+    accent: CN_C.gold, bgGrad: "linear-gradient(135deg,#FFFFFF 0%,#F3F6FB 100%)",
     tabs: CN_TABS, content: CN_CONTENT,
   },
   {
     id: "us", label: "Mỹ", icon: "🇺🇸",
-    accent: US_C.navy, bgGrad: "linear-gradient(135deg,#0c1830 0%,#0a1120 100%)",
+    accent: US_C.navy, bgGrad: "linear-gradient(135deg,#FFFFFF 0%,#F2F5FA 100%)",
     tabs: US_TABS, content: US_CONTENT,
   },
   {
     id: "ru", label: "Nga", icon: "🇷🇺",
-    accent: RU_C.crimson, bgGrad: "linear-gradient(135deg,#160b0b 0%,#0f0808 100%)",
+    accent: RU_C.crimson, bgGrad: "linear-gradient(135deg,#FFFFFF 0%,#FBF2F1 100%)",
     tabs: RU_TABS, content: RU_CONTENT,
   },
   {
     id: "eu", label: "EU", icon: "🇪🇺",
-    accent: EU_C.euGold, bgGrad: "linear-gradient(135deg,#0a1230 0%,#080c1c 100%)",
+    accent: EU_C.euGold, bgGrad: "linear-gradient(135deg,#FFFFFF 0%,#F2F4FB 100%)",
     tabs: EU_TABS, content: EU_CONTENT,
   },
   {
     id: "jp", label: "Nhật Bản", icon: "🇯🇵",
-    accent: JP_C.sakura, bgGrad: "linear-gradient(135deg,#0f0f18 0%,#0a0a10 100%)",
+    accent: JP_C.sakura, bgGrad: "linear-gradient(135deg,#FFFFFF 0%,#F5F3F6 100%)",
     tabs: JP_TABS, content: JP_CONTENT,
   },
   {
     id: "gl", label: "Toàn Cầu", icon: "🌐",
-    accent: GL_C.gold, bgGrad: "linear-gradient(135deg,#0d0d1a 0%,#08080f 100%)",
+    accent: GL_C.gold, bgGrad: "linear-gradient(135deg,#FFFFFF 0%,#F3F3F8 100%)",
     tabs: GL_TABS, content: GL_CONTENT,
   },
 ];
 
-const APP_BG = "#040407";
-const APP_BORDER = "#1c1c2c";
-const APP_TEXT = "#8888a0";
-const APP_BRIGHT = "#eeeef5";
-const APP_MUTED = "#5a5a78";
+const APP_BG = "#FAF9F6";
+const APP_BORDER = "#E4E1D8";
+const APP_TEXT = "#6B6558";
+const APP_BRIGHT = "#1C1D1B";
+const APP_MUTED = "#9A968A";
 
 export default function App() {
   const [regionIdx, setRegionIdx] = useState(0);
@@ -4525,57 +4525,56 @@ export default function App() {
 
   return (
     <div style={{background:APP_BG,fontFamily:"'Inter',system-ui,sans-serif",color:APP_BRIGHT}}>
-      {/* LEVEL 1 — REGION SELECTOR */}
-      <div className="mobile-static" style={{background:"#08080d",borderBottom:`1px solid ${APP_BORDER}`,
-        padding:"14px 24px 0 24px",position:"sticky",top:0,zIndex:200}}>
-        <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:12}}>
-          <div style={{width:3,height:30,background:"linear-gradient(180deg,#4f8fef 0%,#e05252 25%,#d13b4a 50%,#ffcc00 75%,#f0a0b5 100%)",borderRadius:2}}/>
-          <div>
-            <div style={{fontSize:16,fontWeight:700,color:APP_BRIGHT,letterSpacing:"-0.02em"}}>GIẢI PHẪU KINH TẾ TOÀN CẦU</div>
-            <div style={{color:APP_MUTED,fontSize:9,letterSpacing:"0.16em",textTransform:"uppercase",marginTop:1}}>MỸ • TRUNG QUỐC • NGA • EU • NHẬT BẢN • TỔNG QUAN — PHÂN TÍCH CHUYÊN SÂU HỢP NHẤT</div>
+      {/* Gộp LEVEL 1 + LEVEL 2 vào chung 1 khối sticky top:0 — tránh phải đoán
+          trước chiều cao của LEVEL 1 (dễ lệch mỗi khi chỉnh padding/nội dung),
+          2 hàng tự xếp chồng theo flow bình thường bên trong khối luôn đứng yên. */}
+      <div className="mobile-static" style={{position:"sticky",top:0,zIndex:200,background:"#FCFBF8"}}>
+        {/* LEVEL 1 — REGION SELECTOR */}
+        <div style={{borderBottom:`1px solid ${APP_BORDER}`,padding:"14px 24px 0 24px"}}>
+          <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:12}}>
+            <div style={{width:3,height:30,background:"linear-gradient(180deg,#4f8fef 0%,#e05252 25%,#d13b4a 50%,#ffcc00 75%,#f0a0b5 100%)",borderRadius:2}}/>
+            <div>
+              <div style={{fontSize:16,fontWeight:700,color:APP_BRIGHT,letterSpacing:"-0.02em"}}>GIẢI PHẪU KINH TẾ TOÀN CẦU</div>
+              <div style={{color:APP_MUTED,fontSize:9,letterSpacing:"0.16em",textTransform:"uppercase",marginTop:1}}>MỸ • TRUNG QUỐC • NGA • EU • NHẬT BẢN • TỔNG QUAN — PHÂN TÍCH CHUYÊN SÂU HỢP NHẤT</div>
+            </div>
+          </div>
+          <div style={{display:"flex",gap:6,overflowX:"auto",paddingBottom:12}}>
+            {REGIONS.map((r, i) => (
+              <button key={r.id} onClick={() => selectRegion(i)} style={{
+                background: regionIdx === i ? r.accent : "#FFFFFF",
+                color: regionIdx === i ? "#fff" : APP_TEXT,
+                border: `0.5px solid ${regionIdx === i ? r.accent : APP_BORDER}`,
+                padding: "8px 16px", cursor: "pointer", borderRadius: 8,
+                fontSize: 13, fontWeight: regionIdx === i ? 700 : 500,
+                whiteSpace: "nowrap", transition: "all 0.15s",
+              }}>
+                {r.icon} {r.label}
+              </button>
+            ))}
           </div>
         </div>
-        <div style={{display:"flex",gap:2,overflowX:"auto"}}>
-          {REGIONS.map((r, i) => (
-            <button key={r.id} onClick={() => selectRegion(i)} style={{
-              background: regionIdx === i ? `${r.accent}20` : "transparent",
-              color: regionIdx === i ? r.accent : APP_MUTED,
-              border: "none",
-              borderBottom: regionIdx === i ? `3px solid ${r.accent}` : "3px solid transparent",
-              padding: "9px 18px", cursor: "pointer",
-              fontSize: 13, fontWeight: regionIdx === i ? 700 : 500,
-              whiteSpace: "nowrap", transition: "all 0.15s",
-              borderRadius: "6px 6px 0 0",
-            }}>
-              {r.icon} {r.label}
-            </button>
-          ))}
-        </div>
-      </div>
 
-      {/* LEVEL 2 — TAB SELECTOR WITHIN REGION */}
-      <div className="mobile-static" style={{background: region.bgGrad, borderBottom:`1px solid ${APP_BORDER}`,
-        padding:"12px 24px", position:"sticky", top:73, zIndex:150}}>
-        <div style={{display:"flex",gap:4,overflowX:"auto"}}>
-          {region.tabs.map((t) => (
-            <button key={t.id} onClick={() => { setTabIdx(t.id); window.__scrollArticleToTop?.(); }} style={{
-              background: tabIdx === t.id ? `${region.accent}18` : "transparent",
-              color: tabIdx === t.id ? region.accent : APP_TEXT,
-              border: "none",
-              borderBottom: tabIdx === t.id ? `3px solid ${region.accent}` : "3px solid transparent",
-              padding: "10px 16px", cursor: "pointer",
-              fontSize: 12.5, fontWeight: tabIdx === t.id ? 700 : 500,
-              whiteSpace: "nowrap", transition: "all 0.15s",
-              borderRadius: "6px 6px 0 0",
-            }}>
-              {t.icon} {t.label}
-            </button>
-          ))}
+        {/* LEVEL 2 — TAB SELECTOR WITHIN REGION */}
+        <div style={{borderBottom:`1px solid ${APP_BORDER}`,padding:"10px 24px"}}>
+          <div style={{display:"flex",gap:6,overflowX:"auto"}}>
+            {region.tabs.map((t) => (
+              <button key={t.id} onClick={() => { setTabIdx(t.id); window.__scrollArticleToTop?.(); }} style={{
+                background: tabIdx === t.id ? region.accent : "#FFFFFF",
+                color: tabIdx === t.id ? "#fff" : APP_TEXT,
+                border: `0.5px solid ${tabIdx === t.id ? region.accent : APP_BORDER}`,
+                padding: "7px 14px", cursor: "pointer", borderRadius: 8,
+                fontSize: 12.5, fontWeight: tabIdx === t.id ? 700 : 500,
+                whiteSpace: "nowrap", transition: "all 0.15s",
+              }}>
+                {t.icon} {t.label}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* CONTENT */}
-      <div style={{maxWidth:1300,margin:"0 auto",padding:"20px 24px"}}>
+      <div style={{padding:"20px 24px"}}>
         {region.content[tabIdx]}
 
         {nextTabLabel && (
