@@ -4505,6 +4505,7 @@ export default function App() {
   const selectRegion = (idx) => {
     setRegionIdx(idx);
     setTabIdx(0);
+    window.__scrollArticleToTop?.();
   };
 
   // Điều hướng "tab tiếp theo": hết tab trong vùng hiện tại thì nhảy sang vùng kế tiếp
@@ -4557,7 +4558,7 @@ export default function App() {
         padding:"12px 24px", position:"sticky", top:73, zIndex:150}}>
         <div style={{display:"flex",gap:4,overflowX:"auto"}}>
           {region.tabs.map((t) => (
-            <button key={t.id} onClick={() => setTabIdx(t.id)} style={{
+            <button key={t.id} onClick={() => { setTabIdx(t.id); window.__scrollArticleToTop?.(); }} style={{
               background: tabIdx === t.id ? `${region.accent}18` : "transparent",
               color: tabIdx === t.id ? region.accent : APP_TEXT,
               border: "none",

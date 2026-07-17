@@ -78,7 +78,7 @@ export default function SelfWorthDeep() {
         {/* PRIMARY NAV */}
         <div className="mobile-static" style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 10, borderBottom: `1px solid ${LINE}`, paddingBottom: 14, position: "sticky", top: 0, zIndex: 10, background: PAPER }}>
           {PRIMARY.map((p) => (
-            <button key={p.id} onClick={() => { setPrimary(p.id); setSub(p.subs[0].id); }}
+            <button key={p.id} onClick={() => { setPrimary(p.id); setSub(p.subs[0].id); window.__scrollArticleToTop?.(); }}
               style={{
                 fontFamily: SANS, fontSize: 12.8, padding: "8px 15px", borderRadius: 20, cursor: "pointer",
                 border: `1px solid ${primary === p.id ? ACCENT : LINE}`,
@@ -95,7 +95,7 @@ export default function SelfWorthDeep() {
         {current.subs.length > 1 && (
           <div style={{ display: "flex", gap: 5, flexWrap: "wrap", marginBottom: 22 }}>
             {current.subs.map((sb) => (
-              <button key={sb.id} onClick={() => setSub(sb.id)}
+              <button key={sb.id} onClick={() => { setSub(sb.id); window.__scrollArticleToTop?.(); }}
                 style={{
                   fontFamily: SANS, fontSize: 11.8, padding: "5px 12px", borderRadius: 4, cursor: "pointer",
                   border: `1px solid ${sub === sb.id ? ACCENT : LINE}`,

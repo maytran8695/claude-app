@@ -286,6 +286,11 @@ function App() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
   const [isSidebarOpen, setIsSidebarOpen] = useState(() => !(typeof window !== 'undefined' && window.innerWidth < 768));
+  // Hover-peek: khi sidebar đang thu gọn trên desktop, di chuột vào sẽ "lộ" tạm thời
+  // toàn bộ nội dung (kiểu Dock macOS) mà không đẩy layout nội dung chính.
+  const [isHoverPeek, setIsHoverPeek] = useState(false);
+  const isPeeking = !isMobile && !isSidebarOpen && isHoverPeek;
+  const isSidebarExpanded = isSidebarOpen || isPeeking;
   const contentScrollRef = useRef(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
 
@@ -383,7 +388,7 @@ function App() {
   const activeTheme = activeArticle ? getTheme(activeArticle.category) : categoryThemes.Default;
 
   return (
-    <div className="flex h-screen bg-slate-50 text-slate-900 overflow-hidden font-sans">
+    <div className="relative flex h-screen bg-slate-50 text-slate-900 overflow-hidden font-sans">
       
       {/* Lớp phủ mờ phía sau sidebar khi mở dạng overlay trên mobile */}
       {isSidebarOpen && isMobile && (
@@ -396,16 +401,25 @@ function App() {
       {/* ==========================================
           1. SIDEBAR SANG XỊN MỊN (DRAG TO RESIZE)
           Mobile: overlay trượt vào từ trái. Desktop: nằm trong layout, kéo giãn được.
+          Khi thu gọn trên desktop: hover vào sẽ "lộ" tạm thời (kiểu Dock macOS),
+          dùng position:absolute nên không đẩy layout nội dung chính.
           ========================================== */}
+      {/* Spacer giữ chỗ 68px trong flex layout CHỈ khi đang hover-peek — lúc đó sidebar
+          thật chuyển sang absolute (rời khỏi flow) nên cần spacer thế chỗ để nội dung
+          chính không bị xô lệch. Lúc không peek, sidebar tự nằm trong flow, không cần spacer. */}
+      {isPeeking && <div className="shrink-0" style={{ width: '68px' }} />}
       <div
-        style={!isMobile ? { width: isSidebarOpen ? `${sidebarWidth}px` : '68px' } : undefined}
-        className={`bg-white border-r border-slate-200/60 flex flex-col h-full transition-transform md:transition-[width] duration-200 ease-out
-          fixed md:relative inset-y-0 left-0 z-40 md:z-30 w-[82vw] max-w-[300px] md:w-auto md:shrink-0
+        onMouseEnter={() => !isMobile && !isSidebarOpen && setIsHoverPeek(true)}
+        onMouseLeave={() => setIsHoverPeek(false)}
+        style={!isMobile ? { width: isSidebarExpanded ? `${sidebarWidth}px` : '68px' } : undefined}
+        className={`bg-white border-r border-slate-200/60 flex flex-col h-full transition-all duration-200 ease-out
+          fixed inset-y-0 left-0 z-40 md:z-30 w-[82vw] max-w-[300px] md:w-auto md:shrink-0
+          ${isPeeking ? 'md:absolute md:shadow-2xl' : 'md:relative'}
           ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
       >
         {/* Header Sidebar */}
         <div className="h-16 border-b border-slate-200/60 flex items-center justify-between px-4 shrink-0">
-          {isSidebarOpen ? (
+          {isSidebarExpanded ? (
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center text-white font-extrabold text-sm shadow-sm">
                 M
@@ -430,7 +444,7 @@ function App() {
         </div>
 
         {/* Ô Tìm Kiếm */}
-        {isSidebarOpen && (
+        {isSidebarExpanded && (
           <div className="p-3 border-b border-slate-100 shrink-0">
             <div className="relative">
               <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400 text-xs">
@@ -449,7 +463,7 @@ function App() {
 
         {/* Danh Sách Menu Các Chuyên Mục */}
         <div className="flex-1 overflow-y-auto p-3 space-y-6">
-          {isSidebarOpen ? (
+          {isSidebarExpanded ? (
             Object.entries(groupedArticles).map(([category, items]) => {
               const theme = getTheme(category);
               return (

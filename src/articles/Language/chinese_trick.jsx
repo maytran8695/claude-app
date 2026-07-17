@@ -8,7 +8,7 @@ const CONF = {
   high: { label: "Cao", color: "#3E6259", bg: "#E4EBE7" },
   mid: { label: "Trung bình", color: "#A6822F", bg: "#F1E9D6" },
   low: { label: "Thấp", color: "#8B7F6E", bg: "#EAE5DC" },
-  struct: { label: "Quy tắc cố định", color: "#A13A2E", bg: "#F3E1DD" },
+  struct: { label: "Quy tắc cố định", color: "#2B3A55", bg: "rgba(43,58,85,0.12)" },
 };
 
 function ConfPill({ level }) {
@@ -37,7 +37,7 @@ function Example({ hv, py, note }) {
   return (
     <div style={{ display: "flex", alignItems: "baseline", gap: "6px", fontSize: "13.5px", lineHeight: 1.5 }}>
       <span style={{ fontFamily: "'Noto Serif SC', serif", color: "#22201C" }}>{hv}</span>
-      <span style={{ color: "#A13A2E", fontFamily: "Inter, sans-serif" }}>→</span>
+      <span style={{ color: "#2B3A55", fontFamily: "Inter, sans-serif" }}>→</span>
       <span style={{ fontFamily: "'Noto Serif SC', serif", fontWeight: 600, color: "#22201C" }}>{py}</span>
       {note && <span style={{ color: "#8B7F6E", fontSize: "12px" }}>({note})</span>}
     </div>
@@ -46,11 +46,11 @@ function Example({ hv, py, note }) {
 
 function RuleCard({ rule }) {
   return (
-    <div style={{ background: "#F6F1E7", border: "1px solid #D9CFBB", borderRadius: "10px", padding: "18px 20px", marginBottom: "14px" }}>
+    <div style={{ background: "rgba(43,58,85,0.06)", border: "1px solid rgba(43,58,85,0.25)", borderRadius: "10px", padding: "18px 20px", marginBottom: "14px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px", flexWrap: "wrap", gap: "8px" }}>
         <div style={{ fontFamily: "'Noto Serif SC', serif", fontWeight: 700, fontSize: "17px", color: "#22201C" }}>
           {rule.from}
-          <span style={{ color: "#A13A2E", margin: "0 8px" }}>→</span>
+          <span style={{ color: "#2B3A55", margin: "0 8px" }}>→</span>
           {rule.to}
         </div>
         <ConfPill level={rule.conf} />
@@ -60,7 +60,7 @@ function RuleCard({ rule }) {
           {rule.desc}
         </div>
       )}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))", gap: "6px 16px", borderTop: "1px dashed #D9CFBB", paddingTop: "10px" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))", gap: "6px 16px", borderTop: "1px dashed rgba(43,58,85,0.25)", paddingTop: "10px" }}>
         {rule.examples.map((ex, i) => (
           <Example key={i} {...ex} />
         ))}
@@ -72,7 +72,7 @@ function RuleCard({ rule }) {
 function SectionHeader({ title, subtitle }) {
   return (
     <div style={{ margin: "26px 0 12px" }}>
-      <h2 style={{ fontFamily: "'Noto Serif SC', serif", fontSize: "19px", fontWeight: 700, color: "#22201C", margin: "0 0 4px", borderBottom: "2px solid #A13A2E", display: "inline-block", paddingBottom: "3px" }}>
+      <h2 style={{ fontFamily: "'Noto Serif SC', serif", fontSize: "19px", fontWeight: 700, color: "#22201C", margin: "0 0 4px", borderBottom: "2px solid #2B3A55", display: "inline-block", paddingBottom: "3px" }}>
         {title}
       </h2>
       {subtitle && <div style={{ fontSize: "12.5px", color: "#8B7F6E", marginTop: "4px" }}>{subtitle}</div>}
@@ -257,13 +257,13 @@ const chengyuList = [
 ];
 
 const TABS = [
-  { id: "hv", label: "Hán Việt ↔ QT" },
-  { id: "phonetic", label: "Bộ biểu âm" },
+  { id: "hv", label: "Hán Việt" },
+  { id: "phonetic", label: "Biểu âm" },
   { id: "sandhi", label: "Biến điệu" },
   { id: "measure", label: "Lượng từ" },
-  { id: "freq", label: "Từ vựng tần suất" },
-  { id: "minimal", label: "Cặp tối thiểu" },
-  { id: "interleave", label: "Xen kẽ luyện tập" },
+  { id: "freq", label: "Tần suất" },
+  { id: "minimal", label: "Cặp âm" },
+  { id: "interleave", label: "Xen kẽ" },
   { id: "chengyu", label: "Thành ngữ" },
 ];
 
@@ -319,46 +319,47 @@ export default function HanVietKey() {
     phoneticGroups.length + sandhiRules.length + measureWords.length + minimalPairs.length + chengyuList.length;
 
   return (
-    <div style={{ background: "#EDE6D8", fontFamily: "Inter, sans-serif" }}>
+    <div style={{ background: "#F7F6F2", fontFamily: "Inter, sans-serif" }}>
       <style>{FONT_IMPORT}</style>
 
-      <div style={{ background: "#22201C", padding: "36px 24px 30px", position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", top: "-30px", right: "-10px", fontFamily: "'Noto Serif SC', serif", fontSize: "180px", color: "rgba(255,255,255,0.03)", fontWeight: 700, lineHeight: 1, userSelect: "none" }}>
-          解
-        </div>
-        <div style={{ maxWidth: "820px", margin: "0 auto", position: "relative" }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#A13A2E", color: "#F6F1E7", fontSize: "11px", fontWeight: 700, letterSpacing: "0.08em", padding: "4px 12px", borderRadius: "3px", marginBottom: "16px" }}>
-            BẢNG GIẢI MÃ · 解碼表 · {totalRules} MỤC
+      {/* Header — đồng bộ .hd của ChunkAtlas_EN.jsx / BestPracticesGuide.jsx */}
+      <div style={{ display: "flex", alignItems: "center", gap: 18, padding: "14px 20px", borderBottom: "1px solid #E4E1D8", background: "#FCFBF8" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <div style={{ width: 36, height: 36, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", border: "1.5px solid #2B3A55", color: "#2B3A55", borderRadius: 3, fontSize: 20, fontWeight: 700, fontFamily: "'Noto Serif SC', serif" }}>
+            解
           </div>
-          <h1 style={{ fontFamily: "'Noto Serif SC', serif", color: "#F6F1E7", fontSize: "30px", fontWeight: 700, margin: "0 0 8px", lineHeight: 1.25 }}>
-            Bộ công cụ học tiếng Trung
-          </h1>
-          <p style={{ color: "#B8AF9E", fontSize: "14.5px", lineHeight: 1.6, maxWidth: "660px", margin: 0 }}>
-            Từ nền Hán Việt đến các đòn bẩy khác: bộ biểu âm, biến điệu, lượng từ,
-            từ vựng tần suất, cặp tối thiểu và thành ngữ. Phần lớn là quy luật{" "}
-            <b style={{ color: "#DCD4C4" }}>thống kê xu hướng</b> (trừ Biến điệu — đây
-            là quy tắc cố định) — luôn kiểm tra lại bằng từ điển khi gặp từ mới.
-          </p>
+          <div>
+            <div style={{ fontFamily: "Georgia, serif", fontWeight: 700, fontSize: 15, letterSpacing: "0.04em", color: "#23231E" }}>BẢNG GIẢI MÃ · 解碼表</div>
+            <div style={{ fontSize: 11, color: "#6B6558", marginTop: 1 }}>Tiếng Trung · {totalRules} mục · từ nền Hán Việt đến thành ngữ</div>
+          </div>
         </div>
       </div>
 
-      <div className="mobile-static" style={{ background: "#22201C", borderTop: "1px solid #3A362F", position: "sticky", top: 0, zIndex: 10 }}>
-        <div style={{ maxWidth: "820px", margin: "0 auto", display: "flex", overflowX: "auto" }}>
+      {/* Breadcrumb — đồng bộ .crumb-pill của ChunkAtlas_EN.jsx */}
+      <nav className="mobile-static" style={{ position: "sticky", top: 0, zIndex: 10, background: "#FCFBF8", borderBottom: "1px solid #E4E1D8" }}>
+        <div style={{ display: "flex", gap: 6, flexWrap: "wrap", padding: "9px 20px" }}>
           {TABS.map((t) => (
-            <button key={t.id} onClick={() => setTab(t.id)}
-              style={{ background: "none", border: "none", padding: "14px 18px", fontFamily: "Inter, sans-serif", fontSize: "13px", fontWeight: 600, color: tab === t.id ? "#F6F1E7" : "#8B8478", borderBottom: tab === t.id ? "2px solid #A13A2E" : "2px solid transparent", cursor: "pointer", whiteSpace: "nowrap", transition: "color 0.15s" }}>
+            <button key={t.id} onClick={() => { setTab(t.id); window.__scrollArticleToTop?.(); }}
+              style={{
+                border: "1px solid " + (tab === t.id ? "#2B3A55" : "#E4E1D8"),
+                background: tab === t.id ? "#2B3A55" : "#fff",
+                color: tab === t.id ? "#fff" : "#6B6558",
+                borderRadius: 20, padding: "7px 13px", cursor: "pointer",
+                fontFamily: "Inter, sans-serif", fontSize: 12.5, fontWeight: 600,
+                whiteSpace: "nowrap", transition: "all .12s"
+              }}>
               {t.label}
             </button>
           ))}
         </div>
-      </div>
+      </nav>
 
-      <div style={{ maxWidth: "820px", margin: "0 auto", padding: "18px 20px 0" }}>
+      <div style={{ padding: "18px 20px 0" }}>
         <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Tìm chữ Hán, âm Hán Việt, hoặc pinyin…"
           style={{ width: "100%", boxSizing: "border-box", padding: "10px 14px", borderRadius: "8px", border: "1px solid #D9CFBB", background: "#F6F1E7", fontFamily: "'Noto Serif SC', serif", fontSize: "14px", color: "#22201C", outline: "none" }} />
       </div>
 
-      <div style={{ maxWidth: "820px", margin: "0 auto", padding: "16px 20px 60px" }}>
+      <div style={{ padding: "16px 20px 60px" }}>
         {tab === "hv" && (
           <>
             <Intro text="Ba lớp quy luật đầu (thanh điệu/phụ âm/vần) mang tính thống kê xu hướng — riêng lớp Từ giả Hán Việt không phải quy luật âm mà là cạm bẫy ngữ nghĩa." />
@@ -370,13 +371,13 @@ export default function HanVietKey() {
             {fFinal.map((r, i) => <RuleCard key={i} rule={r} />)}
             <SectionHeader title="4. Từ giả Hán Việt" subtitle="Âm giống nhau nhưng nghĩa đã lệch qua nhiều thế kỷ" />
             {fFriends.map((f, i) => (
-              <div key={i} style={{ background: "#F6F1E7", border: "1px solid #E0B8B0", borderLeft: "4px solid #A13A2E", borderRadius: "8px", padding: "16px 20px", marginBottom: "14px" }}>
+              <div key={i} style={{ background: "rgba(43,58,85,0.06)", border: "1px solid rgba(43,58,85,0.25)", borderLeft: "4px solid #2B3A55", borderRadius: "8px", padding: "16px 20px", marginBottom: "14px" }}>
                 <div style={{ display: "flex", alignItems: "baseline", gap: "10px", marginBottom: "10px" }}>
                   <span style={{ fontFamily: "'Noto Serif SC', serif", fontSize: "22px", fontWeight: 700, color: "#22201C" }}>{f.char}</span>
-                  <span style={{ fontFamily: "'Noto Serif', serif", fontStyle: "italic", color: "#A13A2E", fontSize: "15px" }}>{f.hv}</span>
+                  <span style={{ fontFamily: "'Noto Serif', serif", fontStyle: "italic", color: "#2B3A55", fontSize: "15px" }}>{f.hv}</span>
                 </div>
                 <div style={{ fontSize: "13px", lineHeight: 1.6, color: "#5C5548", marginBottom: "6px" }}><b style={{ color: "#8B7F6E" }}>VN nghĩ là:</b> {f.hvMeaning}</div>
-                <div style={{ fontSize: "13px", lineHeight: 1.6, color: "#5C5548", marginBottom: "6px" }}><b style={{ color: "#A13A2E" }}>Thực ra là:</b> {f.cnMeaning}</div>
+                <div style={{ fontSize: "13px", lineHeight: 1.6, color: "#5C5548", marginBottom: "6px" }}><b style={{ color: "#2B3A55" }}>Thực ra là:</b> {f.cnMeaning}</div>
                 <div style={{ fontSize: "12.5px", lineHeight: 1.6, color: "#3E6259", fontStyle: "italic" }}>{f.correct}</div>
               </div>
             ))}
@@ -389,17 +390,17 @@ export default function HanVietKey() {
             <Intro text="~80% chữ Hán là hình thanh tự: nửa biểu nghĩa + nửa biểu âm. Học các bộ phận biểu âm phổ biến giúp đoán ÂM ĐỌC của chữ mới, không cần học thuộc riêng lẻ." />
             {fPhonetic.length === 0 && <Empty />}
             {fPhonetic.map((g, i) => (
-              <div key={i} style={{ background: "#F6F1E7", border: "1px solid #D9CFBB", borderRadius: "10px", padding: "18px 20px", marginBottom: "14px" }}>
+              <div key={i} style={{ background: "rgba(43,58,85,0.06)", border: "1px solid rgba(43,58,85,0.25)", borderRadius: "10px", padding: "18px 20px", marginBottom: "14px" }}>
                 <div style={{ display: "flex", alignItems: "baseline", gap: "10px", marginBottom: "12px" }}>
-                  <span style={{ fontFamily: "'Noto Serif SC', serif", fontSize: "26px", fontWeight: 700, color: "#A13A2E" }}>{g.comp}</span>
+                  <span style={{ fontFamily: "'Noto Serif SC', serif", fontSize: "26px", fontWeight: 700, color: "#2B3A55" }}>{g.comp}</span>
                   <span style={{ fontFamily: "'Noto Serif SC', serif", fontWeight: 600, fontSize: "15px" }}>{g.py}</span>
                   <span style={{ fontSize: "12.5px", color: "#8B7F6E" }}>({g.meaning})</span>
                 </div>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gap: "8px 16px", borderTop: "1px dashed #D9CFBB", paddingTop: "12px" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gap: "8px 16px", borderTop: "1px dashed rgba(43,58,85,0.25)", paddingTop: "12px" }}>
                   {g.derived.map((d, j) => (
                     <div key={j} style={{ fontSize: "13.5px", lineHeight: 1.5 }}>
                       <span style={{ fontFamily: "'Noto Serif SC', serif", color: "#22201C", fontWeight: 600 }}>{d.hv}</span>{" "}
-                      <span style={{ color: "#A13A2E" }}>{d.py}</span>{" "}
+                      <span style={{ color: "#2B3A55" }}>{d.py}</span>{" "}
                       <span style={{ color: "#8B7F6E", fontSize: "12px" }}>— {d.meaning}</span>
                     </div>
                   ))}
@@ -422,9 +423,9 @@ export default function HanVietKey() {
             <Intro text="Tiếng Việt có sẵn hệ thống loại từ (cái, con, quyển, chiếc...) — bạn chỉ cần map lại sang lượng từ tiếng Trung, không phải học khái niệm này từ đầu như người phương Tây." />
             {fMeasure.length === 0 && <Empty />}
             {fMeasure.map((m, i) => (
-              <div key={i} style={{ background: "#F6F1E7", border: "1px solid #D9CFBB", borderRadius: "10px", padding: "14px 20px", marginBottom: "10px", display: "flex", alignItems: "center", flexWrap: "wrap", gap: "14px" }}>
+              <div key={i} style={{ background: "rgba(43,58,85,0.06)", border: "1px solid rgba(43,58,85,0.25)", borderRadius: "10px", padding: "14px 20px", marginBottom: "10px", display: "flex", alignItems: "center", flexWrap: "wrap", gap: "14px" }}>
                 <div style={{ fontFamily: "'Noto Serif SC', serif", fontSize: "20px", fontWeight: 700, color: "#22201C", minWidth: "70px" }}>{m.hanzi}</div>
-                <div style={{ fontFamily: "'Noto Serif SC', serif", color: "#A13A2E", fontWeight: 600, minWidth: "50px" }}>{m.py}</div>
+                <div style={{ fontFamily: "'Noto Serif SC', serif", color: "#2B3A55", fontWeight: 600, minWidth: "50px" }}>{m.py}</div>
                 <div style={{ fontSize: "13px", color: "#5C5548", flex: "1 1 200px" }}><b style={{ color: "#3E6259" }}>≈ {m.loaiTu}</b></div>
                 <div style={{ fontSize: "12.5px", color: "#8B7F6E", fontStyle: "italic" }}>{m.example}</div>
               </div>
@@ -437,7 +438,7 @@ export default function HanVietKey() {
             <Intro text="HSK không xếp theo tần suất sử dụng thực tế. ~1000-2500 từ tần suất cao nhất phủ hơn 90% văn bản/hội thoại hằng ngày — ưu tiên nhóm này trước khi học tuần tự theo giáo trình." />
             {fFreq.length === 0 && <Empty />}
             {fFreq.map((g, i) => (
-              <div key={i} style={{ background: "#F6F1E7", border: "1px solid #D9CFBB", borderRadius: "10px", padding: "16px 20px", marginBottom: "14px" }}>
+              <div key={i} style={{ background: "rgba(43,58,85,0.06)", border: "1px solid rgba(43,58,85,0.25)", borderRadius: "10px", padding: "16px 20px", marginBottom: "14px" }}>
                 <div style={{ fontFamily: "'Noto Serif SC', serif", fontWeight: 700, fontSize: "15px", color: "#22201C", marginBottom: "10px" }}>{g.label}</div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
                   {g.words.map((w, j) => (
@@ -454,8 +455,8 @@ export default function HanVietKey() {
             <Intro text="Trước khi luyện nói đúng thanh điệu, hãy luyện tai NHẬN DIỆN riêng biệt các thanh — dùng các bộ cặp tối thiểu (chỉ khác thanh điệu) này để tự kiểm tra." />
             {fPairs.length === 0 && <Empty />}
             {fPairs.map((p, i) => (
-              <div key={i} style={{ background: "#F6F1E7", border: "1px solid #D9CFBB", borderRadius: "10px", padding: "16px 20px", marginBottom: "14px" }}>
-                <div style={{ fontFamily: "'Noto Serif SC', serif", fontWeight: 700, fontSize: "14px", color: "#A13A2E", marginBottom: "10px", letterSpacing: "0.03em" }}>{p.base.toUpperCase()}</div>
+              <div key={i} style={{ background: "rgba(43,58,85,0.06)", border: "1px solid rgba(43,58,85,0.25)", borderRadius: "10px", padding: "16px 20px", marginBottom: "14px" }}>
+                <div style={{ fontFamily: "'Noto Serif SC', serif", fontWeight: 700, fontSize: "14px", color: "#2B3A55", marginBottom: "10px", letterSpacing: "0.03em" }}>{p.base.toUpperCase()}</div>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))", gap: "10px" }}>
                   {p.forms.map((f, j) => (
                     <div key={j} style={{ fontSize: "13.5px", lineHeight: 1.5 }}>
@@ -473,7 +474,7 @@ export default function HanVietKey() {
         {tab === "interleave" && (
           <>
             <Intro text="Interleaving (xen kẽ) — trộn nhiều kỹ năng trong cùng một buổi học hiệu quả hơn học khối (block practice), theo nghiên cứu của Robert Bjork về 'desirable difficulty'." />
-            <div style={{ background: "#F6F1E7", border: "1px solid #D9CFBB", borderRadius: "10px", padding: "20px 22px", marginBottom: "14px" }}>
+            <div style={{ background: "rgba(43,58,85,0.06)", border: "1px solid rgba(43,58,85,0.25)", borderRadius: "10px", padding: "20px 22px", marginBottom: "14px" }}>
               <div style={{ fontFamily: "'Noto Serif SC', serif", fontWeight: 700, fontSize: "16px", color: "#22201C", marginBottom: "10px" }}>
                 Vì sao xen kẽ hiệu quả hơn học khối?
               </div>
@@ -484,7 +485,7 @@ export default function HanVietKey() {
                 buộc trí nhớ mã hóa sâu hơn, giữ được lâu hơn.
               </p>
             </div>
-            <div style={{ background: "#F6F1E7", border: "1px solid #D9CFBB", borderRadius: "10px", padding: "20px 22px", marginBottom: "14px" }}>
+            <div style={{ background: "rgba(43,58,85,0.06)", border: "1px solid rgba(43,58,85,0.25)", borderRadius: "10px", padding: "20px 22px", marginBottom: "14px" }}>
               <div style={{ fontFamily: "'Noto Serif SC', serif", fontWeight: 700, fontSize: "16px", color: "#22201C", marginBottom: "12px" }}>
                 Mẫu xen kẽ trong 1 buổi 25 phút (vi-interleaving)
               </div>
@@ -495,8 +496,8 @@ export default function HanVietKey() {
                 ["4", "Viết lại 3-5 câu từ trí nhớ (active recall)", "5 phút"],
                 ["5", "Nói lại toàn bộ đoạn theo cách của mình", "5 phút"],
               ].map(([n, text, time]) => (
-                <div key={n} style={{ display: "flex", gap: "12px", alignItems: "baseline", padding: "8px 0", borderBottom: "1px dashed #D9CFBB" }}>
-                  <span style={{ fontFamily: "'Noto Serif SC', serif", fontWeight: 700, color: "#A13A2E", minWidth: "18px" }}>{n}</span>
+                <div key={n} style={{ display: "flex", gap: "12px", alignItems: "baseline", padding: "8px 0", borderBottom: "1px dashed rgba(43,58,85,0.25)" }}>
+                  <span style={{ fontFamily: "'Noto Serif SC', serif", fontWeight: 700, color: "#2B3A55", minWidth: "18px" }}>{n}</span>
                   <span style={{ fontSize: "13.5px", color: "#22201C", flex: 1 }}>{text}</span>
                   <span style={{ fontSize: "12px", color: "#8B7F6E" }}>{time}</span>
                 </div>
@@ -513,10 +514,10 @@ export default function HanVietKey() {
             <Intro text="Nhiều thành ngữ tiếng Việt là dịch/mượn trực tiếp từ chengyu (成语) cổ điển. Với nền Hán Việt, đây là lớp từ vựng 'sang trọng' có ROI cao hơn hẳn so với người học phương Tây." />
             {fChengyu.length === 0 && <Empty />}
             {fChengyu.map((c, i) => (
-              <div key={i} style={{ background: "#F6F1E7", border: "1px solid #D9CFBB", borderRadius: "10px", padding: "16px 20px", marginBottom: "12px" }}>
+              <div key={i} style={{ background: "rgba(43,58,85,0.06)", border: "1px solid rgba(43,58,85,0.25)", borderRadius: "10px", padding: "16px 20px", marginBottom: "12px" }}>
                 <div style={{ display: "flex", alignItems: "baseline", gap: "10px", flexWrap: "wrap", marginBottom: "8px" }}>
                   <span style={{ fontFamily: "'Noto Serif SC', serif", fontSize: "19px", fontWeight: 700, color: "#22201C" }}>{c.hanzi}</span>
-                  <span style={{ fontFamily: "'Noto Serif SC', serif", color: "#A13A2E", fontWeight: 600 }}>{c.py}</span>
+                  <span style={{ fontFamily: "'Noto Serif SC', serif", color: "#2B3A55", fontWeight: 600 }}>{c.py}</span>
                 </div>
                 <div style={{ fontSize: "13.5px", fontStyle: "italic", color: "#3E6259", marginBottom: "6px" }}>{c.hv}</div>
                 <div style={{ fontSize: "13px", color: "#5C5548", lineHeight: 1.6 }}>{c.meaning}</div>
@@ -530,10 +531,10 @@ export default function HanVietKey() {
           const next = idx >= 0 && idx < TABS.length - 1 ? TABS[idx + 1] : null;
           if (!next) return null;
           return (
-            <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 22, paddingTop: 14, borderTop: "1px solid #D9CFBB" }}>
+            <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 22, paddingTop: 14, borderTop: "1px solid rgba(43,58,85,0.25)" }}>
               <button
                 onClick={() => { setTab(next.id); window.__scrollArticleToTop?.(); }}
-                style={{ display: "flex", alignItems: "center", gap: 6, padding: "9px 15px", borderRadius: 8, border: "1px solid #A13A2E", background: "#F6F1E7", color: "#A13A2E", fontFamily: "Inter, sans-serif", fontSize: 13, fontWeight: 600, cursor: "pointer" }}
+                style={{ display: "flex", alignItems: "center", gap: 6, padding: "9px 15px", borderRadius: 8, border: "1px solid #2B3A55", background: "rgba(43,58,85,0.06)", color: "#2B3A55", fontFamily: "Inter, sans-serif", fontSize: 13, fontWeight: 600, cursor: "pointer" }}
               >
                 Tiếp: {next.label} →
               </button>

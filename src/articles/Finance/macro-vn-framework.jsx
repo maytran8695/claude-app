@@ -520,7 +520,7 @@ function DetailPanel({ tabs, color }) {
     <div style={{ margin: "0 0 10px 10px", border: `1.5px solid ${color}30`, borderRadius: 10, overflow: "hidden" }}>
       <div style={{ display: "flex", borderBottom: `1px solid ${color}20`, background: color + "08" }}>
         {list.map(t => (
-          <button key={t.id} onClick={() => setTab(t.id)} style={{ flex: 1, border: "none", cursor: "pointer", padding: "7px 1px", fontSize: 9.5, fontWeight: tab === t.id ? 700 : 500, color: tab === t.id ? color : "#94a3b8", background: tab === t.id ? "#fff" : "transparent", borderBottom: tab === t.id ? `2px solid ${color}` : "2px solid transparent" }}>{t.label}</button>
+          <button key={t.id} onClick={() => setTab(t.id)} style={{ flex: 1, textAlign: "center", border: "none", cursor: "pointer", padding: "7px 1px", fontSize: 9.5, fontWeight: tab === t.id ? 700 : 500, color: tab === t.id ? color : "#94a3b8", background: tab === t.id ? "#fff" : "transparent", borderBottom: tab === t.id ? `2px solid ${color}` : "2px solid transparent" }}>{t.label}</button>
         ))}
       </div>
       <div style={{ padding: "12px 12px 8px" }}>
@@ -553,7 +553,7 @@ function ChildPanel({ item, parentColor, onSelect, selected }) {
 }
 
 function Section({ section, color, lightBg }) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const [selected, setSelected] = useState(null);
   return (
     <div style={{ marginBottom: 8 }}>
@@ -615,7 +615,7 @@ function ExchangeBlock({ data, open, onToggle }) {
           </div>
           <div style={{ display: "flex", borderBottom: `1px solid ${data.border}`, background: "#fff" }}>
             {[{ id: "points", l: "Cơ chế" }, { id: "pitfalls", l: "Sai lầm" }, { id: "signals", l: "Tín hiệu" }, { id: "data", l: "Dữ liệu" }].map(t => (
-              <button key={t.id} onClick={() => setTab(t.id)} style={{ flex: 1, border: "none", cursor: "pointer", padding: "8px 2px", fontSize: 10.5, fontWeight: tab === t.id ? 700 : 500, color: tab === t.id ? data.color : "#94a3b8", background: tab === t.id ? data.lightBg : "transparent", borderBottom: tab === t.id ? `2px solid ${data.color}` : "2px solid transparent" }}>{t.l}</button>
+              <button key={t.id} onClick={() => setTab(t.id)} style={{ flex: 1, textAlign: "center", border: "none", cursor: "pointer", padding: "8px 2px", fontSize: 10.5, fontWeight: tab === t.id ? 700 : 500, color: tab === t.id ? data.color : "#94a3b8", background: tab === t.id ? data.lightBg : "transparent", borderBottom: tab === t.id ? `2px solid ${data.color}` : "2px solid transparent" }}>{t.l}</button>
             ))}
           </div>
           <div style={{ padding: "12px 14px 10px" }}>
@@ -700,7 +700,7 @@ function AdvancedSection({ topic }) {
           </div>
           <div style={{ display: "flex", borderBottom: `1px solid ${topic.border}`, background: topic.bg }}>
             {[{ id: "mechanics", l: "Cơ chế" }, { id: "signals", l: "Tín hiệu" }, { id: "vnContext", l: "Dữ liệu" }].map(t => (
-              <button key={t.id} onClick={() => setTab(t.id)} style={{ flex: 1, border: "none", cursor: "pointer", padding: "8px 3px", fontSize: 11, fontWeight: tab === t.id ? 700 : 500, color: tab === t.id ? topic.color : "#94a3b8", background: tab === t.id ? "#fff" : "transparent", borderBottom: tab === t.id ? `2px solid ${topic.color}` : "2px solid transparent" }}>{t.l}</button>
+              <button key={t.id} onClick={() => setTab(t.id)} style={{ flex: 1, textAlign: "center", border: "none", cursor: "pointer", padding: "8px 3px", fontSize: 11, fontWeight: tab === t.id ? 700 : 500, color: tab === t.id ? topic.color : "#94a3b8", background: tab === t.id ? "#fff" : "transparent", borderBottom: tab === t.id ? `2px solid ${topic.color}` : "2px solid transparent" }}>{t.l}</button>
             ))}
           </div>
           <div style={{ padding: "12px 14px 8px" }}>
@@ -728,11 +728,13 @@ function AdvancedSection({ topic }) {
 // ══════════════ MAIN COMPONENT ══════════════
 
 export default function MacroVNFrameworkExpert() {
-  const [openBlock, setOpenBlock] = useState(null);
+  // Mặc định mở sẵn 2 khối chính (realEconomy, financial) — auto-expand 1 level
+  // xuống 6 tab/section chính bên trong, thay vì phải bấm mở từng khối.
+  const [openBlocks, setOpenBlocks] = useState({ realEconomy: true, financial: true });
   const [showActors, setShowActors] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [showUpdates, setShowUpdates] = useState(true);
-  const toggle = id => setOpenBlock(p => p === id ? null : id);
+  const toggle = id => setOpenBlocks(p => ({ ...p, [id]: !p[id] }));
 
   const UPDATES = [
     { t: "Nâng hạng FTSE hiệu lực 21/9/2026", d: "Công bố 7/10/2025, xác nhận sau rà soát tháng 3/2026. Đưa vào rổ theo nhiều giai đoạn tới 2027. Danh sách cổ phiếu công bố 21/8/2026.", c: "#16a34a" },
@@ -791,9 +793,9 @@ export default function MacroVNFrameworkExpert() {
         )}
       </div>
 
-      <MainBlock data={DATA.realEconomy} open={openBlock === "realEconomy"} onToggle={() => toggle("realEconomy")} />
-      <MainBlock data={DATA.financial} open={openBlock === "financial"} onToggle={() => toggle("financial")} />
-      <ExchangeBlock data={DATA.exchange} open={openBlock === "exchange"} onToggle={() => toggle("exchange")} />
+      <MainBlock data={DATA.realEconomy} open={!!openBlocks.realEconomy} onToggle={() => toggle("realEconomy")} />
+      <MainBlock data={DATA.financial} open={!!openBlocks.financial} onToggle={() => toggle("financial")} />
+      <ExchangeBlock data={DATA.exchange} open={!!openBlocks.exchange} onToggle={() => toggle("exchange")} />
 
       <div style={{ border: `1.5px solid ${showActors ? "#6366f1" : "#e2e8f0"}`, borderRadius: 14, overflow: "hidden", background: "#fff", marginBottom: 12 }}>
         <button onClick={() => setShowActors(o => !o)} style={{ width: "100%", border: "none", cursor: "pointer", padding: "14px 16px", background: showActors ? "#eef2ff" : "#fff", display: "flex", justifyContent: "space-between", alignItems: "center" }}>

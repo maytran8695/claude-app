@@ -3852,20 +3852,20 @@ export default function App() {
         <header className="mb-4">
           <h1 style={{ fontFamily: serif, color: C.ink, fontSize: 32, lineHeight: 1.15 }}>Khung Sống Lành Mạnh Toàn Diện</h1>
         </header>
-        <nav className="flex flex-wrap gap-2 mb-4 mobile-static" style={{ position: "sticky", top: 0, zIndex: 10, background: C.bg, padding: "10px 0", borderBottom: `1px solid ${C.line}` }}>
+        <nav className="flex flex-wrap gap-1.5 mb-4 mobile-static" style={{ position: "sticky", top: 0, zIndex: 10, background: C.bg, padding: "10px 0", borderBottom: `1px solid ${C.line}` }}>
           {tabs.map((t) => {
             const Icon = t.icon;
             const isActive = active === t.id;
             return (
-              <button key={t.id} onClick={() => setActive(t.id)} className="flex items-center gap-2 shrink-0 transition-all" style={{
-                padding: "10px 16px",
-                borderRadius: 10,
+              <button key={t.id} onClick={() => { setActive(t.id); window.__scrollArticleToTop?.(); }} className="flex items-center gap-1.5 shrink-0 transition-all" style={{
+                padding: "7px 10px",
+                borderRadius: 9,
                 background: isActive ? C.gold : C.panel,
                 border: `1px solid ${isActive ? C.gold : C.line}`,
                 boxShadow: isActive ? `0 2px 10px ${C.gold}33` : "none",
               }}>
-                <Icon size={15} color={isActive ? "#FFFFFF" : C.inkDim} />
-                <span style={{ fontFamily: mono, fontSize: 12.5, fontWeight: 700, color: isActive ? "#FFFFFF" : C.ink, letterSpacing: "0.02em" }} className="whitespace-nowrap">
+                <Icon size={13} color={isActive ? "#FFFFFF" : C.inkDim} />
+                <span style={{ fontFamily: mono, fontSize: 11, fontWeight: 700, color: isActive ? "#FFFFFF" : C.ink, letterSpacing: "0.02em" }} className="whitespace-nowrap">
                   {t.label}
                 </span>
               </button>

@@ -13,6 +13,16 @@ const TIERS = [
 
 const ACC = "#2B3A55";
 
+// Chỉ hiện số thứ tự trong mã chương ("F11" -> "11"), bỏ chữ cái tầng đứng trước
+function chapNum(code) {
+  return code.replace(/^[A-Za-z]+/, "");
+}
+
+// Bỏ chữ cái tầng trước tiêu đề mục, thay bằng dấu gạch ngang ("H1. Mở đầu" -> "1 - Mở đầu")
+function chapTitle(heading) {
+  return heading.replace(/^[A-Za-z]+(\d+(?:\.\d+)?)\.?\s*/, "$1 - ");
+}
+
 function IconSearch() {
   return (<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>);
 }
@@ -101,7 +111,6 @@ function Home({ onGo }) {
 
 export default function ChunkAtlas() {
   const [view, setView] = useState({ home: true, idx: 0 });
-  const [open, setOpen] = useState({ core: true });
   const [q, setQ] = useState("");
   const dq = useDebounced(q, 150);
   const ref = useRef(null);
@@ -123,20 +132,22 @@ export default function ChunkAtlas() {
   }, [dq]);
 
   const goTier = (id) => {
-    setOpen({ [id]: true });
     const k = DATA.findIndex(d => d.ti === id);
     setView({ home: false, idx: k });
     setQ("");
+    window.__scrollArticleToTop?.();
   };
 
   const topic = DATA[view.idx];
+  const currentTier = !view.home && !dq && topic ? TIERS.find(t => t.id === topic.ti) : null;
+  const topicsInTier = currentTier ? DATA.map((d, k) => ({ d, k })).filter(x => x.d.ti === currentTier.id) : [];
 
   return (
     <div className="root">
       <style>{CSS}</style>
 
       <header className="hd">
-        <button className="brand" onClick={() => { setView({ home: true, idx: 0 }); setQ(""); }}>
+        <button className="brand" onClick={() => { setView({ home: true, idx: 0 }); setQ(""); window.__scrollArticleToTop?.(); }}>
           <span className="mark">句</span>
           <span className="b-txt">
             <span className="b-t">CHUNK ATLAS</span>
@@ -150,46 +161,43 @@ export default function ChunkAtlas() {
         </div>
       </header>
 
-      <div className="body">
-        <nav className="rail">
-          <button className={"home-b" + (view.home && !dq ? " on" : "")} onClick={() => { setView({ home: true, idx: 0 }); setQ(""); }}>
+      <div className="crumb-wrap mobile-static">
+        <nav className="crumb">
+          <button className={"crumb-pill" + (view.home && !dq ? " on" : "")} onClick={() => { setView({ home: true, idx: 0 }); setQ(""); window.__scrollArticleToTop?.(); }}>
             ★ Start Here
           </button>
           {TIERS.map(t => {
-            const ch = DATA.map((d, k) => ({ d, k })).filter(x => x.d.ti === t.id);
-            const isOpen = !!open[t.id];
             const activeHere = !view.home && !dq && topic && topic.ti === t.id;
             return (
-              <div className="tier" key={t.id}>
-                <button
-                  className={"tier-h" + (activeHere ? " active" : "")}
-                  onClick={() => setOpen(o => ({ ...o, [t.id]: !o[t.id] }))}
-                >
-                  <span className="tier-n">{t.n}</span>
-                  <span className="tier-name">{t.name}</span>
-                  <span className="tier-cv">{isOpen ? "–" : "+"}</span>
-                </button>
-                {isOpen ? (
-                  <div className="tier-ch">
-                    {ch.map(x => (
-                      <button
-                        key={x.k}
-                        className={"tab" + (!view.home && !dq && view.idx === x.k ? " on" : "")}
-                        onClick={() => { setView({ home: false, idx: x.k }); setQ(""); }}
-                        title={x.d.la}
-                      >
-                        <span className="tab-c">{x.d.c}</span>
-                        <span className="tab-l">{x.d.la}</span>
-                      </button>
-                    ))}
-                  </div>
-                ) : null}
-              </div>
+              <button
+                key={t.id}
+                className={"crumb-pill" + (activeHere ? " on" : "")}
+                onClick={() => goTier(t.id)}
+              >
+                <span className="crumb-n">{t.n}</span>
+                {t.name}
+              </button>
             );
           })}
         </nav>
+        {currentTier && (
+          <nav className="crumb crumb-topic">
+            {topicsInTier.map(x => (
+              <button
+                key={x.k}
+                className={"crumb-pill small" + (view.idx === x.k ? " on" : "")}
+                onClick={() => { setView({ home: false, idx: x.k }); setQ(""); window.__scrollArticleToTop?.(); }}
+                title={x.d.la}
+              >
+                <span className="crumb-c">{chapNum(x.d.c)}</span>
+                {x.d.la}
+              </button>
+            ))}
+          </nav>
+        )}
+      </div>
 
-        <main className="stage" ref={ref}>
+      <main className="stage" ref={ref}>
           {dq ? (
             <div className="pane">
               <div className="p-c">{results.length} kết quả</div>
@@ -198,7 +206,7 @@ export default function ChunkAtlas() {
               {results.length === 0 ? <p className="empty">Không tìm thấy chunk nào khớp.</p> : null}
               {results.map((r, k) => (
                 <section className="grp" key={k}>
-                  <h3 className="grp-h">{r.code} · {r.h}</h3>
+                  <h3 className="grp-h">{r.code} · {chapTitle(r.h)}</h3>
                   <div className="grp-i">{r.m.map((x, j) => <Item it={x} key={j} />)}</div>
                 </section>
               ))}
@@ -213,7 +221,7 @@ export default function ChunkAtlas() {
               <div className="p-rule" />
               {topic.gr.map((g, k) => (
                 <section className="grp" key={k}>
-                  <h3 className="grp-h">{g.h}</h3>
+                  <h3 className="grp-h">{chapTitle(g.h)}</h3>
                   <div className="grp-i">{g.it.map((x, j) => <Item it={x} key={j} />)}</div>
                 </section>
               ))}
@@ -229,10 +237,9 @@ export default function ChunkAtlas() {
               )}
             </div>
           )}
-        </main>
-      </div>
+      </main>
     </div>
   );
 }
 
-const CSS = `*{box-sizing:border-box}.root{--acc:${ACC};--soft:#EDEFF4;--bg:#F7F6F2;--ink:#23231E;--mut:#6B6558;--bd:#E4E1D8;background:var(--bg);color:var(--ink);display:flex;flex-direction:column;font-family:ui-sans-serif,system-ui,"Segoe UI",Roboto,Arial,sans-serif;font-size:15px;line-height:1.55}.hd{display:flex;align-items:center;gap:18px;padding:12px 20px;border-bottom:1px solid var(--bd);background:#FCFBF8}.brand{display:flex;align-items:center;gap:10px;margin-right:auto;border:0;background:transparent;cursor:pointer;text-align:left;padding:0}.mark{width:36px;height:36px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border:1.5px solid var(--acc);color:var(--acc);border-radius:3px;font-size:22px;font-weight:700;font-family:Georgia,serif}.b-txt{display:flex;flex-direction:column}.b-t{font-family:Georgia,serif;font-weight:700;font-size:16px;letter-spacing:.04em;color:var(--ink)}.b-s{font-size:11px;color:var(--mut)}.search{display:flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--bd);border-radius:8px;padding:7px 10px;min-width:220px}.s-i{color:var(--mut);display:flex}.search input{border:0;outline:0;font-size:13px;width:100%;background:transparent;font-family:inherit;color:var(--ink)}.s-x{border:0;background:transparent;cursor:pointer;color:var(--mut);display:flex}.body{display:flex}.rail{width:238px;flex-shrink:0;border-right:1px solid var(--bd);background:#FCFBF8;padding:8px 0 30px;position:sticky;top:0;max-height:100vh;overflow-y:auto}.home-b{width:100%;text-align:left;border:0;background:transparent;cursor:pointer;padding:9px 16px;font-size:12.5px;font-weight:600;color:var(--mut);border-left:3px solid transparent}.home-b:hover{background:var(--soft)}.home-b.on{background:var(--soft);border-left-color:var(--acc);color:var(--acc)}.tier{border-top:1px solid #EFEDE6;margin-top:2px}.tier-h{width:100%;display:flex;align-items:center;gap:9px;text-align:left;border:0;background:transparent;cursor:pointer;padding:10px 12px 10px 16px}.tier-h:hover{background:var(--soft)}.tier-h.active .tier-name{color:var(--acc)}.tier-n{font-family:Georgia,serif;font-weight:700;font-size:11px;color:#fff;background:var(--acc);width:17px;height:17px;border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0}.tier-name{flex:1;font-size:12.5px;font-weight:700;letter-spacing:.02em}.tier-cv{color:var(--mut);font-size:15px;line-height:1}.tier-ch{padding-bottom:5px}.tab{width:100%;display:flex;gap:8px;align-items:flex-start;text-align:left;border:0;background:transparent;cursor:pointer;padding:6px 12px 6px 22px;border-left:3px solid transparent}.tab:hover{background:var(--soft)}.tab.on{background:var(--soft);border-left-color:var(--acc)}.tab-c{font-family:Georgia,serif;font-weight:700;font-size:11px;color:var(--acc);min-width:22px;padding-top:1px}.tab-l{font-size:12px;line-height:1.35;color:var(--ink)}.tab.on .tab-l{color:var(--acc);font-weight:600}.stage{flex:1;padding:12px 40px 70px}.pane{max-width:820px}.p-c{font-family:Georgia,serif;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);margin-bottom:5px}.p-t{font-family:Georgia,serif;font-weight:700;font-size:26px;line-height:1.2;margin:0 0 3px}.p-t-sticky{position:sticky;top:0;z-index:5;background:var(--bg);padding-bottom:8px;border-bottom:1px solid var(--bd)}.p-s{font-size:12.5px;color:var(--mut);font-style:italic}.p-n{margin-top:10px;font-size:13.5px;color:var(--mut);line-height:1.6;border-left:2px solid #B9C2D6;padding-left:12px}.p-rule{border-bottom:1px solid var(--bd);margin:10px 0 14px}.grp{margin-bottom:26px}.grp-h{font-family:Georgia,serif;font-weight:700;font-size:15.5px;margin:0 0 10px;color:var(--acc)}.grp-i{display:flex;flex-direction:column;gap:7px}.row{display:flex;align-items:flex-start;gap:9px}.row.sub{margin-left:20px}.dot{width:6px;height:6px;border-radius:50%;margin-top:7px;flex-shrink:0;background:var(--acc)}.txt{font-size:14px;line-height:1.55}.sub-t{color:var(--mut);font-size:12.5px;font-style:italic}.stress{font-weight:800;color:var(--acc);border-bottom:2px solid var(--acc)}.note{font-size:12.5px;color:var(--mut);font-style:italic;background:var(--soft);border-left:2px solid #B9C2D6;padding:8px 12px;border-radius:0 4px 4px 0;margin:4px 0 8px;line-height:1.55}.cx{border:1px solid #E6E1D6;border-radius:6px;overflow:hidden;margin:6px 0 10px;background:#fff}.cx-r{display:flex;align-items:flex-start;gap:9px;padding:9px 13px;font-size:13.5px;line-height:1.5}.cx-r.good{background:#F1F7F0}.cx-r.bad{background:#FBF1F0;border-top:1px solid #F0E3E1}.cx-m{font-weight:800;flex-shrink:0;font-size:14px}.cx-m.g{color:#2E6B3E}.cx-m.b{color:#B23B36}.cx-r.bad span:last-child{color:#8a4a45}.cx-n{font-size:11.5px;color:var(--mut);font-style:italic;padding:6px 13px;background:#FAF8F3;border-top:1px solid #EFE9DC}.empty{color:var(--mut);font-size:13.5px;padding:20px 0}.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:11px;margin-bottom:30px}.tile{text-align:left;border:1px solid var(--bd);background:#FCFBF8;border-radius:7px;padding:14px 15px;cursor:pointer}.tile:hover{border-color:var(--acc);background:#fff}.tile-n{font-family:Georgia,serif;font-size:10.5px;letter-spacing:.12em;color:var(--acc);font-weight:700}.tile-name{font-family:Georgia,serif;font-size:16.5px;font-weight:700;margin:3px 0 4px}.tile-sub{font-size:12px;color:var(--mut);line-height:1.4;min-height:34px}.tile-meta{font-size:11px;color:var(--acc);margin-top:7px;font-weight:600}.callout{font-size:14px;line-height:1.6;background:#EEF2E9;border-left:3px solid #4E7A3E;padding:13px 16px;border-radius:0 5px 5px 0;margin-top:8px}@media(max-width:760px){.hd{padding:10px 12px;flex-wrap:wrap}.b-s{display:none}.search{min-width:120px;order:3;width:100%}.body{flex-direction:column}.rail{width:100%;max-height:190px;border-right:0;border-bottom:1px solid var(--bd);position:static}.stage{padding:10px 15px 50px}.p-t{font-size:21px}.p-t-sticky{position:static}.tiles{grid-template-columns:1fr}}`;
+const CSS = `*{box-sizing:border-box}.root{--acc:${ACC};--soft:#EDEFF4;--bg:#F7F6F2;--ink:#23231E;--mut:#6B6558;--bd:#E4E1D8;background:var(--bg);color:var(--ink);display:flex;flex-direction:column;font-family:ui-sans-serif,system-ui,"Segoe UI",Roboto,Arial,sans-serif;font-size:15px;line-height:1.55}.hd{display:flex;align-items:center;gap:18px;padding:12px 20px;border-bottom:1px solid var(--bd);background:#FCFBF8}.brand{display:flex;align-items:center;gap:10px;margin-right:auto;border:0;background:transparent;cursor:pointer;text-align:left;padding:0}.mark{width:36px;height:36px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border:1.5px solid var(--acc);color:var(--acc);border-radius:3px;font-size:22px;font-weight:700;font-family:Georgia,serif}.b-txt{display:flex;flex-direction:column}.b-t{font-family:Georgia,serif;font-weight:700;font-size:16px;letter-spacing:.04em;color:var(--ink)}.b-s{font-size:11px;color:var(--mut)}.search{display:flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--bd);border-radius:8px;padding:7px 10px;min-width:220px}.s-i{color:var(--mut);display:flex}.search input{border:0;outline:0;font-size:13px;width:100%;background:transparent;font-family:inherit;color:var(--ink)}.s-x{border:0;background:transparent;cursor:pointer;color:var(--mut);display:flex}.crumb-wrap{position:sticky;top:0;z-index:15;background:#FCFBF8;border-bottom:1px solid var(--bd)}.crumb{display:flex;gap:6px;flex-wrap:wrap;padding:9px 20px}.crumb-topic{padding-top:0;padding-bottom:6px}.crumb-pill{display:flex;align-items:center;gap:6px;border:1px solid var(--bd);background:#fff;border-radius:20px;padding:7px 13px;cursor:pointer;font-size:12.5px;font-weight:600;color:var(--mut);white-space:nowrap;transition:all .12s}.crumb-pill:hover{border-color:var(--acc);color:var(--ink)}.crumb-pill.on{background:var(--acc);border-color:var(--acc);color:#fff}.crumb-n{font-family:Georgia,serif;font-weight:700;font-size:10.5px;width:16px;height:16px;border-radius:3px;background:rgba(43,58,85,.12);color:var(--acc);display:flex;align-items:center;justify-content:center;flex-shrink:0}.crumb-pill.on .crumb-n{background:rgba(255,255,255,.28);color:#fff}.crumb-pill.small{padding:5px 12px 5px 9px;font-size:11.5px;border-radius:16px;background:transparent;border-color:transparent;color:#9C9585}.crumb-pill.small:hover{border-color:var(--bd);color:var(--ink);background:#fff}.crumb-pill.small.on{background:var(--acc);border-color:var(--acc);color:#fff}.crumb-c{font-family:Georgia,serif;font-weight:700;font-size:10px;color:#B5AE9E}.crumb-pill.small:hover .crumb-c{color:var(--acc)}.crumb-pill.small.on .crumb-c{color:#fff}.stage{padding:8px 40px 70px}.pane{}.p-c{font-family:Georgia,serif;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);margin-bottom:5px}.p-t{font-family:Georgia,serif;font-weight:700;font-size:26px;line-height:1.2;margin:0 0 3px}.p-t-sticky{padding-bottom:8px;border-bottom:1px solid var(--bd)}.p-s{font-size:12.5px;color:var(--mut);font-style:italic}.p-n{margin-top:10px;font-size:13.5px;color:var(--mut);line-height:1.6;border-left:2px solid #B9C2D6;padding-left:12px}.p-rule{border-bottom:1px solid var(--bd);margin:10px 0 14px}.grp{margin-bottom:26px}.grp-h{font-family:Georgia,serif;font-weight:700;font-size:15.5px;margin:0 0 10px;color:var(--acc)}.grp-i{display:flex;flex-direction:column;gap:7px}.row{display:flex;align-items:flex-start;gap:9px}.row.sub{margin-left:20px}.dot{width:6px;height:6px;border-radius:50%;margin-top:7px;flex-shrink:0;background:var(--acc)}.txt{font-size:14px;line-height:1.55}.sub-t{color:var(--mut);font-size:12.5px;font-style:italic}.stress{font-weight:800;color:var(--acc);border-bottom:2px solid var(--acc)}.note{font-size:12.5px;color:var(--mut);font-style:italic;background:var(--soft);border-left:2px solid #B9C2D6;padding:8px 12px;border-radius:0 4px 4px 0;margin:4px 0 8px;line-height:1.55}.cx{border:1px solid #E6E1D6;border-radius:6px;overflow:hidden;margin:6px 0 10px;background:#fff}.cx-r{display:flex;align-items:flex-start;gap:9px;padding:9px 13px;font-size:13.5px;line-height:1.5}.cx-r.good{background:#F1F7F0}.cx-r.bad{background:#FBF1F0;border-top:1px solid #F0E3E1}.cx-m{font-weight:800;flex-shrink:0;font-size:14px}.cx-m.g{color:#2E6B3E}.cx-m.b{color:#B23B36}.cx-r.bad span:last-child{color:#8a4a45}.cx-n{font-size:11.5px;color:var(--mut);font-style:italic;padding:6px 13px;background:#FAF8F3;border-top:1px solid #EFE9DC}.empty{color:var(--mut);font-size:13.5px;padding:20px 0}.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:11px;margin-bottom:30px}.tile{text-align:left;border:1px solid var(--bd);background:#FCFBF8;border-radius:7px;padding:14px 15px;cursor:pointer}.tile:hover{border-color:var(--acc);background:#fff}.tile-n{font-family:Georgia,serif;font-size:10.5px;letter-spacing:.12em;color:var(--acc);font-weight:700}.tile-name{font-family:Georgia,serif;font-size:16.5px;font-weight:700;margin:3px 0 4px}.tile-sub{font-size:12px;color:var(--mut);line-height:1.4;min-height:34px}.tile-meta{font-size:11px;color:var(--acc);margin-top:7px;font-weight:600}.callout{font-size:14px;line-height:1.6;background:#EEF2E9;border-left:3px solid #4E7A3E;padding:13px 16px;border-radius:0 5px 5px 0;margin-top:8px}@media(max-width:760px){.hd{padding:10px 12px;flex-wrap:wrap}.b-s{display:none}.search{min-width:120px;order:3;width:100%}.crumb{padding:8px 12px}.stage{padding:10px 15px 50px}.p-t{font-size:21px}.p-t-sticky{position:static}.tiles{grid-template-columns:1fr}}`;

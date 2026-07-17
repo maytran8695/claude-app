@@ -6,10 +6,10 @@ const sections = [
     groupId: "g1",
     groupLabel: "Tầng 1: Trật tự Toàn cầu",
     groupIcon: "ti-world",
-    groupColor: "#6D28D9",
+    groupColor: "#0047AB",
     label: "#3 Địa chính trị (1/2)",
     icon: "ti-globe",
-    color: "#6D28D9",
+    color: "#0047AB",
     bg: "#EEEDFE",
     title: "Địa chính trị & Dầu mỏ: Trật tự thế giới đang định hình lại (Phần 1)",
     subsections: [
@@ -140,7 +140,7 @@ Tiền tệ dễ dãi sau GFC 2008 + Covid + chiến tranh Ukraine + Green Trans
     groupId: "g1",
     groupLabel: "Tầng 1: Trật tự Toàn cầu",
     groupIcon: "ti-world",
-    groupColor: "#6D28D9",
+    groupColor: "#0047AB",
     label: "#3 Địa chính trị (2/2)",
     icon: "ti-world-pin",
     color: "#B91C1C",
@@ -372,7 +372,7 @@ Công thức (M2 × Velocity) cần vượt ngưỡng đặc trưng mới gây l
     groupId: "g1",
     groupLabel: "Tầng 1: Trật tự Toàn cầu",
     groupIcon: "ti-world",
-    groupColor: "#6D28D9",
+    groupColor: "#0047AB",
     label: "Thuế đối ứng 46% & Margin Call",
     icon: "ti-receipt-tax",
     color: "#A32D2D",
@@ -484,7 +484,7 @@ Tổng XK dệt may sang Mỹ: $16.2 tỷ/năm. Ước tính cần ~200,000 lao 
     groupId: "g1",
     groupLabel: "Tầng 1: Trật tự Toàn cầu",
     groupIcon: "ti-world",
-    groupColor: "#6D28D9",
+    groupColor: "#0047AB",
     label: "Reciprocal Tariffs: Phân tích sâu",
     icon: "ti-scale",
     color: "#047857",
@@ -633,10 +633,10 @@ Trả lời: **Có, nhưng theo hình thức "quốc hữu hóa chiến lược 
     groupId: "g2",
     groupLabel: "Tầng 2: Hệ thống Tiền tệ & Thanh khoản",
     groupIcon: "ti-coin",
-    groupColor: "#1D4ED8",
+    groupColor: "#D4820A",
     label: "#1 Tiền tệ",
     icon: "ti-coin",
-    color: "#1D4ED8",
+    color: "#D4820A",
     bg: "#E6F1FB",
     title: "Tiền tệ: SBV qua các giai đoạn 2022-2026",
     subsections: [
@@ -755,7 +755,7 @@ Một chuyên gia cho rằng vòng quay tiền chậm hiện nay (dưới 1 lầ
     groupId: "g2",
     groupLabel: "Tầng 2: Hệ thống Tiền tệ & Thanh khoản",
     groupIcon: "ti-coin",
-    groupColor: "#1D4ED8",
+    groupColor: "#D4820A",
     label: "#2 Phái sinh",
     icon: "ti-arrows-shuffle",
     color: "#B91C1C",
@@ -903,10 +903,10 @@ Câu hỏi mở: nếu canh bạc này sập, chính phủ có in tiền gấp 1
     groupId: "g2",
     groupLabel: "Tầng 2: Hệ thống Tiền tệ & Thanh khoản",
     groupIcon: "ti-coin",
-    groupColor: "#1D4ED8",
+    groupColor: "#D4820A",
     label: "QE / QT / Liquidity",
     icon: "ti-arrows-exchange",
-    color: "#1D4ED8",
+    color: "#D4820A",
     bg: "#E6F1FB",
     title: "QE – QT – RRP – Reserve: Cơ chế vận hành thanh khoản USD",
     subsections: [
@@ -979,10 +979,10 @@ RRP hoạt động như "lớp đệm" hấp thụ QT trước Reserve:
     groupId: "g2",
     groupLabel: "Tầng 2: Hệ thống Tiền tệ & Thanh khoản",
     groupIcon: "ti-coin",
-    groupColor: "#1D4ED8",
+    groupColor: "#D4820A",
     label: "Ngân hàng VN",
     icon: "ti-building-bank",
-    color: "#6D28D9",
+    color: "#0047AB",
     bg: "#EEEDFE",
     title: "Phân tích Ngân hàng Việt Nam: LDR, NIM, CASA, Tín dụng",
     subsections: [
@@ -1058,10 +1058,10 @@ Nếu đồng thời:
     groupId: "g2",
     groupLabel: "Tầng 2: Hệ thống Tiền tệ & Thanh khoản",
     groupIcon: "ti-coin",
-    groupColor: "#1D4ED8",
+    groupColor: "#D4820A",
     label: "Checklist & Dashboard Thanh khoản",
     icon: "ti-dashboard",
-    color: "#1D4ED8",
+    color: "#D4820A",
     bg: "#E6F1FB",
     title: "Framework theo dõi Thanh khoản & Dòng tiền: Checklist thực chiến",
     subsections: [
@@ -1184,10 +1184,10 @@ Theo dõi: lợi suất Treasury, dòng vốn nước ngoài ròng (TIC), dealer
     groupId: "g2",
     groupLabel: "Tầng 2: Hệ thống Tiền tệ & Thanh khoản",
     groupIcon: "ti-coin",
-    groupColor: "#1D4ED8",
+    groupColor: "#D4820A",
     label: "AHS Trading: Macro Desk & Narrative",
     icon: "ti-chart-candle",
-    color: "#6D28D9",
+    color: "#0047AB",
     bg: "#EEEDFE",
     title: "AHS Trading: Tư duy Macro Desk, Narrative Cycle & Options Mechanics",
     subsections: [
@@ -1597,7 +1597,7 @@ Vay mượn → Tăng chi tiêu → Tăng thu nhập/giá tài sản → Tăng k
     groupColor: "#047857",
     label: "Dự báo 2025: Nhiều góc nhìn",
     icon: "ti-telescope",
-    color: "#6D28D9",
+    color: "#0047AB",
     bg: "#EEEDFE",
     title: "Dự Báo - YT: Tổng hợp góc nhìn nhiều chuyên gia 2025",
     subsections: [
@@ -3325,7 +3325,7 @@ const annotations = {
 };
 
 export default function FinanceKnowledgeBase() {
-  const [activeSection, setActiveSection] = useState("lebanon");
+  const [activeSection, setActiveSection] = useState(sections[0].id);
   const [openSubsection, setOpenSubsection] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const [overrides, setOverrides] = useState({}); // { "sectionId:idx": { title, content } } and { "sectionId:title": "..." }
@@ -3532,7 +3532,7 @@ export default function FinanceKnowledgeBase() {
               {isExpanded && group.items.map(section => (
                 <button
                   key={section.id}
-                  onClick={() => { setActiveSection(section.id); setOpenSubsection(null); }}
+                  onClick={() => { setActiveSection(section.id); setOpenSubsection(null); window.__scrollArticleToTop?.(); }}
                   style={{
                     display: "flex",
                     alignItems: "center",
@@ -3558,7 +3558,7 @@ export default function FinanceKnowledgeBase() {
         {ungroupedSections.map(section => (
           <button
             key={section.id}
-            onClick={() => { setActiveSection(section.id); setOpenSubsection(null); }}
+            onClick={() => { setActiveSection(section.id); setOpenSubsection(null); window.__scrollArticleToTop?.(); }}
             style={{
               display: "flex",
               alignItems: "center",
@@ -3992,7 +3992,7 @@ function AnnotatedSegment({ text, annotations, annotationReplies, onAddReply, on
               lineHeight: 1.6,
               color: "var(--text-primary, #1a1a1a)",
               boxShadow: "0 2px 10px rgba(0,0,0,0.08)",
-              maxWidth: "640px",
+              width: "100%",
               overflow: "hidden"
             }}
           >

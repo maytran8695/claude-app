@@ -29,6 +29,7 @@ const thesis = {
 };
 const h2 = { fontSize: 18, fontWeight: 600, color: "var(--color-text-primary)", margin: "2rem 0 0.25rem", lineHeight: 1.3 };
 const sectionNum = { fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", color: "var(--color-text-tertiary)", marginTop: "2rem" };
+const sectionNumInline = { fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", color: "var(--color-text-tertiary)", marginRight: 8 };
 const prose = { fontSize: 14, color: "var(--color-text-secondary)", lineHeight: 1.72, marginBottom: "0.75rem" };
 const subHead = {
   fontSize: 11, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase",
@@ -114,9 +115,9 @@ function StepBlock({ title, time, tone = C.teal, items, note }) {
 
 function Row({ label, value, sub, tone }) {
   return (
-    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", padding: "7px 0", borderBottom: "0.5px solid var(--color-border-tertiary)", gap: 12 }}>
-      <span style={{ fontSize: 13, color: "var(--color-text-secondary)", flex: 1 }}>{label}</span>
-      <div style={{ textAlign: "right", flexShrink: 0, maxWidth: "56%" }}>
+    <div style={{ display: "flex", alignItems: "flex-start", padding: "7px 0", borderBottom: "0.5px solid var(--color-border-tertiary)", gap: 12 }}>
+      <span style={{ fontSize: 13, color: "var(--color-text-secondary)", flex: "0 0 auto", width: "38%", maxWidth: 220 }}>{label}</span>
+      <div style={{ textAlign: "left", flex: 1, minWidth: 0 }}>
         <div style={{ fontSize: 13, fontWeight: 600, color: (tone && tone.mid) || "var(--color-text-primary)" }}>{value}</div>
         {sub && <div style={{ fontSize: 11, color: "var(--color-text-tertiary)", marginTop: 1 }}>{sub}</div>}
       </div>
@@ -156,7 +157,7 @@ export default function App() {
         {PARTS.map((p) => {
           const active = part === p.id;
           return (
-            <button key={p.id} onClick={() => setPart(p.id)} style={{
+            <button key={p.id} onClick={() => { setPart(p.id); window.__scrollArticleToTop?.(); }} style={{
               display: "flex", alignItems: "center", gap: 9,
               padding: "11px 19px", borderRadius: 12, cursor: "pointer",
               fontSize: 14, fontWeight: 700,
@@ -257,8 +258,7 @@ function PartI() {
       <h2 style={{ ...h2, marginTop: 4 }}>Nguyên lý nền tảng</h2>
       <div style={thesis}>Năm nguyên lý dưới đây đúng cho mọi môn. Hiểu chúng một lần, bạn tự đánh giá được bất kỳ hoạt động nào thay vì phụ thuộc lời khuyên rời rạc.</div>
 
-      <div style={sectionNum}>1.1</div>
-      <h2 style={h2}>Cơ thể mạnh lên khi phục hồi, không phải khi gắng sức</h2>
+      <h2 style={h2}><span style={sectionNumInline}>1.1</span>Cơ thể mạnh lên khi phục hồi, không phải khi gắng sức</h2>
       <p style={prose}>
         Buổi tập không làm bạn khỏe hơn — nó tạo một <em>tổn thương có kiểm soát</em> và một tín hiệu. Sự khỏe lên thực sự diễn ra sau đó, khi cơ thể sửa chữa và bù đắp vượt mức ban đầu — gọi là <strong>siêu bù (supercompensation)</strong>. Tập liên tục không đủ phục hồi giữ bạn mãi trong trạng thái tổn thương chưa lành: chững lại, mệt mạn tính, tăng chấn thương.
       </p>
@@ -266,8 +266,7 @@ function PartI() {
         Kích thích → Mệt mỏi → Phục hồi → Thích nghi. Bỏ bước Phục hồi, bước Thích nghi không xảy ra. Tập nhiều hơn không phải lúc nào cũng tốt hơn; đúng liều rồi phục hồi đủ mới tốt hơn.
       </Callout>
 
-      <div style={sectionNum}>1.2</div>
-      <h2 style={h2}>Tải trọng tập luyện: biến số quan trọng nhất</h2>
+      <h2 style={h2}><span style={sectionNumInline}>1.2</span>Tải trọng tập luyện: biến số quan trọng nhất</h2>
       <p style={prose}>
         "Tải trọng" (training load) là tổng stress một buổi/tuần đặt lên cơ thể — kết hợp <strong>khối lượng</strong> (bao lâu, bao xa) và <strong>cường độ</strong> (mạnh đến đâu). Đây là yếu tố dự đoán chấn thương mạnh nhất, hơn cả kỹ thuật hay giày dép. Nguyên tắc vàng: <strong>không tăng quá ~10% mỗi tuần</strong>. Gân, dây chằng, đĩa đệm thích nghi chậm hơn cơ và tim — tăng nhanh nghĩa là cơ "chịu được" nhưng mô liên kết chưa theo kịp, và đó là lúc chấn thương xảy ra.
       </p>
@@ -277,8 +276,7 @@ function PartI() {
         { wrong: "Tăng đồng thời khối lượng lẫn cường độ.", fix: "Chỉ tăng một biến mỗi lần." },
       ]} />
 
-      <div style={sectionNum}>1.3</div>
-      <h2 style={h2}>Vùng cường độ: không phải cứ mệt hơn là tốt hơn</h2>
+      <h2 style={h2}><span style={sectionNumInline}>1.3</span>Vùng cường độ: không phải cứ mệt hơn là tốt hơn</h2>
       <div style={card}>
         <Row label="Zone 1 — Phục hồi" value="50–60% HRmax (~100 bpm)" sub="Đi bộ, tai chi nhẹ" tone={C.teal} />
         <Row label="Zone 2 — Nền tảng aerobic" value="60–70% HRmax (~130–145 bpm)" sub="Nói chuyện được cả câu" tone={C.blue} />
@@ -291,8 +289,7 @@ function PartI() {
         Được, nhưng khác chức năng. Zone 1 (đi bộ, HR ~100, cadence 110–120) là phục hồi chủ động — gần như không tích mệt, dùng hàng ngày. Nhưng <em>không đủ kích thích</em> để xây nền tảng aerobic như Zone 2. Điểm ít người biết: Zone 2 vẫn tạo tải lên hệ giao cảm và tích mệt nếu lặp mỗi ngày — nó không phải "vùng nghỉ". Với người bận rộn: Zone 1 hàng ngày để duy trì, xen vài buổi Zone 2/tuần để thực sự tiến bộ.
       </Box>
 
-      <div style={sectionNum}>1.4</div>
-      <h2 style={h2}>Ba trụ cột của sức khỏe thể chất dài hạn</h2>
+      <h2 style={h2}><span style={sectionNumInline}>1.4</span>Ba trụ cột của sức khỏe thể chất dài hạn</h2>
       <p style={prose}>Sức khỏe thể chất đứng trên ba chân — bỏ chân nào cũng khập khiễng. Hai chân đầu được nói nhiều; chân thứ ba thường bị bỏ quên nhưng quan trọng ngang bằng, đặc biệt với tuổi tác và cột sống tổn thương.</p>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, marginBottom: 12 }}>
         <div style={{ ...card, marginBottom: 0, padding: "0.85rem" }}>
@@ -312,8 +309,7 @@ function PartI() {
         Đây là năng lực cơ thể cảm nhận vị trí của chính nó trong không gian (proprioception) và điều phối cơ để phản ứng kịp thời — nền tảng của thăng bằng, phối hợp, và phản xạ giữ thăng bằng khi mất đà. Nó tích hợp tín hiệu từ cơ-khớp, tai trong (tiền đình), và thị giác; tất cả suy giảm theo tuổi nếu không được thử thách. Một bài <em>test</em> đơn giản phản ánh năng lực này: khả năng đứng một chân — nghiên cứu cho thấy người trung niên trở lên không giữ được thăng bằng một chân 10 giây có nguy cơ tử vong cao hơn rõ rệt trong các năm theo dõi tiếp theo (đứng một chân là thước đo, không phải bản thân mục tiêu). Mục 1.5 đào sâu cách rèn năng lực này.
       </Box>
 
-      <div style={sectionNum}>1.5</div>
-      <h2 style={h2}>Đào sâu: hệ thần kinh-cơ hoạt động và suy giảm thế nào</h2>
+      <h2 style={h2}><span style={sectionNumInline}>1.5</span>Đào sâu: hệ thần kinh-cơ hoạt động và suy giảm thế nào</h2>
       <p style={prose}>
         Trụ cột thứ ba xứng đáng được hiểu kỹ hơn, vì nó là trụ cột bị bỏ quên nhiều nhất và cũng là trụ cột quyết định bạn có giữ được sự độc lập về vận động khi già hay không. "Kiểm soát thần kinh-cơ" không phải một năng lực đơn lẻ — nó là cả một chuỗi xử lý, và mỗi mắt xích có thể rèn được.
       </p>
@@ -380,7 +376,7 @@ function PartI() {
    ============================================================ */
 function SportCard({ name, tags, cardio, strength, spine, spineTone, forWho, caution, start }) {
   return (
-    <div style={card}>
+    <div style={{ ...card, borderLeft: `3px solid ${spineTone.border}` }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8, gap: 8 }}>
         <span style={{ fontSize: 15, fontWeight: 700, color: "var(--color-text-primary)" }}>{name}</span>
         <span style={{ fontSize: 10.5, fontWeight: 700, padding: "2px 9px", borderRadius: 20, background: spineTone.bg, color: spineTone.text, flexShrink: 0 }}>{spine}</span>
@@ -406,8 +402,7 @@ function PartII() {
       <h2 style={{ ...h2, marginTop: 4 }}>Chọn môn vận động</h2>
       <div style={thesis}>Không có môn "tốt nhất" — chỉ có môn phù hợp nhất với cơ thể, lịch trình và cột sống của bạn. Đọc mỗi môn qua cùng một lăng kính để tự lắp "thực đơn" của riêng mình.</div>
 
-      <div style={sectionNum}>2.1</div>
-      <h2 style={h2}>Cách đọc một môn vận động</h2>
+      <h2 style={h2}><span style={sectionNumInline}>2.1</span>Cách đọc một môn vận động</h2>
       <p style={prose}>
         Thay vì hỏi "môn này tốt không", đánh giá trên năm trục: <strong>lợi ích tim mạch, lợi ích sức mạnh, tải trọng lên cột sống, rào cản thời gian/thiết bị,</strong> và <strong>độ phù hợp với thoát vị đĩa đệm</strong>. Một môn tuyệt vời cho người này có thể sai cho người khác — khác biệt nằm ở năm trục đó.
       </p>
@@ -415,8 +410,7 @@ function PartII() {
         Với thoát vị đĩa đệm, trục "tải trọng cột sống" được ưu tiên cao. Hai loại chuyển động cần đặc biệt thận trọng: <strong>tải dồn nén dọc trục lặp lại</strong> (nhảy, chạy nền cứng) và <strong>gập/xoay cột sống dưới lực</strong> (xoay người mạnh, cúi nâng nặng). Xếp hạng cột sống dưới đây chủ yếu theo hai yếu tố này.
       </SpineBox>
 
-      <div style={sectionNum}>2.2</div>
-      <h2 style={h2}>Hồ sơ từng môn</h2>
+      <h2 style={h2}><span style={sectionNumInline}>2.2</span>Hồ sơ từng môn</h2>
       <p style={{ ...prose, marginBottom: "1.25rem" }}>Xếp từ thân thiện cột sống nhất đến cần thận trọng nhất. Nhãn góc phải là mức tải trọng lên cột sống.</p>
 
       <SportCard name="Đi bộ nhanh / Zone 1" tags={["Không thiết bị", "Mọi nơi", "Nền tảng NEAT"]}
@@ -477,8 +471,7 @@ function PartII() {
         * Tải thấp <em>khi đúng kỹ thuật</em> — sai kỹ thuật đẩy tải lên cao. &nbsp;† Trung bình–cao nhưng <em>kiểm soát được</em>. &nbsp;‡ Cao và <em>khó kiểm soát</em> vì chuyển động phản xạ.
       </div>
 
-      <div style={sectionNum}>2.3</div>
-      <h2 style={h2}>Cách lắp "thực đơn" của bạn</h2>
+      <h2 style={h2}><span style={sectionNumInline}>2.3</span>Cách lắp "thực đơn" của bạn</h2>
       <p style={prose}>Một tuần tốt không phải một môn lặp lại mà là kết hợp chạm cả ba trụ cột, tôn trọng giới hạn cột sống, vừa lịch trình:</p>
       <div style={card}>
         <Li tone={C.blue}><strong>Một nền cardio ít tải</strong> làm xương sống của tuần: đi bộ Zone 1 hàng ngày + 2–3 buổi Zone 2 (bơi, đạp xe, hoặc chạy nếu đủ điều kiện).</Li>
@@ -518,8 +511,7 @@ function PartIII() {
       <h2 style={{ ...h2, marginTop: 4 }}>Thực hành từng buổi</h2>
       <div style={thesis}>Bất kể môn nào, một buổi tập tốt có cùng kiến trúc. Phần này là phần tra cứu — mở ra khi cần dùng.</div>
 
-      <div style={sectionNum}>3.1</div>
-      <h2 style={h2}>Kiến trúc một buổi tập (mọi môn)</h2>
+      <h2 style={h2}><span style={sectionNumInline}>3.1</span>Kiến trúc một buổi tập (mọi môn)</h2>
       <p style={prose}>Năm bước áp dụng cho chạy, bơi, cầu lông, tạ — chỉ thay chi tiết phần chính. Với LDH, bước "kích hoạt" không phải tùy chọn: nó bật cơ giữ cột sống trung tính <em>trước khi</em> tải đến.</p>
 
       <StepBlock title="1. Warmup động" time="5–10 phút" tone={C.teal} items={[
@@ -553,8 +545,7 @@ function PartIII() {
         "Supine knee-to-chest 30 giây/bên."
       ]} note="Bước riêng biệt mà hầu hết guide bỏ qua — giảm áp lực tích lũy lên đĩa đệm." />
 
-      <div style={sectionNum}>3.2</div>
-      <h2 style={h2}>Mobility cho người ngồi nhiều — vấn đề cơ-xương đặc trưng</h2>
+      <h2 style={h2}><span style={sectionNumInline}>3.2</span>Mobility cho người ngồi nhiều — vấn đề cơ-xương đặc trưng</h2>
       <p style={prose}>
         Ngồi 8+ tiếng/ngày tạo một hồ sơ cơ-xương rất đặc trưng, và nó tương tác trực tiếp với thoát vị đĩa đệm. Ba vấn đề chính cần xử lý chủ động, vì chúng làm cột sống chịu tải sai ngay cả khi không tập:
       </p>
@@ -567,8 +558,7 @@ function PartIII() {
         Không cần bài tập dài. Đứng dậy đi lại 1–2 phút mỗi 30–45 phút ngồi có tác động lớn hơn nhiều so với một buổi tập bù vào cuối ngày — vì nó ngắt chuỗi tải tĩnh liên tục lên đĩa đệm. Đặt báo nhắc; đây là "exercise snacking" cho cột sống (chi tiết Phần VI).
       </Box>
 
-      <div style={sectionNum}>3.3</div>
-      <h2 style={h2}>Dinh dưỡng — nền tảng và quanh buổi tập</h2>
+      <h2 style={h2}><span style={sectionNumInline}>3.3</span>Dinh dưỡng — nền tảng và quanh buổi tập</h2>
       <div style={subHead}>Nền dinh dưỡng cả ngày (quan trọng hơn timing quanh buổi)</div>
       <div style={card}>
         <Row label="Protein tổng ngày" value="1.6–2.0 g/kg" sub="Rải đều 3–4 bữa, mỗi bữa 20–40g" tone={C.purple} />
@@ -623,8 +613,7 @@ function PartIV() {
       <div style={thesis}>Đây là phần chứng minh luận điểm trung tâm: phục hồi không phải "thời gian chết" giữa các buổi tập — nó là nơi mọi thích nghi thực sự diễn ra. Và trong phục hồi, giấc ngủ là công cụ mạnh nhất. Phần này đào sâu giấc ngủ, đặc biệt cho kiểu khó đi vào giấc ngủ do đầu óc quá tải.</div>
 
       {/* ---- SLEEP FUNDAMENTALS (condensed) ---- */}
-      <div style={sectionNum}>4.1</div>
-      <h2 style={h2}>Hai hệ thống điều khiển giấc ngủ</h2>
+      <h2 style={h2}><span style={sectionNumInline}>4.1</span>Hai hệ thống điều khiển giấc ngủ</h2>
       <p style={prose}>
         Hiểu hai hệ thống này là chìa khóa để hiểu <em>vì sao</em> bạn khó ngủ — và mọi kỹ thuật hiệu quả đều tác động vào một trong hai:
       </p>
@@ -643,8 +632,7 @@ function PartIV() {
       </Callout>
 
       {/* ---- HYPERAROUSAL DEEP DIVE ---- */}
-      <div style={sectionNum}>4.2</div>
-      <h2 style={h2}>Hiểu đúng vấn đề: tăng kích hoạt (hyperarousal)</h2>
+      <h2 style={h2}><span style={sectionNumInline}>4.2</span>Hiểu đúng vấn đề: tăng kích hoạt (hyperarousal)</h2>
       <p style={prose}>
         Đây là mô hình được mọi lý thuyết hiện đại về mất ngủ công nhận là cơ chế cốt lõi. Ở người làm việc nhiều mảng, đầu óc luôn ở "chế độ phân tích cảnh giác", hệ trục stress HPA tiết cortisol cao kéo dài thay vì hạ xuống buổi tối. Kết quả: bạn nằm xuống nhưng não vẫn xử lý công việc, lập kế hoạch, lo lắng — không phải vì bạn muốn, mà vì hệ thần kinh chưa chuyển khỏi trạng thái kích hoạt ban ngày.
       </p>
@@ -659,8 +647,7 @@ function PartIV() {
       </Box>
 
       {/* ---- CBT-I TOOLKIT ---- */}
-      <div style={sectionNum}>4.3</div>
-      <h2 style={h2}>Bộ công cụ CBT-I — theo từng tầng</h2>
+      <h2 style={h2}><span style={sectionNumInline}>4.3</span>Bộ công cụ CBT-I — theo từng tầng</h2>
       <p style={prose}>
         CBT-I là liệu pháp hàng đầu cho mất ngủ mạn, được mọi hướng dẫn lâm sàng khuyến cáo trên thuốc vì hiệu quả bền vững không lệ thuộc. Nó không phải "một mẹo" mà là bộ công cụ nhắm từng tầng kích hoạt. Dưới đây là các thành phần có bằng chứng mạnh nhất, sắp theo tầng chúng nhắm tới.
       </p>
@@ -700,8 +687,7 @@ function PartIV() {
       ]} note="Làm như một phần wind-down, không phải 'vũ khí cuối cùng' khi đã bực vì không ngủ được." />
 
       {/* ---- BUFFER ZONE / OVERWORK ---- */}
-      <div style={sectionNum}>4.4</div>
-      <h2 style={h2}>Chuyên sâu cho người quá tải công việc: vùng đệm</h2>
+      <h2 style={h2}><span style={sectionNumInline}>4.4</span>Chuyên sâu cho người quá tải công việc: vùng đệm</h2>
       <p style={prose}>
         Vấn đề thực tế nhất với người bận rộn không phải "không biết cách ngủ" mà là cửa sổ ngủ bị nén bởi công việc kéo đến khuya — cơ thể vẫn ở trạng thái kích hoạt giao cảm cao khi cố lên giường ngay sau khi đóng laptop. Não không có "công tắc tắt tức thì".
       </p>
@@ -721,8 +707,7 @@ function PartIV() {
       </Box>
 
       {/* ---- SLEEP DEBT + ARCHITECTURE (condensed) ---- */}
-      <div style={sectionNum}>4.5</div>
-      <h2 style={h2}>Hai sự thật về nợ ngủ và kiến trúc giấc ngủ</h2>
+      <h2 style={h2}><span style={sectionNumInline}>4.5</span>Hai sự thật về nợ ngủ và kiến trúc giấc ngủ</h2>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8, marginBottom: 12 }}>
         <Stat value="90'" label="một chu kỳ ngủ" tone={C.teal} />
         <Stat value="~17%" label="người có nợ ngủ bù được bằng cuối tuần" tone={C.coral} />
@@ -771,8 +756,7 @@ function PartV() {
       <h2 style={{ ...h2, marginTop: 4 }}>Theo dõi & Thích ứng</h2>
       <div style={thesis}>Người bận rộn không có thời gian để thử-sai. Biết đọc tín hiệu cơ thể — đang tiến bộ hay đang quá tải — và biết cách xoay xở khi cuộc sống phá kế hoạch là kỹ năng quyết định duy trì. Đây là phần biến lý thuyết thành khả năng tự điều chỉnh.</div>
 
-      <div style={sectionNum}>5.1</div>
-      <h2 style={h2}>Đọc tín hiệu quá tải trước khi thành chấn thương</h2>
+      <h2 style={h2}><span style={sectionNumInline}>5.1</span>Đọc tín hiệu quá tải trước khi thành chấn thương</h2>
       <p style={prose}>
         Overtraining hiếm khi đến đột ngột — nó tích tụ qua các dấu hiệu bị bỏ qua. Với người vừa làm việc căng vừa tập, ranh giới giữa "mệt do tập" và "mệt do cuộc sống" mờ đi, và cơ thể không phân biệt hai loại stress. Dưới đây là các tín hiệu đọc được mà không cần thiết bị:
       </p>
@@ -788,8 +772,7 @@ function PartV() {
         Một đợt tập nặng ngắn gây giảm hiệu suất tạm thời rồi bật lên sau khi phục hồi — gọi là "functional overreaching", đó là bình thường và có lợi. Vấn đề là khi không phục hồi đủ, nó trượt thành "non-functional overreaching" rồi overtraining thực sự — có thể mất hàng tháng để hồi phục. Ranh giới nằm ở phục hồi, không ở khối lượng tập. Đây chính là luận điểm trung tâm của tài liệu, biểu hiện ở cấp độ tuần.
       </Box>
 
-      <div style={sectionNum}>5.2</div>
-      <h2 style={h2}>HRV — công cụ định lượng cho ai muốn dữ liệu</h2>
+      <h2 style={h2}><span style={sectionNumInline}>5.2</span>HRV — công cụ định lượng cho ai muốn dữ liệu</h2>
       <p style={prose}>
         Biến thiên nhịp tim (HRV) đo khoảng cách giữa các nhịp tim — phản ánh cân bằng hệ thần kinh tự chủ. HRV cao nghĩa là cơ thể đáp ứng linh hoạt, phục hồi tốt; HRV thấp cho thấy hệ giao cảm đang trội (stress, mệt, mất nước). Quan trọng: HRV phản ánh <em>cả stress tinh thần</em>, không chỉ stress tập luyện — rất phù hợp cho người vừa làm việc căng vừa tập.
       </p>
@@ -803,8 +786,7 @@ function PartV() {
         HRV hữu ích nhưng không hoàn hảo: nó dao động do nhiều yếu tố (rượu, thiếu ngủ, bệnh), và bằng chứng về khả năng dự đoán overreaching còn nhiều tranh cãi về phương pháp. Dùng nó như <em>một</em> tín hiệu bên cạnh cảm nhận chủ quan, không phải mệnh lệnh tuyệt đối. Người không muốn dùng thiết bị vẫn theo dõi tốt bằng nhịp tim nghỉ buổi sáng và các dấu hiệu chủ quan ở mục 5.1.
       </Box>
 
-      <div style={sectionNum}>5.3</div>
-      <h2 style={h2}>Đo tiến bộ: bạn có đang đi đúng hướng?</h2>
+      <h2 style={h2}><span style={sectionNumInline}>5.3</span>Đo tiến bộ: bạn có đang đi đúng hướng?</h2>
       <p style={prose}>Theo dõi quá tải là một nửa; nửa kia là xác nhận bạn đang tiến bộ. Vài chỉ số đơn giản, đo định kỳ (vài tuần một lần):</p>
       <div style={card}>
         <Row label="Nhịp tim nghỉ" value="Giảm dần theo tháng" sub="Dấu hiệu tim khỏe lên" tone={C.teal} />
@@ -814,8 +796,7 @@ function PartV() {
         <Row label="Phục hồi nhanh hơn" value="Ít đau, khỏe lại sớm" sub="Dấu hiệu thể lực nền tốt lên" tone={C.coral} />
       </div>
 
-      <div style={sectionNum}>5.4</div>
-      <h2 style={h2}>Tuần nhẹ có chủ đích (deload): lùi một bước để tiến hai</h2>
+      <h2 style={h2}><span style={sectionNumInline}>5.4</span>Tuần nhẹ có chủ đích (deload): lùi một bước để tiến hai</h2>
       <p style={prose}>
         Đây là nguyên tắc chuyên nghiệp mà người tập nghiệp dư hầu như luôn bỏ qua: tiến bộ không tuyến tính. Nếu cứ tăng tải đều đặn mãi, bạn sẽ chạm trần rồi trượt vào quá tải. Vận động viên giải quyết bằng cách chủ động xen <strong>tuần nhẹ (deload)</strong> — cứ 3–4 tuần tăng tải thì có một tuần giảm 30–50% khối lượng — để cơ thể "bắt kịp" và siêu bù. Đây chính là luận điểm trung tâm (thích nghi xảy ra khi phục hồi) áp dụng ở cấp độ nhiều tuần.
       </p>
@@ -829,8 +810,7 @@ function PartV() {
         Deload không phải phần thưởng cho sự lười biếng — nó là công cụ để tiến bộ nhanh hơn về dài hạn. Người bỏ deload không tiến nhanh hơn; họ chỉ chạm trần và chấn thương sớm hơn.
       </Callout>
 
-      <div style={sectionNum}>5.5</div>
-      <h2 style={h2}>Khi cuộc sống phá kế hoạch: nghệ thuật thích ứng</h2>
+      <h2 style={h2}><span style={sectionNumInline}>5.5</span>Khi cuộc sống phá kế hoạch: nghệ thuật thích ứng</h2>
       <p style={prose}>
         Đây là phần thực tế nhất và bị mọi giáo án bỏ qua. Kế hoạch tập nào rồi cũng bị deadline, công tác, ốm, hoặc con cái phá vỡ. Người duy trì được cả đời không phải người không bao giờ gián đoạn — mà người biết <em>xoay xở khi gián đoạn</em> mà không bỏ cuộc hoàn toàn.
       </p>
@@ -879,14 +859,12 @@ function PartVI() {
       <h2 style={{ ...h2, marginTop: 4 }}>Duy trì cả đời</h2>
       <div style={thesis}>Kế hoạch tốt nhất là kế hoạch bạn còn làm sau 10 năm. Câu hỏi quyết định không phải "tập gì" mà "làm sao không bỏ cuộc" — đặc biệt khi bạn đã quá tải với nhiều mảng phải suy nghĩ. Đây là nơi khoa học tuổi thọ, hành vi học và sức khỏe tinh thần gặp nhau.</div>
 
-      <div style={sectionNum}>6.1</div>
-      <h2 style={h2}>Vì sao duy trì quan trọng hơn cường độ</h2>
+      <h2 style={h2}><span style={sectionNumInline}>6.1</span>Vì sao duy trì quan trọng hơn cường độ</h2>
       <Callout tone={C.ink}>
         Lợi ích sức khỏe của vận động đến từ tích lũy qua nhiều năm, không từ vài tháng tập cật lực rồi bỏ. Một kế hoạch "kém hoàn hảo" làm đều 10 năm thắng xa một kế hoạch hoàn hảo bỏ sau 3 tháng.
       </Callout>
 
-      <div style={sectionNum}>6.2</div>
-      <h2 style={h2}>Khoa học tuổi thọ: ba con số đáng nhớ</h2>
+      <h2 style={h2}><span style={sectionNumInline}>6.2</span>Khoa học tuổi thọ: ba con số đáng nhớ</h2>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, marginBottom: 12 }}>
         <Stat value="VO2max" label="chỉ số dự đoán tử vong mạnh nhất" tone={C.blue} />
         <Stat value="Grip" label="sức mạnh cơ dự đoán tử vong hơn cả huyết áp cao" tone={C.purple} />
@@ -899,8 +877,7 @@ function PartVI() {
         Giả thuyết đường cong chữ U đang bị bằng chứng gần đây thách thức; với người tập giải trí, ngưỡng gây hại — nếu có — cao hơn nhiều khối lượng thực tế của họ. Với bạn, mối lo thực tế là <em>chấn thương cột sống do tải sai</em>, không phải "tập quá nhiều làm giảm tuổi thọ".
       </Box>
 
-      <div style={sectionNum}>6.3</div>
-      <h2 style={h2}>Hành vi học: thiết kế hệ thống thay vì dựa ý chí</h2>
+      <h2 style={h2}><span style={sectionNumInline}>6.3</span>Hành vi học: thiết kế hệ thống thay vì dựa ý chí</h2>
       <p style={prose}>
         Động lực dao động thất thường — không thể dựa vào nó để duy trì dài hạn. Người thành công không có ý chí mạnh hơn; họ thiết kế môi trường sao cho hành vi đúng thành lựa chọn dễ nhất. Bốn cơ chế có bằng chứng:
       </p>
@@ -921,8 +898,7 @@ function PartVI() {
         <div style={{ ...prose, marginBottom: 0 }}>Mục tiêu cực nhỏ ("chỉ xỏ giày") — một khi đã xỏ, bối cảnh đổi và "không tập" tốn công hơn "tập luôn". Gắn hành vi với danh tính ("tôi là người luôn vận động") thay vì kết quả ("cần giảm cân") — danh tính không có điểm kết thúc nên bền hơn, và cho phép một ngày chỉ 5 phút vẫn "tính".</div>
       </div>
 
-      <div style={sectionNum}>6.4</div>
-      <h2 style={h2}>Chuyên sâu cho người đa nhiệm, quá tải</h2>
+      <h2 style={h2}><span style={sectionNumInline}>6.4</span>Chuyên sâu cho người đa nhiệm, quá tải</h2>
       <p style={prose}>
         Bạn không chỉ bận — bạn quản lý nhiều mảng cùng lúc, mỗi mảng đòi hỏi suy nghĩ và quyết định. Điều này tạo một loại kiệt sức đặc thù mà khối lượng công việc thô không nắm bắt được: <strong>quá tải nhận thức và quá tải quyết định</strong>. Nó ảnh hưởng trực tiếp đến khả năng duy trì vận động.
       </p>
@@ -940,8 +916,7 @@ function PartVI() {
         <Li tone={C.purple}><strong>Bài mặc định thuộc lòng:</strong> một circuit không thiết bị bạn có thể làm không cần nghĩ, cho ngày não đã cạn.</Li>
       </div>
 
-      <div style={sectionNum}>6.5</div>
-      <h2 style={h2}>Vận động & sức khỏe tinh thần</h2>
+      <h2 style={h2}><span style={sectionNumInline}>6.5</span>Vận động & sức khỏe tinh thần</h2>
       <p style={prose}>
         Vận động có hiệu quả điều trị thực với trầm cảm và lo âu — tổng quan lớn (~80.000 người) cho SMD −0.61 với trầm cảm và −0.47 với lo âu, tương đương hoặc hơn một số thuốc trong so sánh trực tiếp, dù cơ chế khác. Cơ chế: kích thích BDNF (tạo neuron ở hồi hải mã), điều hòa trục stress HPA, giảm viêm thần kinh.
       </p>

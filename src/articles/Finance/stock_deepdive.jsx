@@ -1036,7 +1036,7 @@ function StockView({ sid }) {
       </div>
       <div style={{ display: "flex", gap: 6, marginBottom: 14, flexWrap: "wrap" }}>
         {tabs.map((t, i) => (
-          <button key={i} onClick={() => setTab(i)} style={{ padding: "7px 14px", borderRadius: 8, cursor: "pointer", fontSize: 12, fontWeight: tab === i ? 700 : 500, background: tab === i ? accent : "transparent", color: tab === i ? "#fff" : "var(--text-secondary)", border: "1px solid " + (tab === i ? accent : "var(--border)") }}>{t}</button>
+          <button key={i} onClick={() => { setTab(i); window.__scrollArticleToTop?.(); }} style={{ padding: "7px 14px", borderRadius: 8, cursor: "pointer", fontSize: 12, fontWeight: tab === i ? 700 : 500, background: tab === i ? accent : "transparent", color: tab === i ? "#fff" : "var(--text-secondary)", border: "1px solid " + (tab === i ? accent : "var(--border)") }}>{t}</button>
         ))}
       </div>
       {tab === 0 && (<div><Snapshot items={d.snapshot} accent={accent} />{d.thesis.map((t, i) => <ThesisCard key={i} item={t} accent={accent} />)}</div>)}
@@ -1076,7 +1076,7 @@ export default function App() {
         {order.map(id => {
           const s = STOCKS[id];
           return (
-            <button key={id} onClick={() => setStock(id)} style={{ padding: "8px 4px", borderRadius: 8, cursor: "pointer", fontSize: 12, fontWeight: 600, background: stock === id ? s.accent : "var(--surface-1)", color: stock === id ? "#fff" : "var(--text-secondary)", border: "0.5px solid " + (stock === id ? s.accent : "var(--border)") }}>
+            <button key={id} onClick={() => { setStock(id); window.__scrollArticleToTop?.(); }} style={{ padding: "8px 4px", textAlign: "center", borderRadius: 8, cursor: "pointer", fontSize: 12, fontWeight: 600, background: stock === id ? s.accent : "var(--surface-1)", color: stock === id ? "#fff" : "var(--text-secondary)", border: "0.5px solid " + (stock === id ? s.accent : "var(--border)") }}>
               {s.icon} {s.ticker}
             </button>
           );
@@ -1098,7 +1098,7 @@ export default function App() {
           ].map(([id, note]) => {
             const s = STOCKS[id];
             return (
-              <div key={id} onClick={() => setStock(id)} style={{ display: "flex", gap: 8, alignItems: "baseline", background: "var(--surface-2)", borderRadius: 6, padding: "6px 9px", cursor: "pointer", border: "0.5px solid " + (stock === id ? s.accent : "var(--border)") }}>
+              <div key={id} onClick={() => { setStock(id); window.__scrollArticleToTop?.(); }} style={{ display: "flex", gap: 8, alignItems: "baseline", background: "var(--surface-2)", borderRadius: 6, padding: "6px 9px", cursor: "pointer", border: "0.5px solid " + (stock === id ? s.accent : "var(--border)") }}>
                 <span style={{ fontSize: 11.5, fontWeight: 700, color: s.accent, minWidth: 38 }}>{s.ticker}</span>
                 <span style={{ fontSize: 10.5, color: "var(--text-secondary)", lineHeight: 1.45 }}>{note}</span>
               </div>

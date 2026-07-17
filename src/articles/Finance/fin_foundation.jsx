@@ -2057,7 +2057,7 @@ const annotations = {
 
 export default function Tap1Foundations() {
   const [activeSection, setActiveSection] = useState(sections[0].id);
-  const [openSubsection, setOpenSubsection] = useState(0);
+  const [openSubsection, setOpenSubsection] = useState(null);
   const currentSection = sections.find(s => s.id === activeSection);
 
   return (
@@ -2070,7 +2070,7 @@ export default function Tap1Foundations() {
           <p style={{ fontSize: "11px", color: "var(--text-muted, #888)", margin: "4px 0 0" }}>Tầng 0 · 6 chủ đề · Trình độ trung cấp</p>
         </div>
         {sections.map(section => (
-          <button key={section.id} onClick={() => { setActiveSection(section.id); setOpenSubsection(0); }}
+          <button key={section.id} onClick={() => { setActiveSection(section.id); setOpenSubsection(null); window.__scrollArticleToTop?.(); }}
             style={{ display: "flex", alignItems: "center", gap: "10px", width: "100%", padding: "10px 1rem", border: "none", background: activeSection === section.id ? `${section.groupColor}15` : "transparent", cursor: "pointer", textAlign: "left", borderLeft: activeSection === section.id ? `3px solid ${section.groupColor}` : "3px solid transparent" }}>
             <i className={`ti ${section.icon}`} aria-hidden="true" style={{ fontSize: "16px", color: activeSection === section.id ? section.groupColor : "var(--text-secondary, #666)", flexShrink: 0 }} />
             <span style={{ fontSize: "12.5px", fontWeight: activeSection === section.id ? 500 : 400, color: activeSection === section.id ? section.groupColor : "var(--text-primary, #111827)", lineHeight: 1.3 }}>{section.label}</span>
@@ -2125,13 +2125,13 @@ export default function Tap1Foundations() {
 
         <div style={{ display: "flex", justifyContent: "space-between", marginTop: "2rem", paddingTop: "1.5rem", borderTop: "0.5px solid var(--border, #e0e0d8)" }}>
           {sections.findIndex(s => s.id === activeSection) > 0 ? (
-            <button onClick={() => { const i = sections.findIndex(s => s.id === activeSection); setActiveSection(sections[i - 1].id); setOpenSubsection(0); window.__scrollArticleToTop?.(); }}
+            <button onClick={() => { const i = sections.findIndex(s => s.id === activeSection); setActiveSection(sections[i - 1].id); setOpenSubsection(null); window.__scrollArticleToTop?.(); }}
               style={{ display: "flex", alignItems: "center", gap: "6px", padding: "8px 14px", border: "0.5px solid var(--border-strong, #ccc)", borderRadius: "8px", background: "transparent", cursor: "pointer", fontSize: "13px", color: "var(--text-primary, #111827)" }}>
               <i className="ti ti-arrow-left" aria-hidden="true" style={{ fontSize: "14px" }} />{sections[sections.findIndex(s => s.id === activeSection) - 1].label}
             </button>
           ) : <div />}
           {sections.findIndex(s => s.id === activeSection) < sections.length - 1 && (
-            <button onClick={() => { const i = sections.findIndex(s => s.id === activeSection); setActiveSection(sections[i + 1].id); setOpenSubsection(0); window.__scrollArticleToTop?.(); }}
+            <button onClick={() => { const i = sections.findIndex(s => s.id === activeSection); setActiveSection(sections[i + 1].id); setOpenSubsection(null); window.__scrollArticleToTop?.(); }}
               style={{ display: "flex", alignItems: "center", gap: "6px", padding: "8px 14px", border: "0.5px solid var(--border-strong, #ccc)", borderRadius: "8px", background: "transparent", cursor: "pointer", fontSize: "13px", color: "var(--text-primary, #111827)" }}>
               {sections[sections.findIndex(s => s.id === activeSection) + 1].label}<i className="ti ti-arrow-right" aria-hidden="true" style={{ fontSize: "14px" }} />
             </button>

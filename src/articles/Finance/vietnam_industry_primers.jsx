@@ -1001,7 +1001,7 @@ function SectorView({ sid, accent }) {
       </div>
       <div style={{ display: "flex", gap: 6, marginBottom: 14, flexWrap: "wrap" }}>
         {INNER_TABS.map((t, i) => (
-          <button key={i} onClick={() => setTab(i)} style={{ padding: "7px 14px", borderRadius: 8, cursor: "pointer", fontSize: 12, fontWeight: tab === i ? 700 : 500, background: tab === i ? accent : "transparent", color: tab === i ? "#fff" : "var(--text-secondary)", border: "1px solid " + (tab === i ? accent : "var(--border)") }}>
+          <button key={i} onClick={() => { setTab(i); window.__scrollArticleToTop?.(); }} style={{ padding: "7px 14px", borderRadius: 8, cursor: "pointer", fontSize: 12, fontWeight: tab === i ? 700 : 500, background: tab === i ? accent : "transparent", color: tab === i ? "#fff" : "var(--text-secondary)", border: "1px solid " + (tab === i ? accent : "var(--border)") }}>
             {t}
           </button>
         ))}
@@ -1060,7 +1060,7 @@ export default function App() {
       </div>
       <div className="mobile-static" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 6, marginBottom: 16, position: "sticky", top: 0, zIndex: 10, background: "#fff", padding: "10px 0", borderBottom: "1px solid #eee" }}>
         {SECTORS.map(s => (
-          <button key={s.id} onClick={() => setActiveSector(s.id)} style={{ padding: "8px 10px", borderRadius: 8, cursor: "pointer", fontSize: 12, fontWeight: 500, textAlign: "center", background: activeSector === s.id ? s.accent : "var(--surface-1)", color: activeSector === s.id ? "#fff" : "var(--text-secondary)", border: "0.5px solid " + (activeSector === s.id ? s.accent : "var(--border)"), transition: "all 0.14s" }}>
+          <button key={s.id} onClick={() => { window.__scrollArticleToTop?.(); setActiveSector(s.id); }} style={{ padding: "8px 10px", borderRadius: 8, cursor: "pointer", fontSize: 12, fontWeight: 500, textAlign: "center", background: activeSector === s.id ? s.accent : "var(--surface-1)", color: activeSector === s.id ? "#fff" : "var(--text-secondary)", border: "0.5px solid " + (activeSector === s.id ? s.accent : "var(--border)"), transition: "all 0.14s" }}>
             <span style={{ marginRight: 4 }}>{s.icon}</span>{s.label}
           </button>
         ))}
@@ -1081,7 +1081,7 @@ export default function App() {
           ].map(({ id, note }) => {
             const s = SECTORS.find(x => x.id === id);
             return (
-              <div key={id} onClick={() => setActiveSector(id)} style={{ background: "var(--surface-2)", borderRadius: 6, padding: "7px 9px", cursor: "pointer", border: "0.5px solid " + (activeSector === id ? s.accent : "var(--border)") }}>
+              <div key={id} onClick={() => { window.__scrollArticleToTop?.(); setActiveSector(id); }} style={{ background: "var(--surface-2)", borderRadius: 6, padding: "7px 9px", cursor: "pointer", border: "0.5px solid " + (activeSector === id ? s.accent : "var(--border)") }}>
                 <div style={{ fontSize: 11, fontWeight: 500, color: s.accent }}>{s.icon} {s.label}</div>
                 <div style={{ fontSize: 10, color: "var(--text-muted)", marginTop: 1 }}>{note}</div>
               </div>

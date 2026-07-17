@@ -434,12 +434,14 @@ export default function MacroQuarterlyReview() {
     setData(snapshots[q]?.data || {});
     setNotes(snapshots[q]?.notes || "");
     setView("input");
+    window.__scrollArticleToTop?.();
   };
 
   const newQuarter = () => {
     setData({});
     setNotes("");
     setView("input");
+    window.__scrollArticleToTop?.();
   };
 
   const regime = getRegime(data);
@@ -475,8 +477,8 @@ export default function MacroQuarterlyReview() {
       {/* View tabs */}
       <div style={{ display: "flex", gap: 6, marginBottom: 14 }}>
         {[{ id: "input", l: "① Nhập số liệu" }, { id: "result", l: "② Kết quả" }, { id: "history", l: "③ Lịch sử" }].map(t => (
-          <button key={t.id} onClick={() => setView(t.id)} style={{
-            flex: 1, padding: "9px 4px", borderRadius: 10, cursor: "pointer",
+          <button key={t.id} onClick={() => { setView(t.id); window.__scrollArticleToTop?.(); }} style={{
+            flex: 1, textAlign: "center", padding: "9px 4px", borderRadius: 10, cursor: "pointer",
             fontSize: 12, fontWeight: view === t.id ? 700 : 500,
             background: view === t.id ? "#0f172a" : "#fff",
             color: view === t.id ? "#fff" : "#64748b",
@@ -525,7 +527,7 @@ export default function MacroQuarterlyReview() {
             />
           </div>
 
-          <button onClick={() => setView("result")} style={{ width: "100%", padding: "13px", borderRadius: 12, border: "none", background: "#0f172a", color: "#fff", fontSize: 14, fontWeight: 700, cursor: "pointer" }}>
+          <button onClick={() => { setView("result"); window.__scrollArticleToTop?.(); }} style={{ width: "100%", padding: "13px", borderRadius: 12, border: "none", background: "#0f172a", color: "#fff", fontSize: 14, fontWeight: 700, cursor: "pointer" }}>
             Xem kết quả phân tích →
           </button>
         </div>
@@ -539,7 +541,7 @@ export default function MacroQuarterlyReview() {
               <div style={{ fontSize: 32, marginBottom: 8 }}>📊</div>
               <div style={{ fontSize: 14, fontWeight: 700, color: "#1e293b", marginBottom: 4 }}>Chưa đủ dữ liệu</div>
               <div style={{ fontSize: 12, color: "#64748b", marginBottom: 14 }}>Cần điền ít nhất phần Tăng trưởng và Lạm phát để xác định regime.</div>
-              <button onClick={() => setView("input")} style={{ padding: "10px 20px", borderRadius: 10, border: "none", background: "#0f172a", color: "#fff", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>← Quay lại nhập</button>
+              <button onClick={() => { setView("input"); window.__scrollArticleToTop?.(); }} style={{ padding: "10px 20px", borderRadius: 10, border: "none", background: "#0f172a", color: "#fff", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>← Quay lại nhập</button>
             </div>
           ) : (
             <>

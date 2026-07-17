@@ -531,7 +531,7 @@ export default function LovePhilosophyDeep() {
 
         <div className="mobile-static" style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 28, position: "sticky", top: 0, zIndex: 10, background: PAPER, padding: "10px 0", borderBottom: `1px solid ${LINE}` }}>
           {TABS.map((t) => (
-            <button key={t.id} onClick={() => setTab(t.id)}
+            <button key={t.id} onClick={() => { setTab(t.id); window.__scrollArticleToTop?.(); }}
               style={{ fontFamily: SANS, fontSize: 14, padding: "11px 20px", borderRadius: 9, cursor: "pointer",
                 border: `1.5px solid ${tab === t.id ? TAB_ACCENT : LINE}`, background: tab === t.id ? TAB_ACCENT : CARD,
                 color: tab === t.id ? "#fff" : "#5A6B66", fontWeight: tab === t.id ? 700 : 600,
@@ -558,9 +558,11 @@ export default function LovePhilosophyDeep() {
             </div>
 
             {LENSES.filter((l) => l.key === lens).map((l) => (
-              <div key={l.key} style={{ display: "grid", gap: 15 }}>
+              <div key={l.key} style={{ display: "grid", gap: 12 }}>
                 {l.items.map(([label, body], i) => (
-                  <Sec key={i} label={label} color={l.color}>{body}</Sec>
+                  <div key={i} style={{ border: `1px solid ${LINE}`, borderLeft: `3px solid ${l.color}`, borderRadius: 6, background: CARD, padding: "14px 16px" }}>
+                    <Sec label={label} color={l.color}>{body}</Sec>
+                  </div>
                 ))}
                 {l.quote && <Quote text={l.quote[0]} by={l.quote[1]} />}
               </div>
