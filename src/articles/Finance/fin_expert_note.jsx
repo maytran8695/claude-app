@@ -4095,12 +4095,14 @@ function AnnotatedSegment({ text, annotations, annotationReplies, onAddReply, on
           title="Có phản biện học thuật — nhấn để xem"
         >
           {text.slice(m.start, m.end)}
-          <FinIcon name="ti-message-circle-exclamation" size={11} color={sevColor} style={{ marginLeft: "3px", verticalAlign: "middle" }} />
-          {replyCount > 0 && (
-            <span style={{ fontSize: "9.5px", fontWeight: 700, color: "#fff", background: sevColor, borderRadius: "8px", padding: "0px 5px", marginLeft: "3px", verticalAlign: "middle" }}>
-              {replyCount}
-            </span>
-          )}
+          <span style={{ display: "inline-flex", alignItems: "center", whiteSpace: "nowrap", verticalAlign: "middle", marginLeft: "3px" }}>
+            <FinIcon name="ti-message-circle-exclamation" size={11} color={sevColor} />
+            {replyCount > 0 && (
+              <span style={{ fontSize: "9.5px", fontWeight: 700, color: "#fff", background: sevColor, borderRadius: "8px", padding: "0px 5px", marginLeft: "3px" }}>
+                {replyCount}
+              </span>
+            )}
+          </span>
         </mark>
         {isOpen && (
           <span

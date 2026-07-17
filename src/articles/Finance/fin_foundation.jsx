@@ -2409,7 +2409,9 @@ function AnnotatedSegment({ text, annotations }) {
           style={{ background: sevBg, color: "var(--text-primary, #111827)", borderBottom: `2px solid ${sevColor}`, padding: "0 2px", cursor: "pointer", borderRadius: "2px" }}
           title="Có lưu ý học thuật — nhấn để xem">
           {text.slice(m.start, m.end)}
-          <FinIcon name="ti-message-circle-exclamation" size={11} color={sevColor} style={{ marginLeft: "3px", verticalAlign: "middle" }} />
+          <span style={{ display: "inline-flex", alignItems: "center", whiteSpace: "nowrap", verticalAlign: "middle", marginLeft: "3px" }}>
+            <FinIcon name="ti-message-circle-exclamation" size={11} color={sevColor} />
+          </span>
         </mark>
         {isOpen && (
           <span onClick={(e) => e.stopPropagation()} style={{ display: "block", position: "relative", marginTop: "6px", marginBottom: "6px", padding: "10px 12px", background: "#fff", border: `1px solid ${sevColor}55`, borderLeft: `3px solid ${sevColor}`, borderRadius: "8px", fontSize: "12.5px", lineHeight: 1.6, color: "var(--text-primary, #111827)", boxShadow: "0 2px 10px rgba(0,0,0,0.08)", maxWidth: "640px" }}>
