@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useCallback, useEffect, useLayoutEffect, useRef, lazy, Suspense } from 'react';
+import { TrendingUp, HeartPulse, Languages, Brain, Sun, Moon, Search, ChevronDown, PanelLeftClose, PanelLeftOpen, ArrowUp, Menu } from 'lucide-react';
 
 // =========================================================================
 // 1. QUÉT ĐỘNG TOÀN BỘ FILE JSX TRONG THƯ MỤC ARTICLES (lazy-load từng bài)
@@ -118,41 +119,38 @@ const articles = [...rawArticles].sort((a, b) => {
   return 0;
 });
 
-// Định nghĩa màu sắc sinh động động theo từng Chuyên mục (Accent Themes)
+// Định nghĩa màu sắc + icon riêng theo từng Chuyên mục (Accent Themes)
+// Mỗi category có 1 màu accent riêng cho light mode và 1 bản sáng hơn cho dark mode
+// (giữ đúng tông màu gốc, chỉ tăng độ sáng để đủ tương phản trên nền tối).
 const categoryThemes = {
   Finance: {
-    // Đỏ — trùng màu tab "Thép" trong vietnam_industry_primers.jsx (#B34040)
-    text: 'text-[#B34040]',
-    bg: 'bg-[#B34040]/10 text-[#8A3232] border-[#B34040]/30',
-    bgActive: 'bg-[#B34040] text-white shadow-md shadow-[#B34040]/20',
-    icon: '📊'
+    // Đỏ — trùng màu tab "Thép" trong vietnam_industry_primers.jsx
+    light: '#B34040',
+    dark: '#E0776E',
+    Icon: TrendingUp
   },
   Health: {
-    // Vàng — trùng màu tab "Actionable" trong holistic_life.jsx (C.gold = #B4863C)
-    text: 'text-[#B4863C]',
-    bg: 'bg-[#B4863C]/10 text-[#8A6B2F] border-[#B4863C]/30',
-    bgActive: 'bg-[#B4863C] text-white shadow-md shadow-[#B4863C]/20',
-    icon: '❤️'
+    // Vàng — trùng màu tab "Actionable" trong holistic_life.jsx
+    light: '#B4863C',
+    dark: '#E0B366',
+    Icon: HeartPulse
   },
   Language: {
-    // Xanh navy/cobalt — sang hơn xanh dương mặc định
-    text: 'text-[#22436B]',
-    bg: 'bg-[#22436B]/10 text-[#22436B] border-[#22436B]/30',
-    bgActive: 'bg-[#22436B] text-white shadow-md shadow-[#22436B]/20',
-    icon: '🌐'
+    // Xanh navy/cobalt
+    light: '#22436B',
+    dark: '#7DA2D1',
+    Icon: Languages
   },
   Psy: {
-    // Xanh teal — trùng màu tab "Bản chất" trong love.jsx (TAB_ACCENT = #356158)
-    text: 'text-[#356158]',
-    bg: 'bg-[#356158]/10 text-[#356158] border-[#356158]/30',
-    bgActive: 'bg-[#356158] text-white shadow-md shadow-[#356158]/20',
-    icon: '📂'
+    // Xanh teal — trùng màu tab "Bản chất" trong love.jsx
+    light: '#356158',
+    dark: '#6FB0A0',
+    Icon: Brain
   },
   Default: {
-    text: 'text-indigo-600 dark:text-indigo-400',
-    bg: 'bg-indigo-50 text-indigo-700 border-indigo-200/60',
-    bgActive: 'bg-indigo-600 text-white shadow-md shadow-indigo-600/15',
-    icon: '📂'
+    light: '#4F46E5',
+    dark: '#818CF8',
+    Icon: TrendingUp
   }
 };
 
@@ -276,6 +274,27 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
 
   // =========================================================================
+  // DARK MODE: chỉ áp dụng cho khung app (sidebar + thanh header nội dung),
+  // KHÔNG áp dụng vào bên trong từng bài viết (mỗi file article tự style riêng).
+  // Ghi nhớ lựa chọn của người dùng vào localStorage, mặc định theo hệ điều hành.
+  // =========================================================================
+  const [darkMode, setDarkMode] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    const saved = localStorage.getItem('mws-dark-mode');
+    if (saved !== null) return saved === 'true';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
+  useEffect(() => {
+    localStorage.setItem('mws-dark-mode', String(darkMode));
+  }, [darkMode]);
+
+  // Trạng thái mở/đóng của từng nhóm Chuyên mục trong sidebar (mặc định mở hết)
+  const [openGroups, setOpenGroups] = useState({ Health: true, Finance: true, Language: true, Psy: true });
+  const toggleGroup = useCallback((cat) => {
+    setOpenGroups(prev => ({ ...prev, [cat]: !prev[cat] }));
+  }, []);
+
+  // =========================================================================
   // RESPONSIVE: trên mobile, sidebar là overlay (drawer) đóng mặc định;
   // trên desktop, sidebar nằm cố định trong layout, mở mặc định.
   // =========================================================================
@@ -387,9 +406,42 @@ function App() {
   const activeArticle = articles.find(art => art.id === activeTab);
   const activeTheme = activeArticle ? getTheme(activeArticle.category) : categoryThemes.Default;
 
+  // Bộ token màu cho khung app (sidebar + header nội dung) — light/dark.
+  const T = darkMode ? {
+    appBg: 'bg-[#15171B] text-[#F5F4F1]',
+    surface: 'bg-[#1B1E24]',
+    surface2: 'bg-[#20242B]',
+    surfaceHover: 'hover:bg-[#262B33]',
+    border: 'border-[#2B2F38]',
+    borderStrong: 'border-[#383E49]',
+    ink: 'text-[#F5F4F1]',
+    muted: 'text-[#C7C4BB]',
+    muted2: 'text-[#9B988E]',
+    headerBg: 'bg-[#1B1E24]/85',
+    contentBg: 'bg-[#15171B]',
+    ring: '#EDEDE9',
+    placeholder: 'placeholder:text-[#9B988E]',
+    hoverInk: 'hover:text-[#F5F4F1]'
+  } : {
+    appBg: 'bg-[#FAF9F6] text-[#1C1D1B]',
+    surface: 'bg-white',
+    surface2: 'bg-[#F4F2ED]',
+    surfaceHover: 'hover:bg-[#F4F2ED]',
+    border: 'border-[#E7E3DB]',
+    borderStrong: 'border-[#D9D4C8]',
+    ink: 'text-[#1C1D1B]',
+    muted: 'text-[#736F65]',
+    muted2: 'text-[#9A968A]',
+    headerBg: 'bg-white/85',
+    contentBg: 'bg-[#FAF9F6]',
+    ring: '#22262B',
+    placeholder: 'placeholder:text-[#9A968A]',
+    hoverInk: 'hover:text-[#1C1D1B]'
+  };
+
   return (
-    <div className="relative flex h-screen bg-slate-50 text-slate-900 overflow-hidden font-sans">
-      
+    <div className={`relative flex h-screen overflow-hidden font-sans ${T.appBg}`}>
+
       {/* Lớp phủ mờ phía sau sidebar khi mở dạng overlay trên mobile */}
       {isSidebarOpen && isMobile && (
         <div
@@ -412,108 +464,124 @@ function App() {
         onMouseEnter={() => !isMobile && !isSidebarOpen && setIsHoverPeek(true)}
         onMouseLeave={() => setIsHoverPeek(false)}
         style={!isMobile ? { width: isSidebarExpanded ? `${sidebarWidth}px` : '68px' } : undefined}
-        className={`bg-white border-r border-slate-200/60 flex flex-col h-full transition-all duration-200 ease-out
+        className={`${T.surface} border-r ${T.border} flex flex-col h-full transition-all duration-200 ease-out
           fixed inset-y-0 left-0 z-40 md:z-30 w-[82vw] max-w-[300px] md:w-auto md:shrink-0
           ${isPeeking ? 'md:absolute md:shadow-2xl' : 'md:relative'}
           ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
       >
         {/* Header Sidebar */}
-        <div className="h-16 border-b border-slate-200/60 flex items-center justify-between px-4 shrink-0">
-          {isSidebarExpanded ? (
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center text-white font-extrabold text-sm shadow-sm">
-                M
-              </div>
-              <div>
-                <h1 className="font-bold text-slate-800 text-sm leading-none">MayWorkSpace</h1>
-                <span className="text-[10px] text-slate-400 font-semibold tracking-wide">STUDY HUB</span>
-              </div>
-            </div>
-          ) : (
-            <div className="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center text-white font-extrabold text-xs mx-auto">
-              M
-            </div>
-          )}
-          
-          <button 
-            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className="p-1.5 rounded-lg hover:bg-slate-50 text-slate-500 hidden md:block"
+        <div className={`h-16 border-b ${T.border} flex items-center gap-2.5 px-4 shrink-0 ${!isSidebarExpanded ? 'justify-center px-0' : ''}`}>
+          <div
+            className="rounded-[9px] flex items-center justify-center text-white font-extrabold text-sm shadow-sm shrink-0"
+            style={{ background: 'linear-gradient(135deg, #E85D9C 0%, #7C5CFC 100%)', width: 34, height: 34 }}
           >
-            {isSidebarOpen ? '◀' : '▶'}
-          </button>
+            M
+          </div>
+          {isSidebarExpanded && (
+            <>
+              <div className="min-w-0">
+                <h1 className={`font-bold text-sm leading-none truncate ${T.ink}`}>MayWorkSpace</h1>
+                <span className={`text-[10px] font-semibold tracking-wide ${T.muted2}`}>STUDY HUB</span>
+              </div>
+              <div className="flex-1" />
+              <button
+                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                className={`p-1.5 rounded-lg ${T.surfaceHover} ${T.muted} hidden md:flex items-center justify-center shrink-0`}
+                title="Thu gọn sidebar"
+              >
+                <PanelLeftClose size={16} />
+              </button>
+            </>
+          )}
         </div>
 
         {/* Ô Tìm Kiếm */}
         {isSidebarExpanded && (
-          <div className="p-3 border-b border-slate-100 shrink-0">
-            <div className="relative">
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400 text-xs">
-                🔍
-              </span>
+          <div className={`p-3 border-b ${T.border} shrink-0`}>
+            <div className={`flex items-center gap-2 rounded-full border ${T.border} ${T.surface2} px-3 py-2`}>
+              <Search size={14} className={`shrink-0 ${T.muted2}`} />
               <input
                 type="text"
                 placeholder="Tìm nhanh bài viết..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-8 pr-3 py-1.5 bg-slate-50 border border-slate-200/50 rounded-lg text-xs outline-none focus:ring-2 focus:ring-slate-900/10 transition-all placeholder:text-slate-400"
+                className={`w-full bg-transparent text-xs outline-none ${T.placeholder} ${T.ink}`}
               />
             </div>
           </div>
         )}
 
         {/* Danh Sách Menu Các Chuyên Mục */}
-        <div className="flex-1 overflow-y-auto p-3 space-y-6">
+        <div className="flex-1 overflow-y-auto p-2.5">
           {isSidebarExpanded ? (
             Object.entries(groupedArticles).map(([category, items]) => {
               const theme = getTheme(category);
+              const Icon = theme.Icon;
+              const accent = darkMode ? theme.dark : theme.light;
+              const isOpen = openGroups[category] !== false;
               return (
-                <div key={category} className="space-y-2">
-                  {/* Tên Chuyên mục với Icon sinh động */}
-                  <h3 className={`px-2 flex items-center gap-2 uppercase tracking-wider border-b border-slate-100 pb-1.5 text-[11px] font-extrabold ${theme.text}`}>
-                    <span className="text-xs">{theme.icon}</span>
-                    <span>{category}</span>
-                  </h3>
-                  
-                  {/* Danh sách các Tab con */}
-                  <div className="space-y-0.5">
-                    {items.map(item => {
-                      const isSelected = activeTab === item.id;
-                      return (
-                        <button
-                          key={item.id}
-                          onClick={() => selectArticle(item.id)}
-                          className={`w-full text-left px-3 py-1.5 rounded-lg text-xs transition-all flex items-center justify-between group font-medium ${
-                            isSelected
-                              ? `${theme.bgActive} font-semibold` // Đổi màu Active động theo Chuyên mục
-                              : 'text-slate-600 hover:bg-slate-50 hover:text-slate-950'
-                          }`}
-                        >
-                          <span className="truncate pr-2">{item.title}</span>
-                        </button>
-                      );
-                    })}
-                  </div>
+                <div key={category} className="mb-1">
+                  <button
+                    onClick={() => toggleGroup(category)}
+                    className={`w-full flex items-center gap-2.5 px-2 py-1.5 rounded-lg text-left ${T.surfaceHover}`}
+                  >
+                    <span
+                      className="rounded-[7px] flex items-center justify-center shrink-0"
+                      style={{ width: 26, height: 26, background: `${accent}1F` }}
+                    >
+                      <Icon size={14} style={{ color: accent }} />
+                    </span>
+                    <span className={`text-[11px] font-bold uppercase tracking-wider flex-1 ${T.ink}`}>{category}</span>
+                    <span className={`text-[10px] font-bold rounded-full px-1.5 py-px min-w-[20px] text-center ${T.surface2} ${T.muted2}`}>
+                      {items.length}
+                    </span>
+                    <ChevronDown size={13} className={`shrink-0 ${T.muted2} transition-transform ${isOpen ? 'rotate-0' : '-rotate-90'}`} />
+                  </button>
+
+                  {isOpen && (
+                    <div className="flex flex-col gap-0.5 pl-[30px] pr-1 pt-0.5 pb-1.5">
+                      {items.map(item => {
+                        const isSelected = activeTab === item.id;
+                        return (
+                          <button
+                            key={item.id}
+                            onClick={() => selectArticle(item.id)}
+                            className={`relative w-full text-left pl-4 pr-3 py-1.5 rounded-lg text-xs transition-colors ${
+                              isSelected ? 'font-semibold' : `font-medium ${T.muted} ${T.hoverInk} ${T.surfaceHover}`
+                            }`}
+                            style={isSelected ? { background: `${accent}17`, color: accent } : undefined}
+                          >
+                            <span
+                              className="absolute left-1 top-1/2 -translate-y-1/2 rounded-full"
+                              style={{ width: isSelected ? 5 : 4, height: isSelected ? 5 : 4, background: isSelected ? accent : (darkMode ? '#4A4E58' : '#C7C2B4') }}
+                            />
+                            <span className="truncate block">{item.title}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
               );
             })
           ) : (
-            /* Khi Sidebar ở trạng thái Thu Gọn */
-            <div className="flex flex-col items-center gap-2">
-              {articles.map(item => {
-                const theme = getTheme(item.category);
-                const isSelected = activeTab === item.id;
+            /* Khi Sidebar ở trạng thái Thu Gọn: chỉ hiện 4 icon Chuyên mục — hover vào
+               sidebar sẽ "lộ" (peek) đầy đủ để chọn bài viết cụ thể */
+            <div className="flex flex-col items-center gap-2 pt-1">
+              {Object.keys(groupedArticles).map(category => {
+                const theme = getTheme(category);
+                const Icon = theme.Icon;
+                const accent = darkMode ? theme.dark : theme.light;
+                const isActiveCat = activeArticle && activeArticle.category === category;
                 return (
                   <button
-                    key={item.id}
-                    onClick={() => setActiveTab(item.id)}
-                    className={`w-9 h-9 rounded-lg flex items-center justify-center text-xs font-bold transition-all ${
-                      isSelected 
-                        ? `${theme.bgActive}` 
-                        : 'hover:bg-slate-100 text-slate-500'
-                    }`}
-                    title={item.title}
+                    key={category}
+                    onClick={() => { setIsSidebarOpen(true); setOpenGroups(prev => ({ ...prev, [category]: true })); }}
+                    className="w-9 h-9 rounded-[10px] flex items-center justify-center transition-transform active:scale-95"
+                    style={{ background: isActiveCat ? accent : `${accent}1F` }}
+                    title={category}
                   >
-                    {theme.icon}
+                    <Icon size={16} style={{ color: isActiveCat ? '#fff' : accent }} />
                   </button>
                 );
               })}
@@ -521,11 +589,38 @@ function App() {
           )}
         </div>
 
+        {/* Chuyển đổi Sáng / Tối */}
+        <div className={`p-2.5 border-t ${T.border} shrink-0`}>
+          <button
+            onClick={() => setDarkMode(d => !d)}
+            className={`w-full flex items-center gap-2 rounded-full border ${T.border} ${T.surface2} ${isSidebarExpanded ? 'px-2.5 py-1.5' : 'p-1.5 justify-center'}`}
+            title={darkMode ? 'Chế độ Tối' : 'Chế độ Sáng'}
+          >
+            {darkMode ? <Moon size={13} className={T.muted} /> : <Sun size={13} className={T.muted} />}
+            {isSidebarExpanded && (
+              <>
+                <span className={`text-[11px] font-semibold ${T.muted} flex-1 text-left`}>
+                  {darkMode ? 'Chế độ Tối' : 'Chế độ Sáng'}
+                </span>
+                <span
+                  className="w-[30px] h-[17px] rounded-full relative shrink-0 transition-colors"
+                  style={{ background: darkMode ? T.ring : '#D9D4C8' }}
+                >
+                  <span
+                    className={`absolute top-0.5 w-3.5 h-3.5 rounded-full ${T.surface} shadow-sm transition-transform`}
+                    style={{ transform: darkMode ? 'translateX(15px)' : 'translateX(2px)' }}
+                  />
+                </span>
+              </>
+            )}
+          </button>
+        </div>
+
         {/* Thanh gờ kéo giãn kích thước Sidebar */}
         {isSidebarOpen && (
-          <div 
+          <div
             onMouseDown={startResizing}
-            className="hidden md:block absolute top-0 right-0 w-1 h-full cursor-col-resize hover:bg-slate-300 active:bg-slate-400/80 transition-colors z-40"
+            className={`hidden md:block absolute top-0 right-0 w-1 h-full cursor-col-resize transition-colors z-40 ${darkMode ? 'hover:bg-[#383E49] active:bg-[#4A4E58]' : 'hover:bg-slate-300 active:bg-slate-400/80'}`}
           />
         )}
       </div>
@@ -533,27 +628,29 @@ function App() {
       {/* ==========================================
           2. VÙNG HIỂN THỊ NỘI DUNG CHÍNH (CARD LAYOUT)
           ========================================== */}
-      <div className="flex-1 flex flex-col h-full overflow-hidden bg-slate-50/50">
+      <div className={`flex-1 flex flex-col h-full overflow-hidden ${T.contentBg}`}>
         {activeArticle ? (
           <div className="flex-1 flex flex-col h-full overflow-hidden">
-            
+
             {/* Header dính phía trên */}
-            <div className="sticky top-0 h-16 bg-white/80 backdrop-blur-md border-b border-slate-200/40 px-8 z-20 flex items-center justify-between shrink-0">
+            <div className={`sticky top-0 h-16 ${T.headerBg} backdrop-blur-md border-b ${T.border} px-8 z-20 flex items-center justify-between shrink-0`}>
               <div className="flex items-center gap-3">
-                <button 
+                <button
                   onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                  className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-600 md:hidden"
+                  className={`p-1.5 rounded-lg ${T.surfaceHover} ${T.muted} md:hidden`}
                 >
-                  ☰
+                  <Menu size={18} />
                 </button>
-                <h1 className="text-xl md:text-2xl font-extrabold tracking-tight text-slate-900">
+                <h1 className={`text-xl md:text-2xl font-extrabold tracking-tight ${T.ink}`}>
                   {activeArticle.title}
                 </h1>
               </div>
             </div>
 
-            {/* Vùng Cuộn Duy Nhất Chứa Nội Dung Bài Viết (full-bleed, không card) */}
-            <div ref={contentScrollRef} className="flex-1 overflow-y-auto" style={{ overflowAnchor: 'none' }}>
+            {/* Vùng Cuộn Duy Nhất Chứa Nội Dung Bài Viết (full-bleed, không card) —
+                Bên trong Suspense là vùng nội dung bài viết, luôn giữ theme sáng
+                riêng của từng file, KHÔNG bị ảnh hưởng bởi dark mode của khung app. */}
+            <div ref={contentScrollRef} className="flex-1 overflow-y-auto bg-slate-50/50" style={{ overflowAnchor: 'none' }}>
               {/* Ép layout và áp dụng CSS Custom Overrides */}
               <div className="w-full h-full text-left article-content max-w-none
                 [&_*]:text-left
@@ -576,15 +673,15 @@ function App() {
                 onClick={scrollContentToTop}
                 aria-label="Về đầu trang"
                 title="Về đầu trang"
-                className="fixed bottom-6 right-5 md:bottom-8 md:right-8 z-30 w-11 h-11 rounded-full bg-slate-900/85 text-white shadow-lg backdrop-blur-md flex items-center justify-center text-lg active:scale-95 transition-transform hover:bg-slate-900"
+                className="fixed bottom-6 right-5 md:bottom-8 md:right-8 z-30 w-11 h-11 rounded-full bg-slate-900/85 text-white shadow-lg backdrop-blur-md flex items-center justify-center active:scale-95 transition-transform hover:bg-slate-900"
               >
-                ↑
+                <ArrowUp size={18} />
               </button>
             )}
 
           </div>
         ) : (
-          <div className="flex-1 flex items-center justify-center text-slate-400 text-sm">
+          <div className={`flex-1 flex items-center justify-center text-sm ${T.muted2}`}>
             Không tìm thấy bài viết nào.
           </div>
         )}
