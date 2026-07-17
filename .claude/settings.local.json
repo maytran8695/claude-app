@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx vite *)",
+      "Bash(curl -sf http://localhost:5173)",
+      "Bash(ls -la \"/Users/maytran/Downloads/\" | grep -i \"ChunkAtlas\")",
+      "Read(//Users/maytran/Downloads/**)"
+    ]
+  }
+}
