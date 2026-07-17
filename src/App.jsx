@@ -1,9 +1,9 @@
-import React, { useState, useMemo, useCallback, useEffect, useRef } from 'react';
+import React, { useState, useMemo, useCallback, useEffect, useRef, lazy, Suspense } from 'react';
 
 // =========================================================================
-// 1. QUÉT ĐỘNG TOÀN BỘ FILE JSX TRONG THƯ MỤC ARTICLES
+// 1. QUÉT ĐỘNG TOÀN BỘ FILE JSX TRONG THƯ MỤC ARTICLES (lazy-load từng bài)
 // =========================================================================
-const articleModules = import.meta.glob('./articles/**/*.jsx', { eager: true });
+const articleModules = import.meta.glob('./articles/**/*.jsx');
 
 // Hàm chuẩn hóa chuỗi để so sánh chính xác không phân biệt hoa thường, dấu gạch
 const normalizeKey = (str) => str.toLowerCase().replace(/[-_\s]/g, '');
@@ -26,7 +26,7 @@ const exactTitleMap = {
 };
 
 // Thứ tự sắp xếp các Danh mục lớn
-const targetCategoryOrder = ['Finance', 'Health', 'Language', 'Psy'];
+const targetCategoryOrder = ['Health', 'Finance', 'Language', 'Psy'];
 
 // Thứ tự sắp xếp các bài viết bên trong từng danh mục
 const targetArticleOrder = {
@@ -53,7 +53,7 @@ const targetArticleOrder = {
   ]
 };
 
-const rawArticles = Object.entries(articleModules).map(([path, module]) => {
+const rawArticles = Object.entries(articleModules).map(([path, loader]) => {
   const fileNameWithExt = path.split('/').pop();
   const id = fileNameWithExt.replace('.jsx', '');
 
@@ -78,7 +78,11 @@ const rawArticles = Object.entries(articleModules).map(([path, module]) => {
     .trim()
     .replace(/\b\w/g, c => c.toUpperCase());
 
-  const Component = module.default || Object.values(module).find(val => typeof val === 'function');
+  const Component = lazy(() =>
+    loader().then((module) => ({
+      default: module.default || Object.values(module).find(val => typeof val === 'function')
+    }))
+  );
 
   return {
     id,
@@ -86,7 +90,7 @@ const rawArticles = Object.entries(articleModules).map(([path, module]) => {
     category,
     Component
   };
-}).filter(item => item.Component !== undefined);
+});
 
 // SẮP XẾP TOÀN BỘ DANH SÁCH BÀI VIẾT THEO ĐÚNG THỨ TỰ YÊU CẦU
 const articles = [...rawArticles].sort((a, b) => {
@@ -260,7 +264,7 @@ function App() {
     document.head.appendChild(style);
   }, []);
 
-  // Tự động kích hoạt bài viết đầu tiên làm mặc định (Fin Expert Note)
+  // Tự động kích hoạt bài viết đầu tiên làm mặc định
   const [activeTab, setActiveTab] = useState(() => {
     return articles.length > 0 ? articles[0].id : '';
   });
@@ -488,7 +492,9 @@ function App() {
                 [&_table]:w-full [&_table]:mx-0
                 [&_h1]:text-left [&_h2]:text-left [&_h3]:text-left"
               >
-                <activeArticle.Component />
+                <Suspense fallback={<div className="flex items-center justify-center py-24 text-slate-400 text-sm">Đang tải bài viết...</div>}>
+                  <activeArticle.Component />
+                </Suspense>
               </div>
             </div>
 

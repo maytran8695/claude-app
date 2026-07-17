@@ -999,9 +999,9 @@ function SectorView({ sid, accent }) {
         <div style={{ marginBottom: 3 }}><Tag label={d.type} color={accent} /></div>
         <p style={{ fontSize: 12, color: "var(--text-secondary)", fontStyle: "italic", margin: 0 }}>{d.tagline}</p>
       </div>
-      <div style={{ display: "flex", gap: 4, marginBottom: 14, flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: 6, marginBottom: 14, flexWrap: "wrap" }}>
         {INNER_TABS.map((t, i) => (
-          <button key={i} onClick={() => setTab(i)} style={{ padding: "4px 9px", borderRadius: 6, cursor: "pointer", fontSize: 11, fontWeight: tab === i ? 500 : 400, background: tab === i ? accent : "transparent", color: tab === i ? "#fff" : "var(--text-secondary)", border: "0.5px solid " + (tab === i ? accent : "var(--border)") }}>
+          <button key={i} onClick={() => setTab(i)} style={{ padding: "7px 14px", borderRadius: 8, cursor: "pointer", fontSize: 12, fontWeight: tab === i ? 700 : 500, background: tab === i ? accent : "transparent", color: tab === i ? "#fff" : "var(--text-secondary)", border: "1px solid " + (tab === i ? accent : "var(--border)") }}>
             {t}
           </button>
         ))}
@@ -1042,12 +1042,12 @@ export default function App() {
   const [activeSector, setActiveSector] = useState("steel");
   const current = SECTORS.find(s => s.id === activeSector);
   return (
-    <div style={{ fontFamily: "var(--font-sans)" }}>
+    <div style={{ fontFamily: "var(--font-sans)", padding: "18px 14px 40px" }}>
       <div style={{ marginBottom: 14 }}>
         <div style={{ fontSize: 15, fontWeight: 600, color: "var(--text-primary)", marginBottom: 2 }}>Vietnam Industry Primers — Deep Edition</div>
         <div style={{ fontSize: 11, color: "var(--text-muted)" }}>8 ngành · 7 lớp phân tích · Định giá + Kịch bản Bull/Base/Bear · Mid-2026</div>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 6, marginBottom: 16 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 6, marginBottom: 16, position: "sticky", top: 0, zIndex: 10, background: "#fff", padding: "10px 0", borderBottom: "1px solid #eee" }}>
         {SECTORS.map(s => (
           <button key={s.id} onClick={() => setActiveSector(s.id)} style={{ padding: "8px 10px", borderRadius: 8, cursor: "pointer", fontSize: 12, fontWeight: 500, textAlign: "center", background: activeSector === s.id ? s.accent : "var(--surface-1)", color: activeSector === s.id ? "#fff" : "var(--text-secondary)", border: "0.5px solid " + (activeSector === s.id ? s.accent : "var(--border)"), transition: "all 0.14s" }}>
             <span style={{ marginRight: 4 }}>{s.icon}</span>{s.label}

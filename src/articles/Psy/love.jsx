@@ -528,12 +528,13 @@ export default function LovePhilosophyDeep() {
           </p>
         </div>
 
-        <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 22, borderBottom: `1px solid ${LINE}`, paddingBottom: 14 }}>
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 28, position: "sticky", top: 0, zIndex: 10, background: PAPER, padding: "10px 0", borderBottom: `1px solid ${LINE}` }}>
           {TABS.map((t) => (
             <button key={t.id} onClick={() => setTab(t.id)}
-              style={{ fontFamily: SANS, fontSize: 12.6, padding: "7px 14px", borderRadius: 3, cursor: "pointer",
-                border: `1px solid ${tab === t.id ? ACCENT : LINE}`, background: tab === t.id ? ACCENT : CARD,
-                color: tab === t.id ? "#fff" : "#5A6B66", fontWeight: tab === t.id ? 700 : 500 }}>
+              style={{ fontFamily: SANS, fontSize: 14, padding: "11px 20px", borderRadius: 9, cursor: "pointer",
+                border: `1.5px solid ${tab === t.id ? ACCENT : LINE}`, background: tab === t.id ? ACCENT : CARD,
+                color: tab === t.id ? "#fff" : "#5A6B66", fontWeight: tab === t.id ? 700 : 600,
+                boxShadow: tab === t.id ? `0 2px 10px ${ACCENT}33` : "none" }}>
               {t.vi}
             </button>
           ))}

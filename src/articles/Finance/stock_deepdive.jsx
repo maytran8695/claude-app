@@ -1034,9 +1034,9 @@ function StockView({ sid }) {
           </div>
         </div>
       </div>
-      <div style={{ display: "flex", gap: 4, marginBottom: 12, flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: 6, marginBottom: 14, flexWrap: "wrap" }}>
         {tabs.map((t, i) => (
-          <button key={i} onClick={() => setTab(i)} style={{ padding: "4px 9px", borderRadius: 6, cursor: "pointer", fontSize: 10.5, fontWeight: tab === i ? 500 : 400, background: tab === i ? accent : "transparent", color: tab === i ? "#fff" : "var(--text-secondary)", border: "0.5px solid " + (tab === i ? accent : "var(--border)") }}>{t}</button>
+          <button key={i} onClick={() => setTab(i)} style={{ padding: "7px 14px", borderRadius: 8, cursor: "pointer", fontSize: 12, fontWeight: tab === i ? 700 : 500, background: tab === i ? accent : "transparent", color: tab === i ? "#fff" : "var(--text-secondary)", border: "1px solid " + (tab === i ? accent : "var(--border)") }}>{t}</button>
         ))}
       </div>
       {tab === 0 && (<div><Snapshot items={d.snapshot} accent={accent} />{d.thesis.map((t, i) => <ThesisCard key={i} item={t} accent={accent} />)}</div>)}
@@ -1061,7 +1061,7 @@ export default function App() {
         <div style={{ fontSize: 15, fontWeight: 600, color: "var(--text-primary)" }}>Stock Deep-Dive · Bộ 8 mã + đối thủ cạnh tranh</div>
         <div style={{ fontSize: 11, color: "var(--text-muted)" }}>Thép · Ngân hàng · Cảng · Holding · Dược · Năng lượng · VLXD · Chăn nuôi — GMD & DHG có sub-tab đối thủ</div>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 5, marginBottom: 14 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 5, marginBottom: 14, position: "sticky", top: 0, zIndex: 10, background: "#fff", padding: "10px 0", borderBottom: "1px solid #eee" }}>
         {order.map(id => {
           const s = STOCKS[id];
           return (

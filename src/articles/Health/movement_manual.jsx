@@ -152,7 +152,7 @@ export default function App() {
   return (
     <div style={{ fontFamily: "var(--font-sans)", padding: "18px 14px 40px" }}>
       {/* ===== TAB BREADCRUMB — colored boxes at very top ===== */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: "2rem" }}>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: "2rem", position: "sticky", top: 0, zIndex: 10, background: "#fff", padding: "10px 0", borderBottom: "1px solid #eee" }}>
         {PARTS.map((p) => {
           const active = part === p.id;
           return (

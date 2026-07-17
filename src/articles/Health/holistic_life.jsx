@@ -17,19 +17,19 @@ import {
    TOKENS
 --------------------------------------------------------------- */
 const C = {
-  bg: "#12161C",
-  panel: "#1B222C",
-  panelAlt: "#212A36",
-  line: "#313B48",
-  ink: "#EDEAE1",
-  inkDim: "#A7AFBC",
-  gold: "#D6A64C",
+  bg: "#FAF9F6",
+  panel: "#FFFFFF",
+  panelAlt: "#F5F3EE",
+  line: "#E4E1D8",
+  ink: "#23231E",
+  inkDim: "#6B6558",
+  gold: "#B4863C",
   goldDim: "#8A6E3A",
-  teal: "#43B8AE",
-  violet: "#A08CD1",
-  green: "#3ECB84",
-  orange: "#F5A54A",
-  red: "#F16565",
+  teal: "#2E8A80",
+  violet: "#7C6BB0",
+  green: "#2E9E5B",
+  orange: "#C97F1F",
+  red: "#C94040",
 };
 const serif = "'Source Serif 4', Georgia, serif";
 const mono = "'IBM Plex Mono', ui-monospace, monospace";
@@ -3790,7 +3790,6 @@ function ActionableView() {
         <h2 style={{ fontFamily: serif, color: C.ink, fontSize: 26 }}>Actionable Practices</h2>
         <span style={{ fontFamily: mono, color: C.inkDim, fontSize: 12 }}>— sắp theo đòn bẩy: cao → vừa → thấp</span>
       </div>
-      <Legend kind="leverage" />
       <div className="rounded-md p-4" style={{ background: "rgba(214,166,76,0.08)", border: `1px solid ${C.gold}` }}>
         <div style={{ fontFamily: mono, color: C.gold, fontSize: 11, letterSpacing: "0.06em" }} className="uppercase mb-2">
           Điều quan trọng nhất trong cả khung này
@@ -3850,24 +3849,23 @@ export default function App() {
         ::-webkit-scrollbar-thumb { background: ${C.line}; border-radius: 3px; }
       `}</style>
       <div className="px-4 sm:px-6 py-8">
-        <header className="mb-6">
-          <div style={{ fontFamily: mono, color: C.goldDim, fontSize: 11, letterSpacing: "0.12em" }} className="uppercase mb-2">
-            Hồ sơ nghiên cứu · cấp chuyên gia · Actionable + 8 trụ cột
-          </div>
+        <header className="mb-4">
           <h1 style={{ fontFamily: serif, color: C.ink, fontSize: 32, lineHeight: 1.15 }}>Khung Sống Lành Mạnh Toàn Diện</h1>
-          <p style={{ fontFamily: serif, color: C.inkDim, fontSize: 14.5, marginTop: 6 }}>
-            Thể chất · Tinh thần · Bản sắc cá nhân · Công việc & Thành tựu · Gia đình & Mối quan hệ · Cộng đồng · Tận hưởng & Vẻ đẹp · Ý nghĩa & Sự trọn vẹn.
-            Mỗi mục có tầng chuyên gia và protocol ứng dụng đa khía cạnh; phân biệt effect size lớn với điều chỉ phổ biến văn hóa.
-          </p>
         </header>
-        <nav className="flex gap-1 overflow-x-auto mb-6 pb-1" style={{ borderBottom: `1px solid ${C.line}` }}>
+        <nav className="flex flex-wrap gap-2 mb-4" style={{ position: "sticky", top: 0, zIndex: 10, background: C.bg, padding: "10px 0", borderBottom: `1px solid ${C.line}` }}>
           {tabs.map((t) => {
             const Icon = t.icon;
             const isActive = active === t.id;
             return (
-              <button key={t.id} onClick={() => setActive(t.id)} className="flex items-center gap-1.5 px-3 py-2 shrink-0 transition-colors" style={{ borderBottom: `2px solid ${isActive ? C.gold : "transparent"}`, marginBottom: -1 }}>
-                <Icon size={13} color={isActive ? C.gold : C.inkDim} />
-                <span style={{ fontFamily: mono, fontSize: 11.5, color: isActive ? C.gold : C.inkDim, letterSpacing: "0.02em" }} className="whitespace-nowrap">
+              <button key={t.id} onClick={() => setActive(t.id)} className="flex items-center gap-2 shrink-0 transition-all" style={{
+                padding: "10px 16px",
+                borderRadius: 10,
+                background: isActive ? C.gold : C.panel,
+                border: `1px solid ${isActive ? C.gold : C.line}`,
+                boxShadow: isActive ? `0 2px 10px ${C.gold}33` : "none",
+              }}>
+                <Icon size={15} color={isActive ? "#FFFFFF" : C.inkDim} />
+                <span style={{ fontFamily: mono, fontSize: 12.5, fontWeight: 700, color: isActive ? "#FFFFFF" : C.ink, letterSpacing: "0.02em" }} className="whitespace-nowrap">
                   {t.num} · {t.label}
                 </span>
               </button>
