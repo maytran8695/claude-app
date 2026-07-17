@@ -217,6 +217,16 @@ export default function ChunkAtlas() {
                   <div className="grp-i">{g.it.map((x, j) => <Item it={x} key={j} />)}</div>
                 </section>
               ))}
+              {view.idx < DATA.length - 1 && (
+                <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 22, paddingTop: 14, borderTop: "1px solid var(--bd)" }}>
+                  <button
+                    onClick={() => { setView({ home: false, idx: view.idx + 1 }); setQ(""); window.__scrollArticleToTop?.(); }}
+                    style={{ display: "flex", alignItems: "center", gap: 6, padding: "9px 15px", borderRadius: 8, border: "1px solid var(--acc)", background: "var(--soft)", color: "var(--acc)", fontSize: 13, fontWeight: 600, cursor: "pointer" }}
+                  >
+                    Tiếp: {DATA[view.idx + 1].la} →
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </main>

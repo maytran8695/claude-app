@@ -524,6 +524,22 @@ export default function HanVietKey() {
             ))}
           </>
         )}
+
+        {(() => {
+          const idx = TABS.findIndex((t) => t.id === tab);
+          const next = idx >= 0 && idx < TABS.length - 1 ? TABS[idx + 1] : null;
+          if (!next) return null;
+          return (
+            <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 22, paddingTop: 14, borderTop: "1px solid #D9CFBB" }}>
+              <button
+                onClick={() => { setTab(next.id); window.__scrollArticleToTop?.(); }}
+                style={{ display: "flex", alignItems: "center", gap: 6, padding: "9px 15px", borderRadius: 8, border: "1px solid #A13A2E", background: "#F6F1E7", color: "#A13A2E", fontFamily: "Inter, sans-serif", fontSize: 13, fontWeight: 600, cursor: "pointer" }}
+              >
+                Tiếp: {next.label} →
+              </button>
+            </div>
+          );
+        })()}
       </div>
     </div>
   );

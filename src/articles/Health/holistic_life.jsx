@@ -3873,6 +3873,22 @@ export default function App() {
           })}
         </nav>
         <main>{active === "actionable" ? <ActionableView /> : <PillarView pillar={PILLARS.find((p) => p.id === active)} />}</main>
+        {(() => {
+          const idx = tabs.findIndex((t) => t.id === active);
+          const next = idx >= 0 && idx < tabs.length - 1 ? tabs[idx + 1] : null;
+          if (!next) return null;
+          return (
+            <div className="flex justify-end mt-6 pt-4" style={{ borderTop: `1px solid ${C.line}` }}>
+              <button
+                onClick={() => { setActive(next.id); window.__scrollArticleToTop?.(); }}
+                className="flex items-center gap-2"
+                style={{ padding: "10px 16px", borderRadius: 10, border: `1px solid ${C.gold}66`, background: `${C.gold}18`, color: C.gold, fontFamily: mono, fontSize: 12.5, fontWeight: 700, cursor: "pointer" }}
+              >
+                Tiếp: {next.label} →
+              </button>
+            </div>
+          );
+        })()}
         <footer className="mt-10 pt-4" style={{ borderTop: `1px solid ${C.line}` }}>
           <p style={{ fontFamily: serif, color: C.inkDim, fontSize: 12, lineHeight: 1.6 }}>
             Ghi chú phương pháp luận: các cơ chế/khung phản ánh đồng thuận khoa học phổ biến ở thời điểm biên soạn; khoa học vẫn phát triển và một số mô hình đang được xét lại. Các trích dẫn tên nhà nghiên cứu là để định vị nguồn ý tưởng, không phải bảo chứng mọi tuyên bố phái sinh. Xem "Ghi chú bình duyệt" ở tab Actionable để hiểu giới hạn áp cho toàn bộ khung. Nội dung mang tính giáo dục, không thay thế tư vấn y tế/tâm lý/tài chính cá nhân.

@@ -1048,6 +1048,17 @@ function StockView({ sid }) {
       {hasCompetitors && tab === 6 && <CompetitorsView list={d.competitors} accent={accent} />}
       {tab === (hasCompetitors ? 7 : 6) && <ExpertView e={d.expert} accent={accent} />}
       {tab === (hasCompetitors ? 8 : 7) && <Checklist items={d.checklist} accent={accent} />}
+
+      {tab < tabs.length - 1 && (
+        <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 20, paddingTop: 14, borderTop: "0.5px solid var(--border)" }}>
+          <button
+            onClick={() => { setTab(tab + 1); window.__scrollArticleToTop?.(); }}
+            style={{ display: "flex", alignItems: "center", gap: 6, padding: "9px 15px", borderRadius: 8, border: "1px solid " + accent + "55", background: accent + "15", color: accent, fontSize: 12.5, fontWeight: 600, cursor: "pointer" }}
+          >
+            Tiếp: {tabs[tab + 1]} →
+          </button>
+        </div>
+      )}
     </div>
   );
 }

@@ -1034,6 +1034,17 @@ function SectorView({ sid, accent }) {
           {d.watchList.map((item, i) => <WatchRow key={i} item={item} accent={accent} />)}
         </div>
       )}
+
+      {tab < INNER_TABS.length - 1 && (
+        <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 20, paddingTop: 14, borderTop: "0.5px solid var(--border)" }}>
+          <button
+            onClick={() => { setTab(tab + 1); window.__scrollArticleToTop?.(); }}
+            style={{ display: "flex", alignItems: "center", gap: 6, padding: "9px 15px", borderRadius: 8, border: "1px solid " + accent + "55", background: accent + "15", color: accent, fontSize: 12.5, fontWeight: 600, cursor: "pointer" }}
+          >
+            Tiếp: {INNER_TABS[tab + 1]} →
+          </button>
+        </div>
+      )}
     </div>
   );
 }

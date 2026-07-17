@@ -3788,6 +3788,7 @@ export default function FinanceKnowledgeBase() {
                 const idx = sections.findIndex(s => s.id === activeSection);
                 setActiveSection(sections[idx - 1].id);
                 setOpenSubsection(null);
+                window.__scrollArticleToTop?.();
               }}
               style={{ display: "flex", alignItems: "center", gap: "6px", padding: "8px 14px", border: "0.5px solid var(--border-strong, #ccc)", borderRadius: "var(--radius, 8px)", background: "transparent", cursor: "pointer", fontSize: "13px", color: "var(--text-primary, #1a1a1a)" }}
             >
@@ -3802,6 +3803,7 @@ export default function FinanceKnowledgeBase() {
                 const idx = sections.findIndex(s => s.id === activeSection);
                 setActiveSection(sections[idx + 1].id);
                 setOpenSubsection(null);
+                window.__scrollArticleToTop?.();
               }}
               style={{ display: "flex", alignItems: "center", gap: "6px", padding: "8px 14px", border: "0.5px solid var(--border-strong, #ccc)", borderRadius: "var(--radius, 8px)", background: "transparent", cursor: "pointer", fontSize: "13px", color: "var(--text-primary, #1a1a1a)" }}
             >

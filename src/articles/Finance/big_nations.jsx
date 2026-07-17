@@ -4507,6 +4507,21 @@ export default function App() {
     setTabIdx(0);
   };
 
+  // Điều hướng "tab tiếp theo": hết tab trong vùng hiện tại thì nhảy sang vùng kế tiếp
+  const isLastTabInRegion = tabIdx === region.tabs.length - 1;
+  const isLastRegion = regionIdx === REGIONS.length - 1;
+  const nextRegion = !isLastRegion ? REGIONS[regionIdx + 1] : null;
+  const nextTabLabel = !isLastTabInRegion ? region.tabs[tabIdx + 1].label : (nextRegion ? `${nextRegion.icon} ${nextRegion.label} · ${nextRegion.tabs[0].label}` : null);
+  const goNextTab = () => {
+    if (!isLastTabInRegion) {
+      setTabIdx(tabIdx + 1);
+    } else if (nextRegion) {
+      setRegionIdx(regionIdx + 1);
+      setTabIdx(0);
+    }
+    window.__scrollArticleToTop?.();
+  };
+
   return (
     <div style={{background:APP_BG,fontFamily:"'Inter',system-ui,sans-serif",color:APP_BRIGHT}}>
       {/* LEVEL 1 — REGION SELECTOR */}
@@ -4561,6 +4576,19 @@ export default function App() {
       {/* CONTENT */}
       <div style={{maxWidth:1300,margin:"0 auto",padding:"20px 24px"}}>
         {region.content[tabIdx]}
+
+        {nextTabLabel && (
+          <div style={{display:"flex",justifyContent:"flex-end",marginTop:24,paddingTop:16,borderTop:`1px solid ${APP_BORDER}`}}>
+            <button onClick={goNextTab} style={{
+              display:"flex",alignItems:"center",gap:8,padding:"10px 16px",
+              border:`1px solid ${region.accent}55`,borderRadius:8,
+              background:`${region.accent}15`,color:region.accent,
+              fontSize:13,fontWeight:600,cursor:"pointer"
+            }}>
+              Tiếp: {nextTabLabel} →
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

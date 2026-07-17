@@ -2125,13 +2125,13 @@ export default function Tap1Foundations() {
 
         <div style={{ display: "flex", justifyContent: "space-between", marginTop: "2rem", paddingTop: "1.5rem", borderTop: "0.5px solid var(--border, #e0e0d8)" }}>
           {sections.findIndex(s => s.id === activeSection) > 0 ? (
-            <button onClick={() => { const i = sections.findIndex(s => s.id === activeSection); setActiveSection(sections[i - 1].id); setOpenSubsection(0); }}
+            <button onClick={() => { const i = sections.findIndex(s => s.id === activeSection); setActiveSection(sections[i - 1].id); setOpenSubsection(0); window.__scrollArticleToTop?.(); }}
               style={{ display: "flex", alignItems: "center", gap: "6px", padding: "8px 14px", border: "0.5px solid var(--border-strong, #ccc)", borderRadius: "8px", background: "transparent", cursor: "pointer", fontSize: "13px", color: "var(--text-primary, #111827)" }}>
               <i className="ti ti-arrow-left" aria-hidden="true" style={{ fontSize: "14px" }} />{sections[sections.findIndex(s => s.id === activeSection) - 1].label}
             </button>
           ) : <div />}
           {sections.findIndex(s => s.id === activeSection) < sections.length - 1 && (
-            <button onClick={() => { const i = sections.findIndex(s => s.id === activeSection); setActiveSection(sections[i + 1].id); setOpenSubsection(0); }}
+            <button onClick={() => { const i = sections.findIndex(s => s.id === activeSection); setActiveSection(sections[i + 1].id); setOpenSubsection(0); window.__scrollArticleToTop?.(); }}
               style={{ display: "flex", alignItems: "center", gap: "6px", padding: "8px 14px", border: "0.5px solid var(--border-strong, #ccc)", borderRadius: "8px", background: "transparent", cursor: "pointer", fontSize: "13px", color: "var(--text-primary, #111827)" }}>
               {sections[sections.findIndex(s => s.id === activeSection) + 1].label}<i className="ti ti-arrow-right" aria-hidden="true" style={{ fontSize: "14px" }} />
             </button>

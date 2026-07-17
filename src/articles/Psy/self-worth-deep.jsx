@@ -1786,6 +1786,22 @@ export default function SelfWorthDeep() {
 </div>
         )}
 
+        {(() => {
+          const flat = PRIMARY.flatMap((p) => p.subs.map((sb) => ({ primaryId: p.id, subId: sb.id, primaryVi: p.vi, subVi: sb.vi })));
+          const idx = flat.findIndex((x) => x.primaryId === primary && x.subId === sub);
+          const next = idx >= 0 && idx < flat.length - 1 ? flat[idx + 1] : null;
+          if (!next) return null;
+          return (
+            <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 20, paddingTop: 14, borderTop: `1px solid ${LINE}` }}>
+              <button
+                onClick={() => { setPrimary(next.primaryId); setSub(next.subId); window.__scrollArticleToTop?.(); }}
+                style={{ display: "flex", alignItems: "center", gap: 6, padding: "9px 15px", borderRadius: 6, border: `1px solid ${ACCENT}`, background: "#EEF3F1", color: ACCENT, fontFamily: SANS, fontSize: 12.8, fontWeight: 700, cursor: "pointer" }}
+              >
+                Tiếp: {next.primaryId !== primary ? `${next.primaryVi} · ` : ""}{next.subVi} →
+              </button>
+            </div>
+          );
+        })()}
 
 <div style={{ fontFamily: SANS, fontSize: 12, color: MUTE, lineHeight: 1.7, borderTop: `1px solid ${LINE}`, paddingTop: 16, marginTop: 28 }}>
           <b>Nguồn chính:</b> Kristin Neff (Self-Compassion) · Nathaniel Branden (The Six Pillars of Self-Esteem) · Albert Bandura (Self-Efficacy) ·

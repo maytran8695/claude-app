@@ -287,12 +287,34 @@ function App() {
   }, []);
   const [isSidebarOpen, setIsSidebarOpen] = useState(() => !(typeof window !== 'undefined' && window.innerWidth < 768));
   const contentScrollRef = useRef(null);
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
   // Cuộn về đầu trang mỗi khi đổi bài viết (useLayoutEffect + overflow-anchor:none
   // trên vùng cuộn để trình duyệt không tự "bù" lại vị trí cuộn cũ khi nội dung mới nạp)
   useLayoutEffect(() => {
     if (contentScrollRef.current) contentScrollRef.current.scrollTop = 0;
+    setShowBackToTop(false);
   }, [activeTab]);
+
+  // Hiện nút "Về đầu trang" khi cuộn xuống đủ sâu trong vùng cuộn nội dung
+  useEffect(() => {
+    const el = contentScrollRef.current;
+    if (!el) return;
+    const onScroll = () => setShowBackToTop(el.scrollTop > 400);
+    el.addEventListener('scroll', onScroll, { passive: true });
+    return () => el.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const scrollContentToTop = useCallback(() => {
+    if (contentScrollRef.current) contentScrollRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  // Expose ra window để các article component (không nhận prop từ App.jsx)
+  // có thể tự cuộn vùng nội dung về đầu khi bấm nút "subtab tiếp theo"
+  useEffect(() => {
+    window.__scrollArticleToTop = scrollContentToTop;
+    return () => { delete window.__scrollArticleToTop; };
+  }, [scrollContentToTop]);
 
   // Chọn bài viết: cuộn về đầu NGAY tại thời điểm click (không đợi effect chạy
   // sau khi lazy-load xong, tránh trường hợp bị "giữ" vị trí cuộn cũ), và trên
@@ -533,6 +555,18 @@ function App() {
                 </Suspense>
               </div>
             </div>
+
+            {/* Nút nổi "Về đầu trang" — chỉ hiện khi đã cuộn xuống đủ sâu */}
+            {showBackToTop && (
+              <button
+                onClick={scrollContentToTop}
+                aria-label="Về đầu trang"
+                title="Về đầu trang"
+                className="fixed bottom-6 right-5 md:bottom-8 md:right-8 z-30 w-11 h-11 rounded-full bg-slate-900/85 text-white shadow-lg backdrop-blur-md flex items-center justify-center text-lg active:scale-95 transition-transform hover:bg-slate-900"
+              >
+                ↑
+              </button>
+            )}
 
           </div>
         ) : (

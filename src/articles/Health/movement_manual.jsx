@@ -181,10 +181,10 @@ export default function App() {
       {part === 6 && <PartVI />}
 
       <div style={{ display: "flex", justifyContent: "space-between", marginTop: "2rem", paddingTop: "1rem", borderTop: "0.5px solid var(--color-border-tertiary)" }}>
-        <button onClick={() => setPart(Math.max(0, part - 1))} disabled={part === 0} style={{ fontSize: 12, color: part === 0 ? "var(--color-text-tertiary)" : "var(--color-text-secondary)", background: "none", border: "none", cursor: part === 0 ? "default" : "pointer" }}>
+        <button onClick={() => { setPart(Math.max(0, part - 1)); window.__scrollArticleToTop?.(); }} disabled={part === 0} style={{ fontSize: 12, color: part === 0 ? "var(--color-text-tertiary)" : "var(--color-text-secondary)", background: "none", border: "none", cursor: part === 0 ? "default" : "pointer" }}>
           {part > 0 ? `← ${PARTS[part - 1].num}. ${PARTS[part - 1].short}` : ""}
         </button>
-        <button onClick={() => setPart(Math.min(6, part + 1))} disabled={part === 6} style={{ fontSize: 12, color: part === 6 ? "var(--color-text-tertiary)" : "var(--color-text-secondary)", background: "none", border: "none", cursor: part === 6 ? "default" : "pointer" }}>
+        <button onClick={() => { setPart(Math.min(6, part + 1)); window.__scrollArticleToTop?.(); }} disabled={part === 6} style={{ fontSize: 12, color: part === 6 ? "var(--color-text-tertiary)" : "var(--color-text-secondary)", background: "none", border: "none", cursor: part === 6 ? "default" : "pointer" }}>
           {part < 6 ? `${PARTS[part + 1].num}. ${PARTS[part + 1].short} →` : ""}
         </button>
       </div>

@@ -296,7 +296,10 @@ export default function BestPracticesGuide() {
   const [openBP, setOpenBP] = useState(() => ({ 0: true }));
   const scrollRef = useRef(null);
 
-  useEffect(() => { if (scrollRef.current) scrollRef.current.scrollTop = 0; }, [active]);
+  useEffect(() => {
+    if (scrollRef.current) scrollRef.current.scrollTop = 0;
+    window.__scrollArticleToTop?.();
+  }, [active]);
 
   const section = SECTIONS[active];
   const bpSectionIdx = SECTIONS.findIndex((s) => s.groups.some((g) => g.isBP));
@@ -363,6 +366,17 @@ export default function BestPracticesGuide() {
                 ))}
               </section>
             ))}
+          </div>
+        )}
+
+        {active < SECTIONS.length - 1 && (
+          <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 28, paddingTop: 16, borderTop: "1px solid var(--border, #e0e0d8)" }}>
+            <button
+              onClick={() => setActive(active + 1)}
+              style={{ display: "flex", alignItems: "center", gap: 6, padding: "9px 15px", borderRadius: 8, border: "1px solid var(--border-strong, #ccc)", background: "transparent", color: "var(--text-primary, #1a1a1a)", fontSize: 13, fontWeight: 500, cursor: "pointer" }}
+            >
+              Tiếp: {navLabel(SECTIONS[active + 1].title, active + 1).label} →
+            </button>
           </div>
         )}
       </main>

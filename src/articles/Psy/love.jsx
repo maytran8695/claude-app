@@ -1314,6 +1314,22 @@ export default function LovePhilosophyDeep() {
           </div>
         )}
 
+        {(() => {
+          const idx = TABS.findIndex((t) => t.id === tab);
+          const next = idx >= 0 && idx < TABS.length - 1 ? TABS[idx + 1] : null;
+          if (!next) return null;
+          return (
+            <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 20, paddingTop: 14, borderTop: `1px solid ${LINE}` }}>
+              <button
+                onClick={() => { setTab(next.id); window.__scrollArticleToTop?.(); }}
+                style={{ display: "flex", alignItems: "center", gap: 6, padding: "9px 15px", borderRadius: 6, border: `1.5px solid ${TAB_ACCENT}`, background: `${TAB_ACCENT}15`, color: TAB_ACCENT, fontFamily: SANS, fontSize: 13, fontWeight: 700, cursor: "pointer" }}
+              >
+                Tiếp: {next.vi} →
+              </button>
+            </div>
+          );
+        })()}
+
         <div style={{ fontFamily: SANS, fontSize: 11.8, color: MUTE, lineHeight: 1.7, borderTop: `1px solid ${LINE}`, paddingTop: 16, marginTop: 28 }}>
           <b>Nguồn tư tưởng chính:</b> Plato · Aristotle · Kierkegaard · Hegel &amp; Honneth · Sartre · de Beauvoir · Frankfurt · Nozick · Stendhal · Simone Weil · Iris Murdoch · C.S. Lewis · Fromm · Rilke · bell hooks · de Botton · Thích Nhất Hạnh · Phật giáo (Tứ Vô Lượng Tâm) · Bhakti (prema/kama) · Doi Takeo (amae) · Nho giáo (nhân) · Rumi · Freud · Jung · Winnicott &amp; Fairbairn · Bowlby &amp; Ainsworth · Hazan &amp; Shaver · Sternberg · Fredrickson · Perel · Tennov · Aron · Sue Johnson (EFT) · Nagoski · Worthington (REACH) · Giddens · Illouz · Bauman · Beck &amp; Beck-Gernsheim · Hochschild · Berlant · Jankowiak &amp; Fischer · Helen Fisher · Eisenberger · Pennebaker · Schnarch · Bowen · Gottman · Evan Stark · Chapman (có dè dặt) · Erikson · Carstensen · Meyer (minority stress) · DePaulo · Conley &amp; Moors · Waller · Buss · Knee · Yalom. Các trích dẫn được diễn giải lại theo tinh thần nguyên tác. Nơi bằng chứng còn yếu hoặc gây tranh cãi, tài liệu ghi rõ. Tài liệu mang tính giáo dục, không thay thế trị liệu chuyên môn khi cần.
         </div>
