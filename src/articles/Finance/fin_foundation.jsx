@@ -14,7 +14,7 @@ const sections = [
   {
     id: "architecture_map",
     groupId: "L0",
-    groupLabel: "Lớp 0: Bản đồ Kiến trúc Tổng thể",
+    groupLabel: "Tầng 0: Bản đồ Kiến trúc Tổng thể",
     groupIcon: "ti-map-2",
     groupColor: "#111827",
     label: "Bản đồ Kiến trúc Tổng thể",
@@ -73,7 +73,7 @@ const sections = [
   {
     id: "tvm",
     groupId: "L1",
-    groupLabel: "Lớp 1: Lý thuyết (Theory Layer)",
+    groupLabel: "Tầng 1: Lý thuyết (Theory Layer)",
     groupIcon: "ti-atom",
     groupColor: "#1D4ED8",
     label: "Giá trị thời gian của tiền",
@@ -188,7 +188,7 @@ Rất nhiều "khoản đầu tư có lời" thực ra âm sau khi trừ đủ 3
   {
     id: "risk_return",
     groupId: "L1",
-    groupLabel: "Lớp 1: Lý thuyết (Theory Layer)",
+    groupLabel: "Tầng 1: Lý thuyết (Theory Layer)",
     groupIcon: "ti-atom",
     groupColor: "#1D4ED8",
     label: "Rủi ro, Lợi nhuận & Thống kê",
@@ -293,7 +293,7 @@ Rủi ro là xác suất không đạt được MỤC TIÊU cụ thể (đủ ti
   {
     id: "portfolio_capm",
     groupId: "L1",
-    groupLabel: "Lớp 1: Lý thuyết (Theory Layer)",
+    groupLabel: "Tầng 1: Lý thuyết (Theory Layer)",
     groupIcon: "ti-atom",
     groupColor: "#1D4ED8",
     label: "Danh mục & CAPM",
@@ -402,7 +402,7 @@ Lợi nhuận = Rf + β×(Rm−Rf) + s×SMB + h×HML
   {
     id: "emh_behavioral",
     groupId: "L1",
-    groupLabel: "Lớp 1: Lý thuyết (Theory Layer)",
+    groupLabel: "Tầng 1: Lý thuyết (Theory Layer)",
     groupIcon: "ti-atom",
     groupColor: "#1D4ED8",
     label: "EMH vs Tài chính Hành vi",
@@ -492,7 +492,7 @@ Lợi nhuận = Rf + β×(Rm−Rf) + s×SMB + h×HML
   {
     id: "valuation_fixedincome",
     groupId: "L1",
-    groupLabel: "Lớp 1: Lý thuyết (Theory Layer)",
+    groupLabel: "Tầng 1: Lý thuyết (Theory Layer)",
     groupIcon: "ti-atom",
     groupColor: "#1D4ED8",
     label: "Định giá & Trái phiếu",
@@ -586,7 +586,7 @@ Lợi nhuận = Rf + β×(Rm−Rf) + s×SMB + h×HML
   {
     id: "derivatives_fundamentals",
     groupId: "L1",
-    groupLabel: "Lớp 1: Lý thuyết (Theory Layer)",
+    groupLabel: "Tầng 1: Lý thuyết (Theory Layer)",
     groupIcon: "ti-atom",
     groupColor: "#1D4ED8",
     label: "Công cụ Phái sinh: Nền tảng",
@@ -646,7 +646,7 @@ Lợi nhuận = Rf + β×(Rm−Rf) + s×SMB + h×HML
   {
     id: "derivatives_valuation_intuition",
     groupId: "L1",
-    groupLabel: "Lớp 1: Lý thuyết (Theory Layer)",
+    groupLabel: "Tầng 1: Lý thuyết (Theory Layer)",
     groupIcon: "ti-atom",
     groupColor: "#1D4ED8",
     label: "Định giá Phái sinh: Trực giác Chuyên sâu",
@@ -684,7 +684,7 @@ Lợi nhuận = Rf + β×(Rm−Rf) + s×SMB + h×HML
   {
     id: "macro_fundamentals",
     groupId: "L1",
-    groupLabel: "Lớp 1: Lý thuyết (Theory Layer)",
+    groupLabel: "Tầng 1: Lý thuyết (Theory Layer)",
     groupIcon: "ti-atom",
     groupColor: "#1D4ED8",
     label: "Kinh tế Vĩ mô Nền tảng",
@@ -765,7 +765,7 @@ Lợi nhuận = Rf + β×(Rm−Rf) + s×SMB + h×HML
   {
     id: "microeconomics_fundamentals",
     groupId: "L1",
-    groupLabel: "Lớp 1: Lý thuyết (Theory Layer)",
+    groupLabel: "Tầng 1: Lý thuyết (Theory Layer)",
     groupIcon: "ti-atom",
     groupColor: "#1D4ED8",
     label: "Kinh tế học Vi mô Nền tảng",
@@ -814,7 +814,7 @@ Lợi nhuận = Rf + β×(Rm−Rf) + s×SMB + h×HML
   {
     id: "fx_international",
     groupId: "L1",
-    groupLabel: "Lớp 1: Lý thuyết (Theory Layer)",
+    groupLabel: "Tầng 1: Lý thuyết (Theory Layer)",
     groupIcon: "ti-atom",
     groupColor: "#1D4ED8",
     label: "Tài chính Quốc tế & Tỷ giá",
@@ -871,7 +871,7 @@ Lợi nhuận = Rf + β×(Rm−Rf) + s×SMB + h×HML
   {
     id: "advanced_quant_methods",
     groupId: "L1",
-    groupLabel: "Lớp 1: Lý thuyết (Theory Layer)",
+    groupLabel: "Tầng 1: Lý thuyết (Theory Layer)",
     groupIcon: "ti-atom",
     groupColor: "#1D4ED8",
     label: "Phương pháp Định lượng Nâng cao",
@@ -913,7 +913,7 @@ Lợi nhuận = Rf + β×(Rm−Rf) + s×SMB + h×HML
   {
     id: "universe_screening",
     groupId: "L2",
-    groupLabel: "Lớp 2: Phân tích Chứng khoán (Security Analysis)",
+    groupLabel: "Tầng 2: Phân tích Chứng khoán (Security Analysis)",
     groupIcon: "ti-search",
     groupColor: "#047857",
     label: "Universe, Benchmark & Screening",
@@ -953,7 +953,7 @@ Lợi nhuận = Rf + β×(Rm−Rf) + s×SMB + h×HML
   {
     id: "industry_macro_bridge",
     groupId: "L2",
-    groupLabel: "Lớp 2: Phân tích Chứng khoán (Security Analysis)",
+    groupLabel: "Tầng 2: Phân tích Chứng khoán (Security Analysis)",
     groupIcon: "ti-search",
     groupColor: "#047857",
     label: "Phân tích Ngành & Cầu nối Vĩ mô",
@@ -992,7 +992,7 @@ Lợi nhuận = Rf + β×(Rm−Rf) + s×SMB + h×HML
   {
     id: "financial_statements",
     groupId: "L2",
-    groupLabel: "Lớp 2: Phân tích Chứng khoán (Security Analysis)",
+    groupLabel: "Tầng 2: Phân tích Chứng khoán (Security Analysis)",
     groupIcon: "ti-search",
     groupColor: "#047857",
     label: "Phân tích BCTC có Hệ thống",
@@ -1056,7 +1056,7 @@ DSO (kỳ thu tiền bình quân), DIO (kỳ tồn kho bình quân), DPO (kỳ p
   {
     id: "earnings_quality_lens",
     groupId: "L2",
-    groupLabel: "Lớp 2: Phân tích Chứng khoán (Security Analysis)",
+    groupLabel: "Tầng 2: Phân tích Chứng khoán (Security Analysis)",
     groupIcon: "ti-search",
     groupColor: "#047857",
     label: "Lăng kính Reported-Adjusted-Economic",
@@ -1089,7 +1089,7 @@ DSO (kỳ thu tiền bình quân), DIO (kỳ tồn kho bình quân), DPO (kỳ p
   {
     id: "forecasting_scenarios",
     groupId: "L2",
-    groupLabel: "Lớp 2: Phân tích Chứng khoán (Security Analysis)",
+    groupLabel: "Tầng 2: Phân tích Chứng khoán (Security Analysis)",
     groupIcon: "ti-search",
     groupColor: "#047857",
     label: "Dự phóng: Base/Bull/Bear",
@@ -1125,7 +1125,7 @@ DSO (kỳ thu tiền bình quân), DIO (kỳ tồn kho bình quân), DPO (kỳ p
   {
     id: "corporate_finance",
     groupId: "L2",
-    groupLabel: "Lớp 2: Phân tích Chứng khoán (Security Analysis)",
+    groupLabel: "Tầng 2: Phân tích Chứng khoán (Security Analysis)",
     groupIcon: "ti-search",
     groupColor: "#047857",
     label: "Corporate Finance & Phân bổ Vốn",
@@ -1180,7 +1180,7 @@ DSO (kỳ thu tiền bình quân), DIO (kỳ tồn kho bình quân), DPO (kỳ p
   {
     id: "residual_income_valuation",
     groupId: "L2",
-    groupLabel: "Lớp 2: Phân tích Chứng khoán (Security Analysis)",
+    groupLabel: "Tầng 2: Phân tích Chứng khoán (Security Analysis)",
     groupIcon: "ti-search",
     groupColor: "#047857",
     label: "Residual Income & Valuation Stack",
@@ -1213,7 +1213,7 @@ DSO (kỳ thu tiền bình quân), DIO (kỳ tồn kho bình quân), DPO (kỳ p
   {
     id: "alternative_assets",
     groupId: "L2",
-    groupLabel: "Lớp 2: Phân tích Chứng khoán (Security Analysis)",
+    groupLabel: "Tầng 2: Phân tích Chứng khoán (Security Analysis)",
     groupIcon: "ti-search",
     groupColor: "#047857",
     label: "Tài sản Thay thế & Đặc tính",
@@ -1275,7 +1275,7 @@ DSO (kỳ thu tiền bình quân), DIO (kỳ tồn kho bình quân), DPO (kỳ p
   {
     id: "stock_risk_analysis",
     groupId: "L2",
-    groupLabel: "Lớp 2: Phân tích Chứng khoán (Security Analysis)",
+    groupLabel: "Tầng 2: Phân tích Chứng khoán (Security Analysis)",
     groupIcon: "ti-search",
     groupColor: "#047857",
     label: "Phân tích Rủi ro Cấp Cổ phiếu",
@@ -1306,7 +1306,7 @@ DSO (kỳ thu tiền bình quân), DIO (kỳ tồn kho bình quân), DPO (kỳ p
   {
     id: "investment_thesis_construction",
     groupId: "L2",
-    groupLabel: "Lớp 2: Phân tích Chứng khoán (Security Analysis)",
+    groupLabel: "Tầng 2: Phân tích Chứng khoán (Security Analysis)",
     groupIcon: "ti-search",
     groupColor: "#047857",
     label: "Xây dựng Luận điểm Đầu tư",
@@ -1357,7 +1357,7 @@ DSO (kỳ thu tiền bình quân), DIO (kỳ tồn kho bình quân), DPO (kỳ p
   {
     id: "risk_management",
     groupId: "L3",
-    groupLabel: "Lớp 3: Xây dựng Danh mục (Portfolio Construction)",
+    groupLabel: "Tầng 3: Xây dựng Danh mục (Portfolio Construction)",
     groupIcon: "ti-stack-2",
     groupColor: "#6D28D9",
     label: "Quản trị Rủi ro & Position Sizing",
@@ -1453,7 +1453,7 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
   {
     id: "saa_vs_taa",
     groupId: "L3",
-    groupLabel: "Lớp 3: Xây dựng Danh mục (Portfolio Construction)",
+    groupLabel: "Tầng 3: Xây dựng Danh mục (Portfolio Construction)",
     groupIcon: "ti-stack-2",
     groupColor: "#6D28D9",
     label: "SAA vs TAA",
@@ -1486,7 +1486,7 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
   {
     id: "portfolio_optimization_practice",
     groupId: "L3",
-    groupLabel: "Lớp 3: Xây dựng Danh mục (Portfolio Construction)",
+    groupLabel: "Tầng 3: Xây dựng Danh mục (Portfolio Construction)",
     groupIcon: "ti-stack-2",
     groupColor: "#6D28D9",
     label: "Tối ưu hóa Danh mục Thực hành",
@@ -1523,7 +1523,7 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
   {
     id: "fixed_income_portfolio_mgmt",
     groupId: "L3",
-    groupLabel: "Lớp 3: Xây dựng Danh mục (Portfolio Construction)",
+    groupLabel: "Tầng 3: Xây dựng Danh mục (Portfolio Construction)",
     groupIcon: "ti-stack-2",
     groupColor: "#6D28D9",
     label: "Quản lý Danh mục Trái phiếu Chủ động",
@@ -1565,7 +1565,7 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
   {
     id: "alternative_investments_systematic",
     groupId: "L3",
-    groupLabel: "Lớp 3: Xây dựng Danh mục (Portfolio Construction)",
+    groupLabel: "Tầng 3: Xây dựng Danh mục (Portfolio Construction)",
     groupIcon: "ti-stack-2",
     groupColor: "#6D28D9",
     label: "Alternative Investments có Hệ thống",
@@ -1607,7 +1607,7 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
   {
     id: "international_investing",
     groupId: "L3",
-    groupLabel: "Lớp 3: Xây dựng Danh mục (Portfolio Construction)",
+    groupLabel: "Tầng 3: Xây dựng Danh mục (Portfolio Construction)",
     groupIcon: "ti-stack-2",
     groupColor: "#6D28D9",
     label: "Đầu tư Quốc tế có Hệ thống",
@@ -1648,7 +1648,7 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
   {
     id: "market_microstructure",
     groupId: "L3",
-    groupLabel: "Lớp 3: Xây dựng Danh mục (Portfolio Construction)",
+    groupLabel: "Tầng 3: Xây dựng Danh mục (Portfolio Construction)",
     groupIcon: "ti-stack-2",
     groupColor: "#6D28D9",
     label: "Cấu trúc Thị trường & Giao dịch",
@@ -1703,7 +1703,7 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
   {
     id: "personal_finance",
     groupId: "L3",
-    groupLabel: "Lớp 3: Xây dựng Danh mục (Portfolio Construction)",
+    groupLabel: "Tầng 3: Xây dựng Danh mục (Portfolio Construction)",
     groupIcon: "ti-stack-2",
     groupColor: "#6D28D9",
     label: "Hoạch định Tài chính Cá nhân",
@@ -1754,7 +1754,7 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
   {
     id: "performance_measurement",
     groupId: "L4",
-    groupLabel: "Lớp 4: Quản trị (Governance)",
+    groupLabel: "Tầng 4: Quản trị (Governance)",
     groupIcon: "ti-gavel",
     groupColor: "#9F1239",
     label: "Đo lường Hiệu suất Danh mục",
@@ -1799,7 +1799,7 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
   {
     id: "risk_control_monitoring",
     groupId: "L4",
-    groupLabel: "Lớp 4: Quản trị (Governance)",
+    groupLabel: "Tầng 4: Quản trị (Governance)",
     groupIcon: "ti-gavel",
     groupColor: "#9F1239",
     label: "Risk Control cấp Tổ chức",
@@ -1832,7 +1832,7 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
   {
     id: "investment_committee_governance",
     groupId: "L4",
-    groupLabel: "Lớp 4: Quản trị (Governance)",
+    groupLabel: "Tầng 4: Quản trị (Governance)",
     groupIcon: "ti-gavel",
     groupColor: "#9F1239",
     label: "Investment Committee & Model Governance",
@@ -1865,7 +1865,7 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
   {
     id: "ethics_professional_standards",
     groupId: "L4",
-    groupLabel: "Lớp 4: Quản trị (Governance)",
+    groupLabel: "Tầng 4: Quản trị (Governance)",
     groupIcon: "ti-gavel",
     groupColor: "#9F1239",
     label: "Đạo đức & Chuẩn mực Nghề nghiệp",
@@ -1907,7 +1907,7 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
   {
     id: "standardized_research_template",
     groupId: "L4",
-    groupLabel: "Lớp 4: Quản trị (Governance)",
+    groupLabel: "Tầng 4: Quản trị (Governance)",
     groupIcon: "ti-gavel",
     groupColor: "#9F1239",
     label: "Mẫu Báo cáo Nghiên cứu Chuẩn hóa",
@@ -1945,7 +1945,7 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
   {
     id: "macro_dashboard_architecture",
     groupId: "L4",
-    groupLabel: "Lớp 4: Quản trị (Governance)",
+    groupLabel: "Tầng 4: Quản trị (Governance)",
     groupIcon: "ti-gavel",
     groupColor: "#9F1239",
     label: "Kiến trúc Macro Dashboard",
@@ -1986,7 +1986,7 @@ Trong đó p = xác suất thắng, q = xác suất thua (1−p), b = tỷ lệ 
   {
     id: "portfolio_dashboard_architecture",
     groupId: "L4",
-    groupLabel: "Lớp 4: Quản trị (Governance)",
+    groupLabel: "Tầng 4: Quản trị (Governance)",
     groupIcon: "ti-gavel",
     groupColor: "#9F1239",
     label: "Kiến trúc Portfolio Dashboard",
@@ -2061,7 +2061,28 @@ export default function Tap1Foundations() {
   const [activeSection, setActiveSection] = useState(sections[0].id);
   const [openSubsection, setOpenSubsection] = useState(null);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [expandedGroups, setExpandedGroups] = useState(() => {
+    const initial = {};
+    sections.forEach(s => { if (s.groupId) initial[s.groupId] = true; });
+    return initial;
+  });
   const currentSection = sections.find(s => s.id === activeSection);
+
+  // Gom 37 bài thành 5 nhóm Tầng, giữ nguyên thứ tự xuất hiện gốc
+  const groupOrder = [];
+  const groupMap = {};
+  sections.forEach(s => {
+    if (!s.groupId) return;
+    if (!groupMap[s.groupId]) {
+      groupMap[s.groupId] = { groupId: s.groupId, label: s.groupLabel, icon: s.groupIcon, color: s.groupColor, items: [] };
+      groupOrder.push(s.groupId);
+    }
+    groupMap[s.groupId].items.push(s);
+  });
+  const groupedSections = groupOrder.map(gid => groupMap[gid]);
+  const ungroupedSections = sections.filter(s => !s.groupId);
+
+  const toggleGroup = (gid) => setExpandedGroups(prev => ({ ...prev, [gid]: !prev[gid] }));
 
   // Chọn 1 mục trong drawer mobile: giống hệt logic chọn ở sidebar desktop,
   // cộng thêm tự đóng drawer lại (setMobileNavOpen(false) vô hại trên desktop).
@@ -2111,7 +2132,7 @@ export default function Tap1Foundations() {
             <div style={{ fontSize: "9.5px", fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", color: currentSection.groupColor, marginBottom: "2px" }}>
               {currentSection.groupLabel}
             </div>
-            <div style={{ fontSize: "13px", fontWeight: 600, color: "var(--text-primary, #111827)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+            <div style={{ fontSize: "9px", fontWeight: 400, color: "var(--text-muted, #888)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
               {currentSection.label}
             </div>
           </div>
@@ -2142,21 +2163,45 @@ export default function Tap1Foundations() {
           <div>
             <p style={{ fontSize: "11px", fontWeight: 600, color: "#1D4ED8", textTransform: "uppercase", letterSpacing: "0.06em", margin: 0 }}>Tập 1</p>
             <p style={{ fontSize: "13px", color: "var(--text-primary, #111827)", margin: "4px 0 0", lineHeight: 1.4, fontWeight: 500 }}>Nền tảng Tài chính</p>
-            <p style={{ fontSize: "11px", color: "var(--text-muted, #888)", margin: "4px 0 0" }}>Tầng 0 · {sections.length} chủ đề</p>
+            <p style={{ fontSize: "11px", color: "var(--text-muted, #888)", margin: "4px 0 0" }}>{sections.length} chủ đề • {groupedSections.length} tầng kiến thức</p>
           </div>
           <button onClick={() => setMobileNavOpen(false)} aria-label="Đóng" style={{ width: "28px", height: "28px", borderRadius: "8px", border: "0.5px solid var(--border, #e0e0d8)", background: "var(--surface-1, #f5f5f0)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", flexShrink: 0, color: "var(--text-secondary, #666)" }}>
             <FinIcon name="ti-x" size={14} />
           </button>
         </div>
         <div style={{ padding: "0.5rem 0" }}>
-          {sections.map(section => (
+          {groupedSections.map(group => {
+            const isExpanded = !!expandedGroups[group.groupId];
+            const hasActive = group.items.some(s => s.id === activeSection);
+            return (
+              <div key={group.groupId} style={{ marginBottom: "2px" }}>
+                <button
+                  onClick={() => toggleGroup(group.groupId)}
+                  style={{ display: "flex", alignItems: "center", gap: "8px", width: "100%", padding: "10px 1rem", border: "none", background: hasActive ? `${group.color}11` : "transparent", cursor: "pointer", textAlign: "left" }}
+                >
+                  <FinIcon name={group.icon} size={15} color={group.color} style={{ flexShrink: 0 }} />
+                  <span style={{ fontSize: "12px", fontWeight: 600, color: group.color, lineHeight: 1.3, flex: 1 }}>{group.label}</span>
+                  <FinIcon name={isExpanded ? "ti-chevron-up" : "ti-chevron-down"} size={13} color="var(--text-muted, #888)" style={{ flexShrink: 0 }} />
+                </button>
+                {isExpanded && group.items.map(section => (
+                  <button
+                    key={section.id}
+                    onClick={() => selectSectionMobile(section.id)}
+                    style={{ display: "flex", alignItems: "center", gap: "10px", width: "100%", padding: "8px 1rem 8px 2.1rem", border: "none", background: activeSection === section.id ? `${group.color}15` : "transparent", cursor: "pointer", textAlign: "left", borderLeft: activeSection === section.id ? `3px solid ${group.color}` : "3px solid transparent" }}
+                  >
+                    <span style={{ fontSize: "12.5px", fontWeight: activeSection === section.id ? 500 : 400, color: activeSection === section.id ? group.color : "var(--text-primary, #111827)", lineHeight: 1.3 }}>{section.label}</span>
+                  </button>
+                ))}
+              </div>
+            );
+          })}
+          {ungroupedSections.map(section => (
             <button
               key={section.id}
               onClick={() => selectSectionMobile(section.id)}
-              style={{ display: "flex", alignItems: "center", gap: "10px", width: "100%", padding: "10px 1rem", border: "none", background: activeSection === section.id ? `${section.groupColor}15` : "transparent", cursor: "pointer", textAlign: "left", borderLeft: activeSection === section.id ? `3px solid ${section.groupColor}` : "3px solid transparent" }}
+              style={{ display: "flex", alignItems: "center", gap: "10px", width: "100%", padding: "10px 1rem", border: "none", background: activeSection === section.id ? section.bg : "transparent", cursor: "pointer", textAlign: "left", borderLeft: activeSection === section.id ? `3px solid ${section.color}` : "3px solid transparent" }}
             >
-              <FinIcon name={section.icon} size={16} color={activeSection === section.id ? section.groupColor : "var(--text-secondary, #666)"} style={{ flexShrink: 0 }} />
-              <span style={{ fontSize: "12.5px", fontWeight: activeSection === section.id ? 500 : 400, color: activeSection === section.id ? section.groupColor : "var(--text-primary, #111827)", lineHeight: 1.3 }}>{section.label}</span>
+              <span style={{ fontSize: "13px", fontWeight: activeSection === section.id ? 500 : 400, color: activeSection === section.id ? section.color : "var(--text-primary, #111827)", lineHeight: 1.3 }}>{section.label}</span>
             </button>
           ))}
         </div>
@@ -2170,13 +2215,74 @@ export default function Tap1Foundations() {
         <div style={{ padding: "0 1rem 1rem", borderBottom: "0.5px solid var(--border, #e0e0d8)", marginBottom: "0.5rem" }}>
           <p style={{ fontSize: "11px", fontWeight: 600, color: "#1D4ED8", textTransform: "uppercase", letterSpacing: "0.06em", margin: 0 }}>Tập 1</p>
           <p style={{ fontSize: "14px", color: "var(--text-primary, #111827)", margin: "4px 0 0", lineHeight: 1.4, fontWeight: 500 }}>Nền tảng Tài chính</p>
-          <p style={{ fontSize: "11px", color: "var(--text-muted, #888)", margin: "4px 0 0" }}>Tầng 0 · 6 chủ đề · Trình độ trung cấp</p>
+          <p style={{ fontSize: "11px", color: "var(--text-muted, #888)", margin: "4px 0 0" }}>{sections.length} chủ đề • {groupedSections.length} tầng kiến thức · Trình độ trung cấp</p>
         </div>
-        {sections.map(section => (
-          <button key={section.id} onClick={() => { setActiveSection(section.id); setOpenSubsection(null); window.__scrollArticleToTop?.(); }}
-            style={{ display: "flex", alignItems: "center", gap: "10px", width: "100%", padding: "10px 1rem", border: "none", background: activeSection === section.id ? `${section.groupColor}15` : "transparent", cursor: "pointer", textAlign: "left", borderLeft: activeSection === section.id ? `3px solid ${section.groupColor}` : "3px solid transparent" }}>
-            <FinIcon name={section.icon} size={16} color={activeSection === section.id ? section.groupColor : "var(--text-secondary, #666)"} style={{ flexShrink: 0 }} />
-            <span style={{ fontSize: "12.5px", fontWeight: activeSection === section.id ? 500 : 400, color: activeSection === section.id ? section.groupColor : "var(--text-primary, #111827)", lineHeight: 1.3 }}>{section.label}</span>
+        {groupedSections.map(group => {
+          const isExpanded = !!expandedGroups[group.groupId];
+          const hasActive = group.items.some(s => s.id === activeSection);
+          return (
+            <div key={group.groupId} style={{ marginBottom: "2px" }}>
+              <button
+                onClick={() => toggleGroup(group.groupId)}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  width: "100%",
+                  padding: "10px 1rem",
+                  border: "none",
+                  background: hasActive ? `${group.color}11` : "transparent",
+                  cursor: "pointer",
+                  textAlign: "left"
+                }}
+              >
+                <FinIcon name={group.icon} size={15} color={group.color} style={{ flexShrink: 0 }} />
+                <span style={{ fontSize: "12px", fontWeight: 600, color: group.color, lineHeight: 1.3, flex: 1 }}>{group.label}</span>
+                <FinIcon name={isExpanded ? "ti-chevron-up" : "ti-chevron-down"} size={13} color="var(--text-muted, #888)" style={{ flexShrink: 0 }} />
+              </button>
+              {isExpanded && group.items.map(section => (
+                <button
+                  key={section.id}
+                  onClick={() => { setActiveSection(section.id); setOpenSubsection(null); window.__scrollArticleToTop?.(); }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                    width: "100%",
+                    padding: "8px 1rem 8px 2.1rem",
+                    border: "none",
+                    background: activeSection === section.id ? `${group.color}15` : "transparent",
+                    cursor: "pointer",
+                    textAlign: "left",
+                    borderLeft: activeSection === section.id ? `3px solid ${group.color}` : "3px solid transparent",
+                    transition: "background 0.15s"
+                  }}
+                >
+                  <span style={{ fontSize: "12.5px", fontWeight: activeSection === section.id ? 500 : 400, color: activeSection === section.id ? group.color : "var(--text-primary, #111827)", lineHeight: 1.3 }}>{section.label}</span>
+                </button>
+              ))}
+            </div>
+          );
+        })}
+        {ungroupedSections.map(section => (
+          <button
+            key={section.id}
+            onClick={() => { setActiveSection(section.id); setOpenSubsection(null); window.__scrollArticleToTop?.(); }}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              width: "100%",
+              padding: "10px 1rem",
+              border: "none",
+              background: activeSection === section.id ? section.bg : "transparent",
+              cursor: "pointer",
+              textAlign: "left",
+              borderLeft: activeSection === section.id ? `3px solid ${section.color}` : "3px solid transparent",
+              transition: "background 0.15s"
+            }}
+          >
+            <span style={{ fontSize: "13px", fontWeight: activeSection === section.id ? 500 : 400, color: activeSection === section.id ? section.color : "var(--text-primary, #111827)", lineHeight: 1.3 }}>{section.label}</span>
           </button>
         ))}
         <div style={{ margin: "1rem 1rem 0", padding: "0.75rem", background: "var(--surface-1, #f5f5f0)", borderRadius: "8px", border: "0.5px solid var(--border, #e0e0d8)" }}>
@@ -2187,7 +2293,6 @@ export default function Tap1Foundations() {
       {/* Main */}
       <div className="tf-content" style={{ flex: 1, padding: "2rem", minWidth: 0 }}>
         <div className="tf-breadcrumb-text" style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "0.6rem", fontSize: "11.5px", color: currentSection.groupColor, fontWeight: 600 }}>
-          <FinIcon name={currentSection.groupIcon} size={13} />
           <span>{currentSection.groupLabel}</span>
           <FinIcon name="ti-chevron-right" size={11} color="var(--text-muted, #888)" />
           <span style={{ color: "var(--text-secondary, #666)", fontWeight: 400 }}>{currentSection.label}</span>
@@ -2195,7 +2300,6 @@ export default function Tap1Foundations() {
 
         <div className="tf-header-box" style={{ padding: "1rem 1.5rem", background: `${(currentSection.groupColor || currentSection.color)}15`, borderRadius: "12px", border: `0.5px solid ${(currentSection.groupColor || currentSection.color)}33`, marginBottom: "1.5rem" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            <FinIcon name={currentSection.icon} size={22} color={(currentSection.groupColor || currentSection.color)} />
             <h1 style={{ fontSize: "18px", fontWeight: 500, color: "var(--text-primary, #111827)", margin: 0 }}>{currentSection.title}</h1>
           </div>
         </div>

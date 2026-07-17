@@ -3541,7 +3541,7 @@ export default function FinanceKnowledgeBase() {
                 {activeGroup.label}
               </div>
             )}
-            <div style={{ fontSize: "13px", fontWeight: 600, color: "var(--text-primary, #1a1a1a)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+            <div style={{ fontSize: "9px", fontWeight: 400, color: "var(--text-muted, #888)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
               {getSectionTitle(currentSection)}
             </div>
           </div>
