@@ -18,6 +18,7 @@ const exactTitleMap = {
   [normalizeKey('BigNations')]: 'Big Nations',
   [normalizeKey('MacroVnFramework')]: 'Macro-Vn-Framework',
   [normalizeKey('MacroQuarterlyReview')]: 'Macro-Quarterly-Review',
+  [normalizeKey('WealthManagement')]: 'Wealth Management',
   [normalizeKey('HolisticLife')]: 'Holistic Life',
   [normalizeKey('MovementManual')]: 'Movement Manual',
   [normalizeKey('ChunkAtlasEN')]: 'Chunk Atlas E N',
@@ -38,7 +39,8 @@ const targetArticleOrder = {
     normalizeKey('StockDeepdive'),
     normalizeKey('BigNations'),
     normalizeKey('MacroVnFramework'),
-    normalizeKey('MacroQuarterlyReview')
+    normalizeKey('MacroQuarterlyReview'),
+    normalizeKey('WealthManagement')
   ],
   Health: [
     normalizeKey('HolisticLife'),
