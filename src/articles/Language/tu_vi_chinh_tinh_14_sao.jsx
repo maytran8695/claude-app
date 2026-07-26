@@ -1681,7 +1681,7 @@ const CSS = `
 .tv-crumb-pill.on .tv-crumb-n { background: rgba(255,255,255,.28); color: #fff; }
 
 .tv-stage { padding: 24px 40px 80px; }
-.tv-prose { max-width: 880px; }
+.tv-prose { max-width: none; width: 100%; }
 
 .tv-h1 { font-family: Georgia, serif; font-weight: 600; font-size: 30px; line-height: 1.18; margin: 6px 0 18px; letter-spacing: -0.01em; }
 .tv-h2 { font-family: Georgia, serif; font-weight: 600; font-size: 20px; margin: 26px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--rule); }
