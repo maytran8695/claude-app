@@ -24,6 +24,7 @@ const exactTitleMap = {
   [normalizeKey('ChunkAtlasEN')]: 'Chunk Atlas E N',
   [normalizeKey('BestPracticesGuide')]: 'Best Practices Guide',
   [normalizeKey('ChineseTrick')]: 'Chinese Trick',
+  [normalizeKey('TuViChinhTinh14Sao')]: 'Purple Star Astrology',
   [normalizeKey('Love')]: 'Love'
 };
 
@@ -49,7 +50,8 @@ const targetArticleOrder = {
   Language: [
     normalizeKey('ChunkAtlasEN'),
     normalizeKey('BestPracticesGuide'),
-    normalizeKey('ChineseTrick')
+    normalizeKey('ChineseTrick'),
+    normalizeKey('TuViChinhTinh14Sao')
   ],
   Psy: [
     normalizeKey('Love')
