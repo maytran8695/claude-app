@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getSubTabFromUrl, syncSubTabToUrl } from "../../utils/subTabUrl";
 
 /* ============================================================
    CẨM NANG VẬN ĐỘNG & SỨC KHỎE THỂ CHẤT DÀI HẠN
@@ -165,7 +166,12 @@ const PARTS = [
 ];
 
 export default function App() {
-  const [part, setPart] = useState(0);
+  const [part, setPart] = useState(() => {
+    const fromUrl = getSubTabFromUrl();
+    const n = fromUrl != null ? parseInt(fromUrl, 10) : NaN;
+    return !isNaN(n) && PARTS.some((p) => p.id === n) ? n : 0;
+  });
+  useEffect(() => { syncSubTabToUrl(part); }, [part]);
 
   return (
     <div style={{ fontFamily: "var(--font-sans)", padding: "18px 14px 40px" }}>

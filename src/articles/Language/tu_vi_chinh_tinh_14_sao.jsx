@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { getSubTabFromUrl, syncSubTabToUrl } from "../../utils/subTabUrl";
 
 /* ---------------------------------------------------------------
    TOKENS (đồng bộ phong cách với BestPracticesGuide.jsx / ChunkAtlas_EN.jsx)
@@ -2049,7 +2050,12 @@ function Block({ b }) {
 }
 
 export default function TuViChinhTinh14Sao() {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(() => {
+    const fromUrl = getSubTabFromUrl();
+    const n = fromUrl != null ? parseInt(fromUrl, 10) : NaN;
+    return !isNaN(n) && n >= 0 && n < SECTIONS.length ? n : 0;
+  });
+  useEffect(() => { syncSubTabToUrl(active); }, [active]);
   const scrollRef = useRef(null);
 
   useEffect(() => {

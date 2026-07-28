@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getSubTabFromUrl, syncSubTabToUrl } from "../../utils/subTabUrl";
 
 const ACCENT = "#4A7C74";
 const TAB_ACCENT = "#356158"; // đậm hơn ACCENT một tone để breadcrumb không chìm vào nền PAPER
@@ -512,7 +513,11 @@ const Thesis = ({ children }) => (
 );
 
 export default function LovePhilosophyDeep() {
-  const [tab, setTab] = useState("nature");
+  const [tab, setTab] = useState(() => {
+    const fromUrl = getSubTabFromUrl();
+    return TABS.some((t) => t.id === fromUrl) ? fromUrl : "nature";
+  });
+  useEffect(() => { syncSubTabToUrl(tab); }, [tab]);
   const [lens, setLens] = useState("phil");
   const [pg, setPg] = useState("all");
 

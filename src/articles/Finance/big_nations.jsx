@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getSubTabFromUrl, syncSubTabToUrl } from "../../utils/subTabUrl";
 import {
   LineChart, Line, BarChart, Bar, XAxis, YAxis, Tooltip,
   ResponsiveContainer, AreaChart, Area, RadarChart, Radar,
@@ -4498,9 +4499,14 @@ const APP_BRIGHT = "#1C1D1B";
 const APP_MUTED = "#9A968A";
 
 export default function App() {
-  const [regionIdx, setRegionIdx] = useState(0);
+  const [regionIdx, setRegionIdx] = useState(() => {
+    const fromUrl = getSubTabFromUrl();
+    const idx = REGIONS.findIndex((r) => r.id === fromUrl);
+    return idx !== -1 ? idx : 0;
+  });
   const [tabIdx, setTabIdx] = useState(0);
   const region = REGIONS[regionIdx];
+  useEffect(() => { syncSubTabToUrl(region.id); }, [region.id]);
 
   const selectRegion = (idx) => {
     setRegionIdx(idx);

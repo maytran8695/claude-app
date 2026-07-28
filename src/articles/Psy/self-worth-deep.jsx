@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getSubTabFromUrl, syncSubTabToUrl } from "../../utils/subTabUrl";
 
 const ACCENT = "#2D6A62";
 const INK = "#232725";
@@ -56,8 +57,13 @@ const PRIMARY = [
 ];
 
 export default function SelfWorthDeep() {
-  const [primary, setPrimary] = useState("foundations");
-  const [sub, setSub] = useState("f-define");
+  const initialPrimary = (() => {
+    const fromUrl = getSubTabFromUrl();
+    return PRIMARY.some((p) => p.id === fromUrl) ? fromUrl : "foundations";
+  })();
+  const [primary, setPrimary] = useState(initialPrimary);
+  const [sub, setSub] = useState(() => PRIMARY.find((p) => p.id === initialPrimary).subs[0].id);
+  useEffect(() => { syncSubTabToUrl(primary); }, [primary]);
 
   const current = PRIMARY.find((p) => p.id === primary);
 

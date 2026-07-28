@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getSubTabFromUrl, syncSubTabToUrl } from "../../utils/subTabUrl";
 
 /* ═══════════════════════════════════════════════════
    VIETNAM INDUSTRY PRIMERS v2 — 6 SECTORS · DEEP EDITION
@@ -1050,7 +1051,11 @@ function SectorView({ sid, accent }) {
 }
 
 export default function App() {
-  const [activeSector, setActiveSector] = useState("steel");
+  const [activeSector, setActiveSector] = useState(() => {
+    const fromUrl = getSubTabFromUrl();
+    return SECTORS.some((s) => s.id === fromUrl) ? fromUrl : "steel";
+  });
+  useEffect(() => { syncSubTabToUrl(activeSector); }, [activeSector]);
   const current = SECTORS.find(s => s.id === activeSector);
   return (
     <div style={{ fontFamily: "var(--font-sans)", padding: "18px 14px 40px" }}>

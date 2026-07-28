@@ -322,6 +322,10 @@ function App() {
       return;
     }
     params.set(ARTICLE_URL_PARAM, activeTab);
+    // Đổi sang bài viết khác thì bỏ luôn ?s= cũ (sub-tab đó thuộc bài viết
+    // trước, không còn ý nghĩa ở bài mới) — trừ lần đồng bộ đầu tiên lúc mở
+    // trang, vì đó có thể là link chia sẻ trực tiếp dạng ?a=...&s=... .
+    if (!isFirstUrlSyncRef.current) params.delete('s');
     const newUrl = `${window.location.pathname}?${params.toString()}${window.location.hash}`;
     if (isFirstUrlSyncRef.current) {
       window.history.replaceState({ [ARTICLE_URL_PARAM]: activeTab }, '', newUrl);

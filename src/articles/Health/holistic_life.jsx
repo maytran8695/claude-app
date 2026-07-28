@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getSubTabFromUrl, syncSubTabToUrl } from "../../utils/subTabUrl";
 import {
   Dumbbell,
   Brain,
@@ -3796,7 +3797,12 @@ function ActionableView() {
    ROOT
 --------------------------------------------------------------- */
 export default function App() {
-  const [active, setActive] = useState("actionable");
+  const [active, setActive] = useState(() => {
+    const fromUrl = getSubTabFromUrl();
+    if (fromUrl === "actionable" || PILLARS.some((p) => p.id === fromUrl)) return fromUrl;
+    return "actionable";
+  });
+  useEffect(() => { syncSubTabToUrl(active); }, [active]);
   const SHORT = {
     physical: "Thể chất",
     mental: "Tinh thần",
