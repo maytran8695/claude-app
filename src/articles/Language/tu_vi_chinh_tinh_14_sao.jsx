@@ -251,7 +251,7 @@ Luôn kiểm tra điều kiện "phá cách" (破格 — *pògé*) song song: g�
 5. **Khách quan trung lập** — cát hung đan xen là trạng thái bình thường; mục tiêu là giúp người xem nhận diện khuynh hướng để chủ động điều chỉnh, không phải phán quyết số phận đóng đinh` },
   { label: "Thái Dương", body: `# Thái Dương (太陽 — *tài yáng* — the Sun)
 
-## Từ vựng
+## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 
 | Từ vựng | Chữ Hán | Pinyin | Hán Việt (giải nghĩa) | English |
 |---|---|---|---|---|
@@ -373,7 +373,7 @@ Hạnh phúc gắn với được hoạt động/cống hiến, không phải ng
 ---` },
   { label: "Thái Âm", body: `# THÁI ÂM (太陰 — tài yīn — the Moon)
 
-## Từ vựng
+## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
 |---|---|---|---|---|
 | Ôn hòa | 溫和 | wēnhé | **Ôn** (ấm áp) + **Hòa** (hòa nhã) → "ôn hòa, điềm đạm" | gentle, mild |
@@ -481,7 +481,7 @@ Lãng mạn, an nhàn tĩnh lặng kiểu "chậm mà chắc" — đời sống 
 | Phụ Mẫu | Duyên mẹ sâu đậm | — | Tình cảm mẹ sâu sắc | Duyên mẹ mỏng |` },
   { label: "Tử Vi", body: `# TỬ VI (紫微 — zǐwēi — Emperor Star)
 
-## Từ vựng
+## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
 |---|---|---|---|---|
 | Nhĩ căn tử nhuyễn | 耳根子軟 | ěrgēnzi ruǎn | **Nhĩ** (tai) + **Căn** (gốc rễ) + **Tử** (hậu tố danh từ) + **Nhuyễn** (mềm) → "tai mềm, dễ bị lung lay bởi lời nịnh" | easily swayed by flattery |
@@ -588,7 +588,7 @@ Gia đình hòa hợp, cha mẹ địa vị cao — nhưng chính uy quyền đ�
 | Phụ Mẫu | Cha mẹ địa vị cao, ảnh hưởng tính độc lập | Tình cảm cha mẹ tốt |` },
   { label: "Thiên Phủ", body: `# THIÊN PHỦ (天府 — tiān fǔ — the Treasury Star)
 
-## Từ vựng
+## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
 |---|---|---|---|---|
 | Văn nhã lịch thiệp | 溫文儒雅 | wēnwén rúyǎ | **Ôn** (ôn hòa) + **Văn** (có văn hóa) + **Nho** (học thức) + **Nhã** (thanh nhã) → "mềm mỏng có học thức, từng trải khéo léo" | gentle & cultured |
@@ -677,7 +677,7 @@ Gia đình khá giả, cha mẹ ôn hòa công bằng — nền tảng giáo d�
 ## 3. Tứ Hóa: Không có (đặc điểm định danh của sao này)` },
   { label: "Vũ Khúc", body: `# VŨ KHÚC (武曲 — wǔ qū — the Wealth/Military Star)
 
-## Từ vựng
+## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
 |---|---|---|---|---|
 | Cương liệt | 剛烈 | gāngliè | **Cương** (cứng rắn) + **Liệt** (mãnh liệt) → "cứng rắn, mãnh liệt" | fierce |
@@ -786,7 +786,7 @@ Cha mẹ nghiêm khắc, cố chấp, kỳ vọng cao; quan hệ êm đềm về
 | Phụ Mẫu | Cha mẹ giỏi kiếm tiền | Cha mẹ nắm quyền tài chính | Cha mẹ để lại tài sản | Cha mẹ nóng tính |` },
   { label: "Thiên Tướng", body: `# THIÊN TƯỚNG (天相 — tiān xiàng — the Minister/Seal Star)
 
-## Từ vựng
+## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
 |---|---|---|---|---|
 | Đôn hậu | 敦厚 | dūnhòu | **Đôn** (chân thành, đầy đặn) + **Hậu** (nhân hậu) → "chân thành, nhân hậu" | sincere, warm |
@@ -873,7 +873,7 @@ Cha mẹ sáng suốt, hướng dẫn khôn ngoan — mô hình giáo dục cân
 ## 3. Tứ Hóa: Không có — luận qua Tứ Hóa của Cự Môn/Thiên Lương lân cận.` },
   { label: "Cự Môn", body: `# CỰ MÔN (巨門 — jù mén — the "Great Gate"/Shadow Star)
 
-## Từ vựng
+## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
 |---|---|---|---|---|
 | Năng ngôn thiện đạo | 能言善道 | néng yán shàn dào | **Năng** (giỏi) + **Ngôn** (nói) + **Thiện** (khéo) + **Đạo** (diễn đạt) → "giỏi ăn nói, khéo diễn đạt" | eloquent |
@@ -978,7 +978,7 @@ Cha mẹ coi trọng vật chất, khắt khe, áp lực lớn — mô hình gi�
 | Phụ Mẫu | Hợp chuyện với cha mẹ | Cha mẹ hay khẩu thiệt | Khoảng cách thế hệ |` },
   { label: "Thiên Đồng", body: `# THIÊN ĐỒNG (天同 — tiān tóng — the Blessing Star)
 
-## Từ vựng
+## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
 |---|---|---|---|---|
@@ -1077,7 +1077,7 @@ Quan hệ cha mẹ - con cái nhẹ nhàng, cha mẹ có xu hướng nuông chi�
 | Phụ Mẫu | Cha mẹ hiền hòa, quan hệ ấm áp | Cha mẹ có chủ kiến, quản lý con cái nhiều hơn | Duyên cha mẹ - con cái nhạt hơn |` },
   { label: "Thiên Lương", body: `# THIÊN LƯƠNG (天梁 — tiān liáng — the Elder Star)
 
-## Từ vựng
+## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
 |---|---|---|---|---|
@@ -1174,7 +1174,7 @@ Cha mẹ nghiêm khắc nhưng che chở thật lòng; quan hệ có thể thi�
 | Phụ Mẫu | Cha mẹ được kính trọng, che chở tốt | Cha mẹ có uy, quản lý nghiêm | Quan hệ cha mẹ - con cái được nể trọng |` },
   { label: "Liêm Trinh", body: `# LIÊM TRINH (廉貞 — lián zhēn — the Chastity Star)
 
-## Từ vựng
+## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
 |---|---|---|---|---|
@@ -1273,7 +1273,7 @@ Cha mẹ nghiêm khắc, coi trọng quy tắc, quan hệ có thể thiếu sự
 | Phụ Mẫu | Cha mẹ có địa vị, quan hệ đúng mực | Quan hệ cha mẹ - con cái căng thẳng |` },
   { label: "Tham Lang", body: `# THAM LANG (貪狼 — tān láng — the Greedy Wolf Star)
 
-## Từ vựng
+## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
 |---|---|---|---|---|
@@ -1373,7 +1373,7 @@ Quan hệ cha mẹ - con cái có thể phức tạp, nhiều cảm xúc, ít đ
 | Phụ Mẫu | Quan hệ cha mẹ - con cái sôi động | Cha mẹ có cá tính mạnh, ảnh hưởng lớn | Quan hệ phức tạp, nhiều mâu thuẫn |` },
   { label: "Thiên Cơ", body: `# THIÊN CƠ (天機 — tiān jī — the Strategist Star)
 
-## Từ vựng
+## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
 |---|---|---|---|---|
 | Toàn ngưu giác tiêm | 鑽牛角尖 | zuān niújiǎo jiān | **Toản** (khoan, chui vào) + **Ngưu** (trâu) + **Giác** (sừng) + **Tiêm** (nhọn) → "chui vào đầu nhọn sừng trâu — suy nghĩ luẩn quẩn" | overthinking |
@@ -1473,7 +1473,7 @@ Cha mẹ hòa nhã nhưng con độc lập nên dễ xem nhẹ sự quan tâm �
 | Phụ Mẫu | Duyên trưởng bối nam giới | Cha mẹ nhanh nhạy | Cha mẹ sáng suốt | Bất đồng quan điểm |` },
   { label: "Thất Sát", body: `# THẤT SÁT (七殺 — qī shā — the General Star)
 
-## Từ vựng
+## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
 |---|---|---|---|---|
 | Hỉ nộ vô thường | 喜怒無常 | xǐnù wúcháng | **Hỉ** (vui) + **Nộ** (giận) + **Vô** (không) + **Thường** (cố định) → "vui giận thất thường" | moody |
@@ -1558,7 +1558,7 @@ Cha mẹ cố chấp, độc đoán, xa cách — mô hình giáo dục nghiêm 
 ## 3. Tứ Hóa: Không có` },
   { label: "Phá Quân", body: `# PHÁ QUÂN (破軍 — pò jūn — the "Destroyer"/Pioneer Star)
 
-## Từ vựng
+## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
 |---|---|---|---|---|
 | Hào sảng giang hồ | 江湖味濃 | jiānghú wèi nóng | **Giang** (sông) + **Hồ** (hồ) + **Vị** (mùi vị, chất) + **Nùng** (đậm đặc) → "đậm chất giang hồ, phóng khoáng tự do" | free-spirited |
@@ -2180,6 +2180,9 @@ const CSS = `
 .tv-han { color: var(--han); font-weight: 600; }
 .tv-pinyin { color: var(--pinyin); font-style: italic; font-weight: 500; }
 .tv-note { color: var(--muted); font-style: italic; }
+/* Ghi chú nhỏ đi kèm heading (vd. gợi ý "nhấn để nghe phát âm" cạnh "Từ vựng")
+   — thu nhỏ và bỏ đậm để không cạnh tranh thị giác với chính tiêu đề. */
+.tv-h2 .tv-note, .tv-h3 .tv-note { font-weight: 400; font-size: 0.6em; }
 
 /* Click để nghe phát âm (Web Speech API, chạy trong trình duyệt) — áp dụng
    cho mọi span/em/td chữ Hán và pinyin. */
