@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback, useEffect, useLayoutEffect, useRef, lazy, Suspense } from 'react';
-import { TrendingUp, HeartPulse, Languages, Brain, Sun, Moon, Search, ChevronDown, PanelLeftClose, PanelLeftOpen, ArrowUp, Menu } from 'lucide-react';
+import { TrendingUp, HeartPulse, Languages, Brain, Sun, Moon, Search, ChevronDown, PanelLeftClose, PanelLeftOpen, ArrowUp, ArrowDown, Menu } from 'lucide-react';
 
 // =========================================================================
 // 1. QUÉT ĐỘNG TOÀN BỘ FILE JSX TRONG THƯ MỤC ARTICLES (lazy-load từng bài)
@@ -318,6 +318,7 @@ function App() {
   const isSidebarExpanded = isSidebarOpen || isPeeking;
   const contentScrollRef = useRef(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [showBackToBottom, setShowBackToBottom] = useState(false);
 
   // Cuộn về đầu trang mỗi khi đổi bài viết (useLayoutEffect + overflow-anchor:none
   // trên vùng cuộn để trình duyệt không tự "bù" lại vị trí cuộn cũ khi nội dung mới nạp)
@@ -326,17 +327,36 @@ function App() {
     setShowBackToTop(false);
   }, [activeTab]);
 
-  // Hiện nút "Về đầu trang" khi cuộn xuống đủ sâu trong vùng cuộn nội dung
+  // Hiện nút "Về đầu trang" / "Xuống cuối trang" tùy vị trí cuộn hiện tại trong
+  // vùng cuộn nội dung — đồng thời theo dõi cả thay đổi chiều cao nội dung (do
+  // bài viết lazy-load xong sau khi Suspense fallback biến mất) qua ResizeObserver.
   useEffect(() => {
     const el = contentScrollRef.current;
     if (!el) return;
-    const onScroll = () => setShowBackToTop(el.scrollTop > 400);
-    el.addEventListener('scroll', onScroll, { passive: true });
-    return () => el.removeEventListener('scroll', onScroll);
-  }, []);
+    const checkScrollPosition = () => {
+      setShowBackToTop(el.scrollTop > 400);
+      const distanceToBottom = el.scrollHeight - el.scrollTop - el.clientHeight;
+      setShowBackToBottom(distanceToBottom > 400);
+    };
+    checkScrollPosition();
+    el.addEventListener('scroll', checkScrollPosition, { passive: true });
+    const resizeObserver = new ResizeObserver(checkScrollPosition);
+    resizeObserver.observe(el);
+    return () => {
+      el.removeEventListener('scroll', checkScrollPosition);
+      resizeObserver.disconnect();
+    };
+  }, [activeTab]);
 
   const scrollContentToTop = useCallback(() => {
     if (contentScrollRef.current) contentScrollRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  const scrollContentToBottom = useCallback(() => {
+    if (contentScrollRef.current) {
+      const el = contentScrollRef.current;
+      el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
+    }
   }, []);
 
   // Expose ra window để các article component (không nhận prop từ App.jsx)
@@ -671,16 +691,31 @@ function App() {
               </div>
             </div>
 
-            {/* Nút nổi "Về đầu trang" — chỉ hiện khi đã cuộn xuống đủ sâu */}
-            {showBackToTop && (
-              <button
-                onClick={scrollContentToTop}
-                aria-label="Về đầu trang"
-                title="Về đầu trang"
-                className="fixed bottom-6 right-5 md:bottom-8 md:right-8 z-30 w-11 h-11 rounded-full bg-slate-900/85 text-white shadow-lg backdrop-blur-md flex items-center justify-center active:scale-95 transition-transform hover:bg-slate-900"
-              >
-                <ArrowUp size={18} />
-              </button>
+            {/* Cụm nút nổi "Về đầu trang" / "Xuống cuối trang" — mỗi nút chỉ hiện khi
+                còn chỗ để cuộn theo hướng tương ứng, xếp chồng góc dưới phải */}
+            {(showBackToTop || showBackToBottom) && (
+              <div className="fixed bottom-6 right-5 md:bottom-8 md:right-8 z-30 flex flex-col gap-2.5">
+                {showBackToTop && (
+                  <button
+                    onClick={scrollContentToTop}
+                    aria-label="Về đầu trang"
+                    title="Về đầu trang"
+                    className="w-11 h-11 rounded-full bg-slate-900/85 text-white shadow-lg backdrop-blur-md flex items-center justify-center active:scale-95 transition-transform hover:bg-slate-900"
+                  >
+                    <ArrowUp size={18} />
+                  </button>
+                )}
+                {showBackToBottom && (
+                  <button
+                    onClick={scrollContentToBottom}
+                    aria-label="Xuống cuối trang"
+                    title="Xuống cuối trang"
+                    className="w-11 h-11 rounded-full bg-slate-900/85 text-white shadow-lg backdrop-blur-md flex items-center justify-center active:scale-95 transition-transform hover:bg-slate-900"
+                  >
+                    <ArrowDown size={18} />
+                  </button>
+                )}
+              </div>
             )}
 
           </div>
