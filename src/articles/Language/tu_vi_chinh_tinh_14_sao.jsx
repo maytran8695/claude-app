@@ -1843,17 +1843,23 @@ function pickZhVoice() {
       ? voices.filter((v) => v.lang === "zh-CN")
       : voices.filter((v) => v.lang && v.lang.toLowerCase().startsWith("zh"));
   if (candidates.length === 0) return null;
-  // Ưu tiên giọng "local" (cài sẵn trên máy, chạy offline) hơn giọng "network"
-  // (localService === false, phát qua streaming) — giọng network trên Chrome
-  // hay bị giật/ngắt giữa chừng do độ trễ mạng, dễ gây đọc thiếu âm đầu/cuối.
-  const chosen = candidates.find((v) => v.localService === true) || candidates[0];
-  // eslint-disable-next-line no-console
-  console.debug(
-    "[TuVi TTS] giọng zh khả dụng:",
-    candidates.map((v) => `${v.name} (${v.lang}, local=${v.localService})`),
-    "-> dang dung:",
-    chosen && chosen.name
-  );
+  // Loại các giọng "novelty" (vui nhộn) của Apple — Eddy/Flo/Grandma/Grandpa/
+  // Reed/Rocko/Sandy/Shelley... vốn là giọng hiệu ứng cho tiếng Anh, macOS
+  // gần đây mở rộng đa ngôn ngữ nhưng phát âm tiếng Trung không ổn định, hay
+  // đọc thiếu âm — ưu tiên giọng tiếng Trung "chính danh" như Tingting/Li-Mu.
+  const NOVELTY_NAMES = new Set([
+    "Albert", "Bad News", "Bahh", "Bells", "Boing", "Bubbles", "Cellos", "Wobble",
+    "Trinoids", "Zarvox", "Jester", "Organ", "Superstar",
+    "Eddy", "Flo", "Grandma", "Grandpa", "Reed", "Rocko", "Sandy", "Shelley",
+  ]);
+  const baseName = (v) => (v.name || "").split(" (")[0].trim();
+  const isNovelty = (v) => NOVELTY_NAMES.has(baseName(v));
+  const localCandidates = candidates.filter((v) => v.localService === true);
+  const pool = localCandidates.length > 0 ? localCandidates : candidates;
+  const chosen =
+    pool.find((v) => baseName(v) === "Tingting") ||
+    pool.find((v) => !isNovelty(v)) ||
+    pool[0];
   return chosen;
 }
 // Giữ tham chiếu utterance đang đọc ở scope module (không phải biến cục bộ
