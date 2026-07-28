@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback, useEffect, useLayoutEffect, useRef, lazy, Suspense } from 'react';
-import { TrendingUp, HeartPulse, Languages, Brain, Sun, Moon, Search, ChevronDown, PanelLeftClose, PanelLeftOpen, ArrowUp, ArrowDown, Menu } from 'lucide-react';
+import { TrendingUp, HeartPulse, Languages, Brain, Award, Sun, Moon, Search, ChevronDown, PanelLeftClose, PanelLeftOpen, ArrowUp, ArrowDown, Menu } from 'lucide-react';
 
 // =========================================================================
 // 1. QUÉT ĐỘNG TOÀN BỘ FILE JSX TRONG THƯ MỤC ARTICLES (lazy-load từng bài)
@@ -25,11 +25,12 @@ const exactTitleMap = {
   [normalizeKey('BestPracticesGuide')]: 'Best Practices Guide',
   [normalizeKey('ChineseTrick')]: 'Chinese Trick',
   [normalizeKey('TuViChinhTinh14Sao')]: 'Purple Star Astrology',
-  [normalizeKey('Love')]: 'Love'
+  [normalizeKey('Love')]: 'Love',
+  [normalizeKey('CBAP')]: 'CBAP'
 };
 
 // Thứ tự sắp xếp các Danh mục lớn
-const targetCategoryOrder = ['Health', 'Finance', 'Language', 'Psy'];
+const targetCategoryOrder = ['Health', 'Finance', 'Language', 'Cert', 'Psy'];
 
 // Thứ tự sắp xếp các bài viết bên trong từng danh mục
 const targetArticleOrder = {
@@ -55,6 +56,9 @@ const targetArticleOrder = {
   ],
   Psy: [
     normalizeKey('Love')
+  ],
+  Cert: [
+    normalizeKey('CBAP')
   ]
 };
 
@@ -151,6 +155,12 @@ const categoryThemes = {
     dark: '#6FB0A0',
     Icon: Brain
   },
+  Cert: {
+    // Tím trầm — đại diện cho chứng chỉ/thành tựu, tách biệt với 4 màu còn lại
+    light: '#6B4FA0',
+    dark: '#B7A3DE',
+    Icon: Award
+  },
   Default: {
     light: '#4F46E5',
     dark: '#818CF8',
@@ -159,6 +169,25 @@ const categoryThemes = {
 };
 
 const getTheme = (cat) => categoryThemes[cat] || categoryThemes.Default;
+
+// =========================================================================
+// ĐỊNH TUYẾN THEO QUERY PARAM (?a=<id-bài-viết>) — mỗi tab/bài viết có URL
+// riêng để chia sẻ trực tiếp, không cần route path (an toàn với mọi kiểu
+// static hosting vì request luôn về "/", không cần cấu hình SPA fallback).
+// =========================================================================
+const ARTICLE_URL_PARAM = 'a';
+const getArticleIdFromUrl = () => {
+  if (typeof window === 'undefined') return null;
+  return new URLSearchParams(window.location.search).get(ARTICLE_URL_PARAM);
+};
+const findArticleByUrlId = (urlId) => {
+  if (!urlId) return null;
+  return (
+    articles.find((a) => a.id === urlId) ||
+    articles.find((a) => normalizeKey(a.id) === normalizeKey(urlId)) ||
+    null
+  );
+};
 
 function App() {
   // NHÚNG FONT CHỮ CAO CẤP & GLOBAL CSS OVERRIDES CHO BÀI VIẾT
@@ -272,10 +301,46 @@ function App() {
     document.head.appendChild(style);
   }, []);
 
-  // Tự động kích hoạt bài viết đầu tiên làm mặc định
+  // Tự động kích hoạt bài viết đầu tiên làm mặc định — trừ khi URL đã có sẵn
+  // ?a=<id> (mở từ một link chia sẻ trực tiếp tới một tab cụ thể).
   const [activeTab, setActiveTab] = useState(() => {
+    const fromUrl = findArticleByUrlId(getArticleIdFromUrl());
+    if (fromUrl) return fromUrl.id;
     return articles.length > 0 ? articles[0].id : '';
   });
+
+  // Đồng bộ activeTab <-> URL: mỗi lần đổi tab, cập nhật ?a=<id> lên address
+  // bar để có thể copy/chia sẻ link thẳng tới đúng tab đó. Lần đồng bộ đầu
+  // tiên (lúc mới load trang) dùng replaceState để không tạo history rác;
+  // các lần đổi tab sau đó dùng pushState để nút Back/Forward hoạt động.
+  const isFirstUrlSyncRef = useRef(true);
+  useEffect(() => {
+    if (typeof window === 'undefined' || !activeTab) return;
+    const params = new URLSearchParams(window.location.search);
+    if (params.get(ARTICLE_URL_PARAM) === activeTab) {
+      isFirstUrlSyncRef.current = false;
+      return;
+    }
+    params.set(ARTICLE_URL_PARAM, activeTab);
+    const newUrl = `${window.location.pathname}?${params.toString()}${window.location.hash}`;
+    if (isFirstUrlSyncRef.current) {
+      window.history.replaceState({ [ARTICLE_URL_PARAM]: activeTab }, '', newUrl);
+    } else {
+      window.history.pushState({ [ARTICLE_URL_PARAM]: activeTab }, '', newUrl);
+    }
+    isFirstUrlSyncRef.current = false;
+  }, [activeTab]);
+
+  // Hỗ trợ nút Back/Forward của trình duyệt: khi URL đổi do điều hướng lịch
+  // sử (không phải do người dùng bấm sidebar), đồng bộ ngược lại activeTab.
+  useEffect(() => {
+    const onPopState = () => {
+      const match = findArticleByUrlId(getArticleIdFromUrl());
+      if (match) setActiveTab(match.id);
+    };
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, []);
   
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -295,7 +360,7 @@ function App() {
   }, [darkMode]);
 
   // Trạng thái mở/đóng của từng nhóm Chuyên mục trong sidebar (mặc định mở hết)
-  const [openGroups, setOpenGroups] = useState({ Health: true, Finance: true, Language: true, Psy: true });
+  const [openGroups, setOpenGroups] = useState({ Health: true, Finance: true, Language: true, Cert: true, Psy: true });
   const toggleGroup = useCallback((cat) => {
     setOpenGroups(prev => ({ ...prev, [cat]: !prev[cat] }));
   }, []);
