@@ -100,7 +100,7 @@ function Li({ tone = C.teal, children }) {
   );
 }
 
-function StepBlock({ title, time, tone = C.teal, items, note }) {
+function StepBlock({ title, time, tone = C.teal, items, note, videos }) {
   return (
     <div style={{ ...card, borderLeft: `3px solid ${tone.border}`, marginBottom: 8 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8, gap: 8 }}>
@@ -109,6 +109,23 @@ function StepBlock({ title, time, tone = C.teal, items, note }) {
       </div>
       {items.map((it, i) => <Li key={i} tone={tone}>{it}</Li>)}
       {note && <div style={{ fontSize: 12, color: "var(--color-text-tertiary)", marginTop: 6, lineHeight: 1.55, fontStyle: "italic" }}>{note}</div>}
+      {videos && videos.length > 0 && (
+        <div style={{ fontSize: 12, color: "var(--color-text-tertiary)", marginTop: note ? 8 : 6, lineHeight: 1.55, fontStyle: "italic" }}>
+          {videos.map((v, i) => (
+            <div key={i} style={{ display: "flex", gap: 6, marginTop: i === 0 ? 0 : 3 }}>
+              <span style={{ flexShrink: 0 }}>▸</span>
+              <a
+                href={v.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: tone.mid, textDecoration: "underline", textUnderlineOffset: 2 }}
+              >
+                {v.label}
+              </a>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -518,32 +535,47 @@ function PartIII() {
         "3–5 phút vận động nhẹ tăng dần (đi bộ nhanh, jog chậm, đạp nhẹ) — tăng nhiệt độ cơ, lưu lượng máu.",
         "Dynamic stretching: leg swing trước-sau và ngang, hip circle, high knee, butt kick, lateral lunge — mỗi động tác 10–15 nhịp.",
         "Chuyển động có kiểm soát, không giữ tĩnh."
-      ]} note="Dynamic stretching cải thiện hiệu suất; static kéo dài trước tập có thể tạm giảm hiệu suất." />
+      ]} note="Dynamic stretching cải thiện hiệu suất; static kéo dài trước tập có thể tạm giảm hiệu suất." videos={[
+        { label: "Full Body Dynamic Warm Up Before Workout (BEST ROUTINE)", url: "https://www.youtube.com/watch?v=IyLLPU3Gsyw" },
+        { label: "5 Min Dynamic Warm Up — Trước chạy/cardio/tập tạ", url: "https://www.youtube.com/watch?v=Xm1bxAkgVqk" }
+      ]} />
 
       <StepBlock title="2. Kích hoạt cột sống (cho LDH)" time="3–5 phút" tone={C.rose} items={[
         "Glute bridge 15 nhịp — bật glute.",
         "Clam shell 12 nhịp/bên — gluteus medius, kiểm soát xoay hông.",
         "Dead bug 8 nhịp — transversus abdominis, cơ giữ cột sống sâu nhất.",
         "Bird-dog 8 nhịp/bên — multifidus dọc cột sống."
-      ]} note="'Bảo hiểm' cho cột sống. Cơ đã bật sẽ tự giữ trung tính khi tải đến, thay vì phản ứng chậm." />
+      ]} note="'Bảo hiểm' cho cột sống. Cơ đã bật sẽ tự giữ trung tính khi tải đến, thay vì phản ứng chậm." videos={[
+        { label: "Bob & Brad — How to Fix Low Back Pain in 90 Seconds (Dead Bug...)", url: "https://www.youtube.com/watch?v=xIQTo3HYVVI" },
+        { label: "Ultimate Core Workout — Bird Dog, Dead Bug & Glute Bridge", url: "https://www.youtube.com/watch?v=99ewh8IACrA" }
+      ]} />
 
       <StepBlock title="3. Phần chính" time="tùy môn" tone={C.blue} items={[
         "Nội dung đặc thù từng môn — chạy Zone 2, bơi, interval, tập tạ.",
         "Giữ đúng vùng cường độ dự định, không trôi lên cao vô thức.",
         "Với LDH: ý thức cột sống trung tính suốt buổi, dừng ngay nếu có tín hiệu thần kinh (đau/tê lan chân)."
+      ]} videos={[
+        { label: "Zone 2 Training là gì? — Peter Attia & Iñigo San-Millán", url: "https://www.youtube.com/watch?v=qwDI3HCcdfw" },
+        { label: "SBD cho người mới — Squat, Bench, Deadlift đúng kỹ thuật", url: "https://www.youtube.com/watch?v=rMmywzMtMYI" }
       ]} />
 
       <StepBlock title="4. Cooldown" time="5–8 phút" tone={C.teal} items={[
         "Giảm cường độ dần vài phút cuối — không dừng đột ngột.",
         "Static stretching lúc này mới dùng: calf, quad, hamstring, hip flexor, glute — mỗi nhóm 30–45 giây.",
         "Cat-cow nhẹ cho cột sống thắt lưng."
+      ]} videos={[
+        { label: "Best Cool Down & Static Stretch Routine After Exercise", url: "https://www.youtube.com/watch?v=sM8-GFn4Vik" },
+        { label: "15 Min Static Stretching cho người mới — Cool Down", url: "https://www.youtube.com/watch?v=yOxDeD4sPcE" }
       ]} />
 
       <StepBlock title="5. Giải nén cột sống (cho LDH)" time="2–3 phút" tone={C.rose} items={[
         "Dead hang treo xà 20–30 giây × 2–3 lần — lực kéo giãn tự nhiên.",
         "Child's pose 60 giây.",
         "Supine knee-to-chest 30 giây/bên."
-      ]} note="Bước riêng biệt mà hầu hết guide bỏ qua — giảm áp lực tích lũy lên đĩa đệm." />
+      ]} note="Bước riêng biệt mà hầu hết guide bỏ qua — giảm áp lực tích lũy lên đĩa đệm." videos={[
+        { label: "Bob & Brad — Bài tập tốt nhất cho đau thần kinh tọa, thoát vị đĩa đệm", url: "https://www.youtube.com/watch?v=Nf3lswVsJ1g" },
+        { label: "Child's Pose với 3 biến thể — Giải nén cột sống thắt lưng", url: "https://www.youtube.com/watch?v=Bl7JW7WS40E" }
+      ]} />
 
       <h2 style={h2}><span style={sectionNumInline}>3.2</span>Mobility cho người ngồi nhiều — vấn đề cơ-xương đặc trưng</h2>
       <p style={prose}>
