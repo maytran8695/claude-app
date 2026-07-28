@@ -14,7 +14,7 @@ const HAN_COLOR = "#B3261E";
 const PINYIN_COLOR = "#1F7A5C";
 
 const SECTIONS = [
-  { label: "Tổng quan", body: `# TỔNG QUAN TỬ VI ĐẨU SỐ
+  { label: "Tổng quan", slug: "tong-quan", body: `# TỔNG QUAN TỬ VI ĐẨU SỐ
 
 ---
 
@@ -155,7 +155,7 @@ Từ toàn bộ bối cảnh lịch sử, nguyên lý và những phản biện 
 4. **Tránh "thuật ngữ hư trương" (術語誇大 — *shùyǔ kuādà*):** tên **cách cục** (格局 — *géjú*) nghe rất kêu (như "Lộ Biên Mai Thi") dễ gây hoảng sợ không cần thiết — luôn cần tìm hiểu bản chất cơ chế đằng sau tên gọi, không dừng ở nghĩa đen.
 
 5. **Duy trì tinh thần "tạo mệnh luận":** dùng Tử Vi như công cụ **tự nhận thức** (自我認知 — *zìwǒ rènzhī*) để chủ động điều chỉnh, không phải để tự giới hạn bản thân hay biện minh cho sự thụ động — đúng như phân biệt "Mệnh"/"Vận" đã nêu ở phần trên: không đổi được "phương tiện", nhưng luôn có thể chọn cách lái xe.` },
-  { label: "Phương pháp luận", body: `# PHƯƠNG PHÁP LUẬN ĐỌC LÁ SỐ TỬ VI ĐẨU SỐ
+  { label: "Phương pháp luận", slug: "phuong-phap-luan", body: `# PHƯƠNG PHÁP LUẬN ĐỌC LÁ SỐ TỬ VI ĐẨU SỐ
 *(Chương mở đầu — nên đọc trước khi tra cứu chi tiết 14 chính tinh)*
 
 ## I. Tổng quan
@@ -250,7 +250,7 @@ Luôn kiểm tra điều kiện "phá cách" (破格 — *pògé*) song song: g�
 3. **Từ chính đến phụ** — 14 chính tinh quyết định khung ~70-80%, phụ tinh chỉ tinh chỉnh
 4. **Từ trong ra ngoài** — hiểu lõi (Mệnh) trước khi mở rộng vành ngoài
 5. **Khách quan trung lập** — cát hung đan xen là trạng thái bình thường; mục tiêu là giúp người xem nhận diện khuynh hướng để chủ động điều chỉnh, không phải phán quyết số phận đóng đinh` },
-  { label: "Thái Dương", body: `# Thái Dương (太陽 — *tài yáng* — the Sun)
+  { label: "Thái Dương", slug: "the-sun", body: `# Thái Dương (太陽 — *tài yáng* — the Sun)
 
 ## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 
@@ -310,7 +310,7 @@ Cần đặc biệt lưu ý nhóm bốn cung **hãm** (Tuất, Hợi, Tý, Sửu
 
 ## 2. Luận theo 12 cung
 
-### Cung Mệnh (命宮 — *mìnggōng*)
+### Cung Mệnh (命宮 — *mìnggōng*) ¹
 Thái Dương thủ Mệnh tại Mão hình thành cách **"Nhật xuất Phù Tang"** (日出扶桑 — *rì chū fú sāng*) — khởi đầu rực rỡ, thành danh sớm (成名早 — *chéngmíng zǎo*) (đặc biệt nam mệnh sinh ban ngày). Tại Ngọ hình thành **"Nhật lệ trung thiên"** (日麗中天 — *rì lì zhōngtiān*) — vượng khí nhất, đại phú đại quý (大富大貴 — *dà fù dà guì*), nhưng cần Tứ Hóa/Tả Hữu/Xương Khúc hội hợp mới trọn vẹn, nếu không dễ "hữu danh vô thực" (有名無實 — *yǒumíng wúshí*).
 
 Ngược lại, tại **Tuất** — vị trí thuộc nhóm hãm địa (陷地 — *xiàn dì*) — Thái Dương thủ Mệnh mang sắc thái hoàn toàn khác: đây là khung giờ "mặt trời đã khuất núi" (日落西山 — *rì luò xīshān*), ánh sáng phải chiếu vào bóng tối thay vì giữa ban ngày quang đãng. Người Mệnh Thái Dương hãm tại Tuất thường phải trải qua giai đoạn "âm thầm cống hiến" (默默奉獻 — *mòmò fèngxiàn*) khá dài trước khi được ghi nhận đúng mức — không phải vì thiếu năng lực (能力 — *nénglì*), mà vì môi trường xung quanh chưa đủ điều kiện "phản chiếu" lại ánh sáng đó. Cách cục cổ gọi trường hợp này là **"nhật hãm Thiên La"** (日陷天羅 — *rì xiàn tiānluó*) — Tuất vốn thuộc "Thiên La", mang ý nghĩa bó buộc, cộng thêm ánh sáng suy yếu (光輝減弱 — *guānghuī jiǎnruò*), nên đường công danh của người này thường phải "phá vây" (突圍 — *tūwéi*) nhiều lần mới đạt được vị trí xứng đáng. Nếu được Hóa Lộc/Hóa Quyền hoặc cát tinh Tả Hữu/Xương Khúc hội chiếu, mức hãm này có thể chuyển hóa đáng kể thành **"uất khí phát tiết"** (鬱氣發洩 — *yùqì fāxiè* — dồn nén rồi bung phát) — đại thành công đến muộn nhưng bền vững hơn kiểu "sớm nở chóng tàn" của Nhật xuất Phù Tang.
@@ -334,8 +334,11 @@ Tài vận luôn đi kèm danh tiếng — tiền đến từ việc được bi
 ### Cung Tật Ách (疾厄宮 — *jí'è gōng*)
 Chủ về đầu, mắt, hệ tuần hoàn (Hỏa vượng → khí bốc lên trên). Đây là suy luận biểu tượng học truyền thống, không phải chẩn đoán y khoa — chỉ nên xem là gợi ý lưu tâm, không thay thế thăm khám thực tế.
 
-### Cung Thiên Di (遷移宮 — *qiānyí gōng*)
-Đối cung của Mệnh → Mệnh Vô Chính Diệu, phải "mượn" ánh sáng từ môi trường ngoài để định hình bản thân. Dễ tỏa sáng khi ra ngoài, gặp quý nhân hơn ở nhà; nhưng nội tâm thiếu trục quy chiếu chắc chắn, thường "biết mình là ai" qua phản hồi từ bên ngoài.
+### Cung Thiên Di (遷移宮 — *qiānyí gōng* — cung quản việc ra ngoài, di chuyển, hình ảnh bản thân trước công chúng) ²
+Thiên Di là cung đối xứng trực tiếp với Mệnh — khi chính tinh chỉ tọa ở Thiên Di mà Mệnh Vô Chính Diệu (無正曜 — *wú zhèngyào* — không có chính tinh), người này phải "mượn" ánh sáng từ chính đối cung Thiên Di để định hình bản thân, một cơ chế đặc thù gọi là "mượn sao đối cung" (借對宮星 — *jiè duìgōng xīng*) đã nêu ở tab Phương pháp luận. Thái Dương tại Thiên Di trong trường hợp này mang đúng bản chất "cho đi, chiếu rọi, dẫn dắt" đã nêu ở Bản chất vào không gian bên ngoài: dễ tỏa sáng khi ra ngoài, gặp quý nhân (貴人 — *guìrén*) hơn ở nhà; nhưng nội tâm thiếu trục quy chiếu (參照軸 — *cānzhào zhóu*) chắc chắn, thường "biết mình là ai" qua phản hồi (反饋 — *fǎnkuì*) từ bên ngoài hơn là từ nội quan.
+
+Khi Thái Dương **hãm** tại Hợi — một trong bốn vị trí hãm địa của sao này — cơ chế "mượn sáng" nói trên trở nên đặc biệt quan trọng nhưng cũng đầy thách thức: ánh sáng phản chiếu về Mệnh vốn đã yếu (do hãm), lại phải gánh luôn vai trò định hình toàn bộ bản sắc cá nhân. Người thuộc tổ hợp này thường trải qua một giai đoạn "mơ hồ về bản thân" kéo dài hơn bình thường, chỉ dần rõ nét sau khi tích lũy đủ trải nghiệm và phản hồi từ môi trường/xã hội bên ngoài — đúng tinh thần "Miếu/Hãm quyết định lượng chứ không đổi chất" đã nêu ở Nguyên lý nền: nội lực "cho đi, dẫn dắt" của Thái Dương vẫn nguyên vẹn, chỉ là cần nhiều thời gian và môi trường phù hợp hơn để người khác — và chính bản thân — nhận ra nó.
+
 
 ### Cung Giao Hữu / Nô Bộc (交友宮 — *jiāoyǒu gōng*)
 Vòng bạn bè/đồng nghiệp có địa vị cao hoặc phong cách hào phóng (海派 — *hǎipài*). Thái Dương thường "cho đi" nhiều hơn nhận trong tình bạn — dễ đứng ra chi trả, tổ chức — nên dễ ảnh hưởng tài chính cá nhân nếu không tiết chế.
@@ -372,7 +375,7 @@ Hạnh phúc gắn với được hoạt động/cống hiến, không phải ng
 | Phụ Mẫu | Được cha/trưởng bối yêu thương, hưởng ân trạch | Cha có địa vị nhưng quản lý nghiêm | Duyên cha mỏng, trắc trở giấy tờ/học vấn |
 
 ---` },
-  { label: "Thái Âm", body: `# THÁI ÂM (太陰 — tài yīn — the Moon)
+  { label: "Thái Âm", slug: "the-moon", body: `# THÁI ÂM (太陰 — tài yīn — the Moon)
 
 ## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
@@ -433,8 +436,11 @@ Cơ chế tâm lý: nếu Thái Dương tìm giá trị bản thân qua việc *
 ### Cung Huynh Đệ (兄弟宮 — *xiōngdì gōng*)
 Anh chị em duyên sâu đậm, quan hệ mang tính chăm sóc, dễ có người theo đuổi văn chương/nghệ thuật/thẩm mỹ — phản chiếu đúng bản chất "thu, dưỡng" của Thái Âm. Nếu miếu vượng, đây là nguồn hỗ trợ tinh thần bền bỉ hơn là hỗ trợ vật chất trực tiếp.
 
-### Cung Phu Thê (夫妻宮 — *fūqī gōng*)
-Đây là vị trí đắc ý hơn hẳn so với Thái Dương cùng cách: phối ngẫu nội hướng (內向 — *nèixiàng*), dịu dàng, đời sống hôn nhân thiên về chiều sâu cảm xúc. Nam mệnh Thái Âm tại Phu Thê thường được vợ chăm sóc chu đáo; nữ mệnh dễ tìm được người chồng tinh tế, biết lắng nghe — nhưng cần cảnh giác việc lãng mạn hóa hôn nhân quá mức khiến thất vọng khi đối diện thực tế đời sống chung.
+### Cung Phu Thê (夫妻宮 — *fūqī gōng* — cung quản hôn nhân, tình cảm đôi lứa, người bạn đời) ²
+Thái Âm thủ Phu Thê mang đúng bản chất "thu — dưỡng — tích" đã nêu ở Nguyên lý nền vào đời sống hôn nhân: đây là vị trí đắc ý hơn hẳn so với Thái Dương cùng cách — phối ngẫu nội hướng (內向 — *nèixiàng*), dịu dàng (溫柔 — *wēnróu*), đời sống hôn nhân thiên về chiều sâu cảm xúc (情感深度 — *qínggǎn shēndù*). Nam mệnh Thái Âm tại Phu Thê thường được vợ chăm sóc chu đáo (周到 — *zhōudào*); nữ mệnh dễ tìm được người chồng tinh tế, biết lắng nghe (傾聽 — *qīngtīng*) — nhưng cần cảnh giác việc lãng mạn hóa (浪漫化 — *làngmànhuà*) hôn nhân quá mức khiến thất vọng khi đối diện thực tế đời sống chung.
+
+Khi Thái Âm **hãm** tại Mão — một trong các vị trí hãm địa của sao này — mức "chưa đủ sáng" cần được bù đắp bằng thời gian và sự vun đắp chủ động hơn là trông chờ tự nhiên: hôn nhân vẫn giữ được chiều sâu cảm xúc đặc trưng của Thái Âm, nhưng giai đoạn đầu dễ có cảm giác thiếu thốn (缺乏感 — *quēfá gǎn*) sự công nhận hoặc thấu hiểu lẫn nhau, cần cả hai phía kiên trì xây dựng lòng tin (信任 — *xìnrèn*) qua thời gian dài thay vì kỳ vọng một sự kết nối tức thời. Đúng tinh thần "hãm không đổi chất chỉ đổi lượng" đã áp dụng xuyên suốt hệ thống: bản chất dịu dàng, chăm sóc của Thái Âm không hề mất đi, chỉ cần môi trường và thời gian phù hợp hơn để bộc lộ trọn vẹn.
+
 
 ### Cung Tử Tức (子女宮 — *zǐnǚ gōng*)
 Con cái chín chắn sớm (練達成熟 — *liàndá chéngshú*), nhạy cảm nghệ thuật, giàu trực giác nhưng hơi "thần kinh chất" (神經質 — *shénjīngzhì*) — cần cha mẹ tạo môi trường ổn định, ít biến động để cảm xúc con trẻ không quá dao động theo ngoại cảnh.
@@ -445,7 +451,7 @@ Tài vận âm thầm mà bền — đúng bản chất "tài tích lũy" đã n
 ### Cung Tật Ách (疾厄宮 — *jí'è gōng*)
 Chủ về đau bụng/lưng, ù tai, hồi hộp, rối loạn nội tiết — ứng với hành Thủy chủ về dịch thể và chu kỳ (biểu tượng học truyền thống, không phải chẩn đoán y khoa, chỉ nên xem là gợi ý lưu tâm).
 
-### Cung Thiên Di (遷移宮 — *qiānyí gōng* — cung quản việc ra ngoài, di chuyển, hình ảnh bản thân trước công chúng)
+### Cung Thiên Di (遷移宮 — *qiānyí gōng* — cung quản việc ra ngoài, di chuyển, hình ảnh bản thân trước công chúng) ¹
 Thiên Di là cung đối xứng trực tiếp với Mệnh, phản ánh **"cái tôi" khi rời khỏi nhà** (離家後的自我 — *líjiā hòu de zìwǒ*) — cách người khác nhìn nhận mình ở nơi công cộng, môi trường làm việc, đất khách. Thái Âm thủ Thiên Di mang đúng bản chất "thu — dưỡng — tích" đã nêu ở Nguyên lý nền vào không gian bên ngoài: ra ngoài dễ được nữ giới hoặc quý nhân (貴人 — *guìrén* — người giúp đỡ) tính cách mềm mỏng nâng đỡ, hợp môi trường cần sự tinh tế (細膩 — *xìnì*), thẩm mỹ (審美 — *shěnměi*), hoặc nhịp sinh hoạt về đêm — trái ngược hoàn toàn phong thái "trung tâm, phô bày giữa ban ngày" của một Thái Dương tại Thiên Di.
 
 Vì đối cung của Thiên Di luôn là Mệnh, "cách nhìn về bản thân" của người Thiên Di Thái Âm luôn được định hình qua tấm gương phản chiếu (反射鏡 — *fǎnshè jìng*) của chính tinh tọa Mệnh — tạo thế lưỡng cực Âm-Dương xuyên suốt cả lá số. Khi Thái Âm **hãm tại Thìn**, mức hãm này mang ý nghĩa "chưa đủ sáng" nhiều hơn là "sai chất": môi trường bên ngoài không dễ dàng "tỏa sáng" ngay mà cần thời gian âm thầm gây dựng uy tín (建立信譽 — *jiànlì xìnyù*) trước khi được ghi nhận, và người xa quê thuộc dạng này thường phải tự tạo nguồn lực (資源 — *zīyuán*) cho chính mình thay vì trông chờ ngoại cảnh nâng đỡ ngay từ đầu. Điểm tích cực: Thìn là cung "Thủy khố" (水庫 — *shuǐ kù* — kho chứa nước) trong Địa Chi, về mặt biểu tượng vẫn phù hợp với bản chất Thủy tĩnh của Thái Âm hơn nhiều so với các cung hãm khác (Mão/Tị/Ngọ/Mùi thuộc Mộc/Hỏa) — nói cách khác, đây là kiểu hãm "đúng chất nhưng chưa đủ sáng" chứ không phải "sai chất hoàn toàn", ánh sáng phản chiếu vẫn có nơi tích tụ, chỉ cần thời gian và nỗ lực bồi đắp (培養 — *péiyǎng*) đủ lâu để phát huy.
@@ -480,7 +486,7 @@ Lãng mạn, an nhàn tĩnh lặng kiểu "chậm mà chắc" — đời sống 
 | Điền Trạch | Nhiều BĐS, hợp Thái Dương | Phụ nữ trong nhà nắm quyền | Không gian sống lãng mạn | Nữ chủ vất vả |
 | Phúc Đức | Tích lũy của cải | Về già đào hoa | Về già đào hoa | Về già cô độc |
 | Phụ Mẫu | Duyên mẹ sâu đậm | — | Tình cảm mẹ sâu sắc | Duyên mẹ mỏng |` },
-  { label: "Tử Vi", body: `# TỬ VI (紫微 — zǐwēi — Emperor Star)
+  { label: "Tử Vi", slug: "emperor-star", body: `# TỬ VI (紫微 — zǐwēi — Emperor Star)
 
 ## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
@@ -543,8 +549,11 @@ Có người đáng nương tựa, đóng vai trò thủ lĩnh không chính th�
 ### Cung Phu Thê (夫妻宮 — *fūqī gōng*)
 Nam mệnh thường được vợ hiền hỗ trợ; nữ mệnh theo cổ ngữ "lấy chồng làm vinh" — hôn nhân gắn liền với địa vị/thể diện. Cả hai giới nên kết hôn muộn để tránh việc bản chất "muốn làm chủ" của Tử Vi áp đảo phối ngẫu khi còn quá trẻ, chưa đủ độ chín để dung hòa.
 
-### Cung Tử Tức (子女宮 — *zǐnǚ gōng*)
-Con cái xuất sắc, nhạy bén, thường có tố chất lãnh đạo bẩm sinh — cha mẹ cần tránh áp đặt khuôn mẫu cứng nhắc vì con dễ phản kháng nếu cảm thấy không được tôn trọng như một cá thể độc lập.
+### Cung Tử Tức (子女宮 — *zǐnǚ gōng* — cung quản con cái, học trò, thế hệ kế thừa) ²
+Tử Vi thủ Tử Tức mang đúng khí chất đế vương (帝王氣質 — *dìwáng qìzhí*) đã nêu ở Bản chất vào vai trò làm cha mẹ: con cái xuất sắc, nhạy bén (敏銳 — *mǐnruì*), thường có tố chất lãnh đạo (領導特質 — *lǐngdǎo tèzhì*) bẩm sinh — cha mẹ cần tránh áp đặt khuôn mẫu cứng nhắc (僵化模式 — *jiānghuà móshì*) vì con dễ phản kháng (反抗 — *fǎnkàng*) nếu cảm thấy không được tôn trọng như một cá thể độc lập.
+
+Khi Tử Vi đạt mức **Miếu** và đồng cung với Thiên Phủ cũng đạt mức Miếu, tổ hợp "Tử Phủ đồng cung" tại Tử Tức tạo ra một trong những cách cục con cái tốt nhất trong 12 cung: Đế tinh mang khí chất lãnh đạo, Tài Khố tinh mang sự ổn định, chu toàn — con cái vừa có tham vọng vừa biết cách quản lý, gìn giữ những gì đã đạt được, không rơi vào kiểu "có chí lớn nhưng không bền". Đây cũng là tổ hợp mà cha mẹ dễ vô tình kỳ vọng (期望 — *qīwàng*) quá cao vì con thể hiện tiềm năng sớm — bài học cốt lõi là để "khí chất đế vương" của con phát triển tự nhiên thay vì ép khuôn theo tiêu chuẩn thành công của chính cha mẹ.
+
 
 ### Cung Tài Bạch (財帛宮 — *cáibó gōng*)
 Cả đời không lo cơm áo — tài vận ổn định nhờ vị thế/uy tín hơn là liều lĩnh đầu cơ. Tuy nhiên do Tử Vi không tự HÓA Lộc, dòng tiền thực chất phụ thuộc vào các sao đồng hành (đặc biệt Thiên Phủ, Vũ Khúc); Tử Vi đơn thuần cung cấp "vị thế" để thu hút tài lộc chứ không trực tiếp tạo ra nó.
@@ -561,7 +570,7 @@ Bạn bè đông, địa vị cao — nhưng bản chất "Đế tinh" khiến q
 ### Cung Quan Lộc (官祿宮 — *guānlù gōng*)
 Cung đắc vị nhất sau Mệnh — quản lý cấp cao, hợp vai trò đứng đầu tổ chức/doanh nghiệp/cơ quan. Đây là nơi triết lý "vô vi nhi trị" phát huy rõ nhất: thành công đến từ khả năng trọng dụng đúng người, không phải tự mình ôm hết việc.
 
-### Cung Điền Trạch (田宅宮 — *tiánzhái gōng* — cung quản nhà cửa, đất đai, tài sản cố định và "kho tàng" tích lũy của lá số)
+### Cung Điền Trạch (田宅宮 — *tiánzhái gōng* — cung quản nhà cửa, đất đai, tài sản cố định và "kho tàng" tích lũy của lá số) ¹
 Điền Trạch phản ánh mối quan hệ giữa một người với **bất động sản** (不動產 — *bùdòngchǎn*) và cảm giác "an cư" (安居 — *ānjū* — ở yên) theo đúng nghĩa đen lẫn biểu tượng. Tử Vi thủ Điền Trạch mang đúng khí chất đế vương (帝王氣質 — *dìwáng qìzhí*) vào lĩnh vực này: sản nghiệp thường lớn, hợp đất cao/vị trí trung tâm (中心位置 — *zhōngxīn wèizhì*), bất động sản sở hữu thường mang giá trị biểu tượng địa vị (地位象徵 — *dìwèi xiàngzhēng*) chứ không đơn thuần để ở — xu hướng tích lũy tài sản theo quy mô lớn, ít khi vụn vặt, đúng bản chất một Đế tinh không quen với những gì nhỏ lẻ.
 
 Khi Tử Vi tại Điền Trạch đạt mức **Đắc** và đồng cung với Phá Quân đạt mức **Vượng**, tổ hợp "Tử Phá đồng cung" vốn ở Cung Mệnh mang sắc thái "cách cách bất nhập" nếu thiếu phò tá (như đã phân tích ở tab Phá Quân), nhưng khi rơi vào Điền Trạch, ý nghĩa "phá" lại chuyển hóa theo một hướng cụ thể hơn: tài sản/nhà cửa của người này thường trải qua ít nhất một lần **biến động lớn** (重大變動 — *zhòngdà biàndòng* — mua bán, xây mới, di dời quy mô lớn) trước khi ổn định ở một quy mô cao hơn hẳn ban đầu — đúng tinh thần "phá để làm lại" của Phá Quân được "khí chất trật tự" của Tử Vi kiềm chế bớt phần bất định. Nói cách khác, đây không phải kiểu Điền Trạch "giữ nguyên hiện trạng an toàn", mà là kiểu Điền Trạch "đổi mới có kiểm soát" (可控革新 — *kěkòng géxīn*) — biến động nhưng có định hướng, khác hẳn một Phá Quân độc tọa không có Tử Vi đi kèm để giữ khung.
@@ -587,292 +596,110 @@ Gia đình hòa hợp, cha mẹ địa vị cao — nhưng chính uy quyền đ�
 | Điền Trạch | Nhà cửa thanh tịnh | Nhà cửa sang trọng |
 | Phúc Đức | Về già thanh cao | Về già con cháu quây quần |
 | Phụ Mẫu | Cha mẹ địa vị cao, ảnh hưởng tính độc lập | Tình cảm cha mẹ tốt |` },
-  { label: "Thiên Phủ", body: `# THIÊN PHỦ (天府 — tiān fǔ — the Treasury Star)
+  { label: "Tham Lang", slug: "the-greedy-wolf-star", body: `# THAM LANG (貪狼 — tān láng — the Greedy Wolf Star)
 
 ## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
+
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
 |---|---|---|---|---|
-| Văn nhã lịch thiệp | 溫文儒雅 | wēnwén rúyǎ | **Ôn** (ôn hòa) + **Văn** (có văn hóa) + **Nho** (học thức) + **Nhã** (thanh nhã) → "mềm mỏng có học thức, từng trải khéo léo" | gentle & cultured |
-| Đãi đọa | 怠惰 | dàiduò | **Đãi** (lười biếng) + **Đọa** (sa sút, trễ nải) → "trì trệ, lười biếng" | inert, lazy |
-| Không khố | 空庫 | kōng kù | **Không** (trống rỗng) + **Khố** (kho) → "kho trống rỗng, có danh không thực" | empty treasury |
-| Lộc khố | 祿庫 | lù kù | **Lộc** (bổng lộc) + **Khố** (kho) → "kho chứa bổng lộc" | treasury of prosperity |
-| Chính đồ | 正途 | zhèngtú | **Chính** (ngay thẳng) + **Đồ** (con đường) → "con đường chính quy, đúng đắn" | the proper/legitimate path |
-| Hộ Bộ | 戶部 | hùbù | **Hộ** (dân hộ, thuế khóa) + **Bộ** (bộ, cơ quan) → "cơ quan quản lý tài chính triều đình" | Ministry of Revenue |
+| Đào Hoa | 桃花 | táohuā | **Đào** (cây đào) + **Hoa** (hoa) → "hoa đào, biểu tượng sức hút và duyên tình" | peach blossom (desire/charm) |
+| Song trùng nhân cách | 雙重人格 | shuāngchóng réngé | **Song** (đôi) + **Trùng** (lớp, tầng) + **Nhân** (con người) + **Cách** (tính cách) → "hai lớp tính cách trong cùng một người" | dual personality |
+| Thông minh hóa lụy | 聰明反被聰明誤 | cōngmíng fǎn bèi cōngmíng wù | **Thông minh** (khôn ngoan) + **Phản** (ngược lại) + **Bị** (bị) + **Thông minh** (khôn ngoan) + **Ngộ** (làm hại) → "khôn ngoan quay lại hại chính mình" | too clever for one's own good |
+| Hưởng lạc | 享樂 | xiǎnglè | **Hưởng** (hưởng thụ) + **Lạc** (niềm vui) → "hưởng thụ khoái lạc" | hedonism |
+| Hoa hủy | 花卉 | huāhuì | **Hoa** (hoa) + **Hủy** (cây cỏ) → "hoa cỏ — biểu tượng của Thiên Cơ, đối lập cây gỗ của Tham Lang" | flowers and grasses |
+| Thạch Sùng | 石崇 | shí chóng | **Thạch** (họ Thạch) + **Sùng** (tên) → "đại phú gia thời Tây Tấn" | wealthy noble of the Western Jin |
 
 ## 1. Bản chất
 
-**Thiên Phủ** (天府 — *tiān fǔ* — Hán Việt: Thiên = trời, Phủ = kho tàng/dinh thự quan lại — tiếng Anh: **the Treasury Star**)
+**Tham Lang** (貪狼 — *tān láng* — Hán Việt: Tham = ham muốn, Lang = chó sói — hình ảnh "sói tham" biểu tượng cho dục vọng nguyên thủy, vừa nhạy bén vừa khó thỏa mãn — tiếng Anh: **the Greedy Wolf Star**)
 
-- Ngũ hành: Dương Thổ (戊土 — *wù tǔ*) — Thổ "dương", tính chất vững chãi, chứa đựng, đối lập bổ sung với Thổ "âm" của Tử Vi (己土 — *jǐ tǔ*) vốn thiên về trung tâm/quy chiếu hơn là chứa đựng thực chất.
-- Hóa khí (化氣 — *huàqì*) viết là **"Lệnh"** (令 — *lìng* — mệnh lệnh, quyền hạn thừa hành — tiếng Anh: **command/mandate**) — thể hiện đúng vai trò tể tướng: có quyền hạn thực thi nhưng luôn nhân danh một thẩm quyền cao hơn (Tử Vi), không phải quyền lực tự thân tuyệt đối.
-- Thuộc nhóm: **Nam Đẩu chủ tinh** (南斗主星 — *nándǒu zhǔxīng*), kiêm cả **Tài Bạch chủ** và **Điền Trạch chủ** — hiếm có chính tinh nào kiêm nhiệm hai vai trò "sao chủ cung" cùng lúc, gọi chung là **"Lộc khố"** (祿庫 — *lù kù* — kho chứa bổng lộc), phản ánh vị thế trung tâm của Thiên Phủ trong toàn bộ vấn đề tài chính của lá số.
-- Đối ứng tự nhiên: giữ vai trò **tể tướng/phụ chính của Tử Vi** — cách "Phủ Tướng triều viên" (府相朝垣 — *fǔ xiàng cháo yuán*, ở đây "Tướng" chỉ Thiên Tướng chứ không phải Thiên Phủ tự thân) là cách cục ổn định phú quý bậc cao khi Thiên Phủ và Thiên Tướng cùng hội chiếu một cung.
-- Điển tích: trong Phong Thần Bảng (封神榜 — *fēngshén bǎng*), Thiên Phủ được gán cho **Khương Hoàng Hậu** (姜皇后 — *jiāng huánghòu*) — chính cung hoàng hậu của Trụ Vương, người đoan trang hiền đức nhưng bị hãm hại oan uổng. Điển tích này lý giải phần "đãi đọa" tiềm ẩn của Thiên Phủ: một địa vị cao quý, ổn định nhưng thụ động, phụ thuộc vào việc được đối xử công bằng từ bên ngoài hơn là tự mình tranh đấu.
-- Đại diện nhân sự: không gắn vai vế gia đình cố định (tương tự Tử Vi) — đại diện cho **của cải/tài sản tích lũy** và **người quản lý/gìn giữ** trong bất kỳ mối quan hệ nào.
-- Đặc tính riêng: **kỵ nhất Địa Không/Địa Kiếp** (đặc biệt Địa Kiếp) — vì bản chất "kho" cần được BẢO VỆ kín đáo, Không/Kiếp tượng trưng cho sự "khoét thủng/làm rỗng" kho tàng đó. Giống Tử Vi, Thiên Phủ gần như không có vị trí hãm địa thực sự.
+- Ngũ hành: song trùng — ngoại thuộc Dương Mộc (甲木 — *jiǎ mù*), nội căn Âm Thủy (癸水 — *guǐ shuǐ*) — chính tinh DUY NHẤT trong 14 sao có cấu trúc ngũ hành hai lớp công khai, phản ánh trực tiếp vào tính "song trùng nhân cách" nổi tiếng của sao này.
+- Hóa khí (化氣 — *huàqì*) viết là **"Đào Hoa"** (桃花 — *táo huā* — dục vọng, sức hút, ham muốn — tiếng Anh: **desire/peach blossom**)
+- Thuộc nhóm: **Bắc Đẩu đệ nhất tinh** (北斗第一星 — *běidǒu dì yī xīng*) — sao đứng đầu chòm Bắc Đẩu Thất Tinh (Tham Lang, Cự Môn, Lộc Tồn, Văn Khúc, Liêm Trinh, Vũ Khúc, Phá Quân theo đúng thứ tự Bắc Đẩu cổ điển), vị trí "khai mào" cho toàn bộ chòm sao.
+- Đối chiếu gần: cùng với Thiên Cơ là hai sao trí tuệ nhất trong 14 chính tinh, nhưng khác hướng — Tham Lang trí tuệ hướng ngoại (giành lấy, mở rộng), Thiên Cơ trí tuệ hướng nội (tính toán, hoạch định). Đồng thời cùng Liêm Trinh tạo thành cặp "nhị đào hoa": Tham Lang là "đào hoa chính" (bộc lộ, chủ động quyến rũ), Liêm Trinh là "đào hoa thứ" (kín đáo, có kỷ luật).
+- Điển tích: theo một số nguồn, hình tượng Tham Lang gắn với đàn sói dữ canh giữ cổng miếu Đát Kỷ trong Phong Thần Diễn Nghĩa — biểu tượng cho bản năng nguyên thủy, vừa cảnh giác vừa hung hãn, luôn trong trạng thái sẵn sàng giành lấy những gì mình muốn.
+- Đại diện nhân sự: không có vai vế cố định; Tham Lang phản ánh khía cạnh ham muốn/dục vọng/tham vọng trong mọi mối quan hệ hơn là một vai trò gia đình cụ thể.
+- Đặc tính riêng: Miếu tại Sửu, Mùi; Vượng tại Thìn, Tuất; Đắc tại Dần, Thân; Hãm tại Tị, Hợi, Tý, Ngọ, Mão, Dậu — Tham Lang có SỐ CUNG HÃM NHIỀU NHẤT trong 14 chính tinh (6/12 cung), phản ánh đúng bản chất "dục vọng khó được thỏa mãn trọn vẹn ở phần lớn hoàn cảnh" — một chính tinh mà sự bất mãn thường trực gần như là mặc định, chỉ có một số ít vị trí thực sự "đủ đầy".
 
-Thiên Phủ và Tử Vi tạo thành cặp đôi "vua – tôi" kinh điển trong hệ 14 chính tinh: nếu Tử Vi là Đế tinh ngồi yên chỉ đạo, Thiên Phủ là Tể tướng quán xuyến kho tàng quốc gia. Việc Thiên Phủ hoàn toàn không có Tứ Hóa (giống Tử Vi) không phải ngẫu nhiên trùng lặp, mà phản ánh cùng một triết lý: một kho tàng đáng tin cậy không được phép tự ý biến động theo cảm hứng, nó chỉ nên PHẢN ÁNH trung thực những gì các sao khác mang lại. Đây là gốc rễ tâm lý của sự an toàn mà người Mệnh Thiên Phủ thường tìm kiếm — không phải sợ rủi ro, mà là bản năng gìn giữ giá trị đã tích lũy, một dạng "trách nhiệm thủ kho" âm thầm nhưng bền bỉ.
+Tham Lang mang cơ chế song trùng nhân cách: **"ngoại thuộc Giáp Mộc, nội căn Quý Thủy"** (外屬甲木 — *wài shǔ jiǎ mù*，內裡屬癸水 — *nèilǐ shǔ guǐ shuǐ*) — vỏ ngoài chính trực, quang minh như cây gỗ vươn thẳng (Dương Mộc), nhưng gốc rễ lại phù đãng, biến ảo như dòng nước ngầm (Âm Thủy). Đây là gốc rễ của tính "song trùng đạo đức" nổi tiếng của Tham Lang: cùng một người có thể vừa rất nguyên tắc trong công việc, vừa rất buông thả trong ham muốn cá nhân — không phải giả dối, mà là hai tầng bản chất cùng tồn tại thật, mỗi tầng chiếm ưu thế tùy hoàn cảnh và mức độ tự chủ của chủ nhân lá số.
 
 ### Nguyên lý nền
 
-Thiên Phủ là chính tinh DUY NHẤT không có Tứ Hóa nào (không Lộc/Quyền/Khoa/Kỵ) — triết lý "kho không tự biến động". Nguyên tắc cốt lõi **"Khố cần có Lộc"** (庫須有祿 — *kù xū yǒu lù*): Thiên Phủ không tự sinh tài, chỉ cất giữ tài mà các sao khác tạo ra. Nếu không có Lộc Tồn/Hóa Lộc lân cận, rơi vào trạng thái **"không khố"** (空庫 — *kōng kù*) — có danh mà không có thực, tức bề ngoài có vẻ sung túc nhưng bên trong trống rỗng.
+- So sánh với Thiên Cơ: Tham Lang là **"cây"** (樹木, Dương Mộc — vươn ra chiếm lĩnh không gian), Thiên Cơ là **"hoa cỏ"** (花卉 — *huāhuì*, Âm Mộc — mềm mại, thích nghi). Cả hai đều "trí tuệ" nhưng một bên chủ động bành trướng, một bên chủ động thích nghi — hai chiến lược sinh tồn khác nhau của cùng một hành Mộc.
+- Vì gốc thuộc Thủy nên năng lượng chuyển hóa của Tham Lang là Đào Hoa, khiến sao này có xu hướng thiên về hưởng lạc, ưa cạnh tranh, nhiều tham vọng, và đôi khi "quá khôn khéo" đến mức phản tác dụng (thông minh hóa lụy) — trí tuệ hướng ngoại nếu không có điểm dừng sẽ tự biến thành gánh nặng.
+- Nhân vật lịch sử dân gian thường được liên hệ: Thạch Sùng (石崇 — *shí chóng*), Quách Tử Nghi (郭子儀 — *guō zǐyí*) — đại diện cho trạng thái Tham Lang đắc cách: phú quý cực thịnh nhờ biết chuyển hóa dục vọng/tham vọng thành động lực chính đáng thay vì buông thả vô độ.
+- Vì là sao "đào hoa chính", Tham Lang khi gặp Hỏa/Linh tinh đắc cách có thể tạo **"Hỏa Tham"/"Linh Tham"** — cát cách bộc phát nhanh, một trong những trường hợp hiếm hoi sát tinh đồng hành lại trở thành động lực tích cực (xem nguyên tắc "Sát tinh hữu chế" ở tab Phương pháp luận). Đây là minh chứng sinh động nhất cho nguyên tắc đó trong toàn bộ 14 chính tinh: năng lượng dữ dội của Hỏa/Linh "đốt cháy" sự do dự vốn có của Tham Lang, biến dục vọng phân tán thành quyết tâm dồn về một hướng.
 
-**"Lộ khố"** (露庫 — *lù kù*, đồng âm nhưng khác nghĩa với "Lộc khố" ở Bản chất): Thiên Phủ gặp Không/Kiếp mà KHÔNG có Lộc đi kèm khiến của cải bị "phô ra ngoài", dễ hao tán bởi ngoại cảnh — khác "không khố" là chưa từng có gì để mất, "lộ khố" là có nhưng giữ không kỹ.
+### Tứ Hóa (Lộc: Mậu 戊 — *wù* | Quyền: Kỷ 己 — *jǐ* | Kỵ: Quý 癸 — *guǐ* — không Khoa) của Tham Lang
 
-Đặc điểm: Thiên Phủ (giống Tử Vi) gần như không có hãm địa hoàn toàn — điểm yếu của Thiên Phủ không nằm ở "kho tọa lạc ở đâu" mà ở "kho có được nạp Lộc đầy đủ hay không". Đây là khác biệt căn bản so với các chính tinh khác vốn còn phải lo cả vị trí miếu/hãm lẫn Tứ Hóa.
-
-Thiên Phủ tại Mão/Dậu là vị trí kém vững chãi nhất trong toàn bộ 12 cung khả dĩ — vì đối cung tại vị trí này LUÔN là Thất Sát, một "chiến tướng" mang sát khí trực diện xung chiếu vào đúng cung có Thiên Phủ tọa thủ, tạo thế đối đầu ngầm giữa "kho tàng cần yên ổn" và "sát khí cần bộc phát" ngay trên trục Mệnh-Thiên Di.
-
-- Phân biệt Bắc Đẩu (mệnh 命 — thừa hưởng 承受 — *chéngshòu*) và Nam Đẩu (thân 身 — tự tạo dựng 自行創造 — *zìxíng chuàngzào*): Tử Vi thuộc Bắc Đẩu nên "Tôn" là bẩm sinh; Thiên Phủ thuộc Nam Đẩu nên "Lệnh" phải được xác lập qua quá trình quán xuyến thực tế, không tự nhiên mà có.
-- "Khố" (庫 — kho có cấu trúc, minh bạch, sổ sách rõ ràng) khác về bản chất với "Tàng" (藏 — cất giấu mơ hồ, không công khai) — Thiên Phủ là "Khố" nên hợp con đường chính quy (正途 — *zhèngtú*): công chức, quản lý tài chính chính thống, hơn là các hình thức tích lũy phi chính thức.
-- Quan hệ Phủ-Tướng (Thiên Phủ và Thiên Tướng) trong triều đình cổ giống như Hộ Bộ (戶部 — *hùbù* — cơ quan quản lý ngân khố quốc gia) và quan giữ ấn tín — một bên quản tài sản, một bên quản quyền lực hành chính, luôn cần phối hợp chặt chẽ để bộ máy vận hành trơn tru.
-
-### Tứ Hóa: Không có (đặc điểm định danh của chính tinh này, giống Tử Vi)
+Đáng chú ý: Tham Lang không bao giờ có Hóa Khoa — sao chủ về dục vọng/sức hút này có thể mang lại tài lộc (Lộc) hoặc quyền lực thực tế (Quyền), thậm chí gây họa (Kỵ), nhưng KHÔNG BAO GIỜ tạo ra danh tiếng thuần túy/thanh danh học thuật — nhất quán với bản chất "hướng ngoại, giành lấy" chứ không phải "được công nhận qua tri thức" như Hóa Khoa thường đại diện.
 
 ---
 
 ## 2. Luận theo 12 cung
 
 ### Cung Mệnh (命宮 — *mìnggōng*)
-Thiên Phủ thủ Mệnh cho phong thái ôn hòa nho nhã (溫文儒雅 — *wēnwén rúyǎ*), đa tài, giỏi quán xuyến — nhược điểm là "đãi đọa" (怠惰 — *dàiduò* — trì trệ) nếu quá an toàn, thiếu động lực bứt phá vì bản chất "kho" thiên về gìn giữ hơn mạo hiểm mở rộng. Do gần như không có vị trí hãm địa, Thiên Phủ tại Mệnh hiếm khi tạo ra một lá số thực sự khốn khó — mức độ khác biệt chủ yếu nằm ở "kho đầy hay kho rỗng" (có Lộc hỗ trợ hay không) hơn là miếu/hãm theo địa chi.
+Tham Lang thủ Mệnh cho sự thông minh, đa tài, giỏi giao tế, nhiều tham vọng — nhược điểm là dễ phân tán năng lượng vào quá nhiều mục tiêu/ham muốn cùng lúc, thiếu kiên định nếu không có sao ổn định đi kèm. Cơ chế "ngoại thuộc Giáp Mộc, nội căn Quý Thủy" khiến người Mệnh Tham Lang thường có hai lớp tính cách: vẻ ngoài chính trực, quyết đoán nhưng nội tâm lại linh hoạt, dễ bị cám dỗ.
 
-Cơ chế tâm lý: nếu Tử Vi tìm giá trị qua việc được quy tụ và tôn sùng, Thiên Phủ tìm sự an toàn qua việc **kiểm soát và gìn giữ** — một dạng an toàn hướng nội, thể hiện qua xu hướng tích lũy (tiền bạc, kiến thức, quan hệ) trước khi dám hành động. Đây là lý do người Mệnh Thiên Phủ thường bị đánh giá là "chậm quyết định" dù thực chất chỉ đang đảm bảo đủ nguồn lực dự phòng trước khi dấn thân — một bản năng thận trọng có cơ sở hợp lý chứ không phải nhút nhát vô cớ.
+Cơ chế tâm lý: động lực sâu xa nhất của người Mệnh Tham Lang là cảm giác **"chưa đủ"** — bất kể đã đạt được bao nhiêu, luôn có một khoảng trống thôi thúc tiếp tục theo đuổi mục tiêu mới. Đây vừa là động lực tạo nên thành tựu lớn (không bao giờ tự mãn dừng lại) vừa là nguồn gốc bất an nội tâm nếu không được ý thức và tiết chế — khác biệt căn bản với Thiên Đồng "an được thì đủ".
 
-Bốn tổ hợp chính quyết định sắc thái: đồng cung **Vũ Khúc** (Tý/Ngọ — "Vũ Phủ") giỏi kinh doanh, thiên vật chất, kết hợp "tài tĩnh" và "tài động" thành cách cục tài phú song toàn hiếm có. Đồng cung **Liêm Trinh** (Sửu/Mùi — "Liêm Phủ") giỏi giao tiếp nhưng dễ hẹp hòi nếu thiếu cát tinh điều hòa, vì Liêm Trinh "Tù" khí gò bó phần nào tính khoáng đạt của Thiên Phủ. Đồng cung **Tử Vi** (Dần/Thân — "Tử Phủ") sung túc vật chất nhưng nội tâm dễ trống rỗng — có tất cả về hình thức mà thiếu mục đích sống rõ ràng, vì cả hai sao đều thiên về "gìn giữ/quy tụ" chứ không có động lực khai phá tự thân. **Độc tọa** tại Mão/Dậu (không chính tinh đồng cung, đối cung luôn là Thất Sát) là vị trí kém vững chãi nhất đã nêu ở Nguyên lý nền — Thiên Phủ tại đây cần đặc biệt chú ý yếu tố Lộc đi kèm để tránh rơi vào "không khố". Điều kiện tiên quyết để Thiên Phủ phát huy trọn vẹn ở bất kỳ tổ hợp nào là có Lộc Tồn/Hóa Lộc lân cận, nếu không dễ rơi vào "không khố" — có danh mà không có thực.
+Miếu tại Sửu/Mùi cho tổ hợp mạnh mẽ nhất — dục vọng được kiềm chế vừa đủ để chuyển hóa thành thành tựu cụ thể; Vượng tại Thìn/Tuất cũng là vị trí tốt, thường gắn với bộc phát sau một giai đoạn tích lũy. Gặp Hỏa/Linh tinh đắc cách tại các vị trí này có thể tạo "Hỏa Tham"/"Linh Tham" — bộc phát nhanh, một trong những cách cục thành công đột biến nổi tiếng nhất trong toàn bộ hệ thống Tử Vi Đẩu Số. Ngược lại, tại 6 vị trí hãm địa (quá nửa số cung khả dĩ), người Mệnh Tham Lang cần đặc biệt chú ý đến việc chọn lọc mục tiêu — dàn trải quá nhiều ham muốn cùng lúc trong hoàn cảnh bất lợi dễ dẫn đến kết quả "được ít, mất nhiều" hơn là thành tựu rõ rệt.
 
-### Cung Huynh Đệ (兄弟宮 — *xiōngdì gōng*)
-Đông anh em, khí độ rộng rãi, đóng vai trò người gìn giữ hòa khí trong gia đình — thường là điểm tựa tài chính/tinh thần đáng tin cậy cho các thành viên khác.
+### Cung Huynh Đệ (兄弟宮 — *xiōngdì gōng* — cung quản anh chị em ruột, quan hệ đồng trang lứa gần gũi nhất) ²
+Tham Lang thủ Huynh Đệ mang đúng bản chất "dục vọng, quảng giao, nhiều mối quan tâm" đã nêu ở Bản chất vào quan hệ anh em: quan hệ anh em phức tạp, nhiều cảm xúc đan xen (交織 — *jiāozhī*), không đơn giản — tình cảm dễ thay đổi (易變 — *yìbiàn*) theo hoàn cảnh, cần chủ động duy trì sự ổn định thay vì để cảm xúc nhất thời chi phối (支配 — *zhīpèi*) mối quan hệ ruột thịt.
+
+Khi Tham Lang đạt mức **Vượng** tại Huynh Đệ, năng lượng quảng giao (廣交 — *guǎngjiāo*) vốn là bản chất của sao này thể hiện rõ nhất qua việc anh em thường có vòng kết nối xã hội rộng, nhiều sở thích chung để chia sẻ — nhưng chính sự "nhiều mối quan tâm" đó cũng khiến tình cảm anh em dễ bị pha loãng (稀釋 — *xīshì*) giữa vô số mối quan hệ khác trong đời sống mỗi người. Nguyên tắc gìn giữ tình cảm phù hợp nhất với tổ hợp này là tạo những "điểm hẹn cố định" (固定聚會 — *gùdìng jùhuì* — ví dụ họp mặt định kỳ) thay vì để mối quan hệ trôi theo hứng thú nhất thời của Tham Lang — một khi có khuôn khổ đều đặn, tình cảm anh em vẫn có thể bền chặt dù bản chất cả hai bên đều dễ bị cuốn theo nhiều hướng khác nhau trong cuộc sống.
+
 
 ### Cung Phu Thê (夫妻宮 — *fūqī gōng*)
-Phối ngẫu dịu dàng, gắn bó, coi trọng tinh thần hơn vật chất — hôn nhân ổn định, ít sóng gió lớn, nhưng cần cảnh giác sự an toàn quá mức khiến quan hệ thiếu đam mê, dễ nhạt nhòa theo thời gian nếu không chủ động vun đắp.
+Đời sống tình cảm phong phú, nhiều rung động; hôn nhân cần học cách chung thủy chủ động vì bản chất Đào Hoa dễ bị cám dỗ. Đây là cung cần ý thức rõ ràng nhất về ranh giới đạo đức trong toàn bộ 14 chính tinh.
 
 ### Cung Tử Tức (子女宮 — *zǐnǚ gōng*)
-Con tài năng, hiếu thảo, được nuôi dạy trong môi trường đề cao kỷ cương và vật chất đầy đủ — cha mẹ nên chú ý không biến sự chu cấp thành nuông chiều khiến con thiếu ý chí tự lập.
+Con cái thông minh, cá tính đa dạng, nhiều năng khiếu nhưng cần định hướng rõ để không tản mạn — cha mẹ nên giúp con tập trung phát triển 1-2 sở trường thay vì để năng lượng phân tán khắp nơi.
 
 ### Cung Tài Bạch (財帛宮 — *cáibó gōng*)
-Cung đắc vị — kể cả gặp Địa Không/Địa Kiếp vẫn giữ được nền tảng phú túc cơ bản nhờ bản chất "kho chứa" bền vững. Tài vận đến từ tích lũy có hệ thống, quản lý tài chính cẩn trọng hơn là mạo hiểm; đây là một trong những vị trí tài chính an toàn nhất trong 14 chính tinh.
+Giỏi kiếm tiền qua giao tế, kinh doanh linh hoạt, đầu tư đa dạng; cần kỷ luật để không tiêu xài theo cảm hứng — tài vận đến nhanh nhưng cũng có thể đi nhanh nếu thiếu kế hoạch quản lý rõ ràng.
 
-### Cung Tật Ách (疾厄宮 — *jí'è gōng*)
-Ít bệnh nặng — thể trạng thường sung túc, ổn định nhờ lối sống điều độ, ít cực đoan (biểu tượng học, không phải chẩn đoán y khoa).
+### Cung Tật Ách (疾厄宮 — *jí'è gōng* — cung quản sức khỏe, thể trạng, khuynh hướng bệnh tật bẩm sinh) ¹
+Tham Lang thủ Tật Ách liên quan gan (肝 — *gān*), thận (腎 — *shèn*), hệ sinh dục (生殖系統 — *shēngzhí xìtǒng*) — ứng với bản chất Thủy/dục vọng (慾望 — *yùwàng*) đã nêu ở Bản chất, dễ chịu ảnh hưởng bởi lối sống hưởng thụ (享受 — *xiǎngshòu*) quá độ nếu không có kỷ luật đi kèm; đây là suy luận biểu tượng học truyền thống, không phải chẩn đoán y khoa, chỉ nên xem là gợi ý điều chỉnh lối sống (生活方式 — *shēnghuó fāngshì*), không thay thế thăm khám thực tế.
+
+Khi Tham Lang **hãm** và đồng cung với Liêm Trinh cũng hãm, ham muốn hướng ngoại vốn là bản năng mạnh nhất của Tham Lang lại thiếu đi "điểm tựa vượng khí" để tự điều tiết — về mặt biểu tượng, đây là dấu hiệu cho thấy sức khỏe của người này nhạy cảm hơn với những giai đoạn thiếu kỷ luật sinh hoạt (mất cân bằng ăn uống, nghỉ ngơi, ham vui quá mức) hơn là với các bệnh lý bẩm sinh cố định. Kết hợp với Liêm Trinh đồng cung — vốn thiên về kỷ luật (紀律 — *jìlǜ*) — hai sao tuy cùng hãm nhưng lại có thể **bổ khuyết lẫn nhau** (互補 — *hùbǔ*) nếu người này chủ động dùng ý chí (意志力 — *yìzhìlì*) của Liêm Trinh để kìm bớt phần buông thả của Tham Lang, biến tổ hợp "song hãm" thành một dạng cân bằng động thay vì hai nhược điểm cộng dồn.
+
 
 ### Cung Thiên Di (遷移宮 — *qiānyí gōng*)
-Ra ngoài được phúc, thường có người lớn tuổi/quý nhân nâng đỡ — môi trường xa nhà mang lại cảm giác an toàn tương tự ở nhà, ít khi gặp biến cố lớn.
-
-### Cung Giao Hữu / Nô Bộc (交友宮 — *jiāoyǒu gōng* — cung quản bạn bè, đồng nghiệp, cấp dưới, người đồng hành ngang vai)
-Giao Hữu là cung soi chiếu **chất lượng** (品質 — *pǐnzhí*) chứ không phải số lượng của các mối quan hệ ngang hàng trong đời. Thiên Phủ thủ cung này mang đúng bản chất "kho báu ôn hòa" (như đã nêu ở Bản chất) vào lĩnh vực giao tiếp xã hội (社交 — *shèjiāo*): bạn bè đông, xuất thân (出身 — *chūshēn*) tốt, quan hệ thường mang tính "cùng đẳng cấp" (同等級 — *tóng děngjí*) — hữu ích cho việc mở rộng mạng lưới (人脈 — *rénmài*) có chất lượng hơn là số lượng thuần túy, đúng phong cách "chọn lọc kỹ, gắn bó lâu" thay vì quảng giao hời hợt.
-
-Khi Thiên Phủ tại Nô Bộc chỉ đạt mức **Bình**, năng lực "làm kho báu tin cậy" (可靠寶庫 — *kěkào bǎokù*) cho bạn bè/đồng nghiệp vẫn tồn tại nhưng không ở mức mạnh nhất, đòi hỏi phải chủ động hơn trong việc **vun đắp** (培植 — *péizhí*) quan hệ thay vì mặc định tự nhiên có được sự tin tưởng như khi Thiên Phủ miếu vượng. Dù vậy, một mạng lưới bạn bè/đồng nghiệp bình hòa nhưng không nổi bật vẫn có thể đóng vai trò như một "hậu phương ổn định" (穩定後盾 — *wěndìng hòudùn*) nâng đỡ âm thầm cho sự nghiệp — đúng tinh thần "kho báu" của Thiên Phủ: không cần phô trương, chỉ cần luôn ở đó khi cần đến.
-
-
-### Cung Quan Lộc (官祿宮 — *guānlù gōng*)
-Hợp công chức/kinh doanh ổn định hơn mạo hiểm khởi nghiệp lớn — Thiên Phủ tại Quan Lộc phát huy tốt nhất trong vai trò quản lý/vận hành hệ thống có sẵn, đúng bản chất "tể tướng" chứ không phải người khai phá tiên phong.
-
-### Cung Điền Trạch (田宅宮 — *tiánzhái gōng*)
-Nên phát triển sản nghiệp dưới sự dẫn dắt hoặc trong khuôn khổ có sẵn (thừa kế, hợp tác) hơn là tự đầu tư độc lập quy mô lớn — phù hợp với vai trò "Nam Đẩu: thân — tự tạo dựng" nhưng vẫn cần nền tảng ban đầu vững chắc để phát huy.
-
-### Cung Phúc Đức (福德宮 — *fúdé gōng*)
-Đa tài, an vui, phúc thọ song toàn — một trong những vị trí có đời sống nội tâm viên mãn nhất, ít lo âu, biết tận hưởng thành quả đã tích lũy được.
-
-### Cung Phụ Mẫu (父母宮 — *fùmǔ gōng*)
-Gia đình khá giả, cha mẹ ôn hòa công bằng — nền tảng giáo dục vững chắc, cha mẹ thường là tấm gương về sự chừng mực và trách nhiệm.
-## 3. Tứ Hóa: Không có (đặc điểm định danh của sao này)` },
-  { label: "Vũ Khúc", body: `# VŨ KHÚC (武曲 — wǔ qū — the Wealth/Military Star)
-
-## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
-| Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
-|---|---|---|---|---|
-| Cương liệt | 剛烈 | gāngliè | **Cương** (cứng rắn) + **Liệt** (mãnh liệt) → "cứng rắn, mãnh liệt" | fierce |
-| Cấp táo | 急躁 | jízào | **Cấp** (gấp gáp) + **Táo** (nóng nảy) → "gấp gáp, nóng nảy" | impatient |
-| Cô khắc | 孤剋 | gū kè | **Cô** (đơn độc) + **Khắc** (khắc chế) → "đơn độc, khắc chế người thân" | isolating |
-| Quả tú | 寡宿 | guǎsù | **Quả** (góa, cô đơn) + **Tú** (chòm sao) → "sao của sự cô đơn" | star of solitude |
-| Tân Kim | 辛金 | xīn jīn | **Tân** (can Tân) + **Kim** (hành Kim) → "Kim âm, ngũ hành của Vũ Khúc" | Yin Metal |
-| Thiên Tài | 偏財星 | piāncái xīng | **Thiên** (lệch, phụ) + **Tài** (tài lộc) + **Tinh** (sao) → "sao tài lộc bất ngờ, đầu cơ" | speculative wealth star |
-
-## 1. Bản chất
-
-**Vũ Khúc** (武曲 — *wǔ qū* — Hán Việt: Vũ = võ/quân sự, Khúc = khúc nhạc/giai điệu — nguyên nghĩa chỉ một khúc nhạc trong lễ nhạc cung đình mang tính chất uy nghiêm, về sau chuyển nghĩa gắn với "võ tướng" — tiếng Anh: **the Wealth/Military Star**)
-
-- Ngũ hành: Âm Kim (辛金 — *xīn jīn*) — Kim "âm", sắc bén nhưng có chừng mực, khác Kim "dương" mạnh mẽ trực diện hơn; đúng tính chất quyết đoán nhưng vẫn có tính toán của Vũ Khúc.
-- Hóa khí (化氣 — *huàqì*) viết là **"Tài"** (財 — *cái* — của cải, tài sản — tiếng Anh: **wealth**) — Bắc Đẩu đệ lục tinh, **Tài Bạch chủ** chính danh — "tài chủ động" (khác Thiên Phủ "tài tĩnh" chỉ gìn giữ, khác Thái Âm "tài tích lũy" chỉ âm thầm dành dụm).
-- Thuộc nhóm: một trong hai sao chủ **Quan Lộc chủ** (cùng Liêm Trinh) — vai trò kép Tài Bạch chủ + Quan Lộc chủ khiến Vũ Khúc gắn liền cả sự nghiệp lẫn tài chính, hiếm chính tinh nào có sức ảnh hưởng song song lên cả hai lĩnh vực rõ rệt như vậy.
-- Đối ứng tự nhiên: không có "đối tinh" nghịch vượng/hãm; nhưng về mặt triết lý làm giàu, Vũ Khúc và **Thiên Phủ** tạo thành cặp đối lập bổ sung — Phủ tài tĩnh sẵn có cần giữ, Vũ Khúc tài động phải giành lấy.
-- Điển tích: trong lịch sử chính thống (không phải Phong Thần Bảng), Vũ Khúc được gắn với **Chu Vũ Vương** (周武王 — *zhōu wǔ wáng*) — người dấy binh lật đổ Trụ Vương tàn bạo, lập nên nhà Chu. Gắn với một vị vua-tướng lĩnh khai quốc bằng vũ lực chính nghĩa, khác hẳn các chính tinh khác thường gắn với văn thần/hậu phi trong Phong Thần Bảng — lý giải phần "chính danh nhưng buộc phải dùng đến bạo lực/quyết đoán" của Vũ Khúc.
-- Đại diện nhân sự: không gắn vai vế gia đình cố định — nhưng do tính "cô khắc" (孤剋 — *gū kè*), Vũ Khúc tại các cung lục thân thường cảnh báo duyên phận mỏng hơn bình thường, đặc biệt tại Phu Thê.
-- Đặc điểm riêng: thuộc nhóm sao **"quả tú"** (寡宿 — *guǎ sù* — chòm sao của sự cô đơn/góa bụa) — cổ ngữ "Vũ Khúc nhập Mệnh, nghi vãn hôn" (nên kết hôn muộn). Đây không phải lời nguyền mà là hệ quả logic: tính "cương liệt" (剛烈 — *gāngliè*) + "cấp táo" (急躁 — *jízào*) cần thiết để giành tài lại chính là thứ gây va chạm trong quan hệ gần gũi.
-
-Vũ Khúc là chính tinh duy nhất mà tên gọi trực tiếp mang nghĩa "võ" (武 — *wǔ*) — phản ánh nguồn gốc kép của sao này: vừa là tướng lĩnh, vừa là biểu tượng tài chính chủ động. Sự kết hợp tưởng chừng mâu thuẫn giữa "quân sự" và "tài phú" thực ra rất nhất quán về mặt cơ chế: trong xã hội cổ, chinh chiến và tích lũy của cải đều đòi hỏi cùng một phẩm chất — quyết đoán, dám chấp nhận rủi ro, sẵn sàng đối đầu trực diện thay vì né tránh. Đây là lý do "tài động" của Vũ Khúc luôn đi kèm cái giá là tính "cô khắc" trong quan hệ: thứ gì phải giành giật mà có thì hiếm khi đến cùng sự êm ả — của cải đến từ việc CHIẾM LĨNH một vị thế, không phải được trao tặng hay tự nhiên tích lũy.
-
-### Nguyên lý nền
-
-Vũ Khúc và Thiên Phủ đại diện hai triết lý làm giàu đối lập: Phủ = tài tĩnh, sẵn có, cần giữ; Vũ Khúc = tài động, phải giành lấy bằng quyết đoán/rủi ro. Tính "cương liệt" (剛烈 — *gāngliè*) + "cấp táo" (急躁 — *jízào*) cần thiết để giành tài lại chính là nguyên nhân gây cô khắc quan hệ — đây là một cơ chế hợp lý có thể giải thích được, không phải lời nguyền huyền bí.
-
-Tổ hợp đồng cung kinh điển tại Mệnh: **Vũ Phủ** (Tý/Ngọ) phú quý song toàn, kết hợp tài tĩnh và tài động thành thế cân bằng hiếm có; **Vũ Tham** (Sửu/Mùi — "Tiên bần hậu phú") nghèo trước giàu sau, vì Tham Lang cần thời gian để chuyển hóa dục vọng thành động lực chính đáng; **Vũ Tướng** (Dần/Thân) ổn định, Thiên Tướng điều hòa bớt phần cương liệt cực đoan; **Vũ Sát** (Mão/Dậu) cương liệt cực độ, cần một nghề chuyên môn để trút năng lượng đúng chỗ; **Vũ Phá** (Tị/Hợi) mạo hiểm, hao tài, thất thường nhất trong năm tổ hợp vì cả hai sao đều mang tính phá cách/quyết đoán, dễ cộng hưởng thành bốc đồng.
-
-**"Vũ Khúc nhập khố"** (武曲入庫 — *wǔqū rù kù*): Vũ Khúc (Kim) tọa Thìn/Tuất/Sửu/Mùi — nhóm địa chi gọi là "tứ mộ khố" — là vị trí vững chãi, tích lũy tốt nhất. Đây là một nghịch lý thú vị: một sao bản chất "động" khi vào đúng vị trí "kho" (vốn là khái niệm tĩnh) lại đạt trạng thái lý tưởng nhất — vừa kiếm được vừa giữ được, rất lý tưởng cho kinh doanh dài hạn thay vì đầu cơ ngắn hạn.
-
-Cơ chế Ngũ Hành: Kim ứng mùa Thu, mang tính "túc sát" (肅殺 — nghiêm khắc, thu liễm, thu hoạch dứt khoát) — đây là gốc rễ của tính "quyết đoán lạnh lùng" đặc trưng của Vũ Khúc, khác hẳn Thổ (Phủ/Tử Vi) vốn mang tính bao dung, ổn định, ít biến động.
-
-Phân biệt hai tổ hợp thường bị nhầm lẫn: **Vũ Sát** (Mão/Dậu) — cương liệt CÓ kiểm soát, cần một kỹ năng chuyên môn cụ thể để trút năng lượng, có tiềm năng thành công lớn nếu định hướng đúng; **Vũ Phá** (Tị/Hợi) — cương liệt KHÔNG kiểm soát vì Phá Quân bản chất phá cách, khiến sự quyết đoán của Vũ Khúc biến thành bốc đồng thiếu tính toán. Cổ thư vì vậy đánh giá Vũ Sát cao hơn Vũ Phá dù cả hai đều mang đặc tính "cương liệt".
-
-- Phân biệt "Chính Tài" (正財星 — của cải chính đáng, đến từ lao động/kinh doanh hợp pháp) và "Thiên Tài" (偏財星 — *piāncái xīng* — của cải đầu cơ/may rủi, đặc trưng của Tham Lang) — Vũ Khúc thuộc nhóm Chính Tài, dù quyết đoán mạo hiểm nhưng vẫn trên nền tảng thực chất chứ không thuần đầu cơ.
-- Giải thích lại "quả tú": không phải Vũ Khúc lạnh lùng vô tình, mà vì chữ "Lợi" (利 — *lì*) trong hệ giá trị của sao này luôn được ưu tiên xử lý trước tình cảm — một thứ tự ưu tiên hợp lý trong kinh doanh nhưng dễ gây tổn thương trong quan hệ cá nhân nếu không được điều chỉnh.
-- Điển tích mở rộng: Quan Vũ (關羽 — *guān yǔ*), Địch Thanh (狄青 — *dí qīng*) — hai nhân vật lịch sử trung dũng, văn võ song toàn, thường được dùng minh họa cho hình mẫu Vũ Khúc đắc cách: quyết đoán nhưng vẫn giữ trọn đạo nghĩa.
-
-### Tứ Hóa (四化 — *sìhuà*) của Vũ Khúc
-- **Hóa Lộc** (năm Kỷ 己 — *jǐ*)
-- **Hóa Quyền** (năm Canh 庚 — *gēng*)
-- **Hóa Khoa** (năm Giáp 甲 — *jiǎ*)
-- **Hóa Kỵ** (năm Nhâm 壬 — *rén*)
-
----
-
-## 2. Luận theo 12 cung
-
-### Cung Mệnh (命宮 — *mìnggōng*)
-Vũ Khúc thủ Mệnh cho tài vận cả đời nhưng đi kèm cái giá "cô khắc" — cổ ngữ "nghi nam bất nghi nữ" (hợp nam hơn nữ) vì tính cương liệt/cấp táo dễ tạo cạnh tranh ngầm trong quan hệ nếu là nữ mệnh, đặc biệt trong hôn nhân truyền thống. Đặc điểm "đại khí vãn thành" — thành công lớn nhưng đến muộn, đúng quy luật phải tích lũy đủ va vấp mới hoàn thiện được bản lĩnh quyết đoán cần thiết.
-
-Cơ chế tâm lý: Vũ Khúc vận hành theo nguyên tắc **"giá trị = những gì tự tay giành được"** — khác Tử Vi tìm giá trị qua sự quy tụ hay Thiên Phủ qua sự gìn giữ, người Mệnh Vũ Khúc chỉ thực sự tin vào thành quả do chính mình tạo ra, khó chấp nhận thừa hưởng hay phụ thuộc. Đây là gốc rễ của cả điểm mạnh (tự lực, đáng tin cậy về năng lực) lẫn điểm yếu (khó ủy thác, khó chấp nhận giúp đỡ) của sao này.
-
-Năm tổ hợp đồng cung quyết định phần lớn sắc thái: **Vũ Phủ** (Tý/Ngọ) phú quý song toàn — tổ hợp tài chính mạnh nhất; **Vũ Tham** (Sửu/Mùi — "Tiên bần hậu phú") nghèo trước giàu sau; **Vũ Tướng** (Dần/Thân) ổn định, điều hòa bớt cương liệt nhờ ảnh hưởng ôn hòa của Thiên Tướng; **Vũ Sát** (Mão/Dậu) cương liệt cực độ, cần một nghề chuyên môn để trút năng lượng đúng chỗ; **Vũ Phá** (Tị/Hợi) mạo hiểm, hao tài, thất thường nhất trong năm tổ hợp. Dù ở tổ hợp nào, nếu tọa thủ đúng nhóm địa chi "tứ mộ khố" (Thìn/Tuất/Sửu/Mùi) — cách "Vũ Khúc nhập khố" — mức độ ổn định tài chính sẽ được cải thiện đáng kể so với các vị trí khác.
-
-### Cung Huynh Đệ (兄弟宮 — *xiōngdì gōng* — cung quản anh chị em ruột, quan hệ đồng trang lứa gần gũi nhất)
-Vũ Khúc thủ Huynh Đệ mang đúng tính "cô khắc" (孤剋 — *gūkè* — cô độc, khắc chế quan hệ tình cảm) đã nêu ở Bản chất vào quan hệ anh em: ít anh em, khó đoàn kết (難團結 — *nán tuánjié*) — quan hệ anh em thiên về nghĩa vụ (義務 — *yìwù*) hơn là gắn bó tự nhiên (天然親近 — *tiānrán qīnjìn*); cần chủ động vun đắp (培養 — *péiyǎng*) nếu muốn duy trì tình cảm lâu dài, vì bản chất Kim cương quyết của Vũ Khúc không tự nhiên thiên về biểu lộ tình cảm mềm mại.
-
-Khi Vũ Khúc đạt mức **Đắc** và đồng cung với một Thất Sát **hãm**, hai luồng năng lượng "cương quyết, thực tế" (Vũ Khúc) và "độc lập, sát khí" (Thất Sát) cộng hưởng theo hướng càng làm đậm thêm tính tự lập (自立 — *zìlì*) của cả hai bên anh em: mỗi người trong gia đình đều có xu hướng tự đứng vững bằng năng lực riêng, ít dựa dẫm lẫn nhau về vật chất lẫn tinh thần. Đây không hẳn là dấu hiệu bất hòa, mà là kiểu quan hệ "tôn trọng khoảng cách" (尊重距離 — *zūnzhòng jùlí*) — anh em vẫn có thể hỗ trợ nhau đúng lúc cần thiết (đặc biệt trong công việc, nhờ tính "kim tài tinh" của Vũ Khúc), nhưng không kỳ vọng vào sự thân mật thường nhật kiểu các chính tinh chủ tình cảm như Thiên Đồng hay Thái Âm.
-
-
-### Cung Phu Thê (夫妻宮 — *fūqī gōng*)
-Dễ cãi vã, nên kết hôn muộn cả nam lẫn nữ để có đủ độ chín xử lý xung đột. Vì Vũ Khúc "tài động" đặt "Lợi" lên hàng đầu, hôn nhân cần cả hai bên ý thức rõ ràng về vai trò tài chính để tránh xung đột quyền lực trong nhà.
-
-### Cung Tử Tức (子女宮 — *zǐnǚ gōng*)
-Con cá tính mạnh, cố chấp, số con thường ít — cha mẹ nên tôn trọng tính độc lập của con thay vì áp đặt, vì con cái Vũ Khúc thường phản kháng mạnh trước sự kiểm soát quá mức.
-
-### Cung Tài Bạch (財帛宮 — *cáibó gōng*)
-Cung đắc vị nhất của Vũ Khúc — tiềm năng lớn trong tài chính/thực nghiệp đúng vai trò "tài chủ động". Đây là vị trí lý tưởng để phát huy bản chất "phải giành lấy bằng quyết đoán": đầu tư, kinh doanh, hoặc bất kỳ lĩnh vực đòi hỏi ra quyết định tài chính dứt khoát.
-
-### Cung Tật Ách (疾厄宮 — *jí'è gōng*)
-Thời thơ ấu dễ bệnh/thương tích; về sau vấn đề xương khớp, hô hấp — ứng với hành Kim "túc sát" (nghiêm khắc, thu liễm) tác động lên cấu trúc cứng của cơ thể (biểu tượng học, không phải chẩn đoán y khoa).
-
-### Cung Thiên Di (遷移宮 — *qiānyí gōng*)
-Đối ngoại mạnh, chủ động nhưng vất vả — ra ngoài luôn ở thế phải giành lấy cơ hội chứ không tự nhiên đến, đòi hỏi nỗ lực liên tục nhưng đổi lại thành quả xứng đáng nếu kiên trì.
+Ra ngoài giỏi giao tế, tạo quan hệ nhanh, hợp môi trường nhiều cơ hội/cạnh tranh — Tham Lang phát huy tối đa sức hút cá nhân khi ở trong môi trường đa dạng, nhiều tương tác xã hội.
 
 ### Cung Giao Hữu / Nô Bộc (交友宮 — *jiāoyǒu gōng*)
-Bạn bè đa dạng — nhưng do bản chất đặt "Lợi" trên tình cảm, quan hệ bạn bè dễ mang tính hợp tác/trao đổi lợi ích hơn là thâm giao thuần túy; cần phân biệt rõ bạn làm ăn và bạn tri kỷ.
+Bạn bè đông, đa dạng, quan hệ xã giao rộng nhưng không phải lúc nào cũng sâu — cần phân biệt rõ giữa quan hệ giao tế bề mặt và tình bạn thực sự đáng tin cậy.
 
 ### Cung Quan Lộc (官祿宮 — *guānlù gōng*)
-Nam giới hợp doanh nghiệp/tài chính; nữ giới là "phụ nữ sự nghiệp" chính hiệu, sẵn sàng cạnh tranh trực diện trong môi trường nhiều thử thách. Đây là một trong hai cung Vũ Khúc làm sao chủ (cùng Liêm Trinh), nên tọa thủ tại đây luôn mang lại thực quyền đáng kể.
+Hợp nghề giao tế, kinh doanh, giải trí, nghệ thuật, hoặc bất kỳ lĩnh vực cần sức hút cá nhân và khả năng thích nghi nhanh — đây là nơi "trí tuệ hướng ngoại" của Tham Lang chuyển hóa thành thành tựu sự nghiệp rõ rệt nhất.
 
 ### Cung Điền Trạch (田宅宮 — *tiánzhái gōng*)
-Tự tạo sản nghiệp bằng chính sức mình, hình thức tài sản có thể thay đổi (mua bán, tái đầu tư) nhưng luôn giữ được nền tảng — phản ánh đúng tinh thần "tài động" áp dụng vào lĩnh vực bất động sản.
+Sản nghiệp biến động nhiều theo cơ hội, cần tỉnh táo trước cám dỗ đầu cơ — nên đặt ra giới hạn rõ ràng cho các quyết định đầu tư bất động sản để tránh chạy theo cảm hứng nhất thời.
 
 ### Cung Phúc Đức (福德宮 — *fúdé gōng*)
-Vị trí kém thuận lợi nhất của Vũ Khúc — nóng vội, cố chấp, làm nhiều hưởng ít vì tâm trí luôn hướng ra ngoài để giành lấy thay vì dừng lại tận hưởng. Đây là bài học lớn nhất của người Mệnh Vũ Khúc: học cách dừng lại đúng lúc.
+Nội tâm nhiều ham muốn, khó tĩnh tại; hạnh phúc thực sự đến khi học được cách tiết chế dục vọng thay vì chạy theo vô tận — đây là bài học cốt lõi nhất của Tham Lang: biết đủ mới thực sự an vui.
 
 ### Cung Phụ Mẫu (父母宮 — *fùmǔ gōng*)
-Cha mẹ nghiêm khắc, cố chấp, kỳ vọng cao; quan hệ êm đềm về bề mặt nhưng thiếu sự cởi mở tình cảm sâu — mô hình giáo dục thiên về kỷ luật/thành tích hơn là đồng cảm.
-## 3. Tứ Hóa (Lộc: Kỷ 己 — *jǐ* | Quyền: Canh 庚 — *gēng* | Khoa: Giáp 甲 — *jiǎ* | Kỵ: Nhâm 壬 — *rén*)
-| Cung | Lộc | Quyền | Khoa | Kỵ |
-|---|---|---|---|---|
-| Mệnh | Chính trực, giỏi kiếm tiền | Thực lực, tài chính rộng mở | Học vấn/nghệ thuật tốt, tính mềm hơn | Nhiều trắc trở tài chính |
-| Huynh Đệ | Anh em giỏi kiếm tiền | Anh em thích nắm quyền | Được anh em giúp | Tổn hại, hoặc duyên tôn giáo |
-| Phu Thê | Phối ngẫu năng lực cao | Phối ngẫu mạnh, nam sợ vợ | Phối ngẫu năng lực, chu đáo | Cô khắc nặng nhất — muộn/không hôn nhân |
-| Tử Tức | Con thông minh, có đầu óc KD | Con chính trực, cương nghị | Con có ý thức tài chính | Khó thụ thai, đề phòng sảy thai |
-| Tài Bạch | Không thiếu tiền | Nắm quyền tài chính | Được tiền lẫn danh | Phá tài |
-| Tật Ách | Kiềm chế nóng tính | Thể chất kém | Sức khỏe điều dưỡng tốt | Thể chất kém, đặc biệt phổi |
-| Thiên Di | Giỏi đàm phán | Ít trợ lực, tự lực | Gặp khách nơi giao tế | Ít giúp đỡ, hao tài |
-| Giao Hữu | Giỏi kết giao tiệc rượu | Kết bạn giới tài chính | Kết bạn qua tiệc tùng | Cẩn trọng bạn nóng tính |
-| Quan Lộc | Thuận lợi việc tài chính | Thực quyền tài chính | Hợp võ chức/tài chính | Vốn khó xoay, thất thoát |
-| Điền Trạch | Giữ cơ nghiệp | Thích đồ bền chắc | Thích sống khô ráo sạch sẽ | Bất hòa vì tiền |
-| Phúc Đức | Về già không thiếu tiền | Về già nắm tài chính, keo kiệt | Về già biết chăm con cháu | Về già đa nghi |
-| Phụ Mẫu | Cha mẹ giỏi kiếm tiền | Cha mẹ nắm quyền tài chính | Cha mẹ để lại tài sản | Cha mẹ nóng tính |` },
-  { label: "Thiên Tướng", body: `# THIÊN TƯỚNG (天相 — tiān xiàng — the Minister/Seal Star)
+Quan hệ cha mẹ - con cái có thể phức tạp, nhiều cảm xúc, ít đơn giản một chiều — cần cả hai bên chủ động giao tiếp cởi mở để tránh những hiểu lầm tích tụ theo thời gian.
+## 3. Tứ Hóa (Lộc: Mậu 戊 — *wù* | Quyền: Kỷ 己 — *jǐ* | Kỵ: Quý 癸 — không Khoa)
 
-## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
-| Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
-|---|---|---|---|---|
-| Đôn hậu | 敦厚 | dūnhòu | **Đôn** (chân thành, đầy đặn) + **Hậu** (nhân hậu) → "chân thành, nhân hậu" | sincere, warm |
-| Ưu nhu quả đoán | 優柔寡斷 | yōuróu guǎduàn | **Ưu** (chần chừ) + **Nhu** (mềm yếu) + **Quả** (ít) + **Đoán** (quyết đoán) → "mềm yếu, thiếu quyết đoán" | indecisive |
-| Chưởng ấn quan | 掌印官 | zhǎng yìn guān | **Chưởng** (nắm giữ) + **Ấn** (con dấu) + **Quan** (quan chức) → "quan giữ ấn tín" | seal-bearing official |
-| Tài Ấm giáp Ấn | 財蔭夾印 | cái yìn jiā yìn | **Tài** (tài lộc) + **Ấm** (che chở) + **Giáp** (kẹp giữa) + **Ấn** (con dấu) → "Tài và Ấm cùng kẹp bảo vệ Ấn" | wealth & shelter flanking the Seal |
-| Hình Kỵ giáp Ấn | 刑忌夾印 | xíng jì jiā yìn | **Hình** (hình phạt) + **Kỵ** (Hóa Kỵ) + **Giáp** (kẹp giữa) + **Ấn** (con dấu) → "Hình và Kỵ cùng kẹp gây hại Ấn" | punishment & taboo flanking the Seal |
-| Chuyên tư y thực | 專司衣食 | zhuān sī yīshí | **Chuyên** (chuyên trách) + **Tư** (coi sóc) + **Y** (áo mặc) + **Thực** (ăn uống) → "chuyên lo việc ăn mặc, hậu cần" | in charge of food and clothing |
-
-## 1. Bản chất
-
-**Thiên Tướng** (天相 — *tiān xiàng* — Hán Việt: Thiên = trời, Tướng = tể tướng/phụ tá — tiếng Anh: **the Minister/Seal Star**)
-
-- Ngũ hành: Dương Thủy (壬水 — *rén shuǐ*) — Thủy "dương", chảy có hướng, có tổ chức, khác Thủy "âm" trầm lắng của Thái Âm.
-- Hóa khí (化氣 — *huàqì*) viết là **"Ấn"** (印 — *yìn* — con dấu, ấn tín — tiếng Anh: **the Seal**) — biểu tượng cho quyền hạn được ỦY THÁC chứ không phải tự thân sở hữu; ai giữ ấn thì có quyền, nhưng ấn luôn thuộc về một thẩm quyền cao hơn.
-- Thuộc nhóm: **Nam Đẩu tinh**, danh xưng **"chưởng ấn quan"** (掌印官 — *zhǎng yìn guān*) — quan giữ ấn tín, chuyên thực thi mệnh lệnh chứ không tự đưa ra quyết sách lớn.
-- Đối ứng tự nhiên: không có đối tinh cố định; nhưng về mặt an sao, Thiên Tướng có quan hệ đặc biệt với **Thiên Phủ** — nguyên tắc "Phùng Tướng khán Phủ" (逢相看府 — *féng xiàng kàn fǔ*) yêu cầu luận Thiên Tướng phải luôn xem thêm Thiên Phủ trong tam hợp, vì hai sao này vốn cùng thuộc nhóm phò tá Tử Vi.
-- Điển tích: trong Phong Thần Bảng (封神榜 — *fēngshén bǎng*), Thiên Tướng được gán cho **Văn Thái Sư** (聞太師 — *wén tàishī*) — thái sư trung thành tuyệt đối với triều Thương, dốc hết sức phò tá dù biết vận nước đã suy. Điển tích này lý giải trọn vẹn bản chất Thiên Tướng: trung thành, tận tụy đến cùng với vai trò được giao, kể cả khi bối cảnh không còn thuận lợi.
-- Đại diện nhân sự: không gắn vai vế gia đình cố định — đại diện cho vai trò **người phụ tá/cố vấn đáng tin cậy** trong bất kỳ mối quan hệ nào xuất hiện.
-- Đặc điểm riêng: **KHÔNG có Tứ Hóa** (giống Thiên Phủ) — được xem là "sao ít cá tính riêng nhất trong 14 chính tinh", vì bản chất một quan giữ ấn không tự ý thay đổi lập trường, chỉ phản ánh trung thực ý chí của thẩm quyền cấp trên.
-
-Thiên Tướng là hình mẫu điển hình của "người thứ hai xuất sắc" trong hệ 14 chính tinh — một "chưởng ấn quan" tận tụy thực thi chứ không tự đề xuất. Việc hoàn toàn không có Tứ Hóa, cộng với vị trí bị kẹp cố định giữa Cự Môn và Thiên Lương, khiến Thiên Tướng trở thành minh chứng rõ nhất cho nguyên lý: một số nhân cách được định hình chủ yếu bởi MÔI TRƯỜNG xung quanh hơn là bởi nội lực riêng. Đây không phải điểm yếu — trong đúng bối cảnh (được phò tá tốt), khả năng "trung hòa và thực thi hoàn hảo" của Thiên Tướng chính là thứ giữ cho cả một hệ thống lớn không sụp đổ, tương tự vai trò của một COO đáng tin cậy bên cạnh một CEO có tầm nhìn.
-
-### Nguyên lý nền
-
-Thiên Tướng LUÔN bị kẹp giữa Cự Môn và Thiên Lương — đây là quy luật an sao cố định, không đổi theo bất kỳ lá số nào, khiến Thiên Tướng trở thành chính tinh chịu ảnh hưởng "giáp cung" (夾宮 — *jiágōng*) rõ rệt nhất trong toàn bộ hệ thống:
-- Cự Môn Hóa Lộc → **"Tài Ấm giáp Ấn"** (財蔭夾印 — *cái yìn jiā yìn*) — đại cát, Ấn được cả Tài (Cự Môn Lộc) lẫn Ấm (Thiên Lương) bao bọc, bảo vệ hai mặt.
-- Cự Môn Hóa Kỵ → **"Hình Kỵ giáp Ấn"** (刑忌夾印 — *xíng jì jiā yìn*) — Thiên Lương biến thành "Hình" trong thế giáp cung này, khiến Thiên Tướng dễ vướng pháp lý, tổn hại danh dự dù bản thân không chủ ý sai phạm.
-
-Đây là minh chứng rõ nhất cho khái niệm "sao thụ động hoàn toàn phụ thuộc môi trường xung quanh" trong toàn bộ 14 chính tinh — không một chính tinh nào khác có số phận bị quyết định gắt gao bởi tình trạng Tứ Hóa của HAI sao lân cận đến vậy.
-
-- **"Chuyên tư y thực"** (專司衣食 — *zhuān sī yīshí*) — quan giữ ấn ngoài quyền lực hành chính còn phụ trách cả hậu cần cơ bản (cơm ăn áo mặc của bộ máy), phản ánh tính "toàn diện nhưng không hào nhoáng" của vai trò này.
-- **"Phùng Tướng khán Phủ"** (逢相看府 — *féng xiàng kàn fǔ*) — nguyên tắc bắt buộc: luận Thiên Tướng phải luôn xem thêm Thiên Phủ trong tam hợp, vì sức mạnh thật sự của "ấn tín" phụ thuộc vào "kho tàng" đứng sau nó có đủ đầy hay không.
-- Thành ngữ **"cường đạo thổ phỉ, dã hữu hảo bằng hữu"** (強盜土匪，也有好朋友 — *qiángdào tǔfěi, yě yǒu hǎo péngyǒu* — "dù là giặc cướp cũng có bạn tốt") minh họa tính "lưỡng diện, tiêu chuẩn tự đặt" của Thiên Tướng: trung thành tuyệt đối với những gì mình đã cam kết, bất kể đúng sai khách quan từ góc nhìn bên ngoài.
-
-### Tứ Hóa: Không có — luận qua Tứ Hóa của Cự Môn/Thiên Lương giáp cung lân cận (xem chi tiết ở trên).
-
----
-
-## 2. Luận theo 12 cung
-
-### Cung Mệnh (命宮 — *mìnggōng*)
-Thiên Tướng thủ Mệnh cho phong thái đôn hậu (敦厚 — *dūnhòu*), ôn hòa, chính nghĩa — nhưng đúng như cổ ngữ "cát nhi kém xung" (吉而缺沖 — *jí ér quē chōng*), tốt mà thiếu đột phá vì bản chất "chưởng ấn quan" thiên về thực thi hơn tự quyết. Đối cung luôn là Phá Quân — nghĩa là "cái tôi" của Thiên Tướng luôn phải soi vào một hình ảnh đối lập hoàn toàn (phá cách, bốc đồng) để tự định vị mình, giải thích vì sao người Mệnh Thiên Tướng thường rất cẩn trọng, như thể đang tự kiềm chế phần "Phá Quân tiềm ẩn" bên trong.
-
-Ba tổ hợp đồng cung chính: **Vũ Tướng** (Dần/Thân) ổn định, cân bằng giữa quyết đoán của Vũ Khúc và tính điều hòa của Thiên Tướng; **Liêm Tướng** (Tý/Ngọ) khéo giao tế nhưng bảo thủ hơn, vì Liêm Trinh "Tù" khí gò bó phần linh hoạt; **Tử Tướng** (Thìn/Tuất) uy quyền được điều hòa rõ rệt nhất trong ba tổ hợp, vì Tử Vi và Thiên Tướng vốn cùng thuộc "phe" quân-thần nên rất tương hợp, thường được xem là tổ hợp ổn định nhất trong toàn bộ sáu vị trí khả dĩ của Thiên Tướng.
-
-Vì hoàn toàn không có Tứ Hóa, vận mệnh của Mệnh Thiên Tướng phụ thuộc gắt gao vào tình trạng giáp cung Cự Môn-Thiên Lương đã nêu ở Nguyên lý nền: "Tài Ấm giáp Ấn" cho một đời an ổn, được nâng đỡ; "Hình Kỵ giáp Ấn" cảnh báo cần đặc biệt cẩn trọng giấy tờ/pháp lý trong suốt cuộc đời, kể cả khi bản thân không chủ ý vi phạm.
-
-### Cung Huynh Đệ (兄弟宮 — *xiōngdì gōng*)
-Tình cảm sâu đậm, hỗ trợ nhau thực chất — Thiên Tướng tại đây phát huy đúng vai trò "chưởng ấn": đáng tin cậy, sẵn sàng đứng ra gánh vác trách nhiệm chung của anh em.
-
-### Cung Phu Thê (夫妻宮 — *fūqī gōng*)
-Duyên đến qua bạn học/đồng nghiệp/mai mối hơn là tình cờ gặp gỡ ngẫu nhiên — phối ngẫu đoan trang, có trách nhiệm, phù hợp với người tìm kiếm sự ổn định lâu dài hơn là cảm giác mạnh.
-
-### Cung Tử Tức (子女宮 — *zǐnǚ gōng* — cung quản con cái, học trò, thế hệ kế thừa)
-Tử Tức phản ánh **phong cách nuôi dạy** (教養風格 — *jiàoyǎng fēnggé*) và mối quan hệ với thế hệ sau. Thiên Tướng thủ Tử Tức mang đúng bản chất "trung dung, tuân thủ khuôn phép" đã nêu ở Bản chất vào việc làm cha mẹ: con thật thà (誠實 — *chéngshí*), coi trọng thể diện (面子 — *miànzi*) — được nuôi dạy trong khuôn khổ nguyên tắc (規範 — *guīfàn*) rõ ràng, ít khi nổi loạn công khai nhưng cần được khích lệ (鼓勵 — *gǔlì*) thể hiện chính kiến (主見 — *zhǔjiàn*) nhiều hơn, tránh việc "ngoan theo khuôn phép" biến thành thiếu chủ kiến khi trưởng thành.
-
-Khi Thiên Tướng tại Tử Tức đạt mức **Đắc**, đây là một vị trí khá thuận lợi cho vai trò "ấn tinh phò tá" phát huy đúng chức năng: con cái không chỉ ngoan ngoãn theo khuôn phép mà còn có khả năng trở thành **chỗ dựa đáng tin cậy** (可靠依靠 — *kěkào yīkào*) cho chính cha mẹ về sau — đúng tinh thần "làm ấn tín, phò tá" của Thiên Tướng được nêu ở Bản chất, chỉ khác là ở đây vai trò "phò tá" được thể hiện qua chính con cái thay vì qua sự nghiệp hay quan hệ đồng liêu. Điểm cần lưu ý: vì Thiên Tướng luôn cần "có chủ" (依附另一星 — *yīfù lìng yī xīng* — nương tựa vào sao khác) mới phát huy trọn vẹn, cha mẹ nên chủ động tạo môi trường có định hướng (有方向的環境 — *yǒu fāngxiàng de huánjìng*) rõ ràng cho con thay vì để trẻ tự mày mò, vì đó chính là điều kiện giúp Thiên Tướng nơi con cái phát huy tốt nhất.
-
-
-### Cung Tài Bạch (財帛宮 — *cáibó gōng*)
-Tài vận hanh thông, giỏi quản lý — đặc biệt vượng nếu hội đủ cách "Tài Ấm giáp Ấn" (Cự Môn Hóa Lộc + Thiên Lương giáp cung), khi đó tài chính vừa dồi dào vừa được che chở an toàn, hiếm khi lâm cảnh túng thiếu.
-
-### Cung Tật Ách (疾厄宮 — *jí'è gōng*)
-Ít bệnh nặng, chủ yếu các vấn đề ngoài da hoặc huyết áp nhẹ — thể trạng nhìn chung ổn định nhờ lối sống điều độ, ít cực đoan (biểu tượng học, không phải chẩn đoán y khoa).
-
-### Cung Thiên Di (遷移宮 — *qiānyí gōng*)
-Do dự (優柔寡斷 — *yōuróu guǎduàn*) khi phải ra quyết định lớn dù đã chuẩn bị kỹ lưỡng — bài học lớn nhất khi ở xa nhà là cần dứt khoát đúng lúc thay vì chờ đợi sự hoàn hảo tuyệt đối trước khi hành động.
-
-### Cung Giao Hữu / Nô Bộc (交友宮 — *jiāoyǒu gōng*)
-Phải đến trung niên mới thực sự được bạn bè giúp gây dựng cơ nghiệp — quan hệ xã hội của Thiên Tướng cần thời gian tích lũy uy tín mới sinh lợi ích thiết thực, không có kiểu "quý nhân đến sớm".
-
-### Cung Quan Lộc (官祿宮 — *guānlù gōng*)
-Hợp nghề điều phối/trung gian: bảo hiểm, tư vấn, môi giới, quản lý vận hành — bất kỳ vai trò nào cần đứng giữa để kết nối và thực thi đều phù hợp với bản chất "chưởng ấn quan" của Thiên Tướng hơn là vai trò khởi xướng độc lập.
-
-### Cung Điền Trạch (田宅宮 — *tiánzhái gōng*)
-Tích lũy nhờ chăm chỉ, không sẵn có nhưng bền — sản nghiệp xây dựng từng bước theo thời gian, phù hợp tư duy "tiết kiệm rồi mới đầu tư" hơn là mạo hiểm vay mượn lớn.
-
-### Cung Phúc Đức (福德宮 — *fúdé gōng*)
-Phúc vận mạnh, sống thọ, an nhàn — một trong những vị trí nội tâm bình yên nhất trong 14 chính tinh, ít xung đột nội tại nhờ bản chất trung dung, không cực đoan về bất cứ hướng nào.
-
-### Cung Phụ Mẫu (父母宮 — *fùmǔ gōng*)
-Cha mẹ sáng suốt, hướng dẫn khôn ngoan — mô hình giáo dục cân bằng giữa kỷ luật và thấu hiểu, tạo nền tảng tâm lý ổn định cho con cái từ nhỏ.
-## 3. Tứ Hóa: Không có — luận qua Tứ Hóa của Cự Môn/Thiên Lương lân cận.` },
-  { label: "Cự Môn", body: `# CỰ MÔN (巨門 — jù mén — the "Great Gate"/Shadow Star)
+| Cung | Lộc | Quyền | Kỵ |
+|---|---|---|---|
+| Mệnh | Đa tài, giỏi giao tế, nhiều cơ hội | Tham vọng lớn, quyết đoán giành lấy | Dục vọng khó kiểm soát, dễ sa đà |
+| Huynh Đệ | Anh em quan hệ rộng, nhiều giao thiệp | Anh em có người mạnh mẽ, áp đảo | Anh em dễ ganh đua, xung khắc |
+| Phu Thê | Tình cảm phong phú, đời sống thú vị | Phối ngẫu mạnh mẽ, chủ động | Dễ ngoại tình/cám dỗ, cần chung thủy chủ động |
+| Tử Tức | Con cái nhiều năng khiếu | Con có tham vọng, cá tính mạnh | Con cái khó kiểm soát, ham chơi |
+| Tài Bạch | Tài lộc dồi dào từ giao tế/kinh doanh | Chủ động kiếm tiền, quyết đoán đầu tư | Tài chính dễ hao tán vì hưởng thụ |
+| Tật Ách | Sức sống mạnh mẽ | Cẩn trọng vì hoạt động quá độ | Chú ý gan, thận, hệ sinh dục |
+| Thiên Di | Ra ngoài nhiều cơ hội, giao tế tốt | Chủ động tạo dựng quan hệ nơi xa | Ra ngoài dễ sa đà hưởng thụ |
+| Giao Hữu | Bạn bè đông đảo, quan hệ rộng | Có bạn giữ vai trò thủ lĩnh nhóm | Bạn bè dễ lôi kéo vào thói xấu |
+| Quan Lộc | Sự nghiệp thuận lợi nhờ sức hút cá nhân | Thăng tiến nhờ quyết đoán, tham vọng | Sự nghiệp dễ vướng scandal, thị phi |
+| Điền Trạch | Sản nghiệp mở rộng qua cơ hội | Chủ động đầu tư, mở rộng | Bất động sản dễ đầu cơ thất bại |
+| Phúc Đức | Đời sống hưởng thụ, nhiều trải nghiệm | Chủ động theo đuổi đam mê | Nội tâm bất an vì ham muốn không dứt |
+| Phụ Mẫu | Quan hệ cha mẹ - con cái sôi động | Cha mẹ có cá tính mạnh, ảnh hưởng lớn | Quan hệ phức tạp, nhiều mâu thuẫn |` },
+  { label: "Cự Môn", slug: "the-great-gate-shadow-star", body: `# CỰ MÔN (巨門 — jù mén — the "Great Gate"/Shadow Star)
 
 ## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
@@ -918,14 +745,15 @@ Cự Môn không tự phát sáng — cần Thái Dương chiếu vào để "gi
 
 ## 2. Luận theo 12 cung
 
-### Cung Mệnh (命宮 — *mìnggōng*)
-Cự Môn thủ Mệnh cho khả năng ăn nói sắc sảo (能言善道 — *néng yán shàn dào*), dễ mất lòng khi còn trẻ nhưng lời nói luôn có logic/chiều sâu thật sự chứ không phải nói suông — đây là điểm phân biệt quan trọng giữa Cự Môn và các sao "khéo nói" khác: sự sắc bén của Cự Môn luôn có CƠ SỞ phân tích đứng sau, không phải chỉ khéo léo bề ngoài.
+### Cung Mệnh (命宮 — *mìnggōng*) ²
+Cự Môn thủ Mệnh cho khả năng ăn nói sắc sảo (能言善道 — *néng yán shàn dào*), dễ mất lòng khi còn trẻ nhưng lời nói luôn có logic/chiều sâu thật sự chứ không phải nói suông — đây là điểm phân biệt quan trọng giữa Cự Môn và các sao "khéo nói" khác: sự sắc bén của Cự Môn luôn có CƠ SỞ phân tích (分析基礎 — *fēnxī jīchǔ*) đứng sau, không phải chỉ khéo léo bề ngoài.
 
-Cơ chế tâm lý cốt lõi: người Mệnh Cự Môn tồn tại trong trạng thái hoài nghi thường trực — với người khác, với hoàn cảnh, đôi khi với chính bản thân — đây vừa là nguồn gốc của khả năng phân tích sắc sảo vừa là gánh nặng tâm lý cần được "giải Ám" liên tục qua thành tựu thực tế và sự công nhận từ bên ngoài.
+Cơ chế tâm lý cốt lõi: người Mệnh Cự Môn tồn tại trong trạng thái hoài nghi (懷疑 — *huáiyí*) thường trực — với người khác, với hoàn cảnh, đôi khi với chính bản thân — đây vừa là nguồn gốc của khả năng phân tích sắc sảo vừa là gánh nặng tâm lý cần được "giải Ám" liên tục qua thành tựu thực tế (實際成就 — *shíjì chéngjiù*) và sự công nhận (認可 — *rènkě*) từ bên ngoài.
 
-Bốn tổ hợp chính quyết định sắc thái rõ rệt: đồng cung **Thiên Cơ** (Mão/Dậu) khéo tranh luận, tư duy nhanh nhưng tình cảm phức tạp vì cả hai sao đều thiên về phân tích hơn cảm xúc, dễ "nghĩ quá nhiều" trong các mối quan hệ. Đồng cung **Thái Dương** (Dần/Thân — cách "Dương Cự") là tổ hợp lý tưởng nhất vì có ngay nguồn sáng giải Ám tại chỗ — Dần tốt hơn Thân vì Thái Dương tại Dần vượng hơn, giúp giải Ám hiệu quả và bền vững hơn. Đồng cung **Thiên Đồng** (Sửu/Mùi) được cổ ngữ gọi là "hạ cách" nếu thiếu Lộc đi kèm, vì Ám gặp một sao quá hiền hòa dễ thiếu động lực chuyển hóa hoài nghi thành hành động cụ thể — năng lượng phân tích cứ luẩn quẩn mà không đi đến kết luận. Độc tọa tại **Tý** (cách "Thạch trung ẩn ngọc") là tổ hợp "ngọc ẩn trong đá" đã nêu ở Nguyên lý nền — vất vả lúc trẻ, thành tựu về sau.
+Bốn tổ hợp chính quyết định sắc thái rõ rệt: đồng cung **Thiên Cơ** (Mão/Dậu) khéo tranh luận (辯論 — *biànlùn*), tư duy nhanh nhưng tình cảm phức tạp vì cả hai sao đều thiên về phân tích hơn cảm xúc, dễ "nghĩ quá nhiều" trong các mối quan hệ. Đồng cung **Thái Dương** (Dần/Thân — cách "Dương Cự") là tổ hợp lý tưởng nhất vì có ngay nguồn sáng giải Ám tại chỗ — Dần tốt hơn Thân vì Thái Dương tại Dần vượng hơn, giúp giải Ám hiệu quả và bền vững hơn. Đồng cung **Thiên Đồng** (Sửu/Mùi) được cổ ngữ gọi là "hạ cách" nếu thiếu Lộc đi kèm, vì Ám gặp một sao quá hiền hòa dễ thiếu động lực (動力 — *dònglì*) chuyển hóa hoài nghi thành hành động cụ thể — năng lượng phân tích cứ luẩn quẩn mà không đi đến kết luận. Độc tọa tại **Tý** (cách "Thạch trung ẩn ngọc" 石中隱玉 — *shí zhōng yǐn yù* — ngọc ẩn trong đá) đã nêu ở Nguyên lý nền — vất vả lúc trẻ, thành tựu về sau.
 
-Toàn bộ vận mệnh của Mệnh Cự Môn xoay quanh một câu hỏi duy nhất, lặp lại xuyên suốt cách luận sao này: có Thái Dương đủ vượng hội chiếu (đồng cung, tam hợp, hoặc ít nhất xung chiếu) để giải Ám hay không. Đây là chìa khóa quyết định liệu năng lực bẩm sinh của Cự Môn sẽ trở thành tài sản quý giá hay gánh nặng thị phi suốt đời.
+Khi Cự Môn **hãm** tại Tị — một trong các vị trí hãm địa (陷地 — *xiàn dì*) của sao này — mức "Ám" càng cần được giải kỹ hơn: toàn bộ vận mệnh của Mệnh Cự Môn xoay quanh một câu hỏi duy nhất, lặp lại xuyên suốt cách luận sao này: có Thái Dương đủ vượng hội chiếu (đồng cung, tam hợp, hoặc ít nhất xung chiếu) để giải Ám hay không. Đây là chìa khóa quyết định liệu năng lực bẩm sinh (天賦 — *tiānfù*) của Cự Môn sẽ trở thành tài sản quý giá hay gánh nặng thị phi suốt đời.
+
 
 ### Cung Huynh Đệ (兄弟宮 — *xiōngdì gōng*)
 Không thuận, khó nhận hỗ trợ thực chất từ anh em — quan hệ dễ có hiểu lầm do lời ăn tiếng nói thẳng thắn của Cự Môn dễ bị hiểu nhầm thành công kích, dù bản ý không phải vậy.
@@ -936,7 +764,7 @@ Sở hữu dục mạnh, dễ ghen, cãi vã — nữ mệnh nên lấy chồng 
 ### Cung Tử Tức (子女宮 — *zǐnǚ gōng*)
 Con hay bộc lộ bất mãn bằng lời nói nhưng giỏi biện luận — cha mẹ nên hướng năng lực ngôn ngữ này vào các hoạt động tranh biện/học thuật có tổ chức thay vì để nó chỉ dừng ở cãi vã trong gia đình.
 
-### Cung Tài Bạch (財帛宮 — *cáibó gōng* — cung quản tiền bạc, dòng tiền, cách kiếm và tiêu tiền)
+### Cung Tài Bạch (財帛宮 — *cáibó gōng* — cung quản tiền bạc, dòng tiền, cách kiếm và tiêu tiền) ¹
 Cự Môn thủ Tài Bạch mang đúng bản chất "phân tích, phản biện, dùng lời nói tạo giá trị" đã nêu ở Bản chất vào lĩnh vực tài chính: ham vật chất (物質慾 — *wùzhí yù*), muốn tự kiếm bằng chính năng lực (實力 — *shílì*) bản thân chứ không muốn dựa dẫm; đường tài thường vất vả ban đầu, không nên đặt mục tiêu quá cao ngay từ đầu mà cần tích lũy dần qua uy tín chuyên môn (專業信譽 — *zhuānyè xìnyù*) — đặc biệt các nghề "dùng miệng" (luật sư, giảng dạy, đàm phán, truyền thông) mang lại tài lộc bền vững hơn hẳn kinh doanh hàng hóa hữu hình.
 
 Khi Cự Môn tại Tài Bạch đạt mức **Vượng** và đồng thời hội đủ tam hợp với một Thái Dương đang ở thế hãm, đúng cơ chế **"Minh Nhật củng chiếu"** (明日拱照 — *míngrì gǒngzhào*) đã nêu ở tab Cự Môn cho thấy rõ vai trò của Thái Dương: Cự Môn vốn mang hóa khí "Ám" (暗 — *àn* — tăm tối, nghi kỵ), cần ánh sáng của Thái Dương chiếu vào để "giải Ám" thì tài năng ăn nói mới chuyển hóa thành tài lộc thực chất thay vì chỉ dừng ở thị phi (是非 — *shìfēi*), tranh cãi vô ích. Khi Thái Dương hội chiếu ở thế hãm chứ không miếu vượng, tác dụng "giải Ám" chỉ ở mức một phần — nghĩa là dòng tiền vẫn đến từ đúng kênh sở trường (khẩu tài, chuyên môn có tiếng nói), nhưng tốc độ tích lũy sẽ chậm hơn, cần kiên trì xây uy tín (建立信譽 — *jiànlì xìnyù*) lâu dài hơn so với trường hợp Thái Dương miếu vượng hội chiếu trọn vẹn.
@@ -977,203 +805,7 @@ Cha mẹ coi trọng vật chất, khắt khe, áp lực lớn — mô hình gi�
 | Điền Trạch | Nhà có bếp lớn | Thích thể hiện ý kiến | Chú ý hòa thuận gia đình |
 | Phúc Đức | Có khẩu phúc | Về già khó buông danh lợi | Về già không khẩu phúc |
 | Phụ Mẫu | Hợp chuyện với cha mẹ | Cha mẹ hay khẩu thiệt | Khoảng cách thế hệ |` },
-  { label: "Thiên Đồng", body: `# THIÊN ĐỒNG (天同 — tiān tóng — the Blessing Star)
-
-## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
-
-| Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
-|---|---|---|---|---|
-| Ích Phúc Bảo Sinh | 益福保生 | yì fú bǎo shēng | **Ích** (tăng thêm) + **Phúc** (phúc lộc) + **Bảo** (bảo vệ) + **Sinh** (sự sống) → "tăng phúc, bảo vệ sự sống" | blessing & protection of life |
-| An phận | 安分 | ān fèn | **An** (yên) + **Phận** (bổn phận, phần mình) → "yên với phận mình" | contentment |
-| Khoan hòa | 寬和 | kuān hé | **Khoan** (rộng lượng) + **Hòa** (hòa nhã) → "rộng lượng, hòa nhã" | gentle, tolerant |
-| Thích nghi | 適應 | shìyìng | **Thích** (thích hợp) + **Ứng** (đáp ứng) → "thích hợp, đáp ứng hoàn cảnh" | adaptable |
-| Phản giả đạo chi động | 反者道之動 | fǎn zhě dào zhī dòng | **Phản** (đảo ngược) + **Giả** (điều mà) + **Đạo** (Đạo) + **Chi** (của) + **Động** (vận động) → "cái ngược lại là sự vận động của Đạo" (Đạo Đức Kinh) | reversal is the movement of the Dao |
-| Như ngư đắc thủy | 如魚得水 | rú yú dé shuǐ | **Như** (như là) + **Ngư** (cá) + **Đắc** (được) + **Thủy** (nước) → "như cá gặp nước" | like a fish finding water |
-
-## 1. Bản chất
-
-**Thiên Đồng** (天同 — *tiān tóng* — Hán Việt: Thiên = trời, Đồng = hòa đồng/trẻ thơ — tiếng Anh: **the Blessing Star**)
-
-- Ngũ hành: Dương Thủy (壬水 — *rén shuǐ*) — Thủy "dương", nhu hòa nhưng vẫn có sức sống, khác Thủy "âm" trầm lắng của Thái Âm hay Thủy pha Thổ trầm uất của Cự Môn.
-- Hóa khí (化氣 — *huàqì*) viết là **"Phúc"** (福 — *fú* — phúc phần, phúc lộc, hưởng thụ tự nhiên — tiếng Anh: **blessing**)
-- Thuộc nhóm: **Nam Đẩu đệ tứ tinh** (南斗第四星 — *nándǒu dì sì xīng*); là sao chủ của cung Phúc Đức/Tật Ách (theo bảng "sao chủ cung" ở tab Phương pháp luận) — vai trò kép này lý giải vì sao Thiên Đồng vừa gắn với hạnh phúc nội tâm vừa gắn với sức khỏe/thể trạng.
-- Đối ứng tự nhiên: không có đối tinh nghịch vượng/hãm cố định; đồng minh gần gũi nhất là **Thiên Lương** — hai sao thường đồng cung hoặc hội chiếu, tạo cách "Đồng Lương" nổi tiếng (xem mục Nguyên lý nền).
-- Điển tích: theo một số nguồn phổ biến, hình tượng Thiên Đồng được liên hệ với bậc trưởng thượng khoan hòa trong Phong Thần Diễn Nghĩa; tuy vậy các trường phái không thống nhất tuyệt đối về nhân vật cụ thể, khác với các sao như Tử Vi (Bá Ấp Khảo) hay Thiên Lương (Lý Tĩnh) vốn có điển tích rõ ràng hơn.
-- Đại diện nhân sự: trẻ nhỏ, con cái; người có tính cách hiền hòa, dễ mến trong gia đạo.
-- Đặc tính riêng: độ sáng của Thiên Đồng biến đổi gần như "ngược đời" so với trực giác thông thường — tuổi trẻ chủ về Phúc (hưởng nhàn), tuổi già lại chủ về Thọ (sống lâu, an nhàn thực sự). Miếu tại Dần, Thân; Vượng tại Tý; phần lớn các cung còn lại (Thìn, Tuất, Sửu, Mùi, Ngọ, Dậu) ở mức Hãm — đây là một trong những chính tinh có biên độ miếu/hãm rộng và bất đối xứng nhất trong 14 chính tinh.
-
-Thiên Đồng là sao "hưởng phúc" thuần túy — khác về bản chất với các sao tạo giá trị bằng hành động chủ động (Thái Dương "chiếu rọi"), quyết đoán giành lấy (Vũ Khúc "tài động") hay mưu lược tính toán (Thiên Cơ). Thiên Đồng tạo giá trị bằng năng lực AN được với hoàn cảnh — một dạng trí tuệ buông bỏ tranh đấu không cần thiết, không phải sự thụ động tiêu cực. Đây chính là lý do Thiên Đồng dễ bị đọc sai thành "lười biếng" (xem lỗi phổ biến #3 ở tab Phương pháp luận: *"Mệnh có Thiên Đồng → chắc chắn lười"* là một kết luận vội vàng, bỏ qua đồng cung/Hóa Quyền/Đại Vận). Xét sâu hơn, "Phúc" của Thiên Đồng không phải trạng thái tĩnh mà là NĂNG LỰC — khả năng tìm ra sự bình an ngay trong nghịch cảnh, khác hẳn kiểu may mắn thụ động; đây là lý do vì sao phần lớn vị trí của Thiên Đồng lại là Hãm địa (phúc thật sự phải được tôi luyện qua thử thách mới bền, không phải phúc "trời cho" dễ dàng).
-
-### Nguyên lý nền
-
-- Danh hiệu đầy đủ **"Ích Phúc Bảo Sinh"** (益福保生 — *yì fú bǎo shēng*) — chức năng phòng ngừa hơn chữa trị, khác hẳn Thiên Lương "Y Dược tinh" chuyên xử lý sau khi sự cố đã xảy ra.
-- Triết lý Đạo gia **"phản giả đạo chi động"** (反者道之動 — *fǎn zhě dào zhī dòng*, Đạo Đức Kinh) — phúc không bao giờ dễ dàng mà đến; đây cũng là lời giải thích vì sao Thiên Đồng phần lớn cung là Hãm địa (phúc phải qua thử thách mới bền), chỉ một vài vị trí thực sự Miếu/Vượng.
-- Vị trí tối ưu là cung **Phúc Đức** (không phải Mệnh) — tại Mệnh tính lười cản trở hành động; tại Phúc Đức thì **"như cá gặp nước"** (如魚得水 — *rú yú dé shuǐ*). Đây là một trong số ít chính tinh mà vị trí "đắc lực nhất" KHÔNG PHẢI là cung Mệnh — một điểm đặc thù đáng ghi nhớ khi so sánh với đa số chính tinh khác luôn coi Mệnh là cung quan trọng nhất.
-- Cách **"Đồng Lương"** (同梁格 — *tóng liáng gé*) tại Dần/Thân, đồng cung Thiên Lương: "Phúc Ấm tụ hội" (福蔭聚 — *fú yìn jù*) — Thiên Đồng lo hưởng phúc, Thiên Lương lo che chở/xử lý sự cố, hai sao bổ khuyết hoàn hảo cho nhau tạo ra một cách cục ổn định, ít cực đoan nhất trong các tổ hợp của Thiên Đồng.
-- Tương tác với sát tinh: khác đa số chính tinh xem sát tinh là bất lợi tuyệt đối, Thiên Đồng "quá hiền" đôi khi CẦN một sát tinh hữu chế (Hỏa Tinh đắc cách) để tạo động lực hành động — nguyên tắc "sát tinh hữu chế" ở tab Phương pháp luận áp dụng rõ nét nhất chính ở chính tinh này.
-
-### Tứ Hóa (Lộc: Bính 丙 — *bǐng* | Quyền: Đinh 丁 — *dīng* | Kỵ: Canh 庚 — *gēng* — không Khoa) của Thiên Đồng
-
----
-
-## 2. Luận theo 12 cung
-
-### Cung Mệnh (命宮 — *mìnggōng*)
-Thiên Đồng thủ Mệnh cho tính cách hiền hòa, dễ thích nghi, thiên về hưởng thụ tinh thần hơn vật chất. Nhược điểm kinh điển là thiếu động lực bứt phá nếu không có Hóa Quyền hoặc sát tinh hữu chế đi kèm để tạo áp lực hành động — đúng như lỗi phổ biến #3 ở tab Phương pháp luận đã cảnh báo, "Mệnh có Thiên Đồng → chắc chắn lười" là kết luận vội vàng nếu bỏ qua các yếu tố đi cùng.
-
-Cơ chế tâm lý: người Mệnh Thiên Đồng vận hành theo nguyên tắc "an được thì đủ" — khác hẳn các chính tinh khác luôn có một khát vọng chủ động thúc đẩy (danh vọng, tài phú, quyền lực, tri thức), động lực sâu xa nhất của Thiên Đồng chỉ đơn giản là tìm sự bình yên. Đây không phải thiếu tham vọng theo nghĩa tiêu cực, mà là một hệ giá trị khác — hạnh phúc được ưu tiên hơn thành tựu, khiến người ngoài đôi khi hiểu lầm là thiếu chí tiến thủ.
-
-Ba tổ hợp chính quyết định sắc thái: đồng cung **Thái Âm** (Tý) tạo cách "Thủy trừng quế ngạc" thiên về thanh khiết/học vấn hơn phú quý vật chất thuần túy; đồng cung **Cự Môn** (Sửu/Mùi) là tổ hợp cần đặc biệt lưu ý Lộc đi kèm, vì Ám gặp một sao quá hiền hòa dễ thiếu động lực chuyển hóa hoài nghi thành hành động, cổ ngữ gọi là "hạ cách" nếu thiếu điều kiện; đồng cung **Thiên Lương** (Dần/Thân — cách "Đồng Lương") là tổ hợp lý tưởng nhất, cân bằng hoàn hảo giữa hưởng phúc và che chở. Điểm chung xuyên suốt cả ba tổ hợp: Thiên Đồng luôn cần một sao "có góc cạnh" đi kèm để cân bằng sự mềm mỏng bẩm sinh, tự thân độc tọa vô phụ tá dễ rơi vào trạng thái an phận quá mức.
-
-### Cung Huynh Đệ (兄弟宮 — *xiōngdì gōng*)
-Anh chị em hòa thuận, ít xung đột — quan hệ nhẹ nhàng, dựa trên thiện cảm tự nhiên nhưng không nhất thiết sâu đậm về mặt gắn kết lâu dài, dễ nhạt dần nếu không chủ động duy trì liên lạc.
-
-### Cung Phu Thê (夫妻宮 — *fūqī gōng* — cung quản hôn nhân, tình cảm đôi lứa, người bạn đời)
-Thiên Đồng thủ Phu Thê mang đúng bản chất "phúc tinh hưởng thụ, ôn hòa" đã nêu ở Bản chất vào đời sống hôn nhân: phối ngẫu dịu dàng (溫柔 — *wēnróu*), biết chăm sóc (照顧 — *zhàogù*) — đời sống hôn nhân thiên về ổn định êm ả (安穩 — *ānwěn*) hơn là nồng nhiệt (熱烈 — *rèliè*). Đây là một trong những vị trí hôn nhân "an toàn" (安全 — *ānquán*) nhất trong 14 chính tinh, nhưng cần bổ sung thêm sự chủ động (主動性 — *zhǔdòngxìng*)/lãng mạn (浪漫 — *làngmàn*) để tránh cuộc sống chung trở nên tẻ nhạt (乏味 — *fáwèi*) theo thời gian — đúng nhược điểm "an nhàn quá mức sinh trì trệ" đã nêu ở Nguyên lý nền của Thiên Đồng.
-
-Khi Thiên Đồng tại Phu Thê đạt mức **Miếu** và đồng cung với Thiên Lương đạt mức **Vượng**, đúng tổ hợp **"Đồng Lương"** (同梁 — *tóng liáng*) vốn được xem là một trong những cách cục hôn nhân bền vững nhất trong nhóm Cơ Nguyệt Đồng Lương: Thiên Đồng mang sự dịu dàng, hưởng thụ; Thiên Lương mang sự che chở, nguyên tắc đạo đức — hai đặc tính này bổ khuyết (互補 — *hùbǔ*) cho nhau rất tự nhiên trong quan hệ vợ chồng, tạo ra một cuộc hôn nhân vừa ấm áp vừa có định hướng rõ ràng, hiếm khi rơi vào xung đột gay gắt. Nhìn rộng hơn, một Phu Thê ổn định theo cách Đồng Lương như vậy thường được xem là một dạng **"hậu phương"** (後盾 — *hòudùn*) tốt cho sự nghiệp nói chung — gia đạo êm ấm giúp người trong cuộc có thêm nguồn lực tinh thần để dồn sức cho công danh, dù mức độ ảnh hưởng cụ thể còn tùy thuộc vào cách cục riêng của từng lá số.
-
-
-### Cung Tử Tức (子女宮 — *zǐnǚ gōng*)
-Con cái ngoan hiền, quan hệ cha mẹ - con cái ấm áp, ít áp lực kỷ luật — môi trường nuôi dạy khoan dung, tạo cảm giác an toàn cho trẻ nhưng cần bổ sung thêm tính kỷ luật để trẻ phát triển ý chí.
-
-### Cung Tài Bạch (財帛宮 — *cáibó gōng*)
-Tài vận đến từ từ, ổn định, không đột biến — hợp tích lũy dài hạn hơn đầu tư mạo hiểm. Đây là kiểu tài vận "chậm mà chắc" đúng bản chất "Phúc" — tiền đến như một hệ quả tự nhiên của sự an ổn, không phải từ tranh đấu quyết liệt.
-
-### Cung Tật Ách (疾厄宮 — *jí'è gōng*)
-Hệ tiêu hóa/nội tiết cần lưu tâm khi hãm địa; nhìn chung sức khỏe cải thiện dần theo tuổi — đúng quy luật "tuổi trẻ chủ Phúc, tuổi già chủ Thọ" đã nêu ở Bản chất (biểu tượng học, không phải chẩn đoán y khoa).
-
-### Cung Thiên Di (遷移宮 — *qiānyí gōng*)
-Ra ngoài dễ được giúp đỡ nhẹ nhàng — môi trường xa nhà thường khiến Thiên Đồng thoải mái hơn ở nhà, vì thoát khỏi những ràng buộc quen thuộc và có cơ hội "làm mới" bản thân trong hoàn cảnh mới.
-
-### Cung Giao Hữu / Nô Bộc (交友宮 — *jiāoyǒu gōng*)
-Bạn bè hiền lành, quan hệ dựa trên thiện cảm tự nhiên hơn là lợi ích — dễ kết bạn nhưng cũng dễ bị lợi dụng lòng tốt nếu không đủ tỉnh táo phân biệt bạn thật và người chỉ muốn nhờ vả.
-
-### Cung Quan Lộc (官祿宮 — *guānlù gōng*)
-Hợp môi trường ổn định, ít cạnh tranh khốc liệt; cần Hóa Quyền hoặc sao động lực khác để không bị trì trệ sự nghiệp. Thiên Đồng tại Quan Lộc phát huy tốt trong các tổ chức có hệ thống rõ ràng, nơi không đòi hỏi phải liên tục tranh đấu để tồn tại.
-
-### Cung Điền Trạch (田宅宮 — *tiánzhái gōng*)
-An cư từ tốn, không vội vàng nhưng bền — nhà cửa thiên về ấm cúng hơn phô trương, phản ánh đúng gu thẩm mỹ giản dị, ưu tiên sự thoải mái hơn hình thức.
-
-### Cung Phúc Đức (福德宮 — *fúdé gōng*)
-Vị trí đắc nhất của Thiên Đồng — đời sống nội tâm an nhàn, ít lo âu, phúc thọ song toàn nếu miếu vượng, đúng như "như cá gặp nước" đã nêu ở Nguyên lý nền. Đây là một trong những cách cục hạnh phúc nội tâm viên mãn nhất trong toàn bộ 14 chính tinh.
-
-### Cung Phụ Mẫu (父母宮 — *fùmǔ gōng*)
-Quan hệ cha mẹ - con cái nhẹ nhàng, cha mẹ có xu hướng nuông chiều hơn nghiêm khắc — môi trường lớn lên thoải mái nhưng đôi khi thiếu định hướng kỷ luật cần thiết cho giai đoạn trưởng thành.
-## 3. Tứ Hóa (Lộc: Bính 丙 — *bǐng* | Quyền: Đinh 丁 — *dīng* | Kỵ: Canh 庚 — *gēng* — không Khoa)
-
-| Cung | Lộc | Quyền | Kỵ |
-|---|---|---|---|
-| Mệnh | Hưởng phúc tự nhiên, tính tình dễ chịu | Có động lực hành động hơn, bớt an phận | Nội tâm bất an, dễ đổi ý, thành quả không bền |
-| Huynh Đệ | Anh em hòa thuận, hỗ trợ nhẹ nhàng | Anh em có người nổi bật hơn | Anh em ít gắn bó, dễ hiểu lầm |
-| Phu Thê | Hôn nhân êm ấm | Phối ngẫu chủ động hơn trong quan hệ | Đời sống hôn nhân dễ nhạt, cần vun đắp |
-| Tử Tức | Con cái ngoan, duyên lành | Con có chủ kiến riêng | Duyên con cái mỏng hơn, cần kiên nhẫn |
-| Tài Bạch | Tài lộc đến nhẹ nhàng, đều đặn | Quản lý tài chính chủ động hơn | Tài vận bấp bênh, hao hụt vặt |
-| Tật Ách | Sức khỏe ổn định, ít bệnh nặng | Cần chú ý vận động, tránh trì trệ | Cần lưu tâm tiêu hóa/nội tiết |
-| Thiên Di | Ra ngoài thuận lợi, gặp thiện duyên | Chủ động hơn khi ở xa nhà | Ra ngoài dễ gặp trắc trở nhỏ |
-| Giao Hữu | Bạn bè giúp đỡ nhẹ nhàng | Có bạn giữ vai trò dẫn dắt | Quan hệ bạn bè dễ nông cạn |
-| Quan Lộc | Công việc ổn định, ít căng thẳng | Có cơ hội thăng tiến rõ hơn | Sự nghiệp dễ trì trệ, thiếu đột phá |
-| Điền Trạch | An cư thuận lợi | Chủ động sửa sang, mở rộng nhà cửa | Bất động sản biến động, cần thận trọng |
-| Phúc Đức | Đời sống an nhàn, phúc thọ | Tinh thần chủ động, lạc quan | Nội tâm dễ lo âu vặt vãnh |
-| Phụ Mẫu | Cha mẹ hiền hòa, quan hệ ấm áp | Cha mẹ có chủ kiến, quản lý con cái nhiều hơn | Duyên cha mẹ - con cái nhạt hơn |` },
-  { label: "Thiên Lương", body: `# THIÊN LƯƠNG (天梁 — tiān liáng — the Elder Star)
-
-## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
-
-| Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
-|---|---|---|---|---|
-| Y Dược tinh | 醫藥星 | yī yào xīng | **Y** (chữa bệnh) + **Dược** (thuốc) + **Tinh** (sao) → "sao thầy thuốc, chuyên cứu chữa" | the Healer Star |
-| Nghiêm dĩ luật nhân, khoan dĩ đãi kỷ | 嚴以律人，寬以待己 | yán yǐ lǜ rén, kuān yǐ dài jǐ | **Nghiêm** (nghiêm khắc) + **Dĩ** (dùng để) + **Luật** (ràng buộc) + **Nhân** (người khác), **Khoan** (khoan dung) + **Dĩ** (dùng để) + **Đãi** (đối đãi) + **Kỷ** (bản thân) → "nghiêm với người, khoan với mình" | strict on others, lenient on self |
-| Ân trạch | 恩澤 | ēn zé | **Ân** (ơn huệ) + **Trạch** (nhuần thấm) → "ơn huệ ban phát rộng khắp" | grace, favor bestowed |
-| Cố vấn | 顧問 | gùwèn | **Cố** (trông nom, xem xét) + **Vấn** (hỏi han) → "người tư vấn, chỉ dẫn" | advisor, counselor |
-| Thác Tháp Thiên Vương | 托塔天王 | tuō tǎ tiānwáng | **Thác** (nâng đỡ) + **Tháp** (bảo tháp) + **Thiên** (trời) + **Vương** (vua) → "Thiên Vương nâng bảo tháp" (tên hiệu Lý Tĩnh) | Pagoda-Bearing Heavenly King |
-| Phúc Ấm tụ | 福蔭聚 | fú yìn jù | **Phúc** (phúc lành) + **Ấm** (che chở) + **Tụ** (hội tụ) → "phúc lành và che chở cùng hội tụ" | blessing and shelter converging |
-
-## 1. Bản chất
-
-**Thiên Lương** (天梁 — *tiān liáng* — Hán Việt: Thiên = trời, Lương = rường cột/xà nhà — biểu tượng cho trụ đỡ vững chắc của một công trình — tiếng Anh: **the Elder Star**)
-
-- Ngũ hành: Dương Thổ (戊土 — *wù tǔ*) — cùng hành Thổ dương với Thiên Phủ, nhưng nếu Thiên Phủ là "kho" (chứa đựng của cải), Thiên Lương là "rường cột" (chống đỡ cấu trúc) — hai cách biểu hiện khác nhau của cùng một chất Thổ vững chãi.
-- Hóa khí (化氣 — *huàqì*) viết là **"Ấm"** (蔭 — *yìn* — che chở, ân trạch của bậc trên dành cho kẻ dưới — tiếng Anh: **shelter/protection**)
-- Thuộc nhóm: **Nam Đẩu đệ nhị tinh** (南斗第二星 — *nándǒu dì èr xīng*); được gọi là **"Y Dược tinh"** (醫藥星 — *yīyào xīng*) vì chức năng cứu chữa SAU sự cố, không phải phòng ngừa từ đầu (khác Thiên Đồng "Ích Phúc" thiên về phòng ngừa) — đây là điểm phân biệt cốt lõi giữa hai sao Nam Đẩu gần gũi nhau nhất.
-- Đối ứng tự nhiên: không có đối tinh nghịch vượng/hãm; đồng minh gần gũi nhất là **Thiên Đồng** (cách "Đồng Lương"), đồng thời giữ vai trò một trong hai "gọng kìm" giáp cung của Thiên Tướng (cùng Cự Môn).
-- Điển tích: chính xác là **Lý Tĩnh** (李靖 — *lǐ jìng*) — tức **"Thác Tháp Thiên Vương"** (托塔天王 — *tuō tǎ tiānwáng*), vị tướng có ba con trai Kim Tra, Mộc Tra, Na Tra trong Phong Thần Diễn Nghĩa; hình tượng một bậc trưởng bối uy nghiêm nhưng che chở. Đây là một trong số ít chính tinh có điển tích được xác định rõ ràng, không có nhiều dị bản giữa các phái.
-- Đại diện nhân sự: người lớn tuổi, cấp trên đáng kính, quý nhân cứu giúp lúc hoạn nạn.
-- Đặc tính riêng: Miếu tại Thìn, Ngọ, Tuất (theo cách gọi dân gian "Long — Mã — Cẩu"); vượng/đắc rải rác các cung còn lại — nhìn chung Thiên Lương ít khi hãm nặng như Thái Dương/Thái Âm, phản ánh đúng bản chất "che chở" ít khi hoàn toàn mất tác dụng, dù người được che chở có ở hoàn cảnh nào.
-
-Thiên Lương mang nghịch lý đạo đức đặc trưng: **"nghiêm dĩ luật nhân, khoan dĩ đãi kỷ"** (嚴以律人 — *yán yǐ lǜ rén*，寬以待己 — *kuān yǐ dài jǐ*) — nghiêm khắc với người, nhưng lại dễ dãi với bản thân — đảo ngược chuẩn mực Nho gia thông thường (vốn đề cao "nghiêm dĩ luật kỷ, khoan dĩ đãi nhân"). Đây là hệ quả trực tiếp của việc đóng vai "người phân xử/che chở" quá lâu: đứng trên cao để phán xét người khác dễ khiến bản thân quên tự soi lại mình. Vì vậy, Thiên Lương tuy là sao cát tường bậc nhất về mặt cứu giải tai ách, nhưng cũng là sao dễ sinh tính cô độc, khó gần nếu không được tiết chế bởi các sao mềm mại đi kèm — một vị "quan tòa" tốt bụng nhưng luôn giữ khoảng cách nhất định với những người mình giúp đỡ.
-
-### Nguyên lý nền
-
-- **"Đồng Lương" cách** (同梁格 — *tóng liáng gé*) tại Dần/Thân: **"Phúc Ấm tụ hội"** (福蔭聚 — *fú yìn jù*), hai sao Thiên Đồng + Thiên Lương bổ khuyết hoàn hảo cho nhau — Thiên Đồng lo hưởng phúc, Thiên Lương lo che chở/xử lý sự cố, kết hợp tạo ra một cách cục ổn định, ít cực đoan.
-- Thiên Lương giữ vai trò một trong hai "gọng kìm" của cách **"Tài Ấm giáp Ấn" / "Hình Kỵ giáp Ấn"** — vì theo quy luật an sao cố định, Thiên Tướng luôn tọa lạc kẹp giữa Cự Môn và Thiên Lương (xem chi tiết cơ chế này ở tab Thiên Tướng). Khi Cự Môn Hóa Lộc, Thiên Lương cùng Cự Môn tạo thế giáp cát cho Thiên Tướng; khi Cự Môn Hóa Kỵ, chính Thiên Lương lại là bên "biến Hình" khiến Thiên Tướng dễ vướng pháp lý. Điều thú vị là chính Thiên Lương — sao "che chở" — lại có thể trở thành nguồn gốc tai họa cho một chính tinh khác tùy vào Tứ Hóa của người hàng xóm (Cự Môn), một minh chứng nữa cho việc không sao nào tồn tại tách biệt hoàn toàn khỏi bối cảnh xung quanh.
-- Đặc biệt: Thiên Lương là một trong số ít chính tinh **KHÔNG BAO GIỜ mang Hóa Kỵ** trong hệ thống Tứ Hóa truyền thống — nhất quán với bản chất "cứu giải", một sao chuyên đi gỡ rối thì hiếm khi tự nó là nguồn gốc của rắc rối. Đây là điểm khác biệt căn bản so với Thiên Đồng (có đủ Lộc/Quyền/Kỵ nhưng không Khoa) — hai sao "Nam Đẩu hiền lành" nhưng có cấu trúc Tứ Hóa hoàn toàn khác nhau.
-
-### Tứ Hóa (Lộc: Nhâm 壬 — *rén* | Quyền: Ất 乙 — *yǐ* | Khoa: Kỷ 己 — *jǐ* — không bao giờ Hóa Kỵ) của Thiên Lương
-
----
-
-## 2. Luận theo 12 cung
-
-### Cung Mệnh (命宮 — *mìnggōng*)
-Thiên Lương thủ Mệnh cho phong thái điềm đạm, nguyên tắc, có uy với người xung quanh — thích đóng vai trò cố vấn/phân xử hơn là người trực tiếp thực thi. Nhược điểm là dễ cô độc, khó thân cận vì tiêu chuẩn đặt ra cho người khác thường cao hơn cho chính bản thân — đúng nghịch lý "nghiêm dĩ luật nhân, khoan dĩ đãi kỷ" đã nêu ở Nguyên lý nền.
-
-Cơ chế tâm lý: người Mệnh Thiên Lương vô thức tìm kiếm vai trò "người phân xử công bằng" trong mọi tình huống — không phải vì thích quyền lực, mà vì bản năng muốn khôi phục trật tự/lẽ phải khi thấy bất công. Đây là động lực tích cực nhưng cũng dễ khiến người khác cảm thấy bị phán xét, đặc biệt nếu Thiên Lương không đi kèm đủ sao mềm mại để tiết chế giọng điệu.
-
-Cách **"Đồng Lương"** (Dần/Thân, đồng cung Thiên Đồng) là tổ hợp lý tưởng nhất, cân bằng giữa hưởng phúc và che chở, giảm bớt phần nghiêm khắc thái quá của Thiên Lương độc tọa. Độc tọa tại miếu địa (Thìn, Ngọ, Tuất — "Long, Mã, Cẩu") thường cho khí chất uy nghiêm rõ rệt hơn, hợp vai trò lãnh đạo tinh thần/đạo đức trong tổ chức. Dù ở tổ hợp nào, người Mệnh Thiên Lương luôn cần học cách áp dụng chuẩn mực khắt khe của mình cho chính bản thân trước, để tránh nghịch lý đạo đức đã nêu ở Nguyên lý nền trở thành rào cản trong các mối quan hệ gần gũi.
-
-### Cung Huynh Đệ (兄弟宮 — *xiōngdì gōng*)
-Anh chị em có người đóng vai trò "anh cả/chị cả" che chở cho cả nhà — thường là người đứng ra dàn xếp mâu thuẫn, được các thành viên khác tin tưởng giao phó trách nhiệm quan trọng.
-
-### Cung Phu Thê (夫妻宮 — *fūqī gōng* — cung quản hôn nhân, tình cảm đôi lứa, người bạn đời)
-Thiên Lương thủ Phu Thê mang đúng bản chất "ấm tinh, nguyên tắc, che chở" đã nêu ở Bản chất vào đời sống hôn nhân: phối ngẫu chững chạc (穩重 — *wěnzhòng*), đáng tin cậy (可信賴 — *kě xìnlài*), thường lớn tuổi hơn hoặc chín chắn (成熟 — *chéngshú*) hơn so với tuổi thực — hôn nhân mang tính "nương tựa" (依靠 — *yīkào*) rõ rệt, một trong hai người thường đóng vai trò che chở (庇護 — *bìhù*), dẫn dắt (引導 — *yǐndǎo*) người còn lại, đúng hóa khí "Ấm" (蔭 — *yìn*, che chở như bóng cây) đã nêu ở Bản chất của Thiên Lương.
-
-Khi đồng cung với Thiên Đồng đạt mức **Vượng**, vai trò "người che chở" của Thiên Lương được làm mềm đi đáng kể bởi chất "hưởng thụ, dễ gần" của Thiên Đồng — tránh được nhược điểm phổ biến của Thiên Lương độc tọa là quá nghiêm khắc, hay phán xét (愛批評 — *ài pīpíng*) trong quan hệ vợ chồng. Kết quả là một cuộc hôn nhân vừa có người "cầm trịch" về nguyên tắc, đạo lý, vừa không thiếu sự ấm áp đời thường — đúng như cách cục "Đồng Lương" đã nêu ở tab Thiên Đồng: hai sao bổ khuyết hoàn hảo cho nhau, một bên cho sự an toàn về tinh thần, một bên cho sự dễ chịu trong sinh hoạt hằng ngày.
-
-
-### Cung Tử Tức (子女宮 — *zǐnǚ gōng*)
-Con cái được dạy dỗ nghiêm khắc, coi trọng nguyên tắc, có thể hơi xa cách tình cảm — cha mẹ Thiên Lương nên chủ động thể hiện tình thương bằng lời nói, không chỉ qua hành động che chở âm thầm.
-
-### Cung Tài Bạch (財帛宮 — *cáibó gōng*)
-Tài vận đến từ uy tín/chuyên môn được công nhận (y dược, tư vấn, phân xử) hơn là kinh doanh mạo hiểm — dòng tiền đi liền với danh tiếng cá nhân, càng làm lâu càng ổn định vì được tín nhiệm ngày một nhiều.
-
-### Cung Tật Ách (疾厄宮 — *jí'è gōng*)
-Theo đúng "Y Dược tinh", cung này thường phản ánh khả năng phục hồi tốt sau bệnh tật/sự cố — dù gặp vấn đề sức khỏe, Thiên Lương tại Tật Ách thường có "quý nhân y tế" hoặc khả năng tự chữa lành đáng chú ý (biểu tượng học, không phải chẩn đoán y khoa).
-
-### Cung Thiên Di (遷移宮 — *qiānyí gōng*)
-Ra ngoài dễ gặp quý nhân lớn tuổi cứu giúp lúc khó khăn, hợp vai trò cố vấn ở đất khách — đây là một trong những vị trí "được che chở" mạnh nhất khi xa nhà trong toàn bộ 14 chính tinh.
-
-### Cung Giao Hữu / Nô Bộc (交友宮 — *jiāoyǒu gōng*)
-Bạn bè phần lớn là người đáng tin cậy, có thể nhờ cậy lúc hoạn nạn dù số lượng không nhiều — Thiên Lương chọn bạn theo chất lượng, không chạy theo số đông hời hợt.
-
-### Cung Quan Lộc (官祿宮 — *guānlù gōng*)
-Hợp nghề y dược, luật, thanh tra/kiểm toán, cố vấn, tôn giáo — bất kỳ nghề nào cần đứng ra phân xử, cứu giúp, hoặc giám sát đạo đức nghề nghiệp đều là mảnh đất phát huy tối đa năng lực Thiên Lương.
-
-### Cung Điền Trạch (田宅宮 — *tiánzhái gōng*)
-Sản nghiệp có được từ uy tín cá nhân, thường bền vì được xây dựng cẩn trọng từng bước — ít khi liều lĩnh đầu tư ngoài khả năng, ưu tiên an toàn hơn tốc độ tăng trưởng.
-
-### Cung Phúc Đức (福德宮 — *fúdé gōng*)
-An nhàn, được kính trọng lúc về già, đời sống tinh thần có chiều sâu đạo lý — đây là hình ảnh "bậc trưởng bối khả kính" thu nhỏ trong chính đời sống nội tâm, ít hối tiếc vì luôn sống đúng nguyên tắc bản thân đặt ra.
-
-### Cung Phụ Mẫu (父母宮 — *fùmǔ gōng*)
-Cha mẹ nghiêm khắc nhưng che chở thật lòng; quan hệ có thể thiếu sự gần gũi bộc lộ nhưng luôn đầy trách nhiệm — tình thương thể hiện qua hành động bảo vệ hơn là lời nói ngọt ngào.
-## 3. Tứ Hóa (Lộc: Nhâm 壬 — *rén* | Quyền: Ất 乙 — *yǐ* | Khoa: Kỷ 己 — không bao giờ Hóa Kỵ)
-
-| Cung | Lộc | Quyền | Khoa |
-|---|---|---|---|
-| Mệnh | Uy tín tự nhiên, được kính trọng | Quyết đoán trong vai trò phân xử/cố vấn | Danh tiếng gắn với đạo đức, học vấn |
-| Huynh Đệ | Anh em được nhờ cậy, có uy tín | Anh em có người giữ vai trò dẫn dắt | Anh em được nể trọng |
-| Phu Thê | Phối ngẫu đáng tin cậy, hôn nhân bền | Phối ngẫu có chính kiến, chững chạc | Phối ngẫu được nể trọng, hôn nhân êm đềm |
-| Tử Tức | Con cái được nhờ cậy về sau | Con có nguyên tắc, chững chạc sớm | Con cái học vấn tốt |
-| Tài Bạch | Tài lộc từ uy tín/chuyên môn | Quản lý tài chính có nguyên tắc | Tài chính minh bạch, được tin tưởng |
-| Tật Ách | Khả năng hồi phục tốt | Cẩn trọng quá mức có thể gây căng thẳng | Gặp nạn có quý nhân/thầy thuốc cứu giúp |
-| Thiên Di | Ra ngoài được quý nhân giúp | Có tiếng nói, được nể trọng nơi xa | Ra ngoài gặp duyên lành, quý nhân |
-| Giao Hữu | Bạn bè tin cậy, giúp đỡ lẫn nhau | Có bạn giữ vai trò cố vấn cho mình | Bạn bè đáng kính trọng |
-| Quan Lộc | Sự nghiệp gắn với uy tín, chuyên môn | Có thực quyền trong vai trò phân xử | Hợp công việc học thuật, y dược, luật |
-| Điền Trạch | Sản nghiệp bền, xây dựng từ uy tín | Chủ động quản lý, mở rộng cơ nghiệp | Nhà cửa được xây dựng cẩn trọng, có tiếng |
-| Phúc Đức | An nhàn, phúc thọ nhờ đức độ | Chủ động sắp xếp đời sống tinh thần | Được kính trọng, đời sống có chiều sâu |
-| Phụ Mẫu | Cha mẹ được kính trọng, che chở tốt | Cha mẹ có uy, quản lý nghiêm | Quan hệ cha mẹ - con cái được nể trọng |` },
-  { label: "Liêm Trinh", body: `# LIÊM TRINH (廉貞 — lián zhēn — the Chastity Star)
+  { label: "Liêm Trinh", slug: "the-chastity-star", body: `# LIÊM TRINH (廉貞 — lián zhēn — the Chastity Star)
 
 ## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 
@@ -1233,7 +865,7 @@ Con cái cá tính mạnh, cần phương pháp giáo dục kỷ luật nhưng k
 ### Cung Tài Bạch (財帛宮 — *cáibó gōng*)
 Tài vận có thể lớn nhưng đi kèm rủi ro pháp lý/tranh chấp nếu Liêm Trinh hãm hoặc Hóa Kỵ — nên đặc biệt cẩn trọng với hợp đồng, giấy tờ, và các khoản đầu tư liên quan đến quy định pháp luật phức tạp.
 
-### Cung Tật Ách (疾厄宮 — *jí'è gōng* — cung quản sức khỏe, thể trạng, khuynh hướng bệnh tật bẩm sinh)
+### Cung Tật Ách (疾厄宮 — *jí'è gōng* — cung quản sức khỏe, thể trạng, khuynh hướng bệnh tật bẩm sinh) ¹
 Tật Ách phản ánh **cách một người phản ứng với căng thẳng nội tại** (內在壓力反應 — *nèizài yālì fǎnyìng*) nhiều hơn là một bảng chẩn đoán cụ thể. Liêm Trinh thủ Tật Ách liên quan tim mạch (心血管 — *xīnxuèguǎn*), huyết áp (血壓 — *xuèyā*), hệ thần kinh (神經系統 — *shénjīng xìtǒng*) — ứng đúng với bản chất Hỏa "cương liệt" (剛烈 — *gāngliè*) đã nêu ở Bản chất, dễ tích tụ căng thẳng (積累壓力 — *jīlěi yālì*) nội tại do luôn giữ kỷ luật cao với bản thân; đây là suy luận biểu tượng học truyền thống, không phải chẩn đoán y khoa, nên chỉ xem là gợi ý lưu tâm để chủ động điều tiết (調節 — *tiáojié*) chứ không thay thế thăm khám thực tế.
 
 Khi Liêm Trinh **hãm** và đồng cung với một Tham Lang cũng hãm, hai luồng năng lượng "kỷ luật nén chặt" (Liêm Trinh) và "dục vọng hướng ngoại" (Tham Lang) cùng lúc thiếu đi ánh sáng vượng khí để dẫn giải hợp lý — về mặt biểu tượng, đây là tổ hợp cần đặc biệt chú trọng "xả nén" (釋放壓抑 — *shìfàng yāyì*) thay vì chỉ đơn thuần "chịu đựng và kỷ luật" như khi Liêm Trinh miếu vượng độc lập: nếu cả hai loại năng lượng bị dồn nén cùng lúc mà không có kênh giải tỏa lành mạnh (健康的宣洩管道 — *jiànkāng de xuānxiè guǎndào*), khuynh hướng căng thẳng nội tại càng dễ tích lũy hơn so với người có một trong hai sao này đứng miếu vượng riêng lẻ.
@@ -1254,8 +886,12 @@ Sản nghiệp có thể biến động do liên quan đến tranh chấp/pháp 
 ### Cung Phúc Đức (福德宮 — *fúdé gōng*)
 Nội tâm dễ căng thẳng, khó thư giãn hoàn toàn nếu Liêm Trinh hãm; cần học cách buông kỷ luật đúng lúc — đây là bài học cốt lõi: biết khi nào nên nghiêm khắc và khi nào nên cho phép bản thân nghỉ ngơi.
 
-### Cung Phụ Mẫu (父母宮 — *fùmǔ gōng*)
-Cha mẹ nghiêm khắc, coi trọng quy tắc, quan hệ có thể thiếu sự mềm mại — mô hình giáo dục thiên về kỷ luật rõ ràng, tạo nền tảng vững chắc nhưng đôi khi thiếu không gian cho sự tự do cảm xúc.
+### Cung Phụ Mẫu (父母宮 — *fùmǔ gōng* — cung quản quan hệ với cha mẹ, người đỡ đầu, cấp trên trực tiếp) ²
+Liêm Trinh thủ Phụ Mẫu mang đúng bản chất "kỷ luật, nguyên tắc" đã nêu ở Bản chất vào vai trò làm cha mẹ: cha mẹ nghiêm khắc (嚴格 — *yángé*), coi trọng quy tắc (規則 — *guīzé*), quan hệ có thể thiếu sự mềm mại — mô hình giáo dục thiên về kỷ luật rõ ràng, tạo nền tảng vững chắc (穩固基礎 — *wěngù jīchǔ*) nhưng đôi khi thiếu không gian cho sự tự do cảm xúc (情感自由 — *qínggǎn zìyóu*).
+
+Khi Liêm Trinh đạt mức **Vượng** tại Phụ Mẫu và đồng cung với Thiên Tướng cũng vượng (tổ hợp "Liêm Tướng"), phần "cương liệt" (剛烈 — *gāngliè*) vốn dễ gây căng thẳng của Liêm Trinh độc tọa được Thiên Tướng — sao trung dung, biết điều hòa — làm dịu bớt đáng kể: kỷ luật vẫn cao nhưng đi kèm sự công bằng (公平 — *gōngpíng*) và nhất quán, khiến con cái dễ tôn trọng hơn là sợ hãi. Đây là một trong những tổ hợp Phụ Mẫu "nghiêm mà không lạnh" hiếm gặp — khác hẳn một Liêm Trinh hãm độc tọa dễ tạo khoảng cách cảm xúc thật sự giữa cha mẹ và con cái.
+
+
 ## 3. Tứ Hóa (chỉ Lộc: Giáp 甲 — *jiǎ* | Kỵ: Bính 丙 — không Quyền/Khoa)
 
 | Cung | Lộc | Kỵ |
@@ -1272,292 +908,119 @@ Cha mẹ nghiêm khắc, coi trọng quy tắc, quan hệ có thể thiếu sự
 | Điền Trạch | Sản nghiệp vững nhờ con đường chính đáng | Bất động sản dễ vướng tranh chấp |
 | Phúc Đức | An tâm khi sống đúng nguyên tắc bản thân | Nội tâm căng thẳng, khó buông bỏ |
 | Phụ Mẫu | Cha mẹ có địa vị, quan hệ đúng mực | Quan hệ cha mẹ - con cái căng thẳng |` },
-  { label: "Tham Lang", body: `# THAM LANG (貪狼 — tān láng — the Greedy Wolf Star)
+  { label: "Vũ Khúc", slug: "the-wealth-military-star", body: `# VŨ KHÚC (武曲 — wǔ qū — the Wealth/Military Star)
 
 ## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
-
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
 |---|---|---|---|---|
-| Đào Hoa | 桃花 | táohuā | **Đào** (cây đào) + **Hoa** (hoa) → "hoa đào, biểu tượng sức hút và duyên tình" | peach blossom (desire/charm) |
-| Song trùng nhân cách | 雙重人格 | shuāngchóng réngé | **Song** (đôi) + **Trùng** (lớp, tầng) + **Nhân** (con người) + **Cách** (tính cách) → "hai lớp tính cách trong cùng một người" | dual personality |
-| Thông minh hóa lụy | 聰明反被聰明誤 | cōngmíng fǎn bèi cōngmíng wù | **Thông minh** (khôn ngoan) + **Phản** (ngược lại) + **Bị** (bị) + **Thông minh** (khôn ngoan) + **Ngộ** (làm hại) → "khôn ngoan quay lại hại chính mình" | too clever for one's own good |
-| Hưởng lạc | 享樂 | xiǎnglè | **Hưởng** (hưởng thụ) + **Lạc** (niềm vui) → "hưởng thụ khoái lạc" | hedonism |
-| Hoa hủy | 花卉 | huāhuì | **Hoa** (hoa) + **Hủy** (cây cỏ) → "hoa cỏ — biểu tượng của Thiên Cơ, đối lập cây gỗ của Tham Lang" | flowers and grasses |
-| Thạch Sùng | 石崇 | shí chóng | **Thạch** (họ Thạch) + **Sùng** (tên) → "đại phú gia thời Tây Tấn" | wealthy noble of the Western Jin |
+| Cương liệt | 剛烈 | gāngliè | **Cương** (cứng rắn) + **Liệt** (mãnh liệt) → "cứng rắn, mãnh liệt" | fierce |
+| Cấp táo | 急躁 | jízào | **Cấp** (gấp gáp) + **Táo** (nóng nảy) → "gấp gáp, nóng nảy" | impatient |
+| Cô khắc | 孤剋 | gū kè | **Cô** (đơn độc) + **Khắc** (khắc chế) → "đơn độc, khắc chế người thân" | isolating |
+| Quả tú | 寡宿 | guǎsù | **Quả** (góa, cô đơn) + **Tú** (chòm sao) → "sao của sự cô đơn" | star of solitude |
+| Tân Kim | 辛金 | xīn jīn | **Tân** (can Tân) + **Kim** (hành Kim) → "Kim âm, ngũ hành của Vũ Khúc" | Yin Metal |
+| Thiên Tài | 偏財星 | piāncái xīng | **Thiên** (lệch, phụ) + **Tài** (tài lộc) + **Tinh** (sao) → "sao tài lộc bất ngờ, đầu cơ" | speculative wealth star |
 
 ## 1. Bản chất
 
-**Tham Lang** (貪狼 — *tān láng* — Hán Việt: Tham = ham muốn, Lang = chó sói — hình ảnh "sói tham" biểu tượng cho dục vọng nguyên thủy, vừa nhạy bén vừa khó thỏa mãn — tiếng Anh: **the Greedy Wolf Star**)
+**Vũ Khúc** (武曲 — *wǔ qū* — Hán Việt: Vũ = võ/quân sự, Khúc = khúc nhạc/giai điệu — nguyên nghĩa chỉ một khúc nhạc trong lễ nhạc cung đình mang tính chất uy nghiêm, về sau chuyển nghĩa gắn với "võ tướng" — tiếng Anh: **the Wealth/Military Star**)
 
-- Ngũ hành: song trùng — ngoại thuộc Dương Mộc (甲木 — *jiǎ mù*), nội căn Âm Thủy (癸水 — *guǐ shuǐ*) — chính tinh DUY NHẤT trong 14 sao có cấu trúc ngũ hành hai lớp công khai, phản ánh trực tiếp vào tính "song trùng nhân cách" nổi tiếng của sao này.
-- Hóa khí (化氣 — *huàqì*) viết là **"Đào Hoa"** (桃花 — *táo huā* — dục vọng, sức hút, ham muốn — tiếng Anh: **desire/peach blossom**)
-- Thuộc nhóm: **Bắc Đẩu đệ nhất tinh** (北斗第一星 — *běidǒu dì yī xīng*) — sao đứng đầu chòm Bắc Đẩu Thất Tinh (Tham Lang, Cự Môn, Lộc Tồn, Văn Khúc, Liêm Trinh, Vũ Khúc, Phá Quân theo đúng thứ tự Bắc Đẩu cổ điển), vị trí "khai mào" cho toàn bộ chòm sao.
-- Đối chiếu gần: cùng với Thiên Cơ là hai sao trí tuệ nhất trong 14 chính tinh, nhưng khác hướng — Tham Lang trí tuệ hướng ngoại (giành lấy, mở rộng), Thiên Cơ trí tuệ hướng nội (tính toán, hoạch định). Đồng thời cùng Liêm Trinh tạo thành cặp "nhị đào hoa": Tham Lang là "đào hoa chính" (bộc lộ, chủ động quyến rũ), Liêm Trinh là "đào hoa thứ" (kín đáo, có kỷ luật).
-- Điển tích: theo một số nguồn, hình tượng Tham Lang gắn với đàn sói dữ canh giữ cổng miếu Đát Kỷ trong Phong Thần Diễn Nghĩa — biểu tượng cho bản năng nguyên thủy, vừa cảnh giác vừa hung hãn, luôn trong trạng thái sẵn sàng giành lấy những gì mình muốn.
-- Đại diện nhân sự: không có vai vế cố định; Tham Lang phản ánh khía cạnh ham muốn/dục vọng/tham vọng trong mọi mối quan hệ hơn là một vai trò gia đình cụ thể.
-- Đặc tính riêng: Miếu tại Sửu, Mùi; Vượng tại Thìn, Tuất; Đắc tại Dần, Thân; Hãm tại Tị, Hợi, Tý, Ngọ, Mão, Dậu — Tham Lang có SỐ CUNG HÃM NHIỀU NHẤT trong 14 chính tinh (6/12 cung), phản ánh đúng bản chất "dục vọng khó được thỏa mãn trọn vẹn ở phần lớn hoàn cảnh" — một chính tinh mà sự bất mãn thường trực gần như là mặc định, chỉ có một số ít vị trí thực sự "đủ đầy".
+- Ngũ hành: Âm Kim (辛金 — *xīn jīn*) — Kim "âm", sắc bén nhưng có chừng mực, khác Kim "dương" mạnh mẽ trực diện hơn; đúng tính chất quyết đoán nhưng vẫn có tính toán của Vũ Khúc.
+- Hóa khí (化氣 — *huàqì*) viết là **"Tài"** (財 — *cái* — của cải, tài sản — tiếng Anh: **wealth**) — Bắc Đẩu đệ lục tinh, **Tài Bạch chủ** chính danh — "tài chủ động" (khác Thiên Phủ "tài tĩnh" chỉ gìn giữ, khác Thái Âm "tài tích lũy" chỉ âm thầm dành dụm).
+- Thuộc nhóm: một trong hai sao chủ **Quan Lộc chủ** (cùng Liêm Trinh) — vai trò kép Tài Bạch chủ + Quan Lộc chủ khiến Vũ Khúc gắn liền cả sự nghiệp lẫn tài chính, hiếm chính tinh nào có sức ảnh hưởng song song lên cả hai lĩnh vực rõ rệt như vậy.
+- Đối ứng tự nhiên: không có "đối tinh" nghịch vượng/hãm; nhưng về mặt triết lý làm giàu, Vũ Khúc và **Thiên Phủ** tạo thành cặp đối lập bổ sung — Phủ tài tĩnh sẵn có cần giữ, Vũ Khúc tài động phải giành lấy.
+- Điển tích: trong lịch sử chính thống (không phải Phong Thần Bảng), Vũ Khúc được gắn với **Chu Vũ Vương** (周武王 — *zhōu wǔ wáng*) — người dấy binh lật đổ Trụ Vương tàn bạo, lập nên nhà Chu. Gắn với một vị vua-tướng lĩnh khai quốc bằng vũ lực chính nghĩa, khác hẳn các chính tinh khác thường gắn với văn thần/hậu phi trong Phong Thần Bảng — lý giải phần "chính danh nhưng buộc phải dùng đến bạo lực/quyết đoán" của Vũ Khúc.
+- Đại diện nhân sự: không gắn vai vế gia đình cố định — nhưng do tính "cô khắc" (孤剋 — *gū kè*), Vũ Khúc tại các cung lục thân thường cảnh báo duyên phận mỏng hơn bình thường, đặc biệt tại Phu Thê.
+- Đặc điểm riêng: thuộc nhóm sao **"quả tú"** (寡宿 — *guǎ sù* — chòm sao của sự cô đơn/góa bụa) — cổ ngữ "Vũ Khúc nhập Mệnh, nghi vãn hôn" (nên kết hôn muộn). Đây không phải lời nguyền mà là hệ quả logic: tính "cương liệt" (剛烈 — *gāngliè*) + "cấp táo" (急躁 — *jízào*) cần thiết để giành tài lại chính là thứ gây va chạm trong quan hệ gần gũi.
 
-Tham Lang mang cơ chế song trùng nhân cách: **"ngoại thuộc Giáp Mộc, nội căn Quý Thủy"** (外屬甲木 — *wài shǔ jiǎ mù*，內裡屬癸水 — *nèilǐ shǔ guǐ shuǐ*) — vỏ ngoài chính trực, quang minh như cây gỗ vươn thẳng (Dương Mộc), nhưng gốc rễ lại phù đãng, biến ảo như dòng nước ngầm (Âm Thủy). Đây là gốc rễ của tính "song trùng đạo đức" nổi tiếng của Tham Lang: cùng một người có thể vừa rất nguyên tắc trong công việc, vừa rất buông thả trong ham muốn cá nhân — không phải giả dối, mà là hai tầng bản chất cùng tồn tại thật, mỗi tầng chiếm ưu thế tùy hoàn cảnh và mức độ tự chủ của chủ nhân lá số.
+Vũ Khúc là chính tinh duy nhất mà tên gọi trực tiếp mang nghĩa "võ" (武 — *wǔ*) — phản ánh nguồn gốc kép của sao này: vừa là tướng lĩnh, vừa là biểu tượng tài chính chủ động. Sự kết hợp tưởng chừng mâu thuẫn giữa "quân sự" và "tài phú" thực ra rất nhất quán về mặt cơ chế: trong xã hội cổ, chinh chiến và tích lũy của cải đều đòi hỏi cùng một phẩm chất — quyết đoán, dám chấp nhận rủi ro, sẵn sàng đối đầu trực diện thay vì né tránh. Đây là lý do "tài động" của Vũ Khúc luôn đi kèm cái giá là tính "cô khắc" trong quan hệ: thứ gì phải giành giật mà có thì hiếm khi đến cùng sự êm ả — của cải đến từ việc CHIẾM LĨNH một vị thế, không phải được trao tặng hay tự nhiên tích lũy.
 
 ### Nguyên lý nền
 
-- So sánh với Thiên Cơ: Tham Lang là **"cây"** (樹木, Dương Mộc — vươn ra chiếm lĩnh không gian), Thiên Cơ là **"hoa cỏ"** (花卉 — *huāhuì*, Âm Mộc — mềm mại, thích nghi). Cả hai đều "trí tuệ" nhưng một bên chủ động bành trướng, một bên chủ động thích nghi — hai chiến lược sinh tồn khác nhau của cùng một hành Mộc.
-- Vì gốc thuộc Thủy nên năng lượng chuyển hóa của Tham Lang là Đào Hoa, khiến sao này có xu hướng thiên về hưởng lạc, ưa cạnh tranh, nhiều tham vọng, và đôi khi "quá khôn khéo" đến mức phản tác dụng (thông minh hóa lụy) — trí tuệ hướng ngoại nếu không có điểm dừng sẽ tự biến thành gánh nặng.
-- Nhân vật lịch sử dân gian thường được liên hệ: Thạch Sùng (石崇 — *shí chóng*), Quách Tử Nghi (郭子儀 — *guō zǐyí*) — đại diện cho trạng thái Tham Lang đắc cách: phú quý cực thịnh nhờ biết chuyển hóa dục vọng/tham vọng thành động lực chính đáng thay vì buông thả vô độ.
-- Vì là sao "đào hoa chính", Tham Lang khi gặp Hỏa/Linh tinh đắc cách có thể tạo **"Hỏa Tham"/"Linh Tham"** — cát cách bộc phát nhanh, một trong những trường hợp hiếm hoi sát tinh đồng hành lại trở thành động lực tích cực (xem nguyên tắc "Sát tinh hữu chế" ở tab Phương pháp luận). Đây là minh chứng sinh động nhất cho nguyên tắc đó trong toàn bộ 14 chính tinh: năng lượng dữ dội của Hỏa/Linh "đốt cháy" sự do dự vốn có của Tham Lang, biến dục vọng phân tán thành quyết tâm dồn về một hướng.
+Vũ Khúc và Thiên Phủ đại diện hai triết lý làm giàu đối lập: Phủ = tài tĩnh, sẵn có, cần giữ; Vũ Khúc = tài động, phải giành lấy bằng quyết đoán/rủi ro. Tính "cương liệt" (剛烈 — *gāngliè*) + "cấp táo" (急躁 — *jízào*) cần thiết để giành tài lại chính là nguyên nhân gây cô khắc quan hệ — đây là một cơ chế hợp lý có thể giải thích được, không phải lời nguyền huyền bí.
 
-### Tứ Hóa (Lộc: Mậu 戊 — *wù* | Quyền: Kỷ 己 — *jǐ* | Kỵ: Quý 癸 — *guǐ* — không Khoa) của Tham Lang
+Tổ hợp đồng cung kinh điển tại Mệnh: **Vũ Phủ** (Tý/Ngọ) phú quý song toàn, kết hợp tài tĩnh và tài động thành thế cân bằng hiếm có; **Vũ Tham** (Sửu/Mùi — "Tiên bần hậu phú") nghèo trước giàu sau, vì Tham Lang cần thời gian để chuyển hóa dục vọng thành động lực chính đáng; **Vũ Tướng** (Dần/Thân) ổn định, Thiên Tướng điều hòa bớt phần cương liệt cực đoan; **Vũ Sát** (Mão/Dậu) cương liệt cực độ, cần một nghề chuyên môn để trút năng lượng đúng chỗ; **Vũ Phá** (Tị/Hợi) mạo hiểm, hao tài, thất thường nhất trong năm tổ hợp vì cả hai sao đều mang tính phá cách/quyết đoán, dễ cộng hưởng thành bốc đồng.
 
-Đáng chú ý: Tham Lang không bao giờ có Hóa Khoa — sao chủ về dục vọng/sức hút này có thể mang lại tài lộc (Lộc) hoặc quyền lực thực tế (Quyền), thậm chí gây họa (Kỵ), nhưng KHÔNG BAO GIỜ tạo ra danh tiếng thuần túy/thanh danh học thuật — nhất quán với bản chất "hướng ngoại, giành lấy" chứ không phải "được công nhận qua tri thức" như Hóa Khoa thường đại diện.
+**"Vũ Khúc nhập khố"** (武曲入庫 — *wǔqū rù kù*): Vũ Khúc (Kim) tọa Thìn/Tuất/Sửu/Mùi — nhóm địa chi gọi là "tứ mộ khố" — là vị trí vững chãi, tích lũy tốt nhất. Đây là một nghịch lý thú vị: một sao bản chất "động" khi vào đúng vị trí "kho" (vốn là khái niệm tĩnh) lại đạt trạng thái lý tưởng nhất — vừa kiếm được vừa giữ được, rất lý tưởng cho kinh doanh dài hạn thay vì đầu cơ ngắn hạn.
+
+Cơ chế Ngũ Hành: Kim ứng mùa Thu, mang tính "túc sát" (肅殺 — nghiêm khắc, thu liễm, thu hoạch dứt khoát) — đây là gốc rễ của tính "quyết đoán lạnh lùng" đặc trưng của Vũ Khúc, khác hẳn Thổ (Phủ/Tử Vi) vốn mang tính bao dung, ổn định, ít biến động.
+
+Phân biệt hai tổ hợp thường bị nhầm lẫn: **Vũ Sát** (Mão/Dậu) — cương liệt CÓ kiểm soát, cần một kỹ năng chuyên môn cụ thể để trút năng lượng, có tiềm năng thành công lớn nếu định hướng đúng; **Vũ Phá** (Tị/Hợi) — cương liệt KHÔNG kiểm soát vì Phá Quân bản chất phá cách, khiến sự quyết đoán của Vũ Khúc biến thành bốc đồng thiếu tính toán. Cổ thư vì vậy đánh giá Vũ Sát cao hơn Vũ Phá dù cả hai đều mang đặc tính "cương liệt".
+
+- Phân biệt "Chính Tài" (正財星 — của cải chính đáng, đến từ lao động/kinh doanh hợp pháp) và "Thiên Tài" (偏財星 — *piāncái xīng* — của cải đầu cơ/may rủi, đặc trưng của Tham Lang) — Vũ Khúc thuộc nhóm Chính Tài, dù quyết đoán mạo hiểm nhưng vẫn trên nền tảng thực chất chứ không thuần đầu cơ.
+- Giải thích lại "quả tú": không phải Vũ Khúc lạnh lùng vô tình, mà vì chữ "Lợi" (利 — *lì*) trong hệ giá trị của sao này luôn được ưu tiên xử lý trước tình cảm — một thứ tự ưu tiên hợp lý trong kinh doanh nhưng dễ gây tổn thương trong quan hệ cá nhân nếu không được điều chỉnh.
+- Điển tích mở rộng: Quan Vũ (關羽 — *guān yǔ*), Địch Thanh (狄青 — *dí qīng*) — hai nhân vật lịch sử trung dũng, văn võ song toàn, thường được dùng minh họa cho hình mẫu Vũ Khúc đắc cách: quyết đoán nhưng vẫn giữ trọn đạo nghĩa.
+
+### Tứ Hóa (四化 — *sìhuà*) của Vũ Khúc
+- **Hóa Lộc** (năm Kỷ 己 — *jǐ*)
+- **Hóa Quyền** (năm Canh 庚 — *gēng*)
+- **Hóa Khoa** (năm Giáp 甲 — *jiǎ*)
+- **Hóa Kỵ** (năm Nhâm 壬 — *rén*)
 
 ---
 
 ## 2. Luận theo 12 cung
 
 ### Cung Mệnh (命宮 — *mìnggōng*)
-Tham Lang thủ Mệnh cho sự thông minh, đa tài, giỏi giao tế, nhiều tham vọng — nhược điểm là dễ phân tán năng lượng vào quá nhiều mục tiêu/ham muốn cùng lúc, thiếu kiên định nếu không có sao ổn định đi kèm. Cơ chế "ngoại thuộc Giáp Mộc, nội căn Quý Thủy" khiến người Mệnh Tham Lang thường có hai lớp tính cách: vẻ ngoài chính trực, quyết đoán nhưng nội tâm lại linh hoạt, dễ bị cám dỗ.
+Vũ Khúc thủ Mệnh cho tài vận cả đời nhưng đi kèm cái giá "cô khắc" — cổ ngữ "nghi nam bất nghi nữ" (hợp nam hơn nữ) vì tính cương liệt/cấp táo dễ tạo cạnh tranh ngầm trong quan hệ nếu là nữ mệnh, đặc biệt trong hôn nhân truyền thống. Đặc điểm "đại khí vãn thành" — thành công lớn nhưng đến muộn, đúng quy luật phải tích lũy đủ va vấp mới hoàn thiện được bản lĩnh quyết đoán cần thiết.
 
-Cơ chế tâm lý: động lực sâu xa nhất của người Mệnh Tham Lang là cảm giác **"chưa đủ"** — bất kể đã đạt được bao nhiêu, luôn có một khoảng trống thôi thúc tiếp tục theo đuổi mục tiêu mới. Đây vừa là động lực tạo nên thành tựu lớn (không bao giờ tự mãn dừng lại) vừa là nguồn gốc bất an nội tâm nếu không được ý thức và tiết chế — khác biệt căn bản với Thiên Đồng "an được thì đủ".
+Cơ chế tâm lý: Vũ Khúc vận hành theo nguyên tắc **"giá trị = những gì tự tay giành được"** — khác Tử Vi tìm giá trị qua sự quy tụ hay Thiên Phủ qua sự gìn giữ, người Mệnh Vũ Khúc chỉ thực sự tin vào thành quả do chính mình tạo ra, khó chấp nhận thừa hưởng hay phụ thuộc. Đây là gốc rễ của cả điểm mạnh (tự lực, đáng tin cậy về năng lực) lẫn điểm yếu (khó ủy thác, khó chấp nhận giúp đỡ) của sao này.
 
-Miếu tại Sửu/Mùi cho tổ hợp mạnh mẽ nhất — dục vọng được kiềm chế vừa đủ để chuyển hóa thành thành tựu cụ thể; Vượng tại Thìn/Tuất cũng là vị trí tốt, thường gắn với bộc phát sau một giai đoạn tích lũy. Gặp Hỏa/Linh tinh đắc cách tại các vị trí này có thể tạo "Hỏa Tham"/"Linh Tham" — bộc phát nhanh, một trong những cách cục thành công đột biến nổi tiếng nhất trong toàn bộ hệ thống Tử Vi Đẩu Số. Ngược lại, tại 6 vị trí hãm địa (quá nửa số cung khả dĩ), người Mệnh Tham Lang cần đặc biệt chú ý đến việc chọn lọc mục tiêu — dàn trải quá nhiều ham muốn cùng lúc trong hoàn cảnh bất lợi dễ dẫn đến kết quả "được ít, mất nhiều" hơn là thành tựu rõ rệt.
+Năm tổ hợp đồng cung quyết định phần lớn sắc thái: **Vũ Phủ** (Tý/Ngọ) phú quý song toàn — tổ hợp tài chính mạnh nhất; **Vũ Tham** (Sửu/Mùi — "Tiên bần hậu phú") nghèo trước giàu sau; **Vũ Tướng** (Dần/Thân) ổn định, điều hòa bớt cương liệt nhờ ảnh hưởng ôn hòa của Thiên Tướng; **Vũ Sát** (Mão/Dậu) cương liệt cực độ, cần một nghề chuyên môn để trút năng lượng đúng chỗ; **Vũ Phá** (Tị/Hợi) mạo hiểm, hao tài, thất thường nhất trong năm tổ hợp. Dù ở tổ hợp nào, nếu tọa thủ đúng nhóm địa chi "tứ mộ khố" (Thìn/Tuất/Sửu/Mùi) — cách "Vũ Khúc nhập khố" — mức độ ổn định tài chính sẽ được cải thiện đáng kể so với các vị trí khác.
 
-### Cung Huynh Đệ (兄弟宮 — *xiōngdì gōng*)
-Quan hệ anh em phức tạp, nhiều cảm xúc đan xen, không đơn giản — tình cảm dễ thay đổi theo hoàn cảnh, cần chủ động duy trì sự ổn định thay vì để cảm xúc nhất thời chi phối mối quan hệ ruột thịt.
+### Cung Huynh Đệ (兄弟宮 — *xiōngdì gōng* — cung quản anh chị em ruột, quan hệ đồng trang lứa gần gũi nhất) ¹
+Vũ Khúc thủ Huynh Đệ mang đúng tính "cô khắc" (孤剋 — *gūkè* — cô độc, khắc chế quan hệ tình cảm) đã nêu ở Bản chất vào quan hệ anh em: ít anh em, khó đoàn kết (難團結 — *nán tuánjié*) — quan hệ anh em thiên về nghĩa vụ (義務 — *yìwù*) hơn là gắn bó tự nhiên (天然親近 — *tiānrán qīnjìn*); cần chủ động vun đắp (培養 — *péiyǎng*) nếu muốn duy trì tình cảm lâu dài, vì bản chất Kim cương quyết của Vũ Khúc không tự nhiên thiên về biểu lộ tình cảm mềm mại.
+
+Khi Vũ Khúc đạt mức **Đắc** và đồng cung với một Thất Sát **hãm**, hai luồng năng lượng "cương quyết, thực tế" (Vũ Khúc) và "độc lập, sát khí" (Thất Sát) cộng hưởng theo hướng càng làm đậm thêm tính tự lập (自立 — *zìlì*) của cả hai bên anh em: mỗi người trong gia đình đều có xu hướng tự đứng vững bằng năng lực riêng, ít dựa dẫm lẫn nhau về vật chất lẫn tinh thần. Đây không hẳn là dấu hiệu bất hòa, mà là kiểu quan hệ "tôn trọng khoảng cách" (尊重距離 — *zūnzhòng jùlí*) — anh em vẫn có thể hỗ trợ nhau đúng lúc cần thiết (đặc biệt trong công việc, nhờ tính "kim tài tinh" của Vũ Khúc), nhưng không kỳ vọng vào sự thân mật thường nhật kiểu các chính tinh chủ tình cảm như Thiên Đồng hay Thái Âm.
+
 
 ### Cung Phu Thê (夫妻宮 — *fūqī gōng*)
-Đời sống tình cảm phong phú, nhiều rung động; hôn nhân cần học cách chung thủy chủ động vì bản chất Đào Hoa dễ bị cám dỗ. Đây là cung cần ý thức rõ ràng nhất về ranh giới đạo đức trong toàn bộ 14 chính tinh.
+Dễ cãi vã, nên kết hôn muộn cả nam lẫn nữ để có đủ độ chín xử lý xung đột. Vì Vũ Khúc "tài động" đặt "Lợi" lên hàng đầu, hôn nhân cần cả hai bên ý thức rõ ràng về vai trò tài chính để tránh xung đột quyền lực trong nhà.
 
 ### Cung Tử Tức (子女宮 — *zǐnǚ gōng*)
-Con cái thông minh, cá tính đa dạng, nhiều năng khiếu nhưng cần định hướng rõ để không tản mạn — cha mẹ nên giúp con tập trung phát triển 1-2 sở trường thay vì để năng lượng phân tán khắp nơi.
+Con cá tính mạnh, cố chấp, số con thường ít — cha mẹ nên tôn trọng tính độc lập của con thay vì áp đặt, vì con cái Vũ Khúc thường phản kháng mạnh trước sự kiểm soát quá mức.
 
 ### Cung Tài Bạch (財帛宮 — *cáibó gōng*)
-Giỏi kiếm tiền qua giao tế, kinh doanh linh hoạt, đầu tư đa dạng; cần kỷ luật để không tiêu xài theo cảm hứng — tài vận đến nhanh nhưng cũng có thể đi nhanh nếu thiếu kế hoạch quản lý rõ ràng.
-
-### Cung Tật Ách (疾厄宮 — *jí'è gōng* — cung quản sức khỏe, thể trạng, khuynh hướng bệnh tật bẩm sinh)
-Tham Lang thủ Tật Ách liên quan gan (肝 — *gān*), thận (腎 — *shèn*), hệ sinh dục (生殖系統 — *shēngzhí xìtǒng*) — ứng với bản chất Thủy/dục vọng (慾望 — *yùwàng*) đã nêu ở Bản chất, dễ chịu ảnh hưởng bởi lối sống hưởng thụ (享受 — *xiǎngshòu*) quá độ nếu không có kỷ luật đi kèm; đây là suy luận biểu tượng học truyền thống, không phải chẩn đoán y khoa, chỉ nên xem là gợi ý điều chỉnh lối sống (生活方式 — *shēnghuó fāngshì*), không thay thế thăm khám thực tế.
-
-Khi Tham Lang **hãm** và đồng cung với Liêm Trinh cũng hãm, ham muốn hướng ngoại vốn là bản năng mạnh nhất của Tham Lang lại thiếu đi "điểm tựa vượng khí" để tự điều tiết — về mặt biểu tượng, đây là dấu hiệu cho thấy sức khỏe của người này nhạy cảm hơn với những giai đoạn thiếu kỷ luật sinh hoạt (mất cân bằng ăn uống, nghỉ ngơi, ham vui quá mức) hơn là với các bệnh lý bẩm sinh cố định. Kết hợp với Liêm Trinh đồng cung — vốn thiên về kỷ luật (紀律 — *jìlǜ*) — hai sao tuy cùng hãm nhưng lại có thể **bổ khuyết lẫn nhau** (互補 — *hùbǔ*) nếu người này chủ động dùng ý chí (意志力 — *yìzhìlì*) của Liêm Trinh để kìm bớt phần buông thả của Tham Lang, biến tổ hợp "song hãm" thành một dạng cân bằng động thay vì hai nhược điểm cộng dồn.
-
-
-### Cung Thiên Di (遷移宮 — *qiānyí gōng*)
-Ra ngoài giỏi giao tế, tạo quan hệ nhanh, hợp môi trường nhiều cơ hội/cạnh tranh — Tham Lang phát huy tối đa sức hút cá nhân khi ở trong môi trường đa dạng, nhiều tương tác xã hội.
-
-### Cung Giao Hữu / Nô Bộc (交友宮 — *jiāoyǒu gōng*)
-Bạn bè đông, đa dạng, quan hệ xã giao rộng nhưng không phải lúc nào cũng sâu — cần phân biệt rõ giữa quan hệ giao tế bề mặt và tình bạn thực sự đáng tin cậy.
-
-### Cung Quan Lộc (官祿宮 — *guānlù gōng*)
-Hợp nghề giao tế, kinh doanh, giải trí, nghệ thuật, hoặc bất kỳ lĩnh vực cần sức hút cá nhân và khả năng thích nghi nhanh — đây là nơi "trí tuệ hướng ngoại" của Tham Lang chuyển hóa thành thành tựu sự nghiệp rõ rệt nhất.
-
-### Cung Điền Trạch (田宅宮 — *tiánzhái gōng*)
-Sản nghiệp biến động nhiều theo cơ hội, cần tỉnh táo trước cám dỗ đầu cơ — nên đặt ra giới hạn rõ ràng cho các quyết định đầu tư bất động sản để tránh chạy theo cảm hứng nhất thời.
-
-### Cung Phúc Đức (福德宮 — *fúdé gōng*)
-Nội tâm nhiều ham muốn, khó tĩnh tại; hạnh phúc thực sự đến khi học được cách tiết chế dục vọng thay vì chạy theo vô tận — đây là bài học cốt lõi nhất của Tham Lang: biết đủ mới thực sự an vui.
-
-### Cung Phụ Mẫu (父母宮 — *fùmǔ gōng*)
-Quan hệ cha mẹ - con cái có thể phức tạp, nhiều cảm xúc, ít đơn giản một chiều — cần cả hai bên chủ động giao tiếp cởi mở để tránh những hiểu lầm tích tụ theo thời gian.
-## 3. Tứ Hóa (Lộc: Mậu 戊 — *wù* | Quyền: Kỷ 己 — *jǐ* | Kỵ: Quý 癸 — không Khoa)
-
-| Cung | Lộc | Quyền | Kỵ |
-|---|---|---|---|
-| Mệnh | Đa tài, giỏi giao tế, nhiều cơ hội | Tham vọng lớn, quyết đoán giành lấy | Dục vọng khó kiểm soát, dễ sa đà |
-| Huynh Đệ | Anh em quan hệ rộng, nhiều giao thiệp | Anh em có người mạnh mẽ, áp đảo | Anh em dễ ganh đua, xung khắc |
-| Phu Thê | Tình cảm phong phú, đời sống thú vị | Phối ngẫu mạnh mẽ, chủ động | Dễ ngoại tình/cám dỗ, cần chung thủy chủ động |
-| Tử Tức | Con cái nhiều năng khiếu | Con có tham vọng, cá tính mạnh | Con cái khó kiểm soát, ham chơi |
-| Tài Bạch | Tài lộc dồi dào từ giao tế/kinh doanh | Chủ động kiếm tiền, quyết đoán đầu tư | Tài chính dễ hao tán vì hưởng thụ |
-| Tật Ách | Sức sống mạnh mẽ | Cẩn trọng vì hoạt động quá độ | Chú ý gan, thận, hệ sinh dục |
-| Thiên Di | Ra ngoài nhiều cơ hội, giao tế tốt | Chủ động tạo dựng quan hệ nơi xa | Ra ngoài dễ sa đà hưởng thụ |
-| Giao Hữu | Bạn bè đông đảo, quan hệ rộng | Có bạn giữ vai trò thủ lĩnh nhóm | Bạn bè dễ lôi kéo vào thói xấu |
-| Quan Lộc | Sự nghiệp thuận lợi nhờ sức hút cá nhân | Thăng tiến nhờ quyết đoán, tham vọng | Sự nghiệp dễ vướng scandal, thị phi |
-| Điền Trạch | Sản nghiệp mở rộng qua cơ hội | Chủ động đầu tư, mở rộng | Bất động sản dễ đầu cơ thất bại |
-| Phúc Đức | Đời sống hưởng thụ, nhiều trải nghiệm | Chủ động theo đuổi đam mê | Nội tâm bất an vì ham muốn không dứt |
-| Phụ Mẫu | Quan hệ cha mẹ - con cái sôi động | Cha mẹ có cá tính mạnh, ảnh hưởng lớn | Quan hệ phức tạp, nhiều mâu thuẫn |` },
-  { label: "Thiên Cơ", body: `# THIÊN CƠ (天機 — tiān jī — the Strategist Star)
-
-## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
-| Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
-|---|---|---|---|---|
-| Toàn ngưu giác tiêm | 鑽牛角尖 | zuān niújiǎo jiān | **Toản** (khoan, chui vào) + **Ngưu** (trâu) + **Giác** (sừng) + **Tiêm** (nhọn) → "chui vào đầu nhọn sừng trâu — suy nghĩ luẩn quẩn" | overthinking |
-| Quỷ kế đa đoan | 鬼計多端 | guǐjì duōduān | **Quỷ** (ma quỷ) + **Kế** (mưu kế) + **Đa** (nhiều) + **Đoan** (mối, đầu mối) → "mưu kế xảo quyệt, nhiều thủ đoạn" | full of tricks |
-| Mưu thần | 謀臣 | móuchén | **Mưu** (mưu lược) + **Thần** (bề tôi) → "bề tôi giỏi mưu lược" | strategist minister |
-| Đầu xác hoại liễu | 頭殼壞了 | tóuké huàile | **Đầu** (đầu) + **Xác** (hộp sọ) + **Hoại** (hỏng) + **Liễu** (trợ từ hoàn thành) → "đầu óc hỏng — suy nghĩ luẩn quẩn quá mức" | "brain gone bad" (overthinking) |
-| Khả tố tính cao | 可塑性高 | kě sùxìng gāo | **Khả** (có thể) + **Tố** (nhào nặn) + **Tính** (tính chất) + **Cao** (cao) → "khả năng thích ứng, uốn nắn cao" | highly adaptable/malleable |
-| Ẩn tàng | 隱藏 | yǐncáng | **Ẩn** (ẩn giấu) + **Tàng** (cất giấu) → "che giấu, không bộc lộ" | hidden, concealed |
-
-## 1. Bản chất
-
-**Thiên Cơ** (天機 — *tiān jī* — Hán Việt: Thiên = trời, Cơ = máy móc/cơ mưu/thời cơ — tiếng Anh: **the Strategist Star**)
-
-- Ngũ hành: Âm Mộc (乙木 — *yǐ mù*) — Mộc "âm", mềm dẻo, uốn theo hoàn cảnh như dây leo/hoa cỏ, khác Mộc "dương" vươn thẳng cứng cáp của Tham Lang.
-- Hóa khí (化氣 — *huàqì*) viết là **"Thiện"** (善 — *shàn* — lương thiện, khéo léo — tiếng Anh: **skillful/benevolent**) — hóa khí mang tính đạo đức tích cực hiếm hoi, phản ánh gốc rễ "mưu trí phục vụ điều tốt" thay vì mưu mô vị kỷ.
-- Thuộc nhóm: **Nam Đẩu đệ tam tinh** (南斗第三星 — *nándǒu dì sān xīng*), là **Huynh Đệ chủ** (兄弟主 — *xiōngdì zhǔ*) — danh xưng dân gian **"mưu thần"** (謀臣 — *móuchén*, bề tôi giỏi mưu lược) — vai trò cố vấn chiến lược đứng sau người cầm quyền chứ không trực tiếp cầm quyền.
-- Đối chiếu gần: cùng Tham Lang là hai sao trí tuệ nhất trong 14 chính tinh nhưng khác hướng — Thiên Cơ trí tuệ hướng nội (tính toán, hoạch định), Tham Lang trí tuệ hướng ngoại (giành lấy, mở rộng).
-- Điển tích: trong Phong Thần Bảng (封神榜 — *fēngshén bǎng*), Thiên Cơ được gán cho **Khương Tử Nha** (姜子牙 — *jiāng zǐyá*) — quân sư tối cao giúp Chu Văn Vương/Chu Vũ Vương lật đổ nhà Thương, biểu tượng kinh điển nhất cho hình mẫu "mưu thần" trong văn hóa Trung Hoa: trí tuệ phục vụ đại nghĩa, không tự mình tranh ngôi vị.
-- Đại diện nhân sự: anh chị em, người cố vấn/tham mưu thân cận — đúng vai trò Huynh Đệ chủ đã nêu ở trên.
-- Đặc tính riêng: là một trong những chính tinh có biên độ miếu/hãm dao động phức tạp nhất vì luôn thay đổi tính chất theo sao đồng cung (Thái Âm/Cự Môn/Thiên Lương) — không có một bảng miếu/hãm "thuần túy" độc lập như Thái Dương/Thái Âm, phản ánh đúng bản chất một sao "biến hóa theo hoàn cảnh".
-
-Thiên Cơ là sao duy nhất trong 14 chính tinh mà bản chất "động" (biến hóa, xoay chuyển liên tục) được xem là một phẩm chất TÍCH CỰC thay vì bất ổn — miễn là nó phục vụ cho việc hoạch định thay vì phản ứng bốc đồng. Điều này lý giải vì sao Thiên Cơ, dù thuộc nhóm "Cơ Nguyệt Đồng Lương" vốn đề cao ổn định, lại là thành viên bất ổn nhất trong nhóm: trí tuệ hướng nội của Thiên Cơ cần liên tục có "bài toán mới" để giải, một môi trường quá tĩnh lặng thực chất khiến sao này khó chịu hơn là an tâm — khác hẳn Thiên Đồng hay Thiên Tướng cùng nhóm vốn tìm kiếm sự ổn định như một đích đến.
-
-### Nguyên lý nền
-
-Thiên Cơ và Tham Lang là hai sao trí tuệ nhất nhưng khác bản chất: Tham Lang trí tuệ hướng ngoại (giành lấy); Thiên Cơ trí tuệ hướng nội (tính toán, hoạch định). Hóa Kỵ của Thiên Cơ được mô tả trực tiếp bằng thành ngữ dân gian "đầu óc hỏng" (頭殼壞了 — *tóuké huàile*) — chính năng lực phân tích vốn là thế mạnh lại biến thành nhược điểm khi Hóa Kỵ: đa nghi, cố chấp, "toàn ngưu giác tiêm" (鑽牛角尖 — *zuān niújiǎo jiān* — chui vào sừng trâu, suy nghĩ luẩn quẩn không lối thoát).
-
-Thuộc nhóm "Cơ Nguyệt Đồng Lương" nhưng là thành viên "kém ổn định nhất" vì bản chất biến động/sáng tạo xung khắc nhẹ với tinh thần ổn định chung của nhóm — ba thành viên còn lại (Thái Âm, Thiên Đồng, Thiên Lương) đều thiên về "chờ đợi, tích lũy, che chở", trong khi Thiên Cơ luôn muốn chủ động thay đổi cục diện.
-
-- Tính "dễ uốn" (可塑性高 — *kě sùxìng gāo*): ví như "gió xuân thổi cỏ lại mọc" (春風吹又生 — *chūnfēng chuī yòu shēng*) — sức sống bền bỉ, phục hồi nhanh sau thất bại. Thiên Cơ có xu hướng giấu kín (隱藏 — *yǐncáng*) sự tự tin của mình sau thử thách, nhưng lại khá nhạy cảm (敏感 — *mǐngǎn*) khi bị nghi ngờ (質疑 — *zhíyí*) — một nghịch lý tâm lý: bề ngoài linh hoạt thích nghi nhưng nội tâm dễ tổn thương trước sự hoài nghi từ người khác.
-- Nguyên tắc dùng người: Thiên Cơ cần được thể hiện năng lực khiến người khác thực sự tâm phục (心服 — *xīnfú*), hoặc cùng nỗ lực (努力 — *nǔlì*) và chia sẻ (分享 — *fēnxiǎng*) thành quả công bằng — Thiên Cơ đặc biệt bài xích (排斥 — *páichì*) những kẻ "bất lao nhi hoạch" (不勞而獲 — *bù láo ér huò* — không làm mà hưởng), vì điều này đi ngược lại toàn bộ giá trị "mưu trí phải đi cùng công sức" của sao này.
-- Cách "Cơ Lương" gặp Địa Không/Địa Kiếp thường tạo duyên với huyền học (與玄學有緣 — *yǔ xuánxué yǒuyuán*) — trí tuệ hướng nội khi mất đi mục tiêu thực tế cụ thể (do Không/Kiếp) dễ chuyển hướng sang tìm kiếm ý nghĩa siêu hình.
-- ĐÍNH CHÍNH quan trọng: Thiên Cơ là Nam Đẩu đệ tam tinh — một số tài liệu nhầm lẫn xếp vào Bắc Đẩu, nhưng theo hệ thống an sao chuẩn, Thiên Cơ thuộc Nam Đẩu.
-
-### Tứ Hóa (Lộc: Ất 乙 — *yǐ* | Quyền: Bính 丙 — *bǐng* | Khoa: Đinh 丁 — *dīng* | Kỵ: Mậu 戊 — *wù*) của Thiên Cơ
-
----
-
-## 2. Luận theo 12 cung
-
-### Cung Mệnh (命宮 — *mìnggōng*)
-Thiên Cơ thủ Mệnh cho tính cách thích động não, ôn hòa, dễ gần nhưng dễ "khôn vặt" nếu trí tuệ không được dẫn dắt đúng hướng. Ranh giới giữa mưu trí và khôn vặt phụ thuộc hoàn toàn vào việc năng lực đó phục vụ hoạch định lâu dài hay chỉ để tính toán vụn vặt trước mắt — đây là câu hỏi trung tâm khi luận Mệnh Thiên Cơ.
-
-Cơ chế tâm lý: người Mệnh Thiên Cơ tồn tại trong trạng thái "luôn cần một bài toán để giải" — tâm trí không bao giờ thực sự nghỉ ngơi, kể cả khi không có việc cấp bách. Đây là nguồn gốc của cả sự nhanh nhạy đáng nể lẫn cảm giác bất an vặt vãnh nếu không có đủ "chất liệu" để tư duy — sự nhàm chán với Thiên Cơ gần như là một dạng khó chịu thực sự, không phải chỉ là cảm giác thoáng qua.
-
-Ba tổ hợp chính quyết định sắc thái: đồng cung **Thái Âm** (Dần/Thân — cách "Cơ Nguyệt") linh hoạt, văn nhã, nhưng dễ nhu nhược vì cả hai sao đều thiên về nội tâm hóa vấn đề thay vì đối đầu trực diện. Đồng cung **Cự Môn** (Mão/Dậu) giỏi tranh luận, tư duy sắc bén, kết hợp hai năng lực phân tích tạo ra khả năng biện luận xuất sắc nhưng cũng dễ quá lời. Đồng cung **Thiên Lương** (Thìn/Tuất — cách "Thiện Ấm triều cương") lương thiện, phẩm học song toàn — đây là tổ hợp cát tường nhất trong ba, vì hóa khí "Thiện" của Thiên Cơ cộng hưởng trực tiếp với "Ấm" của Thiên Lương, tạo ra một nhân cách vừa thông minh vừa có đạo đức dẫn dắt rõ ràng.
-
-### Cung Huynh Đệ (兄弟宮 — *xiōngdì gōng*)
-Không đông nhưng có người thành đạt học thuật — quan hệ anh em thiên về trao đổi trí tuệ hơn là gắn bó tình cảm thuần túy, phù hợp với những gia đình coi trọng học vấn.
-
-### Cung Phu Thê (夫妻宮 — *fūqī gōng*)
-Kết hôn sớm; nam nên tìm vợ cá tính mạnh để cân bằng sự linh hoạt đôi khi thiếu quyết đoán của mình; nữ hợp chồng lớn tuổi thành đạt học thuật, người có thể làm điểm tựa vững chắc cho tư duy luôn biến động của Thiên Cơ.
-
-### Cung Tử Tức (子女宮 — *zǐnǚ gōng*)
-Con thông minh, không hợp giáo dục rập khuôn — trẻ cần môi trường học tập linh hoạt, khuyến khích tư duy phản biện thay vì học thuộc lòng máy móc.
-
-### Cung Tài Bạch (財帛宮 — *cáibó gōng*)
-Tiền từ nỗ lực thực chất — Thiên Cơ không có kiểu tài lộc từ trên trời rơi xuống, mọi thành quả tài chính đều gắn liền với chất xám và công sức hoạch định bỏ ra.
+Cung đắc vị nhất của Vũ Khúc — tiềm năng lớn trong tài chính/thực nghiệp đúng vai trò "tài chủ động". Đây là vị trí lý tưởng để phát huy bản chất "phải giành lấy bằng quyết đoán": đầu tư, kinh doanh, hoặc bất kỳ lĩnh vực đòi hỏi ra quyết định tài chính dứt khoát.
 
 ### Cung Tật Ách (疾厄宮 — *jí'è gōng*)
-Sức khỏe kém lúc nhỏ; chú ý đầu/thần kinh, tránh thức khuya — đầu óc hoạt động liên tục là con dao hai lưỡi, cần cân bằng giữa tư duy và nghỉ ngơi (biểu tượng học, không phải chẩn đoán y khoa).
+Thời thơ ấu dễ bệnh/thương tích; về sau vấn đề xương khớp, hô hấp — ứng với hành Kim "túc sát" (nghiêm khắc, thu liễm) tác động lên cấu trúc cứng của cơ thể (biểu tượng học, không phải chẩn đoán y khoa).
 
 ### Cung Thiên Di (遷移宮 — *qiānyí gōng*)
-Nhanh nhạy, hợp phát triển ở đất khách — môi trường mới kích thích khả năng thích ứng và tính toán linh hoạt của Thiên Cơ tốt hơn hẳn so với ở lại một chỗ quen thuộc quá lâu.
+Đối ngoại mạnh, chủ động nhưng vất vả — ra ngoài luôn ở thế phải giành lấy cơ hội chứ không tự nhiên đến, đòi hỏi nỗ lực liên tục nhưng đổi lại thành quả xứng đáng nếu kiên trì.
 
-### Cung Giao Hữu / Nô Bộc (交友宮 — *jiāoyǒu gōng*)
-Bạn tài năng xuất chúng — quan hệ bạn bè thường xoay quanh việc trao đổi ý tưởng, học hỏi lẫn nhau hơn là chỉ đơn thuần vui chơi giải trí.
+### Cung Giao Hữu / Nô Bộc (交友宮 — *jiāoyǒu gōng* — cung quản bạn bè, đồng nghiệp, cấp dưới, người đồng hành ngang vai) ²
+Vũ Khúc thủ Nô Bộc mang đúng bản chất "cô khắc, đặt Lợi lên trên tình cảm" đã nêu ở Bản chất vào các mối quan hệ ngang hàng: bạn bè đa dạng — nhưng do bản chất đặt "Lợi" (利 — *lì*) trên tình cảm, quan hệ bạn bè dễ mang tính hợp tác/trao đổi lợi ích (利益交換 — *lìyì jiāohuàn*) hơn là thâm giao (深交 — *shēnjiāo*) thuần túy; cần phân biệt rõ bạn làm ăn và bạn tri kỷ (知己 — *zhījǐ*).
+
+Khi Vũ Khúc đạt mức **Miếu** tại Nô Bộc, tính "kim tài tinh" của sao này phát huy đúng chỗ nhất trong 12 cung: mạng lưới bạn bè/đồng nghiệp tuy không nhiều về mặt tình cảm sâu đậm, nhưng cực kỳ đáng tin cậy về mặt hợp tác thực chất (實質合作 — *shízhí hézuò*) — đây thường là kiểu quan hệ "làm ăn cùng nhau rất ăn ý, ít khi lừa dối nhau" vì cả hai bên đều tôn trọng nguyên tắc sòng phẳng (公平交易 — *gōngpíng jiāoyì*) mà Vũ Khúc luôn đề cao. Nói cách khác, một Vũ Khúc miếu vượng tại Nô Bộc biến "sự lạnh lùng trong tình cảm" thành lợi thế thay vì nhược điểm — bạn bè kiểu này tuy ít nhưng bền, vì không dựa trên cảm xúc nhất thời mà dựa trên sự tôn trọng lẫn nhau qua nhiều lần hợp tác.
+
 
 ### Cung Quan Lộc (官祿宮 — *guānlù gōng*)
-Hợp nghiên cứu, biên tập, nghệ thuật, hoặc bất kỳ lĩnh vực cần liên tục xử lý thông tin mới — Thiên Cơ tại Quan Lộc phát huy tốt nhất trong công việc luôn thay đổi, không lặp lại đơn điệu.
+Nam giới hợp doanh nghiệp/tài chính; nữ giới là "phụ nữ sự nghiệp" chính hiệu, sẵn sàng cạnh tranh trực diện trong môi trường nhiều thử thách. Đây là một trong hai cung Vũ Khúc làm sao chủ (cùng Liêm Trinh), nên tọa thủ tại đây luôn mang lại thực quyền đáng kể.
 
 ### Cung Điền Trạch (田宅宮 — *tiánzhái gōng*)
-Không dựa tổ nghiệp, tự gây dựng qua nhiều lần mua bán — sản nghiệp hình thành từ tính toán và tái cấu trúc liên tục hơn là tích lũy tuyến tính đơn giản.
+Tự tạo sản nghiệp bằng chính sức mình, hình thức tài sản có thể thay đổi (mua bán, tái đầu tư) nhưng luôn giữ được nền tảng — phản ánh đúng tinh thần "tài động" áp dụng vào lĩnh vực bất động sản.
 
-### Cung Phúc Đức (福德宮 — *fúdé gōng* — cung quản đời sống tinh thần, hưởng thụ, phúc phận nội tại)
-Phúc Đức không nói về vật chất mà nói về **trạng thái an trú nội tâm** (內心安頓狀態 — *nèixīn āndùn zhuàngtài*) — thứ một người thực sự cảm nhận được khi ở một mình, không cần diễn cho ai xem. Thiên Cơ thủ Phúc Đức mang đúng đặc tính "động não không ngừng" (不停動腦 — *bùtíng dòngnǎo*) vào chính đời sống tinh thần: ham hiểu biết (求知欲強 — *qiúzhī yù qiáng*), tuổi trẻ dễ bất an (不安 — *bù'ān*) vì tâm trí luôn cần "bài toán để giải" như đã nêu ở Cung Mệnh, nhưng trung niên trở đi dần an nhàn (安逸 — *ānyì*) hơn — quy luật chung của Thiên Cơ là càng lớn tuổi, tư duy biến động càng được tinh luyện (提煉 — *tíliàn*) thành trí tuệ ổn định thay vì chỉ là sự xáo động vô hướng của tuổi trẻ.
-
-Khi Thiên Cơ **đắc địa tại Tý** ở Phúc Đức, cơ chế "tinh luyện" này càng rõ rệt: Tý là một trong bốn cung miếu vượng chính của Thiên Cơ, đồng thời là cung Thủy — Thủy dưỡng Mộc (Thiên Cơ thuộc Mộc), nên năng lượng "suy nghĩ không ngừng" tại đây được nuôi dưỡng đúng hướng thay vì cạn kiệt. Đáng chú ý, Thiên Cơ đôi khi còn được chọn làm **Chủ Thân** (身主 — *shēnzhǔ*) của một lá số — khi đó trục Phúc Đức–Thân cộng hưởng trực tiếp với nhau: đời sống tinh thần (Phúc Đức) và trọng tâm vận mệnh hậu vận (Thân) đều xoay quanh cùng một loại năng lượng "mưu trí phục vụ điều tốt" (hóa khí "Thiện" đã nêu ở Bản chất). Hệ quả thực tế: sự an nhàn không đến từ việc ngừng suy nghĩ, mà đến từ việc tìm được đúng "bài toán" xứng tầm để tâm trí luôn có việc để giải mà không rơi vào trạng thái lo âu vụn vặt (瑣碎焦慮 — *suǒsuì jiāolǜ*) vô ích.
-
+### Cung Phúc Đức (福德宮 — *fúdé gōng*)
+Vị trí kém thuận lợi nhất của Vũ Khúc — nóng vội, cố chấp, làm nhiều hưởng ít vì tâm trí luôn hướng ra ngoài để giành lấy thay vì dừng lại tận hưởng. Đây là bài học lớn nhất của người Mệnh Vũ Khúc: học cách dừng lại đúng lúc.
 
 ### Cung Phụ Mẫu (父母宮 — *fùmǔ gōng*)
-Cha mẹ hòa nhã nhưng con độc lập nên dễ xem nhẹ sự quan tâm — cần chủ động giữ liên lạc, tránh để tính tự lập biến thành xa cách tình cảm gia đình theo thời gian.
-## 3. Tứ Hóa (Lộc: Ất 乙 — *yǐ* | Quyền: Bính 丙 — *bǐng* | Khoa: Đinh 丁 — *dīng* | Kỵ: Mậu 戊 — *wù*)
+Cha mẹ nghiêm khắc, cố chấp, kỳ vọng cao; quan hệ êm đềm về bề mặt nhưng thiếu sự cởi mở tình cảm sâu — mô hình giáo dục thiên về kỷ luật/thành tích hơn là đồng cảm.
+## 3. Tứ Hóa (Lộc: Kỷ 己 — *jǐ* | Quyền: Canh 庚 — *gēng* | Khoa: Giáp 甲 — *jiǎ* | Kỵ: Nhâm 壬 — *rén*)
 | Cung | Lộc | Quyền | Khoa | Kỵ |
 |---|---|---|---|---|
-| Mệnh | Thông minh, yêu tôn giáo | Mưu lược, tính toán giỏi | Trí tuệ, giỏi hoạch định | Suy nghĩ luẩn quẩn, cố chấp |
-| Huynh Đệ | Anh em thông minh | Anh em dễ biến động | Anh em có thể chỉ dạy | Duyên anh em mỏng |
-| Phu Thê | Được đồng nghiệp khác giới giúp | — | Được đồng nghiệp ưu ái | Tình cảm khúc mắc |
-| Tử Tức | Con hoạt bát | Con nhạy bén | Con ăn nói giỏi, hợp giáo | Con hiếu động, đề phòng tai nạn |
-| Tài Bạch | Dòng tiền lớn, biến động | Giỏi hoạch định tài chính | Hợp quản lý tiền | Hao tâm vì tiền |
-| Tật Ách | Đầu óc minh mẫn | Yêu văn học, chú ý gan | Chú ý nghỉ ngơi | Đau đầu, tránh thức khuya |
-| Thiên Di | Hợp đi xa, di cư | Hợp xuất ngoại có kế hoạch | Cơ hội du lịch nước ngoài | Đề phòng tai nạn giao thông |
-| Giao Hữu | Kết giao người tài | Bạn mưu lược, thâm trầm | Bạn lãng mạn, tốt đẹp | Đề phòng bạn nhiều mưu kế |
-| Quan Lộc | Kiếm tiền bằng trí tuệ | Khởi nghiệp bằng trí tuệ | Hợp công việc trí óc | Không hợp cơ khí, dễ thất bại |
-| Điền Trạch | Nhà ngày càng lớn | Chú trọng bài trí | Tâm huyết trang trí | Đau đầu vì sửa nhà |
-| Phúc Đức | Biết sắp xếp tuổi già | Ham hiểu biết tôn giáo/huyền học | Có cơ duyên tôn giáo | Về già dễ trầm uất |
-| Phụ Mẫu | Duyên trưởng bối nam giới | Cha mẹ nhanh nhạy | Cha mẹ sáng suốt | Bất đồng quan điểm |` },
-  { label: "Thất Sát", body: `# THẤT SÁT (七殺 — qī shā — the General Star)
-
-## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
-| Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
-|---|---|---|---|---|
-| Hỉ nộ vô thường | 喜怒無常 | xǐnù wúcháng | **Hỉ** (vui) + **Nộ** (giận) + **Vô** (không) + **Thường** (cố định) → "vui giận thất thường" | moody |
-| Bại trung cầu thắng | 敗中求勝 | bàizhōng qiúshèng | **Bại** (thất bại) + **Trung** (giữa) + **Cầu** (tìm kiếm) + **Thắng** (chiến thắng) → "tìm chiến thắng giữa thất bại" | snatching victory from defeat |
-| Tướng | 將 | jiàng | **Tướng** (tướng lĩnh) → "vị tướng cầm quân" | general |
-| Thất Sát triều đẩu | 七殺朝斗格 | qī shā cháo dǒu gé | **Thất** (bảy) + **Sát** (sát khí) + **Triều** (chầu về) + **Đẩu** (chòm sao) → "Thất Sát chầu về chòm Đẩu" | Seven Killings paying court to the Dipper |
-| Như bão hổ nhi miên | 如抱虎而眠 | rú bào hǔ ér mián | **Như** (như là) + **Bão** (ôm) + **Hổ** (hổ) + **Nhi** (mà) + **Miên** (ngủ) → "như ôm hổ mà ngủ — sức mạnh kề hiểm họa" | like sleeping while embracing a tiger |
-| Nhất sơn bất dung nhị hổ | 一山不容二虎 | yī shān bù róng èr hǔ | **Nhất** (một) + **Sơn** (núi) + **Bất** (không) + **Dung** (chứa) + **Nhị** (hai) + **Hổ** (hổ) → "một núi không chứa nổi hai hổ" | one mountain cannot hold two tigers |
-
-## 1. Bản chất
-
-**Thất Sát** (七殺 — *qī shā* — Hán Việt: Thất = bảy, Sát = sát khí/sao dữ — tên gọi bắt nguồn từ vị trí thứ bảy tính từ Tử Vi theo phép an sao — tiếng Anh: **the General Star**)
-
-- Ngũ hành: Âm Kim pha Hỏa (辛金帶火 — hỏa hóa chi kim) — Kim bị Hỏa luyện qua, tạo tính chất sắc bén nhưng đã được tôi luyện, khác Kim thuần túy của Vũ Khúc.
-- Hóa khí (化氣 — *huàqì*) viết là **"Tướng"** (將 — *jiàng* — tướng quân, người cầm quân — tiếng Anh: **the General**)
-- Thuộc nhóm: **Nam Đẩu đệ lục tinh**, mang danh xưng dân gian **"tướng quân"** — vị trí cao nhất trong hệ thống "chiến tướng" của 14 chính tinh, chỉ đứng sau Đế tinh Tử Vi về mặt uy quyền quân sự.
-- Đối ứng tự nhiên: không có đối tinh nghịch vượng/hãm; nhưng có quan hệ Ngũ Hành trực tiếp với **Phá Quân** (Kim sinh Thủy) — hai "chiến tướng" liền kề trong hệ phân cấp, Thất Sát cao hơn Phá Quân đúng một bậc.
-- Điển tích: trong Phong Thần Bảng (封神榜 — *fēngshén bǎng*), Thất Sát được gán cho **Hoàng Phi Hổ** (黃飛虎 — *huáng fēihǔ*) — đại tướng trung thành của nhà Thương, sau vì bị bức hại mà quy thuận nhà Chu, trở thành một trong những chiến tướng dũng mãnh nhất phù Chu diệt Trụ. Điển tích này phản ánh chính xác bản chất Thất Sát: sức mạnh quân sự thuần túy, trung thành với chính nghĩa nhưng sẵn sàng chuyển phe khi minh chủ không còn xứng đáng.
-- Đại diện nhân sự: không gắn vai vế gia đình cố định — đại diện cho vai trò **chiến binh/người thực thi quyết liệt** trong mọi mối quan hệ xuất hiện.
-- Đặc tính riêng: Miếu tại Dần, Thân, Tị, Hợi (bốn góc tứ mã); Vượng tại Thìn, Tuất (dù mang tên "Thiên La Địa Võng" đáng sợ, lại là vị trí có lợi RIÊNG cho Thất Sát); các cung còn lại ở mức Đắc/Bình — Thất Sát gần như không có hãm địa thực sự nặng, phản ánh bản chất một chiến tướng luôn giữ được sức mạnh cơ bản dù ở hoàn cảnh nào.
-
-Thất Sát mang hình tượng "tướng quân xông pha trận tiền" rõ rệt nhất trong 14 chính tinh — hoàn toàn không có Tứ Hóa vì bản chất một tướng lĩnh là THI HÀNH mệnh lệnh chứ không tự quyết định chiến lược lớn (khác Phá Quân, người "phá cách" theo ý riêng). Vị trí đặc biệt tại Thìn/Tuất ("Thiên La Địa Võng") cho thấy một nguyên lý sâu hơn về sát tinh nói chung: năng lượng mãnh liệt không nguy hiểm vì bản thân nó, mà nguy hiểm khi THIẾU KHUÔN KHỔ để trút vào — cũng chính khuôn khổ đó, khi đủ mạnh, lại là thứ giúp sát khí phát huy tối đa thay vì tự hủy hoại. Đây là một trong những nghịch lý sâu sắc nhất trong toàn bộ hệ thống: vị trí tưởng như bất lợi nhất (bị "lưới trời vây bọc") lại trở thành nơi phát huy sức mạnh tốt nhất cho đúng loại năng lượng phù hợp.
-
-### Nguyên lý nền
-
-Thuộc nhóm "Sát Phá Liêm Tham". KHÔNG có Tứ Hóa (giống Thiên Phủ, Thiên Tướng) — vì bản chất "tướng lĩnh chỉ thực thi mệnh lệnh vua, không tự quyết". Đây là điểm chung thú vị giữa ba sao tưởng chừng rất khác nhau (Thiên Phủ ôn hòa, Thiên Tướng trung dung, Thất Sát mãnh liệt): cả ba đều là những vai trò PHỤC VỤ một thẩm quyền cao hơn, chỉ khác cách thức phục vụ.
-
-**"Thất Sát triều đẩu"** (七殺朝斗格 — *qī shā cháo dǒu gé*): độc tọa Dần/Thân, tam hợp có cả Tử Vi lẫn Thiên Phủ — hình ảnh một tướng quân được cả vua lẫn tể tướng tin tưởng giao phó, "điều động trăm vạn hùng binh". Đặc biệt: tại Thìn/Tuất ("Thiên La Địa Võng") lại có lợi cho riêng Thất Sát — sát khí mãnh liệt cần khuôn khổ mạnh để chế ngự và phát huy đúng chỗ, một ngoại lệ hiếm hoi trong toàn bộ hệ thống miếu/hãm.
-
-- Ẩn dụ **"như bão hổ nhi miên"** (如抱虎而眠 — *rú bào hǔ ér mián* — như ôm hổ mà ngủ) — sức mạnh và hiểm họa luôn song hành trong cùng một bản chất; người sở hữu Thất Sát mạnh mẽ luôn phải học cách chung sống với chính năng lượng dữ dội của bản thân.
-- **"Nhất sơn bất dung nhị hổ"** (一山不容二虎 — *yī shān bù róng èr hǔ*) — giải thích tính khó hòa hợp của Thất Sát dù gặp người cùng cá tính mạnh; hai nguồn uy quyền lớn hiếm khi tồn tại yên ổn trong cùng một không gian.
-- Phân biệt vai trò **"Chủ Soái"** (主帥 — lao tâm, độc lập tác chiến, tự chịu trách nhiệm toàn cục) của Thất Sát so với **"Tiên Phong"** (先鋒 — lao lực, chịu mệnh lệnh trực tiếp) của Phá Quân — dù cả hai đều là "chiến tướng", vị trí và mức độ tự chủ trong chuỗi chỉ huy khác nhau rõ rệt.
-
-### Tứ Hóa: Không có (đặc điểm định danh của chính tinh này, giống Thiên Phủ và Thiên Tướng)
-
----
-
-## 2. Luận theo 12 cung
-
-### Cung Mệnh (命宮 — *mìnggōng*)
-Thất Sát thủ Mệnh cho tính độc lập mạnh mẽ, tự tôn cao, cảm xúc thất thường (喜怒無常 — *xǐnù wúcháng*) nhưng sức bền phi thường, đúng tinh thần "bại trung cầu thắng" (敗中求勝 — *bàizhōng qiúshèng* — tìm chiến thắng ngay giữa thất bại).
-
-Cơ chế tâm lý: người Mệnh Thất Sát vận hành theo nguyên tắc "chứng minh bằng hành động, không phải lời nói" — khác Cự Môn tranh luận hay Thiên Cơ tính toán, Thất Sát giải quyết mọi nghi vấn bằng cách trực tiếp xông vào và hoàn thành. Đây là lý do sao này đặc biệt phù hợp với môi trường có thử thách rõ ràng, cụ thể — sự mơ hồ, thiếu mục tiêu mới là kẻ thù thực sự của Thất Sát, không phải khó khăn hay rủi ro.
-
-Ba tổ hợp chính quyết định sắc thái: đồng cung **Liêm Trinh** (Sửu/Mùi) cứng rắn, đa tài, kết hợp sát khí của Thất Sát với tính kỷ luật của Liêm Trinh tạo ra một nhân cách vừa mạnh mẽ vừa có nguyên tắc. Đồng cung **Vũ Khúc** (Mão/Dậu — cách "Vũ Sát") cương liệt cực độ, cần một nghề chuyên môn để trút năng lượng — đây là tổ hợp mãnh liệt nhất trong ba, dễ thành công lớn nếu định hướng đúng nhưng cũng dễ cực đoan nếu vô chế. Đồng cung **Tử Vi** (Tị/Hợi) ngoài tĩnh trong cương, uy quyền được kiềm chế bởi sự hiện diện của Đế tinh — sát khí của Thất Sát được "thuần hóa" phần nào khi đứng cạnh một thẩm quyền cao hơn. Đặc biệt tại Thìn/Tuất ("Thiên La Địa Võng") lại có lợi riêng cho Thất Sát như đã nêu ở Nguyên lý nền — một nghịch lý chỉ đúng với chính tinh này trong toàn bộ hệ thống.
-
-### Cung Huynh Đệ (兄弟宮 — *xiōngdì gōng* — cung quản anh chị em ruột, quan hệ đồng trang lứa gần gũi nhất)
-Thất Sát thủ Huynh Đệ mang đúng bản chất "tướng quân độc lập tác chiến" đã nêu ở Bản chất vào quan hệ anh em: duyên mỏng (緣薄 — *yuán báo*) — quan hệ anh em thường không gần gũi, mỗi người có xu hướng độc lập (獨立 — *dúlì*) phát triển con đường riêng, ít khi nương tựa vào nhau, đúng tinh thần "nhất sơn bất dung nhị hổ" đã nêu ở Nguyên lý nền: hai cá tính mạnh trong cùng một mái nhà hiếm khi tồn tại yên ổn ở khoảng cách quá gần.
-
-Khi Thất Sát **hãm** và đồng cung với Vũ Khúc đạt mức **Đắc**, phần "sát khí" vốn dễ gây xung đột của Thất Sát độc tọa được Vũ Khúc — một sao thiên về thực tế, tài chính, ít cảm tính — làm dịu bớt phần nào: quan hệ anh em tuy vẫn giữ khoảng cách nhất định, nhưng dễ tìm được **tiếng nói chung trong công việc/tài chính** (財務共識 — *cáiwù gòngshí*) hơn là trong đời sống tình cảm thường nhật. Đây là kiểu Huynh Đệ "hợp tác được nhưng không thân thiết" — phù hợp nhất khi anh em cùng tham gia kinh doanh hoặc dự án chung có phân vai rõ ràng, thay vì kỳ vọng một mối quan hệ gắn bó khăng khít kiểu truyền thống.
-
-
-### Cung Phu Thê (夫妻宮 — *fūqī gōng*)
-Nhiều trắc trở, nên kết hôn muộn — bản chất "tướng quân" của Thất Sát khiến quan hệ hôn nhân sớm dễ va chạm vì cả hai bên chưa đủ độ chín để dung hòa cái tôi mạnh mẽ.
-
-### Cung Tử Tức (子女宮 — *zǐnǚ gōng*)
-Cá tính mạnh, khó dạy — con cái Thất Sát thường có ý chí độc lập từ nhỏ, cha mẹ nên định hướng bằng sự tôn trọng thay vì áp đặt cứng nhắc để tránh xung đột kéo dài.
-
-### Cung Tài Bạch (財帛宮 — *cáibó gōng*)
-Tốt nhưng thích mạo hiểm, biến động lớn — dòng tiền lên xuống theo chu kỳ rõ rệt, phù hợp người có bản lĩnh chấp nhận rủi ro để đổi lấy thành quả lớn.
-
-### Cung Tật Ách (疾厄宮 — *jí'è gōng*)
-Sức khỏe kém từ nhỏ, dễ mắc trĩ khi lớn — ứng với bản chất sát khí mãnh liệt tác động lên hệ tuần hoàn/khí huyết (biểu tượng học, không phải chẩn đoán y khoa).
-
-### Cung Thiên Di (遷移宮 — *qiānyí gōng*)
-Năng động, kiên định — ra ngoài là môi trường Thất Sát phát huy tốt nhất, tựa như "tướng quân xông pha trận tiền", càng thử thách càng bộc lộ rõ bản lĩnh.
-
-### Cung Giao Hữu / Nô Bộc (交友宮 — *jiāoyǒu gōng*)
-Bạn mang phiền toái nhiều hơn lợi ích — cần chọn lọc kỹ quan hệ xã hội, tránh bị cuốn vào những mối quan hệ tiêu tốn năng lượng mà không mang lại giá trị tương xứng.
-
-### Cung Quan Lộc (官祿宮 — *guānlù gōng*)
-Hợp vận động viên, cảnh sát, quân đội — bất kỳ nghề nghiệp nào đòi hỏi kỷ luật, đối mặt trực diện với thử thách đều phù hợp với bản chất tướng lĩnh của Thất Sát.
-
-### Cung Điền Trạch (田宅宮 — *tiánzhái gōng*)
-Biến động, được ít mất nhiều — sản nghiệp không ổn định, cần thận trọng trong các quyết định lớn liên quan đến bất động sản, tránh đầu tư theo cảm tính nhất thời.
-
-### Cung Phúc Đức (福德宮 — *fúdé gōng*)
-Tại Thân/Dậu đắc lợi; nếu không thì vất vả, khắt khe với bản thân — Thất Sát hiếm khi cho phép mình nghỉ ngơi trọn vẹn, luôn cảm thấy cần phải chứng minh điều gì đó.
-
-### Cung Phụ Mẫu (父母宮 — *fùmǔ gōng*)
-Cha mẹ cố chấp, độc đoán, xa cách — mô hình giáo dục nghiêm khắc, ít biểu lộ tình cảm, tạo tính cách độc lập sớm nhưng cũng để lại khoảng cách tâm lý cần chủ động hàn gắn khi trưởng thành.
-## 3. Tứ Hóa: Không có` },
-  { label: "Phá Quân", body: `# PHÁ QUÂN (破軍 — pò jūn — the "Destroyer"/Pioneer Star)
+| Mệnh | Chính trực, giỏi kiếm tiền | Thực lực, tài chính rộng mở | Học vấn/nghệ thuật tốt, tính mềm hơn | Nhiều trắc trở tài chính |
+| Huynh Đệ | Anh em giỏi kiếm tiền | Anh em thích nắm quyền | Được anh em giúp | Tổn hại, hoặc duyên tôn giáo |
+| Phu Thê | Phối ngẫu năng lực cao | Phối ngẫu mạnh, nam sợ vợ | Phối ngẫu năng lực, chu đáo | Cô khắc nặng nhất — muộn/không hôn nhân |
+| Tử Tức | Con thông minh, có đầu óc KD | Con chính trực, cương nghị | Con có ý thức tài chính | Khó thụ thai, đề phòng sảy thai |
+| Tài Bạch | Không thiếu tiền | Nắm quyền tài chính | Được tiền lẫn danh | Phá tài |
+| Tật Ách | Kiềm chế nóng tính | Thể chất kém | Sức khỏe điều dưỡng tốt | Thể chất kém, đặc biệt phổi |
+| Thiên Di | Giỏi đàm phán | Ít trợ lực, tự lực | Gặp khách nơi giao tế | Ít giúp đỡ, hao tài |
+| Giao Hữu | Giỏi kết giao tiệc rượu | Kết bạn giới tài chính | Kết bạn qua tiệc tùng | Cẩn trọng bạn nóng tính |
+| Quan Lộc | Thuận lợi việc tài chính | Thực quyền tài chính | Hợp võ chức/tài chính | Vốn khó xoay, thất thoát |
+| Điền Trạch | Giữ cơ nghiệp | Thích đồ bền chắc | Thích sống khô ráo sạch sẽ | Bất hòa vì tiền |
+| Phúc Đức | Về già không thiếu tiền | Về già nắm tài chính, keo kiệt | Về già biết chăm con cháu | Về già đa nghi |
+| Phụ Mẫu | Cha mẹ giỏi kiếm tiền | Cha mẹ nắm quyền tài chính | Cha mẹ để lại tài sản | Cha mẹ nóng tính |` },
+  { label: "Phá Quân", slug: "the-destroyer-pioneer-star", body: `# PHÁ QUÂN (破軍 — pò jūn — the "Destroyer"/Pioneer Star)
 
 ## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
@@ -1620,8 +1083,11 @@ Con hiếu động, "có con như không" — quan hệ cha mẹ con cái thư�
 ### Cung Tài Bạch (財帛宮 — *cáibó gōng*)
 Hoạch định độc lập, tư duy khác biệt — cách kiếm tiền của Phá Quân thường không theo lối mòn, sẵn sàng phá bỏ mô hình cũ để thử nghiệm hướng đi mới, rủi ro cao nhưng tiềm năng đột phá cũng lớn.
 
-### Cung Tật Ách (疾厄宮 — *jí'è gōng*)
-Khí huyết; nữ dễ bệnh phụ khoa; có thể liên quan tiểu đường — ứng với bản chất hao tổn năng lượng liên tục của "Hao" (biểu tượng học, không phải chẩn đoán y khoa).
+### Cung Tật Ách (疾厄宮 — *jí'è gōng* — cung quản sức khỏe, thể trạng, khuynh hướng bệnh tật bẩm sinh) ²
+Phá Quân thủ Tật Ách liên quan khí huyết (氣血 — *qìxuè*); nữ dễ bệnh phụ khoa (婦科疾病 — *fùkē jíbìng*); có thể liên quan tiểu đường (糖尿病 — *tángniàobìng*) — ứng với bản chất hao tổn năng lượng (耗損能量 — *hàosǔn néngliàng*) liên tục của hóa khí "Hao" đã nêu ở Bản chất; đây là suy luận biểu tượng học truyền thống, không phải chẩn đoán y khoa, chỉ nên xem là gợi ý lưu tâm để chủ động điều tiết, không thay thế thăm khám thực tế.
+
+Khi Phá Quân đạt mức **Miếu** tại Tật Ách, mức "hao tổn" nói trên không biến mất nhưng được cơ thể chuyển hóa hiệu quả hơn: người thuộc tổ hợp này thường có sức bền phục hồi (恢復力 — *huīfù lì*) tốt hơn hẳn so với Phá Quân hãm, miễn là biết chủ động "xả" năng lượng dư thừa qua vận động thể chất đều đặn thay vì để nó tích tụ thành xáo trộn nội tiết (內分泌失調 — *nèifēnmì shītiáo*). Nguyên tắc chăm sóc sức khỏe phù hợp nhất với tổ hợp này là "vận động có chu kỳ" — tránh lối sống tĩnh tại kéo dài rồi bùng nổ vận động đột ngột, vì đúng bản chất "phá để làm lại" của Phá Quân, cơ thể dạng này cần một nhịp điệu ổn định hơn là các thái cực xen kẽ.
+
 
 ### Cung Thiên Di (遷移宮 — *qiānyí gōng*)
 Đối cung luôn là Thiên Tướng thiếu quyết đoán → "thành sự bất túc, bại sự hữu dư" (thành công thì không đủ, thất bại thì có thừa) — cảnh báo rằng ra ngoài cần có kế hoạch rõ ràng hơn là chỉ dựa vào bản năng xông pha.
@@ -1632,7 +1098,7 @@ Bạn phần lớn có thực lực — Phá Quân thu hút những người có
 ### Cung Quan Lộc (官祿宮 — *guānlù gōng*)
 Nam hợp trị an/quân đội; nữ có tố chất lãnh đạo — sự nghiệp Phá Quân luôn gắn với việc phá bỏ cái cũ để xây dựng cái mới, phù hợp các ngành đòi hỏi cải cách, khởi nghiệp, hoặc chuyển đổi mô hình.
 
-### Cung Điền Trạch (田宅宮 — *tiánzhái gōng* — cung quản nhà cửa, đất đai, tài sản cố định và "kho tàng" tích lũy của lá số)
+### Cung Điền Trạch (田宅宮 — *tiánzhái gōng* — cung quản nhà cửa, đất đai, tài sản cố định và "kho tàng" tích lũy của lá số) ¹
 Phá Quân thủ Điền Trạch đưa đúng bản chất "phá cách để đổi mới" (破格求新 — *pògé qiúxīn*) đã nêu ở Bản chất vào lĩnh vực tài sản cố định — vốn theo bản năng con người luôn muốn giữ ổn định. Biến động liên tục (持續變動 — *chíxù biàndòng*), khó giữ nguyên trạng — sản nghiệp thường thay đổi nhiều lần trong đời (mua rồi bán, sửa chữa lớn, chuyển chỗ ở) — nên người có Phá Quân tại Điền Trạch cần chấp nhận đây là đặc tính tự nhiên (自然特性 — *zìrán tèxìng*) của chính mình, thay vì cố gắng ép bản thân vào khuôn mẫu "an cư lạc nghiệp" (安居樂業 — *ānjū lèyè*) cứng nhắc mà những chính tinh khác (như Thiên Phủ, Thiên Tướng) mới thực sự phù hợp.
 
 Khi Phá Quân đồng cung với Tử Vi tại Điền Trạch và đạt mức **Vượng**, sự "phá" không còn mang tính hủy hoại (毀壞性 — *huǐhuài xìng*) như khi độc tọa, mà được khí chất trật tự của Đế tinh chuyển hóa thành một dạng **tái cấu trúc có chủ đích** (有意圖的重組 — *yǒu yìtú de chóngzǔ*): sau mỗi lần biến động lớn về nhà cửa/tài sản, quy mô thường tăng lên thay vì hao tán — khác hẳn một Phá Quân độc tọa dễ rơi vào vòng lặp "phá xong lại phải gây dựng lại từ đầu" không có tích lũy ròng. Đây là minh chứng cụ thể cho nguyên lý đã nêu ở Nguyên lý nền của Phá Quân: quan hệ Kim sinh Thủy giữa Thất Sát và Phá Quân là một chuỗi tiếp nối chứ không đối lập — tương tự, khi đứng cạnh Tử Vi, năng lượng phá cách của Phá Quân cũng được "tiếp nối" theo hướng xây dựng thay vì thuần túy phá bỏ.
@@ -1658,7 +1124,583 @@ Cha mẹ bất hòa, thiếu ấm áp — môi trường gia đình gốc thư�
 | Điền Trạch | Dễ có nhà lớn, chú ý ngân sách | Có ý sửa sang nhà |
 | Phúc Đức | Thích hưởng thụ | Thích sống xa hoa |
 | Phụ Mẫu | Cha mẹ tự cho mình trung tâm | Được chăm sóc kỹ, cha mẹ mạnh mẽ |` },
-  { label: "Lá Số Mẫu", body: `## 1. Thông tin cấu trúc lá số
+  { label: "Thiên Phủ", slug: "the-treasury-star", body: `# THIÊN PHỦ (天府 — tiān fǔ — the Treasury Star)
+
+## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
+| Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
+|---|---|---|---|---|
+| Văn nhã lịch thiệp | 溫文儒雅 | wēnwén rúyǎ | **Ôn** (ôn hòa) + **Văn** (có văn hóa) + **Nho** (học thức) + **Nhã** (thanh nhã) → "mềm mỏng có học thức, từng trải khéo léo" | gentle & cultured |
+| Đãi đọa | 怠惰 | dàiduò | **Đãi** (lười biếng) + **Đọa** (sa sút, trễ nải) → "trì trệ, lười biếng" | inert, lazy |
+| Không khố | 空庫 | kōng kù | **Không** (trống rỗng) + **Khố** (kho) → "kho trống rỗng, có danh không thực" | empty treasury |
+| Lộc khố | 祿庫 | lù kù | **Lộc** (bổng lộc) + **Khố** (kho) → "kho chứa bổng lộc" | treasury of prosperity |
+| Chính đồ | 正途 | zhèngtú | **Chính** (ngay thẳng) + **Đồ** (con đường) → "con đường chính quy, đúng đắn" | the proper/legitimate path |
+| Hộ Bộ | 戶部 | hùbù | **Hộ** (dân hộ, thuế khóa) + **Bộ** (bộ, cơ quan) → "cơ quan quản lý tài chính triều đình" | Ministry of Revenue |
+
+## 1. Bản chất
+
+**Thiên Phủ** (天府 — *tiān fǔ* — Hán Việt: Thiên = trời, Phủ = kho tàng/dinh thự quan lại — tiếng Anh: **the Treasury Star**)
+
+- Ngũ hành: Dương Thổ (戊土 — *wù tǔ*) — Thổ "dương", tính chất vững chãi, chứa đựng, đối lập bổ sung với Thổ "âm" của Tử Vi (己土 — *jǐ tǔ*) vốn thiên về trung tâm/quy chiếu hơn là chứa đựng thực chất.
+- Hóa khí (化氣 — *huàqì*) viết là **"Lệnh"** (令 — *lìng* — mệnh lệnh, quyền hạn thừa hành — tiếng Anh: **command/mandate**) — thể hiện đúng vai trò tể tướng: có quyền hạn thực thi nhưng luôn nhân danh một thẩm quyền cao hơn (Tử Vi), không phải quyền lực tự thân tuyệt đối.
+- Thuộc nhóm: **Nam Đẩu chủ tinh** (南斗主星 — *nándǒu zhǔxīng*), kiêm cả **Tài Bạch chủ** và **Điền Trạch chủ** — hiếm có chính tinh nào kiêm nhiệm hai vai trò "sao chủ cung" cùng lúc, gọi chung là **"Lộc khố"** (祿庫 — *lù kù* — kho chứa bổng lộc), phản ánh vị thế trung tâm của Thiên Phủ trong toàn bộ vấn đề tài chính của lá số.
+- Đối ứng tự nhiên: giữ vai trò **tể tướng/phụ chính của Tử Vi** — cách "Phủ Tướng triều viên" (府相朝垣 — *fǔ xiàng cháo yuán*, ở đây "Tướng" chỉ Thiên Tướng chứ không phải Thiên Phủ tự thân) là cách cục ổn định phú quý bậc cao khi Thiên Phủ và Thiên Tướng cùng hội chiếu một cung.
+- Điển tích: trong Phong Thần Bảng (封神榜 — *fēngshén bǎng*), Thiên Phủ được gán cho **Khương Hoàng Hậu** (姜皇后 — *jiāng huánghòu*) — chính cung hoàng hậu của Trụ Vương, người đoan trang hiền đức nhưng bị hãm hại oan uổng. Điển tích này lý giải phần "đãi đọa" tiềm ẩn của Thiên Phủ: một địa vị cao quý, ổn định nhưng thụ động, phụ thuộc vào việc được đối xử công bằng từ bên ngoài hơn là tự mình tranh đấu.
+- Đại diện nhân sự: không gắn vai vế gia đình cố định (tương tự Tử Vi) — đại diện cho **của cải/tài sản tích lũy** và **người quản lý/gìn giữ** trong bất kỳ mối quan hệ nào.
+- Đặc tính riêng: **kỵ nhất Địa Không/Địa Kiếp** (đặc biệt Địa Kiếp) — vì bản chất "kho" cần được BẢO VỆ kín đáo, Không/Kiếp tượng trưng cho sự "khoét thủng/làm rỗng" kho tàng đó. Giống Tử Vi, Thiên Phủ gần như không có vị trí hãm địa thực sự.
+
+Thiên Phủ và Tử Vi tạo thành cặp đôi "vua – tôi" kinh điển trong hệ 14 chính tinh: nếu Tử Vi là Đế tinh ngồi yên chỉ đạo, Thiên Phủ là Tể tướng quán xuyến kho tàng quốc gia. Việc Thiên Phủ hoàn toàn không có Tứ Hóa (giống Tử Vi) không phải ngẫu nhiên trùng lặp, mà phản ánh cùng một triết lý: một kho tàng đáng tin cậy không được phép tự ý biến động theo cảm hứng, nó chỉ nên PHẢN ÁNH trung thực những gì các sao khác mang lại. Đây là gốc rễ tâm lý của sự an toàn mà người Mệnh Thiên Phủ thường tìm kiếm — không phải sợ rủi ro, mà là bản năng gìn giữ giá trị đã tích lũy, một dạng "trách nhiệm thủ kho" âm thầm nhưng bền bỉ.
+
+### Nguyên lý nền
+
+Thiên Phủ là chính tinh DUY NHẤT không có Tứ Hóa nào (không Lộc/Quyền/Khoa/Kỵ) — triết lý "kho không tự biến động". Nguyên tắc cốt lõi **"Khố cần có Lộc"** (庫須有祿 — *kù xū yǒu lù*): Thiên Phủ không tự sinh tài, chỉ cất giữ tài mà các sao khác tạo ra. Nếu không có Lộc Tồn/Hóa Lộc lân cận, rơi vào trạng thái **"không khố"** (空庫 — *kōng kù*) — có danh mà không có thực, tức bề ngoài có vẻ sung túc nhưng bên trong trống rỗng.
+
+**"Lộ khố"** (露庫 — *lù kù*, đồng âm nhưng khác nghĩa với "Lộc khố" ở Bản chất): Thiên Phủ gặp Không/Kiếp mà KHÔNG có Lộc đi kèm khiến của cải bị "phô ra ngoài", dễ hao tán bởi ngoại cảnh — khác "không khố" là chưa từng có gì để mất, "lộ khố" là có nhưng giữ không kỹ.
+
+Đặc điểm: Thiên Phủ (giống Tử Vi) gần như không có hãm địa hoàn toàn — điểm yếu của Thiên Phủ không nằm ở "kho tọa lạc ở đâu" mà ở "kho có được nạp Lộc đầy đủ hay không". Đây là khác biệt căn bản so với các chính tinh khác vốn còn phải lo cả vị trí miếu/hãm lẫn Tứ Hóa.
+
+Thiên Phủ tại Mão/Dậu là vị trí kém vững chãi nhất trong toàn bộ 12 cung khả dĩ — vì đối cung tại vị trí này LUÔN là Thất Sát, một "chiến tướng" mang sát khí trực diện xung chiếu vào đúng cung có Thiên Phủ tọa thủ, tạo thế đối đầu ngầm giữa "kho tàng cần yên ổn" và "sát khí cần bộc phát" ngay trên trục Mệnh-Thiên Di.
+
+- Phân biệt Bắc Đẩu (mệnh 命 — thừa hưởng 承受 — *chéngshòu*) và Nam Đẩu (thân 身 — tự tạo dựng 自行創造 — *zìxíng chuàngzào*): Tử Vi thuộc Bắc Đẩu nên "Tôn" là bẩm sinh; Thiên Phủ thuộc Nam Đẩu nên "Lệnh" phải được xác lập qua quá trình quán xuyến thực tế, không tự nhiên mà có.
+- "Khố" (庫 — kho có cấu trúc, minh bạch, sổ sách rõ ràng) khác về bản chất với "Tàng" (藏 — cất giấu mơ hồ, không công khai) — Thiên Phủ là "Khố" nên hợp con đường chính quy (正途 — *zhèngtú*): công chức, quản lý tài chính chính thống, hơn là các hình thức tích lũy phi chính thức.
+- Quan hệ Phủ-Tướng (Thiên Phủ và Thiên Tướng) trong triều đình cổ giống như Hộ Bộ (戶部 — *hùbù* — cơ quan quản lý ngân khố quốc gia) và quan giữ ấn tín — một bên quản tài sản, một bên quản quyền lực hành chính, luôn cần phối hợp chặt chẽ để bộ máy vận hành trơn tru.
+
+### Tứ Hóa: Không có (đặc điểm định danh của chính tinh này, giống Tử Vi)
+
+---
+
+## 2. Luận theo 12 cung
+
+### Cung Mệnh (命宮 — *mìnggōng*)
+Thiên Phủ thủ Mệnh cho phong thái ôn hòa nho nhã (溫文儒雅 — *wēnwén rúyǎ*), đa tài, giỏi quán xuyến — nhược điểm là "đãi đọa" (怠惰 — *dàiduò* — trì trệ) nếu quá an toàn, thiếu động lực bứt phá vì bản chất "kho" thiên về gìn giữ hơn mạo hiểm mở rộng. Do gần như không có vị trí hãm địa, Thiên Phủ tại Mệnh hiếm khi tạo ra một lá số thực sự khốn khó — mức độ khác biệt chủ yếu nằm ở "kho đầy hay kho rỗng" (có Lộc hỗ trợ hay không) hơn là miếu/hãm theo địa chi.
+
+Cơ chế tâm lý: nếu Tử Vi tìm giá trị qua việc được quy tụ và tôn sùng, Thiên Phủ tìm sự an toàn qua việc **kiểm soát và gìn giữ** — một dạng an toàn hướng nội, thể hiện qua xu hướng tích lũy (tiền bạc, kiến thức, quan hệ) trước khi dám hành động. Đây là lý do người Mệnh Thiên Phủ thường bị đánh giá là "chậm quyết định" dù thực chất chỉ đang đảm bảo đủ nguồn lực dự phòng trước khi dấn thân — một bản năng thận trọng có cơ sở hợp lý chứ không phải nhút nhát vô cớ.
+
+Bốn tổ hợp chính quyết định sắc thái: đồng cung **Vũ Khúc** (Tý/Ngọ — "Vũ Phủ") giỏi kinh doanh, thiên vật chất, kết hợp "tài tĩnh" và "tài động" thành cách cục tài phú song toàn hiếm có. Đồng cung **Liêm Trinh** (Sửu/Mùi — "Liêm Phủ") giỏi giao tiếp nhưng dễ hẹp hòi nếu thiếu cát tinh điều hòa, vì Liêm Trinh "Tù" khí gò bó phần nào tính khoáng đạt của Thiên Phủ. Đồng cung **Tử Vi** (Dần/Thân — "Tử Phủ") sung túc vật chất nhưng nội tâm dễ trống rỗng — có tất cả về hình thức mà thiếu mục đích sống rõ ràng, vì cả hai sao đều thiên về "gìn giữ/quy tụ" chứ không có động lực khai phá tự thân. **Độc tọa** tại Mão/Dậu (không chính tinh đồng cung, đối cung luôn là Thất Sát) là vị trí kém vững chãi nhất đã nêu ở Nguyên lý nền — Thiên Phủ tại đây cần đặc biệt chú ý yếu tố Lộc đi kèm để tránh rơi vào "không khố". Điều kiện tiên quyết để Thiên Phủ phát huy trọn vẹn ở bất kỳ tổ hợp nào là có Lộc Tồn/Hóa Lộc lân cận, nếu không dễ rơi vào "không khố" — có danh mà không có thực.
+
+### Cung Huynh Đệ (兄弟宮 — *xiōngdì gōng*)
+Đông anh em, khí độ rộng rãi, đóng vai trò người gìn giữ hòa khí trong gia đình — thường là điểm tựa tài chính/tinh thần đáng tin cậy cho các thành viên khác.
+
+### Cung Phu Thê (夫妻宮 — *fūqī gōng*)
+Phối ngẫu dịu dàng, gắn bó, coi trọng tinh thần hơn vật chất — hôn nhân ổn định, ít sóng gió lớn, nhưng cần cảnh giác sự an toàn quá mức khiến quan hệ thiếu đam mê, dễ nhạt nhòa theo thời gian nếu không chủ động vun đắp.
+
+### Cung Tử Tức (子女宮 — *zǐnǚ gōng* — cung quản con cái, học trò, thế hệ kế thừa) ²
+Thiên Phủ thủ Tử Tức mang đúng bản chất "kho báu ôn hòa, chu toàn" đã nêu ở Bản chất vào vai trò làm cha mẹ: con tài năng, hiếu thảo (孝順 — *xiàoshùn*), được nuôi dạy trong môi trường đề cao kỷ cương (紀綱 — *jìgāng*) và vật chất đầy đủ — cha mẹ nên chú ý không biến sự chu cấp (供給 — *gōngjǐ*) thành nuông chiều (溺愛 — *nì'ài*) khiến con thiếu ý chí tự lập (自立意志 — *zìlì yìzhì*).
+
+Khi Thiên Phủ đạt mức **Miếu** và đồng cung với Tử Vi cũng đạt mức Miếu (tổ hợp "Tử Phủ đồng cung"), vai trò "kho báu" của Thiên Phủ được thể hiện rõ nhất qua cách cha mẹ xây dựng nền tảng vật chất và tinh thần vững chắc cho con — không phô trương như kiểu Tử Vi độc tọa, mà âm thầm tích lũy nguồn lực (資源積累 — *zīyuán jīlěi*) để con có xuất phát điểm tốt. Điểm cần cân bằng: đúng bản chất "thủ thành" hơn "khai phá" của Thiên Phủ, cha mẹ thuộc tổ hợp này đôi khi thiên về bảo vệ con quá mức cần thiết — nên chủ động tạo cơ hội để con tự trải nghiệm thất bại nhỏ, thay vì luôn đứng ra che chắn mọi rủi ro.
+
+
+### Cung Tài Bạch (財帛宮 — *cáibó gōng*)
+Cung đắc vị — kể cả gặp Địa Không/Địa Kiếp vẫn giữ được nền tảng phú túc cơ bản nhờ bản chất "kho chứa" bền vững. Tài vận đến từ tích lũy có hệ thống, quản lý tài chính cẩn trọng hơn là mạo hiểm; đây là một trong những vị trí tài chính an toàn nhất trong 14 chính tinh.
+
+### Cung Tật Ách (疾厄宮 — *jí'è gōng*)
+Ít bệnh nặng — thể trạng thường sung túc, ổn định nhờ lối sống điều độ, ít cực đoan (biểu tượng học, không phải chẩn đoán y khoa).
+
+### Cung Thiên Di (遷移宮 — *qiānyí gōng*)
+Ra ngoài được phúc, thường có người lớn tuổi/quý nhân nâng đỡ — môi trường xa nhà mang lại cảm giác an toàn tương tự ở nhà, ít khi gặp biến cố lớn.
+
+### Cung Giao Hữu / Nô Bộc (交友宮 — *jiāoyǒu gōng* — cung quản bạn bè, đồng nghiệp, cấp dưới, người đồng hành ngang vai) ¹
+Giao Hữu là cung soi chiếu **chất lượng** (品質 — *pǐnzhí*) chứ không phải số lượng của các mối quan hệ ngang hàng trong đời. Thiên Phủ thủ cung này mang đúng bản chất "kho báu ôn hòa" (như đã nêu ở Bản chất) vào lĩnh vực giao tiếp xã hội (社交 — *shèjiāo*): bạn bè đông, xuất thân (出身 — *chūshēn*) tốt, quan hệ thường mang tính "cùng đẳng cấp" (同等級 — *tóng děngjí*) — hữu ích cho việc mở rộng mạng lưới (人脈 — *rénmài*) có chất lượng hơn là số lượng thuần túy, đúng phong cách "chọn lọc kỹ, gắn bó lâu" thay vì quảng giao hời hợt.
+
+Khi Thiên Phủ tại Nô Bộc chỉ đạt mức **Bình**, năng lực "làm kho báu tin cậy" (可靠寶庫 — *kěkào bǎokù*) cho bạn bè/đồng nghiệp vẫn tồn tại nhưng không ở mức mạnh nhất, đòi hỏi phải chủ động hơn trong việc **vun đắp** (培植 — *péizhí*) quan hệ thay vì mặc định tự nhiên có được sự tin tưởng như khi Thiên Phủ miếu vượng. Dù vậy, một mạng lưới bạn bè/đồng nghiệp bình hòa nhưng không nổi bật vẫn có thể đóng vai trò như một "hậu phương ổn định" (穩定後盾 — *wěndìng hòudùn*) nâng đỡ âm thầm cho sự nghiệp — đúng tinh thần "kho báu" của Thiên Phủ: không cần phô trương, chỉ cần luôn ở đó khi cần đến.
+
+
+### Cung Quan Lộc (官祿宮 — *guānlù gōng*)
+Hợp công chức/kinh doanh ổn định hơn mạo hiểm khởi nghiệp lớn — Thiên Phủ tại Quan Lộc phát huy tốt nhất trong vai trò quản lý/vận hành hệ thống có sẵn, đúng bản chất "tể tướng" chứ không phải người khai phá tiên phong.
+
+### Cung Điền Trạch (田宅宮 — *tiánzhái gōng*)
+Nên phát triển sản nghiệp dưới sự dẫn dắt hoặc trong khuôn khổ có sẵn (thừa kế, hợp tác) hơn là tự đầu tư độc lập quy mô lớn — phù hợp với vai trò "Nam Đẩu: thân — tự tạo dựng" nhưng vẫn cần nền tảng ban đầu vững chắc để phát huy.
+
+### Cung Phúc Đức (福德宮 — *fúdé gōng*)
+Đa tài, an vui, phúc thọ song toàn — một trong những vị trí có đời sống nội tâm viên mãn nhất, ít lo âu, biết tận hưởng thành quả đã tích lũy được.
+
+### Cung Phụ Mẫu (父母宮 — *fùmǔ gōng*)
+Gia đình khá giả, cha mẹ ôn hòa công bằng — nền tảng giáo dục vững chắc, cha mẹ thường là tấm gương về sự chừng mực và trách nhiệm.
+## 3. Tứ Hóa: Không có (đặc điểm định danh của sao này)` },
+  { label: "Thiên Lương", slug: "the-elder-star", body: `# THIÊN LƯƠNG (天梁 — tiān liáng — the Elder Star)
+
+## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
+
+| Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
+|---|---|---|---|---|
+| Y Dược tinh | 醫藥星 | yī yào xīng | **Y** (chữa bệnh) + **Dược** (thuốc) + **Tinh** (sao) → "sao thầy thuốc, chuyên cứu chữa" | the Healer Star |
+| Nghiêm dĩ luật nhân, khoan dĩ đãi kỷ | 嚴以律人，寬以待己 | yán yǐ lǜ rén, kuān yǐ dài jǐ | **Nghiêm** (nghiêm khắc) + **Dĩ** (dùng để) + **Luật** (ràng buộc) + **Nhân** (người khác), **Khoan** (khoan dung) + **Dĩ** (dùng để) + **Đãi** (đối đãi) + **Kỷ** (bản thân) → "nghiêm với người, khoan với mình" | strict on others, lenient on self |
+| Ân trạch | 恩澤 | ēn zé | **Ân** (ơn huệ) + **Trạch** (nhuần thấm) → "ơn huệ ban phát rộng khắp" | grace, favor bestowed |
+| Cố vấn | 顧問 | gùwèn | **Cố** (trông nom, xem xét) + **Vấn** (hỏi han) → "người tư vấn, chỉ dẫn" | advisor, counselor |
+| Thác Tháp Thiên Vương | 托塔天王 | tuō tǎ tiānwáng | **Thác** (nâng đỡ) + **Tháp** (bảo tháp) + **Thiên** (trời) + **Vương** (vua) → "Thiên Vương nâng bảo tháp" (tên hiệu Lý Tĩnh) | Pagoda-Bearing Heavenly King |
+| Phúc Ấm tụ | 福蔭聚 | fú yìn jù | **Phúc** (phúc lành) + **Ấm** (che chở) + **Tụ** (hội tụ) → "phúc lành và che chở cùng hội tụ" | blessing and shelter converging |
+
+## 1. Bản chất
+
+**Thiên Lương** (天梁 — *tiān liáng* — Hán Việt: Thiên = trời, Lương = rường cột/xà nhà — biểu tượng cho trụ đỡ vững chắc của một công trình — tiếng Anh: **the Elder Star**)
+
+- Ngũ hành: Dương Thổ (戊土 — *wù tǔ*) — cùng hành Thổ dương với Thiên Phủ, nhưng nếu Thiên Phủ là "kho" (chứa đựng của cải), Thiên Lương là "rường cột" (chống đỡ cấu trúc) — hai cách biểu hiện khác nhau của cùng một chất Thổ vững chãi.
+- Hóa khí (化氣 — *huàqì*) viết là **"Ấm"** (蔭 — *yìn* — che chở, ân trạch của bậc trên dành cho kẻ dưới — tiếng Anh: **shelter/protection**)
+- Thuộc nhóm: **Nam Đẩu đệ nhị tinh** (南斗第二星 — *nándǒu dì èr xīng*); được gọi là **"Y Dược tinh"** (醫藥星 — *yīyào xīng*) vì chức năng cứu chữa SAU sự cố, không phải phòng ngừa từ đầu (khác Thiên Đồng "Ích Phúc" thiên về phòng ngừa) — đây là điểm phân biệt cốt lõi giữa hai sao Nam Đẩu gần gũi nhau nhất.
+- Đối ứng tự nhiên: không có đối tinh nghịch vượng/hãm; đồng minh gần gũi nhất là **Thiên Đồng** (cách "Đồng Lương"), đồng thời giữ vai trò một trong hai "gọng kìm" giáp cung của Thiên Tướng (cùng Cự Môn).
+- Điển tích: chính xác là **Lý Tĩnh** (李靖 — *lǐ jìng*) — tức **"Thác Tháp Thiên Vương"** (托塔天王 — *tuō tǎ tiānwáng*), vị tướng có ba con trai Kim Tra, Mộc Tra, Na Tra trong Phong Thần Diễn Nghĩa; hình tượng một bậc trưởng bối uy nghiêm nhưng che chở. Đây là một trong số ít chính tinh có điển tích được xác định rõ ràng, không có nhiều dị bản giữa các phái.
+- Đại diện nhân sự: người lớn tuổi, cấp trên đáng kính, quý nhân cứu giúp lúc hoạn nạn.
+- Đặc tính riêng: Miếu tại Thìn, Ngọ, Tuất (theo cách gọi dân gian "Long — Mã — Cẩu"); vượng/đắc rải rác các cung còn lại — nhìn chung Thiên Lương ít khi hãm nặng như Thái Dương/Thái Âm, phản ánh đúng bản chất "che chở" ít khi hoàn toàn mất tác dụng, dù người được che chở có ở hoàn cảnh nào.
+
+Thiên Lương mang nghịch lý đạo đức đặc trưng: **"nghiêm dĩ luật nhân, khoan dĩ đãi kỷ"** (嚴以律人 — *yán yǐ lǜ rén*，寬以待己 — *kuān yǐ dài jǐ*) — nghiêm khắc với người, nhưng lại dễ dãi với bản thân — đảo ngược chuẩn mực Nho gia thông thường (vốn đề cao "nghiêm dĩ luật kỷ, khoan dĩ đãi nhân"). Đây là hệ quả trực tiếp của việc đóng vai "người phân xử/che chở" quá lâu: đứng trên cao để phán xét người khác dễ khiến bản thân quên tự soi lại mình. Vì vậy, Thiên Lương tuy là sao cát tường bậc nhất về mặt cứu giải tai ách, nhưng cũng là sao dễ sinh tính cô độc, khó gần nếu không được tiết chế bởi các sao mềm mại đi kèm — một vị "quan tòa" tốt bụng nhưng luôn giữ khoảng cách nhất định với những người mình giúp đỡ.
+
+### Nguyên lý nền
+
+- **"Đồng Lương" cách** (同梁格 — *tóng liáng gé*) tại Dần/Thân: **"Phúc Ấm tụ hội"** (福蔭聚 — *fú yìn jù*), hai sao Thiên Đồng + Thiên Lương bổ khuyết hoàn hảo cho nhau — Thiên Đồng lo hưởng phúc, Thiên Lương lo che chở/xử lý sự cố, kết hợp tạo ra một cách cục ổn định, ít cực đoan.
+- Thiên Lương giữ vai trò một trong hai "gọng kìm" của cách **"Tài Ấm giáp Ấn" / "Hình Kỵ giáp Ấn"** — vì theo quy luật an sao cố định, Thiên Tướng luôn tọa lạc kẹp giữa Cự Môn và Thiên Lương (xem chi tiết cơ chế này ở tab Thiên Tướng). Khi Cự Môn Hóa Lộc, Thiên Lương cùng Cự Môn tạo thế giáp cát cho Thiên Tướng; khi Cự Môn Hóa Kỵ, chính Thiên Lương lại là bên "biến Hình" khiến Thiên Tướng dễ vướng pháp lý. Điều thú vị là chính Thiên Lương — sao "che chở" — lại có thể trở thành nguồn gốc tai họa cho một chính tinh khác tùy vào Tứ Hóa của người hàng xóm (Cự Môn), một minh chứng nữa cho việc không sao nào tồn tại tách biệt hoàn toàn khỏi bối cảnh xung quanh.
+- Đặc biệt: Thiên Lương là một trong số ít chính tinh **KHÔNG BAO GIỜ mang Hóa Kỵ** trong hệ thống Tứ Hóa truyền thống — nhất quán với bản chất "cứu giải", một sao chuyên đi gỡ rối thì hiếm khi tự nó là nguồn gốc của rắc rối. Đây là điểm khác biệt căn bản so với Thiên Đồng (có đủ Lộc/Quyền/Kỵ nhưng không Khoa) — hai sao "Nam Đẩu hiền lành" nhưng có cấu trúc Tứ Hóa hoàn toàn khác nhau.
+
+### Tứ Hóa (Lộc: Nhâm 壬 — *rén* | Quyền: Ất 乙 — *yǐ* | Khoa: Kỷ 己 — *jǐ* — không bao giờ Hóa Kỵ) của Thiên Lương
+
+---
+
+## 2. Luận theo 12 cung
+
+### Cung Mệnh (命宮 — *mìnggōng*)
+Thiên Lương thủ Mệnh cho phong thái điềm đạm, nguyên tắc, có uy với người xung quanh — thích đóng vai trò cố vấn/phân xử hơn là người trực tiếp thực thi. Nhược điểm là dễ cô độc, khó thân cận vì tiêu chuẩn đặt ra cho người khác thường cao hơn cho chính bản thân — đúng nghịch lý "nghiêm dĩ luật nhân, khoan dĩ đãi kỷ" đã nêu ở Nguyên lý nền.
+
+Cơ chế tâm lý: người Mệnh Thiên Lương vô thức tìm kiếm vai trò "người phân xử công bằng" trong mọi tình huống — không phải vì thích quyền lực, mà vì bản năng muốn khôi phục trật tự/lẽ phải khi thấy bất công. Đây là động lực tích cực nhưng cũng dễ khiến người khác cảm thấy bị phán xét, đặc biệt nếu Thiên Lương không đi kèm đủ sao mềm mại để tiết chế giọng điệu.
+
+Cách **"Đồng Lương"** (Dần/Thân, đồng cung Thiên Đồng) là tổ hợp lý tưởng nhất, cân bằng giữa hưởng phúc và che chở, giảm bớt phần nghiêm khắc thái quá của Thiên Lương độc tọa. Độc tọa tại miếu địa (Thìn, Ngọ, Tuất — "Long, Mã, Cẩu") thường cho khí chất uy nghiêm rõ rệt hơn, hợp vai trò lãnh đạo tinh thần/đạo đức trong tổ chức. Dù ở tổ hợp nào, người Mệnh Thiên Lương luôn cần học cách áp dụng chuẩn mực khắt khe của mình cho chính bản thân trước, để tránh nghịch lý đạo đức đã nêu ở Nguyên lý nền trở thành rào cản trong các mối quan hệ gần gũi.
+
+### Cung Huynh Đệ (兄弟宮 — *xiōngdì gōng*)
+Anh chị em có người đóng vai trò "anh cả/chị cả" che chở cho cả nhà — thường là người đứng ra dàn xếp mâu thuẫn, được các thành viên khác tin tưởng giao phó trách nhiệm quan trọng.
+
+### Cung Phu Thê (夫妻宮 — *fūqī gōng* — cung quản hôn nhân, tình cảm đôi lứa, người bạn đời) ¹
+Thiên Lương thủ Phu Thê mang đúng bản chất "ấm tinh, nguyên tắc, che chở" đã nêu ở Bản chất vào đời sống hôn nhân: phối ngẫu chững chạc (穩重 — *wěnzhòng*), đáng tin cậy (可信賴 — *kě xìnlài*), thường lớn tuổi hơn hoặc chín chắn (成熟 — *chéngshú*) hơn so với tuổi thực — hôn nhân mang tính "nương tựa" (依靠 — *yīkào*) rõ rệt, một trong hai người thường đóng vai trò che chở (庇護 — *bìhù*), dẫn dắt (引導 — *yǐndǎo*) người còn lại, đúng hóa khí "Ấm" (蔭 — *yìn*, che chở như bóng cây) đã nêu ở Bản chất của Thiên Lương.
+
+Khi đồng cung với Thiên Đồng đạt mức **Vượng**, vai trò "người che chở" của Thiên Lương được làm mềm đi đáng kể bởi chất "hưởng thụ, dễ gần" của Thiên Đồng — tránh được nhược điểm phổ biến của Thiên Lương độc tọa là quá nghiêm khắc, hay phán xét (愛批評 — *ài pīpíng*) trong quan hệ vợ chồng. Kết quả là một cuộc hôn nhân vừa có người "cầm trịch" về nguyên tắc, đạo lý, vừa không thiếu sự ấm áp đời thường — đúng như cách cục "Đồng Lương" đã nêu ở tab Thiên Đồng: hai sao bổ khuyết hoàn hảo cho nhau, một bên cho sự an toàn về tinh thần, một bên cho sự dễ chịu trong sinh hoạt hằng ngày.
+
+
+### Cung Tử Tức (子女宮 — *zǐnǚ gōng*)
+Con cái được dạy dỗ nghiêm khắc, coi trọng nguyên tắc, có thể hơi xa cách tình cảm — cha mẹ Thiên Lương nên chủ động thể hiện tình thương bằng lời nói, không chỉ qua hành động che chở âm thầm.
+
+### Cung Tài Bạch (財帛宮 — *cáibó gōng*)
+Tài vận đến từ uy tín/chuyên môn được công nhận (y dược, tư vấn, phân xử) hơn là kinh doanh mạo hiểm — dòng tiền đi liền với danh tiếng cá nhân, càng làm lâu càng ổn định vì được tín nhiệm ngày một nhiều.
+
+### Cung Tật Ách (疾厄宮 — *jí'è gōng*)
+Theo đúng "Y Dược tinh", cung này thường phản ánh khả năng phục hồi tốt sau bệnh tật/sự cố — dù gặp vấn đề sức khỏe, Thiên Lương tại Tật Ách thường có "quý nhân y tế" hoặc khả năng tự chữa lành đáng chú ý (biểu tượng học, không phải chẩn đoán y khoa).
+
+### Cung Thiên Di (遷移宮 — *qiānyí gōng*)
+Ra ngoài dễ gặp quý nhân lớn tuổi cứu giúp lúc khó khăn, hợp vai trò cố vấn ở đất khách — đây là một trong những vị trí "được che chở" mạnh nhất khi xa nhà trong toàn bộ 14 chính tinh.
+
+### Cung Giao Hữu / Nô Bộc (交友宮 — *jiāoyǒu gōng*)
+Bạn bè phần lớn là người đáng tin cậy, có thể nhờ cậy lúc hoạn nạn dù số lượng không nhiều — Thiên Lương chọn bạn theo chất lượng, không chạy theo số đông hời hợt.
+
+### Cung Quan Lộc (官祿宮 — *guānlù gōng*)
+Hợp nghề y dược, luật, thanh tra/kiểm toán, cố vấn, tôn giáo — bất kỳ nghề nào cần đứng ra phân xử, cứu giúp, hoặc giám sát đạo đức nghề nghiệp đều là mảnh đất phát huy tối đa năng lực Thiên Lương.
+
+### Cung Điền Trạch (田宅宮 — *tiánzhái gōng*)
+Sản nghiệp có được từ uy tín cá nhân, thường bền vì được xây dựng cẩn trọng từng bước — ít khi liều lĩnh đầu tư ngoài khả năng, ưu tiên an toàn hơn tốc độ tăng trưởng.
+
+### Cung Phúc Đức (福德宮 — *fúdé gōng* — cung quản đời sống tinh thần, hưởng thụ, phúc phận nội tại) ²
+Thiên Lương thủ Phúc Đức mang đúng hóa khí "Ấm" (蔭 — *yìn* — che chở như bóng cây) đã nêu ở Bản chất vào chính đời sống nội tâm: an nhàn (安逸 — *ānyì*), được kính trọng (受人敬重 — *shòu rén jìngzhòng*) lúc về già, đời sống tinh thần có chiều sâu đạo lý (道德深度 — *dàodé shēndù*) — đây là hình ảnh "bậc trưởng bối khả kính" thu nhỏ trong chính đời sống nội tâm, ít hối tiếc (後悔 — *hòuhuǐ*) vì luôn sống đúng nguyên tắc bản thân đặt ra.
+
+Khi Thiên Lương đạt mức **Đắc** tại Phúc Đức, năng lực "tự phán xét đạo đức" vốn là bản chất của sao này (hóa khí Ấm luôn đi kèm một phần "giám sát viên nội tâm") được phát huy theo hướng ôn hòa chứ không khắc nghiệt: người này thường tự đặt ra chuẩn mực cao cho bản thân, nhưng biết bao dung (寬容 — *kuānróng*) với chính những sai lầm quá khứ thay vì dằn vặt (自責 — *zìzé*) triền miên. Đây cũng là lý do Thiên Lương ở Phúc Đức thường gắn với hình ảnh người "càng lớn tuổi càng an nhiên" — phúc phận không đến từ vật chất tích lũy mà từ cảm giác đã sống đúng với các giá trị mình tin tưởng.
+
+
+### Cung Phụ Mẫu (父母宮 — *fùmǔ gōng*)
+Cha mẹ nghiêm khắc nhưng che chở thật lòng; quan hệ có thể thiếu sự gần gũi bộc lộ nhưng luôn đầy trách nhiệm — tình thương thể hiện qua hành động bảo vệ hơn là lời nói ngọt ngào.
+## 3. Tứ Hóa (Lộc: Nhâm 壬 — *rén* | Quyền: Ất 乙 — *yǐ* | Khoa: Kỷ 己 — không bao giờ Hóa Kỵ)
+
+| Cung | Lộc | Quyền | Khoa |
+|---|---|---|---|
+| Mệnh | Uy tín tự nhiên, được kính trọng | Quyết đoán trong vai trò phân xử/cố vấn | Danh tiếng gắn với đạo đức, học vấn |
+| Huynh Đệ | Anh em được nhờ cậy, có uy tín | Anh em có người giữ vai trò dẫn dắt | Anh em được nể trọng |
+| Phu Thê | Phối ngẫu đáng tin cậy, hôn nhân bền | Phối ngẫu có chính kiến, chững chạc | Phối ngẫu được nể trọng, hôn nhân êm đềm |
+| Tử Tức | Con cái được nhờ cậy về sau | Con có nguyên tắc, chững chạc sớm | Con cái học vấn tốt |
+| Tài Bạch | Tài lộc từ uy tín/chuyên môn | Quản lý tài chính có nguyên tắc | Tài chính minh bạch, được tin tưởng |
+| Tật Ách | Khả năng hồi phục tốt | Cẩn trọng quá mức có thể gây căng thẳng | Gặp nạn có quý nhân/thầy thuốc cứu giúp |
+| Thiên Di | Ra ngoài được quý nhân giúp | Có tiếng nói, được nể trọng nơi xa | Ra ngoài gặp duyên lành, quý nhân |
+| Giao Hữu | Bạn bè tin cậy, giúp đỡ lẫn nhau | Có bạn giữ vai trò cố vấn cho mình | Bạn bè đáng kính trọng |
+| Quan Lộc | Sự nghiệp gắn với uy tín, chuyên môn | Có thực quyền trong vai trò phân xử | Hợp công việc học thuật, y dược, luật |
+| Điền Trạch | Sản nghiệp bền, xây dựng từ uy tín | Chủ động quản lý, mở rộng cơ nghiệp | Nhà cửa được xây dựng cẩn trọng, có tiếng |
+| Phúc Đức | An nhàn, phúc thọ nhờ đức độ | Chủ động sắp xếp đời sống tinh thần | Được kính trọng, đời sống có chiều sâu |
+| Phụ Mẫu | Cha mẹ được kính trọng, che chở tốt | Cha mẹ có uy, quản lý nghiêm | Quan hệ cha mẹ - con cái được nể trọng |` },
+  { label: "Thiên Cơ", slug: "the-strategist-star", body: `# THIÊN CƠ (天機 — tiān jī — the Strategist Star)
+
+## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
+| Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
+|---|---|---|---|---|
+| Toàn ngưu giác tiêm | 鑽牛角尖 | zuān niújiǎo jiān | **Toản** (khoan, chui vào) + **Ngưu** (trâu) + **Giác** (sừng) + **Tiêm** (nhọn) → "chui vào đầu nhọn sừng trâu — suy nghĩ luẩn quẩn" | overthinking |
+| Quỷ kế đa đoan | 鬼計多端 | guǐjì duōduān | **Quỷ** (ma quỷ) + **Kế** (mưu kế) + **Đa** (nhiều) + **Đoan** (mối, đầu mối) → "mưu kế xảo quyệt, nhiều thủ đoạn" | full of tricks |
+| Mưu thần | 謀臣 | móuchén | **Mưu** (mưu lược) + **Thần** (bề tôi) → "bề tôi giỏi mưu lược" | strategist minister |
+| Đầu xác hoại liễu | 頭殼壞了 | tóuké huàile | **Đầu** (đầu) + **Xác** (hộp sọ) + **Hoại** (hỏng) + **Liễu** (trợ từ hoàn thành) → "đầu óc hỏng — suy nghĩ luẩn quẩn quá mức" | "brain gone bad" (overthinking) |
+| Khả tố tính cao | 可塑性高 | kě sùxìng gāo | **Khả** (có thể) + **Tố** (nhào nặn) + **Tính** (tính chất) + **Cao** (cao) → "khả năng thích ứng, uốn nắn cao" | highly adaptable/malleable |
+| Ẩn tàng | 隱藏 | yǐncáng | **Ẩn** (ẩn giấu) + **Tàng** (cất giấu) → "che giấu, không bộc lộ" | hidden, concealed |
+
+## 1. Bản chất
+
+**Thiên Cơ** (天機 — *tiān jī* — Hán Việt: Thiên = trời, Cơ = máy móc/cơ mưu/thời cơ — tiếng Anh: **the Strategist Star**)
+
+- Ngũ hành: Âm Mộc (乙木 — *yǐ mù*) — Mộc "âm", mềm dẻo, uốn theo hoàn cảnh như dây leo/hoa cỏ, khác Mộc "dương" vươn thẳng cứng cáp của Tham Lang.
+- Hóa khí (化氣 — *huàqì*) viết là **"Thiện"** (善 — *shàn* — lương thiện, khéo léo — tiếng Anh: **skillful/benevolent**) — hóa khí mang tính đạo đức tích cực hiếm hoi, phản ánh gốc rễ "mưu trí phục vụ điều tốt" thay vì mưu mô vị kỷ.
+- Thuộc nhóm: **Nam Đẩu đệ tam tinh** (南斗第三星 — *nándǒu dì sān xīng*), là **Huynh Đệ chủ** (兄弟主 — *xiōngdì zhǔ*) — danh xưng dân gian **"mưu thần"** (謀臣 — *móuchén*, bề tôi giỏi mưu lược) — vai trò cố vấn chiến lược đứng sau người cầm quyền chứ không trực tiếp cầm quyền.
+- Đối chiếu gần: cùng Tham Lang là hai sao trí tuệ nhất trong 14 chính tinh nhưng khác hướng — Thiên Cơ trí tuệ hướng nội (tính toán, hoạch định), Tham Lang trí tuệ hướng ngoại (giành lấy, mở rộng).
+- Điển tích: trong Phong Thần Bảng (封神榜 — *fēngshén bǎng*), Thiên Cơ được gán cho **Khương Tử Nha** (姜子牙 — *jiāng zǐyá*) — quân sư tối cao giúp Chu Văn Vương/Chu Vũ Vương lật đổ nhà Thương, biểu tượng kinh điển nhất cho hình mẫu "mưu thần" trong văn hóa Trung Hoa: trí tuệ phục vụ đại nghĩa, không tự mình tranh ngôi vị.
+- Đại diện nhân sự: anh chị em, người cố vấn/tham mưu thân cận — đúng vai trò Huynh Đệ chủ đã nêu ở trên.
+- Đặc tính riêng: là một trong những chính tinh có biên độ miếu/hãm dao động phức tạp nhất vì luôn thay đổi tính chất theo sao đồng cung (Thái Âm/Cự Môn/Thiên Lương) — không có một bảng miếu/hãm "thuần túy" độc lập như Thái Dương/Thái Âm, phản ánh đúng bản chất một sao "biến hóa theo hoàn cảnh".
+
+Thiên Cơ là sao duy nhất trong 14 chính tinh mà bản chất "động" (biến hóa, xoay chuyển liên tục) được xem là một phẩm chất TÍCH CỰC thay vì bất ổn — miễn là nó phục vụ cho việc hoạch định thay vì phản ứng bốc đồng. Điều này lý giải vì sao Thiên Cơ, dù thuộc nhóm "Cơ Nguyệt Đồng Lương" vốn đề cao ổn định, lại là thành viên bất ổn nhất trong nhóm: trí tuệ hướng nội của Thiên Cơ cần liên tục có "bài toán mới" để giải, một môi trường quá tĩnh lặng thực chất khiến sao này khó chịu hơn là an tâm — khác hẳn Thiên Đồng hay Thiên Tướng cùng nhóm vốn tìm kiếm sự ổn định như một đích đến.
+
+### Nguyên lý nền
+
+Thiên Cơ và Tham Lang là hai sao trí tuệ nhất nhưng khác bản chất: Tham Lang trí tuệ hướng ngoại (giành lấy); Thiên Cơ trí tuệ hướng nội (tính toán, hoạch định). Hóa Kỵ của Thiên Cơ được mô tả trực tiếp bằng thành ngữ dân gian "đầu óc hỏng" (頭殼壞了 — *tóuké huàile*) — chính năng lực phân tích vốn là thế mạnh lại biến thành nhược điểm khi Hóa Kỵ: đa nghi, cố chấp, "toàn ngưu giác tiêm" (鑽牛角尖 — *zuān niújiǎo jiān* — chui vào sừng trâu, suy nghĩ luẩn quẩn không lối thoát).
+
+Thuộc nhóm "Cơ Nguyệt Đồng Lương" nhưng là thành viên "kém ổn định nhất" vì bản chất biến động/sáng tạo xung khắc nhẹ với tinh thần ổn định chung của nhóm — ba thành viên còn lại (Thái Âm, Thiên Đồng, Thiên Lương) đều thiên về "chờ đợi, tích lũy, che chở", trong khi Thiên Cơ luôn muốn chủ động thay đổi cục diện.
+
+- Tính "dễ uốn" (可塑性高 — *kě sùxìng gāo*): ví như "gió xuân thổi cỏ lại mọc" (春風吹又生 — *chūnfēng chuī yòu shēng*) — sức sống bền bỉ, phục hồi nhanh sau thất bại. Thiên Cơ có xu hướng giấu kín (隱藏 — *yǐncáng*) sự tự tin của mình sau thử thách, nhưng lại khá nhạy cảm (敏感 — *mǐngǎn*) khi bị nghi ngờ (質疑 — *zhíyí*) — một nghịch lý tâm lý: bề ngoài linh hoạt thích nghi nhưng nội tâm dễ tổn thương trước sự hoài nghi từ người khác.
+- Nguyên tắc dùng người: Thiên Cơ cần được thể hiện năng lực khiến người khác thực sự tâm phục (心服 — *xīnfú*), hoặc cùng nỗ lực (努力 — *nǔlì*) và chia sẻ (分享 — *fēnxiǎng*) thành quả công bằng — Thiên Cơ đặc biệt bài xích (排斥 — *páichì*) những kẻ "bất lao nhi hoạch" (不勞而獲 — *bù láo ér huò* — không làm mà hưởng), vì điều này đi ngược lại toàn bộ giá trị "mưu trí phải đi cùng công sức" của sao này.
+- Cách "Cơ Lương" gặp Địa Không/Địa Kiếp thường tạo duyên với huyền học (與玄學有緣 — *yǔ xuánxué yǒuyuán*) — trí tuệ hướng nội khi mất đi mục tiêu thực tế cụ thể (do Không/Kiếp) dễ chuyển hướng sang tìm kiếm ý nghĩa siêu hình.
+- ĐÍNH CHÍNH quan trọng: Thiên Cơ là Nam Đẩu đệ tam tinh — một số tài liệu nhầm lẫn xếp vào Bắc Đẩu, nhưng theo hệ thống an sao chuẩn, Thiên Cơ thuộc Nam Đẩu.
+
+### Tứ Hóa (Lộc: Ất 乙 — *yǐ* | Quyền: Bính 丙 — *bǐng* | Khoa: Đinh 丁 — *dīng* | Kỵ: Mậu 戊 — *wù*) của Thiên Cơ
+
+---
+
+## 2. Luận theo 12 cung
+
+### Cung Mệnh (命宮 — *mìnggōng*)
+Thiên Cơ thủ Mệnh cho tính cách thích động não, ôn hòa, dễ gần nhưng dễ "khôn vặt" nếu trí tuệ không được dẫn dắt đúng hướng. Ranh giới giữa mưu trí và khôn vặt phụ thuộc hoàn toàn vào việc năng lực đó phục vụ hoạch định lâu dài hay chỉ để tính toán vụn vặt trước mắt — đây là câu hỏi trung tâm khi luận Mệnh Thiên Cơ.
+
+Cơ chế tâm lý: người Mệnh Thiên Cơ tồn tại trong trạng thái "luôn cần một bài toán để giải" — tâm trí không bao giờ thực sự nghỉ ngơi, kể cả khi không có việc cấp bách. Đây là nguồn gốc của cả sự nhanh nhạy đáng nể lẫn cảm giác bất an vặt vãnh nếu không có đủ "chất liệu" để tư duy — sự nhàm chán với Thiên Cơ gần như là một dạng khó chịu thực sự, không phải chỉ là cảm giác thoáng qua.
+
+Ba tổ hợp chính quyết định sắc thái: đồng cung **Thái Âm** (Dần/Thân — cách "Cơ Nguyệt") linh hoạt, văn nhã, nhưng dễ nhu nhược vì cả hai sao đều thiên về nội tâm hóa vấn đề thay vì đối đầu trực diện. Đồng cung **Cự Môn** (Mão/Dậu) giỏi tranh luận, tư duy sắc bén, kết hợp hai năng lực phân tích tạo ra khả năng biện luận xuất sắc nhưng cũng dễ quá lời. Đồng cung **Thiên Lương** (Thìn/Tuất — cách "Thiện Ấm triều cương") lương thiện, phẩm học song toàn — đây là tổ hợp cát tường nhất trong ba, vì hóa khí "Thiện" của Thiên Cơ cộng hưởng trực tiếp với "Ấm" của Thiên Lương, tạo ra một nhân cách vừa thông minh vừa có đạo đức dẫn dắt rõ ràng.
+
+### Cung Huynh Đệ (兄弟宮 — *xiōngdì gōng*)
+Không đông nhưng có người thành đạt học thuật — quan hệ anh em thiên về trao đổi trí tuệ hơn là gắn bó tình cảm thuần túy, phù hợp với những gia đình coi trọng học vấn.
+
+### Cung Phu Thê (夫妻宮 — *fūqī gōng*)
+Kết hôn sớm; nam nên tìm vợ cá tính mạnh để cân bằng sự linh hoạt đôi khi thiếu quyết đoán của mình; nữ hợp chồng lớn tuổi thành đạt học thuật, người có thể làm điểm tựa vững chắc cho tư duy luôn biến động của Thiên Cơ.
+
+### Cung Tử Tức (子女宮 — *zǐnǚ gōng*)
+Con thông minh, không hợp giáo dục rập khuôn — trẻ cần môi trường học tập linh hoạt, khuyến khích tư duy phản biện thay vì học thuộc lòng máy móc.
+
+### Cung Tài Bạch (財帛宮 — *cáibó gōng* — cung quản tiền bạc, dòng tiền, cách kiếm và tiêu tiền) ²
+Thiên Cơ thủ Tài Bạch mang đúng bản chất "trí tuệ hướng nội, tính toán, hoạch định" đã nêu ở Bản chất vào lĩnh vực tài chính: tiền từ nỗ lực thực chất (實際努力 — *shíjì nǔlì*) — Thiên Cơ không có kiểu tài lộc từ trên trời rơi xuống, mọi thành quả tài chính đều gắn liền với chất xám (腦力 — *nǎolì*) và công sức hoạch định (規劃 — *guīhuà*) bỏ ra.
+
+Khi Thiên Cơ đạt mức **Đắc** tại Tài Bạch, năng lực "mưu trí phục vụ điều tốt" (hóa khí "Thiện" đã nêu ở Bản chất) chuyển hóa cụ thể thành khả năng quản lý dòng tiền (現金流管理 — *xiànjīnliú guǎnlǐ*) khôn ngoan: người thuộc tổ hợp này ít khi giàu nhanh, nhưng giỏi "xoay chuyển" tài chính qua nhiều nguồn nhỏ, biết tận dụng thông tin (資訊 — *zīxùn*) và thời cơ (時機 — *shíjī*) mà người khác bỏ lỡ. Nhược điểm cần lưu tâm: đúng bản chất "biến động" của Thiên Cơ, dòng tiền tại cung này dễ thay đổi theo chu kỳ tư duy — giai đoạn đầu óc minh mẫn thì tài chính khởi sắc rõ rệt, giai đoạn phân tán tư tưởng thì dễ ra quyết định tài chính vội vàng; kỷ luật ghi chép và lập kế hoạch dài hạn là điều Thiên Cơ tại Tài Bạch cần chủ động rèn luyện hơn các chính tinh khác.
+
+
+### Cung Tật Ách (疾厄宮 — *jí'è gōng*)
+Sức khỏe kém lúc nhỏ; chú ý đầu/thần kinh, tránh thức khuya — đầu óc hoạt động liên tục là con dao hai lưỡi, cần cân bằng giữa tư duy và nghỉ ngơi (biểu tượng học, không phải chẩn đoán y khoa).
+
+### Cung Thiên Di (遷移宮 — *qiānyí gōng*)
+Nhanh nhạy, hợp phát triển ở đất khách — môi trường mới kích thích khả năng thích ứng và tính toán linh hoạt của Thiên Cơ tốt hơn hẳn so với ở lại một chỗ quen thuộc quá lâu.
+
+### Cung Giao Hữu / Nô Bộc (交友宮 — *jiāoyǒu gōng*)
+Bạn tài năng xuất chúng — quan hệ bạn bè thường xoay quanh việc trao đổi ý tưởng, học hỏi lẫn nhau hơn là chỉ đơn thuần vui chơi giải trí.
+
+### Cung Quan Lộc (官祿宮 — *guānlù gōng*)
+Hợp nghiên cứu, biên tập, nghệ thuật, hoặc bất kỳ lĩnh vực cần liên tục xử lý thông tin mới — Thiên Cơ tại Quan Lộc phát huy tốt nhất trong công việc luôn thay đổi, không lặp lại đơn điệu.
+
+### Cung Điền Trạch (田宅宮 — *tiánzhái gōng*)
+Không dựa tổ nghiệp, tự gây dựng qua nhiều lần mua bán — sản nghiệp hình thành từ tính toán và tái cấu trúc liên tục hơn là tích lũy tuyến tính đơn giản.
+
+### Cung Phúc Đức (福德宮 — *fúdé gōng* — cung quản đời sống tinh thần, hưởng thụ, phúc phận nội tại) ¹
+Phúc Đức không nói về vật chất mà nói về **trạng thái an trú nội tâm** (內心安頓狀態 — *nèixīn āndùn zhuàngtài*) — thứ một người thực sự cảm nhận được khi ở một mình, không cần diễn cho ai xem. Thiên Cơ thủ Phúc Đức mang đúng đặc tính "động não không ngừng" (不停動腦 — *bùtíng dòngnǎo*) vào chính đời sống tinh thần: ham hiểu biết (求知欲強 — *qiúzhī yù qiáng*), tuổi trẻ dễ bất an (不安 — *bù'ān*) vì tâm trí luôn cần "bài toán để giải" như đã nêu ở Cung Mệnh, nhưng trung niên trở đi dần an nhàn (安逸 — *ānyì*) hơn — quy luật chung của Thiên Cơ là càng lớn tuổi, tư duy biến động càng được tinh luyện (提煉 — *tíliàn*) thành trí tuệ ổn định thay vì chỉ là sự xáo động vô hướng của tuổi trẻ.
+
+Khi Thiên Cơ **đắc địa tại Tý** ở Phúc Đức, cơ chế "tinh luyện" này càng rõ rệt: Tý là một trong bốn cung miếu vượng chính của Thiên Cơ, đồng thời là cung Thủy — Thủy dưỡng Mộc (Thiên Cơ thuộc Mộc), nên năng lượng "suy nghĩ không ngừng" tại đây được nuôi dưỡng đúng hướng thay vì cạn kiệt. Đáng chú ý, Thiên Cơ đôi khi còn được chọn làm **Chủ Thân** (身主 — *shēnzhǔ*) của một lá số — khi đó trục Phúc Đức–Thân cộng hưởng trực tiếp với nhau: đời sống tinh thần (Phúc Đức) và trọng tâm vận mệnh hậu vận (Thân) đều xoay quanh cùng một loại năng lượng "mưu trí phục vụ điều tốt" (hóa khí "Thiện" đã nêu ở Bản chất). Hệ quả thực tế: sự an nhàn không đến từ việc ngừng suy nghĩ, mà đến từ việc tìm được đúng "bài toán" xứng tầm để tâm trí luôn có việc để giải mà không rơi vào trạng thái lo âu vụn vặt (瑣碎焦慮 — *suǒsuì jiāolǜ*) vô ích.
+
+
+### Cung Phụ Mẫu (父母宮 — *fùmǔ gōng*)
+Cha mẹ hòa nhã nhưng con độc lập nên dễ xem nhẹ sự quan tâm — cần chủ động giữ liên lạc, tránh để tính tự lập biến thành xa cách tình cảm gia đình theo thời gian.
+## 3. Tứ Hóa (Lộc: Ất 乙 — *yǐ* | Quyền: Bính 丙 — *bǐng* | Khoa: Đinh 丁 — *dīng* | Kỵ: Mậu 戊 — *wù*)
+| Cung | Lộc | Quyền | Khoa | Kỵ |
+|---|---|---|---|---|
+| Mệnh | Thông minh, yêu tôn giáo | Mưu lược, tính toán giỏi | Trí tuệ, giỏi hoạch định | Suy nghĩ luẩn quẩn, cố chấp |
+| Huynh Đệ | Anh em thông minh | Anh em dễ biến động | Anh em có thể chỉ dạy | Duyên anh em mỏng |
+| Phu Thê | Được đồng nghiệp khác giới giúp | — | Được đồng nghiệp ưu ái | Tình cảm khúc mắc |
+| Tử Tức | Con hoạt bát | Con nhạy bén | Con ăn nói giỏi, hợp giáo | Con hiếu động, đề phòng tai nạn |
+| Tài Bạch | Dòng tiền lớn, biến động | Giỏi hoạch định tài chính | Hợp quản lý tiền | Hao tâm vì tiền |
+| Tật Ách | Đầu óc minh mẫn | Yêu văn học, chú ý gan | Chú ý nghỉ ngơi | Đau đầu, tránh thức khuya |
+| Thiên Di | Hợp đi xa, di cư | Hợp xuất ngoại có kế hoạch | Cơ hội du lịch nước ngoài | Đề phòng tai nạn giao thông |
+| Giao Hữu | Kết giao người tài | Bạn mưu lược, thâm trầm | Bạn lãng mạn, tốt đẹp | Đề phòng bạn nhiều mưu kế |
+| Quan Lộc | Kiếm tiền bằng trí tuệ | Khởi nghiệp bằng trí tuệ | Hợp công việc trí óc | Không hợp cơ khí, dễ thất bại |
+| Điền Trạch | Nhà ngày càng lớn | Chú trọng bài trí | Tâm huyết trang trí | Đau đầu vì sửa nhà |
+| Phúc Đức | Biết sắp xếp tuổi già | Ham hiểu biết tôn giáo/huyền học | Có cơ duyên tôn giáo | Về già dễ trầm uất |
+| Phụ Mẫu | Duyên trưởng bối nam giới | Cha mẹ nhanh nhạy | Cha mẹ sáng suốt | Bất đồng quan điểm |` },
+  { label: "Thiên Đồng", slug: "the-blessing-star", body: `# THIÊN ĐỒNG (天同 — tiān tóng — the Blessing Star)
+
+## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
+
+| Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
+|---|---|---|---|---|
+| Ích Phúc Bảo Sinh | 益福保生 | yì fú bǎo shēng | **Ích** (tăng thêm) + **Phúc** (phúc lộc) + **Bảo** (bảo vệ) + **Sinh** (sự sống) → "tăng phúc, bảo vệ sự sống" | blessing & protection of life |
+| An phận | 安分 | ān fèn | **An** (yên) + **Phận** (bổn phận, phần mình) → "yên với phận mình" | contentment |
+| Khoan hòa | 寬和 | kuān hé | **Khoan** (rộng lượng) + **Hòa** (hòa nhã) → "rộng lượng, hòa nhã" | gentle, tolerant |
+| Thích nghi | 適應 | shìyìng | **Thích** (thích hợp) + **Ứng** (đáp ứng) → "thích hợp, đáp ứng hoàn cảnh" | adaptable |
+| Phản giả đạo chi động | 反者道之動 | fǎn zhě dào zhī dòng | **Phản** (đảo ngược) + **Giả** (điều mà) + **Đạo** (Đạo) + **Chi** (của) + **Động** (vận động) → "cái ngược lại là sự vận động của Đạo" (Đạo Đức Kinh) | reversal is the movement of the Dao |
+| Như ngư đắc thủy | 如魚得水 | rú yú dé shuǐ | **Như** (như là) + **Ngư** (cá) + **Đắc** (được) + **Thủy** (nước) → "như cá gặp nước" | like a fish finding water |
+
+## 1. Bản chất
+
+**Thiên Đồng** (天同 — *tiān tóng* — Hán Việt: Thiên = trời, Đồng = hòa đồng/trẻ thơ — tiếng Anh: **the Blessing Star**)
+
+- Ngũ hành: Dương Thủy (壬水 — *rén shuǐ*) — Thủy "dương", nhu hòa nhưng vẫn có sức sống, khác Thủy "âm" trầm lắng của Thái Âm hay Thủy pha Thổ trầm uất của Cự Môn.
+- Hóa khí (化氣 — *huàqì*) viết là **"Phúc"** (福 — *fú* — phúc phần, phúc lộc, hưởng thụ tự nhiên — tiếng Anh: **blessing**)
+- Thuộc nhóm: **Nam Đẩu đệ tứ tinh** (南斗第四星 — *nándǒu dì sì xīng*); là sao chủ của cung Phúc Đức/Tật Ách (theo bảng "sao chủ cung" ở tab Phương pháp luận) — vai trò kép này lý giải vì sao Thiên Đồng vừa gắn với hạnh phúc nội tâm vừa gắn với sức khỏe/thể trạng.
+- Đối ứng tự nhiên: không có đối tinh nghịch vượng/hãm cố định; đồng minh gần gũi nhất là **Thiên Lương** — hai sao thường đồng cung hoặc hội chiếu, tạo cách "Đồng Lương" nổi tiếng (xem mục Nguyên lý nền).
+- Điển tích: theo một số nguồn phổ biến, hình tượng Thiên Đồng được liên hệ với bậc trưởng thượng khoan hòa trong Phong Thần Diễn Nghĩa; tuy vậy các trường phái không thống nhất tuyệt đối về nhân vật cụ thể, khác với các sao như Tử Vi (Bá Ấp Khảo) hay Thiên Lương (Lý Tĩnh) vốn có điển tích rõ ràng hơn.
+- Đại diện nhân sự: trẻ nhỏ, con cái; người có tính cách hiền hòa, dễ mến trong gia đạo.
+- Đặc tính riêng: độ sáng của Thiên Đồng biến đổi gần như "ngược đời" so với trực giác thông thường — tuổi trẻ chủ về Phúc (hưởng nhàn), tuổi già lại chủ về Thọ (sống lâu, an nhàn thực sự). Miếu tại Dần, Thân; Vượng tại Tý; phần lớn các cung còn lại (Thìn, Tuất, Sửu, Mùi, Ngọ, Dậu) ở mức Hãm — đây là một trong những chính tinh có biên độ miếu/hãm rộng và bất đối xứng nhất trong 14 chính tinh.
+
+Thiên Đồng là sao "hưởng phúc" thuần túy — khác về bản chất với các sao tạo giá trị bằng hành động chủ động (Thái Dương "chiếu rọi"), quyết đoán giành lấy (Vũ Khúc "tài động") hay mưu lược tính toán (Thiên Cơ). Thiên Đồng tạo giá trị bằng năng lực AN được với hoàn cảnh — một dạng trí tuệ buông bỏ tranh đấu không cần thiết, không phải sự thụ động tiêu cực. Đây chính là lý do Thiên Đồng dễ bị đọc sai thành "lười biếng" (xem lỗi phổ biến #3 ở tab Phương pháp luận: *"Mệnh có Thiên Đồng → chắc chắn lười"* là một kết luận vội vàng, bỏ qua đồng cung/Hóa Quyền/Đại Vận). Xét sâu hơn, "Phúc" của Thiên Đồng không phải trạng thái tĩnh mà là NĂNG LỰC — khả năng tìm ra sự bình an ngay trong nghịch cảnh, khác hẳn kiểu may mắn thụ động; đây là lý do vì sao phần lớn vị trí của Thiên Đồng lại là Hãm địa (phúc thật sự phải được tôi luyện qua thử thách mới bền, không phải phúc "trời cho" dễ dàng).
+
+### Nguyên lý nền
+
+- Danh hiệu đầy đủ **"Ích Phúc Bảo Sinh"** (益福保生 — *yì fú bǎo shēng*) — chức năng phòng ngừa hơn chữa trị, khác hẳn Thiên Lương "Y Dược tinh" chuyên xử lý sau khi sự cố đã xảy ra.
+- Triết lý Đạo gia **"phản giả đạo chi động"** (反者道之動 — *fǎn zhě dào zhī dòng*, Đạo Đức Kinh) — phúc không bao giờ dễ dàng mà đến; đây cũng là lời giải thích vì sao Thiên Đồng phần lớn cung là Hãm địa (phúc phải qua thử thách mới bền), chỉ một vài vị trí thực sự Miếu/Vượng.
+- Vị trí tối ưu là cung **Phúc Đức** (không phải Mệnh) — tại Mệnh tính lười cản trở hành động; tại Phúc Đức thì **"như cá gặp nước"** (如魚得水 — *rú yú dé shuǐ*). Đây là một trong số ít chính tinh mà vị trí "đắc lực nhất" KHÔNG PHẢI là cung Mệnh — một điểm đặc thù đáng ghi nhớ khi so sánh với đa số chính tinh khác luôn coi Mệnh là cung quan trọng nhất.
+- Cách **"Đồng Lương"** (同梁格 — *tóng liáng gé*) tại Dần/Thân, đồng cung Thiên Lương: "Phúc Ấm tụ hội" (福蔭聚 — *fú yìn jù*) — Thiên Đồng lo hưởng phúc, Thiên Lương lo che chở/xử lý sự cố, hai sao bổ khuyết hoàn hảo cho nhau tạo ra một cách cục ổn định, ít cực đoan nhất trong các tổ hợp của Thiên Đồng.
+- Tương tác với sát tinh: khác đa số chính tinh xem sát tinh là bất lợi tuyệt đối, Thiên Đồng "quá hiền" đôi khi CẦN một sát tinh hữu chế (Hỏa Tinh đắc cách) để tạo động lực hành động — nguyên tắc "sát tinh hữu chế" ở tab Phương pháp luận áp dụng rõ nét nhất chính ở chính tinh này.
+
+### Tứ Hóa (Lộc: Bính 丙 — *bǐng* | Quyền: Đinh 丁 — *dīng* | Kỵ: Canh 庚 — *gēng* — không Khoa) của Thiên Đồng
+
+---
+
+## 2. Luận theo 12 cung
+
+### Cung Mệnh (命宮 — *mìnggōng*)
+Thiên Đồng thủ Mệnh cho tính cách hiền hòa, dễ thích nghi, thiên về hưởng thụ tinh thần hơn vật chất. Nhược điểm kinh điển là thiếu động lực bứt phá nếu không có Hóa Quyền hoặc sát tinh hữu chế đi kèm để tạo áp lực hành động — đúng như lỗi phổ biến #3 ở tab Phương pháp luận đã cảnh báo, "Mệnh có Thiên Đồng → chắc chắn lười" là kết luận vội vàng nếu bỏ qua các yếu tố đi cùng.
+
+Cơ chế tâm lý: người Mệnh Thiên Đồng vận hành theo nguyên tắc "an được thì đủ" — khác hẳn các chính tinh khác luôn có một khát vọng chủ động thúc đẩy (danh vọng, tài phú, quyền lực, tri thức), động lực sâu xa nhất của Thiên Đồng chỉ đơn giản là tìm sự bình yên. Đây không phải thiếu tham vọng theo nghĩa tiêu cực, mà là một hệ giá trị khác — hạnh phúc được ưu tiên hơn thành tựu, khiến người ngoài đôi khi hiểu lầm là thiếu chí tiến thủ.
+
+Ba tổ hợp chính quyết định sắc thái: đồng cung **Thái Âm** (Tý) tạo cách "Thủy trừng quế ngạc" thiên về thanh khiết/học vấn hơn phú quý vật chất thuần túy; đồng cung **Cự Môn** (Sửu/Mùi) là tổ hợp cần đặc biệt lưu ý Lộc đi kèm, vì Ám gặp một sao quá hiền hòa dễ thiếu động lực chuyển hóa hoài nghi thành hành động, cổ ngữ gọi là "hạ cách" nếu thiếu điều kiện; đồng cung **Thiên Lương** (Dần/Thân — cách "Đồng Lương") là tổ hợp lý tưởng nhất, cân bằng hoàn hảo giữa hưởng phúc và che chở. Điểm chung xuyên suốt cả ba tổ hợp: Thiên Đồng luôn cần một sao "có góc cạnh" đi kèm để cân bằng sự mềm mỏng bẩm sinh, tự thân độc tọa vô phụ tá dễ rơi vào trạng thái an phận quá mức.
+
+### Cung Huynh Đệ (兄弟宮 — *xiōngdì gōng*)
+Anh chị em hòa thuận, ít xung đột — quan hệ nhẹ nhàng, dựa trên thiện cảm tự nhiên nhưng không nhất thiết sâu đậm về mặt gắn kết lâu dài, dễ nhạt dần nếu không chủ động duy trì liên lạc.
+
+### Cung Phu Thê (夫妻宮 — *fūqī gōng* — cung quản hôn nhân, tình cảm đôi lứa, người bạn đời) ¹
+Thiên Đồng thủ Phu Thê mang đúng bản chất "phúc tinh hưởng thụ, ôn hòa" đã nêu ở Bản chất vào đời sống hôn nhân: phối ngẫu dịu dàng (溫柔 — *wēnróu*), biết chăm sóc (照顧 — *zhàogù*) — đời sống hôn nhân thiên về ổn định êm ả (安穩 — *ānwěn*) hơn là nồng nhiệt (熱烈 — *rèliè*). Đây là một trong những vị trí hôn nhân "an toàn" (安全 — *ānquán*) nhất trong 14 chính tinh, nhưng cần bổ sung thêm sự chủ động (主動性 — *zhǔdòngxìng*)/lãng mạn (浪漫 — *làngmàn*) để tránh cuộc sống chung trở nên tẻ nhạt (乏味 — *fáwèi*) theo thời gian — đúng nhược điểm "an nhàn quá mức sinh trì trệ" đã nêu ở Nguyên lý nền của Thiên Đồng.
+
+Khi Thiên Đồng tại Phu Thê đạt mức **Miếu** và đồng cung với Thiên Lương đạt mức **Vượng**, đúng tổ hợp **"Đồng Lương"** (同梁 — *tóng liáng*) vốn được xem là một trong những cách cục hôn nhân bền vững nhất trong nhóm Cơ Nguyệt Đồng Lương: Thiên Đồng mang sự dịu dàng, hưởng thụ; Thiên Lương mang sự che chở, nguyên tắc đạo đức — hai đặc tính này bổ khuyết (互補 — *hùbǔ*) cho nhau rất tự nhiên trong quan hệ vợ chồng, tạo ra một cuộc hôn nhân vừa ấm áp vừa có định hướng rõ ràng, hiếm khi rơi vào xung đột gay gắt. Nhìn rộng hơn, một Phu Thê ổn định theo cách Đồng Lương như vậy thường được xem là một dạng **"hậu phương"** (後盾 — *hòudùn*) tốt cho sự nghiệp nói chung — gia đạo êm ấm giúp người trong cuộc có thêm nguồn lực tinh thần để dồn sức cho công danh, dù mức độ ảnh hưởng cụ thể còn tùy thuộc vào cách cục riêng của từng lá số.
+
+
+### Cung Tử Tức (子女宮 — *zǐnǚ gōng*)
+Con cái ngoan hiền, quan hệ cha mẹ - con cái ấm áp, ít áp lực kỷ luật — môi trường nuôi dạy khoan dung, tạo cảm giác an toàn cho trẻ nhưng cần bổ sung thêm tính kỷ luật để trẻ phát triển ý chí.
+
+### Cung Tài Bạch (財帛宮 — *cáibó gōng*)
+Tài vận đến từ từ, ổn định, không đột biến — hợp tích lũy dài hạn hơn đầu tư mạo hiểm. Đây là kiểu tài vận "chậm mà chắc" đúng bản chất "Phúc" — tiền đến như một hệ quả tự nhiên của sự an ổn, không phải từ tranh đấu quyết liệt.
+
+### Cung Tật Ách (疾厄宮 — *jí'è gōng*)
+Hệ tiêu hóa/nội tiết cần lưu tâm khi hãm địa; nhìn chung sức khỏe cải thiện dần theo tuổi — đúng quy luật "tuổi trẻ chủ Phúc, tuổi già chủ Thọ" đã nêu ở Bản chất (biểu tượng học, không phải chẩn đoán y khoa).
+
+### Cung Thiên Di (遷移宮 — *qiānyí gōng*)
+Ra ngoài dễ được giúp đỡ nhẹ nhàng — môi trường xa nhà thường khiến Thiên Đồng thoải mái hơn ở nhà, vì thoát khỏi những ràng buộc quen thuộc và có cơ hội "làm mới" bản thân trong hoàn cảnh mới.
+
+### Cung Giao Hữu / Nô Bộc (交友宮 — *jiāoyǒu gōng*)
+Bạn bè hiền lành, quan hệ dựa trên thiện cảm tự nhiên hơn là lợi ích — dễ kết bạn nhưng cũng dễ bị lợi dụng lòng tốt nếu không đủ tỉnh táo phân biệt bạn thật và người chỉ muốn nhờ vả.
+
+### Cung Quan Lộc (官祿宮 — *guānlù gōng* — cung quản sự nghiệp, con đường công danh, môi trường làm việc) ²
+Thiên Đồng thủ Quan Lộc mang đúng bản chất "phúc tinh hưởng thụ, ôn hòa" đã nêu ở Bản chất vào lĩnh vực sự nghiệp: hợp môi trường ổn định, ít cạnh tranh khốc liệt (激烈競爭 — *jīliè jìngzhēng*); cần Hóa Quyền hoặc sao động lực khác để không bị trì trệ (停滯 — *tíngzhì*) sự nghiệp. Thiên Đồng tại Quan Lộc phát huy tốt trong các tổ chức có hệ thống rõ ràng, nơi không đòi hỏi phải liên tục tranh đấu (爭鬥 — *zhēngdòu*) để tồn tại.
+
+Khi Thiên Đồng **hãm** tại Quan Lộc, nhược điểm "an nhàn quá mức sinh trì trệ" đã nêu ở Nguyên lý nền càng cần được chủ động khắc phục: người này dễ chấp nhận một công việc "đủ dùng" (夠用 — *gòu yòng*) thay vì chủ động tìm kiếm sự phát triển, không phải vì thiếu năng lực mà vì thiếu động lực nội tại (內在動力 — *nèizài dònglì*) thúc đẩy. Giải pháp kinh điển cho tổ hợp này là chủ động đặt mục tiêu ngoại lai (mốc thời gian, cam kết với người khác, cạnh tranh lành mạnh) để bù đắp cho sự thiếu hụt "lửa" tự thân — một khi có khuôn khổ kỷ luật từ bên ngoài, Thiên Đồng vẫn hoàn thành công việc chỉn chu và bền bỉ, chỉ là không tự khởi xướng.
+
+
+### Cung Điền Trạch (田宅宮 — *tiánzhái gōng*)
+An cư từ tốn, không vội vàng nhưng bền — nhà cửa thiên về ấm cúng hơn phô trương, phản ánh đúng gu thẩm mỹ giản dị, ưu tiên sự thoải mái hơn hình thức.
+
+### Cung Phúc Đức (福德宮 — *fúdé gōng*)
+Vị trí đắc nhất của Thiên Đồng — đời sống nội tâm an nhàn, ít lo âu, phúc thọ song toàn nếu miếu vượng, đúng như "như cá gặp nước" đã nêu ở Nguyên lý nền. Đây là một trong những cách cục hạnh phúc nội tâm viên mãn nhất trong toàn bộ 14 chính tinh.
+
+### Cung Phụ Mẫu (父母宮 — *fùmǔ gōng*)
+Quan hệ cha mẹ - con cái nhẹ nhàng, cha mẹ có xu hướng nuông chiều hơn nghiêm khắc — môi trường lớn lên thoải mái nhưng đôi khi thiếu định hướng kỷ luật cần thiết cho giai đoạn trưởng thành.
+## 3. Tứ Hóa (Lộc: Bính 丙 — *bǐng* | Quyền: Đinh 丁 — *dīng* | Kỵ: Canh 庚 — *gēng* — không Khoa)
+
+| Cung | Lộc | Quyền | Kỵ |
+|---|---|---|---|
+| Mệnh | Hưởng phúc tự nhiên, tính tình dễ chịu | Có động lực hành động hơn, bớt an phận | Nội tâm bất an, dễ đổi ý, thành quả không bền |
+| Huynh Đệ | Anh em hòa thuận, hỗ trợ nhẹ nhàng | Anh em có người nổi bật hơn | Anh em ít gắn bó, dễ hiểu lầm |
+| Phu Thê | Hôn nhân êm ấm | Phối ngẫu chủ động hơn trong quan hệ | Đời sống hôn nhân dễ nhạt, cần vun đắp |
+| Tử Tức | Con cái ngoan, duyên lành | Con có chủ kiến riêng | Duyên con cái mỏng hơn, cần kiên nhẫn |
+| Tài Bạch | Tài lộc đến nhẹ nhàng, đều đặn | Quản lý tài chính chủ động hơn | Tài vận bấp bênh, hao hụt vặt |
+| Tật Ách | Sức khỏe ổn định, ít bệnh nặng | Cần chú ý vận động, tránh trì trệ | Cần lưu tâm tiêu hóa/nội tiết |
+| Thiên Di | Ra ngoài thuận lợi, gặp thiện duyên | Chủ động hơn khi ở xa nhà | Ra ngoài dễ gặp trắc trở nhỏ |
+| Giao Hữu | Bạn bè giúp đỡ nhẹ nhàng | Có bạn giữ vai trò dẫn dắt | Quan hệ bạn bè dễ nông cạn |
+| Quan Lộc | Công việc ổn định, ít căng thẳng | Có cơ hội thăng tiến rõ hơn | Sự nghiệp dễ trì trệ, thiếu đột phá |
+| Điền Trạch | An cư thuận lợi | Chủ động sửa sang, mở rộng nhà cửa | Bất động sản biến động, cần thận trọng |
+| Phúc Đức | Đời sống an nhàn, phúc thọ | Tinh thần chủ động, lạc quan | Nội tâm dễ lo âu vặt vãnh |
+| Phụ Mẫu | Cha mẹ hiền hòa, quan hệ ấm áp | Cha mẹ có chủ kiến, quản lý con cái nhiều hơn | Duyên cha mẹ - con cái nhạt hơn |` },
+  { label: "Thiên Tướng", slug: "the-minister-seal-star", body: `# THIÊN TƯỚNG (天相 — tiān xiàng — the Minister/Seal Star)
+
+## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
+| Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
+|---|---|---|---|---|
+| Đôn hậu | 敦厚 | dūnhòu | **Đôn** (chân thành, đầy đặn) + **Hậu** (nhân hậu) → "chân thành, nhân hậu" | sincere, warm |
+| Ưu nhu quả đoán | 優柔寡斷 | yōuróu guǎduàn | **Ưu** (chần chừ) + **Nhu** (mềm yếu) + **Quả** (ít) + **Đoán** (quyết đoán) → "mềm yếu, thiếu quyết đoán" | indecisive |
+| Chưởng ấn quan | 掌印官 | zhǎng yìn guān | **Chưởng** (nắm giữ) + **Ấn** (con dấu) + **Quan** (quan chức) → "quan giữ ấn tín" | seal-bearing official |
+| Tài Ấm giáp Ấn | 財蔭夾印 | cái yìn jiā yìn | **Tài** (tài lộc) + **Ấm** (che chở) + **Giáp** (kẹp giữa) + **Ấn** (con dấu) → "Tài và Ấm cùng kẹp bảo vệ Ấn" | wealth & shelter flanking the Seal |
+| Hình Kỵ giáp Ấn | 刑忌夾印 | xíng jì jiā yìn | **Hình** (hình phạt) + **Kỵ** (Hóa Kỵ) + **Giáp** (kẹp giữa) + **Ấn** (con dấu) → "Hình và Kỵ cùng kẹp gây hại Ấn" | punishment & taboo flanking the Seal |
+| Chuyên tư y thực | 專司衣食 | zhuān sī yīshí | **Chuyên** (chuyên trách) + **Tư** (coi sóc) + **Y** (áo mặc) + **Thực** (ăn uống) → "chuyên lo việc ăn mặc, hậu cần" | in charge of food and clothing |
+
+## 1. Bản chất
+
+**Thiên Tướng** (天相 — *tiān xiàng* — Hán Việt: Thiên = trời, Tướng = tể tướng/phụ tá — tiếng Anh: **the Minister/Seal Star**)
+
+- Ngũ hành: Dương Thủy (壬水 — *rén shuǐ*) — Thủy "dương", chảy có hướng, có tổ chức, khác Thủy "âm" trầm lắng của Thái Âm.
+- Hóa khí (化氣 — *huàqì*) viết là **"Ấn"** (印 — *yìn* — con dấu, ấn tín — tiếng Anh: **the Seal**) — biểu tượng cho quyền hạn được ỦY THÁC chứ không phải tự thân sở hữu; ai giữ ấn thì có quyền, nhưng ấn luôn thuộc về một thẩm quyền cao hơn.
+- Thuộc nhóm: **Nam Đẩu tinh**, danh xưng **"chưởng ấn quan"** (掌印官 — *zhǎng yìn guān*) — quan giữ ấn tín, chuyên thực thi mệnh lệnh chứ không tự đưa ra quyết sách lớn.
+- Đối ứng tự nhiên: không có đối tinh cố định; nhưng về mặt an sao, Thiên Tướng có quan hệ đặc biệt với **Thiên Phủ** — nguyên tắc "Phùng Tướng khán Phủ" (逢相看府 — *féng xiàng kàn fǔ*) yêu cầu luận Thiên Tướng phải luôn xem thêm Thiên Phủ trong tam hợp, vì hai sao này vốn cùng thuộc nhóm phò tá Tử Vi.
+- Điển tích: trong Phong Thần Bảng (封神榜 — *fēngshén bǎng*), Thiên Tướng được gán cho **Văn Thái Sư** (聞太師 — *wén tàishī*) — thái sư trung thành tuyệt đối với triều Thương, dốc hết sức phò tá dù biết vận nước đã suy. Điển tích này lý giải trọn vẹn bản chất Thiên Tướng: trung thành, tận tụy đến cùng với vai trò được giao, kể cả khi bối cảnh không còn thuận lợi.
+- Đại diện nhân sự: không gắn vai vế gia đình cố định — đại diện cho vai trò **người phụ tá/cố vấn đáng tin cậy** trong bất kỳ mối quan hệ nào xuất hiện.
+- Đặc điểm riêng: **KHÔNG có Tứ Hóa** (giống Thiên Phủ) — được xem là "sao ít cá tính riêng nhất trong 14 chính tinh", vì bản chất một quan giữ ấn không tự ý thay đổi lập trường, chỉ phản ánh trung thực ý chí của thẩm quyền cấp trên.
+
+Thiên Tướng là hình mẫu điển hình của "người thứ hai xuất sắc" trong hệ 14 chính tinh — một "chưởng ấn quan" tận tụy thực thi chứ không tự đề xuất. Việc hoàn toàn không có Tứ Hóa, cộng với vị trí bị kẹp cố định giữa Cự Môn và Thiên Lương, khiến Thiên Tướng trở thành minh chứng rõ nhất cho nguyên lý: một số nhân cách được định hình chủ yếu bởi MÔI TRƯỜNG xung quanh hơn là bởi nội lực riêng. Đây không phải điểm yếu — trong đúng bối cảnh (được phò tá tốt), khả năng "trung hòa và thực thi hoàn hảo" của Thiên Tướng chính là thứ giữ cho cả một hệ thống lớn không sụp đổ, tương tự vai trò của một COO đáng tin cậy bên cạnh một CEO có tầm nhìn.
+
+### Nguyên lý nền
+
+Thiên Tướng LUÔN bị kẹp giữa Cự Môn và Thiên Lương — đây là quy luật an sao cố định, không đổi theo bất kỳ lá số nào, khiến Thiên Tướng trở thành chính tinh chịu ảnh hưởng "giáp cung" (夾宮 — *jiágōng*) rõ rệt nhất trong toàn bộ hệ thống:
+- Cự Môn Hóa Lộc → **"Tài Ấm giáp Ấn"** (財蔭夾印 — *cái yìn jiā yìn*) — đại cát, Ấn được cả Tài (Cự Môn Lộc) lẫn Ấm (Thiên Lương) bao bọc, bảo vệ hai mặt.
+- Cự Môn Hóa Kỵ → **"Hình Kỵ giáp Ấn"** (刑忌夾印 — *xíng jì jiā yìn*) — Thiên Lương biến thành "Hình" trong thế giáp cung này, khiến Thiên Tướng dễ vướng pháp lý, tổn hại danh dự dù bản thân không chủ ý sai phạm.
+
+Đây là minh chứng rõ nhất cho khái niệm "sao thụ động hoàn toàn phụ thuộc môi trường xung quanh" trong toàn bộ 14 chính tinh — không một chính tinh nào khác có số phận bị quyết định gắt gao bởi tình trạng Tứ Hóa của HAI sao lân cận đến vậy.
+
+- **"Chuyên tư y thực"** (專司衣食 — *zhuān sī yīshí*) — quan giữ ấn ngoài quyền lực hành chính còn phụ trách cả hậu cần cơ bản (cơm ăn áo mặc của bộ máy), phản ánh tính "toàn diện nhưng không hào nhoáng" của vai trò này.
+- **"Phùng Tướng khán Phủ"** (逢相看府 — *féng xiàng kàn fǔ*) — nguyên tắc bắt buộc: luận Thiên Tướng phải luôn xem thêm Thiên Phủ trong tam hợp, vì sức mạnh thật sự của "ấn tín" phụ thuộc vào "kho tàng" đứng sau nó có đủ đầy hay không.
+- Thành ngữ **"cường đạo thổ phỉ, dã hữu hảo bằng hữu"** (強盜土匪，也有好朋友 — *qiángdào tǔfěi, yě yǒu hǎo péngyǒu* — "dù là giặc cướp cũng có bạn tốt") minh họa tính "lưỡng diện, tiêu chuẩn tự đặt" của Thiên Tướng: trung thành tuyệt đối với những gì mình đã cam kết, bất kể đúng sai khách quan từ góc nhìn bên ngoài.
+
+### Tứ Hóa: Không có — luận qua Tứ Hóa của Cự Môn/Thiên Lương giáp cung lân cận (xem chi tiết ở trên).
+
+---
+
+## 2. Luận theo 12 cung
+
+### Cung Mệnh (命宮 — *mìnggōng*)
+Thiên Tướng thủ Mệnh cho phong thái đôn hậu (敦厚 — *dūnhòu*), ôn hòa, chính nghĩa — nhưng đúng như cổ ngữ "cát nhi kém xung" (吉而缺沖 — *jí ér quē chōng*), tốt mà thiếu đột phá vì bản chất "chưởng ấn quan" thiên về thực thi hơn tự quyết. Đối cung luôn là Phá Quân — nghĩa là "cái tôi" của Thiên Tướng luôn phải soi vào một hình ảnh đối lập hoàn toàn (phá cách, bốc đồng) để tự định vị mình, giải thích vì sao người Mệnh Thiên Tướng thường rất cẩn trọng, như thể đang tự kiềm chế phần "Phá Quân tiềm ẩn" bên trong.
+
+Ba tổ hợp đồng cung chính: **Vũ Tướng** (Dần/Thân) ổn định, cân bằng giữa quyết đoán của Vũ Khúc và tính điều hòa của Thiên Tướng; **Liêm Tướng** (Tý/Ngọ) khéo giao tế nhưng bảo thủ hơn, vì Liêm Trinh "Tù" khí gò bó phần linh hoạt; **Tử Tướng** (Thìn/Tuất) uy quyền được điều hòa rõ rệt nhất trong ba tổ hợp, vì Tử Vi và Thiên Tướng vốn cùng thuộc "phe" quân-thần nên rất tương hợp, thường được xem là tổ hợp ổn định nhất trong toàn bộ sáu vị trí khả dĩ của Thiên Tướng.
+
+Vì hoàn toàn không có Tứ Hóa, vận mệnh của Mệnh Thiên Tướng phụ thuộc gắt gao vào tình trạng giáp cung Cự Môn-Thiên Lương đã nêu ở Nguyên lý nền: "Tài Ấm giáp Ấn" cho một đời an ổn, được nâng đỡ; "Hình Kỵ giáp Ấn" cảnh báo cần đặc biệt cẩn trọng giấy tờ/pháp lý trong suốt cuộc đời, kể cả khi bản thân không chủ ý vi phạm.
+
+### Cung Huynh Đệ (兄弟宮 — *xiōngdì gōng*)
+Tình cảm sâu đậm, hỗ trợ nhau thực chất — Thiên Tướng tại đây phát huy đúng vai trò "chưởng ấn": đáng tin cậy, sẵn sàng đứng ra gánh vác trách nhiệm chung của anh em.
+
+### Cung Phu Thê (夫妻宮 — *fūqī gōng*)
+Duyên đến qua bạn học/đồng nghiệp/mai mối hơn là tình cờ gặp gỡ ngẫu nhiên — phối ngẫu đoan trang, có trách nhiệm, phù hợp với người tìm kiếm sự ổn định lâu dài hơn là cảm giác mạnh.
+
+### Cung Tử Tức (子女宮 — *zǐnǚ gōng* — cung quản con cái, học trò, thế hệ kế thừa) ¹
+Tử Tức phản ánh **phong cách nuôi dạy** (教養風格 — *jiàoyǎng fēnggé*) và mối quan hệ với thế hệ sau. Thiên Tướng thủ Tử Tức mang đúng bản chất "trung dung, tuân thủ khuôn phép" đã nêu ở Bản chất vào việc làm cha mẹ: con thật thà (誠實 — *chéngshí*), coi trọng thể diện (面子 — *miànzi*) — được nuôi dạy trong khuôn khổ nguyên tắc (規範 — *guīfàn*) rõ ràng, ít khi nổi loạn công khai nhưng cần được khích lệ (鼓勵 — *gǔlì*) thể hiện chính kiến (主見 — *zhǔjiàn*) nhiều hơn, tránh việc "ngoan theo khuôn phép" biến thành thiếu chủ kiến khi trưởng thành.
+
+Khi Thiên Tướng tại Tử Tức đạt mức **Đắc**, đây là một vị trí khá thuận lợi cho vai trò "ấn tinh phò tá" phát huy đúng chức năng: con cái không chỉ ngoan ngoãn theo khuôn phép mà còn có khả năng trở thành **chỗ dựa đáng tin cậy** (可靠依靠 — *kěkào yīkào*) cho chính cha mẹ về sau — đúng tinh thần "làm ấn tín, phò tá" của Thiên Tướng được nêu ở Bản chất, chỉ khác là ở đây vai trò "phò tá" được thể hiện qua chính con cái thay vì qua sự nghiệp hay quan hệ đồng liêu. Điểm cần lưu ý: vì Thiên Tướng luôn cần "có chủ" (依附另一星 — *yīfù lìng yī xīng* — nương tựa vào sao khác) mới phát huy trọn vẹn, cha mẹ nên chủ động tạo môi trường có định hướng (有方向的環境 — *yǒu fāngxiàng de huánjìng*) rõ ràng cho con thay vì để trẻ tự mày mò, vì đó chính là điều kiện giúp Thiên Tướng nơi con cái phát huy tốt nhất.
+
+
+### Cung Tài Bạch (財帛宮 — *cáibó gōng*)
+Tài vận hanh thông, giỏi quản lý — đặc biệt vượng nếu hội đủ cách "Tài Ấm giáp Ấn" (Cự Môn Hóa Lộc + Thiên Lương giáp cung), khi đó tài chính vừa dồi dào vừa được che chở an toàn, hiếm khi lâm cảnh túng thiếu.
+
+### Cung Tật Ách (疾厄宮 — *jí'è gōng*)
+Ít bệnh nặng, chủ yếu các vấn đề ngoài da hoặc huyết áp nhẹ — thể trạng nhìn chung ổn định nhờ lối sống điều độ, ít cực đoan (biểu tượng học, không phải chẩn đoán y khoa).
+
+### Cung Thiên Di (遷移宮 — *qiānyí gōng*)
+Do dự (優柔寡斷 — *yōuróu guǎduàn*) khi phải ra quyết định lớn dù đã chuẩn bị kỹ lưỡng — bài học lớn nhất khi ở xa nhà là cần dứt khoát đúng lúc thay vì chờ đợi sự hoàn hảo tuyệt đối trước khi hành động.
+
+### Cung Giao Hữu / Nô Bộc (交友宮 — *jiāoyǒu gōng*)
+Phải đến trung niên mới thực sự được bạn bè giúp gây dựng cơ nghiệp — quan hệ xã hội của Thiên Tướng cần thời gian tích lũy uy tín mới sinh lợi ích thiết thực, không có kiểu "quý nhân đến sớm".
+
+### Cung Quan Lộc (官祿宮 — *guānlù gōng*)
+Hợp nghề điều phối/trung gian: bảo hiểm, tư vấn, môi giới, quản lý vận hành — bất kỳ vai trò nào cần đứng giữa để kết nối và thực thi đều phù hợp với bản chất "chưởng ấn quan" của Thiên Tướng hơn là vai trò khởi xướng độc lập.
+
+### Cung Điền Trạch (田宅宮 — *tiánzhái gōng*)
+Tích lũy nhờ chăm chỉ, không sẵn có nhưng bền — sản nghiệp xây dựng từng bước theo thời gian, phù hợp tư duy "tiết kiệm rồi mới đầu tư" hơn là mạo hiểm vay mượn lớn.
+
+### Cung Phúc Đức (福德宮 — *fúdé gōng*)
+Phúc vận mạnh, sống thọ, an nhàn — một trong những vị trí nội tâm bình yên nhất trong 14 chính tinh, ít xung đột nội tại nhờ bản chất trung dung, không cực đoan về bất cứ hướng nào.
+
+### Cung Phụ Mẫu (父母宮 — *fùmǔ gōng* — cung quản quan hệ với cha mẹ, người đỡ đầu, cấp trên trực tiếp) ²
+Phụ Mẫu phản ánh **hình mẫu quyền uy đầu đời** (早期權威形象 — *zǎoqī quánwēi xíngxiàng*) — người đầu tiên định hình cách một người nhìn nhận kỷ luật (紀律 — *jìlǜ*) và sự che chở. Thiên Tướng thủ Phụ Mẫu mang đúng bản chất "trung dung, tuân thủ khuôn phép" đã nêu ở Bản chất vào vai trò làm cha mẹ: cha mẹ sáng suốt (明智 — *míngzhì*), hướng dẫn khôn ngoan — mô hình giáo dục cân bằng (平衡 — *pínghéng*) giữa kỷ luật và thấu hiểu, tạo nền tảng tâm lý ổn định cho con cái từ nhỏ.
+
+Khi Thiên Tướng đạt mức **Vượng** tại Phụ Mẫu, vai trò "ấn tinh phò tá" của sao này phát huy đúng chức năng ngay từ mối quan hệ nền tảng nhất: cha mẹ không áp đặt một cách cứng nhắc mà đóng vai trò "cố vấn" (顧問 — *gùwèn*) đồng hành, giúp con hình thành khả năng tự quyết định trong khuôn khổ an toàn thay vì chỉ biết vâng lời. Đồng cung với Liêm Trinh đạt mức Vượng như trong tổ hợp "Liêm Tướng" — hai sao cùng vượng tạo ra một hình mẫu quyền uy vừa có nguyên tắc rõ ràng (từ Liêm Trinh) vừa có sự mềm mỏng trung dung (từ Thiên Tướng), hiếm khi khiến con cái cảm thấy ngột ngạt dù kỷ luật gia đình khá cao.
+
+
+## 3. Tứ Hóa: Không có — luận qua Tứ Hóa của Cự Môn/Thiên Lương lân cận.` },
+  { label: "Thất Sát", slug: "the-general-star", body: `# THẤT SÁT (七殺 — qī shā — the General Star)
+
+## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
+| Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
+|---|---|---|---|---|
+| Hỉ nộ vô thường | 喜怒無常 | xǐnù wúcháng | **Hỉ** (vui) + **Nộ** (giận) + **Vô** (không) + **Thường** (cố định) → "vui giận thất thường" | moody |
+| Bại trung cầu thắng | 敗中求勝 | bàizhōng qiúshèng | **Bại** (thất bại) + **Trung** (giữa) + **Cầu** (tìm kiếm) + **Thắng** (chiến thắng) → "tìm chiến thắng giữa thất bại" | snatching victory from defeat |
+| Tướng | 將 | jiàng | **Tướng** (tướng lĩnh) → "vị tướng cầm quân" | general |
+| Thất Sát triều đẩu | 七殺朝斗格 | qī shā cháo dǒu gé | **Thất** (bảy) + **Sát** (sát khí) + **Triều** (chầu về) + **Đẩu** (chòm sao) → "Thất Sát chầu về chòm Đẩu" | Seven Killings paying court to the Dipper |
+| Như bão hổ nhi miên | 如抱虎而眠 | rú bào hǔ ér mián | **Như** (như là) + **Bão** (ôm) + **Hổ** (hổ) + **Nhi** (mà) + **Miên** (ngủ) → "như ôm hổ mà ngủ — sức mạnh kề hiểm họa" | like sleeping while embracing a tiger |
+| Nhất sơn bất dung nhị hổ | 一山不容二虎 | yī shān bù róng èr hǔ | **Nhất** (một) + **Sơn** (núi) + **Bất** (không) + **Dung** (chứa) + **Nhị** (hai) + **Hổ** (hổ) → "một núi không chứa nổi hai hổ" | one mountain cannot hold two tigers |
+
+## 1. Bản chất
+
+**Thất Sát** (七殺 — *qī shā* — Hán Việt: Thất = bảy, Sát = sát khí/sao dữ — tên gọi bắt nguồn từ vị trí thứ bảy tính từ Tử Vi theo phép an sao — tiếng Anh: **the General Star**)
+
+- Ngũ hành: Âm Kim pha Hỏa (辛金帶火 — hỏa hóa chi kim) — Kim bị Hỏa luyện qua, tạo tính chất sắc bén nhưng đã được tôi luyện, khác Kim thuần túy của Vũ Khúc.
+- Hóa khí (化氣 — *huàqì*) viết là **"Tướng"** (將 — *jiàng* — tướng quân, người cầm quân — tiếng Anh: **the General**)
+- Thuộc nhóm: **Nam Đẩu đệ lục tinh**, mang danh xưng dân gian **"tướng quân"** — vị trí cao nhất trong hệ thống "chiến tướng" của 14 chính tinh, chỉ đứng sau Đế tinh Tử Vi về mặt uy quyền quân sự.
+- Đối ứng tự nhiên: không có đối tinh nghịch vượng/hãm; nhưng có quan hệ Ngũ Hành trực tiếp với **Phá Quân** (Kim sinh Thủy) — hai "chiến tướng" liền kề trong hệ phân cấp, Thất Sát cao hơn Phá Quân đúng một bậc.
+- Điển tích: trong Phong Thần Bảng (封神榜 — *fēngshén bǎng*), Thất Sát được gán cho **Hoàng Phi Hổ** (黃飛虎 — *huáng fēihǔ*) — đại tướng trung thành của nhà Thương, sau vì bị bức hại mà quy thuận nhà Chu, trở thành một trong những chiến tướng dũng mãnh nhất phù Chu diệt Trụ. Điển tích này phản ánh chính xác bản chất Thất Sát: sức mạnh quân sự thuần túy, trung thành với chính nghĩa nhưng sẵn sàng chuyển phe khi minh chủ không còn xứng đáng.
+- Đại diện nhân sự: không gắn vai vế gia đình cố định — đại diện cho vai trò **chiến binh/người thực thi quyết liệt** trong mọi mối quan hệ xuất hiện.
+- Đặc tính riêng: Miếu tại Dần, Thân, Tị, Hợi (bốn góc tứ mã); Vượng tại Thìn, Tuất (dù mang tên "Thiên La Địa Võng" đáng sợ, lại là vị trí có lợi RIÊNG cho Thất Sát); các cung còn lại ở mức Đắc/Bình — Thất Sát gần như không có hãm địa thực sự nặng, phản ánh bản chất một chiến tướng luôn giữ được sức mạnh cơ bản dù ở hoàn cảnh nào.
+
+Thất Sát mang hình tượng "tướng quân xông pha trận tiền" rõ rệt nhất trong 14 chính tinh — hoàn toàn không có Tứ Hóa vì bản chất một tướng lĩnh là THI HÀNH mệnh lệnh chứ không tự quyết định chiến lược lớn (khác Phá Quân, người "phá cách" theo ý riêng). Vị trí đặc biệt tại Thìn/Tuất ("Thiên La Địa Võng") cho thấy một nguyên lý sâu hơn về sát tinh nói chung: năng lượng mãnh liệt không nguy hiểm vì bản thân nó, mà nguy hiểm khi THIẾU KHUÔN KHỔ để trút vào — cũng chính khuôn khổ đó, khi đủ mạnh, lại là thứ giúp sát khí phát huy tối đa thay vì tự hủy hoại. Đây là một trong những nghịch lý sâu sắc nhất trong toàn bộ hệ thống: vị trí tưởng như bất lợi nhất (bị "lưới trời vây bọc") lại trở thành nơi phát huy sức mạnh tốt nhất cho đúng loại năng lượng phù hợp.
+
+### Nguyên lý nền
+
+Thuộc nhóm "Sát Phá Liêm Tham". KHÔNG có Tứ Hóa (giống Thiên Phủ, Thiên Tướng) — vì bản chất "tướng lĩnh chỉ thực thi mệnh lệnh vua, không tự quyết". Đây là điểm chung thú vị giữa ba sao tưởng chừng rất khác nhau (Thiên Phủ ôn hòa, Thiên Tướng trung dung, Thất Sát mãnh liệt): cả ba đều là những vai trò PHỤC VỤ một thẩm quyền cao hơn, chỉ khác cách thức phục vụ.
+
+**"Thất Sát triều đẩu"** (七殺朝斗格 — *qī shā cháo dǒu gé*): độc tọa Dần/Thân, tam hợp có cả Tử Vi lẫn Thiên Phủ — hình ảnh một tướng quân được cả vua lẫn tể tướng tin tưởng giao phó, "điều động trăm vạn hùng binh". Đặc biệt: tại Thìn/Tuất ("Thiên La Địa Võng") lại có lợi cho riêng Thất Sát — sát khí mãnh liệt cần khuôn khổ mạnh để chế ngự và phát huy đúng chỗ, một ngoại lệ hiếm hoi trong toàn bộ hệ thống miếu/hãm.
+
+- Ẩn dụ **"như bão hổ nhi miên"** (如抱虎而眠 — *rú bào hǔ ér mián* — như ôm hổ mà ngủ) — sức mạnh và hiểm họa luôn song hành trong cùng một bản chất; người sở hữu Thất Sát mạnh mẽ luôn phải học cách chung sống với chính năng lượng dữ dội của bản thân.
+- **"Nhất sơn bất dung nhị hổ"** (一山不容二虎 — *yī shān bù róng èr hǔ*) — giải thích tính khó hòa hợp của Thất Sát dù gặp người cùng cá tính mạnh; hai nguồn uy quyền lớn hiếm khi tồn tại yên ổn trong cùng một không gian.
+- Phân biệt vai trò **"Chủ Soái"** (主帥 — lao tâm, độc lập tác chiến, tự chịu trách nhiệm toàn cục) của Thất Sát so với **"Tiên Phong"** (先鋒 — lao lực, chịu mệnh lệnh trực tiếp) của Phá Quân — dù cả hai đều là "chiến tướng", vị trí và mức độ tự chủ trong chuỗi chỉ huy khác nhau rõ rệt.
+
+### Tứ Hóa: Không có (đặc điểm định danh của chính tinh này, giống Thiên Phủ và Thiên Tướng)
+
+---
+
+## 2. Luận theo 12 cung
+
+### Cung Mệnh (命宮 — *mìnggōng*)
+Thất Sát thủ Mệnh cho tính độc lập mạnh mẽ, tự tôn cao, cảm xúc thất thường (喜怒無常 — *xǐnù wúcháng*) nhưng sức bền phi thường, đúng tinh thần "bại trung cầu thắng" (敗中求勝 — *bàizhōng qiúshèng* — tìm chiến thắng ngay giữa thất bại).
+
+Cơ chế tâm lý: người Mệnh Thất Sát vận hành theo nguyên tắc "chứng minh bằng hành động, không phải lời nói" — khác Cự Môn tranh luận hay Thiên Cơ tính toán, Thất Sát giải quyết mọi nghi vấn bằng cách trực tiếp xông vào và hoàn thành. Đây là lý do sao này đặc biệt phù hợp với môi trường có thử thách rõ ràng, cụ thể — sự mơ hồ, thiếu mục tiêu mới là kẻ thù thực sự của Thất Sát, không phải khó khăn hay rủi ro.
+
+Ba tổ hợp chính quyết định sắc thái: đồng cung **Liêm Trinh** (Sửu/Mùi) cứng rắn, đa tài, kết hợp sát khí của Thất Sát với tính kỷ luật của Liêm Trinh tạo ra một nhân cách vừa mạnh mẽ vừa có nguyên tắc. Đồng cung **Vũ Khúc** (Mão/Dậu — cách "Vũ Sát") cương liệt cực độ, cần một nghề chuyên môn để trút năng lượng — đây là tổ hợp mãnh liệt nhất trong ba, dễ thành công lớn nếu định hướng đúng nhưng cũng dễ cực đoan nếu vô chế. Đồng cung **Tử Vi** (Tị/Hợi) ngoài tĩnh trong cương, uy quyền được kiềm chế bởi sự hiện diện của Đế tinh — sát khí của Thất Sát được "thuần hóa" phần nào khi đứng cạnh một thẩm quyền cao hơn. Đặc biệt tại Thìn/Tuất ("Thiên La Địa Võng") lại có lợi riêng cho Thất Sát như đã nêu ở Nguyên lý nền — một nghịch lý chỉ đúng với chính tinh này trong toàn bộ hệ thống.
+
+### Cung Huynh Đệ (兄弟宮 — *xiōngdì gōng* — cung quản anh chị em ruột, quan hệ đồng trang lứa gần gũi nhất) ¹
+Thất Sát thủ Huynh Đệ mang đúng bản chất "tướng quân độc lập tác chiến" đã nêu ở Bản chất vào quan hệ anh em: duyên mỏng (緣薄 — *yuán báo*) — quan hệ anh em thường không gần gũi, mỗi người có xu hướng độc lập (獨立 — *dúlì*) phát triển con đường riêng, ít khi nương tựa vào nhau, đúng tinh thần "nhất sơn bất dung nhị hổ" đã nêu ở Nguyên lý nền: hai cá tính mạnh trong cùng một mái nhà hiếm khi tồn tại yên ổn ở khoảng cách quá gần.
+
+Khi Thất Sát **hãm** và đồng cung với Vũ Khúc đạt mức **Đắc**, phần "sát khí" vốn dễ gây xung đột của Thất Sát độc tọa được Vũ Khúc — một sao thiên về thực tế, tài chính, ít cảm tính — làm dịu bớt phần nào: quan hệ anh em tuy vẫn giữ khoảng cách nhất định, nhưng dễ tìm được **tiếng nói chung trong công việc/tài chính** (財務共識 — *cáiwù gòngshí*) hơn là trong đời sống tình cảm thường nhật. Đây là kiểu Huynh Đệ "hợp tác được nhưng không thân thiết" — phù hợp nhất khi anh em cùng tham gia kinh doanh hoặc dự án chung có phân vai rõ ràng, thay vì kỳ vọng một mối quan hệ gắn bó khăng khít kiểu truyền thống.
+
+
+### Cung Phu Thê (夫妻宮 — *fūqī gōng*)
+Nhiều trắc trở, nên kết hôn muộn — bản chất "tướng quân" của Thất Sát khiến quan hệ hôn nhân sớm dễ va chạm vì cả hai bên chưa đủ độ chín để dung hòa cái tôi mạnh mẽ.
+
+### Cung Tử Tức (子女宮 — *zǐnǚ gōng*)
+Cá tính mạnh, khó dạy — con cái Thất Sát thường có ý chí độc lập từ nhỏ, cha mẹ nên định hướng bằng sự tôn trọng thay vì áp đặt cứng nhắc để tránh xung đột kéo dài.
+
+### Cung Tài Bạch (財帛宮 — *cáibó gōng*)
+Tốt nhưng thích mạo hiểm, biến động lớn — dòng tiền lên xuống theo chu kỳ rõ rệt, phù hợp người có bản lĩnh chấp nhận rủi ro để đổi lấy thành quả lớn.
+
+### Cung Tật Ách (疾厄宮 — *jí'è gōng*)
+Sức khỏe kém từ nhỏ, dễ mắc trĩ khi lớn — ứng với bản chất sát khí mãnh liệt tác động lên hệ tuần hoàn/khí huyết (biểu tượng học, không phải chẩn đoán y khoa).
+
+### Cung Thiên Di (遷移宮 — *qiānyí gōng*)
+Năng động, kiên định — ra ngoài là môi trường Thất Sát phát huy tốt nhất, tựa như "tướng quân xông pha trận tiền", càng thử thách càng bộc lộ rõ bản lĩnh.
+
+### Cung Giao Hữu / Nô Bộc (交友宮 — *jiāoyǒu gōng*)
+Bạn mang phiền toái nhiều hơn lợi ích — cần chọn lọc kỹ quan hệ xã hội, tránh bị cuốn vào những mối quan hệ tiêu tốn năng lượng mà không mang lại giá trị tương xứng.
+
+### Cung Quan Lộc (官祿宮 — *guānlù gōng*)
+Hợp vận động viên, cảnh sát, quân đội — bất kỳ nghề nghiệp nào đòi hỏi kỷ luật, đối mặt trực diện với thử thách đều phù hợp với bản chất tướng lĩnh của Thất Sát.
+
+### Cung Điền Trạch (田宅宮 — *tiánzhái gōng* — cung quản nhà cửa, đất đai, tài sản cố định và "kho tàng" tích lũy của lá số) ²
+Thất Sát thủ Điền Trạch mang đúng bản chất "tướng quân xông pha, quyết liệt" đã nêu ở Bản chất vào lĩnh vực tài sản cố định: biến động (變動 — *biàndòng*), được ít mất nhiều — sản nghiệp không ổn định, cần thận trọng (謹慎 — *jǐnshèn*) trong các quyết định lớn liên quan đến bất động sản, tránh đầu tư theo cảm tính (衝動投資 — *chōngdòng tóuzī*) nhất thời.
+
+Khi Thất Sát đạt mức **Miếu**, sát khí vốn dữ dội của sao này lại chuyển hóa theo hướng tích cực hiếm gặp ở cung Điền Trạch: thay vì chỉ gây hao tán, một Thất Sát miếu vượng thường gắn với những quyết định tài sản mang tính "được ăn cả, ngã về không" (孤注一擲 — *gūzhù yīzhì*) nhưng nếu tính toán kỹ, quy mô sản nghiệp có thể tăng vọt sau một lần biến động lớn — đúng tinh thần "bại trung cầu thắng" (敗中求勝 — *bàizhōng qiúshèng*) đã nêu ở Bản chất, chỉ khác là áp dụng vào lĩnh vực bất động sản thay vì sự nghiệp. Điểm cần lưu ý: đây vẫn là chính tinh không có Tứ Hóa hỗ trợ, nên toàn bộ kết quả phụ thuộc nhiều vào bản lĩnh cá nhân hơn là "trợ lực" từ vận trình.
+
+
+### Cung Phúc Đức (福德宮 — *fúdé gōng*)
+Tại Thân/Dậu đắc lợi; nếu không thì vất vả, khắt khe với bản thân — Thất Sát hiếm khi cho phép mình nghỉ ngơi trọn vẹn, luôn cảm thấy cần phải chứng minh điều gì đó.
+
+### Cung Phụ Mẫu (父母宮 — *fùmǔ gōng*)
+Cha mẹ cố chấp, độc đoán, xa cách — mô hình giáo dục nghiêm khắc, ít biểu lộ tình cảm, tạo tính cách độc lập sớm nhưng cũng để lại khoảng cách tâm lý cần chủ động hàn gắn khi trưởng thành.
+## 3. Tứ Hóa: Không có` },
+  { label: "Lá Số Mẫu", slug: "la-so-mau", body: `## 1. Thông tin cấu trúc lá số
 
 - Âm Dương: **Âm Nữ**
 - Bản Mệnh: **Sơn Đầu Hỏa**
@@ -2052,10 +2094,10 @@ function Block({ b }) {
 export default function TuViChinhTinh14Sao() {
   const [active, setActive] = useState(() => {
     const fromUrl = getSubTabFromUrl();
-    const n = fromUrl != null ? parseInt(fromUrl, 10) : NaN;
-    return !isNaN(n) && n >= 0 && n < SECTIONS.length ? n : 0;
+    const idx = SECTIONS.findIndex((s) => s.slug === fromUrl);
+    return idx !== -1 ? idx : 0;
   });
-  useEffect(() => { syncSubTabToUrl(active); }, [active]);
+  useEffect(() => { syncSubTabToUrl(SECTIONS[active]?.slug); }, [active]);
   const scrollRef = useRef(null);
 
   useEffect(() => {
@@ -2083,16 +2125,19 @@ export default function TuViChinhTinh14Sao() {
 
       <nav className="tv-crumb-wrap mobile-static">
         <div className="tv-crumb">
-          {SECTIONS.map((s, idx) => (
-            <button
-              key={idx}
-              className={"tv-crumb-pill" + (idx === active ? " on" : "")}
-              onClick={() => setActive(idx)}
-            >
-              <span className="tv-crumb-n">{String(idx).padStart(2, "0")}</span>
-              {s.label}
-            </button>
-          ))}
+          {SECTIONS.map((s, idx) => {
+            const isMeta = s.label === "Tổng quan" || s.label === "Phương pháp luận";
+            return (
+              <button
+                key={idx}
+                className={"tv-crumb-pill" + (isMeta ? " meta" : "") + (idx === active ? " on" : "")}
+                onClick={() => setActive(idx)}
+              >
+                <span className="tv-crumb-n">{String(idx).padStart(2, "0")}</span>
+                {s.label}
+              </button>
+            );
+          })}
         </div>
       </nav>
 
@@ -2162,6 +2207,8 @@ const CSS = `
 }
 .tv-crumb-pill:hover { border-color: var(--accent); color: var(--ink); }
 .tv-crumb-pill.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+/* Tổng quan / Phương pháp luận — bo góc vuông hơn để phân biệt với 14 tab sao (bo tròn kiểu pill) */
+.tv-crumb-pill.meta { border-radius: 8px; }
 .tv-crumb-n {
   font-family: Georgia, serif; font-weight: 700; font-size: 10.5px;
   width: 16px; height: 16px; border-radius: 3px;
