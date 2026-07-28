@@ -1829,22 +1829,32 @@ const VN_ONLY_RE = /[ăâđêôơưĂÂĐÊÔƠƯảãạẻẽẹỉĩịỏõ�
 // HÁN (không đọc thẳng chuỗi pinyin) vì giọng zh-CN phát âm chữ Hán chuẩn xác
 // hơn nhiều so với đọc thẳng chuỗi Latin. Khi click vào pinyin, dùng chữ Hán
 // đi kèm gần nhất (xem lastHan trong renderInline) làm nguồn để đọc.
-let zhVoice = null;
+// QUAN TRỌNG: gọi getVoices() TRỰC TIẾP tại thời điểm click (không cache vào
+// biến module) — cache theo module load trước đây có thể bị "kẹt" ở null nếu
+// getVoices() trả về mảng rỗng lúc file vừa nạp (voices chưa kịp load) và sự
+// kiện voiceschanged không bắn lại (thường gặp khi voices đã có sẵn từ trước
+// trong tiến trình trình duyệt, tức là không có gì "thay đổi" để bắn sự kiện).
 function pickZhVoice() {
   if (typeof window === "undefined" || !window.speechSynthesis) return null;
   const voices = window.speechSynthesis.getVoices();
   if (!voices || voices.length === 0) return null;
-  return (
-    voices.find((v) => v.lang === "zh-CN") ||
-    voices.find((v) => v.lang && v.lang.toLowerCase().startsWith("zh")) ||
-    null
+  const candidates =
+    voices.filter((v) => v.lang === "zh-CN").length > 0
+      ? voices.filter((v) => v.lang === "zh-CN")
+      : voices.filter((v) => v.lang && v.lang.toLowerCase().startsWith("zh"));
+  if (candidates.length === 0) return null;
+  // Ưu tiên giọng "local" (cài sẵn trên máy, chạy offline) hơn giọng "network"
+  // (localService === false, phát qua streaming) — giọng network trên Chrome
+  // hay bị giật/ngắt giữa chừng do độ trễ mạng, dễ gây đọc thiếu âm đầu/cuối.
+  const chosen = candidates.find((v) => v.localService === true) || candidates[0];
+  // eslint-disable-next-line no-console
+  console.debug(
+    "[TuVi TTS] giọng zh khả dụng:",
+    candidates.map((v) => `${v.name} (${v.lang}, local=${v.localService})`),
+    "-> dang dung:",
+    chosen && chosen.name
   );
-}
-if (typeof window !== "undefined" && window.speechSynthesis) {
-  zhVoice = pickZhVoice();
-  window.speechSynthesis.onvoiceschanged = () => {
-    zhVoice = pickZhVoice() || zhVoice;
-  };
+  return chosen;
 }
 // Giữ tham chiếu utterance đang đọc ở scope module (không phải biến cục bộ
 // trong hàm) — tránh bị garbage-collected giữa chừng trên Chrome/macOS. Đồng
@@ -1859,7 +1869,8 @@ function speakChinese(text) {
   synth.cancel();
   const utter = new SpeechSynthesisUtterance(text);
   utter.lang = "zh-CN";
-  if (zhVoice) utter.voice = zhVoice;
+  const voice = pickZhVoice();
+  if (voice) utter.voice = voice;
   utter.rate = 0.85;
   utter.volume = 1;
   utter.pitch = 1;
