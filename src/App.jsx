@@ -177,11 +177,12 @@ const getTheme = (cat) => categoryThemes[cat] || categoryThemes.Default;
 // static hosting vì request luôn về "/", không cần cấu hình SPA fallback).
 // =========================================================================
 const ARTICLE_URL_PARAM = 'a';
-// Pilot scope for the personal text-annotation feature (bôi đen + ghi chú,
-// lưu qua Cloudflare D1) — chỉ bật cho các bài trong danh sách này cho tới
-// khi kiểm chứng ổn rồi mở rộng. Cơ chế gắn ở App.jsx nên áp dụng được cho
-// mọi bài mà không cần sửa từng file, chỉ cần thêm slug vào đây.
-const ANNOTATIONS_PILOT_ARTICLES = ['fin_expert_note'];
+// Tính năng bôi đen + ghi chú (lưu qua Cloudflare D1) — đã kiểm chứng ổn
+// trên production (pilot: fin_expert_note), giờ bật cho toàn bộ bài viết.
+// Cơ chế gắn 1 lần ở App.jsx (không đụng từng file bài viết) nên áp dụng
+// đồng loạt được; mọi bài trong src/articles đều render text JSX thuần
+// (đã kiểm tra không có dangerouslySetInnerHTML), phù hợp với cách neo vị
+// trí quote hiện tại.
 const getArticleIdFromUrl = () => {
   if (typeof window === 'undefined') return null;
   return new URLSearchParams(window.location.search).get(ARTICLE_URL_PARAM);
@@ -792,7 +793,7 @@ function App() {
               <TextAnnotationLayer
                 articleId={activeArticle.id}
                 containerRef={annotationContainerRef}
-                enabled={ANNOTATIONS_PILOT_ARTICLES.includes(activeArticle.id)}
+                enabled={true}
               />
             )}
 

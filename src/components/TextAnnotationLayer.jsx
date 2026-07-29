@@ -71,6 +71,26 @@ export default function TextAnnotationLayer({ articleId, containerRef, enabled }
   const clampLeft = (x, w) => Math.min(window.innerWidth - w - 8, Math.max(8, x));
   const clampTop = (y, h) => Math.min(window.innerHeight - h - 8, Math.max(8, y));
 
+  // Popover positioning: `top` is clamped using a rough height *estimate*
+  // (so it doesn't naively hang off the bottom edge), but real content can
+  // still end up taller than that estimate (long quote, long comment) —
+  // that previously pushed the Save button below the viewport with no way
+  // to reach it. Fixing it properly means not trusting the estimate for
+  // *sizing*: maxHeight is derived from the actual chosen `top`, so the box
+  // can never extend past the viewport regardless of content length; it
+  // scrolls internally instead.
+  const popupStyle = (rect, estHeight, width) => {
+    const top = clampTop(rect.bottom + 8, estHeight);
+    return {
+      position: "fixed",
+      top,
+      left: clampLeft(rect.left, width),
+      maxHeight: `calc(100vh - ${top + 8}px)`,
+      overflowY: "auto",
+      zIndex: 300,
+    };
+  };
+
   return (
     <>
       {pendingSelection && !composing && (
@@ -96,12 +116,7 @@ export default function TextAnnotationLayer({ articleId, containerRef, enabled }
       {composing && (
         <div
           ref={composeRef}
-          style={{
-            position: "fixed",
-            top: clampTop(composing.rect.bottom + 8, 150),
-            left: clampLeft(composing.rect.left, 288),
-            zIndex: 300,
-          }}
+          style={popupStyle(composing.rect, 150, 288)}
           className="w-72 rounded-xl border border-slate-200 bg-white shadow-xl p-3"
         >
           <div className="text-[11px] font-semibold text-indigo-600 uppercase tracking-wide mb-1">
@@ -142,12 +157,7 @@ export default function TextAnnotationLayer({ articleId, containerRef, enabled }
       {openNote && (
         <div
           ref={noteRef}
-          style={{
-            position: "fixed",
-            top: clampTop(openNote.rect.bottom + 8, 140),
-            left: clampLeft(openNote.rect.left, 288),
-            zIndex: 300,
-          }}
+          style={popupStyle(openNote.rect, 140, 288)}
           className="w-72 rounded-xl border border-indigo-200 bg-indigo-50 shadow-xl p-3"
         >
           <div className="text-[11px] font-semibold text-indigo-700 uppercase tracking-wide mb-1">
