@@ -14,7 +14,7 @@ const HAN_COLOR = "#B3261E";
 const PINYIN_COLOR = "#1F7A5C";
 
 const SECTIONS = [
-  { label: "Tổng quan", slug: "tong-quan", body: `# TỔNG QUAN TỬ VI ĐẨU SỐ
+  { label: "Tổng quan", num: "00", slug: "tong-quan", body: `# TỔNG QUAN TỬ VI ĐẨU SỐ
 
 ---
 
@@ -155,7 +155,7 @@ Từ toàn bộ bối cảnh lịch sử, nguyên lý và những phản biện 
 4. **Tránh "thuật ngữ hư trương" (術語誇大 — *shùyǔ kuādà*):** tên **cách cục** (格局 — *géjú*) nghe rất kêu (như "Lộ Biên Mai Thi") dễ gây hoảng sợ không cần thiết — luôn cần tìm hiểu bản chất cơ chế đằng sau tên gọi, không dừng ở nghĩa đen.
 
 5. **Duy trì tinh thần "tạo mệnh luận":** dùng Tử Vi như công cụ **tự nhận thức** (自我認知 — *zìwǒ rènzhī*) để chủ động điều chỉnh, không phải để tự giới hạn bản thân hay biện minh cho sự thụ động — đúng như phân biệt "Mệnh"/"Vận" đã nêu ở phần trên: không đổi được "phương tiện", nhưng luôn có thể chọn cách lái xe.` },
-  { label: "Phương pháp luận", slug: "phuong-phap-luan", body: `# PHƯƠNG PHÁP LUẬN ĐỌC LÁ SỐ TỬ VI ĐẨU SỐ
+  { label: "Phương pháp luận", num: "00", slug: "phuong-phap-luan", body: `# PHƯƠNG PHÁP LUẬN ĐỌC LÁ SỐ TỬ VI ĐẨU SỐ
 *(Chương mở đầu — nên đọc trước khi tra cứu chi tiết 14 chính tinh)*
 
 ## I. Tổng quan
@@ -250,7 +250,7 @@ Luôn kiểm tra điều kiện "phá cách" (破格 — *pògé*) song song: g�
 3. **Từ chính đến phụ** — 14 chính tinh quyết định khung ~70-80%, phụ tinh chỉ tinh chỉnh
 4. **Từ trong ra ngoài** — hiểu lõi (Mệnh) trước khi mở rộng vành ngoài
 5. **Khách quan trung lập** — cát hung đan xen là trạng thái bình thường; mục tiêu là giúp người xem nhận diện khuynh hướng để chủ động điều chỉnh, không phải phán quyết số phận đóng đinh` },
-  { label: "Thái Dương", slug: "the-sun", body: `# Thái Dương (太陽 — *tài yáng* — the Sun)
+  { label: "Thái Dương", num: "01", slug: "the-sun", body: `# Thái Dương (太陽 — *tài yáng* — the Sun)
 
 ## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 
@@ -375,7 +375,7 @@ Hạnh phúc gắn với được hoạt động/cống hiến, không phải ng
 | Phụ Mẫu | Được cha/trưởng bối yêu thương, hưởng ân trạch | Cha có địa vị nhưng quản lý nghiêm | Duyên cha mỏng, trắc trở giấy tờ/học vấn |
 
 ---` },
-  { label: "Thái Âm", slug: "the-moon", body: `# THÁI ÂM (太陰 — tài yīn — the Moon)
+  { label: "Thái Âm", num: "02", slug: "the-moon", body: `# THÁI ÂM (太陰 — tài yīn — the Moon)
 
 ## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
@@ -486,7 +486,7 @@ Lãng mạn, an nhàn tĩnh lặng kiểu "chậm mà chắc" — đời sống 
 | Điền Trạch | Nhiều BĐS, hợp Thái Dương | Phụ nữ trong nhà nắm quyền | Không gian sống lãng mạn | Nữ chủ vất vả |
 | Phúc Đức | Tích lũy của cải | Về già đào hoa | Về già đào hoa | Về già cô độc |
 | Phụ Mẫu | Duyên mẹ sâu đậm | — | Tình cảm mẹ sâu sắc | Duyên mẹ mỏng |` },
-  { label: "Tử Vi", slug: "emperor-star", body: `# TỬ VI (紫微 — zǐwēi — Emperor Star)
+  { label: "Tử Vi", num: "03", slug: "emperor-star", body: `# TỬ VI (紫微 — zǐwēi — Emperor Star)
 
 ## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
@@ -596,7 +596,7 @@ Gia đình hòa hợp, cha mẹ địa vị cao — nhưng chính uy quyền đ�
 | Điền Trạch | Nhà cửa thanh tịnh | Nhà cửa sang trọng |
 | Phúc Đức | Về già thanh cao | Về già con cháu quây quần |
 | Phụ Mẫu | Cha mẹ địa vị cao, ảnh hưởng tính độc lập | Tình cảm cha mẹ tốt |` },
-  { label: "Tham Lang", slug: "the-greedy-wolf-star", body: `# THAM LANG (貪狼 — tān láng — the Greedy Wolf Star)
+  { label: "Tham Lang", num: "04", slug: "the-greedy-wolf-star", body: `# THAM LANG (貪狼 — tān láng — the Greedy Wolf Star)
 
 ## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 
@@ -699,7 +699,7 @@ Quan hệ cha mẹ - con cái có thể phức tạp, nhiều cảm xúc, ít đ
 | Điền Trạch | Sản nghiệp mở rộng qua cơ hội | Chủ động đầu tư, mở rộng | Bất động sản dễ đầu cơ thất bại |
 | Phúc Đức | Đời sống hưởng thụ, nhiều trải nghiệm | Chủ động theo đuổi đam mê | Nội tâm bất an vì ham muốn không dứt |
 | Phụ Mẫu | Quan hệ cha mẹ - con cái sôi động | Cha mẹ có cá tính mạnh, ảnh hưởng lớn | Quan hệ phức tạp, nhiều mâu thuẫn |` },
-  { label: "Cự Môn", slug: "the-great-gate-shadow-star", body: `# CỰ MÔN (巨門 — jù mén — the "Great Gate"/Shadow Star)
+  { label: "Cự Môn", num: "05", slug: "the-great-gate-shadow-star", body: `# CỰ MÔN (巨門 — jù mén — the "Great Gate"/Shadow Star)
 
 ## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
@@ -805,7 +805,7 @@ Cha mẹ coi trọng vật chất, khắt khe, áp lực lớn — mô hình gi�
 | Điền Trạch | Nhà có bếp lớn | Thích thể hiện ý kiến | Chú ý hòa thuận gia đình |
 | Phúc Đức | Có khẩu phúc | Về già khó buông danh lợi | Về già không khẩu phúc |
 | Phụ Mẫu | Hợp chuyện với cha mẹ | Cha mẹ hay khẩu thiệt | Khoảng cách thế hệ |` },
-  { label: "Liêm Trinh", slug: "the-chastity-star", body: `# LIÊM TRINH (廉貞 — lián zhēn — the Chastity Star)
+  { label: "Liêm Trinh", num: "06", slug: "the-chastity-star", body: `# LIÊM TRINH (廉貞 — lián zhēn — the Chastity Star)
 
 ## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 
@@ -908,7 +908,7 @@ Khi Liêm Trinh đạt mức **Vượng** tại Phụ Mẫu và đồng cung v�
 | Điền Trạch | Sản nghiệp vững nhờ con đường chính đáng | Bất động sản dễ vướng tranh chấp |
 | Phúc Đức | An tâm khi sống đúng nguyên tắc bản thân | Nội tâm căng thẳng, khó buông bỏ |
 | Phụ Mẫu | Cha mẹ có địa vị, quan hệ đúng mực | Quan hệ cha mẹ - con cái căng thẳng |` },
-  { label: "Vũ Khúc", slug: "the-wealth-military-star", body: `# VŨ KHÚC (武曲 — wǔ qū — the Wealth/Military Star)
+  { label: "Vũ Khúc", num: "07", slug: "the-wealth-military-star", body: `# VŨ KHÚC (武曲 — wǔ qū — the Wealth/Military Star)
 
 ## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
@@ -1020,7 +1020,7 @@ Cha mẹ nghiêm khắc, cố chấp, kỳ vọng cao; quan hệ êm đềm về
 | Điền Trạch | Giữ cơ nghiệp | Thích đồ bền chắc | Thích sống khô ráo sạch sẽ | Bất hòa vì tiền |
 | Phúc Đức | Về già không thiếu tiền | Về già nắm tài chính, keo kiệt | Về già biết chăm con cháu | Về già đa nghi |
 | Phụ Mẫu | Cha mẹ giỏi kiếm tiền | Cha mẹ nắm quyền tài chính | Cha mẹ để lại tài sản | Cha mẹ nóng tính |` },
-  { label: "Phá Quân", slug: "the-destroyer-pioneer-star", body: `# PHÁ QUÂN (破軍 — pò jūn — the "Destroyer"/Pioneer Star)
+  { label: "Phá Quân", num: "08", slug: "the-destroyer-pioneer-star", body: `# PHÁ QUÂN (破軍 — pò jūn — the "Destroyer"/Pioneer Star)
 
 ## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
@@ -1124,7 +1124,7 @@ Cha mẹ bất hòa, thiếu ấm áp — môi trường gia đình gốc thư�
 | Điền Trạch | Dễ có nhà lớn, chú ý ngân sách | Có ý sửa sang nhà |
 | Phúc Đức | Thích hưởng thụ | Thích sống xa hoa |
 | Phụ Mẫu | Cha mẹ tự cho mình trung tâm | Được chăm sóc kỹ, cha mẹ mạnh mẽ |` },
-  { label: "Thiên Phủ", slug: "the-treasury-star", body: `# THIÊN PHỦ (天府 — tiān fǔ — the Treasury Star)
+  { label: "Thiên Phủ", num: "09", slug: "the-treasury-star", body: `# THIÊN PHỦ (天府 — tiān fǔ — the Treasury Star)
 
 ## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
@@ -1216,7 +1216,7 @@ Nên phát triển sản nghiệp dưới sự dẫn dắt hoặc trong khuôn k
 ### Cung Phụ Mẫu (父母宮 — *fùmǔ gōng*)
 Gia đình khá giả, cha mẹ ôn hòa công bằng — nền tảng giáo dục vững chắc, cha mẹ thường là tấm gương về sự chừng mực và trách nhiệm.
 ## 3. Tứ Hóa: Không có (đặc điểm định danh của sao này)` },
-  { label: "Thiên Lương", slug: "the-elder-star", body: `# THIÊN LƯƠNG (天梁 — tiān liáng — the Elder Star)
+  { label: "Thiên Lương", num: "10", slug: "the-elder-star", body: `# THIÊN LƯƠNG (天梁 — tiān liáng — the Elder Star)
 
 ## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 
@@ -1316,7 +1316,7 @@ Cha mẹ nghiêm khắc nhưng che chở thật lòng; quan hệ có thể thi�
 | Điền Trạch | Sản nghiệp bền, xây dựng từ uy tín | Chủ động quản lý, mở rộng cơ nghiệp | Nhà cửa được xây dựng cẩn trọng, có tiếng |
 | Phúc Đức | An nhàn, phúc thọ nhờ đức độ | Chủ động sắp xếp đời sống tinh thần | Được kính trọng, đời sống có chiều sâu |
 | Phụ Mẫu | Cha mẹ được kính trọng, che chở tốt | Cha mẹ có uy, quản lý nghiêm | Quan hệ cha mẹ - con cái được nể trọng |` },
-  { label: "Thiên Cơ", slug: "the-strategist-star", body: `# THIÊN CƠ (天機 — tiān jī — the Strategist Star)
+  { label: "Thiên Cơ", num: "11", slug: "the-strategist-star", body: `# THIÊN CƠ (天機 — tiān jī — the Strategist Star)
 
 ## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
@@ -1419,7 +1419,7 @@ Cha mẹ hòa nhã nhưng con độc lập nên dễ xem nhẹ sự quan tâm �
 | Điền Trạch | Nhà ngày càng lớn | Chú trọng bài trí | Tâm huyết trang trí | Đau đầu vì sửa nhà |
 | Phúc Đức | Biết sắp xếp tuổi già | Ham hiểu biết tôn giáo/huyền học | Có cơ duyên tôn giáo | Về già dễ trầm uất |
 | Phụ Mẫu | Duyên trưởng bối nam giới | Cha mẹ nhanh nhạy | Cha mẹ sáng suốt | Bất đồng quan điểm |` },
-  { label: "Thiên Đồng", slug: "the-blessing-star", body: `# THIÊN ĐỒNG (天同 — tiān tóng — the Blessing Star)
+  { label: "Thiên Đồng", num: "12", slug: "the-blessing-star", body: `# THIÊN ĐỒNG (天同 — tiān tóng — the Blessing Star)
 
 ## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 
@@ -1521,7 +1521,7 @@ Quan hệ cha mẹ - con cái nhẹ nhàng, cha mẹ có xu hướng nuông chi�
 | Điền Trạch | An cư thuận lợi | Chủ động sửa sang, mở rộng nhà cửa | Bất động sản biến động, cần thận trọng |
 | Phúc Đức | Đời sống an nhàn, phúc thọ | Tinh thần chủ động, lạc quan | Nội tâm dễ lo âu vặt vãnh |
 | Phụ Mẫu | Cha mẹ hiền hòa, quan hệ ấm áp | Cha mẹ có chủ kiến, quản lý con cái nhiều hơn | Duyên cha mẹ - con cái nhạt hơn |` },
-  { label: "Thiên Tướng", slug: "the-minister-seal-star", body: `# THIÊN TƯỚNG (天相 — tiān xiàng — the Minister/Seal Star)
+  { label: "Thiên Tướng", num: "13", slug: "the-minister-seal-star", body: `# THIÊN TƯỚNG (天相 — tiān xiàng — the Minister/Seal Star)
 
 ## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
@@ -1612,7 +1612,7 @@ Khi Thiên Tướng đạt mức **Vượng** tại Phụ Mẫu, vai trò "ấn 
 
 
 ## 3. Tứ Hóa: Không có — luận qua Tứ Hóa của Cự Môn/Thiên Lương lân cận.` },
-  { label: "Thất Sát", slug: "the-general-star", body: `# THẤT SÁT (七殺 — qī shā — the General Star)
+  { label: "Thất Sát", num: "14", slug: "the-general-star", body: `# THẤT SÁT (七殺 — qī shā — the General Star)
 
 ## Từ vựng *(nhấn vào chữ Hán/pinyin để nghe phát âm)*
 | Từ | Hán | Pinyin | Hán Việt (giải nghĩa) | English |
@@ -1700,7 +1700,7 @@ Tại Thân/Dậu đắc lợi; nếu không thì vất vả, khắt khe với b
 ### Cung Phụ Mẫu (父母宮 — *fùmǔ gōng*)
 Cha mẹ cố chấp, độc đoán, xa cách — mô hình giáo dục nghiêm khắc, ít biểu lộ tình cảm, tạo tính cách độc lập sớm nhưng cũng để lại khoảng cách tâm lý cần chủ động hàn gắn khi trưởng thành.
 ## 3. Tứ Hóa: Không có` },
-  { label: "Lá Số Mẫu", slug: "la-so-mau", body: `## 1. Thông tin cấu trúc lá số
+  { label: "Lá Số Mẫu", num: "15", slug: "la-so-mau", body: `## 1. Thông tin cấu trúc lá số
 
 - Âm Dương: **Âm Nữ**
 - Bản Mệnh: **Sơn Đầu Hỏa**
@@ -2091,6 +2091,18 @@ function Block({ b }) {
   }
 }
 
+// Nhóm 17 tab theo hệ Trung Thiên / Bắc Đẩu / Nam Đẩu (đúng thứ tự đã sắp xếp
+// trong SECTIONS) — dùng cho drawer điều hướng trên mobile. Tổng quan/Phương
+// pháp luận và Lá Số Mẫu không thuộc hệ sao nào nên xếp riêng (mở đầu / đứng
+// độc lập cuối danh sách).
+const NAV_GROUPS = [
+  { label: "Mở đầu", labels: ["Tổng quan", "Phương pháp luận"] },
+  { label: "Trung Thiên", labels: ["Thái Dương", "Thái Âm"] },
+  { label: "Bắc Đẩu hệ", labels: ["Tử Vi", "Tham Lang", "Cự Môn", "Liêm Trinh", "Vũ Khúc", "Phá Quân"] },
+  { label: "Nam Đẩu hệ", labels: ["Thiên Phủ", "Thiên Lương", "Thiên Cơ", "Thiên Đồng", "Thiên Tướng", "Thất Sát"] },
+];
+const NAV_STANDALONE_LABELS = ["Lá Số Mẫu"];
+
 export default function TuViChinhTinh14Sao() {
   const [active, setActive] = useState(() => {
     const fromUrl = getSubTabFromUrl();
@@ -2099,6 +2111,13 @@ export default function TuViChinhTinh14Sao() {
   });
   useEffect(() => { syncSubTabToUrl(SECTIONS[active]?.slug); }, [active]);
   const scrollRef = useRef(null);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [expandedGroups, setExpandedGroups] = useState({});
+
+  const selectSectionMobile = (idx) => {
+    setActive(idx);
+    setMobileNavOpen(false);
+  };
 
   useEffect(() => {
     if (scrollRef.current) scrollRef.current.scrollTop = 0;
@@ -2133,13 +2152,99 @@ export default function TuViChinhTinh14Sao() {
                 className={"tv-crumb-pill" + (isMeta ? " meta" : "") + (idx === active ? " on" : "")}
                 onClick={() => setActive(idx)}
               >
-                <span className="tv-crumb-n">{String(idx).padStart(2, "0")}</span>
+                <span className="tv-crumb-n">{s.num}</span>
                 {s.label}
               </button>
             );
           })}
         </div>
       </nav>
+
+      {/* ===== Mobile-only: thanh "đang xem" gọn + drawer trượt từ trái =====
+          Chỉ hiện dưới 768px (xem CSS .tv-mobile-trigger); trên desktop hàng
+          pill ngang ở trên vẫn dùng như cũ, không đổi gì. */}
+      <button
+        className={"tv-mobile-trigger" + (mobileNavOpen ? " open" : "")}
+        onClick={() => setMobileNavOpen((v) => !v)}
+      >
+        <div className="tv-mt-box">
+          <div className="tv-mt-text">
+            <div className="tv-mt-group">
+              {(() => {
+                const g = NAV_GROUPS.find((g) => g.labels.includes(SECTIONS[active].label));
+                if (g) return g.label;
+                if (NAV_STANDALONE_LABELS.includes(SECTIONS[active].label)) return "Lá số mẫu";
+                return "";
+              })()}
+            </div>
+            <div className="tv-mt-current">{SECTIONS[active].num} · {SECTIONS[active].label}</div>
+          </div>
+          <div className="tv-mt-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </div>
+        </div>
+      </button>
+
+      <div className={"tv-mobile-backdrop" + (mobileNavOpen ? " show" : "")} onClick={() => setMobileNavOpen(false)} />
+      <div className={"tv-mobile-drawer" + (mobileNavOpen ? " show" : "")}>
+        <div className="tv-md-head">
+          <div>
+            <div className="tv-md-t1">{SECTIONS.length} tab</div>
+            <div className="tv-md-t2">Chọn mục để xem</div>
+          </div>
+          <button className="tv-md-close" onClick={() => setMobileNavOpen(false)} aria-label="Đóng">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+        <div className="tv-md-body">
+          {NAV_GROUPS.map((g) => {
+            const items = g.labels.map((lbl) => ({ idx: SECTIONS.findIndex((s) => s.label === lbl), s: SECTIONS.find((s) => s.label === lbl) }));
+            const hasActive = items.some((it) => it.idx === active);
+            const isOpen = expandedGroups[g.label] !== undefined ? expandedGroups[g.label] : hasActive;
+            return (
+              <div key={g.label}>
+                <button
+                  className={"tv-md-group" + (hasActive ? " has-active" : "")}
+                  onClick={() => setExpandedGroups((prev) => ({ ...prev, [g.label]: !isOpen }))}
+                >
+                  <span className="tv-md-dot" />
+                  <span className="tv-md-glabel">{g.label}</span>
+                  <span className="tv-md-gcount">{items.length}</span>
+                  <span className={"tv-md-chev" + (isOpen ? " open" : "")}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                  </span>
+                </button>
+                <div className={"tv-md-items" + (isOpen ? " open" : "")}>
+                  {items.map((it) => (
+                    <button
+                      key={it.idx}
+                      className={"tv-md-item" + (it.idx === active ? " active" : "")}
+                      onClick={() => selectSectionMobile(it.idx)}
+                    >
+                      <span className="tv-md-in">{it.s.num}</span>
+                      <span>{it.s.label}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+          {NAV_STANDALONE_LABELS.map((lbl) => {
+            const idx = SECTIONS.findIndex((s) => s.label === lbl);
+            const s = SECTIONS[idx];
+            return (
+              <button
+                key={lbl}
+                className={"tv-md-standalone" + (idx === active ? " active" : "")}
+                onClick={() => selectSectionMobile(idx)}
+              >
+                <span className="tv-md-in">{s.num}</span>
+                <span>{s.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
 
       <main className="tv-stage" ref={scrollRef}>
         <div className="tv-prose">
@@ -2216,6 +2321,103 @@ const CSS = `
   display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
 .tv-crumb-pill.on .tv-crumb-n { background: rgba(255,255,255,.28); color: #fff; }
+
+/* ===== Mobile-only nav: thanh "đang xem" + drawer trượt =====
+   17 tab wrap thành nhiều hàng pill trên màn hình hẹp, chiếm hết chỗ trước
+   khi thấy nội dung — dưới 768px thay hàng pill bằng 1 thanh gọn + drawer,
+   nhóm theo hệ Trung Thiên/Bắc Đẩu/Nam Đẩu (đúng thứ tự SECTIONS). Từ 768px
+   trở lên ẩn hết, giữ nguyên hàng pill ngang như cũ. */
+.tv-mobile-trigger { display: none; }
+.tv-mobile-backdrop, .tv-mobile-drawer { display: none; }
+
+@media (max-width: 767px) {
+  .tv-crumb-wrap { display: none !important; }
+  .tv-mobile-trigger {
+    display: flex; width: 100%; align-items: center; gap: 9px;
+    position: sticky; top: 0; z-index: 20;
+    background: #FCFBF8; border-bottom: 1px solid var(--rule);
+    padding: 9px 14px; border-left: none; border-right: none; border-top: none;
+    cursor: pointer; text-align: left;
+  }
+  .tv-mt-box {
+    flex: 1; min-width: 0; display: flex; align-items: center; gap: 9px;
+    border: 1px solid var(--rule); border-radius: 10px; padding: 7px 10px; background: #fff;
+  }
+  .tv-mt-text { flex: 1; min-width: 0; }
+  .tv-mt-group {
+    font-size: 9.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 2px;
+  }
+  .tv-mt-current {
+    font-size: 12.5px; font-weight: 600; color: var(--ink);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .tv-mt-icon {
+    width: 26px; height: 26px; border-radius: 7px; background: rgba(107,79,160,.1);
+    color: var(--accent); display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: transform .2s ease;
+  }
+  .tv-mobile-trigger.open .tv-mt-icon { transform: rotate(90deg); }
+
+  .tv-mobile-backdrop {
+    display: block; position: fixed; inset: 0; background: rgba(35,31,26,.42);
+    z-index: 198; opacity: 0; pointer-events: none; transition: opacity .2s ease;
+  }
+  .tv-mobile-backdrop.show { opacity: 1; pointer-events: auto; }
+
+  .tv-mobile-drawer {
+    display: block; position: fixed; top: 0; bottom: 0; left: 0; width: 84%; max-width: 300px;
+    background: #fff; border-right: 1px solid var(--rule); z-index: 199; overflow-y: auto;
+    transform: translateX(-100%); transition: transform .25s cubic-bezier(.32,.72,0,1);
+  }
+  .tv-mobile-drawer.show { transform: translateX(0); }
+
+  .tv-md-head {
+    padding: 14px 14px 12px; border-bottom: 1px solid var(--rule);
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 10px;
+  }
+  .tv-md-t1 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+  .tv-md-t2 { font-family: Georgia, serif; font-size: 14px; font-weight: 600; color: var(--ink); margin-top: 3px; }
+  .tv-md-close {
+    width: 26px; height: 26px; border-radius: 7px; border: 1px solid var(--rule); background: var(--panel);
+    display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  .tv-md-body { padding: 6px 0 16px; }
+
+  .tv-md-group {
+    width: 100%; display: flex; align-items: center; gap: 9px; padding: 9px 14px;
+    background: transparent; border: none; cursor: pointer; text-align: left;
+  }
+  .tv-md-group.has-active { background: rgba(107,79,160,.06); }
+  .tv-md-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .tv-md-glabel { flex: 1; font-size: 11.5px; font-weight: 700; color: var(--accent); }
+  .tv-md-gcount { font-size: 10px; color: var(--muted); }
+  .tv-md-chev { color: var(--muted); flex-shrink: 0; transition: transform .18s ease; display: flex; }
+  .tv-md-chev.open { transform: rotate(180deg); }
+
+  .tv-md-items { max-height: 0; overflow: hidden; transition: max-height .22s ease; }
+  .tv-md-items.open { max-height: 400px; }
+
+  .tv-md-item {
+    width: 100%; display: flex; align-items: center; gap: 8px;
+    padding: 7px 14px 7px 30px; background: transparent; border: none; cursor: pointer; text-align: left;
+    border-left: 3px solid transparent; font-size: 12px; color: var(--ink); font-weight: 400;
+  }
+  .tv-md-item.active {
+    background: rgba(107,79,160,.08); border-left-color: var(--accent);
+    color: var(--accent); font-weight: 600;
+  }
+  .tv-md-standalone {
+    width: 100%; display: flex; align-items: center; gap: 8px; padding: 9px 14px;
+    background: transparent; border: none; border-top: 1px solid var(--rule); cursor: pointer;
+    text-align: left; font-size: 12px; font-weight: 600; color: var(--ink); margin-top: 4px;
+  }
+  .tv-md-standalone.active { background: rgba(107,79,160,.08); color: var(--accent); }
+  .tv-md-in { font-family: Georgia, serif; font-weight: 700; font-size: 9px; color: var(--muted); width: 16px; flex-shrink: 0; }
+  .tv-md-item.active .tv-md-in, .tv-md-standalone.active .tv-md-in { color: var(--accent); }
+}
 
 .tv-stage { padding: 24px 40px 80px; }
 .tv-prose { max-width: none; width: 100%; }
