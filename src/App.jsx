@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useCallback, useEffect, useLayoutEffect, useRef, lazy, Suspense } from 'react';
 import { TrendingUp, HeartPulse, Languages, Brain, Award, Sun, Moon, Search, ChevronDown, PanelLeftClose, PanelLeftOpen, ArrowUp, ArrowDown, Menu } from 'lucide-react';
 import TextAnnotationLayer from './components/TextAnnotationLayer';
+import AllNotesModal from './components/AllNotesModal';
 
 // =========================================================================
 // 1. QUÉT ĐỘNG TOÀN BỘ FILE JSX TRONG THƯ MỤC ARTICLES (lazy-load từng bài)
@@ -127,6 +128,10 @@ const articles = [...rawArticles].sort((a, b) => {
   }
   return 0;
 });
+
+// id -> {title, category} cho AllNotesModal (bảng "tất cả ghi chú" cần tên
+// bài đọc được thay vì slug thô như "fin_expert_note").
+const articleMeta = Object.fromEntries(articles.map(a => [a.id, { title: a.title, category: a.category }]));
 
 // Định nghĩa màu sắc + icon riêng theo từng Chuyên mục (Accent Themes)
 // Mỗi category có 1 màu accent riêng cho light mode và 1 bản sáng hơn cho dark mode
@@ -394,6 +399,8 @@ function App() {
   const isSidebarExpanded = isSidebarOpen || isPeeking;
   const contentScrollRef = useRef(null);
   const annotationContainerRef = useRef(null);
+  const [allNotesOpen, setAllNotesOpen] = useState(false);
+  const [jumpToNote, setJumpToNote] = useState(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [showBackToBottom, setShowBackToBottom] = useState(false);
   // Mờ 2 nút cuộn khi người dùng ĐANG KHÔNG cuộn — trước đây 2 nút này luôn
@@ -468,6 +475,15 @@ function App() {
     setActiveTab(id);
     if (window.innerWidth < 768) setIsSidebarOpen(false);
   }, []);
+
+  // Bấm 1 dòng trong AllNotesModal: đóng modal, chuyển sang đúng bài (nếu
+  // đang ở bài khác) rồi báo cho TextAnnotationLayer của bài đó tự tìm/mở/
+  // cuộn tới ghi chú — xem effect "jumpToNote" trong TextAnnotationLayer.
+  const handleJumpToNote = useCallback((note) => {
+    setAllNotesOpen(false);
+    selectArticle(note.article_id);
+    setJumpToNote(note);
+  }, [selectArticle]);
 
   // =========================================================================
   // LOGIC KÉO THẢ CHIỀU RỘNG SIDEBAR (RESIZABLE SIDEBAR)
@@ -794,8 +810,28 @@ function App() {
                 articleId={activeArticle.id}
                 containerRef={annotationContainerRef}
                 enabled={true}
+                jumpToNote={jumpToNote && jumpToNote.article_id === activeArticle.id ? jumpToNote : null}
+                onJumpHandled={() => setJumpToNote(null)}
               />
             )}
+
+            {/* Nút toàn cục "Tất cả ghi chú" — cố định góc trên phải, độc lập với
+                bài đang mở, khác với panel ghi-chú-trong-bài của TextAnnotationLayer
+                (panel đó chỉ hiện note của riêng bài hiện tại). */}
+            <button
+              onClick={() => setAllNotesOpen(true)}
+              style={{ position: 'fixed', top: 14, right: 18, zIndex: 250 }}
+              className="flex items-center gap-1.5 rounded-full bg-white border border-slate-200 text-slate-600 text-xs font-semibold px-3 py-1.5 shadow-lg hover:bg-slate-50"
+              title="Xem tất cả ghi chú"
+            >
+              🗂️ Tất cả ghi chú
+            </button>
+            <AllNotesModal
+              open={allNotesOpen}
+              onClose={() => setAllNotesOpen(false)}
+              articleMeta={articleMeta}
+              onJumpToNote={handleJumpToNote}
+            />
 
             {/* Cụm nút nổi "Về đầu trang" / "Xuống cuối trang" — mỗi nút chỉ hiện khi
                 còn chỗ để cuộn theo hướng tương ứng, xếp chồng góc dưới phải */}

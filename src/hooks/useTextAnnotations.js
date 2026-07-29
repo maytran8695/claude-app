@@ -9,6 +9,7 @@ import {
   unwrapMark,
   wrapRangeInMarks,
 } from "./textRangeUtils";
+import { authedFetch, silentAuthedFetch } from "./notesAuth";
 
 // Tailwind utilities applied directly to the injected <mark> — visually
 // distinct (indigo, dotted underline) from this app's existing curated
@@ -17,24 +18,6 @@ import {
 const HIGHLIGHT_CLASS =
   "bg-indigo-100 text-inherit rounded-sm cursor-pointer border-b-2 border-dotted border-indigo-400 hover:bg-indigo-200 transition-colors";
 const CONTEXT_LEN = 40;
-
-// Write-protection for POST/DELETE: the user types a password once per
-// browser tab (never embedded in the built JS, unlike a hardcoded key),
-// cached in sessionStorage for the rest of the session, sent as the
-// X-Notes-Secret header. The Function checks it against NOTES_WRITE_SECRET.
-const SECRET_STORAGE_KEY = "study_hub_notes_secret";
-
-function getOrPromptSecret() {
-  let secret = sessionStorage.getItem(SECRET_STORAGE_KEY);
-  if (secret) return secret;
-  secret = window.prompt("Nhập mật khẩu để lưu/xoá ghi chú:") || "";
-  if (secret) sessionStorage.setItem(SECRET_STORAGE_KEY, secret);
-  return secret;
-}
-
-function clearStoredSecret() {
-  sessionStorage.removeItem(SECRET_STORAGE_KEY);
-}
 
 // Attaches a personal-note highlighting layer to `containerRef`'s rendered
 // text, scoped to `articleId`. Notes are fetched from / persisted to
@@ -45,21 +28,61 @@ export function useTextAnnotations(articleId, containerRef, { enabled = true } =
   const [notes, setNotes] = useState([]);
   const [unlocated, setUnlocated] = useState([]);
   const [loading, setLoading] = useState(false);
+  // true once a read has come back 401 — i.e. nobody has entered the
+  // correct password in this browser tab yet, so notes exist but are
+  // hidden. Distinct from "notes.length === 0" (genuinely no notes yet).
+  const [locked, setLocked] = useState(false);
   const [pendingSelection, setPendingSelection] = useState(null);
   const [openNote, setOpenNote] = useState(null);
   const marksRef = useRef(new Map());
 
+  // Automatic/background load — never prompts for a password (see
+  // silentAuthedFetch), so simply opening/switching articles never
+  // interrupts reading with a dialog. Uses whatever secret (if any) is
+  // already cached from an earlier explicit unlock this session.
   const fetchNotes = useCallback(async () => {
     if (!enabled || !articleId) return;
     setLoading(true);
     try {
-      const res = await fetch(`/api/notes?article=${encodeURIComponent(articleId)}`);
+      const res = await silentAuthedFetch(`/api/notes?article=${encodeURIComponent(articleId)}`);
+      if (res.status === 401) {
+        setLocked(true);
+        setNotes([]);
+        return;
+      }
       if (!res.ok) throw new Error(`status ${res.status}`);
       const data = await res.json();
+      setLocked(false);
       setNotes(Array.isArray(data) ? data : []);
     } catch (err) {
       console.warn("[annotations] could not load notes, treating as empty:", err);
       setNotes([]);
+    } finally {
+      setLoading(false);
+    }
+  }, [articleId, enabled]);
+
+  // Explicit, user-initiated unlock — prompts for the password if not
+  // already cached (via authedFetch), then loads. Wire this to whatever UI
+  // action first reveals notes (e.g. clicking the notes-panel toggle) so
+  // the one-time prompt only appears when the user actually wants to see
+  // notes, not on every article switch.
+  const unlockNotes = useCallback(async () => {
+    if (!enabled || !articleId) return { ok: false };
+    setLoading(true);
+    try {
+      const res = await authedFetch(`/api/notes?article=${encodeURIComponent(articleId)}`);
+      if (res.status === 401) {
+        setLocked(true);
+        return { ok: false, message: "Sai mật khẩu, hoặc server chưa có biến NOTES_WRITE_SECRET." };
+      }
+      if (!res.ok) return { ok: false, message: `Lỗi server (${res.status})` };
+      const data = await res.json();
+      setLocked(false);
+      setNotes(Array.isArray(data) ? data : []);
+      return { ok: true };
+    } catch (err) {
+      return { ok: false, message: "Không kết nối được server: " + err.message };
     } finally {
       setLoading(false);
     }
@@ -221,19 +244,13 @@ export function useTextAnnotations(articleId, containerRef, { enabled = true } =
         comment: comment.trim(),
         section_label: sectionLabel,
       });
-      const doPost = (secret) =>
-        fetch("/api/notes", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "X-Notes-Secret": secret },
-          body,
-        });
 
       try {
-        let res = await doPost(getOrPromptSecret());
-        if (res.status === 401) {
-          clearStoredSecret();
-          res = await doPost(getOrPromptSecret());
-        }
+        const res = await authedFetch("/api/notes", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body,
+        });
         if (res.status === 401) {
           return {
             ok: false,
@@ -244,8 +261,14 @@ export function useTextAnnotations(articleId, containerRef, { enabled = true } =
           const detail = await res.text().catch(() => "");
           return { ok: false, message: `Lỗi server (${res.status})${detail ? ": " + detail.slice(0, 200) : ""}` };
         }
-        const saved = await res.json();
-        setNotes((prev) => [...prev, saved]);
+        await res.json();
+        // Re-sync from the server (rather than just appending the new
+        // note) so that if this was the first notes interaction this
+        // session (save before ever opening the panel), any pre-existing
+        // notes — hidden until now because reads are permission-gated too
+        // — get revealed in the same pass, not just the one just created.
+        setLocked(false);
+        await fetchNotes();
         setPendingSelection(null);
         window.getSelection()?.removeAllRanges();
         return { ok: true };
@@ -254,22 +277,12 @@ export function useTextAnnotations(articleId, containerRef, { enabled = true } =
         return { ok: false, message: "Không kết nối được server: " + err.message };
       }
     },
-    [containerRef, articleId]
+    [containerRef, articleId, fetchNotes]
   );
 
   const deleteNote = useCallback(async (noteId) => {
-    const doDelete = (secret) =>
-      fetch(`/api/notes/${encodeURIComponent(noteId)}`, {
-        method: "DELETE",
-        headers: { "X-Notes-Secret": secret },
-      });
-
     try {
-      let res = await doDelete(getOrPromptSecret());
-      if (res.status === 401) {
-        clearStoredSecret();
-        res = await doDelete(getOrPromptSecret());
-      }
+      const res = await authedFetch(`/api/notes/${encodeURIComponent(noteId)}`, { method: "DELETE" });
       if (res.status === 401) {
         return {
           ok: false,
@@ -284,6 +297,7 @@ export function useTextAnnotations(articleId, containerRef, { enabled = true } =
       console.warn("[annotations] could not delete note:", err);
       return { ok: false, message: "Không kết nối được server: " + err.message };
     }
+    setLocked(false);
     setNotes((prev) => prev.filter((n) => n.id !== noteId));
     setUnlocated((prev) => prev.filter((n) => n.id !== noteId));
     setOpenNote(null);
@@ -375,6 +389,7 @@ export function useTextAnnotations(articleId, containerRef, { enabled = true } =
 
   return {
     loading,
+    locked,
     notes,
     unlocated,
     pendingSelection,
@@ -382,6 +397,7 @@ export function useTextAnnotations(articleId, containerRef, { enabled = true } =
     saveNote,
     deleteNote,
     goToNote,
+    unlockNotes,
     dismissPendingSelection,
     closeOpenNote,
   };

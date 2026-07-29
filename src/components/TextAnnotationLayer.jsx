@@ -6,9 +6,17 @@ import { useTextAnnotations } from "../hooks/useTextAnnotations";
 // feature. Mount unconditionally next to an article's content container;
 // pass enabled={false} to fully no-op (used to pilot-scope the feature to
 // one article at a time).
-export default function TextAnnotationLayer({ articleId, containerRef, enabled }) {
+//
+// `jumpToNote` (optional): a full note object handed down from the global
+// "all notes" modal after switching to this article — this component will
+// attempt to locate/expand/scroll to it as soon as the article's content
+// has actually rendered (retrying a few times, since a lazy-loaded article
+// chunk can take a moment to mount right after switching tabs), then call
+// `onJumpHandled` so the caller can clear the pending jump.
+export default function TextAnnotationLayer({ articleId, containerRef, enabled, jumpToNote, onJumpHandled }) {
   const {
     loading,
+    locked,
     notes,
     unlocated,
     pendingSelection,
@@ -16,6 +24,7 @@ export default function TextAnnotationLayer({ articleId, containerRef, enabled }
     saveNote,
     deleteNote,
     goToNote,
+    unlockNotes,
     closeOpenNote,
   } = useTextAnnotations(articleId, containerRef, { enabled });
 
@@ -27,6 +36,25 @@ export default function TextAnnotationLayer({ articleId, containerRef, enabled }
   const [navigatingId, setNavigatingId] = useState(null);
   const composeRef = useRef(null);
   const noteRef = useRef(null);
+
+  useEffect(() => {
+    if (!jumpToNote || !enabled) return;
+    let cancelled = false;
+    (async () => {
+      const delays = [0, 400, 900, 1600];
+      for (const d of delays) {
+        if (d) await new Promise((r) => setTimeout(r, d));
+        if (cancelled) return;
+        const result = await goToNote(jumpToNote);
+        if (result.ok) break;
+      }
+      if (!cancelled) onJumpHandled?.();
+    })();
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [jumpToNote, enabled]);
 
   useEffect(() => {
     if (!openNote) return;
@@ -51,6 +79,23 @@ export default function TextAnnotationLayer({ articleId, containerRef, enabled }
   }, [composing]);
 
   if (!enabled) return null;
+
+  // Only prompts for the password on the first explicit notes interaction
+  // in this browser tab (via unlockNotes -> authedFetch); once entered, it
+  // stays cached for the rest of the session so switching articles or
+  // reopening the panel afterwards never asks again.
+  async function handleTogglePanel() {
+    if (locked) {
+      setPanelError("");
+      const result = await unlockNotes();
+      if (!result.ok) {
+        setPanelError(result.message || "Không mở khoá được ghi chú.");
+        setPanelOpen(true);
+        return;
+      }
+    }
+    setPanelOpen((v) => !v);
+  }
 
   async function handleSave() {
     if (!composing || !draft.trim()) return;
@@ -190,18 +235,22 @@ export default function TextAnnotationLayer({ articleId, containerRef, enabled }
         </div>
       )}
 
+      {/* top-right, ngay dưới nút toàn cục "Tất cả ghi chú" (top:14) — cố tình
+          KHÔNG đặt ở góc dưới-phải vì đó là chỗ của cụm nút "Về đầu trang/
+          Xuống cuối trang" (App.jsx), đặt chung sẽ đè lên nhau. */}
       <button
-        onClick={() => setPanelOpen((v) => !v)}
-        style={{ position: "fixed", right: 18, bottom: 18, zIndex: 290 }}
+        onClick={handleTogglePanel}
+        style={{ position: "fixed", right: 18, top: 58, zIndex: 290 }}
         className="flex items-center gap-1.5 rounded-full bg-slate-800 text-white text-xs font-semibold px-3.5 py-2 shadow-lg hover:bg-slate-700"
+        title={locked ? "Cần mật khẩu để xem ghi chú" : undefined}
       >
-        📝 {loading ? "…" : notes.length}
-        {unlocated.length > 0 && <span className="text-amber-300">⚠{unlocated.length}</span>}
+        {locked ? "🔒" : "📝"} {locked ? "" : loading ? "…" : notes.length}
+        {!locked && unlocated.length > 0 && <span className="text-amber-300">⚠{unlocated.length}</span>}
       </button>
 
       {panelOpen && (
         <div
-          style={{ position: "fixed", right: 18, bottom: 64, zIndex: 290, maxHeight: "60vh" }}
+          style={{ position: "fixed", right: 18, top: 100, zIndex: 290, maxHeight: "calc(100vh - 116px)" }}
           className="w-80 overflow-y-auto rounded-xl border border-slate-200 bg-white shadow-xl p-3"
         >
           <div className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide mb-2">
