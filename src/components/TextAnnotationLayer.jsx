@@ -20,7 +20,9 @@ export default function TextAnnotationLayer({ articleId, containerRef, enabled }
 
   const [composing, setComposing] = useState(null);
   const [draft, setDraft] = useState("");
+  const [composeError, setComposeError] = useState("");
   const [panelOpen, setPanelOpen] = useState(false);
+  const [panelError, setPanelError] = useState("");
   const composeRef = useRef(null);
   const noteRef = useRef(null);
 
@@ -39,6 +41,7 @@ export default function TextAnnotationLayer({ articleId, containerRef, enabled }
       if (composeRef.current && !composeRef.current.contains(e.target)) {
         setComposing(null);
         setDraft("");
+        setComposeError("");
       }
     }
     document.addEventListener("mousedown", onDown);
@@ -49,11 +52,20 @@ export default function TextAnnotationLayer({ articleId, containerRef, enabled }
 
   async function handleSave() {
     if (!composing || !draft.trim()) return;
-    const ok = await saveNote(draft, composing);
-    if (ok) {
+    setComposeError("");
+    const result = await saveNote(draft, composing);
+    if (result.ok) {
       setComposing(null);
       setDraft("");
+    } else {
+      setComposeError(result.message || "Không lưu được, thử lại.");
     }
+  }
+
+  async function handleDelete(noteId) {
+    setPanelError("");
+    const result = await deleteNote(noteId);
+    if (!result.ok) setPanelError(result.message || "Không xoá được, thử lại.");
   }
 
   const clampLeft = (x, w) => Math.min(window.innerWidth - w - 8, Math.max(8, x));
@@ -67,6 +79,7 @@ export default function TextAnnotationLayer({ articleId, containerRef, enabled }
           onClick={() => {
             setComposing(pendingSelection);
             setDraft("");
+            setComposeError("");
           }}
           style={{
             position: "fixed",
@@ -103,11 +116,13 @@ export default function TextAnnotationLayer({ articleId, containerRef, enabled }
             rows={3}
             className="w-full text-sm border border-slate-200 rounded-lg p-2 outline-none focus:border-indigo-400 resize-none"
           />
+          {composeError && <div className="text-[11px] text-red-600 mt-1.5">{composeError}</div>}
           <div className="flex justify-end gap-2 mt-2">
             <button
               onClick={() => {
                 setComposing(null);
                 setDraft("");
+                setComposeError("");
               }}
               className="text-xs px-2.5 py-1 rounded-lg text-slate-500 hover:bg-slate-100"
             >
@@ -139,9 +154,10 @@ export default function TextAnnotationLayer({ articleId, containerRef, enabled }
             Ghi chú của bạn
           </div>
           <div className="text-sm text-slate-700 whitespace-pre-wrap">{openNote.note.comment}</div>
+          {panelError && <div className="text-[11px] text-red-600 mt-1.5">{panelError}</div>}
           <div className="flex justify-end mt-2">
             <button
-              onClick={() => deleteNote(openNote.note.id)}
+              onClick={() => handleDelete(openNote.note.id)}
               className="text-xs px-2.5 py-1 rounded-lg text-red-600 hover:bg-red-100 font-semibold"
             >
               Xoá
@@ -167,6 +183,7 @@ export default function TextAnnotationLayer({ articleId, containerRef, enabled }
           <div className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide mb-2">
             {notes.length} ghi chú trong bài này
           </div>
+          {panelError && <div className="text-[11px] text-red-600 mb-2">{panelError}</div>}
           {notes.length === 0 && (
             <div className="text-xs text-slate-400 italic">
               Chưa có ghi chú nào. Bôi đen 1 đoạn text để thêm.
@@ -191,7 +208,7 @@ export default function TextAnnotationLayer({ articleId, containerRef, enabled }
                     </div>
                   )}
                   <div className="flex justify-end mt-1">
-                    <button onClick={() => deleteNote(n.id)} className="text-red-600 hover:underline">
+                    <button onClick={() => handleDelete(n.id)} className="text-red-600 hover:underline">
                       Xoá
                     </button>
                   </div>

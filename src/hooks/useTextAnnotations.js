@@ -194,10 +194,16 @@ export function useTextAnnotations(articleId, containerRef, { enabled = true } =
   // the hook's own (volatile) pendingSelection, because focusing the
   // comment textarea collapses the browser's live text selection and
   // would otherwise null it out mid-compose.
+  // Returns { ok: true } or { ok: false, message } — the message is shown
+  // directly in the UI so a misconfigured server (missing/wrong
+  // NOTES_WRITE_SECRET, missing D1 binding, etc.) is diagnosable instead of
+  // silently re-prompting for a password forever.
   const saveNote = useCallback(
     async (comment, selection) => {
       const container = containerRef.current;
-      if (!selection || !container || !comment.trim()) return false;
+      if (!selection || !container || !comment.trim()) {
+        return { ok: false, message: "Thiếu nội dung ghi chú." };
+      }
       const { range, text } = selection;
       const { start, end } = getTextOffsets(container, range);
       const fullText = getContainerText(container);
@@ -218,15 +224,24 @@ export function useTextAnnotations(articleId, containerRef, { enabled = true } =
           clearStoredSecret();
           res = await doPost(getOrPromptSecret());
         }
-        if (!res.ok) throw new Error(`status ${res.status}`);
+        if (res.status === 401) {
+          return {
+            ok: false,
+            message: "Sai mật khẩu, hoặc server chưa có biến NOTES_WRITE_SECRET (kiểm tra Cloudflare dashboard + deploy lại).",
+          };
+        }
+        if (!res.ok) {
+          const detail = await res.text().catch(() => "");
+          return { ok: false, message: `Lỗi server (${res.status})${detail ? ": " + detail.slice(0, 200) : ""}` };
+        }
         const saved = await res.json();
         setNotes((prev) => [...prev, saved]);
         setPendingSelection(null);
         window.getSelection()?.removeAllRanges();
-        return true;
+        return { ok: true };
       } catch (err) {
         console.warn("[annotations] could not save note:", err);
-        return false;
+        return { ok: false, message: "Không kết nối được server: " + err.message };
       }
     },
     [containerRef, articleId]
@@ -245,15 +260,24 @@ export function useTextAnnotations(articleId, containerRef, { enabled = true } =
         clearStoredSecret();
         res = await doDelete(getOrPromptSecret());
       }
-      if (!res.ok) throw new Error(`status ${res.status}`);
+      if (res.status === 401) {
+        return {
+          ok: false,
+          message: "Sai mật khẩu, hoặc server chưa có biến NOTES_WRITE_SECRET (kiểm tra Cloudflare dashboard + deploy lại).",
+        };
+      }
+      if (!res.ok) {
+        const detail = await res.text().catch(() => "");
+        return { ok: false, message: `Lỗi server (${res.status})${detail ? ": " + detail.slice(0, 200) : ""}` };
+      }
     } catch (err) {
       console.warn("[annotations] could not delete note:", err);
-      return false;
+      return { ok: false, message: "Không kết nối được server: " + err.message };
     }
     setNotes((prev) => prev.filter((n) => n.id !== noteId));
     setUnlocated((prev) => prev.filter((n) => n.id !== noteId));
     setOpenNote(null);
-    return true;
+    return { ok: true };
   }, []);
 
   const dismissPendingSelection = useCallback(() => {
