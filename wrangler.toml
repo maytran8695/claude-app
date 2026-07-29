@@ -1,0 +1,12 @@
+name = "study-hub"
+compatibility_date = "2024-09-01"
+pages_build_output_dir = "dist"
+
+# Sau khi chạy `npx wrangler d1 create study-hub-notes`, dán database_id
+# được in ra vào bên dưới. Việc này chỉ phục vụ chạy/test local qua
+# `wrangler pages dev` — không ảnh hưởng tới build/deploy trên Cloudflare
+# Pages dashboard (binding thật cấu hình riêng trong Settings → Functions).
+[[d1_databases]]
+binding = "DB"
+database_name = "study-hub-notes"
+database_id = "f9891039-522d-4e67-9dbe-604c99861e74"

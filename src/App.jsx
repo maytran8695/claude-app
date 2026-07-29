@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useCallback, useEffect, useLayoutEffect, useRef, lazy, Suspense } from 'react';
 import { TrendingUp, HeartPulse, Languages, Brain, Award, Sun, Moon, Search, ChevronDown, PanelLeftClose, PanelLeftOpen, ArrowUp, ArrowDown, Menu } from 'lucide-react';
+import TextAnnotationLayer from './components/TextAnnotationLayer';
 
 // =========================================================================
 // 1. QUÉT ĐỘNG TOÀN BỘ FILE JSX TRONG THƯ MỤC ARTICLES (lazy-load từng bài)
@@ -176,6 +177,11 @@ const getTheme = (cat) => categoryThemes[cat] || categoryThemes.Default;
 // static hosting vì request luôn về "/", không cần cấu hình SPA fallback).
 // =========================================================================
 const ARTICLE_URL_PARAM = 'a';
+// Pilot scope for the personal text-annotation feature (bôi đen + ghi chú,
+// lưu qua Cloudflare D1) — chỉ bật cho các bài trong danh sách này cho tới
+// khi kiểm chứng ổn rồi mở rộng. Cơ chế gắn ở App.jsx nên áp dụng được cho
+// mọi bài mà không cần sửa từng file, chỉ cần thêm slug vào đây.
+const ANNOTATIONS_PILOT_ARTICLES = ['fin_expert_note'];
 const getArticleIdFromUrl = () => {
   if (typeof window === 'undefined') return null;
   return new URLSearchParams(window.location.search).get(ARTICLE_URL_PARAM);
@@ -386,6 +392,7 @@ function App() {
   const isPeeking = !isMobile && !isSidebarOpen && isHoverPeek;
   const isSidebarExpanded = isSidebarOpen || isPeeking;
   const contentScrollRef = useRef(null);
+  const annotationContainerRef = useRef(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [showBackToBottom, setShowBackToBottom] = useState(false);
   // Mờ 2 nút cuộn khi người dùng ĐANG KHÔNG cuộn — trước đây 2 nút này luôn
@@ -762,7 +769,7 @@ function App() {
                 của khung app phía sau lộ ra qua — đảm bảo dark mode không ảnh hưởng nội dung bài viết */}
             <div ref={contentScrollRef} className="flex-1 overflow-y-auto bg-slate-50 text-slate-800" style={{ overflowAnchor: 'none' }}>
               {/* Ép layout và áp dụng CSS Custom Overrides */}
-              <div className="w-full h-full text-left article-content max-w-none
+              <div ref={annotationContainerRef} className="w-full h-full text-left article-content max-w-none
                 [&_*]:text-left
                 [&_div]:max-w-none [&_div]:mx-0
                 [&_section]:max-w-none [&_section]:mx-0 [&_section]:w-full
@@ -776,6 +783,18 @@ function App() {
                 </Suspense>
               </div>
             </div>
+            {/* Render NGOÀI div article-content (annotationContainerRef) một cách cố ý:
+                lớp UI này (nút nổi, popup, panel danh sách ghi chú) hiển thị lại chính
+                text của quote trong mỗi note — nếu nằm bên TRONG containerRef, việc mở
+                panel sẽ khiến hook tự "tìm thấy" quote trong DOM của chính panel thay vì
+                trong bài viết thật, làm sai lệch vị trí highlight. */}
+            {activeArticle && (
+              <TextAnnotationLayer
+                articleId={activeArticle.id}
+                containerRef={annotationContainerRef}
+                enabled={ANNOTATIONS_PILOT_ARTICLES.includes(activeArticle.id)}
+              />
+            )}
 
             {/* Cụm nút nổi "Về đầu trang" / "Xuống cuối trang" — mỗi nút chỉ hiện khi
                 còn chỗ để cuộn theo hướng tương ứng, xếp chồng góc dưới phải */}
