@@ -15,6 +15,7 @@ export default function TextAnnotationLayer({ articleId, containerRef, enabled }
     openNote,
     saveNote,
     deleteNote,
+    goToNote,
     closeOpenNote,
   } = useTextAnnotations(articleId, containerRef, { enabled });
 
@@ -23,6 +24,7 @@ export default function TextAnnotationLayer({ articleId, containerRef, enabled }
   const [composeError, setComposeError] = useState("");
   const [panelOpen, setPanelOpen] = useState(false);
   const [panelError, setPanelError] = useState("");
+  const [navigatingId, setNavigatingId] = useState(null);
   const composeRef = useRef(null);
   const noteRef = useRef(null);
 
@@ -66,6 +68,18 @@ export default function TextAnnotationLayer({ articleId, containerRef, enabled }
     setPanelError("");
     const result = await deleteNote(noteId);
     if (!result.ok) setPanelError(result.message || "Không xoá được, thử lại.");
+  }
+
+  async function handleGoTo(note) {
+    setPanelError("");
+    setNavigatingId(note.id);
+    const result = await goToNote(note);
+    setNavigatingId(null);
+    if (result.ok) {
+      setPanelOpen(false);
+    } else {
+      setPanelError(result.message || "Không tìm được vị trí, thử lại.");
+    }
   }
 
   const clampLeft = (x, w) => Math.min(window.innerWidth - w - 8, Math.max(8, x));
@@ -205,8 +219,10 @@ export default function TextAnnotationLayer({ articleId, containerRef, enabled }
               return (
                 <li
                   key={n.id}
+                  onClick={() => handleGoTo(n)}
+                  title="Bấm để tới đúng vị trí trong bài"
                   className={
-                    "rounded-lg border p-2 text-xs " +
+                    "rounded-lg border p-2 text-xs cursor-pointer hover:brightness-95 " +
                     (isUnlocated ? "border-amber-300 bg-amber-50" : "border-slate-100 bg-slate-50")
                   }
                 >
@@ -214,11 +230,21 @@ export default function TextAnnotationLayer({ articleId, containerRef, enabled }
                   <div className="text-slate-700 whitespace-pre-wrap">{n.comment}</div>
                   {isUnlocated && (
                     <div className="text-amber-600 mt-1">
-                      ⚠ không tìm thấy vị trí trong bài (nội dung có thể đã đổi)
+                      {navigatingId === n.id
+                        ? "Đang tìm vị trí…"
+                        : n.section_label
+                          ? `⚠ có thể trong mục "${n.section_label}" — bấm để tự mở & tới đó`
+                          : "⚠ không tìm thấy vị trí trong bài — bấm để thử tìm lại"}
                     </div>
                   )}
                   <div className="flex justify-end mt-1">
-                    <button onClick={() => handleDelete(n.id)} className="text-red-600 hover:underline">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDelete(n.id);
+                      }}
+                      className="text-red-600 hover:underline"
+                    >
                       Xoá
                     </button>
                   </div>

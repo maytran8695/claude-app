@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   findQuoteOffsets,
+  findSectionLabel,
   getContainerText,
   getTextOffsets,
   rangeFromOffsets,
+  tryExpandSection,
   unwrapMark,
   wrapRangeInMarks,
 } from "./textRangeUtils";
@@ -209,8 +211,16 @@ export function useTextAnnotations(articleId, containerRef, { enabled = true } =
       const fullText = getContainerText(container);
       const prefix = fullText.slice(Math.max(0, start - CONTEXT_LEN), start);
       const suffix = fullText.slice(end, end + CONTEXT_LEN);
+      const sectionLabel = findSectionLabel(container, range.startContainer);
 
-      const body = JSON.stringify({ article_id: articleId, quote: text, prefix, suffix, comment: comment.trim() });
+      const body = JSON.stringify({
+        article_id: articleId,
+        quote: text,
+        prefix,
+        suffix,
+        comment: comment.trim(),
+        section_label: sectionLabel,
+      });
       const doPost = (secret) =>
         fetch("/api/notes", {
           method: "POST",
@@ -280,6 +290,82 @@ export function useTextAnnotations(articleId, containerRef, { enabled = true } =
     return { ok: true };
   }, []);
 
+  // Click-to-navigate for the notes panel: if the note is already
+  // highlighted, just scroll+flash it. Otherwise try to locate it directly
+  // (cheap, e.g. the section just happened to already be open), and if
+  // that fails too, best-effort auto-expand the accordion/section it was
+  // captured under (via section_label) and retry once. Always returns
+  // { ok, message? } so the UI can show a clear fallback instead of doing
+  // nothing when a note truly can't be found.
+  const goToNote = useCallback(
+    async (note) => {
+      const container = containerRef.current;
+      if (!container) return { ok: false, message: "Không tìm thấy nội dung bài." };
+
+      const scrollAndFlash = (markEl) => {
+        markEl.scrollIntoView({ behavior: "smooth", block: "center" });
+        markEl.classList.add("ring-2", "ring-indigo-500");
+        setTimeout(() => markEl.classList.remove("ring-2", "ring-indigo-500"), 1500);
+      };
+
+      const attemptLocate = () => {
+        // idempotent: the independent "rescan unlocated notes" observer
+        // (see the effect above) can race with this same click — e.g. its
+        // own debounce fires from the very same "expand section" mutation
+        // this function triggers below — and may already have wrapped this
+        // note by the time we get here. Re-wrapping would nest a duplicate
+        // <mark> inside the one it just created, so check first.
+        const already = marksRef.current.get(note.id);
+        if (already && already.length > 0 && container.contains(already[0])) return already[0];
+
+        const found = findQuoteOffsets(container, note.quote, note.prefix, note.suffix);
+        const range = found ? rangeFromOffsets(container, found.start, found.end) : null;
+        if (!range) return null;
+        const marks = wrapRangeInMarks(range, HIGHLIGHT_CLASS, { "data-note-id": note.id });
+        marks.forEach((m) => attachMarkClick(m, note));
+        marksRef.current.set(note.id, marks);
+        setUnlocated((prev) => prev.filter((n) => n.id !== note.id));
+        return marks[0] || null;
+      };
+
+      const existing = marksRef.current.get(note.id);
+      if (existing && existing.length > 0 && container.contains(existing[0])) {
+        scrollAndFlash(existing[0]);
+        return { ok: true };
+      }
+
+      let mark = attemptLocate();
+      if (mark) {
+        scrollAndFlash(mark);
+        return { ok: true };
+      }
+
+      const expanded = tryExpandSection(container, note.section_label);
+      if (!expanded) {
+        return {
+          ok: false,
+          message: note.section_label
+            ? `Không tự mở được — thử tìm mục "${note.section_label}" trong bài rồi bấm lại.`
+            : "Không tìm thấy vị trí — nội dung bài có thể đã đổi, hoặc mục chứa đoạn này đang thu gọn.",
+        };
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 300));
+      mark = attemptLocate();
+      if (mark) {
+        scrollAndFlash(mark);
+        return { ok: true };
+      }
+      return {
+        ok: false,
+        message: note.section_label
+          ? `Đã mở "${note.section_label}" nhưng vẫn chưa thấy — thử tìm thủ công.`
+          : "Vẫn chưa định vị được, thử tìm thủ công.",
+      };
+    },
+    [containerRef, attachMarkClick]
+  );
+
   const dismissPendingSelection = useCallback(() => {
     setPendingSelection(null);
     window.getSelection()?.removeAllRanges();
@@ -295,6 +381,7 @@ export function useTextAnnotations(articleId, containerRef, { enabled = true } =
     openNote,
     saveNote,
     deleteNote,
+    goToNote,
     dismissPendingSelection,
     closeOpenNote,
   };

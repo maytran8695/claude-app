@@ -17,7 +17,7 @@ export async function onRequestGet({ request, env }) {
   }
 
   const { results } = await env.DB.prepare(
-    "SELECT id, article_id, quote, prefix, suffix, comment, created_at FROM annotations WHERE article_id = ? ORDER BY created_at ASC"
+    "SELECT id, article_id, quote, prefix, suffix, comment, section_label, created_at FROM annotations WHERE article_id = ? ORDER BY created_at ASC"
   )
     .bind(articleId)
     .all();
@@ -40,13 +40,13 @@ export async function onRequestPost({ request, env }) {
 
   const id = crypto.randomUUID();
   await env.DB.prepare(
-    "INSERT INTO annotations (id, article_id, quote, prefix, suffix, comment) VALUES (?, ?, ?, ?, ?, ?)"
+    "INSERT INTO annotations (id, article_id, quote, prefix, suffix, comment, section_label) VALUES (?, ?, ?, ?, ?, ?, ?)"
   )
-    .bind(id, body.article_id, body.quote, body.prefix ?? "", body.suffix ?? "", body.comment)
+    .bind(id, body.article_id, body.quote, body.prefix ?? "", body.suffix ?? "", body.comment, body.section_label ?? null)
     .run();
 
   const { results } = await env.DB.prepare(
-    "SELECT id, article_id, quote, prefix, suffix, comment, created_at FROM annotations WHERE id = ?"
+    "SELECT id, article_id, quote, prefix, suffix, comment, section_label, created_at FROM annotations WHERE id = ?"
   )
     .bind(id)
     .all();

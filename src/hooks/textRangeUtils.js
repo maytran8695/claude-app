@@ -128,3 +128,53 @@ export function unwrapMark(markEl) {
   parent.removeChild(markEl);
   parent.normalize();
 }
+
+function isSectionHeaderLike(el) {
+  if (!el || el.nodeType !== Node.ELEMENT_NODE) return false;
+  if (["H1", "H2", "H3", "H4"].includes(el.tagName)) return true;
+  if (el.tagName === "BUTTON") return true;
+  if (el.getAttribute("role") === "button") return true;
+  return false;
+}
+
+function headerLabel(el) {
+  return el.textContent.trim().replace(/\s+/g, " ").slice(0, 120);
+}
+
+// Best-effort heuristic for "which collapsible section is this selection
+// inside?" — many articles in this app use accordion-style sections whose
+// body only exists in the DOM while expanded, so a note's quote can go
+// temporarily unlocatable when its section is collapsed. Captured at save
+// time so the UI can later show the user where to look, or attempt to
+// auto-expand it (see tryExpandSection below). Walks up from the selection
+// node, checking each ancestor and that ancestor's preceding siblings for
+// the nearest heading- or button-like element (typical accordion toggle).
+export function findSectionLabel(container, node) {
+  let el = node.nodeType === Node.TEXT_NODE ? node.parentElement : node;
+  while (el && el !== container && container.contains(el)) {
+    if (isSectionHeaderLike(el)) return headerLabel(el);
+    let sib = el.previousElementSibling;
+    while (sib) {
+      if (isSectionHeaderLike(sib)) return headerLabel(sib);
+      sib = sib.previousElementSibling;
+    }
+    el = el.parentElement;
+  }
+  return null;
+}
+
+// Attempts to click whatever heading/button in `container` matches
+// `label` (as produced by findSectionLabel), simulating the same action a
+// user would take to expand a collapsed accordion section. Returns true
+// if a matching, clickable element was found and clicked.
+export function tryExpandSection(container, label) {
+  if (!label) return false;
+  const candidates = container.querySelectorAll('button, [role="button"], h1, h2, h3, h4');
+  for (const el of candidates) {
+    if (headerLabel(el) === label) {
+      el.click();
+      return true;
+    }
+  }
+  return false;
+}

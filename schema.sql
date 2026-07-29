@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS annotations (
   prefix TEXT,
   suffix TEXT,
   comment TEXT NOT NULL,
+  section_label TEXT,
   created_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
