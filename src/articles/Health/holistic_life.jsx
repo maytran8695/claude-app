@@ -12,6 +12,8 @@ import {
   ListChecks,
   ChevronDown,
   ChevronUp,
+  Menu,
+  X,
 } from "lucide-react";
 
 /* ---------------------------------------------------------------
@@ -3803,6 +3805,7 @@ export default function App() {
     return "actionable";
   });
   useEffect(() => { syncSubTabToUrl(active); }, [active]);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const SHORT = {
     physical: "Thể chất",
     mental: "Tinh thần",
@@ -3824,12 +3827,59 @@ export default function App() {
         * { box-sizing: border-box; }
         ::-webkit-scrollbar { height: 6px; width: 6px; }
         ::-webkit-scrollbar-thumb { background: ${C.line}; border-radius: 3px; }
+        /* 9 tab wrap thành nhiều hàng trên màn hình hẹp, chiếm hết chỗ trước
+           khi thấy nội dung — dưới 768px ẩn hàng nút, thay bằng 1 thanh "đang
+           xem" gọn + drawer trượt từ trái. Từ 768px trở lên giữ nguyên. */
+        .hl-mobile-trigger, .hl-mobile-backdrop, .hl-mobile-drawer { display: none; }
+        @media (max-width: 767px) {
+          .hl-desktop-nav { display: none !important; }
+          .hl-mobile-trigger {
+            display: flex; width: 100%; align-items: center; gap: 9px;
+            position: sticky; top: 0; z-index: 20;
+            background: ${C.bg}; border-bottom: 1px solid ${C.line};
+            padding: 9px 0; margin-bottom: 14px; border-left: none; border-right: none; border-top: none;
+            cursor: pointer; text-align: left;
+          }
+          .hl-mt-box {
+            flex: 1; min-width: 0; display: flex; align-items: center; gap: 9px;
+            border: 1px solid ${C.line}; border-radius: 10px; padding: 8px 11px; background: ${C.panel};
+          }
+          .hl-mt-icon-box {
+            width: 26px; height: 26px; border-radius: 7px; background: ${C.gold}18;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+          }
+          .hl-mt-text { flex: 1; min-width: 0; }
+          .hl-mt-label { font-family: ${mono}; font-size: 12px; font-weight: 700; color: ${C.ink}; letter-spacing: 0.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          .hl-mt-chev { color: ${C.inkDim}; flex-shrink: 0; transition: transform .2s ease; }
+          .hl-mobile-trigger.open .hl-mt-chev { transform: rotate(180deg); }
+          .hl-mobile-backdrop {
+            display: block; position: fixed; inset: 0; background: rgba(35,31,26,.42);
+            z-index: 198; opacity: 0; pointer-events: none; transition: opacity .2s ease;
+          }
+          .hl-mobile-backdrop.show { opacity: 1; pointer-events: auto; }
+          .hl-mobile-drawer {
+            display: block; position: fixed; top: 0; bottom: 0; left: 0; width: 82%; max-width: 300px;
+            background: ${C.panel}; border-right: 1px solid ${C.line}; z-index: 199; overflow-y: auto;
+            transform: translateX(-100%); transition: transform .25s cubic-bezier(.32,.72,0,1);
+          }
+          .hl-mobile-drawer.show { transform: translateX(0); }
+          .hl-md-head { padding: 14px; border-bottom: 1px solid ${C.line}; display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+          .hl-md-t1 { font-family: ${mono}; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: ${C.inkDim}; }
+          .hl-md-t2 { font-family: ${serif}; font-size: 14px; font-weight: 600; color: ${C.ink}; margin-top: 3px; }
+          .hl-md-close { width: 26px; height: 26px; border-radius: 7px; border: 1px solid ${C.line}; background: ${C.bg}; display: flex; align-items: center; justify-content: center; cursor: pointer; color: ${C.inkDim}; flex-shrink: 0; }
+          .hl-md-item {
+            width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+            background: transparent; border: none; border-left: 3px solid transparent; cursor: pointer; text-align: left;
+          }
+          .hl-md-item.active { background: ${C.gold}14; border-left-color: ${C.gold}; }
+          .hl-md-item-label { font-family: ${mono}; font-size: 12.5px; font-weight: 700; letter-spacing: 0.02em; }
+        }
       `}</style>
       <div className="px-4 sm:px-6 py-8">
         <header className="mb-4">
           <h1 style={{ fontFamily: serif, color: C.ink, fontSize: 32, lineHeight: 1.15, margin: 0 }}>Khung Sống Lành Mạnh Toàn Diện</h1>
         </header>
-        <nav className="flex flex-wrap gap-1.5 mb-4 mobile-static" style={{ position: "sticky", top: 0, zIndex: 10, background: C.bg, padding: "10px 0", borderBottom: `1px solid ${C.line}` }}>
+        <nav className="hl-desktop-nav flex flex-wrap gap-1.5 mb-4 mobile-static" style={{ position: "sticky", top: 0, zIndex: 10, background: C.bg, padding: "10px 0", borderBottom: `1px solid ${C.line}` }}>
           {tabs.map((t) => {
             const Icon = t.icon;
             const isActive = active === t.id;
@@ -3849,6 +3899,41 @@ export default function App() {
             );
           })}
         </nav>
+
+        {/* Mobile-only: thanh "đang xem" gọn + drawer trượt từ trái */}
+        <button className={"hl-mobile-trigger" + (mobileNavOpen ? " open" : "")} onClick={() => setMobileNavOpen((v) => !v)}>
+          <div className="hl-mt-box">
+            <div className="hl-mt-icon-box">
+              {(() => { const Icon = tabs.find((t) => t.id === active)?.icon; return Icon ? <Icon size={13} color={C.gold} /> : null; })()}
+            </div>
+            <div className="hl-mt-text">
+              <div className="hl-mt-label">{tabs.find((t) => t.id === active)?.label}</div>
+            </div>
+            <ChevronDown size={15} className="hl-mt-chev" />
+          </div>
+        </button>
+        <div className={"hl-mobile-backdrop" + (mobileNavOpen ? " show" : "")} onClick={() => setMobileNavOpen(false)} />
+        <div className={"hl-mobile-drawer" + (mobileNavOpen ? " show" : "")}>
+          <div className="hl-md-head">
+            <div>
+              <div className="hl-md-t1">{tabs.length} tab</div>
+              <div className="hl-md-t2">Chọn mục để xem</div>
+            </div>
+            <button className="hl-md-close" onClick={() => setMobileNavOpen(false)} aria-label="Đóng"><X size={13} /></button>
+          </div>
+          <div>
+            {tabs.map((t) => {
+              const Icon = t.icon;
+              const isActive = active === t.id;
+              return (
+                <button key={t.id} className={"hl-md-item" + (isActive ? " active" : "")} onClick={() => { setActive(t.id); setMobileNavOpen(false); window.__scrollArticleToTop?.(); }}>
+                  <Icon size={14} color={isActive ? C.gold : C.inkDim} />
+                  <span className="hl-md-item-label" style={{ color: isActive ? C.gold : C.ink }}>{t.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
         <main>{active === "actionable" ? <ActionableView /> : <PillarView pillar={PILLARS.find((p) => p.id === active)} />}</main>
         {(() => {
           const idx = tabs.findIndex((t) => t.id === active);

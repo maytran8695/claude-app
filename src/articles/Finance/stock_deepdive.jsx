@@ -1065,14 +1065,47 @@ function StockView({ sid }) {
 
 export default function App() {
   const [stock, setStock] = useState("hpg");
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const order = ["hpg", "acb", "gmd", "msn", "dhg", "ree", "bmp", "dbc"];
+  const currentS = STOCKS[stock];
   return (
     <div style={{ fontFamily: "var(--font-sans)", padding: "18px 14px 40px" }}>
+      <style>{`
+        /* 8 mã xếp lưới 4 cột cố định co chật trên màn hình hẹp — dưới 768px
+           thay bằng 1 thanh "đang xem" gọn + drawer trượt. */
+        .sdd-mobile-trigger, .sdd-mobile-backdrop, .sdd-mobile-drawer { display: none; }
+        @media (max-width: 767px) {
+          .sdd-desktop-nav { display: none !important; }
+          .sdd-mobile-trigger {
+            display: flex; width: 100%; align-items: center; gap: 9px;
+            position: sticky; top: 0; z-index: 20;
+            background: #fff; border-bottom: 1px solid #eee;
+            padding: 9px 0; margin-bottom: 14px; border-left: none; border-right: none; border-top: none;
+            cursor: pointer; text-align: left;
+          }
+          .sdd-mt-box { flex: 1; min-width: 0; display: flex; align-items: center; gap: 9px; border: 0.5px solid var(--border); border-radius: 10px; padding: 8px 11px; background: var(--surface-1); }
+          .sdd-mt-text { flex: 1; min-width: 0; }
+          .sdd-mt-ticker { font-size: 12.5px; font-weight: 700; color: var(--text-primary); }
+          .sdd-mt-name { font-size: 10px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          .sdd-mt-chev { color: var(--text-muted); flex-shrink: 0; transition: transform .2s ease; }
+          .sdd-mobile-trigger.open .sdd-mt-chev { transform: rotate(180deg); }
+          .sdd-mobile-backdrop { display: block; position: fixed; inset: 0; background: rgba(20,20,15,.42); z-index: 198; opacity: 0; pointer-events: none; transition: opacity .2s ease; }
+          .sdd-mobile-backdrop.show { opacity: 1; pointer-events: auto; }
+          .sdd-mobile-drawer { display: block; position: fixed; top: 0; bottom: 0; left: 0; width: 82%; max-width: 300px; background: #fff; border-right: 0.5px solid var(--border); z-index: 199; overflow-y: auto; transform: translateX(-100%); transition: transform .25s cubic-bezier(.32,.72,0,1); }
+          .sdd-mobile-drawer.show { transform: translateX(0); }
+          .sdd-md-head { padding: 14px; border-bottom: 0.5px solid var(--border); display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+          .sdd-md-t1 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
+          .sdd-md-t2 { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-top: 3px; }
+          .sdd-md-close { width: 26px; height: 26px; border-radius: 7px; border: 0.5px solid var(--border); background: var(--surface-1); display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-muted); flex-shrink: 0; }
+          .sdd-md-item { width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: transparent; border: none; border-left: 3px solid transparent; cursor: pointer; text-align: left; }
+          .sdd-md-item.active { border-left-color: var(--accent, #B34040); }
+        }
+      `}</style>
       <div style={{ marginBottom: 12 }}>
         <div style={{ fontSize: 15, fontWeight: 600, color: "var(--text-primary)" }}>Stock Deep-Dive · Bộ 8 mã + đối thủ cạnh tranh</div>
         <div style={{ fontSize: 11, color: "var(--text-muted)" }}>Thép · Ngân hàng · Cảng · Holding · Dược · Năng lượng · VLXD · Chăn nuôi — GMD & DHG có sub-tab đối thủ</div>
       </div>
-      <div className="mobile-static" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 5, marginBottom: 14, position: "sticky", top: 0, zIndex: 10, background: "#fff", padding: "10px 0", borderBottom: "1px solid #eee" }}>
+      <div className="sdd-desktop-nav mobile-static" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 5, marginBottom: 14, position: "sticky", top: 0, zIndex: 10, background: "#fff", padding: "10px 0", borderBottom: "1px solid #eee" }}>
         {order.map(id => {
           const s = STOCKS[id];
           return (
@@ -1082,6 +1115,45 @@ export default function App() {
           );
         })}
       </div>
+
+      {/* Mobile-only: thanh "đang xem" gọn + drawer trượt từ trái */}
+      <button className={"sdd-mobile-trigger" + (mobileNavOpen ? " open" : "")} onClick={() => setMobileNavOpen((v) => !v)}>
+        <div className="sdd-mt-box">
+          <span style={{ fontSize: 15, flexShrink: 0 }}>{currentS?.icon}</span>
+          <div className="sdd-mt-text">
+            <div className="sdd-mt-ticker">{currentS?.ticker}</div>
+            <div className="sdd-mt-name">{currentS?.name}</div>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="sdd-mt-chev"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+      </button>
+      <div className={"sdd-mobile-backdrop" + (mobileNavOpen ? " show" : "")} onClick={() => setMobileNavOpen(false)} />
+      <div className={"sdd-mobile-drawer" + (mobileNavOpen ? " show" : "")}>
+        <div className="sdd-md-head">
+          <div>
+            <div className="sdd-md-t1">{order.length} mã</div>
+            <div className="sdd-md-t2">Chọn mã để xem</div>
+          </div>
+          <button className="sdd-md-close" onClick={() => setMobileNavOpen(false)} aria-label="Đóng">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+        <div>
+          {order.map((id) => {
+            const s = STOCKS[id];
+            return (
+              <button key={id} className={"sdd-md-item" + (stock === id ? " active" : "")} onClick={() => { setStock(id); setMobileNavOpen(false); window.__scrollArticleToTop?.(); }}>
+                <span style={{ fontSize: 15, flexShrink: 0 }}>{s.icon}</span>
+                <span style={{ display: "flex", flexDirection: "column" }}>
+                  <span style={{ fontSize: 12.5, fontWeight: 700, color: stock === id ? s.accent : "var(--text-primary)" }}>{s.ticker}</span>
+                  <span style={{ fontSize: 10.5, color: "var(--text-muted)" }}>{s.name}</span>
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       <StockView sid={stock} />
       <div style={{ marginTop: 16, background: "var(--surface-1)", border: "0.5px solid var(--border)", borderRadius: 8, padding: "10px 13px" }}>
         <div style={{ fontSize: 10, color: "var(--text-muted)", marginBottom: 6 }}>Bản đồ nhanh — phương pháp định giá & vai trò danh mục</div>

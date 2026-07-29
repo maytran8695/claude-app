@@ -64,18 +64,55 @@ export default function SelfWorthDeep() {
   const [primary, setPrimary] = useState(initialPrimary);
   const [sub, setSub] = useState(() => PRIMARY.find((p) => p.id === initialPrimary).subs[0].id);
   useEffect(() => { syncSubTabToUrl(primary); }, [primary]);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   const current = PRIMARY.find((p) => p.id === primary);
+  const selectPrimaryMobile = (id) => {
+    setPrimary(id);
+    setSub(PRIMARY.find((p) => p.id === id).subs[0].id);
+    setMobileNavOpen(false);
+    window.__scrollArticleToTop?.();
+  };
 
   return (
     <div style={{ fontFamily: SERIF, background: PAPER, color: INK }}>
+      <style>{`
+        /* 5 tab chính wrap trên màn hình hẹp, đè lên nhau với vệt sticky —
+           dưới 768px thay bằng 1 thanh "đang xem" gọn + drawer trượt. */
+        .swd-mobile-trigger, .swd-mobile-backdrop, .swd-mobile-drawer { display: none; }
+        @media (max-width: 767px) {
+          .swd-desktop-nav { display: none !important; }
+          .swd-mobile-trigger {
+            display: flex; width: 100%; align-items: center; gap: 9px;
+            position: sticky; top: 0; z-index: 20;
+            background: ${PAPER}; border-bottom: 1px solid ${LINE};
+            padding: 10px 0; margin-bottom: 10px; border-left: none; border-right: none; border-top: none;
+            cursor: pointer; text-align: left;
+          }
+          .swd-mt-box { flex: 1; min-width: 0; display: flex; align-items: center; gap: 9px; border: 1px solid ${LINE}; border-radius: 10px; padding: 8px 11px; background: ${CARD}; }
+          .swd-mt-label { flex: 1; min-width: 0; font-family: ${SANS}; font-size: 12.5px; font-weight: 700; color: ${INK}; }
+          .swd-mt-chev { color: ${MUTE}; flex-shrink: 0; transition: transform .2s ease; }
+          .swd-mobile-trigger.open .swd-mt-chev { transform: rotate(180deg); }
+          .swd-mobile-backdrop { display: block; position: fixed; inset: 0; background: rgba(35,40,37,.42); z-index: 198; opacity: 0; pointer-events: none; transition: opacity .2s ease; }
+          .swd-mobile-backdrop.show { opacity: 1; pointer-events: auto; }
+          .swd-mobile-drawer { display: block; position: fixed; top: 0; bottom: 0; left: 0; width: 82%; max-width: 300px; background: ${CARD}; border-right: 1px solid ${LINE}; z-index: 199; overflow-y: auto; transform: translateX(-100%); transition: transform .25s cubic-bezier(.32,.72,0,1); }
+          .swd-mobile-drawer.show { transform: translateX(0); }
+          .swd-md-head { padding: 14px; border-bottom: 1px solid ${LINE}; display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+          .swd-md-t1 { font-family: ${SANS}; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: ${MUTE}; }
+          .swd-md-t2 { font-family: ${SERIF}; font-size: 14px; font-weight: 600; color: ${INK}; margin-top: 3px; }
+          .swd-md-close { width: 26px; height: 26px; border-radius: 7px; border: 1px solid ${LINE}; background: ${PAPER}; display: flex; align-items: center; justify-content: center; cursor: pointer; color: ${MUTE}; flex-shrink: 0; }
+          .swd-md-item { width: 100%; display: flex; align-items: center; gap: 10px; padding: 11px 14px; background: transparent; border: none; border-left: 3px solid transparent; cursor: pointer; text-align: left; }
+          .swd-md-item.active { background: #EEF3F1; border-left-color: ${ACCENT}; }
+          .swd-md-item-label { font-family: ${SANS}; font-size: 12.8px; font-weight: 600; }
+        }
+      `}</style>
       <div style={{ padding: "26px 16px 60px" }}>
         <div style={{ marginBottom: 18 }}>
           <h1 style={{ fontSize: 27, lineHeight: 1.2, margin: 0, fontWeight: 600 }}>Self-Worth · Self-Love · Self-Confidence</h1>
         </div>
 
         {/* PRIMARY NAV */}
-        <div className="mobile-static" style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 10, borderBottom: `1px solid ${LINE}`, paddingTop: 10, paddingBottom: 14, position: "sticky", top: 0, zIndex: 10, background: PAPER }}>
+        <div className="swd-desktop-nav mobile-static" style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 10, borderBottom: `1px solid ${LINE}`, paddingTop: 10, paddingBottom: 14, position: "sticky", top: 0, zIndex: 10, background: PAPER }}>
           {PRIMARY.map((p) => (
             <button key={p.id} onClick={() => { setPrimary(p.id); setSub(p.subs[0].id); window.__scrollArticleToTop?.(); }}
               style={{
@@ -88,6 +125,33 @@ export default function SelfWorthDeep() {
               {p.vi}
             </button>
           ))}
+        </div>
+
+        {/* Mobile-only: thanh "đang xem" gọn + drawer trượt từ trái */}
+        <button className={"swd-mobile-trigger" + (mobileNavOpen ? " open" : "")} onClick={() => setMobileNavOpen((v) => !v)}>
+          <div className="swd-mt-box">
+            <span className="swd-mt-label">{current.vi}</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="swd-mt-chev"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+        </button>
+        <div className={"swd-mobile-backdrop" + (mobileNavOpen ? " show" : "")} onClick={() => setMobileNavOpen(false)} />
+        <div className={"swd-mobile-drawer" + (mobileNavOpen ? " show" : "")}>
+          <div className="swd-md-head">
+            <div>
+              <div className="swd-md-t1">{PRIMARY.length} tab</div>
+              <div className="swd-md-t2">Chọn mục để xem</div>
+            </div>
+            <button className="swd-md-close" onClick={() => setMobileNavOpen(false)} aria-label="Đóng">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </div>
+          <div>
+            {PRIMARY.map((p) => (
+              <button key={p.id} className={"swd-md-item" + (primary === p.id ? " active" : "")} onClick={() => selectPrimaryMobile(p.id)}>
+                <span className="swd-md-item-label" style={{ color: primary === p.id ? ACCENT : INK }}>{p.vi}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* SUB NAV */}
@@ -1801,15 +1865,6 @@ export default function SelfWorthDeep() {
             </div>
           );
         })()}
-
-<div style={{ fontFamily: SANS, fontSize: 12, color: MUTE, lineHeight: 1.7, borderTop: `1px solid ${LINE}`, paddingTop: 16, marginTop: 28 }}>
-          <b>Nguồn chính:</b> Kristin Neff (Self-Compassion) · Nathaniel Branden (The Six Pillars of Self-Esteem) · Albert Bandura (Self-Efficacy) ·
-          Jennifer Crocker (Contingent Self-Worth) · Aaron Beck / CBT · D.W. Winnicott (true/false self) · Mark Leary (Sociometer Theory) ·
-          Carol Dweck (Mindset) · Richard Schwartz (IFS) · Brené Brown (shame &amp; worthiness) · Roy Baumeister (self-esteem review, 2003) ·
-          Byung-Chul Han (The Burnout Society) · ACT (Acceptance & Commitment Therapy). Các trích dẫn được diễn giải theo tinh thần nguyên tác.
-          <br /><br />
-          <i>Lưu ý:</i> Đây là tài liệu tham khảo giáo dục, không thay thế trị liệu chuyên môn. Nếu cảm giác vô giá trị đi kèm trầm cảm kéo dài hoặc ý nghĩ tự làm hại, việc gặp chuyên gia sức khoẻ tâm thần là bước quan trọng và xứng đáng.
-        </div>
       </div>
     </div>
   );

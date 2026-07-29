@@ -747,6 +747,7 @@ function subListOf(tab) {
 export default function MacroVNFrameworkExpert() {
   const [topId, setTopId] = useState("demand");
   const [subId, setSubId] = useState(DATA.realEconomy.sections[0].children[0].id);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   const top = TOP_TABS.find(t => t.id === topId);
   const subs = subListOf(top);
@@ -791,10 +792,74 @@ export default function MacroVNFrameworkExpert() {
         <p style={{ fontSize: 11.5, color: "#64748b", margin: 0, lineHeight: 1.5 }}>Mỗi mục có 5 lớp: <strong>Bản chất → Cơ chế → Sai lầm → Tín hiệu → Dữ liệu</strong>. Tab "Sai lầm" là nơi chứa giá trị lớn nhất.</p>
       </div>
 
+      <style>{`
+        /* 8 tab chính wrap thành nhiều hàng trên màn hình hẹp — dưới 768px
+           thay bằng 1 thanh "đang xem" gọn + drawer trượt từ trái. */
+        .mvf-mobile-trigger, .mvf-mobile-backdrop, .mvf-mobile-drawer { display: none; }
+        @media (max-width: 767px) {
+          .mvf-desktop-top-nav { display: none !important; }
+          .mvf-mobile-trigger {
+            display: flex; width: 100%; align-items: center; gap: 9px;
+            cursor: pointer; text-align: left; border: none;
+            padding: 6px 0 8px;
+            position: sticky; top: 0; z-index: 21; background: #f1f5f9;
+          }
+          .mvf-mt-box { flex: 1; min-width: 0; display: flex; align-items: center; gap: 9px; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 8px 11px; background: #fff; }
+          .mvf-mt-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+          .mvf-mt-label { flex: 1; min-width: 0; font-size: 12.5px; font-weight: 700; color: #0f172a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          .mvf-mt-chev { color: #94a3b8; flex-shrink: 0; transition: transform .2s ease; }
+          .mvf-mobile-trigger.open .mvf-mt-chev { transform: rotate(180deg); }
+          .mvf-mobile-backdrop { display: block; position: fixed; inset: 0; background: rgba(15,23,42,.42); z-index: 198; opacity: 0; pointer-events: none; transition: opacity .2s ease; }
+          .mvf-mobile-backdrop.show { opacity: 1; pointer-events: auto; }
+          .mvf-mobile-drawer { display: block; position: fixed; top: 0; bottom: 0; left: 0; width: 82%; max-width: 300px; background: #fff; border-right: 1.5px solid #e2e8f0; z-index: 199; overflow-y: auto; transform: translateX(-100%); transition: transform .25s cubic-bezier(.32,.72,0,1); }
+          .mvf-mobile-drawer.show { transform: translateX(0); }
+          .mvf-md-head { padding: 14px; border-bottom: 1.5px solid #e2e8f0; display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+          .mvf-md-t1 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #94a3b8; }
+          .mvf-md-t2 { font-size: 14px; font-weight: 700; color: #0f172a; margin-top: 3px; }
+          .mvf-md-close { width: 26px; height: 26px; border-radius: 7px; border: 1.5px solid #e2e8f0; background: #f1f5f9; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #64748b; flex-shrink: 0; }
+          .mvf-md-item { width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: transparent; border: none; border-left: 3px solid transparent; cursor: pointer; text-align: left; }
+        }
+      `}</style>
+
+      {/* Mobile-only: thanh "đang xem" gọn + drawer trượt — đặt NGOÀI khối
+          breadcrumb sticky (chỉ cao ~1 hàng) để position:sticky bám theo
+          toàn bộ chiều cao trang, không bị "hết khung chứa" rồi tuột theo
+          khi cuộn qua khỏi khối breadcrumb nhỏ đó. */}
+      <button className={"mvf-mobile-trigger" + (mobileNavOpen ? " open" : "")} onClick={() => setMobileNavOpen((v) => !v)}>
+        <div className="mvf-mt-box">
+          <span className="mvf-mt-dot" style={{ background: top.color }} />
+          <span className="mvf-mt-label">{top.label}</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="mvf-mt-chev"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+      </button>
+      <div className={"mvf-mobile-backdrop" + (mobileNavOpen ? " show" : "")} onClick={() => setMobileNavOpen(false)} />
+      <div className={"mvf-mobile-drawer" + (mobileNavOpen ? " show" : "")}>
+        <div className="mvf-md-head">
+          <div>
+            <div className="mvf-md-t1">{TOP_TABS.length} tab</div>
+            <div className="mvf-md-t2">Chọn mục để xem</div>
+          </div>
+          <button className="mvf-md-close" onClick={() => setMobileNavOpen(false)} aria-label="Đóng">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+        <div>
+          {TOP_TABS.map((t) => (
+            <button key={t.id} className="mvf-md-item" style={{ borderLeftColor: topId === t.id ? t.color : "transparent" }} onClick={() => { selectTop(t.id); setMobileNavOpen(false); }}>
+              <span className="mvf-mt-dot" style={{ background: t.color }} />
+              <span style={{ fontSize: 12.5, fontWeight: topId === t.id ? 700 : 500, color: topId === t.id ? t.color : "#0f172a" }}>{t.label}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* TAB CHÍNH (cấp 1) + TAB PHỤ (cấp 2) — cả 2 hàng đứng ngay trên nền trang,
           KHÔNG bọc trong box nội dung, giống cách ChunkAtlas_EN.jsx đang làm. */}
       <div className="mobile-static" style={{ position: "sticky", top: 0, zIndex: 20, background: "#f1f5f9", paddingTop: 4, paddingBottom: 4 }}>
-        <Breadcrumb items={TOP_TABS} activeId={topId} onSelect={selectTop} />
+        <div className="mvf-desktop-top-nav">
+          <Breadcrumb items={TOP_TABS} activeId={topId} onSelect={selectTop} />
+        </div>
+
         {subs && subs.length > 1 && (
           <Breadcrumb items={subs} activeId={subId} onSelect={selectSub} size="sm" />
         )}

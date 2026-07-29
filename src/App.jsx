@@ -388,6 +388,13 @@ function App() {
   const contentScrollRef = useRef(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [showBackToBottom, setShowBackToBottom] = useState(false);
+  // Mờ 2 nút cuộn khi người dùng ĐANG KHÔNG cuộn — trước đây 2 nút này luôn
+  // hiện rõ 100% một khi đủ điều kiện, che mất chữ ở góc dưới-phải nếu người
+  // dùng dừng lại đọc lâu. Giờ chỉ hiện rõ trong lúc cuộn + một nhịp ngắn sau
+  // đó, rồi tự mờ dần (vẫn bấm được, chỉ giảm độ chắn tầm nhìn); hover/focus
+  // luôn kéo về rõ hẳn để không mất khả năng bấm khi cần.
+  const [scrollIdle, setScrollIdle] = useState(true);
+  const scrollIdleTimerRef = useRef(null);
 
   // Cuộn về đầu trang mỗi khi đổi bài viết (useLayoutEffect + overflow-anchor:none
   // trên vùng cuộn để trình duyệt không tự "bù" lại vị trí cuộn cũ khi nội dung mới nạp)
@@ -407,13 +414,23 @@ function App() {
       const distanceToBottom = el.scrollHeight - el.scrollTop - el.clientHeight;
       setShowBackToBottom(distanceToBottom > 400);
     };
+    // Riêng cho sự kiện scroll thật (không phải ResizeObserver do lazy-load
+    // xong): đánh dấu "đang cuộn" rồi hẹn giờ quay lại "idle" (mờ đi) sau một
+    // nhịp ngừng tay — mỗi lần cuộn tiếp lại hủy hẹn giờ cũ, đặt lại từ đầu.
+    const onScroll = () => {
+      checkScrollPosition();
+      setScrollIdle(false);
+      if (scrollIdleTimerRef.current) clearTimeout(scrollIdleTimerRef.current);
+      scrollIdleTimerRef.current = setTimeout(() => setScrollIdle(true), 1200);
+    };
     checkScrollPosition();
-    el.addEventListener('scroll', checkScrollPosition, { passive: true });
+    el.addEventListener('scroll', onScroll, { passive: true });
     const resizeObserver = new ResizeObserver(checkScrollPosition);
     resizeObserver.observe(el);
     return () => {
-      el.removeEventListener('scroll', checkScrollPosition);
+      el.removeEventListener('scroll', onScroll);
       resizeObserver.disconnect();
+      if (scrollIdleTimerRef.current) clearTimeout(scrollIdleTimerRef.current);
     };
   }, [activeTab]);
 
@@ -763,7 +780,9 @@ function App() {
             {/* Cụm nút nổi "Về đầu trang" / "Xuống cuối trang" — mỗi nút chỉ hiện khi
                 còn chỗ để cuộn theo hướng tương ứng, xếp chồng góc dưới phải */}
             {(showBackToTop || showBackToBottom) && (
-              <div className="fixed bottom-6 right-5 md:bottom-8 md:right-8 z-30 flex flex-col gap-2.5">
+              <div
+                className={`fixed bottom-6 right-5 md:bottom-8 md:right-8 z-30 flex flex-col gap-2.5 transition-opacity duration-300 ${scrollIdle ? 'opacity-40 hover:opacity-100 focus-within:opacity-100' : 'opacity-100'}`}
+              >
                 {showBackToTop && (
                   <button
                     onClick={scrollContentToTop}

@@ -4505,6 +4505,7 @@ export default function App() {
     return idx !== -1 ? idx : 0;
   });
   const [tabIdx, setTabIdx] = useState(0);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const region = REGIONS[regionIdx];
   useEffect(() => { syncSubTabToUrl(region.id); }, [region.id]);
 
@@ -4531,11 +4532,53 @@ export default function App() {
 
   return (
     <div style={{background:APP_BG,fontFamily:"'Inter',system-ui,sans-serif",color:APP_BRIGHT}}>
+      <style>{`
+        /* Hàng chọn vùng (LEVEL 1) cuộn ngang trên màn hình hẹp, dễ bỏ sót vài
+           vùng ngoài khung nhìn — dưới 768px thay bằng 1 thanh "đang xem" gọn
+           + drawer trượt liệt kê đủ 6 vùng. */
+        .bn-mobile-trigger, .bn-mobile-backdrop, .bn-mobile-drawer { display: none; }
+        @media (max-width: 767px) {
+          .bn-desktop-region-row { display: none !important; }
+          .bn-mobile-trigger {
+            display: flex; width: 100%; align-items: center; gap: 9px;
+            cursor: pointer; text-align: left; border: none;
+            padding: 10px 24px 12px;
+            position: sticky; top: 0; z-index: 21; background: #FCFBF8;
+          }
+          .bn-mt-box { flex: 1; min-width: 0; display: flex; align-items: center; gap: 9px; border: 0.5px solid ${APP_BORDER}; border-radius: 10px; padding: 8px 11px; background: #fff; }
+          .bn-mt-text { flex: 1; min-width: 0; }
+          .bn-mt-label { font-size: 12.5px; font-weight: 700; color: ${APP_BRIGHT}; }
+          .bn-mt-chev { color: ${APP_MUTED}; flex-shrink: 0; transition: transform .2s ease; }
+          .bn-mobile-trigger.open .bn-mt-chev { transform: rotate(180deg); }
+          .bn-mobile-backdrop { display: block; position: fixed; inset: 0; background: rgba(20,20,15,.42); z-index: 198; opacity: 0; pointer-events: none; transition: opacity .2s ease; }
+          .bn-mobile-backdrop.show { opacity: 1; pointer-events: auto; }
+          .bn-mobile-drawer { display: block; position: fixed; top: 0; bottom: 0; left: 0; width: 82%; max-width: 300px; background: #fff; border-right: 0.5px solid ${APP_BORDER}; z-index: 199; overflow-y: auto; transform: translateX(-100%); transition: transform .25s cubic-bezier(.32,.72,0,1); }
+          .bn-mobile-drawer.show { transform: translateX(0); }
+          .bn-md-head { padding: 14px; border-bottom: 0.5px solid ${APP_BORDER}; display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+          .bn-md-t1 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: ${APP_MUTED}; }
+          .bn-md-t2 { font-size: 14px; font-weight: 600; color: ${APP_BRIGHT}; margin-top: 3px; }
+          .bn-md-close { width: 26px; height: 26px; border-radius: 7px; border: 0.5px solid ${APP_BORDER}; background: ${APP_BG}; display: flex; align-items: center; justify-content: center; cursor: pointer; color: ${APP_MUTED}; flex-shrink: 0; }
+          .bn-md-item { width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: transparent; border: none; border-left: 3px solid transparent; cursor: pointer; text-align: left; }
+        }
+      `}</style>
+
+      {/* Mobile-only: thanh "đang xem" gọn + drawer trượt — đặt NGOÀI khối
+          LEVEL 1 (hộp header chỉ cao ~140px) để position:sticky bám theo
+          toàn bộ chiều cao trang, không bị "hết khung chứa" rồi tuột theo
+          khi cuộn qua khỏi khối header nhỏ đó. */}
+      <button className={"bn-mobile-trigger" + (mobileNavOpen ? " open" : "")} onClick={() => setMobileNavOpen((v) => !v)}>
+        <div className="bn-mt-box">
+          <span style={{ fontSize: 15, flexShrink: 0 }}>{region.icon}</span>
+          <div className="bn-mt-text"><div className="bn-mt-label">{region.label}</div></div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="bn-mt-chev"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+      </button>
+
       {/* Gộp LEVEL 1 + LEVEL 2 vào chung 1 khối sticky top:0 — tránh phải đoán
           trước chiều cao của LEVEL 1 (dễ lệch mỗi khi chỉnh padding/nội dung),
           2 hàng tự xếp chồng theo flow bình thường bên trong khối luôn đứng yên. */}
       <div className="mobile-static" style={{position:"sticky",top:0,zIndex:20,background:"#FCFBF8"}}>
-        {/* LEVEL 1 — REGION SELECTOR */}
+        {/* LEVEL 1 — REGION SELECTOR (desktop: hàng cuộn ngang; mobile: thanh gọn + drawer) */}
         <div style={{borderBottom:`1px solid ${APP_BORDER}`,padding:"14px 24px 0 24px"}}>
           <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:12}}>
             <div style={{width:3,height:30,background:"linear-gradient(180deg,#4f8fef 0%,#e05252 25%,#d13b4a 50%,#ffcc00 75%,#f0a0b5 100%)",borderRadius:2}}/>
@@ -4544,7 +4587,7 @@ export default function App() {
               <div style={{color:APP_MUTED,fontSize:9,letterSpacing:"0.16em",textTransform:"uppercase",marginTop:1}}>MỸ • TRUNG QUỐC • NGA • EU • NHẬT BẢN • TỔNG QUAN — PHÂN TÍCH CHUYÊN SÂU HỢP NHẤT</div>
             </div>
           </div>
-          <div style={{display:"flex",gap:6,overflowX:"auto",paddingBottom:12}}>
+          <div className="bn-desktop-region-row" style={{display:"flex",gap:6,overflowX:"auto",paddingBottom:12}}>
             {REGIONS.map((r, i) => (
               <button key={r.id} onClick={() => selectRegion(i)} style={{
                 background: regionIdx === i ? r.accent : "#FFFFFF",
@@ -4576,6 +4619,28 @@ export default function App() {
               </button>
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* Drawer chọn vùng — chỉ hoạt động trên mobile (xem CSS .bn-mobile-*) */}
+      <div className={"bn-mobile-backdrop" + (mobileNavOpen ? " show" : "")} onClick={() => setMobileNavOpen(false)} />
+      <div className={"bn-mobile-drawer" + (mobileNavOpen ? " show" : "")}>
+        <div className="bn-md-head">
+          <div>
+            <div className="bn-md-t1">{REGIONS.length} vùng</div>
+            <div className="bn-md-t2">Chọn vùng để xem</div>
+          </div>
+          <button className="bn-md-close" onClick={() => setMobileNavOpen(false)} aria-label="Đóng">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+        <div>
+          {REGIONS.map((r, i) => (
+            <button key={r.id} className="bn-md-item" style={{ borderLeftColor: regionIdx === i ? r.accent : "transparent" }} onClick={() => { selectRegion(i); setMobileNavOpen(false); }}>
+              <span style={{ fontSize: 15, flexShrink: 0 }}>{r.icon}</span>
+              <span style={{ fontSize: 12.5, fontWeight: regionIdx === i ? 700 : 500, color: regionIdx === i ? r.accent : APP_BRIGHT }}>{r.label}</span>
+            </button>
+          ))}
         </div>
       </div>
 

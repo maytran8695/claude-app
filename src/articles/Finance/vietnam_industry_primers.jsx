@@ -1056,20 +1056,83 @@ export default function App() {
     return SECTORS.some((s) => s.id === fromUrl) ? fromUrl : "steel";
   });
   useEffect(() => { syncSubTabToUrl(activeSector); }, [activeSector]);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const current = SECTORS.find(s => s.id === activeSector);
   return (
     <div style={{ fontFamily: "var(--font-sans)", padding: "18px 14px 40px" }}>
+      <style>{`
+        /* 8 ngành xếp lưới 4 cột cố định co lại rất chật trên màn hình hẹp —
+           dưới 768px thay bằng 1 thanh "đang xem" gọn + drawer trượt. */
+        .vip-mobile-trigger, .vip-mobile-backdrop, .vip-mobile-drawer { display: none; }
+        @media (max-width: 767px) {
+          .vip-desktop-nav { display: none !important; }
+          .vip-mobile-trigger {
+            display: flex; width: 100%; align-items: center; gap: 9px;
+            position: sticky; top: 0; z-index: 20;
+            background: #fff; border-bottom: 1px solid #eee;
+            padding: 9px 0; margin-bottom: 16px; border-left: none; border-right: none; border-top: none;
+            cursor: pointer; text-align: left;
+          }
+          .vip-mt-box { flex: 1; min-width: 0; display: flex; align-items: center; gap: 9px; border: 0.5px solid var(--border); border-radius: 10px; padding: 8px 11px; background: var(--surface-1); }
+          .vip-mt-text { flex: 1; min-width: 0; }
+          .vip-mt-label { font-size: 12.5px; font-weight: 600; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          .vip-mt-chev { color: var(--text-muted); flex-shrink: 0; transition: transform .2s ease; }
+          .vip-mobile-trigger.open .vip-mt-chev { transform: rotate(180deg); }
+          .vip-mobile-backdrop { display: block; position: fixed; inset: 0; background: rgba(20,20,15,.42); z-index: 198; opacity: 0; pointer-events: none; transition: opacity .2s ease; }
+          .vip-mobile-backdrop.show { opacity: 1; pointer-events: auto; }
+          .vip-mobile-drawer { display: block; position: fixed; top: 0; bottom: 0; left: 0; width: 82%; max-width: 300px; background: #fff; border-right: 0.5px solid var(--border); z-index: 199; overflow-y: auto; transform: translateX(-100%); transition: transform .25s cubic-bezier(.32,.72,0,1); }
+          .vip-mobile-drawer.show { transform: translateX(0); }
+          .vip-md-head { padding: 14px; border-bottom: 0.5px solid var(--border); display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+          .vip-md-t1 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
+          .vip-md-t2 { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-top: 3px; }
+          .vip-md-close { width: 26px; height: 26px; border-radius: 7px; border: 0.5px solid var(--border); background: var(--surface-1); display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-muted); flex-shrink: 0; }
+          .vip-md-item { width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: transparent; border: none; border-left: 3px solid transparent; cursor: pointer; text-align: left; }
+          .vip-md-item.active { border-left-color: var(--accent, #B34040); }
+        }
+      `}</style>
       <div style={{ marginBottom: 14 }}>
         <div style={{ fontSize: 15, fontWeight: 600, color: "var(--text-primary)", marginBottom: 2 }}>Vietnam Industry Primers — Deep Edition</div>
         <div style={{ fontSize: 11, color: "var(--text-muted)" }}>8 ngành · 7 lớp phân tích · Định giá + Kịch bản Bull/Base/Bear · Mid-2026</div>
       </div>
-      <div className="mobile-static" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 6, marginBottom: 16, position: "sticky", top: 0, zIndex: 10, background: "#fff", padding: "10px 0", borderBottom: "1px solid #eee" }}>
+      <div className="vip-desktop-nav mobile-static" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 6, marginBottom: 16, position: "sticky", top: 0, zIndex: 10, background: "#fff", padding: "10px 0", borderBottom: "1px solid #eee" }}>
         {SECTORS.map(s => (
           <button key={s.id} onClick={() => { window.__scrollArticleToTop?.(); setActiveSector(s.id); }} style={{ padding: "8px 10px", borderRadius: 8, cursor: "pointer", fontSize: 12, fontWeight: 500, textAlign: "center", background: activeSector === s.id ? s.accent : "var(--surface-1)", color: activeSector === s.id ? "#fff" : "var(--text-secondary)", border: "0.5px solid " + (activeSector === s.id ? s.accent : "var(--border)"), transition: "all 0.14s" }}>
             <span style={{ marginRight: 4 }}>{s.icon}</span>{s.label}
           </button>
         ))}
       </div>
+
+      {/* Mobile-only: thanh "đang xem" gọn + drawer trượt từ trái */}
+      <button className={"vip-mobile-trigger" + (mobileNavOpen ? " open" : "")} onClick={() => setMobileNavOpen((v) => !v)}>
+        <div className="vip-mt-box">
+          <span style={{ fontSize: 15, flexShrink: 0 }}>{current?.icon}</span>
+          <div className="vip-mt-text">
+            <div className="vip-mt-label">{current?.label}</div>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="vip-mt-chev"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+      </button>
+      <div className={"vip-mobile-backdrop" + (mobileNavOpen ? " show" : "")} onClick={() => setMobileNavOpen(false)} />
+      <div className={"vip-mobile-drawer" + (mobileNavOpen ? " show" : "")}>
+        <div className="vip-md-head">
+          <div>
+            <div className="vip-md-t1">{SECTORS.length} ngành</div>
+            <div className="vip-md-t2">Chọn ngành để xem</div>
+          </div>
+          <button className="vip-md-close" onClick={() => setMobileNavOpen(false)} aria-label="Đóng">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+        <div>
+          {SECTORS.map((s) => (
+            <button key={s.id} className={"vip-md-item" + (activeSector === s.id ? " active" : "")} onClick={() => { setActiveSector(s.id); setMobileNavOpen(false); window.__scrollArticleToTop?.(); }}>
+              <span style={{ fontSize: 15, flexShrink: 0 }}>{s.icon}</span>
+              <span style={{ fontSize: 12.5, fontWeight: activeSector === s.id ? 700 : 500, color: activeSector === s.id ? s.accent : "var(--text-primary)" }}>{s.label}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
       {current && <SectorView sid={activeSector} accent={current.accent} />}
       <div style={{ marginTop: 18, background: "var(--surface-1)", border: "0.5px solid var(--border)", borderRadius: 8, padding: "10px 14px" }}>
         <div style={{ fontSize: 10, color: "var(--text-muted)", marginBottom: 6 }}>Bản đồ phân loại nhanh — bấm để chuyển ngành</div>
