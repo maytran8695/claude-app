@@ -24,7 +24,7 @@ const CONTEXT_LEN = 40;
 // /api/notes (Cloudflare Pages Function + D1). Does nothing (no fetch, no
 // DOM listeners, no highlighting) when `enabled` is false, so it's safe to
 // mount unconditionally and gate activation per-article.
-export function useTextAnnotations(articleId, containerRef, { enabled = true } = {}) {
+export function useTextAnnotations(articleId, containerRef, { enabled = true, refreshSignal } = {}) {
   const [notes, setNotes] = useState([]);
   const [unlocated, setUnlocated] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -96,6 +96,24 @@ export function useTextAnnotations(articleId, containerRef, { enabled = true } =
     setOpenNote(null);
     fetchNotes();
   }, [fetchNotes]);
+
+  // Re-sync when notified of a change made elsewhere — specifically, the
+  // global "all notes" modal has its own independent fetch/state (it lists
+  // every article, not just this one), so deleting a note there wouldn't
+  // otherwise update this article's panel/highlights if it happened to be
+  // the currently-active one. App.jsx bumps `refreshSignal` after any
+  // modal delete; this only re-fetches on actual signal changes; skip the
+  // very first render since the article-change effect above already loads.
+  const isFirstRefreshSignal = useRef(true);
+  useEffect(() => {
+    if (refreshSignal === undefined) return;
+    if (isFirstRefreshSignal.current) {
+      isFirstRefreshSignal.current = false;
+      return;
+    }
+    fetchNotes();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [refreshSignal]);
 
   const attachMarkClick = useCallback((mark, note) => {
     mark.addEventListener("click", (e) => {

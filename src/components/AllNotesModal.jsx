@@ -6,7 +6,7 @@ import { authedFetch } from "../hooks/notesAuth";
 // (separate from the per-article floating panel, which only shows notes
 // for the article currently open). Clicking a row asks the parent to
 // switch to that article and scroll/highlight the note there.
-export default function AllNotesModal({ open, onClose, articleMeta, onJumpToNote }) {
+export default function AllNotesModal({ open, onClose, articleMeta, onJumpToNote, onNoteDeleted }) {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -50,6 +50,7 @@ export default function AllNotesModal({ open, onClose, articleMeta, onJumpToNote
         return;
       }
       setNotes((prev) => prev.filter((n) => n.id !== noteId));
+      onNoteDeleted?.(noteId);
     } catch (err) {
       setError("Không kết nối được server: " + err.message);
     }

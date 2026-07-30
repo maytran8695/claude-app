@@ -2,6 +2,7 @@ import React, { useState, useMemo, useCallback, useEffect, useLayoutEffect, useR
 import { TrendingUp, HeartPulse, Languages, Brain, Award, Sun, Moon, Search, ChevronDown, PanelLeftClose, PanelLeftOpen, ArrowUp, ArrowDown, Menu } from 'lucide-react';
 import TextAnnotationLayer from './components/TextAnnotationLayer';
 import AllNotesModal from './components/AllNotesModal';
+import { authedFetch, isVerified } from './hooks/notesAuth';
 
 // =========================================================================
 // 1. QUÉT ĐỘNG TOÀN BỘ FILE JSX TRONG THƯ MỤC ARTICLES (lazy-load từng bài)
@@ -401,6 +402,45 @@ function App() {
   const annotationContainerRef = useRef(null);
   const [allNotesOpen, setAllNotesOpen] = useState(false);
   const [jumpToNote, setJumpToNote] = useState(null);
+  // Bumped whenever AllNotesModal deletes a note — AllNotesModal keeps its
+  // own independent fetch/state (it lists every article), so a delete
+  // there wouldn't otherwise reach the per-article panel/highlights if
+  // that note's article happens to be the one currently open.
+  const [notesRefreshSignal, setNotesRefreshSignal] = useState(0);
+  // Toàn bộ tính năng ghi chú (nút, panel, modal) chỉ hiện khi trình duyệt
+  // này đã "được nhận diện" (đã nhập đúng mật khẩu ít nhất 1 lần, lưu lâu
+  // dài trong localStorage) — người lạ có link cũng không thấy nút nào cả,
+  // không biết tính năng này tồn tại. Gõ 6 ký tự "ghichu" ở bất kỳ đâu
+  // ngoài ô nhập liệu để hiện prompt nhập mật khẩu lần đầu trên máy mới.
+  const [notesUnlocked, setNotesUnlocked] = useState(() => isVerified());
+
+  const attemptNotesUnlock = useCallback(async () => {
+    const res = await authedFetch('/api/notes');
+    if (res.status !== 401) {
+      setNotesUnlocked(true);
+    } else {
+      window.alert('Sai mật khẩu.');
+    }
+  }, []);
+
+  useEffect(() => {
+    if (notesUnlocked) return;
+    let buffer = '';
+    const TARGET = 'ghichu';
+    function onKeyDown(e) {
+      const tag = document.activeElement?.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || document.activeElement?.isContentEditable) return;
+      if (e.key.length !== 1) return;
+      buffer = (buffer + e.key.toLowerCase()).slice(-TARGET.length);
+      if (buffer === TARGET) {
+        buffer = '';
+        attemptNotesUnlock();
+      }
+    }
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [notesUnlocked, attemptNotesUnlock]);
+
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [showBackToBottom, setShowBackToBottom] = useState(false);
   // Mờ 2 nút cuộn khi người dùng ĐANG KHÔNG cuộn — trước đây 2 nút này luôn
@@ -748,6 +788,23 @@ function App() {
           </button>
         </div>
 
+        {/* "Tất cả ghi chú" — chỉ hiện khi trình duyệt này đã được nhận diện
+            (notesUnlocked), người lạ mở link sẽ không thấy nút này tồn tại. */}
+        {notesUnlocked && (
+          <div className={`p-2.5 border-t ${T.border} shrink-0`}>
+            <button
+              onClick={() => setAllNotesOpen(true)}
+              className={`w-full flex items-center gap-2 rounded-full border ${T.border} ${T.surface2} ${isSidebarExpanded ? 'px-2.5 py-1.5' : 'p-1.5 justify-center'}`}
+              title="Xem tất cả ghi chú"
+            >
+              <span>🗂️</span>
+              {isSidebarExpanded && (
+                <span className={`text-[11px] font-semibold ${T.muted} flex-1 text-left`}>Tất cả ghi chú</span>
+              )}
+            </button>
+          </div>
+        )}
+
         {/* Thanh gờ kéo giãn kích thước Sidebar */}
         {isSidebarOpen && (
           <div
@@ -805,32 +862,24 @@ function App() {
                 text của quote trong mỗi note — nếu nằm bên TRONG containerRef, việc mở
                 panel sẽ khiến hook tự "tìm thấy" quote trong DOM của chính panel thay vì
                 trong bài viết thật, làm sai lệch vị trí highlight. */}
-            {activeArticle && (
+            {activeArticle && notesUnlocked && (
               <TextAnnotationLayer
                 articleId={activeArticle.id}
                 containerRef={annotationContainerRef}
                 enabled={true}
                 jumpToNote={jumpToNote && jumpToNote.article_id === activeArticle.id ? jumpToNote : null}
                 onJumpHandled={() => setJumpToNote(null)}
+                refreshSignal={notesRefreshSignal}
+                scrollIdle={scrollIdle}
               />
             )}
 
-            {/* Nút toàn cục "Tất cả ghi chú" — cố định góc trên phải, độc lập với
-                bài đang mở, khác với panel ghi-chú-trong-bài của TextAnnotationLayer
-                (panel đó chỉ hiện note của riêng bài hiện tại). */}
-            <button
-              onClick={() => setAllNotesOpen(true)}
-              style={{ position: 'fixed', top: 14, right: 18, zIndex: 250 }}
-              className="flex items-center gap-1.5 rounded-full bg-white border border-slate-200 text-slate-600 text-xs font-semibold px-3 py-1.5 shadow-lg hover:bg-slate-50"
-              title="Xem tất cả ghi chú"
-            >
-              🗂️ Tất cả ghi chú
-            </button>
             <AllNotesModal
               open={allNotesOpen}
               onClose={() => setAllNotesOpen(false)}
               articleMeta={articleMeta}
               onJumpToNote={handleJumpToNote}
+              onNoteDeleted={() => setNotesRefreshSignal((v) => v + 1)}
             />
 
             {/* Cụm nút nổi "Về đầu trang" / "Xuống cuối trang" — mỗi nút chỉ hiện khi

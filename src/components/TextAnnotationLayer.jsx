@@ -13,7 +13,7 @@ import { useTextAnnotations } from "../hooks/useTextAnnotations";
 // has actually rendered (retrying a few times, since a lazy-loaded article
 // chunk can take a moment to mount right after switching tabs), then call
 // `onJumpHandled` so the caller can clear the pending jump.
-export default function TextAnnotationLayer({ articleId, containerRef, enabled, jumpToNote, onJumpHandled }) {
+export default function TextAnnotationLayer({ articleId, containerRef, enabled, jumpToNote, onJumpHandled, refreshSignal, scrollIdle }) {
   const {
     loading,
     locked,
@@ -26,7 +26,7 @@ export default function TextAnnotationLayer({ articleId, containerRef, enabled, 
     goToNote,
     unlockNotes,
     closeOpenNote,
-  } = useTextAnnotations(articleId, containerRef, { enabled });
+  } = useTextAnnotations(articleId, containerRef, { enabled, refreshSignal });
 
   const [composing, setComposing] = useState(null);
   const [draft, setDraft] = useState("");
@@ -235,13 +235,13 @@ export default function TextAnnotationLayer({ articleId, containerRef, enabled, 
         </div>
       )}
 
-      {/* top-right, ngay dưới nút toàn cục "Tất cả ghi chú" (top:14) — cố tình
-          KHÔNG đặt ở góc dưới-phải vì đó là chỗ của cụm nút "Về đầu trang/
-          Xuống cuối trang" (App.jsx), đặt chung sẽ đè lên nhau. */}
+      {/* Góc dưới-phải, CÙNG hàng với cụm "Về đầu trang/Xuống cuối trang"
+          (App.jsx) nhưng lệch sang trái đủ xa để không bao giờ đè lên
+          nhau dù cụm đó có 1 hay 2 nút. Mờ dần khi không cuộn, giống hệt
+          hành vi của cụm nút kia (qua prop scrollIdle từ App.jsx). */}
       <button
         onClick={handleTogglePanel}
-        style={{ position: "fixed", right: 18, top: 58, zIndex: 290 }}
-        className="flex items-center gap-1.5 rounded-full bg-slate-800 text-white text-xs font-semibold px-3.5 py-2 shadow-lg hover:bg-slate-700"
+        className={`fixed bottom-6 right-24 md:bottom-8 md:right-28 z-290 flex items-center gap-1.5 rounded-full bg-slate-800 text-white text-xs font-semibold px-3.5 py-2 shadow-lg hover:bg-slate-700 transition-opacity duration-300 ${scrollIdle ? "opacity-40 hover:opacity-100 focus-within:opacity-100" : "opacity-100"}`}
         title={locked ? "Cần mật khẩu để xem ghi chú" : undefined}
       >
         {locked ? "🔒" : "📝"} {locked ? "" : loading ? "…" : notes.length}
@@ -250,8 +250,8 @@ export default function TextAnnotationLayer({ articleId, containerRef, enabled, 
 
       {panelOpen && (
         <div
-          style={{ position: "fixed", right: 18, top: 100, zIndex: 290, maxHeight: "calc(100vh - 116px)" }}
-          className="w-80 overflow-y-auto rounded-xl border border-slate-200 bg-white shadow-xl p-3"
+          style={{ maxHeight: "calc(100vh - 116px)" }}
+          className="fixed bottom-20 right-24 md:bottom-24 md:right-28 z-290 w-80 overflow-y-auto rounded-xl border border-slate-200 bg-white shadow-xl p-3"
         >
           <div className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide mb-2">
             {notes.length} ghi chú trong bài này
