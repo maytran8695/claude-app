@@ -77,6 +77,11 @@ export default function SelfWorthDeep() {
   return (
     <div style={{ fontFamily: SERIF, background: PAPER, color: INK }}>
       <style>{`
+        /* Bảng so sánh dùng minWidth cố định (600-640px) để cột không bị
+           bóp quá chật trên desktop — nhưng trên màn hẹp điều đó khiến
+           bảng phải cuộn ngang trong chính khung của nó dù trang không
+           cuộn ngang. Bỏ minWidth dưới 640px để cột tự co theo màn hình. */
+        @media (max-width: 640px) { .resp-table { min-width: 0 !important; } }
         /* 5 tab chính wrap trên màn hình hẹp, đè lên nhau với vệt sticky —
            dưới 768px thay bằng 1 thanh "đang xem" gọn + drawer trượt. */
         .swd-mobile-trigger, .swd-mobile-backdrop, .swd-mobile-drawer { display: none; }
@@ -331,9 +336,9 @@ export default function SelfWorthDeep() {
 
             <div>
               <h2 style={{ fontSize: 19, fontWeight: 600, margin: "0 0 4px" }}>Self-worth vững vs. mong manh (fragile)</h2>
-              <p style={{ fontFamily: SANS, fontSize: 12.5, color: MUTE, marginTop: 0, marginBottom: 12 }}>Nhiều người 'có vẻ tự tin' nhưng là tự tin mong manh — cuộn ngang để xem</p>
+              <p style={{ fontFamily: SANS, fontSize: 12.5, color: MUTE, marginTop: 0, marginBottom: 12 }}>Nhiều người 'có vẻ tự tin' nhưng là tự tin mong manh — so sánh các tiêu chí bên dưới</p>
               <div style={{ overflowX: "auto", border: `1px solid ${LINE}`, borderRadius: 4 }}>
-                <table style={{ borderCollapse: "collapse", width: "100%", minWidth: 640, fontSize: 13, fontFamily: SANS }}>
+                <table className="resp-table" style={{ borderCollapse: "collapse", width: "100%", minWidth: 640, fontSize: 13, fontFamily: SANS }}>
                   <thead>
                     <tr>
                       <th style={{ textAlign: "left", padding: "9px 11px", background: "#F1F5F3", borderBottom: `1px solid ${LINE}` }}>Tiêu chí</th>
@@ -441,7 +446,7 @@ export default function SelfWorthDeep() {
             <div>
               <div style={{ fontFamily: SANS, fontSize: 10.5, letterSpacing: "0.07em", textTransform: "uppercase", color: ACCENT, fontWeight: 700, marginBottom: 10 }}>Tự tin thật vs. tự tin trình diễn — đào sâu</div>
               <div style={{ overflowX: "auto", border: `1px solid ${LINE}`, borderRadius: 4 }}>
-                <table style={{ borderCollapse: "collapse", width: "100%", minWidth: 600, fontSize: 13.5, fontFamily: SANS }}>
+                <table className="resp-table" style={{ borderCollapse: "collapse", width: "100%", minWidth: 600, fontSize: 13.5, fontFamily: SANS }}>
                   <thead>
                     <tr>
                       <th style={{ textAlign: "left", padding: "9px 11px", background: "#F3F6F3", borderBottom: `1px solid ${LINE}`, width: "26%" }}></th>
@@ -1658,7 +1663,7 @@ export default function SelfWorthDeep() {
                 F · Sổ tay tự-đối-thoại (đổi giọng hỏng → giọng lành)
               </div>
               <div style={{ overflowX: "auto", border: `1px solid ${LINE}`, borderRadius: 4 }}>
-                <table style={{ borderCollapse: "collapse", width: "100%", minWidth: 600, fontSize: 13.3, fontFamily: SANS }}>
+                <table className="resp-table" style={{ borderCollapse: "collapse", width: "100%", minWidth: 600, fontSize: 13.3, fontFamily: SANS }}>
                   <thead>
                     <tr>
                       <th style={{ textAlign: "left", padding: "9px 12px", background: "#F6ECE4", borderBottom: `1px solid ${LINE}`, color: "#8A5A3A", width: "46%" }}>⚠ Nhà phê bình nói</th>

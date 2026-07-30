@@ -525,6 +525,11 @@ export default function LovePhilosophyDeep() {
 
   return (
     <div style={{ fontFamily: SERIF, background: PAPER, color: INK }}>
+      {/* Bảng so sánh dùng minWidth cố định (520-580px) để cột không bị bóp
+          quá chật trên desktop — nhưng trên màn hẹp (điện thoại) điều đó
+          khiến bảng phải cuộn ngang trong chính khung của nó dù trang không
+          cuộn ngang. Bỏ minWidth dưới 640px để cột tự co theo màn hình. */}
+      <style>{`@media (max-width: 640px) { .resp-table { min-width: 0 !important; } }`}</style>
       <div style={{ padding: "26px 16px 60px" }}>
         <div style={{ marginBottom: 16 }}>
           <h1 style={{ fontSize: 29, lineHeight: 1.16, margin: 0, fontWeight: 600, letterSpacing: "-0.01em" }}>Tình yêu Trong Triết học - Tâm lý - Thực hành</h1>
@@ -859,7 +864,7 @@ export default function LovePhilosophyDeep() {
             <Block n="4.2" title="Ranh giới sống còn: XUNG ĐỘT khác LẠM DỤNG" color={RUST}
               intro="Xung đột nhiều KHÔNG đồng nghĩa lạm dụng; và lạm dụng có thể diễn ra rất êm, ít cãi vã (kiểm soát cưỡng chế — Evan Stark). Dấu hiệu phân định không phải tần suất cãi, mà là SỢ HÃI và QUYỀN LỰC.">
               <div style={{ overflowX: "auto", border: `1px solid ${LINE}`, borderRadius: 4 }}>
-                <table style={{ borderCollapse: "collapse", width: "100%", minWidth: 520, fontSize: 12.8, fontFamily: SANS }}>
+                <table className="resp-table" style={{ borderCollapse: "collapse", width: "100%", minWidth: 520, fontSize: 12.8, fontFamily: SANS }}>
                   <thead><tr>
                     <th style={{ textAlign: "left", padding: "8px 11px", background: "#EEF5EF", borderBottom: `1px solid ${LINE}`, width: "22%" }}></th>
                     <th style={{ textAlign: "left", padding: "8px 11px", background: "#E6F3EC", borderBottom: `1px solid ${LINE}`, color: GREEN }}>Xung đột lành mạnh</th>
@@ -1045,7 +1050,7 @@ export default function LovePhilosophyDeep() {
 
                 <Block n="B3" title="Sổ tay câu chữ (đổi câu hỏng → câu lành)" color={GREEN}>
                   <div style={{ overflowX: "auto", border: `1px solid ${LINE}`, borderRadius: 4 }}>
-                    <table style={{ borderCollapse: "collapse", width: "100%", minWidth: 580, fontSize: 13.2, fontFamily: SANS }}>
+                    <table className="resp-table" style={{ borderCollapse: "collapse", width: "100%", minWidth: 580, fontSize: 13.2, fontFamily: SANS }}>
                       <thead>
                         <tr>
                           <th style={{ textAlign: "left", padding: "9px 12px", background: "#FBEEF3", borderBottom: `1px solid ${LINE}`, color: "#B0637E", width: "46%" }}>Thay vì nói</th>
