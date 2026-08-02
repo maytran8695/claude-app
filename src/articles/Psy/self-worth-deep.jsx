@@ -24,6 +24,10 @@ const Quote = ({ text, by }) => (
   </div>
 );
 
+const SubHeading = ({ children }) => (
+  <h2 style={{ fontFamily: SERIF, fontSize: 20, fontWeight: 700, color: INK, margin: "4px 0 0", paddingBottom: 9, borderBottom: `2px solid ${ACCENT}` }}>{children}</h2>
+);
+
 
 const PRIMARY = [
   { id: "foundations", vi: "Nền tảng lý thuyết", subs: [
@@ -62,17 +66,7 @@ export default function SelfWorthDeep() {
     return PRIMARY.some((p) => p.id === fromUrl) ? fromUrl : "foundations";
   })();
   const [primary, setPrimary] = useState(initialPrimary);
-  const [sub, setSub] = useState(() => PRIMARY.find((p) => p.id === initialPrimary).subs[0].id);
   useEffect(() => { syncSubTabToUrl(primary); }, [primary]);
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
-
-  const current = PRIMARY.find((p) => p.id === primary);
-  const selectPrimaryMobile = (id) => {
-    setPrimary(id);
-    setSub(PRIMARY.find((p) => p.id === id).subs[0].id);
-    setMobileNavOpen(false);
-    window.__scrollArticleToTop?.();
-  };
 
   return (
     <div style={{ fontFamily: SERIF, background: PAPER, color: INK }}>
@@ -82,47 +76,22 @@ export default function SelfWorthDeep() {
            bảng phải cuộn ngang trong chính khung của nó dù trang không
            cuộn ngang. Bỏ minWidth dưới 640px để cột tự co theo màn hình. */
         @media (max-width: 640px) { .resp-table { min-width: 0 !important; } }
-        /* 5 tab chính wrap trên màn hình hẹp, đè lên nhau với vệt sticky —
-           dưới 768px thay bằng 1 thanh "đang xem" gọn + drawer trượt. */
-        .swd-mobile-trigger, .swd-mobile-backdrop, .swd-mobile-drawer { display: none; }
-        @media (max-width: 767px) {
-          .swd-desktop-nav { display: none !important; }
-          .swd-mobile-trigger {
-            display: flex; width: 100%; align-items: center; gap: 9px;
-            position: sticky; top: 0; z-index: 20;
-            background: ${PAPER}; border-bottom: 1px solid ${LINE};
-            padding: 10px 0; margin-bottom: 10px; border-left: none; border-right: none; border-top: none;
-            cursor: pointer; text-align: left;
-          }
-          .swd-mt-box { flex: 1; min-width: 0; display: flex; align-items: center; gap: 9px; border: 1px solid ${LINE}; border-radius: 10px; padding: 8px 11px; background: ${CARD}; }
-          .swd-mt-label { flex: 1; min-width: 0; font-family: ${SANS}; font-size: 12.5px; font-weight: 700; color: ${INK}; }
-          .swd-mt-chev { color: ${MUTE}; flex-shrink: 0; transition: transform .2s ease; }
-          .swd-mobile-trigger.open .swd-mt-chev { transform: rotate(180deg); }
-          .swd-mobile-backdrop { display: block; position: fixed; inset: 0; background: rgba(35,40,37,.42); z-index: 198; opacity: 0; pointer-events: none; transition: opacity .2s ease; }
-          .swd-mobile-backdrop.show { opacity: 1; pointer-events: auto; }
-          .swd-mobile-drawer { display: block; position: fixed; top: 0; bottom: 0; left: 0; width: 82%; max-width: 300px; background: ${CARD}; border-right: 1px solid ${LINE}; z-index: 199; overflow-y: auto; transform: translateX(-100%); transition: transform .25s cubic-bezier(.32,.72,0,1); }
-          .swd-mobile-drawer.show { transform: translateX(0); }
-          .swd-md-head { padding: 14px; border-bottom: 1px solid ${LINE}; display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
-          .swd-md-t1 { font-family: ${SANS}; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: ${MUTE}; }
-          .swd-md-t2 { font-family: ${SERIF}; font-size: 14px; font-weight: 600; color: ${INK}; margin-top: 3px; }
-          .swd-md-close { width: 26px; height: 26px; border-radius: 7px; border: 1px solid ${LINE}; background: ${PAPER}; display: flex; align-items: center; justify-content: center; cursor: pointer; color: ${MUTE}; flex-shrink: 0; }
-          .swd-md-item { width: 100%; display: flex; align-items: center; gap: 10px; padding: 11px 14px; background: transparent; border: none; border-left: 3px solid transparent; cursor: pointer; text-align: left; }
-          .swd-md-item.active { background: #EEF3F1; border-left-color: ${ACCENT}; }
-          .swd-md-item-label { font-family: ${SANS}; font-size: 12.8px; font-weight: 600; }
-        }
+        /* Sticky chỉ có ích trên desktop (nhiều chỗ); trên mobile 5 ô vuông
+           dính lại khi cuộn chiếm quá nhiều diện tích màn hình nhỏ. */
+        @media (max-width: 767px) { .swd-primary-nav { position: static !important; } }
       `}</style>
       <div style={{ padding: "26px 16px 60px" }}>
         <div style={{ marginBottom: 18 }}>
           <h1 style={{ fontSize: 27, lineHeight: 1.2, margin: 0, fontWeight: 600 }}>Self-Worth · Self-Love · Self-Confidence</h1>
         </div>
 
-        {/* PRIMARY NAV */}
-        <div className="swd-desktop-nav mobile-static" style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 10, borderBottom: `1px solid ${LINE}`, paddingTop: 10, paddingBottom: 14, position: "sticky", top: 0, zIndex: 10, background: PAPER }}>
+        {/* PRIMARY NAV — 5 ô vuông, hiện trực tiếp trên mọi kích thước màn hình */}
+        <div className="swd-primary-nav" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: 8, marginBottom: 22, paddingTop: 10, paddingBottom: 14, borderBottom: `1px solid ${LINE}`, position: "sticky", top: 0, zIndex: 10, background: PAPER }}>
           {PRIMARY.map((p) => (
-            <button key={p.id} onClick={() => { setPrimary(p.id); setSub(p.subs[0].id); window.__scrollArticleToTop?.(); }}
+            <button key={p.id} onClick={() => { setPrimary(p.id); window.__scrollArticleToTop?.(); }}
               style={{
-                fontFamily: SANS, fontSize: 12.8, padding: "8px 15px", borderRadius: 20, cursor: "pointer",
-                border: `1px solid ${primary === p.id ? ACCENT : LINE}`,
+                fontFamily: SANS, fontSize: 13, padding: "14px 12px", borderRadius: 8, cursor: "pointer", textAlign: "center",
+                border: `1.5px solid ${primary === p.id ? ACCENT : LINE}`,
                 background: primary === p.id ? ACCENT : CARD,
                 color: primary === p.id ? "#fff" : "#3A403C",
                 fontWeight: primary === p.id ? 700 : 600,
@@ -132,54 +101,10 @@ export default function SelfWorthDeep() {
           ))}
         </div>
 
-        {/* Mobile-only: thanh "đang xem" gọn + drawer trượt từ trái */}
-        <button className={"swd-mobile-trigger" + (mobileNavOpen ? " open" : "")} onClick={() => setMobileNavOpen((v) => !v)}>
-          <div className="swd-mt-box">
-            <span className="swd-mt-label">{current.vi}</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="swd-mt-chev"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </div>
-        </button>
-        <div className={"swd-mobile-backdrop" + (mobileNavOpen ? " show" : "")} onClick={() => setMobileNavOpen(false)} />
-        <div className={"swd-mobile-drawer" + (mobileNavOpen ? " show" : "")}>
-          <div className="swd-md-head">
-            <div>
-              <div className="swd-md-t1">{PRIMARY.length} tab</div>
-              <div className="swd-md-t2">Chọn mục để xem</div>
-            </div>
-            <button className="swd-md-close" onClick={() => setMobileNavOpen(false)} aria-label="Đóng">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-            </button>
-          </div>
-          <div>
-            {PRIMARY.map((p) => (
-              <button key={p.id} className={"swd-md-item" + (primary === p.id ? " active" : "")} onClick={() => selectPrimaryMobile(p.id)}>
-                <span className="swd-md-item-label" style={{ color: primary === p.id ? ACCENT : INK }}>{p.vi}</span>
-              </button>
-            ))}
-          </div>
-        </div>
 
-        {/* SUB NAV */}
-        {current.subs.length > 1 && (
-          <div style={{ display: "flex", gap: 5, flexWrap: "wrap", marginBottom: 22 }}>
-            {current.subs.map((sb) => (
-              <button key={sb.id} onClick={() => { setSub(sb.id); window.__scrollArticleToTop?.(); }}
-                style={{
-                  fontFamily: SANS, fontSize: 11.8, padding: "5px 12px", borderRadius: 4, cursor: "pointer",
-                  border: `1px solid ${sub === sb.id ? ACCENT : LINE}`,
-                  background: sub === sb.id ? "#EEF3F1" : "transparent",
-                  color: sub === sb.id ? ACCENT : MUTE,
-                  fontWeight: sub === sb.id ? 700 : 500,
-                }}>
-                {sb.vi}
-              </button>
-            ))}
-          </div>
-        )}
-
-
-        {sub === "f-define" && (
+        {primary === "foundations" && (
           <div style={{ display: "grid", gap: 18 }}>
+            <SubHeading>Định nghĩa</SubHeading>
 
             <p style={{ fontFamily: SANS, fontSize: 13, color: "#57605A", lineHeight: 1.65, margin: 0 }}>
               Bốn khái niệm thường bị gộp làm một nhưng khác nhau căn bản. Nhầm lẫn chúng là gốc của rất nhiều lời khuyên sai.
@@ -205,8 +130,9 @@ export default function SelfWorthDeep() {
 </div>
         )}
 
-        {sub === "f-psy" && (
+        {primary === "foundations" && (
           <div style={{ display: "grid", gap: 18 }}>
+            <SubHeading>Tâm lý học</SubHeading>
 
             <Sec label="Kristin Neff — 3 thành tố của Self-Compassion">
               (1) <b>Tử tế với mình</b> (self-kindness) thay vì tự phán xét khắc nghiệt. (2) <b>Nhân tính chung</b> (common humanity) — hiểu rằng thất bại và khiếm khuyết là một phần của việc làm người, mình không đơn độc và không 'hỏng hóc' đặc biệt. (3) <b>Chánh niệm</b> (mindfulness) — nhìn nỗi đau của mình một cách cân bằng, không phóng đại cũng không chối bỏ. Điểm mấu chốt: cả ba chống lại ba phản ứng tự huỷ tương ứng — tự phán xét, cô lập, và đồng hoá quá mức với cảm xúc.
@@ -239,8 +165,9 @@ export default function SelfWorthDeep() {
 </div>
         )}
 
-        {sub === "f-east" && (
+        {primary === "foundations" && (
           <div style={{ display: "grid", gap: 18 }}>
+            <SubHeading>Đông phương</SubHeading>
 
             <Sec label="Phật giáo — Nghịch lý 'vô ngã' và tự trắc ẩn">
               Phật giáo đặt một câu hỏi triệt để: nếu không có một 'cái tôi' cố định (anatta/vô ngã), thì toàn bộ dự án 'nâng cao giá trị bản thân' có đặt sai chỗ không? Cái tôi mà ta ra sức bảo vệ và đánh giá chỉ là một dòng chảy các hiện tượng, không phải một thực thể cố định cần chứng minh. Nghịch lý giải thoát: <b>bớt bám vào 'tôi' thì bớt khổ vì 'tôi chưa đủ tốt'</b>. Đồng thời, chính từ truyền thống này (metta — từ tâm) mà Neff rút ra self-compassion: đối xử với mình bằng lòng từ như với mọi chúng sinh.
@@ -261,8 +188,9 @@ export default function SelfWorthDeep() {
 </div>
         )}
 
-        {sub === "f-soc" && (
+        {primary === "foundations" && (
           <div style={{ display: "grid", gap: 18 }}>
+            <SubHeading>Xã hội & Văn hoá</SubHeading>
 
             <Sec label="Festinger — Lý thuyết so sánh xã hội">
               Con người đánh giá bản thân bằng cách so với người khác — một cơ chế tâm lý cơ bản không tắt được. Vấn đề: ta thường so sánh LÊN (với người hơn mình) ở đúng lĩnh vực mình yếu, tạo ra cảm giác thiếu hụt kinh niên. Hiểu điều này giúp nhận ra: cảm giác 'kém cỏi' thường là <b>sản phẩm của việc chọn sai đối tượng so sánh</b>, không phải sự thật khách quan về mình.
@@ -283,8 +211,9 @@ export default function SelfWorthDeep() {
 </div>
         )}
 
-        {sub === "f-deep" && (
+        {primary === "foundations" && (
           <div style={{ display: "grid", gap: 18 }}>
+            <SubHeading>Chuyên sâu</SubHeading>
 
             <p style={{ fontFamily: SANS, fontSize: 13, color: "#57605A", lineHeight: 1.65, margin: 0 }}>
               Tầng chuyên sâu — các mô hình lâm sàng và bằng chứng nghiên cứu vượt ra ngoài "lời khuyên phổ biến". Đây là khung mà một nhà trị liệu hoặc nghiên cứu thực thụ dùng để hiểu và can thiệp vào giá trị bản thân.
@@ -331,8 +260,9 @@ export default function SelfWorthDeep() {
         )}
 
 
-        {sub === "g-identify" && (
+        {primary === "diagnose" && (
           <div style={{ display: "grid", gap: 18 }}>
+            <SubHeading>Fragile vs Secure</SubHeading>
 
             <div>
               <h2 style={{ fontSize: 19, fontWeight: 600, margin: "0 0 4px" }}>Self-worth vững vs. mong manh (fragile)</h2>
@@ -376,8 +306,9 @@ export default function SelfWorthDeep() {
 </div>
         )}
 
-        {sub === "g-dark" && (
+        {primary === "diagnose" && (
           <div style={{ display: "grid", gap: 18 }}>
+            <SubHeading>Mặt tối</SubHeading>
 
             <p style={{ fontFamily: SANS, fontSize: 13, color: "#57605A", lineHeight: 1.65, margin: 0 }}>
               'Yêu bản thân' cũng có những phiên bản lỗi và những cái bẫy. Hiểu chúng để không rơi vào.
@@ -405,8 +336,9 @@ export default function SelfWorthDeep() {
         )}
 
 
-        {sub === "c-core" && (
+        {primary === "confidence" && (
           <div style={{ display: "grid", gap: 18 }}>
+            <SubHeading>Nền tảng</SubHeading>
 
             <div style={{ background: "#EEF3F1", borderRadius: 6, padding: "16px 20px" }}>
               <div style={{ fontFamily: SANS, fontSize: 10.5, letterSpacing: "0.07em", textTransform: "uppercase", color: ACCENT, fontWeight: 700, marginBottom: 8 }}>Khác self-worth như thế nào</div>
@@ -551,8 +483,9 @@ export default function SelfWorthDeep() {
 </div>
         )}
 
-        {sub === "c-playbook" && (
+        {primary === "confidence" && (
           <div style={{ display: "grid", gap: 18 }}>
+            <SubHeading>Playbook bối cảnh</SubHeading>
 <div style={{ background: "#2A3B37", color: "#EAF1EE", borderRadius: 6, padding: "18px 22px" }}>
               <div style={{ fontFamily: SANS, fontSize: 10.5, letterSpacing: "0.09em", textTransform: "uppercase", color: "#9CC9BC", fontWeight: 700, marginBottom: 9 }}>Playbook theo bối cảnh cụ thể</div>
               <div style={{ fontSize: 14.4, lineHeight: 1.7 }}>
@@ -700,8 +633,9 @@ export default function SelfWorthDeep() {
 </div>
         )}
 
-        {sub === "c-expert" && (
+        {primary === "confidence" && (
           <div style={{ display: "grid", gap: 18 }}>
+            <SubHeading>Chuyên gia</SubHeading>
 <div style={{ background: "#1F2E2A", color: "#E8F1ED", borderRadius: 6, padding: "18px 22px", marginTop: 4 }}>
               <div style={{ fontFamily: SANS, fontSize: 10.5, letterSpacing: "0.09em", textTransform: "uppercase", color: "#8FCBB8", fontWeight: 700, marginBottom: 9 }}>Tầng chuyên gia — vượt khỏi Bandura</div>
               <div style={{ fontSize: 14.4, lineHeight: 1.7 }}>
@@ -839,8 +773,9 @@ export default function SelfWorthDeep() {
 </div>
         )}
 
-        {sub === "s-work" && (
+        {primary === "situations" && (
           <div style={{ display: "grid", gap: 18 }}>
+            <SubHeading>Công việc</SubHeading>
 <div>
               <div style={{ fontFamily: SANS, fontSize: 10.5, letterSpacing: "0.07em", textTransform: "uppercase", color: ACCENT, fontWeight: 700, marginBottom: 4 }}>
                 A · Công việc — người tự tin làm gì, nói gì
@@ -1112,8 +1047,9 @@ export default function SelfWorthDeep() {
 </div>
         )}
 
-        {sub === "s-lead" && (
+        {primary === "situations" && (
           <div style={{ display: "grid", gap: 18 }}>
+            <SubHeading>Lãnh đạo & quản lý</SubHeading>
 <div>
               <div style={{ fontFamily: SANS, fontSize: 10.5, letterSpacing: "0.07em", textTransform: "uppercase", color: ACCENT, fontWeight: 700, marginBottom: 4 }}>
                 B · Lãnh đạo &amp; quản lý
@@ -1247,8 +1183,9 @@ export default function SelfWorthDeep() {
 </div>
         )}
 
-        {sub === "s-conflict" && (
+        {primary === "situations" && (
           <div style={{ display: "grid", gap: 18 }}>
+            <SubHeading>Xung đột</SubHeading>
 <div>
               <div style={{ fontFamily: SANS, fontSize: 10.5, letterSpacing: "0.07em", textTransform: "uppercase", color: "#8A5A3A", fontWeight: 700, marginBottom: 4 }}>
                 C · Xung đột &amp; tình huống khó
@@ -1386,8 +1323,9 @@ export default function SelfWorthDeep() {
 </div>
         )}
 
-        {sub === "s-social" && (
+        {primary === "situations" && (
           <div style={{ display: "grid", gap: 18 }}>
+            <SubHeading>Xã hội & cá nhân</SubHeading>
 <div>
               <div style={{ fontFamily: SANS, fontSize: 10.5, letterSpacing: "0.07em", textTransform: "uppercase", color: ACCENT, fontWeight: 700, marginBottom: 10 }}>
                 D · Xã hội &amp; cá nhân
@@ -1575,8 +1513,9 @@ export default function SelfWorthDeep() {
 </div>
         )}
 
-        {sub === "p-start" && (
+        {primary === "practice" && (
           <div style={{ display: "grid", gap: 18 }}>
+            <SubHeading>Bắt đầu</SubHeading>
 <div>
               <div style={{ fontFamily: SANS, fontSize: 10.5, letterSpacing: "0.07em", textTransform: "uppercase", color: ACCENT, fontWeight: 700, marginBottom: 10 }}>
                 A · Tự chẩn đoán (làm trước)
@@ -1599,8 +1538,9 @@ export default function SelfWorthDeep() {
 </div>
         )}
 
-        {sub === "p-core" && (
+        {primary === "practice" && (
           <div style={{ display: "grid", gap: 18 }}>
+            <SubHeading>Bài tập lõi</SubHeading>
 <div>
               <div style={{ fontFamily: SANS, fontSize: 10.5, letterSpacing: "0.07em", textTransform: "uppercase", color: ACCENT, fontWeight: 700, marginBottom: 10 }}>
                 B · Bài tập lõi Self-Compassion (Neff)
@@ -1691,8 +1631,9 @@ export default function SelfWorthDeep() {
 </div>
         )}
 
-        {sub === "p-clinical" && (
+        {primary === "practice" && (
           <div style={{ display: "grid", gap: 18 }}>
+            <SubHeading>Kỹ thuật nâng cao</SubHeading>
 <div>
               <div style={{ fontFamily: SANS, fontSize: 10.5, letterSpacing: "0.07em", textTransform: "uppercase", color: ACCENT, fontWeight: 700, marginBottom: 4 }}>
                 G · Kỹ thuật chuyên sâu (cấp độ lâm sàng)
@@ -1737,8 +1678,9 @@ export default function SelfWorthDeep() {
 </div>
         )}
 
-        {sub === "p-roadmap" && (
+        {primary === "practice" && (
           <div style={{ display: "grid", gap: 18 }}>
+            <SubHeading>Lộ trình & Đo lường</SubHeading>
 <div>
               <div style={{ fontFamily: SANS, fontSize: 10.5, letterSpacing: "0.07em", textTransform: "uppercase", color: ACCENT, fontWeight: 700, marginBottom: 4 }}>
                 H · Chương trình 90 ngày (tiến theo tầng)
@@ -1855,18 +1797,28 @@ export default function SelfWorthDeep() {
         )}
 
         {(() => {
-          const flat = PRIMARY.flatMap((p) => p.subs.map((sb) => ({ primaryId: p.id, subId: sb.id, primaryVi: p.vi, subVi: sb.vi })));
-          const idx = flat.findIndex((x) => x.primaryId === primary && x.subId === sub);
-          const next = idx >= 0 && idx < flat.length - 1 ? flat[idx + 1] : null;
-          if (!next) return null;
+          const idx = PRIMARY.findIndex((p) => p.id === primary);
+          const prev = idx > 0 ? PRIMARY[idx - 1] : null;
+          const next = idx >= 0 && idx < PRIMARY.length - 1 ? PRIMARY[idx + 1] : null;
+          if (!prev && !next) return null;
           return (
-            <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 20, paddingTop: 14, borderTop: `1px solid ${LINE}` }}>
+            <div style={{ display: "flex", justifyContent: "space-between", marginTop: 20, paddingTop: 14, borderTop: `1px solid ${LINE}` }}>
+              {prev ? (
+                <button
+                  onClick={() => { setPrimary(prev.id); window.__scrollArticleToTop?.(); }}
+                  style={{ display: "flex", alignItems: "center", gap: 6, padding: "9px 15px", borderRadius: 6, border: `1px solid ${LINE}`, background: CARD, color: "#3A403C", fontFamily: SANS, fontSize: 12.8, fontWeight: 700, cursor: "pointer" }}
+                >
+                  ← {prev.vi}
+                </button>
+              ) : <span />}
+              {next && (
               <button
-                onClick={() => { setPrimary(next.primaryId); setSub(next.subId); window.__scrollArticleToTop?.(); }}
+                onClick={() => { setPrimary(next.id); window.__scrollArticleToTop?.(); }}
                 style={{ display: "flex", alignItems: "center", gap: 6, padding: "9px 15px", borderRadius: 6, border: `1px solid ${ACCENT}`, background: "#EEF3F1", color: ACCENT, fontFamily: SANS, fontSize: 12.8, fontWeight: 700, cursor: "pointer" }}
               >
-                Tiếp: {next.primaryId !== primary ? `${next.primaryVi} · ` : ""}{next.subVi} →
+                Tiếp: {next.vi} →
               </button>
+              )}
             </div>
           );
         })()}

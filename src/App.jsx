@@ -616,7 +616,7 @@ function App() {
   };
 
   return (
-    <div className={`relative flex h-screen overflow-hidden font-sans ${T.appBg}`}>
+    <div className={`relative flex h-dvh overflow-hidden font-sans ${T.appBg}`}>
 
       {/* Lớp phủ mờ phía sau sidebar khi mở dạng overlay trên mobile */}
       {isSidebarOpen && isMobile && (

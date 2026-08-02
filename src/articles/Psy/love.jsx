@@ -1337,10 +1337,6 @@ export default function LovePhilosophyDeep() {
             </div>
           );
         })()}
-
-        <div style={{ fontFamily: SANS, fontSize: 11.8, color: MUTE, lineHeight: 1.7, borderTop: `1px solid ${LINE}`, paddingTop: 16, marginTop: 28 }}>
-          <b>Nguồn tư tưởng chính:</b> Plato · Aristotle · Kierkegaard · Hegel &amp; Honneth · Sartre · de Beauvoir · Frankfurt · Nozick · Stendhal · Simone Weil · Iris Murdoch · C.S. Lewis · Fromm · Rilke · bell hooks · de Botton · Thích Nhất Hạnh · Phật giáo (Tứ Vô Lượng Tâm) · Bhakti (prema/kama) · Doi Takeo (amae) · Nho giáo (nhân) · Rumi · Freud · Jung · Winnicott &amp; Fairbairn · Bowlby &amp; Ainsworth · Hazan &amp; Shaver · Sternberg · Fredrickson · Perel · Tennov · Aron · Sue Johnson (EFT) · Nagoski · Worthington (REACH) · Giddens · Illouz · Bauman · Beck &amp; Beck-Gernsheim · Hochschild · Berlant · Jankowiak &amp; Fischer · Helen Fisher · Eisenberger · Pennebaker · Schnarch · Bowen · Gottman · Evan Stark · Chapman (có dè dặt) · Erikson · Carstensen · Meyer (minority stress) · DePaulo · Conley &amp; Moors · Waller · Buss · Knee · Yalom. Các trích dẫn được diễn giải lại theo tinh thần nguyên tác. Nơi bằng chứng còn yếu hoặc gây tranh cãi, tài liệu ghi rõ. Tài liệu mang tính giáo dục, không thay thế trị liệu chuyên môn khi cần.
-        </div>
       </div>
     </div>
   );
