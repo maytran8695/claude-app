@@ -16,21 +16,22 @@ const normalizeKey = (str) => str.toLowerCase().replace(/[-_\s]/g, '');
 const exactTitleMap = {
   [normalizeKey('FinExpertNote')]: 'Fin Expert Note',
   [normalizeKey('FinFoundation')]: 'Fin Foundation',
-  [normalizeKey('VietnamIndustryPrimers')]: 'Vietnam Industry Primers',
+  [normalizeKey('VietnamIndustryPrimers')]: 'Industry Primers',
   [normalizeKey('StockDeepdive')]: 'Stock Deepdive',
   [normalizeKey('BigNations')]: 'Big Nations',
-  [normalizeKey('MacroVnFramework')]: 'Macro-Vn-Framework',
-  [normalizeKey('MacroQuarterlyReview')]: 'Macro-Quarterly-Review',
+  [normalizeKey('MacroVnFramework')]: 'Macro Framework',
+  [normalizeKey('MacroQuarterlyReview')]: 'Macro Quarterly Review',
   [normalizeKey('WealthManagement')]: 'Wealth Management',
   [normalizeKey('HolisticLife')]: 'Holistic Life',
   [normalizeKey('MovementManual')]: 'Movement Manual',
-  [normalizeKey('ChunkAtlasEN')]: 'Chunk Atlas E N',
+  [normalizeKey('ChunkAtlasEN')]: 'Chunk Atlas - EN',
   [normalizeKey('BestPracticesGuide')]: 'Best Practices Guide',
   [normalizeKey('ChineseTrick')]: 'Chinese Trick',
   [normalizeKey('TuViChinhTinh14Sao')]: 'Purple Star Astrology',
   [normalizeKey('Love')]: 'Love',
-  [normalizeKey('CBAP')]: 'CBAP',
-  [normalizeKey('ChunkQuiz')]: 'Chunk Atlas Quiz'
+  [normalizeKey('CBAP')]: 'CBAP Quiz',
+  [normalizeKey('ChunkQuiz')]: 'Chunk Quiz - EN',
+  [normalizeKey('SelfWorthDeep')]: 'Self Worth'
 };
 
 // Thứ tự sắp xếp các Danh mục lớn

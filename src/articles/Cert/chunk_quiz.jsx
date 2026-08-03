@@ -1,6 +1,6 @@
 const CHUNK_QUIZ_APP_URL = "https://chunk-en.pages.dev/";
 const serif = "'Source Serif 4', Georgia, serif";
-const ACCENT = "#3E6FBF";
+const ACCENT = "#B34040"; // matches the "Thép" sector accent in vietnam_industry_primers.jsx
 const INK = "#23231E";
 
 export default function ChunkQuiz() {

@@ -1,6 +1,6 @@
 const CBAP_APP_URL = "https://cbap-cert.pages.dev/";
 const serif = "'Source Serif 4', Georgia, serif";
-const ACCENT = "#6B4FA0";
+const ACCENT = "#356158"; // matches the active "Bản chất" tab color in love.jsx
 const INK = "#23231E";
 
 export default function CBAP() {
@@ -11,7 +11,7 @@ export default function CBAP() {
       `}</style>
 
       <h1 style={{ fontFamily: serif, color: INK, fontSize: 32, lineHeight: 1.15, margin: "0 0 28px" }}>
-        Ôn Luyện Chứng Chỉ CBAP
+        CBAP Question Bank
       </h1>
 
       <a
@@ -31,7 +31,7 @@ export default function CBAP() {
           textDecoration: "none",
         }}
       >
-        Mở CBAP ↗
+        Open CBAP ↗
       </a>
     </div>
   );
