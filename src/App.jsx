@@ -29,7 +29,8 @@ const exactTitleMap = {
   [normalizeKey('ChineseTrick')]: 'Chinese Trick',
   [normalizeKey('TuViChinhTinh14Sao')]: 'Purple Star Astrology',
   [normalizeKey('Love')]: 'Love',
-  [normalizeKey('CBAP')]: 'CBAP'
+  [normalizeKey('CBAP')]: 'CBAP',
+  [normalizeKey('ChunkQuiz')]: 'Chunk Atlas Quiz'
 };
 
 // Thứ tự sắp xếp các Danh mục lớn
@@ -61,7 +62,8 @@ const targetArticleOrder = {
     normalizeKey('Love')
   ],
   Cert: [
-    normalizeKey('CBAP')
+    normalizeKey('CBAP'),
+    normalizeKey('ChunkQuiz')
   ]
 };
 
