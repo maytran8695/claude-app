@@ -25,6 +25,7 @@ const exactTitleMap = {
   [normalizeKey('HolisticLife')]: 'Holistic Life',
   [normalizeKey('MovementManual')]: 'Movement Manual',
   [normalizeKey('ChunkAtlasEN')]: 'Chunk Atlas - EN',
+  [normalizeKey('ChunkAtlasCn')]: 'Chunk Atlas - CHI',
   [normalizeKey('BestPracticesGuide')]: 'Best Practices Guide',
   [normalizeKey('ChineseTrick')]: 'Chinese Trick',
   [normalizeKey('TuViChinhTinh14Sao')]: 'Purple Star Astrology',
@@ -55,9 +56,10 @@ const targetArticleOrder = {
   ],
   Language: [
     normalizeKey('ChunkAtlasEN'),
+    normalizeKey('ChunkAtlasCn'),
+    normalizeKey('TuViChinhTinh14Sao'),
     normalizeKey('BestPracticesGuide'),
-    normalizeKey('ChineseTrick'),
-    normalizeKey('TuViChinhTinh14Sao')
+    normalizeKey('ChineseTrick')
   ],
   Psy: [
     normalizeKey('Love')
