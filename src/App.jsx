@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback, useEffect, useLayoutEffect, useRef, lazy, Suspense } from 'react';
-import { TrendingUp, HeartPulse, Languages, Brain, Award, Sun, Moon, Search, ChevronDown, PanelLeftClose, PanelLeftOpen, ArrowUp, ArrowDown, Menu } from 'lucide-react';
+import { TrendingUp, HeartPulse, Languages, Brain, Award, Film, Sun, Moon, Search, ChevronDown, PanelLeftClose, PanelLeftOpen, ArrowUp, ArrowDown, Menu } from 'lucide-react';
 import TextAnnotationLayer from './components/TextAnnotationLayer';
 import AllNotesModal from './components/AllNotesModal';
 import { authedFetch, isVerified } from './hooks/notesAuth';
@@ -35,7 +35,7 @@ const exactTitleMap = {
 };
 
 // Thứ tự sắp xếp các Danh mục lớn
-const targetCategoryOrder = ['Health', 'Finance', 'Language', 'Cert', 'Psy'];
+const targetCategoryOrder = ['Health', 'Finance', 'Language', 'Cert', 'Psy', 'Entertainment'];
 
 // Thứ tự sắp xếp các bài viết bên trong từng danh mục
 const targetArticleOrder = {
@@ -62,6 +62,9 @@ const targetArticleOrder = {
   Psy: [
     normalizeKey('Love')
   ],
+  Entertainment: [
+    normalizeKey('Entertainment')
+  ],
   Cert: [
     normalizeKey('CBAP'),
     normalizeKey('ChunkQuiz')
@@ -83,6 +86,7 @@ const rawArticles = Object.entries(articleModules).map(([path, loader]) => {
   else if (lowerCat === 'health') category = 'Health';
   else if (lowerCat === 'language') category = 'Language';
   else if (lowerCat === 'psy') category = 'Psy';
+  else if (lowerCat === 'entertainment') category = 'Entertainment';
 
   // Lấy tiêu đề sạch đã chuẩn hóa
   const normalizedId = normalizeKey(id);
@@ -170,6 +174,12 @@ const categoryThemes = {
     light: '#6B4FA0',
     dark: '#B7A3DE',
     Icon: Award
+  },
+  Entertainment: {
+    // Cam đất/terracotta — ấm áp, tách biệt với các màu còn lại
+    light: '#B8562F',
+    dark: '#E0916A',
+    Icon: Film
   },
   Default: {
     light: '#4F46E5',
@@ -380,7 +390,7 @@ function App() {
   }, [darkMode]);
 
   // Trạng thái mở/đóng của từng nhóm Chuyên mục trong sidebar (mặc định mở hết)
-  const [openGroups, setOpenGroups] = useState({ Health: true, Finance: true, Language: true, Cert: true, Psy: true });
+  const [openGroups, setOpenGroups] = useState({ Health: true, Finance: true, Language: true, Cert: true, Psy: true, Entertainment: true });
   const toggleGroup = useCallback((cat) => {
     setOpenGroups(prev => ({ ...prev, [cat]: !prev[cat] }));
   }, []);
