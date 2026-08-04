@@ -72,11 +72,8 @@ export function useTextAnnotations(articleId, containerRef, { enabled = true, re
     setLoading(true);
     try {
       const res = await authedFetch(`/api/notes?article=${encodeURIComponent(articleId)}`);
-      if (res.status === 401) {
-        setLocked(true);
-        return { ok: false, message: "Sai mật khẩu, hoặc server chưa có biến NOTES_WRITE_SECRET." };
-      }
-      if (!res.ok) return { ok: false, message: `Lỗi server (${res.status})` };
+      if (res.status === 401) setLocked(true);
+      if (!res.ok) return { ok: false, message: "(Không có quyền ghi chú)" };
       const data = await res.json();
       setLocked(false);
       setNotes(Array.isArray(data) ? data : []);
@@ -269,15 +266,8 @@ export function useTextAnnotations(articleId, containerRef, { enabled = true, re
           headers: { "Content-Type": "application/json" },
           body,
         });
-        if (res.status === 401) {
-          return {
-            ok: false,
-            message: "Sai mật khẩu, hoặc server chưa có biến NOTES_WRITE_SECRET (kiểm tra Cloudflare dashboard + deploy lại).",
-          };
-        }
         if (!res.ok) {
-          const detail = await res.text().catch(() => "");
-          return { ok: false, message: `Lỗi server (${res.status})${detail ? ": " + detail.slice(0, 200) : ""}` };
+          return { ok: false, message: "(Không có quyền ghi chú)" };
         }
         await res.json();
         // Re-sync from the server (rather than just appending the new
@@ -301,15 +291,8 @@ export function useTextAnnotations(articleId, containerRef, { enabled = true, re
   const deleteNote = useCallback(async (noteId) => {
     try {
       const res = await authedFetch(`/api/notes/${encodeURIComponent(noteId)}`, { method: "DELETE" });
-      if (res.status === 401) {
-        return {
-          ok: false,
-          message: "Sai mật khẩu, hoặc server chưa có biến NOTES_WRITE_SECRET (kiểm tra Cloudflare dashboard + deploy lại).",
-        };
-      }
       if (!res.ok) {
-        const detail = await res.text().catch(() => "");
-        return { ok: false, message: `Lỗi server (${res.status})${detail ? ": " + detail.slice(0, 200) : ""}` };
+        return { ok: false, message: "(Không có quyền ghi chú)" };
       }
     } catch (err) {
       console.warn("[annotations] could not delete note:", err);
