@@ -188,7 +188,7 @@ export default function TextAnnotationLayer({ articleId, containerRef, enabled, 
             onChange={(e) => setDraft(e.target.value)}
             placeholder="Viết ghi chú..."
             rows={3}
-            className="w-full text-sm border border-slate-200 rounded-lg p-2 outline-none focus:border-indigo-400 resize-none"
+            className="w-full text-sm text-slate-900 border border-slate-200 rounded-lg p-2 outline-none focus:border-indigo-400 resize-none"
           />
           {composeError && <div className="text-[11px] text-red-600 mt-1.5">{composeError}</div>}
           <div className="flex justify-end gap-2 mt-2">
