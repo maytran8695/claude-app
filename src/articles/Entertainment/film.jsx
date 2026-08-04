@@ -1,14 +1,14 @@
 import React, { useState, useMemo } from "react";
 
-const ACCENT = "#B8562F";
-const INK = "#2B2117";
-const MUTE = "#9C8C7C";
-const NOTE = "#7A6A5C";
+const ACCENT = "#2B5F6E";
+const INK = "#252220";
+const MUTE = "#7E8B90";
+const NOTE = "#6E6459";
 const SANS = "'Helvetica Neue', Arial, sans-serif";
 const SERIF = "'Iowan Old Style', 'Georgia', serif";
-const PAPER = "#EEF4FB";
+const PAPER = "#F2F5F6";
 const CARD = "#FFFFFF";
-const LINE = "#DCE6F0";
+const LINE = "#DEE5E7";
 
 const INTRO = "Mỗi bộ phim là sự cô đặc chất xám, cả về nội dung, màu sắc, hình ảnh, âm thanh — mà thông qua đó ta có thể du hành tới những vùng đất khác, con người khác, triết lý khác, thế giới quan khác...";
 
@@ -380,7 +380,7 @@ const FILMS = [
 /* ============================================================
    RENDER HELPERS
    ============================================================ */
-const SUMMARY_COLOR = "#4C6B80";
+const SUMMARY_COLOR = "#3E6672";
 
 function renderItems(items) {
   return (
