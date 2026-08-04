@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { Menu } from "lucide-react";
 import { FinIcon } from "../../components/finIcons";
+import { useAnnotationReplies } from "../../hooks/useAnnotationReplies";
+import { peekStoredName } from "../../hooks/notesAuth";
+
+const ARTICLE_ID = "fin_expert_note";
 
 const sections = [
   {
@@ -3341,9 +3345,9 @@ export default function FinanceKnowledgeBase() {
     sections.forEach(s => { if (s.groupId) initial[s.groupId] = true; });
     return initial;
   });
-  // Reply threads attached to system annotations, keyed by annotation id.
-  // Shape: { [annotationId]: [{ id, text, createdAt, editedAt }] }
-  const [annotationReplies, setAnnotationReplies] = useState({});
+  // Reply threads attached to system annotations, keyed by annotation id —
+  // persisted to Cloudflare D1 via /api/annotation-replies (see the hook).
+  const { repliesByAnnotation: annotationReplies, addReply, editReply, deleteReply } = useAnnotationReplies(ARTICLE_ID);
 
   // Build ordered list of groups with their member sections, preserving original order
   const groupOrder = [];
@@ -3361,7 +3365,8 @@ export default function FinanceKnowledgeBase() {
 
   const toggleGroup = (gid) => setExpandedGroups(prev => ({ ...prev, [gid]: !prev[gid] }));
 
-  // Load overrides AND annotation replies from persistent storage on mount
+  // Load section-title/content overrides from persistent storage on mount
+  // (this is a separate, unrelated editing feature from annotation replies).
   useEffect(() => {
     (async () => {
       try {
@@ -3372,54 +3377,9 @@ export default function FinanceKnowledgeBase() {
       } catch (e) {
         // no overrides saved yet
       }
-      try {
-        const repliesResult = await window.storage.get("annotation-replies", false);
-        if (repliesResult && repliesResult.value) {
-          setAnnotationReplies(JSON.parse(repliesResult.value));
-        }
-      } catch (e) {
-        // no replies saved yet
-      }
       setLoaded(true);
     })();
   }, []);
-
-  const persistReplies = async (next) => {
-    setAnnotationReplies(next);
-    try {
-      await window.storage.set("annotation-replies", JSON.stringify(next), false);
-    } catch (e) {
-      console.error("Storage error", e);
-    }
-  };
-
-  // Add a new reply to a thread
-  const addReply = async (annotationId, text) => {
-    const trimmed = text.trim();
-    if (!trimmed) return;
-    const existing = annotationReplies[annotationId] || [];
-    const newReply = { id: `r-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`, text: trimmed, createdAt: Date.now(), editedAt: null };
-    const next = { ...annotationReplies, [annotationId]: [...existing, newReply] };
-    await persistReplies(next);
-  };
-
-  // Edit an existing reply
-  const editReply = async (annotationId, replyId, newText) => {
-    const trimmed = newText.trim();
-    if (!trimmed) return;
-    const existing = annotationReplies[annotationId] || [];
-    const updated = existing.map(r => r.id === replyId ? { ...r, text: trimmed, editedAt: Date.now() } : r);
-    const next = { ...annotationReplies, [annotationId]: updated };
-    await persistReplies(next);
-  };
-
-  // Delete a reply
-  const deleteReply = async (annotationId, replyId) => {
-    const existing = annotationReplies[annotationId] || [];
-    const updated = existing.filter(r => r.id !== replyId);
-    const next = { ...annotationReplies, [annotationId]: updated };
-    await persistReplies(next);
-  };
 
   const persistOverrides = async (next) => {
     setOverrides(next);
@@ -4168,16 +4128,54 @@ function AnnotatedSegment({ text, annotations, annotationReplies, onAddReply, on
 }
 
 // Google-Docs-style reply thread: shows existing replies (each editable/
-// deletable individually) plus an input box to add a new reply.
+// deletable individually) plus an input box to add a new reply. Persisted
+// via useAnnotationReplies (Cloudflare D1) — onAdd/onEdit/onDelete are async
+// and resolve to { ok, message? }.
 function ReplyThread({ annotationId, replies, color, onAdd, onEdit, onDelete }) {
   const [draft, setDraft] = useState("");
   const [editingId, setEditingId] = useState(null);
   const [editDraft, setEditDraft] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  const myName = peekStoredName();
 
   const formatTime = (ts) => {
     if (!ts) return "";
-    const d = new Date(ts);
+    // D1/SQLite datetime('now') returns "YYYY-MM-DD HH:MM:SS" in UTC with no
+    // timezone marker — append Z so Date parses it as UTC, not local time.
+    const d = new Date(ts.replace(" ", "T") + "Z");
+    if (Number.isNaN(d.getTime())) return "";
     return d.toLocaleString("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" });
+  };
+
+  const submitAdd = async () => {
+    if (!draft.trim() || submitting) return;
+    setSubmitting(true);
+    setError("");
+    const res = await onAdd(annotationId, draft);
+    setSubmitting(false);
+    if (res?.ok) setDraft("");
+    else setError(res?.message || "Không gửi được bình luận.");
+  };
+
+  const submitEdit = async (replyId) => {
+    if (!editDraft.trim() || submitting) return;
+    setSubmitting(true);
+    setError("");
+    const res = await onEdit(annotationId, replyId, editDraft);
+    setSubmitting(false);
+    if (res?.ok) setEditingId(null);
+    else setError(res?.message || "Không lưu được chỉnh sửa.");
+  };
+
+  const submitDelete = async (replyId) => {
+    if (submitting) return;
+    if (!window.confirm("Xóa bình luận này?")) return;
+    setSubmitting(true);
+    setError("");
+    const res = await onDelete(annotationId, replyId);
+    setSubmitting(false);
+    if (!res?.ok) setError(res?.message || "Không xóa được.");
   };
 
   return (
@@ -4186,12 +4184,16 @@ function ReplyThread({ annotationId, replies, color, onAdd, onEdit, onDelete }) 
         <span style={{ display: "block", padding: "8px 12px 2px" }}>
           {replies.map((reply) => (
             <span key={reply.id} style={{ display: "block", padding: "7px 0", borderBottom: "0.5px dashed var(--border, #e0e0d8)" }}>
-              {editingId === reply.id ? (
+              {(() => {
+                const displayName = reply.author || "Ẩn danh";
+                const isMine = !!reply.author && reply.author === myName;
+                return editingId === reply.id ? (
                 <span style={{ display: "block" }}>
                   <textarea
                     value={editDraft}
                     onChange={(e) => setEditDraft(e.target.value)}
                     rows={2}
+                    autoFocus
                     style={{
                       width: "100%",
                       fontSize: "12px",
@@ -4202,18 +4204,19 @@ function ReplyThread({ annotationId, replies, color, onAdd, onEdit, onDelete }) 
                       fontFamily: "inherit",
                       resize: "vertical",
                       boxSizing: "border-box",
-                      color: "var(--text-primary, #1a1a1a)"
+                      color: "#1a1a1a"
                     }}
                   />
                   <span style={{ display: "flex", gap: "6px", marginTop: "4px" }}>
                     <button
-                      onClick={() => { onEdit(annotationId, reply.id, editDraft); setEditingId(null); }}
-                      style={{ fontSize: "11px", padding: "4px 10px", border: "none", borderRadius: "6px", background: color, color: "#fff", cursor: "pointer" }}
+                      onClick={() => submitEdit(reply.id)}
+                      disabled={submitting || !editDraft.trim()}
+                      style={{ fontSize: "11px", padding: "4px 10px", border: "none", borderRadius: "6px", background: color, color: "#fff", cursor: submitting ? "wait" : "pointer", opacity: submitting || !editDraft.trim() ? 0.6 : 1 }}
                     >
                       Lưu
                     </button>
                     <button
-                      onClick={() => setEditingId(null)}
+                      onClick={() => { setEditingId(null); setError(""); }}
                       style={{ fontSize: "11px", padding: "4px 10px", border: "0.5px solid var(--border-strong, #ccc)", borderRadius: "6px", background: "transparent", cursor: "pointer", color: "var(--text-secondary, #666)" }}
                     >
                       Hủy
@@ -4224,44 +4227,52 @@ function ReplyThread({ annotationId, replies, color, onAdd, onEdit, onDelete }) 
                 <span style={{ display: "block" }}>
                   <span style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "2px" }}>
                     <FinIcon name="ti-user-circle" size={13} color="var(--text-muted, #888)" />
-                    <strong style={{ fontSize: "11.5px", fontWeight: 600, color: "var(--text-primary, #1a1a1a)" }}>Bạn</strong>
+                    <strong style={{ fontSize: "11.5px", fontWeight: 600, color: isMine ? color : "#1a1a1a" }}>
+                      {displayName}{isMine ? " (bạn)" : ""}
+                    </strong>
                     <span style={{ fontSize: "10px", color: "var(--text-muted, #888)" }}>
-                      {formatTime(reply.createdAt)}{reply.editedAt ? " (đã sửa)" : ""}
+                      {formatTime(reply.created_at)}{reply.edited_at ? " (đã sửa)" : ""}
                     </span>
                     <span style={{ display: "flex", gap: "8px", marginLeft: "auto" }}>
                       <button
-                        disabled
-                        title="Tính năng chỉnh sửa không khả dụng ở bản web tĩnh này"
-                        style={{ border: "none", background: "transparent", cursor: "not-allowed", padding: "1px", color: "var(--text-muted, #888)", opacity: 0.5 }}
+                        onClick={() => { setEditingId(reply.id); setEditDraft(reply.text); setError(""); }}
+                        title="Chỉnh sửa"
+                        style={{ border: "none", background: "transparent", cursor: "pointer", padding: "1px", color: "var(--text-muted, #888)" }}
                       >
                         <FinIcon name="ti-pencil" size={12} />
                       </button>
                       <button
-                        disabled
-                        title="Tính năng xóa không khả dụng ở bản web tĩnh này"
-                        style={{ border: "none", background: "transparent", cursor: "not-allowed", padding: "1px", color: "var(--text-muted, #888)", opacity: 0.5 }}
+                        onClick={() => submitDelete(reply.id)}
+                        disabled={submitting}
+                        title="Xóa"
+                        style={{ border: "none", background: "transparent", cursor: submitting ? "wait" : "pointer", padding: "1px", color: "var(--text-muted, #888)", opacity: submitting ? 0.5 : 1 }}
                       >
                         <FinIcon name="ti-trash" size={12} />
                       </button>
                     </span>
                   </span>
-                  <span style={{ fontSize: "12.5px", color: "var(--text-primary, #1a1a1a)", lineHeight: 1.5, display: "block", paddingLeft: "19px" }}>
+                  <span style={{ fontSize: "12.5px", color: "#1a1a1a", lineHeight: 1.5, display: "block", paddingLeft: "19px" }}>
                     {reply.text}
                   </span>
                 </span>
-              )}
+                );
+              })()}
             </span>
           ))}
         </span>
       )}
 
-      {/* Add new reply box — disabled: relies on window.storage (Claude Artifact only), not available in this static site */}
+      {error && (
+        <span style={{ display: "block", padding: "6px 12px 0", fontSize: "11px", color: "#A32D2D" }}>{error}</span>
+      )}
+
       <span style={{ display: "flex", gap: "6px", padding: "8px 12px 10px", alignItems: "flex-start" }}>
         <input
-          value=""
-          disabled
-          placeholder="Tính năng bình luận không khả dụng ở bản web tĩnh này"
-          title="Tính năng bình luận cần lưu trữ của claude.ai, không khả dụng ở bản web tĩnh này"
+          value={draft}
+          onChange={(e) => setDraft(e.target.value)}
+          onKeyDown={(e) => { if (e.key === "Enter") submitAdd(); }}
+          placeholder="Viết bình luận..."
+          disabled={submitting}
           style={{
             flex: 1,
             fontSize: "12px",
@@ -4269,25 +4280,24 @@ function ReplyThread({ annotationId, replies, color, onAdd, onEdit, onDelete }) 
             border: "0.5px solid var(--border, #e0e0d8)",
             borderRadius: "6px",
             outline: "none",
-            color: "var(--text-muted, #888)",
-            boxSizing: "border-box",
-            cursor: "not-allowed"
+            color: "#1a1a1a",
+            boxSizing: "border-box"
           }}
         />
         <button
-          disabled
-          title="Tính năng bình luận cần lưu trữ của claude.ai, không khả dụng ở bản web tĩnh này"
+          onClick={submitAdd}
+          disabled={submitting || !draft.trim()}
           style={{
             fontSize: "11px",
             fontWeight: 500,
             padding: "6px 12px",
             border: "none",
             borderRadius: "6px",
-            background: "var(--border, #e0e0d8)",
+            background: color,
             color: "#fff",
-            cursor: "not-allowed",
+            cursor: submitting || !draft.trim() ? "not-allowed" : "pointer",
             flexShrink: 0,
-            opacity: 0.6
+            opacity: submitting || !draft.trim() ? 0.6 : 1
           }}
         >
           Gửi

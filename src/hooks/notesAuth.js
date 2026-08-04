@@ -10,6 +10,24 @@
 // delete) and AllNotesModal (global list/delete).
 const SECRET_STORAGE_KEY = "study_hub_notes_secret";
 const VERIFIED_STORAGE_KEY = "study_hub_notes_verified";
+const NAME_STORAGE_KEY = "study_hub_commenter_name";
+
+// Everyone who knows the shared secret can write/edit/delete any comment —
+// there's no real per-user login. This is purely a self-chosen display name
+// (prompted once per browser, cached in localStorage) so annotation replies
+// can visually tell commenters apart ("Bạn" vs someone else's name) instead
+// of every reply looking anonymous/identical.
+export function peekStoredName() {
+  return localStorage.getItem(NAME_STORAGE_KEY) || "";
+}
+
+export function getOrPromptName() {
+  const cached = peekStoredName();
+  if (cached) return cached;
+  const name = (window.prompt("Nhập tên hiển thị khi bình luận:") || "").trim();
+  if (name) localStorage.setItem(NAME_STORAGE_KEY, name);
+  return name;
+}
 
 export function peekStoredSecret() {
   return localStorage.getItem(SECRET_STORAGE_KEY) || "";

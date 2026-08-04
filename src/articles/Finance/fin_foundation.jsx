@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { Menu } from "lucide-react";
 import { FinIcon } from "../../components/finIcons";
+import { useAnnotationReplies } from "../../hooks/useAnnotationReplies";
+import { peekStoredName } from "../../hooks/notesAuth";
+
+const ARTICLE_ID = "fin_foundation";
 
 // ============================================================
 // TẬP 1 — NỀN TẢNG TÀI CHÍNH (Financial Foundations)
@@ -2061,6 +2065,7 @@ export default function Tap1Foundations() {
   const [activeSection, setActiveSection] = useState(sections[0].id);
   const [openSubsection, setOpenSubsection] = useState(null);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const { repliesByAnnotation: annotationReplies, addReply, editReply, deleteReply } = useAnnotationReplies(ARTICLE_ID);
   const [expandedGroups, setExpandedGroups] = useState(() => {
     const initial = {};
     sections.forEach(s => { if (s.groupId) initial[s.groupId] = true; });
@@ -2321,7 +2326,15 @@ export default function Tap1Foundations() {
                 {isOpen && (
                   <div style={{ padding: "0 1.25rem 1.25rem" }}>
                     <div style={{ borderTop: `0.5px solid ${(currentSection.groupColor || currentSection.color)}33`, paddingTop: "1rem" }}>
-                      <FormattedContent content={sub.content} color={(currentSection.groupColor || currentSection.color)} subAnnotations={subAnnos} />
+                      <FormattedContent
+                        content={sub.content}
+                        color={(currentSection.groupColor || currentSection.color)}
+                        subAnnotations={subAnnos}
+                        annotationReplies={annotationReplies}
+                        onAddReply={addReply}
+                        onEditReply={editReply}
+                        onDeleteReply={deleteReply}
+                      />
                     </div>
                   </div>
                 )}
@@ -2349,19 +2362,20 @@ export default function Tap1Foundations() {
   );
 }
 
-function FormattedContent({ content, color, subAnnotations = [] }) {
+function FormattedContent({ content, color, subAnnotations = [], annotationReplies = {}, onAddReply, onEditReply, onDeleteReply }) {
   const lines = content.split("\n");
   const elements = [];
+  const threadProps = { annotationReplies, onAddReply, onEditReply, onDeleteReply };
   let i = 0;
   while (i < lines.length) {
     const line = lines[i].trim();
     if (line === "") { i++; continue; }
     if (line.startsWith("**") && line.endsWith("**") && line.length > 4) {
-      elements.push(<p key={i} style={{ fontSize: "13px", fontWeight: 500, color, margin: "1rem 0 0.4rem", borderLeft: `3px solid ${color}`, paddingLeft: "10px", lineHeight: 1.5 }}><InlineFormatted text={line.slice(2, -2)} annotations={subAnnotations} /></p>);
+      elements.push(<p key={i} style={{ fontSize: "13px", fontWeight: 500, color, margin: "1rem 0 0.4rem", borderLeft: `3px solid ${color}`, paddingLeft: "10px", lineHeight: 1.5 }}><InlineFormatted text={line.slice(2, -2)} annotations={subAnnotations} {...threadProps} /></p>);
     } else if (line.startsWith("- ") || line.startsWith("• ")) {
       const listItems = [];
       while (i < lines.length && (lines[i].trim().startsWith("- ") || lines[i].trim().startsWith("• "))) { listItems.push(lines[i].trim().slice(2)); i++; }
-      elements.push(<ul key={i} style={{ margin: "0.4rem 0", paddingLeft: "1.2rem" }}>{listItems.map((item, j) => <li key={j} style={{ fontSize: "13px", color: "var(--text-primary, #111827)", lineHeight: 1.7, marginBottom: "2px" }}><InlineFormatted text={item} annotations={subAnnotations} /></li>)}</ul>);
+      elements.push(<ul key={i} style={{ margin: "0.4rem 0", paddingLeft: "1.2rem" }}>{listItems.map((item, j) => <li key={j} style={{ fontSize: "13px", color: "var(--text-primary, #111827)", lineHeight: 1.7, marginBottom: "2px" }}><InlineFormatted text={item} annotations={subAnnotations} {...threadProps} /></li>)}</ul>);
       continue;
     } else if (line.includes(" | ") && line.includes("|")) {
       const tableLines = [];
@@ -2370,22 +2384,23 @@ function FormattedContent({ content, color, subAnnotations = [] }) {
       elements.push(<div key={i} style={{ overflowX: "auto", margin: "0.75rem 0" }}><table style={{ width: "100%", borderCollapse: "collapse", fontSize: "12px" }}><tbody>{rows.map((row, ri) => { const cells = row.split("|").filter(c => c.trim() !== ""); return <tr key={ri} style={{ borderBottom: "0.5px solid var(--border, #e0e0d8)", background: ri === 0 ? `${color}11` : "transparent" }}>{cells.map((cell, ci) => { const Tag = ri === 0 ? "th" : "td"; return <Tag key={ci} style={{ padding: "6px 10px", textAlign: "left", fontWeight: ri === 0 ? 500 : 400, color: "var(--text-primary, #111827)" }}>{cell.trim()}</Tag>; })}</tr>; })}</tbody></table></div>);
       continue;
     } else {
-      elements.push(<p key={i} style={{ fontSize: "13px", color: "var(--text-primary, #111827)", lineHeight: 1.75, margin: "0.4rem 0" }}><InlineFormatted text={line} annotations={subAnnotations} /></p>);
+      elements.push(<p key={i} style={{ fontSize: "13px", color: "var(--text-primary, #111827)", lineHeight: 1.75, margin: "0.4rem 0" }}><InlineFormatted text={line} annotations={subAnnotations} {...threadProps} /></p>);
     }
     i++;
   }
   return <div>{elements}</div>;
 }
 
-function InlineFormatted({ text, annotations = [] }) {
+function InlineFormatted({ text, annotations = [], annotationReplies, onAddReply, onEditReply, onDeleteReply }) {
   const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  const threadProps = { annotationReplies, onAddReply, onEditReply, onDeleteReply };
   return <>{parts.map((part, i) => {
-    if (part.startsWith("**") && part.endsWith("**")) return <strong key={i} style={{ fontWeight: 500 }}><AnnotatedSegment text={part.slice(2, -2)} annotations={annotations} /></strong>;
-    return <AnnotatedSegment key={i} text={part} annotations={annotations} />;
+    if (part.startsWith("**") && part.endsWith("**")) return <strong key={i} style={{ fontWeight: 500 }}><AnnotatedSegment text={part.slice(2, -2)} annotations={annotations} {...threadProps} /></strong>;
+    return <AnnotatedSegment key={i} text={part} annotations={annotations} {...threadProps} />;
   })}</>;
 }
 
-function AnnotatedSegment({ text, annotations }) {
+function AnnotatedSegment({ text, annotations, annotationReplies, onAddReply, onEditReply, onDeleteReply }) {
   const [openIdx, setOpenIdx] = useState(null);
   if (!annotations || annotations.length === 0) return <span>{text}</span>;
   const matches = [];
@@ -2403,6 +2418,7 @@ function AnnotatedSegment({ text, annotations }) {
     const isOpen = openIdx === m.annIdx;
     const sevColor = m.ann.severity === "error" ? "#9F1239" : "#A66A1E";
     const sevBg = m.ann.severity === "error" ? "#FAE8E8" : "#FAEEDA";
+    const replyCount = (annotationReplies?.[m.ann.id] || []).length;
     pieces.push(
       <span key={`m${mi}`} style={{ position: "relative", display: "inline" }}>
         <mark onClick={(e) => { e.stopPropagation(); setOpenIdx(isOpen ? null : m.annIdx); }}
@@ -2411,16 +2427,31 @@ function AnnotatedSegment({ text, annotations }) {
           {text.slice(m.start, m.end)}
           <span style={{ display: "inline-flex", alignItems: "center", whiteSpace: "nowrap", verticalAlign: "middle", marginLeft: "3px" }}>
             <FinIcon name="ti-message-circle-exclamation" size={11} color={sevColor} />
+            {replyCount > 0 && (
+              <span style={{ fontSize: "9.5px", fontWeight: 700, color: "#fff", background: sevColor, borderRadius: "8px", padding: "0px 5px", marginLeft: "3px" }}>
+                {replyCount}
+              </span>
+            )}
           </span>
         </mark>
         {isOpen && (
-          <span onClick={(e) => e.stopPropagation()} style={{ display: "block", position: "relative", marginTop: "6px", marginBottom: "6px", padding: "10px 12px", background: "#fff", border: `1px solid ${sevColor}55`, borderLeft: `3px solid ${sevColor}`, borderRadius: "8px", fontSize: "12.5px", lineHeight: 1.6, color: "var(--text-primary, #111827)", boxShadow: "0 2px 10px rgba(0,0,0,0.08)", maxWidth: "640px" }}>
-            <span style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "5px" }}>
-              <FinIcon name={m.ann.severity === "error" ? "ti-alert-triangle" : "ti-info-circle"} size={13} color={sevColor} />
-              <strong style={{ fontSize: "11px", fontWeight: 600, color: sevColor, textTransform: "uppercase", letterSpacing: "0.03em" }}>{m.ann.severity === "error" ? "Lưu ý: Sai về bản chất" : "Lưu ý học thuật: Giới hạn áp dụng"}</strong>
-              <button onClick={() => setOpenIdx(null)} style={{ marginLeft: "auto", border: "none", background: "transparent", cursor: "pointer", padding: "2px", color: "var(--text-muted, #888)" }}><FinIcon name="ti-x" size={13} /></button>
+          <span onClick={(e) => e.stopPropagation()} style={{ display: "block", position: "relative", marginTop: "6px", marginBottom: "6px", background: "#fff", border: `1px solid ${sevColor}55`, borderLeft: `3px solid ${sevColor}`, borderRadius: "8px", fontSize: "12.5px", lineHeight: 1.6, color: "var(--text-primary, #111827)", boxShadow: "0 2px 10px rgba(0,0,0,0.08)", width: "100%", maxWidth: "640px", overflow: "hidden" }}>
+            <span style={{ display: "block", padding: "10px 12px" }}>
+              <span style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "5px" }}>
+                <FinIcon name={m.ann.severity === "error" ? "ti-alert-triangle" : "ti-info-circle"} size={13} color={sevColor} />
+                <strong style={{ fontSize: "11px", fontWeight: 600, color: sevColor, textTransform: "uppercase", letterSpacing: "0.03em" }}>{m.ann.severity === "error" ? "Lưu ý: Sai về bản chất" : "Lưu ý học thuật: Giới hạn áp dụng"}</strong>
+                <button onClick={() => setOpenIdx(null)} style={{ marginLeft: "auto", border: "none", background: "transparent", cursor: "pointer", padding: "2px", color: "var(--text-muted, #888)" }}><FinIcon name="ti-x" size={13} /></button>
+              </span>
+              <span style={{ display: "block" }}>{m.ann.critique}</span>
             </span>
-            {m.ann.critique}
+            <ReplyThread
+              annotationId={m.ann.id}
+              replies={annotationReplies?.[m.ann.id] || []}
+              color={sevColor}
+              onAdd={onAddReply}
+              onEdit={onEditReply}
+              onDelete={onDeleteReply}
+            />
           </span>
         )}
       </span>
@@ -2429,4 +2460,184 @@ function AnnotatedSegment({ text, annotations }) {
   });
   if (cursor < text.length) pieces.push(<span key="tail">{text.slice(cursor)}</span>);
   return <>{pieces}</>;
+}
+
+// Google-Docs-style reply thread: shows existing replies (each editable/
+// deletable individually) plus an input box to add a new reply. Persisted
+// via useAnnotationReplies (Cloudflare D1) — onAdd/onEdit/onDelete are async
+// and resolve to { ok, message? }.
+function ReplyThread({ annotationId, replies, color, onAdd, onEdit, onDelete }) {
+  const [draft, setDraft] = useState("");
+  const [editingId, setEditingId] = useState(null);
+  const [editDraft, setEditDraft] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  const myName = peekStoredName();
+
+  const formatTime = (ts) => {
+    if (!ts) return "";
+    // D1/SQLite datetime('now') returns "YYYY-MM-DD HH:MM:SS" in UTC with no
+    // timezone marker — append Z so Date parses it as UTC, not local time.
+    const d = new Date(ts.replace(" ", "T") + "Z");
+    if (Number.isNaN(d.getTime())) return "";
+    return d.toLocaleString("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" });
+  };
+
+  const submitAdd = async () => {
+    if (!draft.trim() || submitting) return;
+    setSubmitting(true);
+    setError("");
+    const res = await onAdd(annotationId, draft);
+    setSubmitting(false);
+    if (res?.ok) setDraft("");
+    else setError(res?.message || "Không gửi được bình luận.");
+  };
+
+  const submitEdit = async (replyId) => {
+    if (!editDraft.trim() || submitting) return;
+    setSubmitting(true);
+    setError("");
+    const res = await onEdit(annotationId, replyId, editDraft);
+    setSubmitting(false);
+    if (res?.ok) setEditingId(null);
+    else setError(res?.message || "Không lưu được chỉnh sửa.");
+  };
+
+  const submitDelete = async (replyId) => {
+    if (submitting) return;
+    if (!window.confirm("Xóa bình luận này?")) return;
+    setSubmitting(true);
+    setError("");
+    const res = await onDelete(annotationId, replyId);
+    setSubmitting(false);
+    if (!res?.ok) setError(res?.message || "Không xóa được.");
+  };
+
+  return (
+    <span style={{ display: "block", borderTop: "0.5px solid var(--border, #e0e0d8)", background: "var(--surface-1, #f9f9f6)" }}>
+      {replies.length > 0 && (
+        <span style={{ display: "block", padding: "8px 12px 2px" }}>
+          {replies.map((reply) => (
+            <span key={reply.id} style={{ display: "block", padding: "7px 0", borderBottom: "0.5px dashed var(--border, #e0e0d8)" }}>
+              {(() => {
+                const displayName = reply.author || "Ẩn danh";
+                const isMine = !!reply.author && reply.author === myName;
+                return editingId === reply.id ? (
+                <span style={{ display: "block" }}>
+                  <textarea
+                    value={editDraft}
+                    onChange={(e) => setEditDraft(e.target.value)}
+                    rows={2}
+                    autoFocus
+                    style={{
+                      width: "100%",
+                      fontSize: "12px",
+                      padding: "6px 8px",
+                      border: `0.5px solid ${color}66`,
+                      borderRadius: "6px",
+                      outline: "none",
+                      fontFamily: "inherit",
+                      resize: "vertical",
+                      boxSizing: "border-box",
+                      color: "#1a1a1a"
+                    }}
+                  />
+                  <span style={{ display: "flex", gap: "6px", marginTop: "4px" }}>
+                    <button
+                      onClick={() => submitEdit(reply.id)}
+                      disabled={submitting || !editDraft.trim()}
+                      style={{ fontSize: "11px", padding: "4px 10px", border: "none", borderRadius: "6px", background: color, color: "#fff", cursor: submitting ? "wait" : "pointer", opacity: submitting || !editDraft.trim() ? 0.6 : 1 }}
+                    >
+                      Lưu
+                    </button>
+                    <button
+                      onClick={() => { setEditingId(null); setError(""); }}
+                      style={{ fontSize: "11px", padding: "4px 10px", border: "0.5px solid var(--border-strong, #ccc)", borderRadius: "6px", background: "transparent", cursor: "pointer", color: "var(--text-secondary, #666)" }}
+                    >
+                      Hủy
+                    </button>
+                  </span>
+                </span>
+              ) : (
+                <span style={{ display: "block" }}>
+                  <span style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "2px" }}>
+                    <FinIcon name="ti-user-circle" size={13} color="var(--text-muted, #888)" />
+                    <strong style={{ fontSize: "11.5px", fontWeight: 600, color: isMine ? color : "#1a1a1a" }}>
+                      {displayName}{isMine ? " (bạn)" : ""}
+                    </strong>
+                    <span style={{ fontSize: "10px", color: "var(--text-muted, #888)" }}>
+                      {formatTime(reply.created_at)}{reply.edited_at ? " (đã sửa)" : ""}
+                    </span>
+                    <span style={{ display: "flex", gap: "8px", marginLeft: "auto" }}>
+                      <button
+                        onClick={() => { setEditingId(reply.id); setEditDraft(reply.text); setError(""); }}
+                        title="Chỉnh sửa"
+                        style={{ border: "none", background: "transparent", cursor: "pointer", padding: "1px", color: "var(--text-muted, #888)" }}
+                      >
+                        <FinIcon name="ti-pencil" size={12} />
+                      </button>
+                      <button
+                        onClick={() => submitDelete(reply.id)}
+                        disabled={submitting}
+                        title="Xóa"
+                        style={{ border: "none", background: "transparent", cursor: submitting ? "wait" : "pointer", padding: "1px", color: "var(--text-muted, #888)", opacity: submitting ? 0.5 : 1 }}
+                      >
+                        <FinIcon name="ti-trash" size={12} />
+                      </button>
+                    </span>
+                  </span>
+                  <span style={{ fontSize: "12.5px", color: "#1a1a1a", lineHeight: 1.5, display: "block", paddingLeft: "19px" }}>
+                    {reply.text}
+                  </span>
+                </span>
+                );
+              })()}
+            </span>
+          ))}
+        </span>
+      )}
+
+      {error && (
+        <span style={{ display: "block", padding: "6px 12px 0", fontSize: "11px", color: "#A32D2D" }}>{error}</span>
+      )}
+
+      <span style={{ display: "flex", gap: "6px", padding: "8px 12px 10px", alignItems: "flex-start" }}>
+        <input
+          value={draft}
+          onChange={(e) => setDraft(e.target.value)}
+          onKeyDown={(e) => { if (e.key === "Enter") submitAdd(); }}
+          placeholder="Viết bình luận..."
+          disabled={submitting}
+          style={{
+            flex: 1,
+            fontSize: "12px",
+            padding: "6px 9px",
+            border: "0.5px solid var(--border, #e0e0d8)",
+            borderRadius: "6px",
+            outline: "none",
+            color: "#1a1a1a",
+            boxSizing: "border-box"
+          }}
+        />
+        <button
+          onClick={submitAdd}
+          disabled={submitting || !draft.trim()}
+          style={{
+            fontSize: "11px",
+            fontWeight: 500,
+            padding: "6px 12px",
+            border: "none",
+            borderRadius: "6px",
+            background: color,
+            color: "#fff",
+            cursor: submitting || !draft.trim() ? "not-allowed" : "pointer",
+            flexShrink: 0,
+            opacity: submitting || !draft.trim() ? 0.6 : 1
+          }}
+        >
+          Gửi
+        </button>
+      </span>
+    </span>
+  );
 }
