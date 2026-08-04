@@ -2435,7 +2435,7 @@ function AnnotatedSegment({ text, annotations, annotationReplies, onAddReply, on
           </span>
         </mark>
         {isOpen && (
-          <span onClick={(e) => e.stopPropagation()} style={{ display: "block", position: "relative", marginTop: "6px", marginBottom: "6px", background: "#fff", border: `1px solid ${sevColor}55`, borderLeft: `3px solid ${sevColor}`, borderRadius: "8px", fontSize: "12.5px", lineHeight: 1.6, color: "var(--text-primary, #111827)", boxShadow: "0 2px 10px rgba(0,0,0,0.08)", width: "100%", maxWidth: "640px", overflow: "hidden" }}>
+          <span onClick={(e) => e.stopPropagation()} style={{ display: "block", position: "relative", marginTop: "6px", marginBottom: "6px", background: "#fff", border: `1px solid ${sevColor}55`, borderLeft: `3px solid ${sevColor}`, borderRadius: "8px", fontSize: "12.5px", lineHeight: 1.6, color: "#1a1a1a", boxShadow: "0 2px 10px rgba(0,0,0,0.08)", width: "100%", maxWidth: "640px", overflow: "hidden" }}>
             <span style={{ display: "block", padding: "10px 12px" }}>
               <span style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "5px" }}>
                 <FinIcon name={m.ann.severity === "error" ? "ti-alert-triangle" : "ti-info-circle"} size={13} color={sevColor} />

@@ -4078,7 +4078,7 @@ function AnnotatedSegment({ text, annotations, annotationReplies, onAddReply, on
               borderRadius: "8px",
               fontSize: "12.5px",
               lineHeight: 1.6,
-              color: "var(--text-primary, #1a1a1a)",
+              color: "#1a1a1a",
               boxShadow: "0 2px 10px rgba(0,0,0,0.08)",
               width: "100%",
               overflow: "hidden"
