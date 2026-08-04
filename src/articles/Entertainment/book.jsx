@@ -6,9 +6,9 @@ const MUTE = "#9C8C7C";
 const NOTE = "#7A6A5C";
 const SANS = "'Helvetica Neue', Arial, sans-serif";
 const SERIF = "'Iowan Old Style', 'Georgia', serif";
-const PAPER = "#FAF6F1";
+const PAPER = "#FBEEF3";
 const CARD = "#FFFFFF";
-const LINE = "#EAE1D4";
+const LINE = "#F0DCE3";
 
 const INTRO = "Mỗi quyển sách là sự cô đặc chất xám mà thông qua đó ta có thể du hành tới những vùng đất khác, con người khác, triết lý khác, thế giới quan khác...";
 
@@ -409,7 +409,7 @@ const SUMMARY_COLOR = "#4C6B80";
 
 function renderItems(items) {
   return (
-    <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: "9px 22px", alignItems: "start" }}>
+    <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gridTemplateColumns: "1fr", gap: 9 }}>
       {items.map(([title, meta, note, summary], i) => (
         <li key={i} style={{ borderLeft: `2px solid ${LINE}`, paddingLeft: 11 }}>
           <div style={{ fontSize: 14.3, lineHeight: 1.42 }}>
@@ -425,7 +425,6 @@ function renderItems(items) {
           )}
           {note && (
             <div style={{ fontFamily: SANS, fontSize: 12.2, color: NOTE, lineHeight: 1.55, marginTop: 3, fontStyle: "italic" }}>
-              <span style={{ fontWeight: 700, fontStyle: "normal" }}>May note: </span>
               {note}
             </div>
           )}
@@ -497,9 +496,9 @@ export default function Book() {
     const out = [];
     BOOKS.forEach((g) => {
       const pushFrom = (items, subLabel) => {
-        items.forEach(([title, meta, note]) => {
-          const hay = `${title} ${meta || ""} ${note || ""}`.toLowerCase();
-          if (hay.includes(q)) out.push({ title, meta, note, group: g.t, sub: subLabel });
+        items.forEach(([title, meta, note, summary]) => {
+          const hay = `${title} ${meta || ""} ${note || ""} ${summary || ""}`.toLowerCase();
+          if (hay.includes(q)) out.push({ title, meta, note, summary, group: g.t, sub: subLabel });
         });
       };
       if (g.sub) g.sub.forEach((s) => pushFrom(s.items, s.t));
@@ -551,6 +550,11 @@ export default function Book() {
                   <span style={{ fontWeight: 600 }}>{m.title}</span>
                   {m.meta && <span style={{ color: MUTE, fontFamily: SANS, fontSize: 12.3 }}> · {m.meta}</span>}
                 </div>
+                {m.summary && (
+                  <div style={{ fontFamily: SANS, fontSize: 12.2, color: SUMMARY_COLOR, marginTop: 4 }}>
+                    {m.summary}
+                  </div>
+                )}
                 {m.note && (
                   <div style={{ fontFamily: SANS, fontSize: 12.2, color: NOTE, fontStyle: "italic", marginTop: 3 }}>
                     {m.note}
