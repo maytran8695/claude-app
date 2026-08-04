@@ -1,12 +1,12 @@
 import React, { useState, useMemo } from "react";
 
-const ACCENT = "#24467D";
+const ACCENT = "#B4863C";
 const INK = "#211F1D";
 const MUTE = "#8B8378";
 const NOTE = "#7A7268";
 const SANS = "'Helvetica Neue', Arial, sans-serif";
 const SERIF = "'Iowan Old Style', 'Georgia', serif";
-const PAPER = "#F5F5F1";
+const PAPER = "#FFFFFF";
 const CARD = "#FFFFFF";
 const LINE = "#E2E1DA";
 
@@ -378,17 +378,312 @@ const FILMS = [
 ];
 
 /* ============================================================
-   MOODS — curated picks per mood, referencing titles already in FILMS
+   MOODS — every film below is tagged with 1-3 of these via MOOD_TAGS
    ============================================================ */
 const MOODS = [
-  { id: "sad", icon: "😢", label: "Buồn", titles: ["Manchester By The Sea", "Room", "Still Alice", "Grave Of The Fireflies", "A Man Called Ove", "Changeling", "12 Years A Slave"] },
-  { id: "heartbreak", icon: "💔", label: "Thất tình", titles: ["500 Days Of Summer", "Eternal Sunshine Of The Spotless Mind", "Marriage Story", "Lost In Translation", "Past Lives", "Call Me By Your Name"] },
-  { id: "cozy", icon: "☕", label: "Nhẹ nhàng", titles: ["Little Forest", "Amélie", "Up", "Coco", "A Man Called Ove", "Secret Life Of Walter Mitty", "Chef"] },
-  { id: "motivate", icon: "🔥", label: "Cần động lực", titles: ["The Pursuit Of Happyness", "Good Will Hunting", "The Motorcycle Diaries", "Catch Me If You Can", "Whiplash", "Life Of Pi"] },
-  { id: "solitude", icon: "🌙", label: "Cô đơn, tĩnh lặng", titles: ["Her", "Cast Away", "Into The Wild", "The Man From Earth", "Wild", "Under The Skin"] },
-  { id: "fun", icon: "😄", label: "Vui, giải trí", titles: ["The Grand Budapest Hotel", "Deadpool", "This Is The End", "Monty Python And The Holy Grail", "Mamma Mia!", "Dumb And Dumber"] },
-  { id: "mindbend", icon: "🤯", label: "Não to", titles: ["Inception", "Memento", "The Prestige", "Fight Club", "Everything Everywhere All At Once", "Mulholland Drive", "Shutter Island"] },
+  { id: "sad", icon: "😢", label: "Buồn" },
+  { id: "heartbreak", icon: "💔", label: "Thất tình" },
+  { id: "romance", icon: "💘", label: "Lãng mạn" },
+  { id: "cozy", icon: "☕", label: "Nhẹ nhàng" },
+  { id: "motivate", icon: "🔥", label: "Cần động lực" },
+  { id: "solitude", icon: "🌙", label: "Cô đơn, tĩnh lặng" },
+  { id: "fun", icon: "😄", label: "Vui, hài hước" },
+  { id: "mindbend", icon: "🤯", label: "Não to" },
+  { id: "thrill", icon: "😱", label: "Hồi hộp, kịch tính" },
+  { id: "heartwarming", icon: "🥹", label: "Ấm lòng, tình thân" },
+  { id: "adventure", icon: "🌍", label: "Phiêu lưu, khám phá" },
+  { id: "eerie", icon: "👻", label: "Rùng rợn, kỳ bí" },
+  { id: "culture", icon: "🏛️", label: "Lịch sử, văn hoá" },
+  { id: "heal", icon: "🧘", label: "Chữa lành, ý nghĩa sống" },
 ];
+
+// title -> [moodId, ...] — every film in FILMS has at least one entry here.
+const MOOD_TAGS = {
+  "1917": ["thrill","culture"],
+  "Watership Down": ["adventure","sad"],
+  "Forrest Gump": ["heartwarming","motivate"],
+  "12 Years A Slave": ["sad","culture"],
+  "12 Angry Men": ["mindbend","thrill"],
+  "Girl Interrupted": ["sad","solitude"],
+  "One Flew Over The Cuckoo's Nest": ["motivate","sad"],
+  "Pulp Fiction": ["fun","mindbend"],
+  "The Shawshank Redemption": ["motivate","heartwarming"],
+  "Mùa Len Trâu": ["culture","sad"],
+  "Life Is Beautiful": ["sad","heartwarming","culture"],
+  "It's A Wonderful Life": ["heartwarming","motivate"],
+  "Schindler's List": ["sad","culture"],
+  "The Pianist": ["sad","culture"],
+  "The Intouchables": ["heartwarming","fun"],
+  "Django Unchained": ["thrill","culture"],
+  "The Help": ["culture","heartwarming"],
+  "Slumdog Millionaire": ["motivate","romance"],
+  "The Kite Runner": ["sad","heal"],
+  "To Kill A Mocking Bird": ["culture","motivate"],
+  "The Book Thief": ["sad","culture"],
+  "Unbroken": ["motivate","culture"],
+  "Platoon": ["culture","thrill"],
+  "The Green Mile": ["sad","heal"],
+  "The Godfather": ["thrill","culture"],
+  "Jojo Rabbit": ["fun","culture","heartwarming"],
+  "All Quiet In Western Front": ["culture","sad"],
+  "Oppenheimer": ["mindbend","culture"],
+  "Parasite": ["thrill","mindbend"],
+  "Us": ["eerie","thrill"],
+  "The Hunt": ["sad","thrill"],
+  "A Few Good Men": ["thrill","mindbend"],
+  "Old Boy": ["eerie","thrill"],
+  "The Platform": ["eerie","mindbend"],
+  "Se7en": ["eerie","thrill"],
+  "Black Swan": ["eerie","mindbend"],
+  "Little Women": ["heartwarming","motivate"],
+  "The Good, The Bad And The Ugly": ["adventure","thrill"],
+  "The Curious Case Of Benjamin Button": ["sad","romance"],
+  "Rain Man": ["sad","heartwarming"],
+  "Spring, Summer, Fall, Winter... And Spring": ["heal","solitude"],
+  "Cloud Atlas": ["mindbend","culture"],
+  "The Man From Earth": ["mindbend","solitude"],
+  "Room": ["sad","heal"],
+  "Whiplash": ["motivate","thrill"],
+  "The Pursuit Of Happyness": ["motivate","heartwarming"],
+  "Philadelphia": ["sad","culture"],
+  "Catch Me If You Can": ["fun","thrill"],
+  "The Big Short": ["mindbend","culture"],
+  "Citizen Kane": ["mindbend","solitude"],
+  "Everything Everywhere All At Once": ["mindbend","heartwarming"],
+  "Past Lives": ["heartbreak","romance"],
+  "Killers Of The Flower Moon": ["culture","thrill"],
+  "Taxi Driver": ["solitude","eerie"],
+  "Won't You Be My Neighbor": ["heartwarming","heal"],
+  "Three Billboards Outside Ebbing, Missouri": ["sad","thrill"],
+  "Split": ["thrill","eerie","mindbend"],
+  "Shutter Island": ["mindbend","eerie","thrill"],
+  "Fight Club": ["mindbend","thrill"],
+  "Inception": ["mindbend","adventure"],
+  "Gone Girl": ["thrill","mindbend"],
+  "Triangle": ["eerie","mindbend","thrill"],
+  "Interstellar": ["mindbend","adventure"],
+  "The Martian": ["motivate","adventure"],
+  "Gravity": ["thrill","solitude"],
+  "Mystic River": ["sad","thrill"],
+  "The Prestige": ["mindbend","thrill"],
+  "The Silence Of The Lambs": ["thrill","eerie"],
+  "Memento": ["mindbend","thrill"],
+  "The Wolf Of Wall Street": ["fun","culture"],
+  "Inglourious Basterds": ["thrill","culture"],
+  "Glass": ["thrill","mindbend"],
+  "I'm Thinking Of Ending Things": ["mindbend","eerie"],
+  "The Motorcycle Diaries": ["adventure","culture","motivate"],
+  "Secret Life Of Walter Mitty": ["adventure","motivate"],
+  "Tracks": ["adventure","solitude"],
+  "Into The Wild": ["adventure","solitude","sad"],
+  "Wild": ["adventure","heal","solitude"],
+  "Up": ["heartwarming","adventure"],
+  "The Bucket List": ["heartwarming","motivate","heal"],
+  "Cast Away": ["solitude","motivate"],
+  "Life Of Pi": ["adventure","solitude","heal"],
+  "Everest": ["thrill","adventure"],
+  "Gifted": ["heartwarming","motivate"],
+  "Good Will Hunting": ["motivate","heal"],
+  "Amadeus": ["culture","sad"],
+  "The Imitation Game": ["motivate","sad","culture"],
+  "X+Y (A Brilliant Young Mind)": ["motivate","heartwarming"],
+  "The Theory Of Everything": ["motivate","romance","sad"],
+  "A Beautiful Mind": ["motivate","mindbend"],
+  "August Rush": ["heartwarming","romance"],
+  "The Talented Mr Ripley": ["mindbend","thrill"],
+  "Amélie": ["cozy","romance","heartwarming"],
+  "Moonrise Kingdom": ["romance","cozy"],
+  "The Grand Budapest Hotel": ["fun","adventure"],
+  "Song Of The Sea": ["adventure","culture"],
+  "Me And Earl And The Dying Girl": ["sad","heartwarming"],
+  "American Beauty": ["sad","mindbend"],
+  "Léon: The Professional": ["heartwarming","thrill"],
+  "Frozen II": ["adventure","heartwarming"],
+  "Little Forest": ["cozy","heal"],
+  "Midnight In Paris": ["romance","culture","cozy"],
+  "Boy, Mole, Fox, Horse": ["heal","heartwarming"],
+  "Moonlight": ["sad","solitude"],
+  "Brokeback Mountain": ["heartbreak","sad"],
+  "Call Me By Your Name": ["romance","heartbreak"],
+  "Manchester By The Sea": ["sad","solitude"],
+  "Blue Is The Warmest Colour": ["romance","heartbreak"],
+  "Chinese Botanist's Daughters": ["heartbreak","sad"],
+  "Portrait Of A Lady On Fire": ["romance","heartbreak"],
+  "Ammonite": ["romance"],
+  "Carol": ["romance","heartbreak"],
+  "Secret Love": ["romance","heartbreak"],
+  "Love, Simon": ["heartwarming","motivate"],
+  "Disobedience": ["heartbreak","romance"],
+  "Pride & Prejudice": ["romance","cozy"],
+  "Becoming Jane": ["heartbreak","romance"],
+  "Marriage Story": ["heartbreak","sad"],
+  "Love, Rosie": ["romance"],
+  "Me Before You": ["heartbreak","sad"],
+  "The Notebook": ["romance","sad"],
+  "Eternal Sunshine Of The Spotless Mind": ["heartbreak","mindbend"],
+  "500 Days Of Summer": ["heartbreak"],
+  "Before Sunrise": ["romance"],
+  "Before Sunset": ["romance"],
+  "Before Midnight": ["romance"],
+  "Stuck In Love": ["romance"],
+  "5 Centimeters Per Second": ["heartbreak","sad"],
+  "Begin Again": ["heal","motivate"],
+  "One Day": ["romance","heartbreak"],
+  "If I Stay": ["sad","heartbreak"],
+  "Flipped": ["cozy","romance"],
+  "The Fault In Our Stars": ["sad","heartbreak"],
+  "The Longest Ride": ["romance"],
+  "The Spectacular Now": ["romance"],
+  "50 First Dates": ["fun","romance"],
+  "The Great Gatsby": ["heartbreak","culture"],
+  "Love Actually": ["romance","fun","heartwarming"],
+  "About Time": ["heartwarming","romance"],
+  "Lost In Translation": ["solitude","heartbreak"],
+  "Tro Tàn Rực Rỡ": ["sad","solitude"],
+  "Marry My Dead Body": ["fun","heartwarming"],
+  "A Sun": ["sad","heal"],
+  "Her": ["solitude","romance"],
+  "The Usual Suspects": ["mindbend","thrill"],
+  "First Cow": ["heartwarming","cozy"],
+  "The Favourite": ["culture","mindbend"],
+  "Pan's Labyrinth": ["sad","eerie","culture"],
+  "The Lobster": ["mindbend","fun"],
+  "Điều Kỳ Diệu Ở Phòng Giam Số 7": ["sad","heartwarming"],
+  "Changeling": ["sad","motivate"],
+  "Boyhood": ["cozy","solitude"],
+  "A River Runs Through It": ["sad","solitude"],
+  "Malèna": ["sad","culture"],
+  "Salt": ["thrill","mindbend"],
+  "Loving Vincent": ["culture","mindbend"],
+  "A Star Is Born": ["heartbreak","sad"],
+  "The Breakfast Club": ["fun","heartwarming"],
+  "A League Of Their Own": ["motivate","heartwarming"],
+  "The Perks Of Being A Wallflower": ["heal","sad","heartwarming"],
+  "The Tree Of Life": ["solitude","mindbend"],
+  "The Handmaiden": ["mindbend","romance","thrill"],
+  "Dunkirk": ["thrill","culture"],
+  "Lucy": ["fun","mindbend"],
+  "Emma": ["romance","cozy"],
+  "Lady Macbeth": ["sad","thrill"],
+  "Mary Queen Of Scots": ["culture","sad"],
+  "Mulholland Drive": ["mindbend","eerie"],
+  "The Worst Person In The World": ["heal","romance"],
+  "Drive My Car": ["sad","heal"],
+  "The Place Beyond The Pines": ["sad","thrill"],
+  "Palm Springs": ["fun","romance","mindbend"],
+  "Never Rarely Sometimes Always": ["sad","solitude"],
+  "The World To Come": ["sad","romance"],
+  "My Octopus Teacher": ["heal","heartwarming"],
+  "Somewhere": ["solitude","sad"],
+  "I Am Sam": ["sad","heartwarming","motivate"],
+  "Under The Skin": ["eerie","mindbend"],
+  "CODA": ["heartwarming","motivate"],
+  "Still Alice": ["sad"],
+  "When Harry Met Sally": ["romance","fun"],
+  "Collateral Beauty": ["sad","heal"],
+  "Coco": ["heartwarming","culture"],
+  "The Secret Life Of Pets": ["fun","heartwarming"],
+  "Closer": ["heartbreak","sad"],
+  "No Country For Old Men": ["thrill","eerie"],
+  "BlacKkKlansman": ["culture","thrill"],
+  "The Shape Of Water": ["romance","culture"],
+  "Blade Runner 2049": ["mindbend","thrill"],
+  "Ocean's 8": ["fun","thrill"],
+  "Joker": ["sad","eerie","solitude"],
+  "Tár": ["mindbend","sad"],
+  "Soul": ["heal","heartwarming"],
+  "Seven Years In Tibet": ["culture","heal"],
+  "Chef": ["cozy","heartwarming"],
+  "Harry Potter / Friends / Big Bang Theory / Hunger Games / GoT...": ["fun","adventure"],
+  "Mr & Mrs Smith / Maleficent / The Tourist / By The Sea...": ["thrill","fun"],
+  "Emily In Paris": ["fun","romance"],
+  "Captain Phillips": ["thrill"],
+  "Deadpool": ["fun","thrill"],
+  "Dogtooth": ["eerie","mindbend"],
+  "3 Idiots": ["motivate","heartwarming"],
+  "All Is Lost": ["solitude","thrill"],
+  "The King": ["culture","thrill"],
+  "Brooklyn": ["romance","cozy"],
+  "Little Miss Sunshine": ["heartwarming","fun"],
+  "Last Christmas": ["romance","heartwarming"],
+  "Eddie The Eagle": ["motivate","heartwarming"],
+  "Monty Python And The Holy Grail": ["fun"],
+  "Up In The Air": ["solitude","heal"],
+  "The Proposal": ["romance","fun"],
+  "The Words": ["mindbend","heal"],
+  "IT": ["eerie","thrill"],
+  "Noah": ["culture","thrill"],
+  "Home Alone": ["fun","heartwarming"],
+  "Lady Bird": ["heartwarming","heal"],
+  "Mr Popper's Penguins": ["fun","heartwarming"],
+  "This Is The End": ["fun"],
+  "Hugo": ["adventure","heartwarming"],
+  "Dumb And Dumber": ["fun"],
+  "How To Train Your Dragon": ["adventure","heartwarming"],
+  "Tangled": ["adventure","romance"],
+  "Brave": ["adventure","heartwarming"],
+  "Moana": ["adventure","motivate"],
+  "Despicable Me": ["fun","heartwarming"],
+  "Ice Age": ["adventure","fun"],
+  "Big Hero 6": ["heartwarming","adventure"],
+  "Hotel Transylvania": ["fun"],
+  "Mamma Mia!": ["fun","romance"],
+  "Bambi": ["sad","heartwarming"],
+  "Inside Out": ["heal","heartwarming"],
+  "Alice In Wonderland": ["adventure","mindbend"],
+  "Spirited Away": ["adventure","mindbend"],
+  "Tomorrow I Will Date With Yesterday You": ["romance","sad"],
+  "Thor: Love And Thunder": ["adventure","fun"],
+  "Turning Red": ["heartwarming","fun"],
+  "Minions: The Rise Of Gru": ["fun","adventure"],
+  "The Intern": ["heartwarming","cozy"],
+  "Where The Crawdads Sing": ["solitude","sad","thrill"],
+  "Enola Holmes": ["adventure","fun"],
+  "Nu Family": ["heartwarming","fun"],
+  "The Truth About Ikea": ["culture"],
+  "The Gray Man": ["thrill"],
+  "Guardians Of The Galaxy Vol. 3": ["adventure","heartwarming"],
+  "Đất Rừng Phương Nam": ["culture","adventure"],
+  "Wonka": ["fun","adventure"],
+  "Remember The Titans": ["motivate","heartwarming","culture"],
+  "Everybody Wants Some!!": ["fun","cozy"],
+  "Psycho": ["eerie","thrill","mindbend"],
+  "City Lights": ["romance","heartwarming","cozy"],
+  "Princess Mononoke": ["adventure","heal"],
+  "Once Upon A Time In The West": ["thrill","adventure"],
+  "Once Upon A Time In America": ["sad","culture"],
+  "American Psycho": ["eerie","mindbend"],
+  "Bohemian Rhapsody": ["motivate","heartwarming"],
+  "The Boy In The Striped Pajamas": ["sad","culture"],
+  "Phantom Thread": ["mindbend","solitude"],
+  "The Killing Of A Sacred Deer": ["eerie","mindbend","thrill"],
+  "The Wild Pear Tree": ["solitude","heal"],
+  "Bicycle Thieves": ["sad","culture"],
+  "A Clockwork Orange": ["mindbend","eerie"],
+  "White Oleander": ["sad","heal"],
+  "Inside Llewyn Davis": ["sad","solitude"],
+  "Goodfellas": ["thrill","culture"],
+  "The Greatest Showman": ["motivate","fun","heartwarming"],
+  "Cold War": ["heartbreak","romance","culture"],
+  "The Aviator": ["motivate","mindbend"],
+  "Sylvia": ["sad","heartbreak"],
+  "Fargo": ["thrill","fun"],
+  "Molly's Game": ["motivate","thrill"],
+  "Tenet": ["mindbend","thrill"],
+  "Dances With Wolves": ["adventure","culture"],
+  "Let Him Go": ["thrill","eerie"],
+  "Yellowstone": ["thrill","culture"],
+  "A Life On Our Planet": ["motivate","culture"],
+  "Kiss The Ground": ["motivate","culture"],
+  "Babette's Feast": ["heartwarming","heal","cozy"],
+  "Invictus": ["motivate","culture","heartwarming"],
+  "Grave Of The Fireflies": ["sad","culture"],
+  "A Man Called Ove": ["heartwarming","heal"],
+  "Big Fish": ["heartwarming","adventure"],
+  "Minari": ["culture","heartwarming"],
+  "Birdman": ["mindbend","solitude"],
+  "Beautiful Boy": ["sad","heartwarming"],
+};
 
 /* ============================================================
    RENDER HELPERS
@@ -427,16 +722,20 @@ function GroupCard({ group, isOpen, onToggle }) {
         onClick={onToggle}
         style={{
           width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
-          padding: "12px 16px", background: isOpen ? `${ACCENT}0F` : "transparent", border: "none",
+          padding: "12px 16px", background: isOpen ? ACCENT : "transparent", border: "none",
           cursor: "pointer", fontFamily: SANS, textAlign: "left",
         }}
       >
-        <span style={{ fontWeight: 700, fontSize: 13.3, color: INK }}>{group.t}</span>
+        <span style={{ fontWeight: 700, fontSize: 13.3, color: isOpen ? "#fff" : INK }}>{group.t}</span>
         <span style={{ display: "flex", alignItems: "center", gap: 9, flexShrink: 0, marginLeft: 10 }}>
-          <span style={{ fontSize: 11, color: MUTE, fontWeight: 700, background: `${ACCENT}14`, padding: "2px 7px", borderRadius: 10 }}>
+          <span style={{
+            fontSize: 11, fontWeight: 700, padding: "2px 7px", borderRadius: 10,
+            color: isOpen ? "#fff" : MUTE,
+            background: isOpen ? "rgba(255,255,255,.28)" : `${ACCENT}14`,
+          }}>
             {group.n}
           </span>
-          <span style={{ display: "inline-block", transform: isOpen ? "rotate(180deg)" : "none", transition: "transform .15s", color: MUTE, fontSize: 11 }}>
+          <span style={{ display: "inline-block", transform: isOpen ? "rotate(180deg)" : "none", transition: "transform .15s", color: isOpen ? "#fff" : MUTE, fontSize: 11 }}>
             ▾
           </span>
         </span>
@@ -496,17 +795,19 @@ export default function Film() {
 
   const moodMatches = useMemo(() => {
     if (!activeMood) return null;
-    const byTitle = new Map();
+    const out = [];
     FILMS.forEach((g) => {
       const collect = (items, subLabel) => {
         items.forEach(([title, meta, note, summary]) => {
-          byTitle.set(title, { title, meta, note, summary, group: g.t, sub: subLabel });
+          if ((MOOD_TAGS[title] || []).includes(activeMood.id)) {
+            out.push({ title, meta, note, summary, group: g.t, sub: subLabel });
+          }
         });
       };
       if (g.sub) g.sub.forEach((s) => collect(s.items, s.t));
       else collect(g.items, null);
     });
-    return activeMood.titles.map((t) => byTitle.get(t)).filter(Boolean);
+    return out;
   }, [activeMood]);
 
   const selectMood = (mood) => {
@@ -574,6 +875,10 @@ export default function Film() {
             </div>
             {moodMatches.map((m, i) => (
               <div key={i} style={{ borderLeft: `2px solid ${ACCENT}`, paddingLeft: 11 }}>
+                <div style={{ fontFamily: SANS, fontSize: 10.3, color: MUTE, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                  {m.group}
+                  {m.sub ? ` · ${m.sub}` : ""}
+                </div>
                 <div style={{ fontSize: 14.3 }}>
                   <span style={{ fontWeight: 600 }}>{m.title}</span>
                   {m.meta && <span style={{ color: MUTE, fontFamily: SANS, fontSize: 12.3 }}> · {m.meta}</span>}

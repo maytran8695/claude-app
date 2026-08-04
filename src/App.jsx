@@ -195,6 +195,14 @@ const categoryThemes = {
 
 const getTheme = (cat) => categoryThemes[cat] || categoryThemes.Default;
 
+// Per-article sidebar accent override — Film/Book each carry their own page
+// theme (see film.jsx/book.jsx ACCENT), so their tab buttons use a softer
+// tint of that same hue instead of sharing the generic Entertainment color.
+const articleAccentOverrides = {
+  film: '#D8B583',
+  book: '#7FA89F',
+};
+
 // =========================================================================
 // ĐỊNH TUYẾN THEO QUERY PARAM (?a=<id-bài-viết>) — mỗi tab/bài viết có URL
 // riêng để chia sẻ trực tiếp, không cần route path (an toàn với mọi kiểu
@@ -736,6 +744,7 @@ function App() {
                     <div className="flex flex-col gap-0.5 pl-[30px] pr-1 pt-0.5 pb-1.5">
                       {items.map(item => {
                         const isSelected = activeTab === item.id;
+                        const itemAccent = articleAccentOverrides[item.id] || accent;
                         return (
                           <button
                             key={item.id}
@@ -743,7 +752,7 @@ function App() {
                             className={`w-full text-left px-3 py-1.5 rounded-lg text-xs transition-colors ${
                               isSelected ? 'font-semibold' : `font-medium ${T.muted} ${T.hoverInk} ${T.surfaceHover}`
                             }`}
-                            style={isSelected ? { background: `${accent}17`, color: accent } : undefined}
+                            style={isSelected ? { background: `${itemAccent}17`, color: itemAccent } : undefined}
                           >
                             <span className="truncate block">{item.title}</span>
                           </button>

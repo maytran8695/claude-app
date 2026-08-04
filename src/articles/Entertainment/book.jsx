@@ -1,12 +1,12 @@
 import React, { useState, useMemo } from "react";
 
-const ACCENT = "#8C2F39";
+const ACCENT = "#4A7C74";
 const INK = "#211F1D";
 const MUTE = "#8B8378";
 const NOTE = "#7A7268";
 const SANS = "'Helvetica Neue', Arial, sans-serif";
 const SERIF = "'Iowan Old Style', 'Georgia', serif";
-const PAPER = "#F5F5F1";
+const PAPER = "#FFFFFF";
 const CARD = "#FFFFFF";
 const LINE = "#E2E1DA";
 
@@ -403,17 +403,325 @@ const BOOKS = [
 ];
 
 /* ============================================================
-   MOODS — curated picks per mood, referencing titles already in BOOKS
+   MOODS — every book below is tagged with 1-3 of these via MOOD_TAGS
    ============================================================ */
 const MOODS = [
-  { id: "sad", icon: "😢", label: "Buồn", titles: ["Nỗi Buồn Chiến Tranh", "Khi Hơi Thở Hóa Thinh Không", "Của Chuột Và Người", "Cánh Đồng Bất Tận", "A Man Called Ove", "Đồi Thỏ"] },
-  { id: "heartbreak", icon: "💔", label: "Thất tình", titles: ["Rừng Na Uy", "Tình Yêu Thời Thổ Tả", "Kiêu Hãnh Và Định Kiến", "Nỗi Đau Của Chàng Werther", "Người Đua Diều"] },
-  { id: "cozy", icon: "☕", label: "Nhẹ nhàng", titles: ["Hoàng Tử Bé", "Vừa Nhắm Mắt Vừa Mở Cửa Sổ", "Ông Trăm Tuổi Trèo Qua Cửa Sổ Và Biến Mất", "Ba Gã Cùng Thuyền", "Momo"] },
-  { id: "motivate", icon: "🔥", label: "Cần động lực", titles: ["Đi Tìm Lẽ Sống", "Tuổi Trẻ Đáng Giá Bao Nhiêu", "Nghĩ Giàu Làm Giàu", "1% Each Day", "Rèn Nghị Lực Để Lập Thân"] },
-  { id: "solitude", icon: "🌙", label: "Cô đơn, tĩnh lặng", titles: ["Walden - Một Mình Ở Trong Rừng", "Khởi Sinh Của Cô Độc", "Một Mình Ở Châu Âu", "Suy Tưởng"] },
-  { id: "fun", icon: "😄", label: "Vui, giải trí", titles: ["Ba Gã Cùng Thuyền", "Ông Trăm Tuổi Trèo Qua Cửa Sổ Và Biến Mất", "Kinh Tế Học Hài Hước", "Nghệ Thuật Tinh Tế Của Việc Đếch Quan Tâm"] },
-  { id: "mindopen", icon: "🤯", label: "Mở mang trí tuệ", titles: ["Sapiens: Lược Sử Loài Người", "Súng, Vi Trùng Và Thép", "Tư Duy Nhanh Và Chậm", "Lược Sử Thời Gian", "Phi Lý Trí"] },
+  { id: "sad", icon: "😢", label: "Buồn" },
+  { id: "heartbreak", icon: "💔", label: "Thất tình" },
+  { id: "romance", icon: "💘", label: "Lãng mạn" },
+  { id: "cozy", icon: "☕", label: "Nhẹ nhàng" },
+  { id: "motivate", icon: "🔥", label: "Cần động lực" },
+  { id: "solitude", icon: "🌙", label: "Cô đơn, tĩnh lặng" },
+  { id: "fun", icon: "😄", label: "Vui, hài hước" },
+  { id: "mindbend", icon: "🤯", label: "Mở mang trí tuệ" },
+  { id: "thrill", icon: "😱", label: "Hồi hộp, kịch tính" },
+  { id: "heartwarming", icon: "🥹", label: "Ấm lòng, tình thân" },
+  { id: "adventure", icon: "🌍", label: "Phiêu lưu, khám phá" },
+  { id: "eerie", icon: "👻", label: "Rùng rợn, kỳ bí" },
+  { id: "culture", icon: "🏛️", label: "Lịch sử, văn hoá" },
+  { id: "heal", icon: "🧘", label: "Chữa lành, ý nghĩa sống" },
 ];
+
+// title -> [moodId, ...] — every book in BOOKS has at least one entry here.
+const MOOD_TAGS = {
+  "1984": ["mindbend","eerie","culture"],
+  "Đồi Thỏ": ["adventure","motivate"],
+  "Người Đàn Ông Mỹ Cuối Cùng": ["adventure","motivate"],
+  "Walden - Một Mình Ở Trong Rừng": ["solitude","heal"],
+  "Tôi, Charley Và Hành Trình Nước Mỹ": ["adventure","culture"],
+  "The Drifters - 6 Người Đi Khắp Thế Gian": ["adventure","solitude"],
+  "Thiền Và Nghệ Thuật Bảo Dưỡng Xe Máy": ["mindbend","adventure"],
+  "Suối Nguồn": ["motivate","mindbend"],
+  "Forrest Gump": ["fun","heartwarming","motivate"],
+  "Ba Gã Cùng Thuyền": ["fun","cozy"],
+  "Anne Tóc Đỏ Dưới Chái Nhà Xanh": ["heartwarming","cozy"],
+  "Những Kỳ Vọng Lớn Lao": ["culture","motivate"],
+  "Trên Đường": ["adventure","solitude"],
+  "Người Đua Diều": ["sad","heal","culture"],
+  "Little Women, Good Wives": ["heartwarming","cozy"],
+  "Của Chuột Và Người": ["sad","solitude"],
+  "Bắt Trẻ Đồng Xanh": ["solitude","mindbend"],
+  "Bay Trên Tổ Chim Cúc Cu": ["mindbend","motivate"],
+  "Chúa Ruồi": ["eerie","mindbend"],
+  "Chiến Binh Cầu Vồng": ["motivate","heartwarming"],
+  "Chú Bé Mang Pyjama Sọc": ["sad","culture"],
+  "Những Đứa Con Của Tự Do": ["culture","sad"],
+  "Vừa Nhắm Mắt Vừa Mở Cửa Sổ": ["heartwarming","cozy"],
+  "Hoàng Tử Bé": ["heal","solitude","heartwarming"],
+  "Khi Hơi Thở Hóa Thinh Không": ["sad","heal"],
+  "Nơi Dòng Sông Chảy Qua": ["sad","heal"],
+  "Tất Cả Các Dòng Sông Đều Chảy": ["adventure","romance"],
+  "Chùm Nho Phẫn Nộ": ["sad","culture"],
+  "Trăm Năm Cô Đơn": ["solitude","mindbend"],
+  "Con Đường Hồi Giáo": ["culture","adventure"],
+  "Hành Trình Về Phương Đông": ["heal","mindbend"],
+  "Hải Trình Kon-Tiki": ["adventure","thrill"],
+  "Vào Trong Hoang Dã": ["adventure","sad","solitude"],
+  "Hương Rừng Cà Mau": ["culture","adventure"],
+  "Muôn Kiếp Nhân Sinh": ["mindbend","heal"],
+  "Cuộc Cách Mạng Một-Cọng-Rơm": ["heal","mindbend"],
+  "Khởi Sinh Của Cô Độc": ["solitude","sad"],
+  "Rừng Na Uy": ["sad","solitude","romance"],
+  "Thiên Táng": ["sad","culture"],
+  "Kiêu Hãnh Và Định Kiến": ["romance","fun"],
+  "Tiếng Chim Hót Trong Bụi Mận Gai": ["heartbreak","sad"],
+  "Tội Ác Và Trừng Phạt": ["mindbend","sad"],
+  "Phía Đông Vườn Địa Đàng": ["culture","sad"],
+  "Giết Con Chim Nhại": ["culture","motivate"],
+  "Brokeback Mountain": ["heartbreak","sad"],
+  "Người Khổng Lồ Nghiêng Vai": ["mindbend","motivate"],
+  "Bố Già": ["thrill","culture"],
+  "Hãy Chăm Sóc Mẹ": ["sad","heartwarming"],
+  "Đại Gia Gatsby": ["heartbreak","sad"],
+  "Ông Trăm Tuổi Trèo Qua Cửa Sổ Và Biến Mất": ["fun","adventure"],
+  "Cloud Atlas": ["mindbend","adventure"],
+  "Nhà Giả Kim": ["motivate","adventure","heal"],
+  "Lại Thằng Nhóc Emil!": ["fun","heartwarming"],
+  "Cánh Đồng Bất Tận": ["sad","culture"],
+  "Trại Súc Vật": ["mindbend","culture"],
+  "Chết Ở Venice": ["eerie","sad"],
+  "Diary Of A Wimpy Kid": ["fun","cozy"],
+  "Lịch Sử Khẩn Hoang Miền Nam": ["culture"],
+  "The Hidden Life Of Trees": ["mindbend","heal"],
+  "Educated": ["motivate","heal"],
+  "Flow": ["mindbend","motivate"],
+  "A Man Called Ove": ["heartwarming","heal","fun"],
+  "Ứng Xử Với Trung Quốc": ["culture","mindbend"],
+  "Wealth, Poverty And Politics": ["mindbend","culture"],
+  "Những Ông Trùm Tài Chính": ["culture","mindbend"],
+  "Lịch Sử Bí Mật Đế Chế Hoa Kỳ": ["culture","mindbend"],
+  "Thế Giới Phẳng": ["culture","mindbend"],
+  "Energy: A Human History": ["mindbend","culture"],
+  "Chiến Tranh Tiền Tệ": ["mindbend","culture"],
+  "Lời Tự Thú Của Sát Thủ Kinh Tế": ["culture","mindbend"],
+  "Kinh Tế Học Hài Hước": ["fun","mindbend"],
+  "Chiếc Lexus Và Cây Ô Liu": ["culture","mindbend"],
+  "Nhà Đầu Tư Thông Minh": ["motivate","mindbend"],
+  "Thế Giới Rộng Lớn Và Có Nhiều Việc Phải Làm": ["motivate"],
+  "Thịnh Vượng Tài Chính Tuổi 30": ["motivate"],
+  "Tiền Không Mua Được Gì?": ["mindbend","culture"],
+  "Đừng Bao Giờ Đi Ăn Một Mình": ["motivate"],
+  "Chiến Lược Đại Dương Xanh": ["motivate","mindbend"],
+  "Bản Thiết Kế Vĩ Đại": ["mindbend"],
+  "Các Thế Giới Song Song": ["mindbend"],
+  "Thế Giới Lượng Tử Kỳ Bí": ["mindbend"],
+  "Vũ Trụ Trong Vỏ Hạt Dẻ": ["mindbend"],
+  "Lược Sử Thời Gian": ["mindbend"],
+  "Sapiens: Lược Sử Loài Người": ["mindbend","culture"],
+  "Súng, Vi Trùng Và Thép": ["mindbend","culture"],
+  "Lược Sử Vạn Vật": ["mindbend","fun"],
+  "Lịch Sử Văn Minh Thế Giới": ["culture"],
+  "Tôi, Tương Lai & Thế Giới": ["motivate","culture"],
+  "Lịch Sử Trung Đông 2.000 Năm Trở Lại Đây": ["culture"],
+  "The Silk Road": ["culture","adventure"],
+  "Những Tù Nhân Của Địa Lý": ["culture","mindbend"],
+  "Sử Việt, 12 Khúc Tráng Ca": ["culture"],
+  "Dòng Sông Trôi Khuất Địa Đàng": ["mindbend"],
+  "Đời Sống Bí Ẩn Của Cây": ["heal","mindbend"],
+  "Nguồn Gốc Các Loài": ["mindbend"],
+  "Về Bản Tính Người": ["mindbend"],
+  "Permanent Record": ["thrill","culture"],
+  "The Big Nine": ["mindbend"],
+  "Công Nghệ Blockchain": ["mindbend"],
+  "Năng Lượng Sống Từ Thảo Dược": ["heal"],
+  "Nhân Tố Enzyme": ["heal"],
+  "Ăn Sao Không Chết": ["heal","motivate"],
+  "Ăn Gì Cho Không Độc Hại": ["heal"],
+  "Chào Juice": ["heal","cozy"],
+  "Ý Tưởng Này Là Của Chúng Mình": ["motivate","fun"],
+  "Thing Explainer": ["fun","mindbend"],
+  "Cãi Gì Cũng Thắng": ["mindbend","fun"],
+  "Viết Gì Cũng Đúng": ["mindbend"],
+  "Phi Lý Trí": ["mindbend","fun"],
+  "Tư Duy Nhanh Và Chậm": ["mindbend"],
+  "Điểm Bùng Phát": ["mindbend"],
+  "Chờ Đến Mẫu Giáo Thì Đã Muộn": ["motivate","heartwarming"],
+  "Cuốn Sách Hoàn Hảo Về Ngôn Ngữ Cơ Thể": ["motivate","mindbend"],
+  "Bạn Không Thông Minh Lắm Đâu": ["mindbend","fun"],
+  "Dám Bị Ghét": ["heal","motivate"],
+  "Scrum Và XP Từ Các Chiến Hào": ["motivate","mindbend"],
+  "Don't Make Me Think": ["mindbend","motivate"],
+  "Ngôn Ngữ Cơ Thể": ["motivate","mindbend"],
+  "100 Kĩ Năng Sinh Tồn": ["adventure","thrill","motivate"],
+  "The Story Of English / Language Story": ["culture","mindbend"],
+  "Mật Mã Tây Tạng": ["adventure","eerie"],
+  "Chân Đi Không Mỏi": ["adventure","motivate"],
+  "Từ Rừng Thẳm Amazon Đến Quê Hương Bolero": ["adventure","culture"],
+  "Mekong - Phù Sa Phiêu Bạt": ["adventure","culture"],
+  "Tiếng Gọi Nơi Hoang Dã": ["adventure","motivate"],
+  "Cuộc Đời Của Pi": ["adventure","mindbend"],
+  "Dế Mèn Phiêu Lưu Ký": ["adventure","heartwarming","motivate"],
+  "Gulliver Du Ký": ["adventure","fun","mindbend"],
+  "Hai Vạn Dặm Dưới Đáy Biển": ["adventure","fun"],
+  "Kỳ Bí Dòng Sông Sôi Trong Lòng Amazon": ["adventure","eerie"],
+  "Đột Nhiên Đến Tây Tạng": ["adventure","culture"],
+  "Bước Chân Việt Nam - 4 Cực 1 Đỉnh": ["adventure","motivate"],
+  "Nhắm Mắt Thấy Paris": ["romance","adventure","cozy"],
+  "Tự Do Đầu Tiên Và Cuối Cùng": ["mindbend","heal"],
+  "Suy Nghĩ Vẩn Vơ Của Kẻ Nhàn Rỗi": ["fun","cozy"],
+  "Nỗi Lo Âu Về Địa Vị": ["mindbend","heal"],
+  "Luận Về Yêu": ["romance","heartbreak","mindbend"],
+  "Suy Tưởng": ["mindbend","heal","solitude"],
+  "Trò Chuyện Với Vĩ Nhân": ["mindbend","heal"],
+  "Plato Và Con Thú Mỏ Vịt Bước Vào Quán Bar": ["mindbend","fun"],
+  "Đạo Đức Kinh": ["mindbend","heal","solitude"],
+  "Lĩnh Nam Chích Quái": ["culture","eerie"],
+  "Sổ Tay Nhà Thôi Miên": ["mindbend","heal"],
+  "Thiên Tài Bên Trái, Kẻ Điên Bên Phải": ["mindbend","eerie"],
+  "Thiền: Tự Do Đầu Tiên Và Cuối Cùng": ["mindbend","heal","solitude"],
+  "The Daily Stoic": ["motivate","heal","mindbend"],
+  "The Myth Of Sisyphus": ["mindbend","solitude"],
+  "Love": ["romance","heal","mindbend"],
+  "Angelina Jolie - Bản Sắc Một Huyền Thoại": ["motivate","culture"],
+  "Anne Frank": ["sad","culture"],
+  "Bùi Kiến Thành - Người Mở Khóa Lãng Du": ["motivate","culture"],
+  "Madame Nhu - Quyền Lực Bà Rồng": ["culture","thrill"],
+  "Nhật Ký Đặng Thùy Trâm": ["sad","culture","motivate"],
+  "Bắt Đầu Từ Một Kết Thúc": ["motivate","heal"],
+  "Happiness - A Philosopher's Guide": ["heal","mindbend"],
+  "Hygge - The Danish Art Of Happiness": ["cozy","heal"],
+  "Lagom - The Swedish Art Of Balanced Living": ["cozy","heal"],
+  "Sisu - Vượt Qua Tất Cả": ["motivate","heal"],
+  "Nghệ Thuật Tinh Tế Của Việc Đếch Quan Tâm": ["motivate","heal"],
+  "Đi Tìm Lẽ Sống": ["heal","motivate","sad"],
+  "Tuổi Trẻ Đáng Giá Bao Nhiêu": ["motivate","adventure"],
+  "Mong Mọi Sự Gặp Gỡ Đều Đúng Thời Điểm": ["heal","cozy"],
+  "Mơ Những Giấc Mơ Mới": ["sad","motivate","heal"],
+  "Ngày Thứ Ba Với Morrie": ["sad","heal","heartwarming"],
+  "Sức Mạnh Của Hiện Tại": ["heal","mindbend"],
+  "Nghĩ Giàu Làm Giàu": ["motivate"],
+  "999 Lá Thư Gửi Cho Chính Mình": ["heal","motivate"],
+  "1% Each Day": ["motivate"],
+  "Quảy Gánh Băng Đồng Ra Thế Giới": ["motivate","adventure"],
+  "Đừng Tháo Xuống Nụ Cười": ["solitude","heal"],
+  "Nỗi Buồn Chiến Tranh": ["sad","culture","mindbend"],
+  "Tuổi Thơ Dữ Dội": ["culture","motivate"],
+  "Yêu Thương Là Tự Do": ["heal","romance"],
+  "Quê Ngoại": ["cozy","heartwarming"],
+  "Trở Về Nơi Hoang Dã": ["adventure","motivate"],
+  "Một Mình Ở Châu Âu": ["solitude","heal"],
+  "Một Nghệ Thuật Sống": ["heal","solitude"],
+  "Có Một Phố Vừa Đi Qua Phố": ["sad","heartwarming"],
+  "Dăm Ba Cái Tuổi Trẻ": ["motivate","cozy"],
+  "Hồn Bướm Mơ Tiên": ["romance","culture"],
+  "Số Đỏ": ["fun","culture"],
+  "Vang Bóng Một Thời": ["culture","solitude"],
+  "Một Cơn Gió Bụi": ["culture"],
+  "Chuyến Tàu Một Chiều Không Trở Lại": ["motivate","mindbend"],
+  "Lập Trình Quỹ Đạo Cuộc Đời": ["motivate","heal"],
+  "Đừng Chạy Theo Đám Đông": ["motivate"],
+  "Giang Hồ Chỉ Vừa Đủ Xài": ["fun","heal"],
+  "Hai Mươi Bảy": ["solitude","heal"],
+  "Người Tị Nạn": ["culture","sad","solitude"],
+  "Rèn Nghị Lực Để Lập Thân": ["motivate"],
+  "Đàn Bà Ba Mươi": ["heal","solitude"],
+  "Chênh Vênh Hai Lăm": ["solitude","heal"],
+  "Tôi 20++": ["motivate","cozy"],
+  "Khóc Giữa Sài Gòn": ["sad","heartbreak","romance"],
+  "Tớ Là Dâu": ["fun","culture"],
+  "Lỏng Và Tuột": ["culture","solitude"],
+  "Bức Xúc Không Làm Ta Vô Can": ["culture","mindbend"],
+  "Một Đời Như Kẻ Tìm Đường": ["motivate","heal"],
+  "Hành Tinh Của Một Kẻ Nghĩ Nhiều": ["solitude","heal"],
+  "Những Con Chim Ẩn Mình Chờ Chết": ["romance","sad"],
+  "Phía Nam Biên Giới, Phía Tây Mặt Trời": ["romance","solitude"],
+  "Sự Im Lặng Của Bầy Cừu": ["thrill"],
+  "Bức Tranh Dorian Gray": ["mindbend","eerie"],
+  "The Perks Of Being A Wallflower": ["heartwarming","sad"],
+  "Sông Đông Êm Đềm": ["culture","sad"],
+  "Ba Ơi, Mình Đi Đâu?": ["heal","sad"],
+  "Cha Và Con": ["sad","heartwarming"],
+  "Con Đường Da Cam": ["culture"],
+  "Nỗi Cô Đơn Của Các Số Nguyên Tố": ["solitude","sad"],
+  "Giáo Sư Và Công Thức Toán": ["heartwarming","cozy"],
+  "Ngàn Mặt Trời Rực Rỡ": ["sad","heartwarming","culture"],
+  "Cánh Cửa": ["mindbend","solitude"],
+  "Âm Thanh Và Cuồng Nộ": ["mindbend","sad"],
+  "Thiếu Nữ Đánh Cờ Vây": ["romance","sad"],
+  "Triệu Phú Khu Ổ Chuột": ["motivate","adventure"],
+  "Where Rainbows End": ["romance","cozy"],
+  "Nỗi Đau Của Chàng Werther": ["heartbreak","sad"],
+  "Đo Thế Giới": ["culture","mindbend"],
+  "Hyperbole And A Half": ["fun","heal"],
+  "Bí Kíp Quá Giang Vào Ngân Hà": ["fun","adventure"],
+  "Biên Niên Ký Chim Vặn Dây Cót": ["mindbend","solitude"],
+  "Kafka Bên Bờ Biển": ["mindbend"],
+  "Đồi Gió Hú": ["heartbreak","sad"],
+  "Sống Như Người Paris": ["fun","cozy"],
+  "Trong Gia Đình": ["heartwarming","motivate"],
+  "Trại Trẻ Đặc Biệt Của Cô Peregrine": ["adventure","eerie"],
+  "Tình Yêu Thời Thổ Tả": ["romance"],
+  "Túp Lều Bác Tom": ["culture","sad"],
+  "Utopia": ["culture","mindbend"],
+  "Quần Đảo Ngục Tù": ["culture","sad"],
+  "Ở Quán Cà Phê Của Tuổi Trẻ Lạc Lối": ["solitude","mindbend"],
+  "Khi Lỗi Thuộc Về Những Vì Sao": ["sad","romance"],
+  "Không Gia Đình": ["adventure","heartwarming"],
+  "Chai Thời Gian": ["culture","heartwarming"],
+  "Ăn, Cầu Nguyện, Yêu": ["heal","adventure"],
+  "Tôi Nói Gì Khi Nói Về Chạy Bộ": ["motivate","solitude"],
+  "Lâu Đài Bay Của Pháp Sư Howl": ["romance","fun"],
+  "Lũ Trẻ Nhà Penderwicks": ["heartwarming","cozy"],
+  "Chuyến Phiêu Lưu Của Edward Tulane": ["heartwarming","sad"],
+  "Những Người Khốn Khổ": ["heartwarming","culture","motivate"],
+  "Trăng Lặn": ["culture","sad"],
+  "Lolita": ["eerie","mindbend"],
+  "Người Truyền Ký Ức": ["mindbend","culture"],
+  "Oscar Và Bà Áo Hồng": ["heal","sad"],
+  "Peter Pan": ["adventure","fun"],
+  "Người Xa Lạ": ["mindbend","solitude"],
+  "Thời Khắc": ["mindbend","solitude"],
+  "Bí Ẩn Về Con Chó Lúc Nửa Đêm": ["thrill","mindbend"],
+  "Bố Là Bà Giúp Việc": ["fun","heartwarming"],
+  "Chuyện Người Tùy Nữ": ["mindbend","culture","eerie"],
+  "Cô Gái Chơi Dương Cầm": ["eerie","mindbend"],
+  "Hãy Đi Đặt Người Canh Gác": ["sad","culture"],
+  "Hồi Ức Của Một Geisha": ["culture","romance"],
+  "Trường Hợp Kỳ Lạ Của Dr. Jekyll And Mr. Hyde": ["eerie","mindbend"],
+  "Kẻ Trộm Sách": ["sad","heartwarming","culture"],
+  "Quả Chuông Ảo Mộng": ["sad","solitude"],
+  "Xứ Con Người": ["adventure","motivate"],
+  "Châu Phi Nghìn Trùng": ["romance","adventure"],
+  "The Martian": ["thrill","motivate"],
+  "Hiệu Sách Nhỏ Ở Paris": ["heal","romance"],
+  "Find Me (Call Me By Your Name)": ["romance","solitude"],
+  "Mùa Thu Của Cây Dương": ["sad","heal"],
+  "Little Men, Jo's Boys": ["cozy","heartwarming"],
+  "Momo": ["mindbend","heartwarming"],
+  "Máu Lạnh": ["thrill","sad"],
+  "Mãi Yêu Con": ["heartwarming","cozy"],
+  "Nanh Trắng": ["adventure","heartwarming"],
+  "Sherlock Holmes": ["thrill","fun"],
+  "Con Của Noé": ["culture","sad"],
+  "Coraline": ["eerie","thrill"],
+  "Hóa Thân": ["mindbend","sad"],
+  "Hẹn Em Ngày Đó": ["romance","thrill"],
+  "Nghe Mùi Kết Thúc": ["sad","mindbend"],
+  "Kira-Kira": ["sad","heartwarming"],
+  "35 Ki Lô Hy Vọng": ["heartwarming","motivate"],
+  "Ami - Cậu Bé Vì Sao": ["adventure","heal"],
+  "Ở Nhà Với Madame Chic": ["cozy"],
+  "Ba Sai Lầm Của Đời Tôi": ["heartwarming","culture"],
+  "Bob - Chú Mèo Đường Phố": ["motivate","heal"],
+  "Daring Greatly": ["motivate","heal"],
+  "The Force - Sát Thủ Bán Hàng": ["motivate","culture"],
+  "The Gifts Of Imperfection": ["heal","motivate"],
+  "Khi Ta Mơ Quá Lâu": ["sad","solitude"],
+  "The Signature Of All Things": ["mindbend","culture"],
+  "Gieo Trồng Trên Sa Mạc": ["motivate","heal"],
+  "Đấu Trường Sinh Tử": ["thrill","adventure"],
+  "Đỏ Trỗi Dậy": ["thrill","adventure"],
+  "Tấm Vải Đỏ": ["eerie","sad"],
+  "Nỗi Đau Của Đom Đóm": ["sad","heartbreak"],
+  "Kỳ Án Ánh Trăng": ["eerie","thrill"],
+  "Luân Hồi: Đau Thương Đến Chết": ["sad","eerie"],
+  "Wonderful Life: The Burgess Shale And The Nature Of History": ["mindbend","culture"],
+  "The World Is What It Is (Biography Of V.S. Naipaul)": ["culture","sad"],
+  "Làm Giàu Theo Cách Bá Đạo": ["motivate","fun"],
+  "How To Ace English": ["motivate"],
+  "How To Live On 24 Hours A Day": ["motivate"],
+  "The Wisdom Of The Enneagram": ["mindbend","heal"],
+};
 
 /* ============================================================
    RENDER HELPERS
@@ -452,16 +760,20 @@ function GroupCard({ group, isOpen, onToggle }) {
         onClick={onToggle}
         style={{
           width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
-          padding: "12px 16px", background: isOpen ? `${ACCENT}0F` : "transparent", border: "none",
+          padding: "12px 16px", background: isOpen ? ACCENT : "transparent", border: "none",
           cursor: "pointer", fontFamily: SANS, textAlign: "left",
         }}
       >
-        <span style={{ fontWeight: 700, fontSize: 13.3, color: INK }}>{group.t}</span>
+        <span style={{ fontWeight: 700, fontSize: 13.3, color: isOpen ? "#fff" : INK }}>{group.t}</span>
         <span style={{ display: "flex", alignItems: "center", gap: 9, flexShrink: 0, marginLeft: 10 }}>
-          <span style={{ fontSize: 11, color: MUTE, fontWeight: 700, background: `${ACCENT}14`, padding: "2px 7px", borderRadius: 10 }}>
+          <span style={{
+            fontSize: 11, fontWeight: 700, padding: "2px 7px", borderRadius: 10,
+            color: isOpen ? "#fff" : MUTE,
+            background: isOpen ? "rgba(255,255,255,.28)" : `${ACCENT}14`,
+          }}>
             {group.n}
           </span>
-          <span style={{ display: "inline-block", transform: isOpen ? "rotate(180deg)" : "none", transition: "transform .15s", color: MUTE, fontSize: 11 }}>
+          <span style={{ display: "inline-block", transform: isOpen ? "rotate(180deg)" : "none", transition: "transform .15s", color: isOpen ? "#fff" : MUTE, fontSize: 11 }}>
             ▾
           </span>
         </span>
@@ -521,17 +833,19 @@ export default function Book() {
 
   const moodMatches = useMemo(() => {
     if (!activeMood) return null;
-    const byTitle = new Map();
+    const out = [];
     BOOKS.forEach((g) => {
       const collect = (items, subLabel) => {
         items.forEach(([title, meta, note, summary]) => {
-          byTitle.set(title, { title, meta, note, summary, group: g.t, sub: subLabel });
+          if ((MOOD_TAGS[title] || []).includes(activeMood.id)) {
+            out.push({ title, meta, note, summary, group: g.t, sub: subLabel });
+          }
         });
       };
       if (g.sub) g.sub.forEach((s) => collect(s.items, s.t));
       else collect(g.items, null);
     });
-    return activeMood.titles.map((t) => byTitle.get(t)).filter(Boolean);
+    return out;
   }, [activeMood]);
 
   const selectMood = (mood) => {
@@ -599,6 +913,10 @@ export default function Book() {
             </div>
             {moodMatches.map((m, i) => (
               <div key={i} style={{ borderLeft: `2px solid ${ACCENT}`, paddingLeft: 11 }}>
+                <div style={{ fontFamily: SANS, fontSize: 10.3, color: MUTE, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                  {m.group}
+                  {m.sub ? ` · ${m.sub}` : ""}
+                </div>
                 <div style={{ fontSize: 14.3 }}>
                   <span style={{ fontWeight: 600 }}>{m.title}</span>
                   {m.meta && <span style={{ color: MUTE, fontFamily: SANS, fontSize: 12.3 }}> · {m.meta}</span>}
