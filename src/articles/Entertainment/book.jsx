@@ -1,14 +1,14 @@
 import React, { useState, useMemo } from "react";
 
-const ACCENT = "#7A2E3A";
-const INK = "#252220";
-const MUTE = "#8C7A7E";
-const NOTE = "#6E5A50";
+const ACCENT = "#8C2F39";
+const INK = "#211F1D";
+const MUTE = "#8B8378";
+const NOTE = "#7A7268";
 const SANS = "'Helvetica Neue', Arial, sans-serif";
 const SERIF = "'Iowan Old Style', 'Georgia', serif";
-const PAPER = "#F7F1F0";
+const PAPER = "#F5F5F1";
 const CARD = "#FFFFFF";
-const LINE = "#E9DDDA";
+const LINE = "#E2E1DA";
 
 const INTRO = "Mỗi quyển sách là sự cô đặc chất xám mà thông qua đó ta có thể du hành tới những vùng đất khác, con người khác, triết lý khác, thế giới quan khác...";
 
@@ -405,8 +405,6 @@ const BOOKS = [
 /* ============================================================
    RENDER HELPERS
    ============================================================ */
-const SUMMARY_COLOR = "#6B4F58";
-
 function renderItems(items) {
   return (
     <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gridTemplateColumns: "1fr", gap: 9 }}>
@@ -419,13 +417,13 @@ function renderItems(items) {
             )}
           </div>
           {summary && (
-            <div style={{ fontFamily: SANS, fontSize: 12.2, color: SUMMARY_COLOR, lineHeight: 1.55, marginTop: 4 }}>
+            <div style={{ fontFamily: SANS, fontSize: 12.2, color: NOTE, lineHeight: 1.55, marginTop: 4, fontStyle: "italic" }}>
               {summary}
             </div>
           )}
           {note && (
             <div style={{ fontFamily: SANS, fontSize: 12.2, color: NOTE, lineHeight: 1.55, marginTop: 3, fontStyle: "italic" }}>
-              {note}
+              “{note}”
             </div>
           )}
         </li>
@@ -551,13 +549,13 @@ export default function Book() {
                   {m.meta && <span style={{ color: MUTE, fontFamily: SANS, fontSize: 12.3 }}> · {m.meta}</span>}
                 </div>
                 {m.summary && (
-                  <div style={{ fontFamily: SANS, fontSize: 12.2, color: SUMMARY_COLOR, marginTop: 4 }}>
+                  <div style={{ fontFamily: SANS, fontSize: 12.2, color: NOTE, fontStyle: "italic", marginTop: 4 }}>
                     {m.summary}
                   </div>
                 )}
                 {m.note && (
                   <div style={{ fontFamily: SANS, fontSize: 12.2, color: NOTE, fontStyle: "italic", marginTop: 3 }}>
-                    {m.note}
+                    “{m.note}”
                   </div>
                 )}
               </div>
