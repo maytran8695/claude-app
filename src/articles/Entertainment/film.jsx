@@ -378,6 +378,19 @@ const FILMS = [
 ];
 
 /* ============================================================
+   MOODS — curated picks per mood, referencing titles already in FILMS
+   ============================================================ */
+const MOODS = [
+  { id: "sad", icon: "😢", label: "Buồn", titles: ["Manchester By The Sea", "Room", "Still Alice", "Grave Of The Fireflies", "A Man Called Ove", "Changeling", "12 Years A Slave"] },
+  { id: "heartbreak", icon: "💔", label: "Thất tình", titles: ["500 Days Of Summer", "Eternal Sunshine Of The Spotless Mind", "Marriage Story", "Lost In Translation", "Past Lives", "Call Me By Your Name"] },
+  { id: "cozy", icon: "☕", label: "Nhẹ nhàng", titles: ["Little Forest", "Amélie", "Up", "Coco", "A Man Called Ove", "Secret Life Of Walter Mitty", "Chef"] },
+  { id: "motivate", icon: "🔥", label: "Cần động lực", titles: ["The Pursuit Of Happyness", "Good Will Hunting", "The Motorcycle Diaries", "Catch Me If You Can", "Whiplash", "Life Of Pi"] },
+  { id: "solitude", icon: "🌙", label: "Cô đơn, tĩnh lặng", titles: ["Her", "Cast Away", "Into The Wild", "The Man From Earth", "Wild", "Under The Skin"] },
+  { id: "fun", icon: "😄", label: "Vui, giải trí", titles: ["The Grand Budapest Hotel", "Deadpool", "This Is The End", "Monty Python And The Holy Grail", "Mamma Mia!", "Dumb And Dumber"] },
+  { id: "mindbend", icon: "🤯", label: "Não to", titles: ["Inception", "Memento", "The Prestige", "Fight Club", "Everything Everywhere All At Once", "Mulholland Drive", "Shutter Island"] },
+];
+
+/* ============================================================
    RENDER HELPERS
    ============================================================ */
 function renderItems(items) {
@@ -457,6 +470,7 @@ function GroupCard({ group, isOpen, onToggle }) {
    ============================================================ */
 export default function Film() {
   const [query, setQuery] = useState("");
+  const [activeMood, setActiveMood] = useState(null);
   const [openMap, setOpenMap] = useState({ 0: true });
 
   const toggleGroup = (idx) => {
@@ -480,6 +494,26 @@ export default function Film() {
     return out;
   }, [query]);
 
+  const moodMatches = useMemo(() => {
+    if (!activeMood) return null;
+    const byTitle = new Map();
+    FILMS.forEach((g) => {
+      const collect = (items, subLabel) => {
+        items.forEach(([title, meta, note, summary]) => {
+          byTitle.set(title, { title, meta, note, summary, group: g.t, sub: subLabel });
+        });
+      };
+      if (g.sub) g.sub.forEach((s) => collect(s.items, s.t));
+      else collect(g.items, null);
+    });
+    return activeMood.titles.map((t) => byTitle.get(t)).filter(Boolean);
+  }, [activeMood]);
+
+  const selectMood = (mood) => {
+    setQuery("");
+    setActiveMood((prev) => (prev?.id === mood.id ? null : mood));
+  };
+
   return (
     <div style={{ fontFamily: SERIF, background: PAPER, color: INK }}>
       <div style={{ padding: "26px 32px 60px", maxWidth: 1600, margin: "0 auto" }}>
@@ -502,15 +536,62 @@ export default function Film() {
           type="text"
           placeholder="Tìm phim, đạo diễn, ghi chú..."
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => { setQuery(e.target.value); setActiveMood(null); }}
           style={{
             width: "100%", boxSizing: "border-box", fontFamily: SANS, fontSize: 13.5,
-            padding: "10px 14px", borderRadius: 8, border: `1px solid ${LINE}`, marginBottom: 20,
+            padding: "10px 14px", borderRadius: 8, border: `1px solid ${LINE}`, marginBottom: 12,
             outline: "none", background: CARD, color: INK,
           }}
         />
 
-        {flatMatches ? (
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 20 }}>
+          {MOODS.map((mood) => {
+            const isActive = activeMood?.id === mood.id;
+            return (
+              <button
+                key={mood.id}
+                onClick={() => selectMood(mood)}
+                style={{
+                  display: "flex", alignItems: "center", gap: 6, fontFamily: SANS, fontSize: 12.5,
+                  padding: "6px 12px", borderRadius: 20, cursor: "pointer",
+                  border: `1px solid ${isActive ? ACCENT : LINE}`,
+                  background: isActive ? ACCENT : CARD,
+                  color: isActive ? "#fff" : INK,
+                  fontWeight: isActive ? 600 : 500,
+                }}
+              >
+                <span>{mood.icon}</span>
+                {mood.label}
+              </button>
+            );
+          })}
+        </div>
+
+        {activeMood ? (
+          <div style={{ display: "grid", gap: 10 }}>
+            <div style={{ fontFamily: SANS, fontSize: 12, color: MUTE }}>
+              {activeMood.icon} {activeMood.label} · {moodMatches.length} phim
+            </div>
+            {moodMatches.map((m, i) => (
+              <div key={i} style={{ borderLeft: `2px solid ${ACCENT}`, paddingLeft: 11 }}>
+                <div style={{ fontSize: 14.3 }}>
+                  <span style={{ fontWeight: 600 }}>{m.title}</span>
+                  {m.meta && <span style={{ color: MUTE, fontFamily: SANS, fontSize: 12.3 }}> · {m.meta}</span>}
+                </div>
+                {m.summary && (
+                  <div style={{ fontFamily: SANS, fontSize: 12.2, color: NOTE, fontStyle: "italic", marginTop: 4 }}>
+                    {m.summary}
+                  </div>
+                )}
+                {m.note && (
+                  <div style={{ fontFamily: SANS, fontSize: 12.2, color: NOTE, fontStyle: "italic", marginTop: 3 }}>
+                    “{m.note}”
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : flatMatches ? (
           <div style={{ display: "grid", gap: 10 }}>
             <div style={{ fontFamily: SANS, fontSize: 12, color: MUTE }}>{flatMatches.length} kết quả</div>
             {flatMatches.map((m, i) => (

@@ -403,6 +403,19 @@ const BOOKS = [
 ];
 
 /* ============================================================
+   MOODS — curated picks per mood, referencing titles already in BOOKS
+   ============================================================ */
+const MOODS = [
+  { id: "sad", icon: "😢", label: "Buồn", titles: ["Nỗi Buồn Chiến Tranh", "Khi Hơi Thở Hóa Thinh Không", "Của Chuột Và Người", "Cánh Đồng Bất Tận", "A Man Called Ove", "Đồi Thỏ"] },
+  { id: "heartbreak", icon: "💔", label: "Thất tình", titles: ["Rừng Na Uy", "Tình Yêu Thời Thổ Tả", "Kiêu Hãnh Và Định Kiến", "Nỗi Đau Của Chàng Werther", "Người Đua Diều"] },
+  { id: "cozy", icon: "☕", label: "Nhẹ nhàng", titles: ["Hoàng Tử Bé", "Vừa Nhắm Mắt Vừa Mở Cửa Sổ", "Ông Trăm Tuổi Trèo Qua Cửa Sổ Và Biến Mất", "Ba Gã Cùng Thuyền", "Momo"] },
+  { id: "motivate", icon: "🔥", label: "Cần động lực", titles: ["Đi Tìm Lẽ Sống", "Tuổi Trẻ Đáng Giá Bao Nhiêu", "Nghĩ Giàu Làm Giàu", "1% Each Day", "Rèn Nghị Lực Để Lập Thân"] },
+  { id: "solitude", icon: "🌙", label: "Cô đơn, tĩnh lặng", titles: ["Walden - Một Mình Ở Trong Rừng", "Khởi Sinh Của Cô Độc", "Một Mình Ở Châu Âu", "Suy Tưởng"] },
+  { id: "fun", icon: "😄", label: "Vui, giải trí", titles: ["Ba Gã Cùng Thuyền", "Ông Trăm Tuổi Trèo Qua Cửa Sổ Và Biến Mất", "Kinh Tế Học Hài Hước", "Nghệ Thuật Tinh Tế Của Việc Đếch Quan Tâm"] },
+  { id: "mindopen", icon: "🤯", label: "Mở mang trí tuệ", titles: ["Sapiens: Lược Sử Loài Người", "Súng, Vi Trùng Và Thép", "Tư Duy Nhanh Và Chậm", "Lược Sử Thời Gian", "Phi Lý Trí"] },
+];
+
+/* ============================================================
    RENDER HELPERS
    ============================================================ */
 function renderItems(items) {
@@ -482,6 +495,7 @@ function GroupCard({ group, isOpen, onToggle }) {
    ============================================================ */
 export default function Book() {
   const [query, setQuery] = useState("");
+  const [activeMood, setActiveMood] = useState(null);
   const [openMap, setOpenMap] = useState({ 0: true });
 
   const toggleGroup = (idx) => {
@@ -505,6 +519,26 @@ export default function Book() {
     return out;
   }, [query]);
 
+  const moodMatches = useMemo(() => {
+    if (!activeMood) return null;
+    const byTitle = new Map();
+    BOOKS.forEach((g) => {
+      const collect = (items, subLabel) => {
+        items.forEach(([title, meta, note, summary]) => {
+          byTitle.set(title, { title, meta, note, summary, group: g.t, sub: subLabel });
+        });
+      };
+      if (g.sub) g.sub.forEach((s) => collect(s.items, s.t));
+      else collect(g.items, null);
+    });
+    return activeMood.titles.map((t) => byTitle.get(t)).filter(Boolean);
+  }, [activeMood]);
+
+  const selectMood = (mood) => {
+    setQuery("");
+    setActiveMood((prev) => (prev?.id === mood.id ? null : mood));
+  };
+
   return (
     <div style={{ fontFamily: SERIF, background: PAPER, color: INK }}>
       <div style={{ padding: "26px 32px 60px", maxWidth: 1600, margin: "0 auto" }}>
@@ -527,15 +561,62 @@ export default function Book() {
           type="text"
           placeholder="Tìm sách, tác giả..."
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => { setQuery(e.target.value); setActiveMood(null); }}
           style={{
             width: "100%", boxSizing: "border-box", fontFamily: SANS, fontSize: 13.5,
-            padding: "10px 14px", borderRadius: 8, border: `1px solid ${LINE}`, marginBottom: 20,
+            padding: "10px 14px", borderRadius: 8, border: `1px solid ${LINE}`, marginBottom: 12,
             outline: "none", background: CARD, color: INK,
           }}
         />
 
-        {flatMatches ? (
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 20 }}>
+          {MOODS.map((mood) => {
+            const isActive = activeMood?.id === mood.id;
+            return (
+              <button
+                key={mood.id}
+                onClick={() => selectMood(mood)}
+                style={{
+                  display: "flex", alignItems: "center", gap: 6, fontFamily: SANS, fontSize: 12.5,
+                  padding: "6px 12px", borderRadius: 20, cursor: "pointer",
+                  border: `1px solid ${isActive ? ACCENT : LINE}`,
+                  background: isActive ? ACCENT : CARD,
+                  color: isActive ? "#fff" : INK,
+                  fontWeight: isActive ? 600 : 500,
+                }}
+              >
+                <span>{mood.icon}</span>
+                {mood.label}
+              </button>
+            );
+          })}
+        </div>
+
+        {activeMood ? (
+          <div style={{ display: "grid", gap: 10 }}>
+            <div style={{ fontFamily: SANS, fontSize: 12, color: MUTE }}>
+              {activeMood.icon} {activeMood.label} · {moodMatches.length} sách
+            </div>
+            {moodMatches.map((m, i) => (
+              <div key={i} style={{ borderLeft: `2px solid ${ACCENT}`, paddingLeft: 11 }}>
+                <div style={{ fontSize: 14.3 }}>
+                  <span style={{ fontWeight: 600 }}>{m.title}</span>
+                  {m.meta && <span style={{ color: MUTE, fontFamily: SANS, fontSize: 12.3 }}> · {m.meta}</span>}
+                </div>
+                {m.summary && (
+                  <div style={{ fontFamily: SANS, fontSize: 12.2, color: NOTE, fontStyle: "italic", marginTop: 4 }}>
+                    {m.summary}
+                  </div>
+                )}
+                {m.note && (
+                  <div style={{ fontFamily: SANS, fontSize: 12.2, color: NOTE, fontStyle: "italic", marginTop: 3 }}>
+                    “{m.note}”
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : flatMatches ? (
           <div style={{ display: "grid", gap: 10 }}>
             <div style={{ fontFamily: SANS, fontSize: 12, color: MUTE }}>{flatMatches.length} kết quả</div>
             {flatMatches.map((m, i) => (
