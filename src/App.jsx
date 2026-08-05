@@ -32,6 +32,7 @@ const exactTitleMap = {
   [normalizeKey('Love')]: 'Love',
   [normalizeKey('CBAP')]: 'CBAP Quiz',
   [normalizeKey('ChunkQuiz')]: 'Chunk Quiz - EN',
+  [normalizeKey('ChunkQuizChi')]: 'Chunk Quiz - CHI',
   [normalizeKey('SelfWorthDeep')]: 'Self Worth',
   [normalizeKey('Film')]: 'Film',
   [normalizeKey('Book')]: 'Book'
@@ -72,7 +73,8 @@ const targetArticleOrder = {
   ],
   Cert: [
     normalizeKey('CBAP'),
-    normalizeKey('ChunkQuiz')
+    normalizeKey('ChunkQuiz'),
+    normalizeKey('ChunkQuizChi')
   ]
 };
 
