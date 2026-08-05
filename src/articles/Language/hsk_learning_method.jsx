@@ -1,0 +1,568 @@
+import React, { useState, useRef, useEffect, useMemo } from "react";
+
+/* ============================================================
+   Chinese Learning — merged tab (dark/red theme, matching the
+   original hsk-foundation.jsx palette). Merges the former "Best
+   Practices Guide" (general SLA theory + English/Chinese L1-
+   transfer + practice system) with the Chinese-specific Phương
+   pháp essays (Phát âm/Từ vựng/Ngữ pháp/Đọc hiểu) and 30 HSK1-5
+   grammar-pattern drills. Everything is Chinese-focused except
+   ONE dedicated "Tiếng Anh" tab holding all English-only content.
+   All expandable (BP anatomy) cards default OPEN.
+   ============================================================ */
+
+/* ---------- Pinyin tone-coloring (used by the grammar patterns) ---------- */
+const TONE_COLOR = { 1: "#5B8FA8", 2: "#7A9E7E", 3: "#C99A3E", 4: "#C1440E", 0: "#8A8478" };
+const toneOfSyllable = (s) => {
+  if (/[āēīōūǖ]/.test(s)) return 1;
+  if (/[áéíóúǘ]/.test(s)) return 2;
+  if (/[ǎěǐǒǔǚ]/.test(s)) return 3;
+  if (/[àèìòùǜ]/.test(s)) return 4;
+  return 0;
+};
+function Pinyin({ text }) {
+  const syllables = text.split(" ");
+  return (
+    <span>
+      {syllables.map((s, i) => (
+        <span key={i} style={{ color: TONE_COLOR[toneOfSyllable(s)] }}>
+          {s}{i < syllables.length - 1 ? " " : ""}
+        </span>
+      ))}
+    </span>
+  );
+}
+
+const GRAMMAR = [
+  // ---------- HSK1 ----------
+  { h: 1, id: "g1", pattern: "A 是 B", p: "A shì B", name: "Câu khẳng định với 是",
+    explain: "是 là một động từ đầy đủ (không bị lược bỏ như hệ động từ 'to be' trong một số ngôn ngữ), dùng để nói A THUỘC VỀ hay ĐỒNG NHẤT với loại B — ví dụ nghề nghiệp, danh tính, quốc tịch. Phủ định luôn thêm 不 ngay trước 是: A 不是 B. Lưu ý 是 KHÔNG dùng trước tính từ (xem mẫu Chủ ngữ + Tính từ bên dưới) — đây là lỗi rất phổ biến của người mới vì tiếng Việt hay chêm 'là' trước cả danh từ lẫn tính từ.",
+    examples: [
+      { zh: "我是学生。", p: "wǒ shì xué sheng", vi: "Tôi là học sinh." },
+      { zh: "他不是老师。", p: "tā bú shì lǎo shī", vi: "Anh ấy không phải là giáo viên." },
+    ] },
+  { h: 1, id: "g2", pattern: "A 有 B", p: "A yǒu B", name: "Câu sở hữu/tồn tại với 有",
+    explain: "有 mang hai chức năng: 'A sở hữu B' (我有一本书) và 'có B tồn tại ở A' theo kiểu existential (桌子上有一本书 — trên bàn có một quyển sách). Phủ định LUÔN LUÔN dùng 没 (没有), tuyệt đối không dùng 不有 — đây là ngoại lệ ngữ pháp cần nhớ máy móc vì khác hẳn quy tắc phủ định 不 áp dụng cho hầu hết động từ khác.",
+    examples: [
+      { zh: "我有一个哥哥。", p: "wǒ yǒu yí gè gē ge", vi: "Tôi có một anh trai." },
+      { zh: "他没有钱。", p: "tā méi yǒu qián", vi: "Anh ấy không có tiền." },
+    ] },
+  { h: 1, id: "g3", pattern: "Chủ ngữ + Tính từ", p: "S + adj.", name: "Câu vị ngữ tính từ (không dùng 是)",
+    explain: "Tiếng Trung KHÔNG dùng 是 trước tính từ như tiếng Việt hay chêm 'là' (*他是好 SAI). Thay vào đó tính từ tự làm vị ngữ, và người bản ngữ gần như luôn thêm 很 (rất) phía trước để câu nghe trọn vẹn — kể cả khi không có ý nhấn mạnh mức độ, 很 ở đây gần như mất nghĩa 'rất' và chỉ đóng vai trò một dạng hệ từ trung tính. Muốn thật sự nhấn mạnh 'rất', phải lên giọng/nhấn trọng âm vào 很 khi nói.",
+    examples: [
+      { zh: "今天很热。", p: "jīn tiān hěn rè", vi: "Hôm nay trời nóng." },
+      { zh: "这个苹果很好吃。", p: "zhè ge píng guǒ hěn hǎo chī", vi: "Quả táo này ngon." },
+    ] },
+  { h: 1, id: "g4", pattern: "S + V + 吗？", p: "... ma?", name: "Câu hỏi Có/Không với 吗",
+    explain: "Thêm 吗 vào cuối câu trần thuật để tạo câu hỏi Yes/No, không đảo trật tự từ như tiếng Anh (không có do/does). Lưu ý 吗 KHÔNG được kết hợp với các đại từ nghi vấn như 谁/什么/哪里 trong cùng một câu — hai cách hỏi này loại trừ nhau. Một cách hỏi Yes/No khác, thông dụng không kém, là lặp động từ/tính từ dạng V-không-V (是不是, 好不好) mà không cần 吗.",
+    examples: [ { zh: "你是中国人吗？", p: "nǐ shì zhōng guó rén ma", vi: "Bạn có phải người Trung Quốc không?" } ] },
+  { h: 1, id: "g5", pattern: "S + V + 了", p: "... le", name: "Trợ từ 了 chỉ hành động hoàn thành",
+    explain: "了 đặt ngay sau động từ đánh dấu hành động đã hoàn thành hoặc có sự thay đổi trạng thái — đây là trợ từ CHỈ THỂ (aspect), không phải mốc thời gian tuyệt đối như 'thì quá khứ' tiếng Anh, nên có thể xuất hiện cả ở câu tương lai đã-hoàn-thành-tại-mốc-đó. Phủ định của hành động đã xảy ra dùng 没(有) + V và BỎ 了 đi (không nói *没吃了). Cần phân biệt kỹ với 过 (đã từng trải nghiệm, không quan tâm mốc cụ thể) và 正在 (đang diễn ra).",
+    examples: [
+      { zh: "我吃了。", p: "wǒ chī le", vi: "Tôi ăn rồi." },
+      { zh: "他去中国了。", p: "tā qù zhōng guó le", vi: "Anh ấy đã đi Trung Quốc." },
+    ] },
+  { h: 1, id: "g6", pattern: "想 / 要 / 会 / 能 + V", p: "xiǎng / yào / huì / néng + V", name: "Động từ năng nguyện (modal verbs)",
+    explain: "想 = muốn (ý định, mong muốn nội tâm); 要 = muốn/cần (mạnh và dứt khoát hơn 想, gần như quyết định); 会 = biết làm (kỹ năng đã học) hoặc sẽ (dự đoán tương lai); 能 = có thể (điều kiện khách quan cho phép). Bốn từ này người mới học hay dùng lẫn lộn vì tiếng Việt gộp chung vào 'có thể/muốn'. Phủ định tương ứng: 不想/不要/不会/不能. Lưu ý 要 còn một nghĩa khác hoàn toàn không liên quan — 'cần giá bao nhiêu' (这个要多少钱), dễ gây nhầm với nghĩa modal.",
+    examples: [
+      { zh: "我想去中国。", p: "wǒ xiǎng qù zhōng guó", vi: "Tôi muốn đi Trung Quốc." },
+      { zh: "我会说汉语。", p: "wǒ huì shuō hàn yǔ", vi: "Tôi biết nói tiếng Trung." },
+      { zh: "我今天不能去。", p: "wǒ jīn tiān bù néng qù", vi: "Hôm nay tôi không thể đi." },
+    ] },
+  // ---------- HSK2 ----------
+  { h: 2, id: "g7", pattern: "A 比 B + Tính từ", p: "A bǐ B + adj.", name: "Câu so sánh với 比",
+    explain: "So sánh hơn: A hơn B ở đặc điểm nào đó. KHÔNG dùng 很 trong câu so sánh này (*他比我很高 SAI). Có thể thêm số lượng cụ thể hoặc 一点儿/得多 sau tính từ để nói rõ mức chênh lệch (比我高一点儿 = cao hơn tôi một chút). Phủ định thường KHÔNG dùng 不比 (vì 不比 mang sắc thái phản bác, tranh luận) mà dùng A 没有 B + tính từ (nghĩa 'A không bằng B') — một cấu trúc hoàn toàn khác cần học riêng.",
+    examples: [
+      { zh: "他比我高。", p: "tā bǐ wǒ gāo", vi: "Anh ấy cao hơn tôi." },
+      { zh: "今天比昨天冷。", p: "jīn tiān bǐ zuó tiān lěng", vi: "Hôm nay lạnh hơn hôm qua." },
+    ] },
+  { h: 2, id: "g8", pattern: "正在 / 在 + V + (呢)", p: "zhèng zài / zài + V (+ ne)", name: "Thể tiếp diễn (đang làm gì)",
+    explain: "Diễn tả hành động đang diễn ra tại thời điểm nói, tương tự '-ing' tiếng Anh — đây cũng là một trợ từ chỉ THỂ như 了/过, không phải thì. 呢 ở cuối câu là tùy chọn, tăng sắc thái tự nhiên/nhấn mạnh. Cần phân biệt 在 mang nghĩa này với 在 làm giới từ chỉ vị trí ('ở đâu') — ngữ cảnh (đứng trước động từ hay trước danh từ chỉ nơi chốn) sẽ quyết định vai trò. Phủ định dùng 没在 (chưa/không đang), khác hẳn 不在 (nghĩa 'không có mặt ở đó').",
+    examples: [ { zh: "他正在吃饭呢。", p: "tā zhèng zài chī fàn ne", vi: "Anh ấy đang ăn cơm." } ] },
+  { h: 2, id: "g9", pattern: "因为...，所以...", p: "yīn wèi..., suǒ yǐ...", name: "Câu nhân quả",
+    explain: "Cấu trúc chunk cố định diễn tả quan hệ nguyên nhân → kết quả, nguyên nhân luôn đứng trước. Trong khẩu ngữ có thể lược bỏ 因为 hoặc 所以 nếu quan hệ đã rõ trong ngữ cảnh, nhưng giữ cả hai an toàn hơn khi mới học vì tránh mơ hồ. Khác với tiếng Việt vốn linh hoạt về trật tự, tiếng Trung ít khi đảo 'kết quả trước, nguyên nhân sau' trong văn nói thông thường — muốn nói kiểu đó, dùng cấu trúc trang trọng hơn 之所以...是因为... (xem mục HSK5).",
+    examples: [ { zh: "因为下雨，所以我没去公司。", p: "yīn wèi xià yǔ, suǒ yǐ wǒ méi qù gōng sī", vi: "Vì trời mưa nên tôi không đến công ty." } ] },
+  { h: 2, id: "g10", pattern: "虽然...，但是...", p: "suī rán..., dàn shì...", name: "Câu nhượng bộ",
+    explain: "Chunk cố định diễn tả quan hệ tương phản: tuy A nhưng B, với A là một SỰ THẬT đã xác nhận (khác với 即使 ở HSK5 vốn dùng cho giả định). Trong khẩu ngữ, 虽然 có thể được lược bỏ trong khi 但是/可是 vẫn giữ nguyên để báo hiệu chuyển ý tương phản. Người học nâng cao đôi khi thấy dạng nhấn mạnh 虽然...但是...还是... (dù vậy vẫn cứ...) để tăng sắc thái kiên định.",
+    examples: [ { zh: "虽然很累，但是很高兴。", p: "suī rán hěn lèi, dàn shì hěn gāo xìng", vi: "Tuy mệt nhưng rất vui." } ] },
+  { h: 2, id: "g11", pattern: "V + 过", p: "V + guo", name: "Trợ từ 过 chỉ kinh nghiệm",
+    explain: "过 sau động từ nghĩa là 'đã từng làm gì đó ít nhất một lần trong đời' (kinh nghiệm trong quá khứ, không quan tâm thời điểm cụ thể) — khác hẳn với 了 (một hành động HOÀN THÀNH, thường gắn với mốc thời gian rõ ràng). Phủ định dùng 没(有) + V + 过 (không phải 不过, cụm này có nghĩa khác hẳn là 'nhưng'). Có thể kết hợp 过 và 了 trong cùng câu (去过了) để vừa nhấn kinh nghiệm vừa xác nhận đã hoàn tất.",
+    examples: [ { zh: "我去过北京。", p: "wǒ qù guo běi jīng", vi: "Tôi đã từng đi Bắc Kinh." } ] },
+  { h: 2, id: "g12", pattern: "从 A 到 B", p: "cóng A dào B", name: "Chunk chỉ khoảng cách/thời gian",
+    explain: "Diễn tả 'từ A đến B', dùng được cho cả khoảng cách không gian (từ nhà đến trường) lẫn khoảng thời gian (từ 9 giờ đến 5 giờ), và cả nghĩa trừu tượng (从小到大 — từ bé đến lớn). 从 cũng có thể đứng một mình mang nghĩa 'từ/kể từ' (从现在 — từ bây giờ, 从以前 — từ trước) mà không cần cặp với 到.",
+    examples: [ { zh: "从我家到学校很近。", p: "cóng wǒ jiā dào xué xiào hěn jìn", vi: "Từ nhà tôi đến trường rất gần." } ] },
+  // ---------- HSK3 ----------
+  { h: 3, id: "g13", pattern: "把 + O + V + Bổ ngữ", p: "bǎ + O + V + complement", name: "Câu chữ 把 (bǎ-construction)",
+    explain: "Cấu trúc 'xử trí' đặc trưng của tiếng Trung: thay vì SVO thông thường, 把 kéo tân ngữ (phải là vật CỤ THỂ, đã xác định) lên trước động từ để nhấn mạnh KẾT QUẢ tác động lên nó. Điều kiện bắt buộc: động từ hầu như luôn phải có một bổ ngữ đi kèm (kết quả, xu hướng, hoặc 了) — không thể nói trơn *把书看, phải là 把书看完/看了. Đây là một trong những điểm ngữ pháp khó nhất với người học vì không có cấu trúc tương đương trực tiếp trong tiếng Việt/Anh; lỗi phổ biến nhất là dùng 把 với động từ không có bổ ngữ hoặc với tân ngữ chưa xác định (một quyển sách nào đó).",
+    examples: [
+      { zh: "请把门关上。", p: "qǐng bǎ mén guān shang", vi: "Làm ơn đóng cửa lại." },
+      { zh: "我把作业写完了。", p: "wǒ bǎ zuò yè xiě wán le", vi: "Tôi đã viết xong bài tập." },
+    ] },
+  { h: 3, id: "g14", pattern: "被 + (Tác nhân) + V + Bổ ngữ", p: "bèi + (agent) + V + complement", name: "Câu bị động với 被",
+    explain: "Tác nhân gây ra hành động là tùy chọn (被他打了 hoặc chỉ 被打了 đều đúng). Khác với passive voice tiếng Anh vốn trung tính, 被 trong khẩu ngữ tiếng Trung thường mang sắc thái KHÔNG MAY/tiêu cực (bị đánh, bị mất, bị lừa) — dùng 被 cho sự việc tích cực đôi khi nghe hơi lạ tai với người bản ngữ. Có thể xem 被 và 把 như hai mặt của cùng một đồng xu: 把 nhấn vào việc CHỦ THỂ làm gì với vật, còn 被 nhấn vào việc CHỦ THỂ bị TÁC NHÂN làm gì.",
+    examples: [
+      { zh: "我的钱包被偷了。", p: "wǒ de qián bāo bèi tōu le", vi: "Ví của tôi bị mất trộm rồi." },
+      { zh: "杯子被他打破了。", p: "bēi zi bèi tā dǎ pò le", vi: "Cái cốc bị anh ấy làm vỡ." },
+    ] },
+  { h: 3, id: "g15", pattern: "V + 完/懂/见/到", p: "V + wán/dǒng/jiàn/dào", name: "Bổ ngữ kết quả (result complement)",
+    explain: "Gắn ngay sau động từ để nói rõ HÀNH ĐỘNG ĐÃ ĐI ĐẾN KẾT QUẢ NÀO, khác hẳn 了 vốn chỉ báo hành động đã hoàn tất mà không nói rõ hoàn tất RA SAO. Ví dụ 我看完了 (đã xem/đọc XONG toàn bộ) rất khác 我看了 (đã xem/đọc — có thể chỉ xem một phần, câu vẫn mơ hồ về việc đã xong hẳn chưa). 完 = xong hết; 懂 = hiểu được; 见 = cảm nhận được qua giác quan (nghe thấy, nhìn thấy); 到 = đạt tới/chạm tới mục tiêu. Lỗi thường gặp: bỏ qua bổ ngữ kết quả và chỉ dùng 了 khiến câu mất đi thông tin quan trọng về kết quả.",
+    examples: [
+      { zh: "这本书我看完了。", p: "zhè běn shū wǒ kàn wán le", vi: "Quyển sách này tôi đã đọc xong." },
+      { zh: "老师说的话，我都听懂了。", p: "lǎo shī shuō de huà, wǒ dōu tīng dǒng le", vi: "Lời thầy nói, tôi đều hiểu hết cả." },
+    ] },
+  { h: 3, id: "g16", pattern: "又...又...", p: "yòu... yòu...", name: "Vừa...vừa... (hai đặc điểm/hành động song song)",
+    explain: "Diễn tả hai tính chất hoặc hành động cùng đúng/cùng tồn tại về một chủ thể ('vừa...vừa...'), thường dùng với tính từ hoặc động từ trạng thái. Cần phân biệt rõ với 一边...一边... (mục bên dưới): 又...又... không đòi hỏi hai việc diễn ra CÙNG LÚC về mặt thời gian, chỉ đơn thuần liệt kê hai đặc điểm cùng đúng; còn 一边...一边... bắt buộc là hai HÀNH ĐỘNG xảy ra đồng thời. Không dùng 又...又... cho hai hành động đang diễn ra song song trong cùng khoảnh khắc.",
+    examples: [ { zh: "这个菜又便宜又好吃。", p: "zhè ge cài yòu pián yi yòu hǎo chī", vi: "Món này vừa rẻ vừa ngon." } ] },
+  { h: 3, id: "g17", pattern: "一边...一边...", p: "yì biān... yì biān...", name: "Vừa...vừa... (hai hành động đồng thời)",
+    explain: "Diễn tả CÙNG một chủ thể thực hiện hai HÀNH ĐỘNG (bắt buộc là động từ, không phải tính từ) tại cùng một thời điểm — ví dụ vừa ăn vừa xem TV. Đây là điểm khác biệt cốt lõi so với 又...又... ở trên: 一边...一边... nhấn tính ĐỒNG THỜI về thời gian của hai hành động cụ thể, không dùng để liệt kê đặc điểm tĩnh.",
+    examples: [ { zh: "他一边吃饭一边看手机。", p: "tā yì biān chī fàn yì biān kàn shǒu jī", vi: "Anh ấy vừa ăn cơm vừa xem điện thoại." } ] },
+  { h: 3, id: "g18", pattern: "越来越...", p: "yuè lái yuè...", name: "Ngày càng... (thay đổi tăng dần theo thời gian)",
+    explain: "Diễn tả một tính chất/trạng thái đang tăng dần theo thời gian ('ngày càng...'), 来 ở giữa cố định không đổi. Cần phân biệt với cấu trúc họ hàng 越...越... (không có 来) dùng khi HAI biến số cùng tăng/giảm tương ứng với nhau, ví dụ 越吃越饿 (càng ăn càng đói) — ở đây không nói về thời gian mà về mối quan hệ tỉ lệ giữa hai hành động/tính chất khác nhau.",
+    examples: [ { zh: "天气越来越冷了。", p: "tiān qì yuè lái yuè lěng le", vi: "Thời tiết ngày càng lạnh." } ] },
+  // ---------- HSK4 ----------
+  { h: 4, id: "g19", pattern: "不但...而且...", p: "bú dàn... ér qiě...", name: "Không những...mà còn...",
+    explain: "Thêm một điểm mạnh hơn/bổ sung vào điểm đã nêu trước đó, thường đi kèm 也/还 ở vế sau để tăng liên kết (不但...而且...也...). Vị trí chủ ngữ là chi tiết cần chú ý: nếu chủ ngữ của hai vế GIỐNG NHAU, chủ ngữ thường đứng TRƯỚC 不但; nếu hai vế có chủ ngữ KHÁC NHAU, mỗi chủ ngữ đứng ngay sau liên từ tương ứng của vế mình (不但他...而且我也...). Đặt sai vị trí chủ ngữ là lỗi phổ biến ở trình độ này.",
+    examples: [ { zh: "她不但漂亮，而且很聪明。", p: "tā bú dàn piào liang, ér qiě hěn cōng ming", vi: "Cô ấy không những xinh đẹp mà còn rất thông minh." } ] },
+  { h: 4, id: "g20", pattern: "无论...都...", p: "wú lùn... dōu...", name: "Bất kể/dù...cũng đều...",
+    explain: "Đòi hỏi một thành phần MỞ trong vế đầu — đại từ nghi vấn (谁/什么/怎么/哪儿) mang nghĩa phiếm chỉ 'bất kỳ', hoặc cấu trúc lựa chọn 'là...还是...' — để diễn tả kết quả ở vế sau LUÔN đúng bất kể điều kiện đó là gì. 都 ở vế sau gần như bắt buộc, bỏ sót 都 là lỗi rất thường gặp. Gần nghĩa với 不管...都... trong khẩu ngữ, còn 无论 mang sắc thái trang trọng hơn một chút.",
+    examples: [ { zh: "无论多难，我们都要试一试。", p: "wú lùn duō nán, wǒ men dōu yào shì yi shì", vi: "Dù khó đến đâu, chúng ta cũng phải thử." } ] },
+  { h: 4, id: "g21", pattern: "除了...以外，还/都...", p: "chú le... yǐ wài, hái/dōu...", name: "Ngoài...ra, còn.../đều...",
+    explain: "Một cấu trúc mang HAI nghĩa trái ngược tùy từ nối ở vế sau — đây là bẫy phổ biến nhất của mẫu câu này: '除了X以外，还Y' = ngoài X ra, CÒN CÓ THÊM Y (X vẫn được tính, mang tính CỘNG THÊM); còn '除了X以外，都Y' = trừ X ra, TẤT CẢ còn lại đều Y (X bị LOẠI TRỪ khỏi diện Y). Phải đọc kỹ 还 hay 都 đứng sau để hiểu đúng nghĩa, chỉ nhìn 除了...以外 không thôi thì thông tin chưa đầy đủ.",
+    examples: [
+      { zh: "除了英语以外，他还会说法语。", p: "chú le yīng yǔ yǐ wài, tā hái huì shuō fǎ yǔ", vi: "Ngoài tiếng Anh ra, anh ấy còn biết nói tiếng Pháp." },
+      { zh: "除了他以外，都来了。", p: "chú le tā yǐ wài, dōu lái le", vi: "Trừ anh ấy ra, mọi người đều đến cả rồi." },
+    ] },
+  { h: 4, id: "g22", pattern: "是...的", p: "shì... de", name: "Nhấn mạnh chi tiết của việc đã xảy ra",
+    explain: "Dùng để làm rõ/nhấn mạnh MỘT CHI TIẾT CỤ THỂ (thời gian, địa điểm, cách thức, hoặc người thực hiện) của một sự việc mà cả người nói lẫn người nghe đều ĐÃ BIẾT là nó xảy ra rồi — khác hẳn 了 vốn dùng để THÔNG BÁO một sự việc mới xảy ra. Ví dụ 我是昨天来的 giả định người nghe đã biết 'tôi đến rồi', câu chỉ làm rõ 'đến vào lúc nào' (hôm qua). Lỗi thường gặp: dùng 是...的 để kể một sự việc hoàn toàn mới, đáng lẽ phải dùng 了.",
+    examples: [ { zh: "我是坐飞机来的。", p: "wǒ shì zuò fēi jī lái de", vi: "Tôi đến bằng máy bay." } ] },
+  { h: 4, id: "g23", pattern: "连...都/也...", p: "lián... dōu/yě...", name: "Ngay cả...cũng...",
+    explain: "Nêu một trường hợp CỰC ĐOAN/BẤT NGỜ để ngầm khẳng định mọi trường hợp khác (ít cực đoan hơn) cũng đúng — thường kết hợp với phủ định để tạo hiệu ứng tu từ mạnh (连这个都不知道 = ngay cả cái này cũng không biết [nói gì đến những thứ khác]). 都 và 也 dùng gần như thay thế nhau được ở đây, khác biệt chỉ là văn phong nhẹ.",
+    examples: [ { zh: "他连自己的名字都写错了。", p: "tā lián zì jǐ de míng zi dōu xiě cuò le", vi: "Anh ta ngay cả tên mình cũng viết sai." } ] },
+  { h: 4, id: "g24", pattern: "把 + O + V + 得 + Bổ ngữ mức độ", p: "bǎ + O + V + de + complement", name: "Câu chữ 把 mở rộng với bổ ngữ mức độ",
+    explain: "Phiên bản nâng cao của câu chữ 把 (mục HSK3): thay vì bổ ngữ kết quả đơn giản (完/好), ở đây dùng 得 + tính từ/miêu tả để nói THẬT KỸ hành động đã được thực hiện TỐT/KỸ/THẾ NÀO đối với tân ngữ. Cấu trúc này phổ biến khi miêu tả kết quả có mức độ (rất sạch, rất kỹ, rất gọn) thay vì chỉ đơn thuần 'xong hay chưa xong'.",
+    examples: [ { zh: "她把房间打扫得很干净。", p: "tā bǎ fáng jiān dǎ sǎo de hěn gān jìng", vi: "Cô ấy dọn phòng sạch sẽ (rất kỹ)." } ] },
+  // ---------- HSK5 ----------
+  { h: 5, id: "g25", pattern: "之所以...，是因为...", p: "zhī suǒ yǐ..., shì yīn wèi...", name: "Sở dĩ...là vì... (văn phong trang trọng)",
+    explain: "Đảo ngược trật tự so với 因为...所以... quen thuộc: ở đây KẾT QUẢ được nêu TRƯỚC (trong vế 之所以), rồi mới giải thích NGUYÊN NHÂN sau (是因为). Cấu trúc này mang văn phong phân tích/trang trọng, thường gặp trong bài viết, báo cáo, tranh luận học thuật hơn là hội thoại đời thường — dùng nó đúng chỗ sẽ khiến văn viết nghe chuyên nghiệp hơn hẳn so với chỉ lặp lại 因为...所以....",
+    examples: [ { zh: "他之所以成功，是因为他从不放弃。", p: "tā zhī suǒ yǐ chéng gōng, shì yīn wèi tā cóng bù fàng qì", vi: "Sở dĩ anh ấy thành công là vì anh ấy chưa bao giờ bỏ cuộc." } ] },
+  { h: 5, id: "g26", pattern: "尽管...，但是...", p: "jǐn guǎn..., dàn shì...", name: "Mặc dù...(nhượng bộ trang trọng)",
+    explain: "Đồng nghĩa chức năng với 虽然...但是... ở HSK2 nhưng mang sắc thái TRANG TRỌNG và NHẤN MẠNH hơn — 尽管 thường xuất hiện trong văn viết, phát biểu, tranh luận nghiêm túc hơn là hội thoại thường ngày. Về bản chất ngữ pháp hai cấu trúc hoán đổi được cho nhau, sự khác biệt chủ yếu nằm ở VĂN PHONG/NGỮ VỰC (register) chứ không phải ý nghĩa.",
+    examples: [ { zh: "尽管困难很多，但是他没有放弃。", p: "jǐn guǎn kùn nan hěn duō, dàn shì tā méi yǒu fàng qì", vi: "Mặc dù khó khăn rất nhiều, nhưng anh ấy đã không bỏ cuộc." } ] },
+  { h: 5, id: "g27", pattern: "与其...，不如...", p: "yǔ qí..., bù rú...", name: "Thà rằng...còn hơn là... (so sánh lựa chọn)",
+    explain: "So sánh giữa HAI PHƯƠNG ÁN cụ thể (không phải hai sự việc rời rạc) để khẳng định phương án thứ hai (sau 不如) TỐT HƠN — cả hai vế đều phải là cụm động từ diễn tả một hành động/lựa chọn khả thi. Khác với so sánh 比 (chỉ so sánh MỘT đặc điểm giữa hai đối tượng), 与其...不如... so sánh cả một QUYẾT ĐỊNH/HÀNH ĐỘNG, thường mang hàm ý khuyên nhủ.",
+    examples: [ { zh: "与其在家等，不如出去找工作。", p: "yǔ qí zài jiā děng, bù rú chū qù zhǎo gōng zuò", vi: "Thà đi tìm việc còn hơn ngồi nhà chờ đợi." } ] },
+  { h: 5, id: "g28", pattern: "即使...，也...", p: "jí shǐ..., yě...", name: "Cho dù (giả định)...cũng vẫn...",
+    explain: "Điểm khác biệt cốt lõi với 虽然 (HSK2): 虽然 dùng cho một sự việc ĐÃ LÀ SỰ THẬT xác nhận, còn 即使 dùng cho một tình huống GIẢ ĐỊNH/CHƯA XẢY RA (hoặc thậm chí trái ngược thực tế) — 'cho dù [nếu] điều đó có xảy ra thì...'. Đây là cặp dễ nhầm nhất ở trình độ cao vì cả hai đều dịch lỏng ra tiếng Việt là 'dù/mặc dù', nhưng tính XÁC THỰC của mệnh đề đầu hoàn toàn khác nhau.",
+    examples: [ { zh: "即使下雨，我们也要去。", p: "jí shǐ xià yǔ, wǒ men yě yào qù", vi: "Cho dù trời mưa, chúng tôi vẫn sẽ đi." } ] },
+  { h: 5, id: "g29", pattern: "只有...，才...", p: "zhǐ yǒu..., cái...", name: "Chỉ khi...mới... (điều kiện cần)",
+    explain: "Nêu một ĐIỀU KIỆN CẦN — nếu không có điều kiện đó thì kết quả CHẮC CHẮN không xảy ra ('chỉ có X thì mới Y'). Đây là cặp bẫy kinh điển với 只要...就... (điều kiện ĐỦ — chỉ cần có X là Y sẽ xảy ra, không loại trừ những cách khác cũng dẫn tới Y). Phân biệt: 只有...才... = X là con đường DUY NHẤT dẫn đến Y; 只要...就... = X là MỘT cách đủ để có Y, nhưng có thể còn cách khác.",
+    examples: [ { zh: "只有努力学习，才能成功。", p: "zhǐ yǒu nǔ lì xué xí, cái néng chéng gōng", vi: "Chỉ có nỗ lực học tập mới có thể thành công." } ] },
+  { h: 5, id: "g30", pattern: "一旦...，就...", p: "yí dàn..., jiù...", name: "Một khi (đã)...thì lập tức...",
+    explain: "Diễn tả một sự kiện TƯƠNG LAI/GIẢ ĐỊNH mà MỘT KHI nó xảy ra thì hệ quả sẽ đến NGAY LẬP TỨC và thường KHÔNG THỂ ĐẢO NGƯỢC — thường mang sắc thái cảnh báo về một ngưỡng/điểm-không-thể-quay-lại. Khác với 如果...就... (nếu...thì..., trung tính, không nhấn tính tức thời/không đảo ngược), 一旦 nhấn mạnh MỐC KÍCH HOẠT và hệ quả gần như tự động, dây chuyền.",
+    examples: [ { zh: "一旦你答应了，就不能反悔。", p: "yí dàn nǐ dā ying le, jiù bù néng fǎn huǐ", vi: "Một khi bạn đã đồng ý, thì không thể nuốt lời được nữa." } ] },
+];
+
+
+function HskBadge({ h }) {
+  const colors = { 1: "#5B8FA8", 2: "#7A9E7E", 3: "#C99A3E", 4: "#D98A5F", 5: "#C1440E" };
+  const c = colors[h] || "#8A8478";
+  return (
+    <span className="hsk-badge" style={{ color: c, borderColor: c }}>
+      HSK{h}
+    </span>
+  );
+}
+
+/* 30 concrete grammar-pattern drill cards (HSK1-5) — kept as a
+   distinct visual block (not prose) so tone-colored pinyin + HSK
+   badges still work. */
+function GrammarPatterns() {
+  return (
+    <div className="gp-wrap">
+      <h2 className="grp-title">30 mẫu câu ngữ pháp cốt lõi (HSK1–5)</h2>
+      <div className="gp-grid">
+        {GRAMMAR.map((gr) => (
+          <div className="gp-card" key={gr.id}>
+            <div className="gp-head">
+              <div>
+                <div className="gp-pattern">{gr.pattern}</div>
+                <div className="gp-pinyin-head">{gr.p}</div>
+              </div>
+              <HskBadge h={gr.h} />
+            </div>
+            <div className="gp-name">{gr.name}</div>
+            <div className="gp-explain">{gr.explain}</div>
+            <div className="gp-examples">
+              {gr.examples.map((ex, i) => (
+                <div className="gp-ex" key={i}>
+                  <div className="gp-ex-zh">{ex.zh}</div>
+                  <div className="gp-ex-py"><Pinyin text={ex.p} /></div>
+                  <div className="gp-ex-vi">{ex.vi}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   Merged content tree (former Best Practices Guide sections +
+   Phương pháp essays converted to the same item-block schema).
+   ============================================================ */
+const SECTIONS = [{"kind": "section", "title": "Nền tảng khoa học", "groups": [{"title": "", "items": [{"type": "callout", "text": "Tài liệu này chắt lọc từ các công trình nền tảng của SLA (Second Language Acquisition) và khoa học nhận thức: Krashen, Long, Swain, Nation, Laufer & Schmitt, Roediger & Karpicke, Bjork, Pan & Rickard, cùng các nghiên cứu chuyên biệt về người Việt học tiếng Anh và tiếng Trung. Mục tiêu: cung cấp cơ sở khoa học VỮNG, rồi rút ra hành động cụ thể, đòn bẩy cao.", "color": "1F3A5F"}, {"type": "note", "text": "Nếu chị chỉ đọc một trang, hãy đọc trang này. Đây là 8 phát hiện có sức nặng bằng chứng lớn nhất, sắp theo mức độ đòn bẩy."}, {"type": "labeled", "label": "1. Input dễ hiểu là nền móng", "text": "ngôn ngữ được tiếp thu chủ yếu qua việc HIỂU input ở mức 95–98% (Krashen; Nation). Dưới ngưỡng đó, não quá tải và không học được.", "color": "0F6E6E"}, {"type": "labeled", "label": "2. Nhớ được là nhờ TRUY XUẤT, không phải đọc lại", "text": "tự nhớ lại (retrieval/active recall) mạnh hơn đọc lại nhiều lần. Roediger & Karpicke (2006): nhóm truy xuất chỉ quên 13% sau 2 ngày, nhóm đọc lại quên tới 56%.", "color": "0F6E6E"}, {"type": "labeled", "label": "3. Giãn cách đánh bại nhồi nhét", "text": "cùng số giờ, chia nhỏ theo ngày (spaced) cho trí nhớ dài hạn vượt trội so với học dồn một lúc (massed). Đây là hiệu ứng vững chắc nhất trong khoa học trí nhớ.", "color": "0F6E6E"}, {"type": "labeled", "label": "4. Khó 'vừa phải' mới tạo học sâu", "text": "desirable difficulties (Bjork): điều kiện học hơi khó — tự tạo câu trả lời, xen kẽ chủ đề, giãn cách — cho kết quả dài hạn tốt hơn dù cảm giác lúc học chậm và khó chịu hơn.", "color": "0F6E6E"}, {"type": "labeled", "label": "5. Nói/viết (output) ép não 'nhận ra lỗ hổng'", "text": "Swain: khi buộc phải tạo ra ngôn ngữ, người học nhận ra mình thiếu gì và tái cấu trúc kiến thức. Chỉ nghe hiểu là chưa đủ để nói giỏi.", "color": "0F6E6E"}, {"type": "labeled", "label": "6. Tương tác + đàm phán nghĩa tăng tốc tiếp thu", "text": "Long: hội thoại thật (hỏi lại, làm rõ, diễn đạt lại) biến input thành intake nhanh hơn học thụ động.", "color": "0F6E6E"}, {"type": "labeled", "label": "7. Từ vựng có NGƯỠNG rõ ràng", "text": "Nation: ~2.000–3.000 word families đủ giao tiếp cơ bản; ~8.000–9.000 để đọc trôi chảy văn bản thật (98% coverage). Đây là mục tiêu định lượng được.", "color": "0F6E6E"}, {"type": "labeled", "label": "8. Cảm xúc là cái van", "text": "Krashen (affective filter) & nghiên cứu WTC: lo lắng cao chặn input biến thành intake; động lực là yếu tố dự báo trực tiếp mạnh nhất cho việc dám giao tiếp.", "color": "0F6E6E"}, {"type": "callout", "text": "Chẩn đoán nhanh cho người Việt: bottleneck lớn nhất thường KHÔNG phải thiếu giờ học, mà là (a) học thụ động thay vì truy xuất chủ động, (b) nhồi nhét thay vì giãn cách, và (c) né output vì lo lắng. Ba đòn bẩy này sửa được ngay mà không tốn thêm giờ.", "color": "9A6A00"}, {"type": "callout", "text": "NGUYÊN TẮC BAO TRÙM: Mọi lý thuyết trong tài liệu này chỉ có giá trị KHI ĐƯỢC THỰC HÀNH. Đọc hiểu 8 nguyên lý không làm bạn giỏi thêm một chút nào — chỉ có việc áp dụng đều đặn, lặp lại, và duy trì bền bỉ qua nhiều tháng mới tạo ra năng lực thật. Kiến thức là bản đồ; thực hành là quãng đường. Không ai đến đích bằng cách ngắm bản đồ.", "color": "9E2A2B"}], "isBP": false}, {"title": "", "items": [{"type": "p", "text": "Phần này trình bày các lý thuyết và bằng chứng cốt lõi. Mỗi mục nêu: nội dung, bằng chứng, và giới hạn/tranh luận — để chị nắm cơ chế trước khi áp dụng."}], "isBP": false}, {"title": "1. Giả thuyết Input dễ hiểu (Comprehensible Input — Krashen)", "items": [{"type": "h3", "text": "Nội dung"}, {"type": "p", "text": "Krashen (1982, 1985) cho rằng ta tiếp thu ngôn ngữ theo một cách chính: HIỂU được input ở mức hơi cao hơn trình độ hiện tại — công thức nổi tiếng \"i+1\". Việc học quy tắc ngữ pháp một cách có ý thức chỉ đóng vai trò \"màn hình kiểm soát\" (monitor), không tạo ra năng lực nói tự nhiên."}, {"type": "h3", "text": "Bằng chứng & con số"}, {"type": "bullet", "text": "Nghiên cứu SLA cho thấy người học cần hiểu khoảng 90–98% input để học tối ưu; dưới ngưỡng này, tải nhận thức (cognitive load, Sweller 1988) vượt quá khả năng xử lý của bộ nhớ làm việc.", "level": 0}, {"type": "bullet", "text": "VanPatten (1990): khi input quá khó, người học phải chia sự chú ý giữa hiểu nghĩa và phân tích cấu trúc, làm giảm cả hai.", "level": 0}, {"type": "bullet", "text": "So sánh giữa phương pháp dựa trên input và phương pháp dạy ngữ pháp truyền thống: theo tổng hợp của Krashen, nhóm input chưa bao giờ thua.", "level": 0}, {"type": "h3", "text": "Giới hạn & tranh luận (để cân bằng)"}, {"type": "note", "text": "Giới học thuật phê phán rằng chỉ input là KHÔNG ĐỦ. White (1987) và các nhà nghiên cứu tương tác cho rằng người học cũng cần output và phản hồi. Một số phê bình gần đây (neuro-ecological) lập luận rằng tiếp thu ngôn ngữ là quá trình chủ động, phụ thuộc tương tác và trải nghiệm, không chỉ 'tiêu thụ' input thụ động. Kết luận thực dụng: input dễ hiểu là ĐIỀU KIỆN CẦN nhưng chưa đủ — phải kết hợp output + tương tác (mục 3–4)."}], "isBP": false}, {"title": "2. Ngưỡng phủ từ vựng (Vocabulary Coverage — Nation, Laufer)", "items": [{"type": "h3", "text": "Nội dung"}, {"type": "p", "text": "Để hiểu một văn bản mà không bị gián đoạn liên tục bởi từ lạ, người đọc cần biết một tỷ lệ đủ lớn số từ trong văn bản đó (lexical coverage). Nghiên cứu xác định các ngưỡng rất cụ thể."}, {"type": "h3", "text": "Con số then chốt (tiếng Anh, word families)"}, {"type": "labeled", "label": "Giao tiếp cơ bản hằng ngày", "text": "~2.000–3.000 word families", "color": "2E5B94"}, {"type": "labeled", "label": "Đọc hiểu tổng quát (ngưỡng tối thiểu, 95% coverage)", "text": "~4.000–5.000 word families (Laufer & Ravenhorst-Kalovski 2010)", "color": "2E5B94"}, {"type": "labeled", "label": "Đọc trôi chảy văn bản thật, không cần từ điển (98% coverage, tối ưu)", "text": "~8.000–9.000 word families (Nation 2006)", "color": "2E5B94"}, {"type": "labeled", "label": "Nghe hiểu (98% coverage)", "text": "~6.000–7.000 word families — thấp hơn đọc vì khẩu ngữ dùng vốn từ hẹp hơn", "color": "2E5B94"}, {"type": "callout", "text": "Ý nghĩa thực dụng: từ vựng là mục tiêu ĐỊNH LƯỢNG ĐƯỢC. Ưu tiên học theo tần suất — 3.000 từ phổ biến nhất cho coverage ~95%; sau đó mỗi 1.000 từ tiếp theo cho lợi ích giảm dần nhưng vẫn cần cho 98%. Đừng học từ hiếm khi chưa nắm chắc lõi tần suất cao.", "color": "0F6E6E"}, {"type": "note", "text": "Lưu ý: Cobb & Schmitt chỉ ra rằng KHÔNG thể đạt 9.000 từ chỉ nhờ đọc ngẫu nhiên trong thời gian hợp lý, vì tần suất lặp lại của từ trong văn bản thật không đủ. => cần kết hợp học từ chủ đích (SRS) với đọc mở rộng."}], "isBP": false}, {"title": "3. Truy xuất chủ động & Hiệu ứng kiểm tra (Retrieval Practice / Testing Effect)", "items": [{"type": "h3", "text": "Nội dung"}, {"type": "p", "text": "Hành động cố NHỚ LẠI một thông tin (không nhìn đáp án) làm thay đổi và củng cố dấu vết trí nhớ mạnh hơn nhiều so với việc đọc lại thông tin đó. Mỗi lần truy xuất thành công khiến lần sau dễ nhớ hơn (Bjork & Bjork)."}, {"type": "h3", "text": "Bằng chứng & con số"}, {"type": "bullet", "text": "Roediger & Karpicke (2006): sau 2 ngày, nhóm chỉ đọc lại quên 56% những gì từng nhớ; nhóm luyện truy xuất chỉ quên 13%.", "level": 0}, {"type": "bullet", "text": "Karpicke & Blunt (2011, Science): truy xuất thắng cả sơ đồ khái niệm (concept mapping) — kể cả khi bài kiểm tra cuối là vẽ sơ đồ. Lợi ích đến từ chính hành vi nhớ lại, không phải xử lý sâu hơn.", "level": 0}, {"type": "bullet", "text": "Rowland (2014, meta-analysis): hiệu ứng truy xuất mạnh hơn khi tỷ lệ nhớ thành công ban đầu > ~75%. Tức là nên luyện ở mức 'khó nhưng làm được', không phải quá khó.", "level": 0}, {"type": "callout", "text": "Đòn bẩy #1 cho hầu hết người học: THAY 'đọc lại/nghe lại nhiều lần' bằng 'che đáp án và tự nhớ lại'. Cùng thời gian, kết quả dài hạn gấp nhiều lần. Đây là thay đổi rẻ nhất mà lợi ích lớn nhất.", "color": "9A6A00"}], "isBP": false}, {"title": "4. Hiệu ứng giãn cách (Spacing Effect / Distributed Practice)", "items": [{"type": "h3", "text": "Nội dung"}, {"type": "p", "text": "Cùng một lượng ôn tập, nếu TRẢI RA qua nhiều buổi cách nhau (spaced) sẽ cho trí nhớ dài hạn tốt hơn nhiều so với dồn vào một buổi (massed/cramming). Khoảng nghỉ để trí nhớ hơi phai đi rồi ôn lại chính là cơ chế củng cố."}, {"type": "h3", "text": "Bằng chứng & con số"}, {"type": "bullet", "text": "Cepeda và cộng sự (2006): giãn cách tăng khả năng ghi nhớ khoảng 10–30% so với học dồn.", "level": 0}, {"type": "bullet", "text": "Đây là một trong những hiệu ứng vững chắc và lặp lại được nhiều nhất trong toàn bộ nghiên cứu trí nhớ, đúng cho học từ vựng, tên gọi, đoạn văn.", "level": 0}, {"type": "bullet", "text": "Kết hợp 'giãn cách + truy xuất' = spaced retrieval, chính là nguyên lý vận hành của các phần mềm thẻ nhớ như Anki.", "level": 0}, {"type": "labeled", "label": "Quy tắc thực hành", "text": "thay 5 giờ học trong 1 ngày bằng 1 giờ/ngày trong 5 ngày (hoặc 30 phút/ngày trong 10 ngày). Chia nhỏ, đều đặn.", "color": "2E5B94"}], "isBP": false}, {"title": "5. Khó khăn đáng mong đợi (Desirable Difficulties — Bjork)", "items": [{"type": "h3", "text": "Nội dung"}, {"type": "p", "text": "Bjork (1994) chỉ ra nghịch lý: các điều kiện làm việc học CHẬM và KHÓ hơn trong ngắn hạn lại tạo trí nhớ và khả năng chuyển giao tốt hơn dài hạn. 'Hiệu suất lúc học' và 'việc học thật sự' có thể tách rời, thậm chí nghịch nhau."}, {"type": "h3", "text": "Bốn 'khó khăn đáng mong đợi' áp dụng được cho ngôn ngữ"}, {"type": "labeled", "label": "Giãn cách (spacing)", "text": "để trí nhớ hơi phai rồi ôn — mỗi lần khôi phục củng cố mạnh hơn.", "color": "2E6B3E"}, {"type": "labeled", "label": "Xen kẽ (interleaving)", "text": "trộn nhiều loại nội dung (ví dụ trộn thì/cấu trúc khác nhau) buộc não phân biệt — Pan et al. (2019) cho hiệu ứng phân biệt d = 0.67.", "color": "2E6B3E"}, {"type": "labeled", "label": "Tự tạo đáp án (generation effect)", "text": "tự nói/viết ra câu trước khi xem mẫu, mạnh hơn nhiều so với chỉ đọc câu mẫu.", "color": "2E6B3E"}, {"type": "labeled", "label": "Luyện tập biến đổi (varied practice)", "text": "dùng cùng cấu trúc trong nhiều bối cảnh khác nhau thay vì lặp một khuôn.", "color": "2E6B3E"}, {"type": "note", "text": "Cảnh báo của Bjork: KHÔNG phải mọi khó khăn đều tốt. Khó khăn phải thách thức đúng quá trình truy xuất/tái tạo (germane load), không phải khó do rối rắm vô ích (extraneous load). Ví dụ: đoán từ khi hoàn toàn thiếu nền tảng = khó vô ích, không học được gì. Cần đủ nền để vượt qua cái khó đó."}, {"type": "callout", "text": "'Ảo giác trôi chảy' (fluency illusion) là kẻ thù lớn nhất: đọc lại thấy 'quen' nên tưởng đã thuộc, nhưng quen ≠ nhớ được khi cần. Cảm giác dễ khi học thường tỷ lệ NGHỊCH với học sâu. Hãy tin vào phương pháp thấy hơi khó.", "color": "9A6A00"}], "isBP": false}, {"title": "6. Output & Tương tác (Output Hypothesis — Swain; Interaction — Long)", "items": [{"type": "h3", "text": "Nội dung"}, {"type": "p", "text": "Swain (1985): việc TẠO RA ngôn ngữ (nói/viết) ép người học chuyển từ xử lý nghĩa sang xử lý cấu trúc — họ 'nhận ra lỗ hổng' (noticing the gap) giữa điều muốn nói và điều nói được, rồi tái cấu trúc kiến thức. Long (1996): hội thoại thật, đặc biệt là 'đàm phán nghĩa' (negotiation for meaning) khi có hiểu lầm, biến input thành intake hiệu quả nhất."}, {"type": "h3", "text": "Cơ chế 'đàm phán nghĩa' — các nước đi cụ thể"}, {"type": "bullet", "text": "Yêu cầu làm rõ (clarification requests): \"Sorry, what do you mean by...?\"", "level": 0}, {"type": "bullet", "text": "Kiểm tra xác nhận (confirmation checks): \"So you mean...?\"", "level": 0}, {"type": "bullet", "text": "Kiểm tra hiểu (comprehension checks): \"Does that make sense?\"", "level": 0}, {"type": "bullet", "text": "Diễn đạt lại (modified output): tự sửa/nói lại chính xác hơn dựa trên phản hồi.", "level": 0}, {"type": "h3", "text": "Bằng chứng"}, {"type": "bullet", "text": "Mackey & Philp: người học tương tác có đàm phán nghĩa tiến bộ về cấu trúc rõ hơn nhóm chỉ nhận input.", "level": 0}, {"type": "bullet", "text": "Thú vị: một số nghiên cứu (Shehadeh 1999) thấy người học tự sửa NHIỀU HƠN khi nói với người học khác so với người bản xứ — nghĩa là không nhất thiết phải có người bản ngữ mới luyện nói hiệu quả.", "level": 0}, {"type": "callout", "text": "Hệ quả cho người sợ nói: bạn KHÔNG cần người bản xứ để bắt đầu. Nói với AI, với người học khác, hoặc tự nói to (self-talk) đều kích hoạt cơ chế 'nhận ra lỗ hổng'. Điều quan trọng là TẠO RA output, không phải chờ điều kiện hoàn hảo.", "color": "0F6E6E"}], "isBP": false}, {"title": "7. Yếu tố cảm xúc: Bộ lọc cảm xúc & Sự sẵn sàng giao tiếp (Affective Filter & WTC)", "items": [{"type": "h3", "text": "Nội dung"}, {"type": "p", "text": "Krashen (1985) — Affective Filter: cảm xúc tiêu cực (lo lắng, thiếu tự tin, thiếu động lực) hoạt động như một 'bộ lọc' chặn input biến thành intake, dù input có dễ hiểu đến đâu. MacIntyre và cộng sự (1998) — mô hình 'kim tự tháp' Willingness to Communicate (WTC): việc DÁM giao tiếp phụ thuộc nhiều tầng, từ tính cách, trạng thái cảm xúc đến động lực."}, {"type": "h3", "text": "Bằng chứng & con số"}, {"type": "bullet", "text": "Nghiên cứu SEM trên 627 học sinh (Trung Quốc, 2025): lo lắng ngoại ngữ (FLA) dự báo TIÊU CỰC rõ rệt cho sự sẵn sàng giao tiếp (WTC).", "level": 0}, {"type": "bullet", "text": "Lee & Hsieh (2019): ĐỘNG LỰC là yếu tố có ảnh hưởng trực tiếp DƯƠNG mạnh nhất lên WTC — và còn tác động gián tiếp qua việc nuôi cảm xúc tích cực.", "level": 0}, {"type": "bullet", "text": "Nghiên cứu trên sinh viên Đài Loan: động lực cao + lo lắng thấp là điều kiện cần để có WTC mạnh. Anxiety làm trung gian giữa động lực và việc dám nói.", "level": 0}, {"type": "callout", "text": "Hệ quả: hạ 'bộ lọc cảm xúc' là một đòn bẩy thật, không phải lời khuyên sáo rỗng. Môi trường ít rủi ro xã hội (nói với AI, nhóm nhỏ an toàn, ghi âm một mình) làm tăng WTC tức thời, giúp bạn nói nhiều hơn — và nói nhiều hơn chính là cách giỏi lên.", "color": "9A6A00"}], "isBP": false}]}, {"kind": "section", "title": "Phát âm & Thanh điệu", "groups": [{"title": "", "items": [{"type": "p", "text": "Tiếng mẹ đẻ định hình cả điểm mạnh lẫn điểm yếu khi học ngoại ngữ (L1 transfer). Hiểu rõ điều này giúp chị tập trung công sức đúng chỗ thay vì luyện dàn trải."}], "isBP": false}, {"title": "", "items": [{"type": "h3", "text": "CƠ CHẾ NỀN TẢNG"}, {"type": "labeled", "label": "Tone là âm vị, không phải ngữ điệu", "text": "Hệ âm tiết tiếng Hán chỉ có khoảng 400 hình dạng âm tiết (so với hàng nghìn ở tiếng Anh), nhưng nhân với 4 thanh + khinh thanh thì tách được ~1300 âm tiết phân biệt nghĩa. Tức là thanh điệu mang chức năng khu biệt nghĩa (phonemic), giống hệt việc đổi một phụ âm — mā (mẹ), má (vừng/gò má), mǎ (ngựa), mà (mắng) là bốn từ khác nhau hoàn toàn, không phải một từ đọc 'có ngữ điệu khác nhau'.", "color": "1F3A5F"}, {"type": "labeled", "label": "Vì sao trực giác tiếng Việt vừa lợi vừa hại", "text": "Tiếng Việt có 6 thanh điệu (ngang, huyền, sắc, hỏi, ngã, nặng) cũng mang chức năng khu biệt nghĩa, nên năng lực nhận thức phạm trù cao độ (categorical pitch perception) của bạn đã được huấn luyện sẵn — đây là lợi thế thật, không phải ảo tưởng. Nhưng đường nét cao độ (contour) và cách phát âm cụ thể khác hẳn: thanh ngã/nặng tiếng Việt có yếu tố tắc thanh hầu (glottalization) mà tiếng Hán không có; thanh sắc tiếng Việt lên nhanh và ngắn hơn nhiều so với thanh 2 tiếng Hán. Não bạn dễ 'mượn tạm' quán tính thanh điệu Việt rồi tưởng là đúng.", "color": "1F3A5F"}, {"type": "labeled", "label": "Âm quặt lưỡi (zh/ch/sh/r) là cử động khoang miệng hoàn toàn mới", "text": "Nhiều tài liệu tiếng Việt dịch zh/ch/sh gần với 'tr/ch' để dễ hình dung, nhưng đây là âm quặt lưỡi thật sự (retroflex) — đầu lưỡi cong ngược lên gần vòm cứng, một cử động không tồn tại trong hệ âm vị tiếng Việt chuẩn. Nếu chỉ dựa vào bảng so sánh gần đúng, phát âm sẽ mắc kẹt ở mức 'nghe hiểu được' chứ không đạt mức tự nhiên.", "color": "1F3A5F"}, {"type": "h3", "text": "BẰNG CHỨNG & NGHIÊN CỨU"}, {"type": "bullet", "text": "Nghiên cứu thụ đắc thanh điệu ở người học L2 cho thấy cặp thanh 2 (lên) và thanh 3 (giáng-thăng) là cặp gây nhầm lẫn phổ biến nhất xuyên suốt các nhóm ngôn ngữ mẹ đẻ khác nhau — kể cả với người có tiếng mẹ đẻ thanh điệu — vì trong lời nói tự nhiên (không phải dạng đọc tách rời), hai đường nét này dễ trùng lặp về mặt thính giác."}, {"type": "bullet", "text": "Luyện nghe phân biệt cặp tối thiểu (minimal-pair discrimination) có bằng chứng cải thiện nhận thức thanh điệu nhanh hơn so với chỉ 'ngâm mình' trong input tự nhiên ở giai đoạn đầu — vì lời nói tự nhiên hiếm khi tách bạch đủ để tai người mới calibrate."}, {"type": "bullet", "text": "Tự đánh giá lỗi phát âm của chính mình qua thính giác nội tâm (self-monitoring) kém tin cậy hơn hẳn so với nhận diện lỗi của người khác — đây là lý do ghi âm và so sánh khách quan quan trọng hơn 'tự cảm thấy đúng'."}, {"type": "h3", "text": "LỖI THƯỜNG GẶP"}, {"type": "bullet", "text": "Đọc pinyin như đánh vần tiếng Anh (q, x, c, zh sai hệ thống hoàn toàn)."}, {"type": "bullet", "text": "Học từ mới mà tách tone khỏi âm tiết — nhớ mặt chữ + nghĩa nhưng quên tone, dẫn đến nói đúng từ nhưng người bản ngữ không hiểu."}, {"type": "bullet", "text": "Bỏ qua biến điệu bắt buộc (tone sandhi): 3-3 → 2-3 (你好 → 'ní hǎo'), 不 đổi 4→2 trước âm tiết tone 4, 一 đổi tone tùy ngữ cảnh phía sau."}, {"type": "bullet", "text": "Quá tự tin vì 'tiếng Việt cũng có thanh điệu' rồi bỏ qua luyện tập có hệ thống — lợi thế nhận thức không tự động chuyển thành lợi thế sản xuất âm."}, {"type": "h3", "text": "LỘ TRÌNH THEO GIAI ĐOẠN"}, {"type": "labeled", "label": "Giai đoạn 0 — trước khi học từ vựng", "text": "Học toàn bộ 21 thanh mẫu + 39 vận mẫu với mô tả khẩu hình cụ thể (vị trí lưỡi, môi, luồng hơi) — không suy luận từ chữ cái Latin quen thuộc.", "color": "0F6E6E"}, {"type": "labeled", "label": "Giai đoạn 1 — luyện tai trước luyện miệng", "text": "Bài tập nhận diện cặp tối thiểu (mā/má/mǎ/mà) đến khi nghe phân biệt ổn định, trước khi ép bản thân phát âm chuẩn — sản xuất âm mà chưa nhận thức đúng sẽ cố định thói quen sai.", "color": "0F6E6E"}, {"type": "labeled", "label": "Giai đoạn 2 — sản xuất có phản hồi khách quan", "text": "Ghi âm giọng mình, so với bản gốc hoặc dùng công cụ theo dõi đường nét cao độ (pitch tracking) — không dựa vào cảm giác chủ quan.", "color": "0F6E6E"}, {"type": "labeled", "label": "Giai đoạn 3 — biến điệu như luật tường minh", "text": "Học tone sandhi (3-3, 一, 不) như quy tắc có thể phát biểu rõ ràng, không trông chờ 'nghe nhiều tự ngấm' — với người lớn học L2, quy tắc tường minh học nhanh hơn quy nạp từ input.", "color": "0F6E6E"}, {"type": "labeled", "label": "Giai đoạn 4 — ngữ điệu câu", "text": "Thanh điệu từng âm tiết chồng lên ngữ điệu toàn câu (trọng âm, ngữ điệu câu hỏi) — đây là ranh giới giữa 'đúng khi đọc rời' và 'tự nhiên khi nói liền mạch'.", "color": "0F6E6E"}, {"type": "h3", "text": "NGỘ NHẬN CẦN GỠ BỎ"}, {"type": "note", "text": "“Người Việt có sẵn lợi thế thanh điệu nên không cần luyện tone kỹ.”"}, {"type": "callout", "text": "Lợi thế chỉ nằm ở năng lực nhận thức phạm trù cao độ nói chung, không phải ở việc tái tạo đúng 4 đường nét cụ thể của tiếng Hán. Trên thực tế, sự tự tin này là một yếu tố rủi ro được ghi nhận: người học dễ luyện tập ít hơn mức cần thiết vì tưởng mình đã có sẵn kỹ năng."}], "isBP": false}, {"title": "Cơ chế chuyển di & vì sao lỗi L1 \"dính\" (Perceptual filter)", "items": [{"type": "p", "text": "Hệ tri giác của người trưởng thành đã được \"điều chỉnh\" theo tiếng mẹ đẻ: nó tự động lọc bỏ những khác biệt âm thanh không có ý nghĩa trong L1. Vì tiếng Việt không phân biệt hữu thanh/vô thanh ở âm cuối, tai người Việt \"không nghe thấy\" khác biệt đó trong tiếng Anh — nên không tự sửa được nếu chỉ nghe thụ động."}, {"type": "labeled", "label": "Hệ quả then chốt", "text": "sản xuất (nói) đúng phụ thuộc vào tri giác (nghe) đúng trước. Nếu tai chưa phân biệt được /s/ vs /z/ cuối từ, miệng gần như không thể phát âm ổn định. Phải huấn luyện TAI trước, rồi miệng theo sau.", "color": "1F3A5F"}, {"type": "labeled", "label": "Bằng chứng", "text": "High Variability Phonetic Training (HVPT) — luyện phân biệt cặp tối thiểu (minimal pairs) từ NHIỀU giọng khác nhau — có hiệu ứng lớn lên tri giác âm L2 (meta-analysis 79 nghiên cứu: g ≈ 0.92), và cải thiện này chuyển một phần sang khả năng nói.", "color": "0F6E6E"}, {"type": "note", "text": "Vì sao \"nghe nhiều tự khắc giỏi\" thất bại với người Việt: nghe thụ động không ép tai phân biệt cái nó đã quen bỏ qua. Cần luyện tri giác CÓ CHỦ ĐÍCH (phân biệt cặp tối thiểu, có phản hồi đúng/sai) thì bộ lọc L1 mới nới ra."}], "isBP": false}, {"title": "Lợi thế thanh điệu tiếng Việt & bẫy tinh vi", "items": [{"type": "h3", "text": "Lợi thế: nền thanh điệu sẵn có"}, {"type": "p", "text": "Tiếng Việt có 6 thanh, tiếng Trung phổ thông có 4 thanh + khinh thanh. Vì đã quen phân biệt cao độ (F0), người Việt có lợi thế rõ so với người nói ngôn ngữ phi thanh điệu (như tiếng Anh):"}, {"type": "bullet", "text": "Nghiên cứu (Pelzl et al.; ScienceDirect 2022) cho thấy người Việt nhạy với các thanh có đường nét lên/lượn — nên thanh 3 (thanh lượn xuống-lên) của tiếng Trung ít gây khó cho người Việt hơn so với người học phương Tây.", "level": 0}, {"type": "bullet", "text": "Người nói ngôn ngữ thanh điệu nhạy với ĐƯỜNG NÉT thanh (contour), trong khi người nói ngôn ngữ phi thanh điệu chỉ chú ý cao độ trung bình hay điểm cuối — đây là lợi thế thật của chị.", "level": 0}, {"type": "h3", "text": "Bẫy: 'tự tin sớm' đánh lừa"}, {"type": "p", "text": "Chính vì có lợi thế thanh điệu, người Việt dễ 'tự tin sớm' rồi mắc lỗi ở những điểm khác biệt tinh vi:"}, {"type": "bullet", "text": "Thanh 1 (cao-phẳng) và thanh 4 (cao xuống thấp) lại là nơi người Việt hay SAI NHIỀU NHẤT (Wu & Hu 2004) — vì thanh Việt không có cái nào phẳng-cao kéo dài đúng như thanh 1 tiếng Trung.", "level": 0}, {"type": "bullet", "text": "Biến điệu (tone sandhi): thanh 3 + thanh 3 → thanh 2 + thanh 3; '一' và '不' đổi thanh theo ngữ cảnh. Đây là quy tắc phải học riêng, không suy ra từ tiếng Việt.", "level": 0}, {"type": "bullet", "text": "Thanh tiếng Trung là đường nét cao độ THUẦN, còn thanh Việt dùng cả tắc thanh hầu (glottal stop) và giọng kẹt (creaky) — nên đừng bê nguyên 'cảm giác thanh' tiếng Việt sang.", "level": 0}, {"type": "note", "text": "Kết luận cân bằng: với tiếng Trung, người Việt nên tận dụng tối đa lợi thế thanh điệu + Hán-Việt ở giai đoạn đầu, nhưng chủ động 'phòng bẫy' bằng cách luyện riêng thanh 1, thanh 4, và các quy tắc biến điệu — những điểm mà lợi thế L1 không giúp được."}], "isBP": false}, {"title": "Bản đồ bẫy thanh điệu chi tiết", "items": [{"type": "h3", "text": "Lợi thế thêm — nền thanh điệu"}, {"type": "bullet", "text": "Tiếng Việt 6 thanh → tai đã quen phân biệt cao độ (F0). Thanh 3 tiếng Trung (lượn xuống-lên) ít gây khó cho người Việt.", "level": 0}, {"type": "h3", "text": "Bản đồ bẫy — nơi lợi thế L1 KHÔNG giúp"}, {"type": "labeled", "label": "Thanh 1 & Thanh 4", "text": "hai thanh người Việt sai nhiều nhất. Thanh 1 = cao-phẳng-kéo dài (tiếng Việt không có thanh nào phẳng-cao như vậy); Thanh 4 = cao dứt khoát xuống thấp. Luyện riêng, có trực quan hoá cao độ.", "color": "9E2A2B"}, {"type": "labeled", "label": "Biến điệu (tone sandhi)", "text": "3+3 → 2+3; \"一\" đổi thanh theo ngữ cảnh (yī → yí trước thanh 4, yì trước thanh khác); \"不\" bù → bú trước thanh 4. Quy tắc phải học riêng, không suy từ tiếng Việt.", "color": "9E2A2B"}, {"type": "labeled", "label": "Bẫy \"tự tin sớm\"", "text": "lợi thế thanh điệu khiến chủ quan tháng đầu rồi sai ở tháng thứ ba. Thanh Việt dùng tắc thanh hầu + giọng kẹt; thanh Trung là cao độ thuần — đừng bê nguyên \"cảm giác thanh\" sang.", "color": "9E2A2B"}, {"type": "callout", "text": "Chiến lược tiếng Trung cho người Việt: dồn lực vào Hán-Việt (từ vựng) + luyện riêng T1/T4/sandhi (thanh điệu). Đây là hai đòn bẩy mà người học phương Tây không có và không thể sao chép.", "color": "0F6E6E"}], "isBP": false}, {"title": "BP7 — Luyện phát âm có chủ đích (Shadowing + tự ghi âm)", "items": [{"type": "labeled", "label": "Best practice", "text": "Luyện âm tách biệt bằng shadowing (nói đè theo bản xứ) và tự ghi âm để đối chiếu.", "color": "1F3A5F"}, {"type": "labeled", "label": "Cơ chế", "text": "Bắt chước trực tiếp nhịp/trọng âm/ngữ điệu xây 'khuôn vận động' (motor template) cho âm mới; tự ghi âm tạo vòng phản hồi để phát hiện lỗi.", "color": "0F6E6E"}, {"type": "labeled", "label": "Sai lầm hay mắc", "text": "Cho rằng phát âm 'tự khắc đúng' khi nghe nhiều → thực tế lỗi L1 transfer cố hữu không tự sửa nếu không luyện có chủ đích.", "color": "9E2A2B"}, {"type": "h3", "text": "Hành động"}, {"type": "bullet", "text": "Chọn đoạn 30–60 giây của người bản xứ; nghe hiểu rồi nói đè lên (shadow) 5–10 lần cùng một đoạn.", "level": 0}, {"type": "bullet", "text": "Ghi âm chính mình, so với bản gốc, khoanh vùng 1–2 lỗi để sửa có mục tiêu.", "level": 0}, {"type": "bullet", "text": "Gạch chân 2–3 từ nhấn trọng âm trong mỗi câu trước khi nói (chống thói đọc đều của tiếng Việt).", "level": 0}, {"type": "labeled", "label": "Small action đòn bẩy cao", "text": "'Một đoạn – mười lần': chất lượng hơn số lượng. Lặp cùng một đoạn ngắn 10 lần cho tới khi khớp nhịp, hơn là shadow 10 đoạn khác nhau mỗi đoạn 1 lần.", "color": "2E6B3E"}], "isBP": true}]}, {"kind": "section", "title": "Từ vựng & Chữ Hán", "groups": [{"title": "", "items": [{"type": "h3", "text": "CƠ CHẾ NỀN TẢNG"}, {"type": "labeled", "label": "Chữ Hán không phải hình vẽ — 'huyền thoại tượng hình' đã bị bác bỏ", "text": "Nhà Hán ngữ học John DeFrancis (The Chinese Language: Fact and Fantasy, 1984) chỉ ra rằng quan niệm phổ biến 'chữ Hán là hình vẽ biểu ý' chỉ đúng với một tỷ lệ rất nhỏ chữ tượng hình gốc. Khoảng 80-90% chữ Hán hiện đại là chữ hình thanh (形声字): một bộ phận gợi phạm trù nghĩa (bộ thủ), một bộ phận gợi âm đọc gần đúng (thường đã lệch đi sau hàng nghìn năm biến âm). Học kiểu 'nhớ hình vẽ thuần túy' bỏ phí cấu trúc ngữ âm-ngữ nghĩa vẫn còn tồn tại trong phần lớn chữ.", "color": "1F3A5F"}, {"type": "labeled", "label": "Đơn vị từ vựng thật sự là 词 (từ ghép), không phải 字 (chữ đơn)", "text": "Tiếng Hán hiện đại vận hành chủ yếu bằng từ hai âm tiết trở lên. Số lượng 'từ' trong mục tiêu HSK luôn tính theo 词. Học chữ đơn lẻ mà không học từ ghép khiến người học đánh giá sai khối lượng từ vựng thật cần học, và không nắm được giới hạn kết hợp (không phải hai chữ bất kỳ ghép lại đều tạo thành từ có nghĩa thật).", "color": "1F3A5F"}, {"type": "labeled", "label": "Tần suất chữ Hán tuân theo phân phối Zipf", "text": "Các nghiên cứu ngữ liệu (corpus linguistics) trên văn bản tiếng Hán hiện đại cho thấy khoảng 1000 chữ tần suất cao nhất phủ khoảng 90% lượt xuất hiện chữ trong văn bản thông thường, và khoảng 2500 chữ phủ gần 99%. Đây là lý do vốn từ HSK4-5 (~5000 từ) tăng nhanh về số từ nhưng chậm dần về số chữ mới — phần lớn từ mới ở cấp cao là tổ hợp mới của chữ đã biết, không phải chữ hoàn toàn xa lạ.", "color": "1F3A5F"}, {"type": "h3", "text": "BẰNG CHỨNG & NGHIÊN CỨU"}, {"type": "bullet", "text": "Hiệu ứng giãn cách (spacing effect) là một trong những phát hiện được tái lặp vững chắc nhất trong tâm lý học nhận thức, từ Ebbinghaus (1885) đến các phân tích tổng hợp hiện đại (Cepeda et al., 2006) — thời điểm ôn tập quan trọng hơn cường độ ôn tập trong một buổi."}, {"type": "bullet", "text": "Hiệu ứng kiểm tra (testing effect / retrieval practice — Roediger & Karpicke, 2006) cho thấy chủ động gợi nhớ (kể cả khi gợi nhớ sai) tạo trí nhớ dài hạn tốt hơn hẳn so với đọc lại thụ động nhiều lần — đây là cơ sở lý thuyết cho việc ưu tiên SRS dạng active-recall hơn flashcard kiểu 'lướt xem'."}, {"type": "bullet", "text": "Nghiên cứu về ngôn ngữ công thức (formulaic language — Nattinger & DeCarrico, 1992; Wray, 2002) cho thấy độ trôi chảy tự nhiên phụ thuộc nhiều vào khả năng truy xuất cụm từ có sẵn (prefabricated chunks) hơn là khả năng lắp ráp câu từ từng từ đơn theo ngữ pháp — đúng nguyên lý bạn đã áp dụng khi xây ChunkAtlas cho tiếng Anh, giờ áp dụng tương tự cho chữ Hán."}, {"type": "h3", "text": "LỖI THƯỜNG GẶP"}, {"type": "bullet", "text": "Học chữ đơn lẻ mà không học từ ghép chứa chữ đó."}, {"type": "bullet", "text": "Ôn tập thụ động (đọc lại nhiều lần) thay vì chủ động gợi nhớ (che nghĩa, tự dịch trước khi xem đáp án)."}, {"type": "bullet", "text": "Ôn dồn một lần (cramming) thay vì giãn cách theo lịch SRS."}, {"type": "bullet", "text": "Bỏ qua bộ thủ nên mỗi chữ mới học từ số 0, dù ~200 bộ thủ lặp lại xuyên suốt hàng nghìn chữ."}, {"type": "bullet", "text": "Tin rằng biết bộ thủ là suy ra được nghĩa/âm chính xác — bộ thủ chỉ là gợi ý xác suất, không phải công thức giải mã."}, {"type": "h3", "text": "LỘ TRÌNH THEO GIAI ĐOẠN"}, {"type": "labeled", "label": "Giai đoạn 0", "text": "Học ~200 bộ thủ cốt lõi như một 'lăng kính' tạo giả thuyết (chữ này có thể liên quan nghĩa/âm gì), không học thuộc như danh sách trivia.", "color": "0F6E6E"}, {"type": "labeled", "label": "Giai đoạn 1", "text": "Sắp xếp thứ tự học chữ theo tần suất sử dụng thực tế, không theo thứ tự bài trong giáo trình, nếu mục tiêu là tối ưu tốc độ đọc hiểu bao phủ văn bản.", "color": "0F6E6E"}, {"type": "labeled", "label": "Giai đoạn 2", "text": "Mỗi mục mới vào SRS là một khối trọn vẹn: chữ + pinyin có tone + nghĩa + một từ ghép ví dụ — không tách rời.", "color": "0F6E6E"}, {"type": "labeled", "label": "Giai đoạn 3", "text": "Sau khi nội tâm hóa khoảng 300-500 chữ, chuyển trọng tâm sang học từ ghép (词) là chính — lợi suất từ 'săn chữ mới' giảm dần khi việc học từ tổ hợp trở nên hiệu quả hơn.", "color": "0F6E6E"}, {"type": "labeled", "label": "Giai đoạn 4", "text": "Kiểm tra định kỳ bằng recall (che nghĩa, tự dịch) chứ không chỉ recognition (nhìn thấy quen mắt) — hai năng lực tách biệt và recall khó hơn nhiều.", "color": "0F6E6E"}, {"type": "h3", "text": "NGỘ NHẬN CẦN GỠ BỎ"}, {"type": "note", "text": "“Biết bộ thủ là đoán được nghĩa và cách đọc của bất kỳ chữ mới nào.”"}, {"type": "callout", "text": "Đây là một overclaim phổ biến. Thành phần biểu nghĩa nhiều khi chỉ gợi ý lỏng lẻo do nghĩa đã trôi dạt qua nhiều thế kỷ, còn thành phần biểu âm thường chỉ đúng gần đúng hoặc đã hoàn toàn lệch sau biến đổi ngữ âm lịch sử. Bộ thủ là công cụ tạo giả thuyết và hỗ trợ ghi nhớ, không phải thuật toán giải mã chính xác."}], "isBP": false}, {"title": "Từ vựng Hán-Việt: lợi thế lớn nhất", "items": [{"type": "h3", "text": "Lợi thế lớn: từ vựng Hán-Việt"}, {"type": "p", "text": "Kho từ Hán-Việt ánh xạ gần như từng hình vị sang chữ Hán: đại học = 大學 (dàxué), ngân hàng = 銀行 (yínháng), bác sĩ = 博士. Với văn bản học thuật/tin tức/tài chính, việc biết Hán-Việt là lợi thế lớn mà người học phương Tây không có — giúp đoán nghĩa và nhớ từ nhanh hơn nhiều."}, {"type": "callout", "text": "Đòn bẩy đặc biệt (với nền tài chính): rất nhiều thuật ngữ tài chính-kinh tế tiếng Trung là từ Hán gốc mà chị đã biết qua Hán-Việt. Học chủ động ánh xạ Hán-Việt ↔ 汉字 sẽ tăng tốc mảng từ vựng chuyên ngành đáng kể. Ví dụ: 投資 đầu tư, 利率 lãi suất, 通貨膨脹 thông (货)膨trướng.", "color": "9A6A00"}], "isBP": false}, {"title": "Khai thác lợi thế Hán-Việt chi tiết", "items": [{"type": "h3", "text": "Lợi thế 1 — Hán-Việt (đòn bẩy từ vựng lớn nhất)"}, {"type": "p", "text": "Kho Hán-Việt ánh xạ gần như từng hình vị sang chữ Hán. Chủ động xây \"cầu\" Hán-Việt ↔ 汉字 biến việc học từ mới thành việc NHẬN RA từ đã biết. Đặc biệt mạnh với văn bản học thuật, tin tức, kinh tế."}, {"type": "bullet", "text": "Ví dụ ánh xạ: 投資 đầu tư, 利率 lãi suất, 股票 cổ phiếu, 銀行 ngân hàng, 經濟 kinh tế, 政策 chính sách, 發展 phát triển.", "level": 0}, {"type": "bullet", "text": "Kỹ thuật: khi gặp từ Trung mới, tự hỏi \"Hán-Việt của nó là gì?\" — nếu đoán ra, từ đó gần như đã thuộc.", "level": 0}], "isBP": false}, {"title": "BP6 — Học từ vựng theo tần suất & theo cụm (chunks)", "items": [{"type": "labeled", "label": "Best practice", "text": "Ưu tiên vốn từ tần suất cao trước; học từ trong CỤM/ngữ cảnh, không học từ đơn lẻ trần trụi.", "color": "1F3A5F"}, {"type": "labeled", "label": "Cơ chế", "text": "Ngưỡng coverage (Nation): 3.000 từ ~95%, 8.000–9.000 ~98%. Học theo cụm tận dụng cách não lưu trữ ngôn ngữ theo khối (formulaic language), giúp nói trôi và đúng ngữ pháp tự nhiên.", "color": "0F6E6E"}, {"type": "labeled", "label": "Sai lầm hay mắc", "text": "Học từ hiếm/khó trước khi nắm chắc lõi tần suất cao; học danh sách từ đơn không ngữ cảnh → biết nghĩa nhưng không dùng được.", "color": "9E2A2B"}, {"type": "h3", "text": "Hành động"}, {"type": "bullet", "text": "Bám danh sách tần suất (frequency list) để chọn từ học; đạt vững 3.000 từ đầu rồi mới mở rộng.", "level": 0}, {"type": "bullet", "text": "Lưu từ mới dưới dạng cả câu ví dụ, không phải từ trần; ưu tiên collocation ('make a decision', không chỉ 'decision').", "level": 0}, {"type": "bullet", "text": "Kết hợp học chủ đích (SRS) + đọc mở rộng để gặp lại từ nhiều lần trong ngữ cảnh (Cobb: đọc thôi không đủ lặp lại).", "level": 0}, {"type": "labeled", "label": "Small action đòn bẩy cao", "text": "Quy tắc 'từ → cụm → câu': không bao giờ lưu một từ mới một mình. Luôn lưu kèm 1 collocation và 1 câu thật. Ba lớp này biến từ 'biết' thành 'dùng được'.", "color": "2E6B3E"}], "isBP": true}]}, {"kind": "section", "title": "Ngữ pháp", "groups": [{"title": "", "items": [{"type": "h3", "text": "CƠ CHẾ NỀN TẢNG"}, {"type": "labeled", "label": "Ngôn ngữ thiên chủ đề (topic-prominent), không phải thiên chủ ngữ", "text": "Li & Thompson (Mandarin Chinese: A Functional Reference Grammar, 1981) xếp tiếng Hán vào nhóm ngôn ngữ tổ chức câu quanh 'chủ đề đang nói tới' (topic) hơn là quanh chủ ngữ ngữ pháp thực hiện hành động, khác với tiếng Anh/Việt/Pháp vốn thiên chủ ngữ. Vì vậy câu như 这个电影我看过 (phim này, tôi xem rồi) — đưa tân ngữ lên đầu làm chủ đề — là cấu trúc bình thường, không phải đảo ngữ nhấn mạnh như trong tiếng Anh.", "color": "1F3A5F"}, {"type": "labeled", "label": "Aspect thay thế Tense — khác biệt phạm trù ngữ pháp cốt lõi", "text": "Tiếng Hán đánh dấu ngữ pháp theo thể (aspect — hành động diễn ra như thế nào so với mốc thời gian tham chiếu: hoàn thành 了, đã từng trải nghiệm 过, đang diễn ra 着/在), chứ không đánh dấu theo thì (tense — khi nào so với thời điểm nói) như hệ động từ chia thì của tiếng Anh/Pháp. Đây không phải một biến thể nhỏ mà là một phạm trù ngữ pháp khác hẳn — không có ánh xạ 1-1 giữa 了 và 'quá khứ'.", "color": "1F3A5F"}, {"type": "labeled", "label": "Lượng từ (量词) — hiếm hoi một điểm chuyển di tích cực", "text": "Yêu cầu bắt buộc có loại từ trước danh từ khi đếm/chỉ định (一个人, không phải *一人 trong đa số ngữ cảnh) trùng khớp về mặt chức năng với hệ loại từ tiếng Việt ('một con mèo', 'một quyển sách'). Theo giả thuyết Phân tích đối chiếu (Contrastive Analysis Hypothesis — Lado, 1957), cấu trúc tương đồng giữa L1 và L2 thường tạo chuyển di tích cực (dễ học hơn) — đây là một trong số ít điểm ngữ pháp tiếng Hán mà người Việt học nhanh hơn người nói tiếng Anh.", "color": "1F3A5F"}, {"type": "h3", "text": "BẰNG CHỨNG & NGHIÊN CỨU"}, {"type": "bullet", "text": "Phân tích lỗi (error analysis — Corder, 1967) phân biệt lỗi do chuyển di từ tiếng mẹ đẻ và lỗi phát triển phổ quát (developmental errors). Lỗi dịch 了 thành 'thì quá khứ' được ghi nhận rộng rãi ở người học từ rất nhiều nền tảng tiếng mẹ đẻ khác nhau — nghĩa là đây là lỗi phát triển phổ quát, không tự khỏi chỉ nhờ 'tư duy bằng tiếng Việt thay vì tiếng Anh', mà cần tái cấu trúc ngữ pháp một cách tường minh."}, {"type": "bullet", "text": "Thuyết Thụ Đắc Kỹ Năng (Skill Acquisition Theory — DeKeyser) mô tả quá trình từ tri thức khai báo (declarative — phát biểu được quy tắc) sang tri thức thủ tục (procedural — áp dụng được khi nói) sang tự động hóa (automatized — dùng mà không cần suy nghĩ). Hiểu quy tắc ngữ pháp là điều kiện cần nhưng không đủ; chỉ luyện tập output có khối lượng đủ lớn và được sửa lỗi mới đưa tri thức vào vùng tự động."}, {"type": "bullet", "text": "Thuyết đầu ra (Comprehensible Output Hypothesis — Swain, 1985) cho rằng việc nhận ra khoảng trống giữa điều mình nói được và điều đúng ngữ pháp là một cơ chế kích hoạt tái cấu trúc quan trọng — cơ chế này thường không được kích hoạt nếu chỉ tiếp nhận input thụ động mà không tạo ra output và nhận phản hồi."}, {"type": "h3", "text": "LỖI THƯỜNG GẶP"}, {"type": "bullet", "text": "Dịch 了 thành 'thì quá khứ' theo phản xạ tiếng Anh — 了 đánh dấu hoàn thành/thay đổi trạng thái, không phải mốc thời gian tuyệt đối, và không xuất hiện trong mọi câu quá khứ."}, {"type": "bullet", "text": "Cố tìm cách 'chia động từ' theo thói quen tiếng Anh/Pháp — thói quen này không áp dụng được và làm chậm việc học đúng hướng."}, {"type": "bullet", "text": "Học ba trợ từ thể 了/过/着 tách rời nhau theo từng bài riêng lẻ, trong khi bản chất khó nằm ở việc phân biệt LẪN NHAU giữa chúng."}, {"type": "bullet", "text": "Luôn mặc định trật tự SVO ngay cả khi cấu trúc thiên chủ đề tự nhiên hơn — khiến câu đúng ngữ pháp nhưng nghe không tự nhiên, một điểm chững (plateau) điển hình của người học từ ngôn ngữ thiên chủ ngữ."}, {"type": "h3", "text": "LỘ TRÌNH THEO GIAI ĐOẠN"}, {"type": "labeled", "label": "Giai đoạn 0", "text": "Học 了/过/着 như MỘT hệ thống đối lập ba chiều ngay từ đầu, không phải ba 'điểm ngữ pháp' rải rác trong giáo trình.", "color": "0F6E6E"}, {"type": "labeled", "label": "Giai đoạn 1", "text": "Bài tập đối chiếu tối thiểu: cùng một câu, đổi lần lượt 了/过/着/không có gì, dịch rõ sự khác biệt nghĩa mỗi lần.", "color": "0F6E6E"}, {"type": "labeled", "label": "Giai đoạn 2", "text": "Chủ động luyện nhận diện và tạo câu thiên chủ đề (topic-fronting) thay vì luôn mặc định SVO.", "color": "0F6E6E"}, {"type": "labeled", "label": "Giai đoạn 3", "text": "Viết câu chủ động, xin sửa lỗi ngay (người bản ngữ hoặc AI) — lỗi ngữ pháp tiếng Hán khó tự phát hiện vì không có tín hiệu hình thái động từ để nhận ra sai như tiếng Anh.", "color": "0F6E6E"}, {"type": "h3", "text": "NGỘ NHẬN CẦN GỠ BỎ"}, {"type": "note", "text": "“Tiếng Trung không có ngữ pháp vì động từ không chia.”"}, {"type": "callout", "text": "Ngộ nhận phổ biến ở người mới. Độ phức tạp ngữ pháp không mất đi mà chuyển sang trật tự từ, trợ từ thể, bổ ngữ kết quả/xu hướng sau động từ, và cấu trúc chủ đề-thuyết minh. Tổng khối lượng ngữ pháp cần nắm tương đương các ngôn ngữ châu Âu, chỉ tổ chức theo cơ chế khác."}], "isBP": false}]}, {"kind": "section", "title": "Đọc hiểu", "groups": [{"title": "", "items": [{"type": "h3", "text": "CƠ CHẾ NỀN TẢNG"}, {"type": "labeled", "label": "Không có 'quy tắc đánh vần' để đoán chữ chưa biết", "text": "Với hệ chữ ghi âm (Latin), người đọc có thể đoán cách đọc một từ lạ nhờ quy tắc chính tả-ngữ âm. Với chữ Hán, một chữ chưa từng gặp thường không cho manh mối ngữ âm/ngữ nghĩa đáng tin cậy nếu người đọc chưa tích lũy đủ 'từ điển thị giác' (visual lexicon) — khác hẳn cách đọc lướt-đoán vẫn hiệu quả trong tiếng Anh.", "color": "1F3A5F"}, {"type": "labeled", "label": "Ngưỡng bao phủ từ vựng quyết định việc hiểu được hay không", "text": "Nghiên cứu của Paul Nation về từ vựng và đọc hiểu L2 cho thấy để hiểu văn bản mà không phải tra từ điển liên tục, cần khoảng 95-98% số từ trong văn bản đã biết; dưới ngưỡng đó, trí nhớ làm việc bị tiêu tốn vào giải mã từ vựng thay vì xử lý nghĩa, và khả năng đoán nghĩa từ mới qua ngữ cảnh giảm mạnh. Với chữ tượng hình, hệ quả này còn nặng hơn so với đọc L2 bằng hệ Latin, vì không có phương án dự phòng ngữ âm để đoán.", "color": "1F3A5F"}, {"type": "labeled", "label": "Nhận diện (recognition) và tái tạo viết tay (production) là hai năng lực tách biệt", "text": "Hiện tượng 提笔忘字 ('cầm bút lên quên mất chữ') được ghi nhận rộng rãi ngay cả ở người bản ngữ trong thời đại gõ pinyin, cho thấy nhận diện mặt chữ dùng cơ chế nhận mẫu (pattern-matching) với ngưỡng thấp hơn nhiều so với tái tạo đầy đủ trình tự nét khi viết tay từ trí nhớ — đọc hiểu tốt không đảm bảo viết tay tốt, và ngược lại không cần thiết cho nhau.", "color": "1F3A5F"}, {"type": "h3", "text": "BẰNG CHỨNG & NGHIÊN CỨU"}, {"type": "bullet", "text": "Thuyết đầu vào Có thể hiểu được (Comprehensible Input Hypothesis, i+1 — Krashen) là cơ sở lý thuyết cho phương pháp đọc phân cấp (graded readers): input nên chỉ nhỉnh hơn trình độ hiện tại một chút — đây là lý do nhảy thẳng vào báo tiếng Hán ở trình HSK3 thường thất bại không phải vì 'chưa đủ cố gắng' mà vì vượt ngưỡng bao phủ từ vựng khiến cơ chế hiểu không còn vận hành được."}, {"type": "bullet", "text": "Với mục tiêu thành thạo nghề nghiệp (không phải thi viết tay), việc đầu tư quá sớm vào luyện viết tay hoàn chỉnh có chi phí cơ hội đáng kể so với phát triển tốc độ đọc — vì công việc viết thực tế hiện nay gần như hoàn toàn qua gõ pinyin (cần biết pinyin, không cần nhớ trình tự nét)."}, {"type": "h3", "text": "LỖI THƯỜNG GẶP"}, {"type": "bullet", "text": "Kỳ vọng đoán được nghĩa từ ngữ cảnh sớm như cách học tiếng Anh — với chữ tượng hình cần đạt ngưỡng nhận diện tối thiểu trước khi đoán ngữ cảnh mới đáng tin."}, {"type": "bullet", "text": "Ưu tiên viết tay hoàn hảo ngay từ đầu, lệch trọng tâm khỏi mục tiêu thành thạo nghề nghiệp thực dụng."}, {"type": "bullet", "text": "Đọc tài liệu vượt quá xa vốn từ hiện có (dưới ngưỡng 95% bao phủ), gây nản và học chậm hơn thay vì nhanh hơn."}, {"type": "bullet", "text": "Không phân biệt 'nhận diện được' và 'nhớ để viết ra' — hai năng lực tách biệt, kể cả người bản ngữ cũng hay quên viết dù đọc hiểu tốt."}, {"type": "h3", "text": "LỘ TRÌNH THEO GIAI ĐOẠN"}, {"type": "labeled", "label": "Giai đoạn 0", "text": "Chọn/lắp tài liệu ở ngưỡng 95-98% từ đã biết; khi phân vân, thà chọn dễ hơn mức cảm thấy vừa sức — đây là phát hiện có cơ sở nghiên cứu, không phải sở thích thoải mái tùy tiện.", "color": "0F6E6E"}, {"type": "labeled", "label": "Giai đoạn 1", "text": "Tách bạch đọc mở rộng (khối lượng lớn, dễ, để trôi chảy và củng cố ngẫu nhiên) và đọc chuyên sâu (khối lượng nhỏ, khó, học từ vựng có chủ đích) thành hai hoạt động lên lịch riêng.", "color": "0F6E6E"}, {"type": "labeled", "label": "Giai đoạn 2", "text": "Theo dõi tốc độ đọc (số chữ/phút) như một chỉ số tách biệt với kích thước vốn từ — hai chỉ số này thường lệch nhau, và tốc độ đọc ở vốn từ đã biết mới là yếu tố quyết định năng lực nghề nghiệp.", "color": "0F6E6E"}, {"type": "labeled", "label": "Giai đoạn 3", "text": "Trì hoãn luyện viết tay nặng cho một lô chữ đến sau khi đã đạt độ trôi chảy đọc cho lô đó — đảo ngược trình tự 'chép mỗi chữ 20 lần' truyền thống vốn tối ưu cho kỹ năng viết tay, không phải kỹ năng bạn đang cần.", "color": "0F6E6E"}, {"type": "h3", "text": "NGỘ NHẬN CẦN GỠ BỎ"}, {"type": "note", "text": "“Không viết tay được thì coi như chưa thực sự biết chữ.”"}, {"type": "callout", "text": "Đây là định kiến sư phạm truyền thống hơn là một tuyên bố có cơ sở thực nghiệm đối với mục tiêu thành thạo nghề nghiệp — khi chính người bản ngữ cũng ngày càng phụ thuộc vào gõ chữ và cho thấy suy giảm khả năng nhớ viết tay rõ rệt mà không mất năng lực đọc hiểu chức năng."}], "isBP": false}]}, {"kind": "section", "title": "Luyện tập & Lộ trình", "groups": [{"title": "", "items": [{"type": "note", "text": "Mỗi best practice trình bày theo 5 lớp: [Best Practice] → [Cơ chế khoa học] → [Sai lầm hay mắc] → [Hành động] → [Small action đòn bẩy cao]. Áp dụng được cho cả tiếng Anh và tiếng Trung; phần khác biệt riêng từng ngôn ngữ đặt ở Phần IV."}], "isBP": false}, {"title": "BP1 — Ưu tiên Input dễ hiểu, đúng ngưỡng 'i+1'", "items": [{"type": "labeled", "label": "Best practice", "text": "Dành phần lớn thời gian tiếp xúc nội dung mà bạn hiểu được ~90–98% — đủ dễ để theo mạch, đủ mới để học điều tiếp theo.", "color": "1F3A5F"}, {"type": "labeled", "label": "Cơ chế", "text": "Trên ngưỡng này, bộ nhớ làm việc còn dư năng lực để hấp thụ cái mới; dưới ngưỡng, tải nhận thức quá cao, não chỉ 'bơi' chứ không học (Krashen; Sweller; VanPatten).", "color": "0F6E6E"}, {"type": "labeled", "label": "Sai lầm hay mắc", "text": "Lao vào phim/podcast/báo quá khó để 'ngâm cho quen' → hiểu <70%, chán, bỏ cuộc, và học được rất ít.", "color": "9E2A2B"}, {"type": "h3", "text": "Hành động"}, {"type": "bullet", "text": "Chọn tài liệu mà bạn hiểu ~9/10 câu không cần tra. Nếu phải tra >1 từ/câu → hạ cấp độ.", "level": 0}, {"type": "bullet", "text": "Dùng graded readers / graded listening (nội dung phân cấp theo trình độ) ở giai đoạn đầu-giữa.", "level": 0}, {"type": "bullet", "text": "Đọc/nghe MỞ RỘNG (extensive): số lượng lớn, dễ, thoải mái — để tích lũy phơi nhiễm.", "level": 0}, {"type": "labeled", "label": "Small action đòn bẩy cao", "text": "Quy tắc '1 trang – 5 từ lạ': mở một trang bất kỳ, nếu có >5 từ lạ thì tài liệu đang quá khó, đổi ngay.", "color": "2E6B3E"}], "isBP": true}, {"title": "BP2 — Học bằng Truy xuất chủ động, không phải đọc lại", "items": [{"type": "labeled", "label": "Best practice", "text": "Luôn cố NHỚ LẠI (che đáp án) trước khi nhìn; biến mọi buổi ôn thành bài tự kiểm tra.", "color": "1F3A5F"}, {"type": "labeled", "label": "Cơ chế", "text": "Testing effect: hành vi nhớ lại củng cố dấu vết trí nhớ mạnh hơn đọc lại. Roediger & Karpicke: quên 13% (truy xuất) vs 56% (đọc lại) sau 2 ngày.", "color": "0F6E6E"}, {"type": "labeled", "label": "Sai lầm hay mắc", "text": "Đọc lại ghi chú / xem lại flashcard cả hai mặt cùng lúc → tạo 'ảo giác trôi chảy' (thấy quen tưởng thuộc).", "color": "9E2A2B"}, {"type": "h3", "text": "Hành động"}, {"type": "bullet", "text": "Flashcard phải ở dạng hỏi–đáp: nhìn mặt gợi ý, tự tạo đáp án trong đầu/nói ra, rồi mới lật.", "level": 0}, {"type": "bullet", "text": "Sau khi đọc một đoạn, gập lại và tự thuật lại nội dung bằng ngôn ngữ đích (free recall).", "level": 0}, {"type": "bullet", "text": "Ưu tiên dạng 'type-to-answer' hoặc nói ra miệng thay vì chỉ nhận diện (recognition).", "level": 0}, {"type": "labeled", "label": "Small action đòn bẩy cao", "text": "Luật 3 giây: mỗi thẻ, ép bản thân tự trả lời trong 3 giây TRƯỚC khi lật. Nếu chưa nhớ được là tín hiệu cần ôn — đó chính là lúc học.", "color": "2E6B3E"}], "isBP": true}, {"title": "BP3 — Giãn cách thay vì nhồi nhét (Spaced repetition)", "items": [{"type": "labeled", "label": "Best practice", "text": "Chia nhỏ việc ôn thành các buổi ngắn, cách nhau theo ngày; ôn lại đúng lúc trí nhớ sắp phai.", "color": "1F3A5F"}, {"type": "labeled", "label": "Cơ chế", "text": "Spacing effect: khoảng nghỉ để trí nhớ hơi phai rồi khôi phục lại củng cố mạnh hơn. Cepeda et al.: tăng 10–30% ghi nhớ so với học dồn.", "color": "0F6E6E"}, {"type": "labeled", "label": "Sai lầm hay mắc", "text": "Học dồn 3 tiếng cuối tuần rồi cả tuần không đụng → nhớ tốt lúc đó nhưng phai nhanh.", "color": "9E2A2B"}, {"type": "h3", "text": "Hành động"}, {"type": "bullet", "text": "Dùng phần mềm SRS (Anki hoặc tương tự) để tự động lên lịch ôn theo đường cong quên.", "level": 0}, {"type": "bullet", "text": "20–30 phút MỖI NGÀY hiệu quả hơn 3–4 giờ dồn một buổi.", "level": 0}, {"type": "bullet", "text": "Kết hợp giãn cách với truy xuất = 'spaced retrieval', combo mạnh nhất trong khoa học trí nhớ.", "level": 0}, {"type": "labeled", "label": "Small action đòn bẩy cao", "text": "Neo thói quen (habit stacking): gắn 15 phút Anki vào một việc cố định hằng ngày (sau ly cà phê sáng). Đều đặn nhỏ > bùng nổ rồi tắt.", "color": "2E6B3E"}], "isBP": true}, {"title": "BP4 — Chủ động tạo Output sớm (nói/viết)", "items": [{"type": "labeled", "label": "Best practice", "text": "Bắt đầu tạo ngôn ngữ (nói to, viết, tự thuật) từ sớm, không chờ 'đủ giỏi mới nói'.", "color": "1F3A5F"}, {"type": "labeled", "label": "Cơ chế", "text": "Output Hypothesis (Swain): tạo ngôn ngữ ép bạn nhận ra lỗ hổng và tái cấu trúc kiến thức; generation effect (Bjork): tự tạo đáp án nhớ lâu hơn đọc mẫu.", "color": "0F6E6E"}, {"type": "labeled", "label": "Sai lầm hay mắc", "text": "Vô hạn 'chuẩn bị' (học thêm ngữ pháp, thêm từ) mà trì hoãn nói → kỹ năng nói không bao giờ khởi động.", "color": "9E2A2B"}, {"type": "h3", "text": "Hành động"}, {"type": "bullet", "text": "Self-talk: mỗi ngày tự thuật lại việc mình làm bằng ngôn ngữ đích, nói to.", "level": 0}, {"type": "bullet", "text": "Viết nhật ký ngắn 3–5 câu/ngày; ép dùng cấu trúc/từ mới vừa học.", "level": 0}, {"type": "bullet", "text": "Nói với AI hoặc bạn học — không cần người bản xứ (Shehadeh 1999: người học tự sửa nhiều hơn khi nói với người học khác).", "level": 0}, {"type": "labeled", "label": "Small action đòn bẩy cao", "text": "'Một cấu trúc – một câu thật': mỗi khi học một chunk mới, lập tức đặt MỘT câu về đời sống thật của mình bằng chunk đó. Gắn với trải nghiệm cá nhân giúp nhớ sâu.", "color": "2E6B3E"}], "isBP": true}, {"title": "BP5 — Tìm tương tác & đàm phán nghĩa", "items": [{"type": "labeled", "label": "Best practice", "text": "Tạo các tình huống hội thoại thật có phản hồi, đặc biệt khi xảy ra hiểu lầm cần làm rõ.", "color": "1F3A5F"}, {"type": "labeled", "label": "Cơ chế", "text": "Interaction Hypothesis (Long): đàm phán nghĩa (hỏi lại, xác nhận, diễn đạt lại) biến input thành intake nhanh nhất; phản hồi tức thì giúp sửa lỗi.", "color": "0F6E6E"}, {"type": "labeled", "label": "Sai lầm hay mắc", "text": "Chỉ tiêu thụ nội dung một chiều (xem phim, nghe podcast) mà không bao giờ tương tác hai chiều.", "color": "9E2A2B"}, {"type": "h3", "text": "Hành động"}, {"type": "bullet", "text": "Dùng bộ 'nước đi' đàm phán nghĩa: yêu cầu làm rõ, kiểm tra xác nhận, diễn đạt lại.", "level": 0}, {"type": "bullet", "text": "Tham gia nhóm luyện nói, lớp trao đổi ngôn ngữ (language exchange), hoặc hội thoại với AI có sửa lỗi.", "level": 0}, {"type": "bullet", "text": "Sau mỗi hội thoại, ghi lại 1–2 chỗ mình 'bí' rồi tra cách nói đúng — đó là 'lỗ hổng' vừa được phát hiện.", "level": 0}, {"type": "labeled", "label": "Small action đòn bẩy cao", "text": "Ngân hàng câu hỏi làm rõ: thuộc lòng 3 câu ('Could you say that again?', 'What do you mean by X?', 'So you mean...?'). Có sẵn 3 câu này là dám bước vào hội thoại thật.", "color": "2E6B3E"}], "isBP": true}, {"title": "BP8 — Xen kẽ & luyện tập biến đổi (Interleaving)", "items": [{"type": "labeled", "label": "Best practice", "text": "Trộn nhiều loại nội dung/kỹ năng trong một buổi thay vì 'khối' một chủ đề duy nhất.", "color": "1F3A5F"}, {"type": "labeled", "label": "Cơ chế", "text": "Interleaving (Bjork; Pan et al. d=0.67): trộn buộc não phân biệt các trường hợp giống nhau, xây khả năng chọn đúng cấu trúc khi cần — điều mà học khối không tạo được.", "color": "0F6E6E"}, {"type": "labeled", "label": "Sai lầm hay mắc", "text": "Học 'khối' (blocking): làm 30 câu cùng một thì liên tiếp → thấy trôi chảy giả tạo, nhưng không biết chọn thì nào khi gặp tình huống thật.", "color": "9E2A2B"}, {"type": "h3", "text": "Hành động"}, {"type": "bullet", "text": "Trong một buổi, trộn 2–3 chủ đề/cấu trúc (ví dụ: thì quá khứ + hiện tại hoàn thành + tương lai) thay vì chỉ một.", "level": 0}, {"type": "bullet", "text": "Trộn kỹ năng: 15 phút từ vựng + 15 phút nghe + 10 phút nói, thay vì một tiếng chỉ một kỹ năng.", "level": 0}, {"type": "note", "text": "Cảnh báo liều lượng (Larsen et al. 2022): kết hợp quá nhiều 'khó khăn' cùng lúc có thể phản tác dụng. Xen kẽ 2–3 loại là đủ; đừng trộn tới mức hỗn loạn."}, {"type": "labeled", "label": "Small action đòn bẩy cao", "text": "Xáo bài: bật chế độ shuffle trong Anki và không nhóm thẻ theo chủ đề. Chỉ một thao tác nhưng ép truy xuất phân biệt mỗi lần.", "color": "2E6B3E"}], "isBP": true}, {"title": "BP9 — Hạ 'bộ lọc cảm xúc' & nuôi động lực (Affective management)", "items": [{"type": "labeled", "label": "Best practice", "text": "Chủ động thiết kế môi trường ít rủi ro xã hội và nuôi động lực bền để dám tạo output đều đặn.", "color": "1F3A5F"}, {"type": "labeled", "label": "Cơ chế", "text": "Affective filter (Krashen): lo lắng chặn intake. WTC research: động lực là yếu tố dự báo trực tiếp mạnh nhất cho việc dám giao tiếp; lo lắng làm trung gian tiêu cực.", "color": "0F6E6E"}, {"type": "labeled", "label": "Sai lầm hay mắc", "text": "Ép mình vào tình huống áp lực cao quá sớm (họp toàn người bản xứ) → lo lắng tăng vọt, né tránh, mất đà.", "color": "9E2A2B"}, {"type": "h3", "text": "Hành động"}, {"type": "bullet", "text": "Bắt đầu ở môi trường an toàn: nói với AI, ghi âm một mình, nhóm nhỏ tin cậy — tăng dần độ khó.", "level": 0}, {"type": "bullet", "text": "Gắn động lực với mục tiêu thật của bạn (ví dụ: đọc báo cáo tài chính tiếng Trung, phỏng vấn quốc tế) để duy trì 'grit'.", "level": 0}, {"type": "bullet", "text": "Chấp nhận lỗi là một phần của quá trình; mỗi lỗi được sửa là một 'lỗ hổng' vừa được lấp.", "level": 0}, {"type": "labeled", "label": "Small action đòn bẩy cao", "text": "Hạ ngưỡng bắt đầu xuống mức 'không thể từ chối': cam kết chỉ 5 phút/ngày. Bắt đầu đều đặn quan trọng hơn thời lượng — đà (momentum) tự kéo bạn học lâu hơn.", "color": "2E6B3E"}], "isBP": true}, {"title": "Tiếng Trung cho người Việt — tận dụng lợi thế, phòng bẫy", "items": [{"type": "h3", "text": "Tận dụng tối đa (lợi thế L1)"}, {"type": "labeled", "label": "Hán-Việt ↔ 汉字", "text": "đòn bẩy lớn nhất: chủ động ánh xạ từ Hán-Việt sang chữ Hán để nhớ từ và đoán nghĩa văn bản học thuật/tài chính. Ví dụ tài chính: 投資 đầu tư, 利率 lãi suất, 股票 cổ phiếu, 銀行 ngân hàng.", "color": "2E5B94"}, {"type": "labeled", "label": "Nền thanh điệu", "text": "đã quen phân biệt cao độ nên học 4 thanh nhanh hơn người phương Tây; thanh 3 (lượn) đặc biệt ít khó với người Việt.", "color": "2E5B94"}, {"type": "h3", "text": "Phòng bẫy (nơi lợi thế L1 KHÔNG giúp)"}, {"type": "labeled", "label": "Thanh 1 & thanh 4", "text": "hai thanh người Việt sai nhiều nhất (Wu & Hu 2004) — luyện riêng: thanh 1 cao-phẳng-kéo dài, thanh 4 cao dứt khoát xuống thấp.", "color": "9E2A2B"}, {"type": "labeled", "label": "Biến điệu (tone sandhi)", "text": "thanh 3+3 → 2+3; '一'/'不' đổi thanh theo ngữ cảnh — quy tắc phải học riêng, không suy từ tiếng Việt.", "color": "9E2A2B"}, {"type": "labeled", "label": "'Tự tin sớm'", "text": "lợi thế thanh điệu khiến dễ chủ quan tháng đầu rồi sai ở tháng thứ ba — duy trì luyện âm có chủ đích, đừng bê nguyên 'cảm giác thanh' tiếng Việt (có tắc thanh hầu, giọng kẹt) sang tiếng Trung (thanh thuần cao độ).", "color": "9E2A2B"}, {"type": "h3", "text": "Công cụ hỗ trợ theo nghiên cứu"}, {"type": "bullet", "text": "Công cụ trực quan hoá thanh điệu (visualization) giúp thấy đường nét cao độ — hữu ích để sửa thanh 1/thanh 4 (nghiên cứu HCMUE 2025).", "level": 0}, {"type": "bullet", "text": "Học chữ Hán theo bộ thủ (radicals) + theo tần suất, kết hợp SRS; ưu tiên 汉字 tần suất cao trước.", "level": 0}], "isBP": false}, {"title": "Tiếng Trung — lộ trình 4 giai đoạn", "items": [{"type": "labeled", "label": "Giai đoạn 1 — Thanh điệu & pinyin & 300 chữ", "text": "Mục tiêu: nắm chắc 4 thanh (đặc biệt T1/T4) + biến điệu cơ bản + ~300 汉字 tần suất cao. Tận dụng Hán-Việt ngay từ đầu. Chỉ báo: đọc pinyin đúng thanh, nhận diện chữ cơ bản.", "color": "1F3A5F"}, {"type": "labeled", "label": "Giai đoạn 2 — Từ vựng lõi & câu (HSK 3-4)", "text": "Mục tiêu: ~1.200 từ, ngữ pháp cơ bản, output câu đơn. Xây \"cầu\" Hán-Việt ↔ 汉字 có hệ thống. Chỉ báo: hội thoại đời sống, đọc đoạn ngắn.", "color": "1F3A5F"}, {"type": "labeled", "label": "Giai đoạn 3 — Đọc chuyên ngành & văn viết (HSK 5)", "text": "Mục tiêu: khai thác tối đa Hán-Việt cho văn bản học thuật/kinh tế; ~2.500 chữ. Chỉ báo: đọc tin tức/báo cáo, viết đoạn có cấu trúc.", "color": "1F3A5F"}, {"type": "labeled", "label": "Giai đoạn 4 — Tinh luyện (HSK 6+)", "text": "Mục tiêu: thành ngữ (成语), sắc thái ngữ dụng, phát âm & ngữ điệu tự nhiên. Chỉ báo: giao tiếp chuyên nghiệp trôi chảy.", "color": "1F3A5F"}, {"type": "callout", "text": "Đòn bẩy xuyên suốt cho tiếng Trung: mỗi giai đoạn đều gắn Hán-Việt để tăng tốc từ vựng, và luyện riêng thanh điệu (T1/T4/sandhi) để phòng \"tự tin sớm\".", "color": "0F6E6E"}], "isBP": false}, {"title": "Học song song hai ngôn ngữ — quản lý giao thoa", "items": [{"type": "p", "text": "Học Anh + Trung cùng lúc có rủi ro giao thoa (interference) nhưng quản lý được nếu tách biệt rõ ràng."}, {"type": "bullet", "text": "Tách buổi/tách khung giờ cho mỗi ngôn ngữ để giảm lẫn lộn — không trộn hai ngôn ngữ trong cùng một khối truy xuất.", "level": 0}, {"type": "bullet", "text": "Tận dụng interleaving TRONG mỗi ngôn ngữ (trộn chủ đề), nhưng KHÔNG interleave giữa hai ngôn ngữ ở giai đoạn đầu.", "level": 0}, {"type": "bullet", "text": "Ưu tiên theo mục tiêu thật: nếu một ngôn ngữ cấp thiết hơn, dồn 60-70% thời lượng cho nó thay vì chia đều máy móc.", "level": 0}, {"type": "note", "text": "Bottleneck khi học đa ngôn ngữ thường là PHƯƠNG PHÁP và tính nhất quán, không phải tổng số giờ. Ít mà đều, tách bạch rõ, thắng nhiều mà loạn."}], "isBP": false}, {"title": "", "items": [{"type": "callout", "text": "Toàn bộ Phần I–IV là LÝ THUYẾT. Phần này biến lý thuyết thành thói quen. Sự thật khó chịu: người đọc hết tài liệu này mà không thực hành sẽ thua người chỉ đọc BP2+BP3 rồi luyện mỗi ngày. Giá trị nằm ở SỰ BỀN BỈ, không ở lượng kiến thức.", "color": "9E2A2B"}, {"type": "note", "text": "Khung mẫu tổng hợp mọi nguyên lý trên thành lịch tuần. Điều chỉnh theo quỹ thời gian của chị; nguyên tắc bất biến: đều đặn + truy xuất + giãn cách + output."}, {"type": "h3", "text": "Nguyên tắc phân bổ"}, {"type": "bullet", "text": "Đều đặn hằng ngày (20–40 phút) > dồn cuối tuần. Spacing quan trọng hơn tổng thời lượng.", "level": 0}, {"type": "bullet", "text": "Mỗi buổi trộn tối thiểu 2 kỹ năng (interleaving): ví dụ SRS từ vựng + shadowing, hoặc nghe + nói lại.", "level": 0}, {"type": "bullet", "text": "Luôn có một khối OUTPUT mỗi ngày (dù chỉ 5 phút self-talk hay 3 câu nhật ký).", "level": 0}, {"type": "h3", "text": "Khung tuần mẫu (mỗi ngày ~30–40 phút)"}, {"type": "labeled", "label": "Hằng ngày (10–15')", "text": "SRS truy xuất (Anki) — từ vựng theo cụm, có ví dụ. Che đáp án, tự trả lời trong 3 giây.", "color": "0F6E6E"}, {"type": "labeled", "label": "Hằng ngày (5')", "text": "Output ngắn: self-talk hoặc 3 câu nhật ký dùng chunk mới.", "color": "0F6E6E"}, {"type": "labeled", "label": "3–4 buổi/tuần (10')", "text": "Shadowing 1 đoạn ngắn, lặp 10 lần, tự ghi âm 1 lần."}, {"type": "labeled", "label": "2–3 buổi/tuần (15')", "text": "Input mở rộng dễ hiểu (graded reader/podcast ~95% hiểu)."}, {"type": "labeled", "label": "1–2 buổi/tuần (20–30')", "text": "Tương tác thật: nói với AI/bạn học, có đàm phán nghĩa; ghi lại 'lỗ hổng' để tra sau."}, {"type": "labeled", "label": "Cuối tuần (15')", "text": "Ôn 'error log' của tuần: các lỗi/lỗ hổng đã gặp, biến thành thẻ SRS mới."}, {"type": "callout", "text": "Vòng lặp cải tiến liên tục: Input dễ hiểu → gặp cụm mới → đưa vào SRS (giãn cách + truy xuất) → ép ra Output → phát hiện lỗ hổng qua tương tác → lỗ hổng thành thẻ mới. Vòng này chạy đều mới là cỗ máy học ngôn ngữ thực thụ.", "color": "1F3A5F"}, {"type": "h3", "text": "3 đòn bẩy cao nhất nếu chị bận (rút gọn tối đa)"}, {"type": "labeled", "label": "Đòn bẩy 1", "text": "Đổi 'đọc/nghe lại' → 'che và tự nhớ lại' (retrieval). Rẻ nhất, lợi nhất.", "color": "9A6A00"}, {"type": "labeled", "label": "Đòn bẩy 2", "text": "15 phút SRS MỖI NGÀY (giãn cách) thay vì dồn cuối tuần.", "color": "9A6A00"}, {"type": "labeled", "label": "Đòn bẩy 3", "text": "5 phút Output mỗi ngày (self-talk/nhật ký) để kích hoạt 'nhận ra lỗ hổng'.", "color": "9A6A00"}], "isBP": false}, {"title": "Nguyên tắc của một hệ thống bền (Sustainable practice design)", "items": [{"type": "labeled", "label": "Nhỏ đến mức không thể từ chối", "text": "đặt ngưỡng tối thiểu cực thấp (5 phút) để không bao giờ đứt chuỗi. Đều đặn tạo ra momentum; đứt chuỗi giết động lực nhanh hơn bất kỳ điều gì.", "color": "2E6B3E"}, {"type": "labeled", "label": "Neo vào thói quen sẵn có", "text": "gắn buổi học vào một mỏ neo cố định hằng ngày (sau cà phê sáng). Thói quen mới bám vào thói quen cũ dễ hơn tạo mới từ đầu.", "color": "2E6B3E"}, {"type": "labeled", "label": "Đo lường tối thiểu", "text": "chỉ theo dõi 2-3 chỉ số quan trọng (chuỗi ngày, số thẻ truy xuất, số phút output). Đo quá nhiều gây nản.", "color": "2E6B3E"}, {"type": "labeled", "label": "Kế hoạch cho ngày tệ", "text": "định sẵn \"phiên bản 2 phút\" cho ngày bận/mệt (chỉ ôn 5 thẻ + nói 1 câu). Giữ chuỗi quan trọng hơn khối lượng.", "color": "2E6B3E"}, {"type": "labeled", "label": "Rà soát hằng tuần", "text": "mỗi tuần 15 phút: xem error log, biến lỗ hổng thành thẻ mới, điều chỉnh trọng tâm tuần sau.", "color": "2E6B3E"}, {"type": "callout", "text": "Đường cong tiến bộ ngôn ngữ không tuyến tính: có những \"cao nguyên\" (plateau) khi cảm giác không tiến. Đây là lúc bỏ cuộc phổ biến nhất — nhưng cũng là lúc não đang củng cố ngầm. Bền bỉ qua plateau là điều phân biệt người thành công.", "color": "9A6A00"}], "isBP": false}]}, {"kind": "section", "title": "Tiếng Anh", "groups": [{"title": "Người Việt học Tiếng Anh — các điểm nghẽn đã được nghiên cứu", "items": [{"type": "h3", "text": "1. Phụ âm cuối (final consonants) — điểm yếu số một"}, {"type": "p", "text": "Tiếng Việt hầu như không có phụ âm cuối bật hơi rõ như tiếng Anh, nên người Việt có xu hướng LƯỢC BỎ hoặc thay thế âm cuối. Nghiên cứu (Nguyen 2007; Bui et al. 2021; Tran & Nguyen 2022) chỉ ra:"}, {"type": "bullet", "text": "Hay lỗi nhất ở các âm cuối /s/, /z/, /ʃ/, /f/, /v/, /t/, /d/, /k/, /g/ — thường bị bỏ hẳn hoặc thay bằng âm gần giống.", "level": 0}, {"type": "bullet", "text": "Cụm phụ âm cuối (consonant clusters) như -sts, -kt, -ld đặc biệt khó vì tiếng Việt không có cấu trúc này.", "level": 0}, {"type": "bullet", "text": "Hệ quả trực tiếp: mất phân biệt số ít/số nhiều, thì quá khứ (-ed), và làm giảm độ dễ nghe (intelligibility).", "level": 0}, {"type": "h3", "text": "2. Cặp âm không tồn tại trong tiếng Việt"}, {"type": "bullet", "text": "/l/ và /r/: dễ lẫn, đôi khi /l/ → /n/ và /r/ → /z/ theo thói quen tiếng Việt.", "level": 0}, {"type": "bullet", "text": "Phân biệt hữu thanh/vô thanh (voiced/voiceless) ít được nhấn trong tiếng Việt nên dễ trộn.", "level": 0}, {"type": "h3", "text": "3. Trọng âm & ngữ điệu (stress & intonation)"}, {"type": "p", "text": "Tiếng Việt là ngôn ngữ thanh điệu theo âm tiết; tiếng Anh là ngôn ngữ trọng âm-nhịp (stress-timed) — nhấn từ quan trọng, lướt từ chức năng. Người Việt hay đọc đều các âm tiết, khiến nghe 'phẳng' và khó bắt nhịp khi nghe người bản xứ nói nhanh."}, {"type": "callout", "text": "Ưu tiên luyện âm cho người Việt (theo thứ tự đòn bẩy): (1) phụ âm cuối + cụm phụ âm cuối, (2) trọng âm câu & nối âm, (3) cặp /l/-/r/ và hữu thanh/vô thanh. Sửa đúng ba nhóm này cải thiện độ dễ nghe nhiều hơn là cố 'nói giọng bản xứ'.", "color": "0F6E6E"}], "isBP": false}, {"title": "Tiếng Anh — bản đồ lỗi & bài luyện chuyên sâu", "items": [{"type": "h3", "text": "Nhóm lỗi 1 — Âm cuối (ưu tiên cao nhất)"}, {"type": "bullet", "text": "Cặp tối thiểu luyện tri giác: rice/rise, back/bag, cap/cab, half/have, leaf/leave, seat/seed.", "level": 0}, {"type": "bullet", "text": "Cụm phụ âm cuối: asked /ɑːskt/, texts /teksts/, twelfth, clothes — luyện chậm từng âm rồi tăng tốc.", "level": 0}, {"type": "bullet", "text": "Ràng buộc ngữ pháp phụ thuộc âm cuối: -s số nhiều/ngôi thứ ba, -ed quá khứ. Bỏ âm cuối = mất luôn dấu hiệu ngữ pháp → nghe sai nghĩa.", "level": 0}, {"type": "h3", "text": "Nhóm lỗi 2 — Trọng âm & nhịp"}, {"type": "bullet", "text": "Tiếng Anh dồn nén âm tiết không trọng âm (weak forms): \"to\", \"for\", \"of\", \"and\" đọc lướt /ə/. Người Việt đọc rõ từng từ → mất nhịp stress-timed.", "level": 0}, {"type": "bullet", "text": "Luyện: gạch chân âm tiết nhấn trong câu, vỗ tay theo nhịp trọng âm (không theo số âm tiết).", "level": 0}, {"type": "h3", "text": "Nhóm lỗi 3 — Cặp âm không có trong tiếng Việt"}, {"type": "bullet", "text": "/l/ vs /r/, /θ/ (think) vs /s/, /ð/ (this) vs /d/, /ʃ/ vs /s/, /v/ vs /w/ — luyện cặp tối thiểu có phản hồi.", "level": 0}, {"type": "callout", "text": "Thứ tự đòn bẩy cho người Việt: (1) tri giác + sản xuất âm cuối → (2) trọng âm & weak forms → (3) cặp âm khó. Sửa đúng ba nhóm này nâng độ dễ nghe (intelligibility) hơn nhiều so với cố \"bắt chước giọng bản xứ\".", "color": "0F6E6E"}], "isBP": false}, {"title": "Tiếng Anh cho người Việt — ưu tiên theo đòn bẩy", "items": [{"type": "h3", "text": "Thứ tự tấn công (cao → thấp đòn bẩy)"}, {"type": "labeled", "label": "1. Âm cuối & cụm phụ âm cuối", "text": "điểm yếu số một của người Việt, ảnh hưởng trực tiếp độ dễ nghe. Luyện tối thiểu cặp: -s/-z, -t/-d, -k, -f/-v ở cuối từ; cụm -sts, -kt, -ld.", "color": "2E5B94"}, {"type": "labeled", "label": "2. Trọng âm câu & nối âm", "text": "chống thói đọc đều từng âm tiết. Nhấn nội dung, lướt từ chức năng; luyện linking (turn it off → 'tur-ni-toff').", "color": "2E5B94"}, {"type": "labeled", "label": "3. Chunk & collocation theo tình huống công việc", "text": "trong môi trường công việc, học theo cụm giao tiếp công sở thật hiệu quả hơn học từ đơn.", "color": "2E5B94"}, {"type": "labeled", "label": "4. Vốn từ tần suất → 3.000 rồi 8.000", "text": "đạt 95% coverage trước, rồi mở rộng chuyên ngành tài chính.", "color": "2E5B94"}, {"type": "h3", "text": "Sai lầm đặc thù người Việt cần tránh"}, {"type": "bullet", "text": "Bỏ âm cuối vì tiếng Việt không có — phải luyện có ý thức, không tự sửa được.", "level": 0}, {"type": "bullet", "text": "Học ngữ pháp quá kỹ mà né nói (phổ biến trong môi trường học Việt Nam) → 'biết luật nhưng không nói được'.", "level": 0}, {"type": "bullet", "text": "Nghe thụ động hàng giờ mà không truy xuất/không nói lại → cảm giác tiến bộ nhưng kỹ năng nói giậm chân.", "level": 0}], "isBP": false}, {"title": "Tiếng Anh — lộ trình 4 giai đoạn (theo ngưỡng năng lực)", "items": [{"type": "labeled", "label": "Giai đoạn 1 — Nền (0 → ~A2/B1)", "text": "Mục tiêu: 2.000–3.000 word families tần suất cao + âm cuối cơ bản. Công cụ: graded readers/listening, SRS từ theo cụm, luyện tri giác cặp tối thiểu âm cuối. Chỉ báo đạt: hiểu ~95% nội dung phân cấp, nói được câu đơn ổn định.", "color": "1F3A5F"}, {"type": "labeled", "label": "Giai đoạn 2 — Trôi chảy chức năng (B1 → B2)", "text": "Mục tiêu: chuyển từ \"biết\" sang \"dùng\" — output hằng ngày, chunk theo tình huống công việc. Trọng âm & weak forms. Chỉ báo: tham gia hội thoại công việc, tự sửa lỗi khi nói.", "color": "1F3A5F"}, {"type": "labeled", "label": "Giai đoạn 3 — Chuyên sâu (B2 → C1)", "text": "Mục tiêu: mở rộng lên 8.000 word families + văn phong viết trang trọng + sắc thái (indirectness, register). Chỉ báo: đọc văn bản thật không cần từ điển, viết email chuẩn mực.", "color": "1F3A5F"}, {"type": "labeled", "label": "Giai đoạn 4 — Tinh luyện (C1+)", "text": "Mục tiêu: phát âm gần bản xứ (HVPT cặp âm khó), thành ngữ/collocation nâng cao, điều chỉnh giọng theo ngữ cảnh. Chỉ báo: được nhìn nhận là giao tiếp \"expert\".", "color": "1F3A5F"}, {"type": "note", "text": "Nguyên tắc chuyển giai đoạn: chỉ lên giai đoạn sau khi CHỈ BÁO ĐẠT được đáp ứng ổn định, không phải theo thời gian. Nhảy cóc → lỗ hổng nền tảng tích tụ."}], "isBP": false}]}]
+;
+
+/* ---------- palette: dark / red, matching the original hsk-foundation.jsx ---------- */
+const INK = "#EDE7D9";
+const PAPER = "#0F1210";
+const PANEL = "#1A1712";
+const RULE = "#2A261F";
+const MUTED = "#8A8478";
+const ACCENT = "#C1440E";
+const LAYER = {
+  bp:      { key: "Best practice",        tone: "#7FA6D9", chip: "01" },
+  mech:    { key: "Cơ chế khoa học",       tone: "#4FBFBF", chip: "02" },
+  pitfall: { key: "Sai lầm hay mắc",       tone: "#E5847E", chip: "03" },
+  action:  { key: "Hành động",             tone: "#D9B54A", chip: "04" },
+  small:   { key: "Small action đòn bẩy cao", tone: "#7ABF8A", chip: "05" },
+};
+
+function layerOf(label) {
+  const l = (label || "").toLowerCase();
+  if (l.startsWith("best practice")) return "bp";
+  if (l.startsWith("cơ chế")) return "mech";
+  if (l.startsWith("sai lầm")) return "pitfall";
+  if (l.startsWith("small action")) return "small";
+  return null;
+}
+
+function modelBP(group) {
+  const layers = { bp: null, mech: null, pitfall: null, small: null };
+  const actions = [];
+  let inAction = false;
+  group.items.forEach((it) => {
+    if (it.type === "h3") { inAction = /hành động/i.test(it.text); return; }
+    if (it.type === "labeled") {
+      const k = layerOf(it.label);
+      if (k) { layers[k] = it.text; inAction = false; return; }
+    }
+    if (it.type === "bullet") actions.push(it.text);
+    if (it.type === "note") actions.push("⚠ " + it.text);
+  });
+  return { layers, actions };
+}
+
+function splitTitle(t) {
+  const m = t.match(/^(BP\d+)\s*[—-]\s*(.*)$/);
+  if (m) return { code: m[1], rest: m[2] };
+  return { code: "", rest: t };
+}
+
+function Block({ b }) {
+  if (b.type === "h2") return <h3 className="blk-h2">{b.text}</h3>;
+  if (b.type === "h3") return <h4 className="blk-h3">{b.text}</h4>;
+  if (b.type === "p") return <p className="blk-p">{b.text}</p>;
+  if (b.type === "note") return <div className="blk-note">{b.text}</div>;
+  if (b.type === "callout") return <div className="blk-callout">{b.text}</div>;
+  if (b.type === "bullet")
+    return (
+      <div className="blk-bullet" style={{ marginLeft: (b.level || 0) * 18 }}>
+        <span className="tick" /><span>{b.text}</span>
+      </div>
+    );
+  if (b.type === "labeled") {
+    const dark = { "1F3A5F": "#7FA6D9", "0F6E6E": "#4FBFBF" };
+    const col = dark[b.color] || dark["1F3A5F"];
+    return (
+      <div className="blk-labeled">
+        <span className="lab" style={{ color: col }}>{b.label}</span>
+        <span className="lab-body">{b.text}</span>
+      </div>
+    );
+  }
+  return null;
+}
+
+/* Default-open: every BP card starts expanded; toggling adds it to
+   the "closed" set instead of tracking an "open" set. */
+function AnatomyCard({ group, closed, onToggle }) {
+  const open = !closed;
+  const { code, rest } = splitTitle(group.title);
+  const { layers, actions } = useMemo(() => modelBP(group), [group]);
+
+  return (
+    <article className={"bp-card" + (open ? " open" : "")}>
+      <button className="bp-head" onClick={onToggle} aria-expanded={open}>
+        <span className="bp-code">{code}</span>
+        <span className="bp-title">{rest}</span>
+        <span className="bp-chev">{open ? "–" : "+"}</span>
+      </button>
+      {layers.bp && <p className="bp-oneline">{layers.bp}</p>}
+      {open && (
+        <div className="bp-body">
+          <div className="anatomy">
+            {["bp", "mech", "pitfall"].map((k) =>
+              layers[k] ? (
+                <div className="layer" key={k}>
+                  <div className="layer-rail" style={{ background: LAYER[k].tone }} />
+                  <div className="layer-content">
+                    <div className="layer-key" style={{ color: LAYER[k].tone }}>
+                      <span className="layer-chip" style={{ borderColor: LAYER[k].tone, color: LAYER[k].tone }}>{LAYER[k].chip}</span>
+                      {LAYER[k].key}
+                    </div>
+                    <div className="layer-text">{layers[k]}</div>
+                  </div>
+                </div>
+              ) : null
+            )}
+            {actions.length > 0 && (
+              <div className="layer">
+                <div className="layer-rail" style={{ background: LAYER.action.tone }} />
+                <div className="layer-content">
+                  <div className="layer-key" style={{ color: LAYER.action.tone }}>
+                    <span className="layer-chip" style={{ borderColor: LAYER.action.tone, color: LAYER.action.tone }}>{LAYER.action.chip}</span>
+                    {LAYER.action.key}
+                  </div>
+                  <ul className="layer-actions">
+                    {actions.map((a, i) => {
+                      const warn = a.startsWith("⚠");
+                      return <li key={i} className={warn ? "warn" : ""}>{warn ? a.slice(1).trim() : a}</li>;
+                    })}
+                  </ul>
+                </div>
+              </div>
+            )}
+            {layers.small && (
+              <div className="layer small-hi">
+                <div className="layer-rail" style={{ background: LAYER.small.tone }} />
+                <div className="layer-content">
+                  <div className="layer-key" style={{ color: LAYER.small.tone }}>
+                    <span className="layer-chip" style={{ borderColor: LAYER.small.tone, color: LAYER.small.tone }}>{LAYER.small.chip}</span>
+                    {LAYER.small.key}
+                  </div>
+                  <div className="layer-text lever">{layers.small}</div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </article>
+  );
+}
+
+export default function ChineseLearningMethod() {
+  const [active, setActive] = useState(0);
+  const [closedBP, setClosedBP] = useState(() => ({}));
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    if (scrollRef.current) scrollRef.current.scrollTop = 0;
+    window.__scrollArticleToTop?.();
+  }, [active]);
+
+  const section = SECTIONS[active];
+
+  return (
+    <div className="root">
+      <style>{CSS}</style>
+
+      <header className="hd">
+        <div className="brand">
+          <div className="brand-mark">中</div>
+          <div>
+            <div className="brand-t">CHINESE LEARNING</div>
+            <div className="brand-s">Phương pháp học tiếng Trung theo bằng chứng · Krashen · Long · Swain · Nation · Bjork · DeFrancis</div>
+          </div>
+        </div>
+      </header>
+
+      <nav className="crumb-wrap mobile-static">
+        <div className="crumb">
+          {SECTIONS.map((s, i) => {
+            const { label, num } = navLabel(s.title, i);
+            return (
+              <button key={i} className={"crumb-pill" + (i === active ? " on" : "")} onClick={() => setActive(i)}>
+                <span className="crumb-n">{num}</span>{label}
+              </button>
+            );
+          })}
+        </div>
+      </nav>
+
+      <main className="stage" ref={scrollRef}>
+        <header className="stage-head">
+          <h1 className="stage-title">{section.title}</h1>
+        </header>
+
+        <div className="prose">
+          {section.groups.map((gr, gi) =>
+            gr.isBP ? (
+              <AnatomyCard
+                key={gi}
+                group={gr}
+                closed={!!closedBP[section.title + "|" + gi]}
+                onToggle={() => setClosedBP((o) => ({ ...o, [section.title + "|" + gi]: !o[section.title + "|" + gi] }))}
+              />
+            ) : (
+              <section className={"grp" + (gr.title === "Nguồn tham khảo" ? " grp-sources" : "")} key={gi}>
+                {gr.title && <h2 className="grp-title">{gr.title}</h2>}
+                {gr.items.map((b, bi) => <Block b={b} key={bi} />)}
+              </section>
+            )
+          )}
+          {section.title === "Ngữ pháp" && <GrammarPatterns />}
+        </div>
+
+        {active < SECTIONS.length - 1 && (
+          <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 28, paddingTop: 16, borderTop: "1px solid var(--rule)" }}>
+            <button
+              onClick={() => setActive(active + 1)}
+              style={{ display: "flex", alignItems: "center", gap: 6, padding: "9px 15px", borderRadius: 8, border: "1px solid var(--accent)", background: "transparent", color: "var(--accent)", fontSize: 13, fontWeight: 600, cursor: "pointer" }}
+            >
+              Tiếp: {navLabel(SECTIONS[active + 1].title, active + 1).label} →
+            </button>
+          </div>
+        )}
+      </main>
+    </div>
+  );
+}
+
+function navLabel(title, i) {
+  const NAV = {
+    "Nền tảng khoa học": { num: "00", label: "Nền tảng" },
+    "Phát âm & Thanh điệu": { num: "01", label: "Phát âm" },
+    "Từ vựng & Chữ Hán": { num: "02", label: "Từ vựng" },
+    "Ngữ pháp": { num: "03", label: "Ngữ pháp" },
+    "Đọc hiểu": { num: "04", label: "Đọc hiểu" },
+    "Luyện tập & Lộ trình": { num: "05", label: "Luyện tập" },
+    "Tiếng Anh": { num: "06", label: "Tiếng Anh" },
+  };
+  return NAV[title] || { num: String(i).padStart(2, "0"), label: title.slice(0, 24) };
+}
+
+const CSS = `
+@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600&family=Noto+Serif+SC:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+* { box-sizing: border-box; }
+.root {
+  --ink:${INK}; --paper:${PAPER}; --panel:${PANEL}; --rule:${RULE}; --muted:${MUTED}; --accent:${ACCENT};
+  display: flex; flex-direction: column;
+  background: var(--paper); color: var(--ink);
+  font-family: 'Zilla Slab', ui-sans-serif, system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 15px; line-height: 1.55;
+}
+
+.hd { display: flex; align-items: center; gap: 18px; padding: 14px 20px; border-bottom: 1px solid var(--rule); background: #141210; }
+.brand { display: flex; gap: 10px; align-items: center; }
+.brand-mark {
+  width: 36px; height: 36px; flex-shrink: 0;
+  border: 1.5px solid var(--accent); color: var(--accent);
+  font-family: "Noto Serif SC", Georgia, serif; font-size: 20px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; border-radius: 3px;
+}
+.brand-t { font-family: Georgia, serif; font-weight: 700; font-size: 15px; letter-spacing: 0.04em; color: var(--ink); }
+.brand-s { font-size: 11px; color: var(--muted); margin-top: 1px; }
+
+.crumb-wrap { position: sticky; top: 0; z-index: 15; background: #141210; border-bottom: 1px solid var(--rule); }
+.crumb { display: flex; gap: 6px; flex-wrap: wrap; padding: 9px 20px; }
+.crumb-pill {
+  display: flex; align-items: center; gap: 6px;
+  border: 1px solid var(--rule); background: var(--panel); border-radius: 20px;
+  padding: 7px 13px; cursor: pointer; font-size: 12.5px; font-weight: 600;
+  color: var(--muted); white-space: nowrap; transition: all .12s;
+}
+.crumb-pill:hover { border-color: var(--accent); color: var(--ink); }
+.crumb-pill.on { background: var(--accent); border-color: var(--accent); color: #0F1210; }
+.crumb-n {
+  font-family: Georgia, serif; font-weight: 700; font-size: 10.5px;
+  width: 16px; height: 16px; border-radius: 3px;
+  background: rgba(193,68,14,.18); color: var(--accent);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.crumb-pill.on .crumb-n { background: rgba(15,18,16,.28); color: #0F1210; }
+
+.stage { padding: 24px 40px 80px; }
+.stage-head { margin-bottom: 26px; }
+.root .stage-title { font-family: Georgia, serif; font-weight: 600; font-size: 33px; line-height: 1.12; margin: 0; letter-spacing: -0.01em; color: var(--ink); }
+
+.bp-card {
+  background: var(--panel); border: 1px solid var(--rule); border-radius: 4px;
+  margin-bottom: 14px; overflow: hidden; transition: box-shadow .2s, border-color .2s;
+}
+.bp-card.open { border-color: rgba(193,68,14,.4); box-shadow: 0 8px 30px -18px rgba(0,0,0,0.6); }
+.bp-head { width: 100%; border: none; background: transparent; cursor: pointer; display: flex; align-items: baseline; gap: 14px; padding: 17px 20px 6px; text-align: left; }
+.bp-code { font-family: Georgia, serif; font-size: 13px; font-weight: 600; color: var(--accent); flex-shrink: 0; letter-spacing: 0.04em; }
+.bp-title { flex: 1; font-family: Georgia, serif; font-size: 20px; font-weight: 600; line-height: 1.25; color: var(--ink); }
+.bp-chev { font-family: Georgia, serif; font-size: 20px; color: var(--muted); flex-shrink: 0; }
+.bp-oneline { margin: 0; padding: 0 20px 18px 48px; color: var(--muted); font-size: 14px; line-height: 1.55; }
+.bp-body { padding: 0 20px 20px; }
+.anatomy { display: flex; flex-direction: column; gap: 2px; }
+.layer { display: flex; gap: 0; background: #141210; border: 1px solid var(--rule); border-bottom: none; }
+.layer:last-child { border-bottom: 1px solid var(--rule); }
+.layer:first-child { border-radius: 3px 3px 0 0; }
+.layer:last-child { border-radius: 0 0 3px 3px; }
+.layer-rail { width: 4px; flex-shrink: 0; }
+.layer-content { padding: 13px 16px 14px; flex: 1; }
+.layer-key { display: flex; align-items: center; gap: 9px; font-family: Georgia, serif; font-size: 11.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 7px; }
+.layer-chip { font-size: 10px; border: 1px solid; border-radius: 2px; padding: 0px 4px; letter-spacing: 0; }
+.layer-text { font-size: 14px; line-height: 1.58; color: var(--ink); }
+.layer-text.lever { font-weight: 500; }
+.small-hi .layer-content { background: rgba(122,191,138,.08); }
+.layer-actions { margin: 0; padding-left: 2px; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.layer-actions li { position: relative; padding-left: 18px; font-size: 14px; line-height: 1.55; color: var(--ink) !important; }
+.layer-actions li::before { content: "→"; position: absolute; left: 0; color: #D9B54A; font-weight: 600; }
+.layer-actions li.warn { color: #F0BE8A !important; font-style: italic; }
+.layer-actions li.warn::before { content: "⚠"; color: #E0A868; }
+
+.prose { }
+.grp { margin-bottom: 30px; }
+.grp-sources { background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; padding: 10px 14px; margin-top: 10px; }
+.root .grp-sources .grp-title { border-bottom: none; margin: 0 0 4px; font-size: 14px; color: var(--muted); }
+.grp-sources .blk-h3 { font-size: 11.5px; color: var(--muted); margin: 10px 0 3px; }
+.grp-sources .blk-p, .grp-sources .blk-note, .grp-sources .blk-bullet, .grp-sources .blk-labeled { font-size: 11.5px; color: var(--muted); margin-bottom: 4px; }
+.grp-sources .blk-labeled .lab, .grp-sources .blk-labeled .lab-body { color: var(--muted) !important; }
+.grp-sources .blk-bullet .tick { background: var(--muted); }
+.root .grp-title { font-family: Georgia, serif; font-weight: 600; font-size: 20px; margin: 0 0 12px; padding-bottom: 7px; border-bottom: 1px solid var(--rule); color: var(--ink); }
+.root .blk-h2 { font-family: Georgia, serif; font-weight: 600; font-size: 18px; margin: 20px 0 8px; color: var(--ink); }
+.blk-h3 { font-family: ui-sans-serif,system-ui,"Segoe UI",Roboto,Arial,sans-serif; font-weight: 600; font-size: 14px; color: var(--accent); margin: 16px 0 6px; letter-spacing: 0.02em; }
+.blk-p { margin: 0 0 12px; font-size: 14.5px; line-height: 1.62; color: var(--ink); }
+.blk-note { font-size: 13px; color: var(--muted); font-style: italic; line-height: 1.6; border-left: 2px solid #4A5A78; padding: 8px 0 8px 13px; margin: 6px 0 14px; }
+.blk-callout { font-size: 14px; line-height: 1.62; color: var(--ink); background: rgba(122,191,138,.1); border-left: 3px solid #7ABF8A; padding: 13px 16px; border-radius: 0 4px 4px 0; margin: 10px 0 16px; }
+.blk-bullet { display: flex; gap: 10px; align-items: flex-start; margin: 0 0 8px; font-size: 14px; line-height: 1.55; color: var(--ink); }
+.blk-bullet .tick { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-top: 8px; flex-shrink: 0; }
+.blk-labeled { margin: 0 0 9px; font-size: 14px; line-height: 1.56; }
+.blk-labeled .lab { font-weight: 600; }
+.blk-labeled .lab-body { color: var(--ink); }
+.blk-labeled .lab::after { content: " — "; color: var(--muted); font-weight: 400; }
+
+/* 30 grammar-pattern drill cards */
+.gp-wrap { margin-top: 8px; }
+.gp-grid { display: grid; gap: 14px; }
+.gp-card { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 16px 18px; }
+.gp-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 6px; }
+.gp-pattern { font-family: "Noto Serif SC", Georgia, serif; font-size: 19px; font-weight: 700; color: var(--ink); }
+.gp-pinyin-head { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--muted); margin-top: 2px; }
+.hsk-badge { font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: 0.08em; padding: 2px 6px; border-radius: 2px; border: 1px solid; flex-shrink: 0; }
+.gp-name { font-size: 13px; color: var(--accent); font-style: italic; margin-bottom: 8px; }
+.gp-explain { font-size: 14px; color: var(--ink); line-height: 1.6; margin-bottom: 12px; }
+.gp-examples { border-top: 1px dashed var(--rule); padding-top: 10px; display: grid; gap: 10px; }
+.gp-ex-zh { font-family: "Noto Serif SC", Georgia, serif; font-size: 16px; color: var(--ink); }
+.gp-ex-py { font-family: "JetBrains Mono", monospace; font-size: 12px; margin-top: 1px; }
+.gp-ex-vi { font-size: 13px; color: var(--muted); margin-top: 1px; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 4px; }
+
+@media (max-width: 780px) {
+  .hd { padding: 10px 14px; }
+  .crumb { padding: 8px 12px; }
+  .stage { padding: 20px 18px 60px; }
+  .stage-title { font-size: 25px; }
+  .bp-title { font-size: 17px; }
+  .bp-oneline { padding-left: 20px; }
+}
+`;
