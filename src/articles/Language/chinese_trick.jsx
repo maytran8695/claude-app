@@ -91,7 +91,7 @@ const toneRules = [
     examples: [ { hv: "同 đồng", py: "tóng" }, { hv: "文 văn", py: "wén" }, { hv: "年 niên", py: "nián" }, { hv: "常 thường", py: "cháng" }, { hv: "田 điền", py: "tián" }, { hv: "龍 long", py: "lóng" }, { hv: "來 lai", py: "lái" }, { hv: "回 hồi", py: "huí" }, { hv: "何 hà", py: "hé" }, { hv: "麻 ma", py: "má" } ] },
   { from: "Hỏi / Ngã", to: "Thanh 3 hoặc Thanh 4", conf: "low",
     desc: "Đây là cặp thanh kém tin cậy nhất — chia gần như đôi, không có quy luật thực dụng. Đừng dựa vào đây để đoán, hãy tra từ điển.",
-    examples: [ { hv: "語 ngữ", py: "yǔ", note: "T3" }, { hv: "使 sử", py: "shǐ", note: "T3" }, { hv: "是 thị", py: "shì", note: "T4" }, { hv: "跪 quỵ", py: "guì", note: "T4" }, { hv: "小 tiểu", py: "xiǎo", note: "T3" }, { hv: "老 lão", py: "lǎo", note: "T3" }, { hv: "似 tự", py: "sì", note: "T4" } ] },
+    examples: [ { hv: "語 ngữ", py: "yǔ", note: "T3" }, { hv: "使 sử", py: "shǐ", note: "T3" }, { hv: "小 tiểu", py: "xiǎo", note: "T3" }, { hv: "老 lão", py: "lǎo", note: "T3" }, { hv: "悌 đễ", py: "tì", note: "T4" } ] },
   { from: "Sắc / Nặng (âm tiết mở)", to: "Thanh 4 (去声)", conf: "mid",
     desc: "Chỉ áp dụng cho âm tiết KHÔNG kết thúc bằng -p/-t/-c/-ch. Nếu có phụ âm cuối này, xem quy luật Nhập thanh bên dưới thay vì quy luật này.",
     examples: [ { hv: "意 ý", py: "yì" }, { hv: "志 chí", py: "zhì" }, { hv: "貴 quý", py: "guì" }, { hv: "愛 ái", py: "ài" }, { hv: "路 lộ", py: "lù" }, { hv: "在 tại", py: "zài" }, { hv: "自 tự", py: "zì" }, { hv: "見 kiến", py: "jiàn" } ] },
@@ -104,17 +104,17 @@ const initialRules = [
   { from: "nh-", to: "r-", conf: "high", desc: "Một trong những quy luật đáng tin cậy nhất trong toàn bảng.",
     examples: [ { hv: "人 nhân", py: "rén" }, { hv: "日 nhật", py: "rì" }, { hv: "然 nhiên", py: "rán" }, { hv: "肉 nhục", py: "ròu" }, { hv: "熱 nhiệt", py: "rè" }, { hv: "軟 nhuyễn", py: "ruǎn" }, { hv: "讓 nhượng", py: "ràng" }, { hv: "認 nhận", py: "rèn" }, { hv: "如 như", py: "rú" }, { hv: "染 nhiễm", py: "rǎn" } ] },
   { from: "ng- / ngh-", to: "y- (hoặc câm)", conf: "high",
-    examples: [ { hv: "元 nguyên", py: "yuán" }, { hv: "言 ngôn", py: "yán" }, { hv: "銀 ngân", py: "yín" }, { hv: "業 nghiệp", py: "yè" }, { hv: "硬 ngạnh", py: "yìng" }, { hv: "牛 ngưu", py: "niú" }, { hv: "魚 ngư", py: "yú" }, { hv: "藝 nghệ", py: "yì" }, { hv: "岸 ngạn", py: "àn" } ] },
+    examples: [ { hv: "元 nguyên", py: "yuán" }, { hv: "言 ngôn", py: "yán" }, { hv: "銀 ngân", py: "yín" }, { hv: "業 nghiệp", py: "yè" }, { hv: "硬 ngạnh", py: "yìng" }, { hv: "魚 ngư", py: "yú" }, { hv: "藝 nghệ", py: "yì" }, { hv: "岸 ngạn", py: "àn" } ] },
   { from: "v-", to: "w-", conf: "high",
     examples: [ { hv: "文 văn", py: "wén" }, { hv: "問 vấn", py: "wèn" }, { hv: "萬 vạn", py: "wàn" }, { hv: "位 vị", py: "wèi" }, { hv: "忘 vong", py: "wàng" }, { hv: "王 vương", py: "wáng" }, { hv: "為 vi/vì", py: "wéi" }, { hv: "務 vụ", py: "wù" }, { hv: "武 vũ", py: "wǔ" } ] },
   { from: "h- (+ vần oa/oe)", to: "hu-", conf: "high", desc: "Kết hợp cả phụ âm đầu lẫn vần — độ tin cậy cao vì cả hai lớp cùng khớp.",
-    examples: [ { hv: "花 hoa", py: "huā" }, { hv: "話 thoại", py: "huà" }, { hv: "火 hỏa", py: "huǒ" }, { hv: "化 hóa", py: "huà" }, { hv: "黃 hoàng", py: "huáng" }, { hv: "壞 hoại", py: "huài" }, { hv: "會 hội", py: "huì" }, { hv: "換 hoán", py: "huàn" } ] },
+    examples: [ { hv: "花 hoa", py: "huā" }, { hv: "火 hỏa", py: "huǒ" }, { hv: "化 hóa", py: "huà" }, { hv: "黃 hoàng", py: "huáng" }, { hv: "壞 hoại", py: "huài" }, { hv: "會 hội", py: "huì" }, { hv: "換 hoán", py: "huàn" } ] },
   { from: "c-/k- (trước i, e)", to: "j-", conf: "mid",
-    examples: [ { hv: "金 kim", py: "jīn" }, { hv: "京 kinh", py: "jīng" }, { hv: "見 kiến", py: "jiàn" }, { hv: "記 ký", py: "jì" }, { hv: "己 kỷ", py: "jǐ" }, { hv: "計 kế", py: "jì" }, { hv: "教 giáo", py: "jiào" }, { hv: "家 gia", py: "jiā" } ] },
+    examples: [ { hv: "金 kim", py: "jīn" }, { hv: "京 kinh", py: "jīng" }, { hv: "見 kiến", py: "jiàn" }, { hv: "記 ký", py: "jì" }, { hv: "己 kỷ", py: "jǐ" }, { hv: "計 kế", py: "jì" } ] },
   { from: "c-/k- (trước a, o, u)", to: "g-", conf: "mid",
-    examples: [ { hv: "公 công", py: "gōng" }, { hv: "光 quang", py: "guāng" }, { hv: "過 quá", py: "guò" }, { hv: "古 cổ", py: "gǔ" }, { hv: "高 cao", py: "gāo" }, { hv: "改 cải", py: "gǎi" }, { hv: "感 cảm", py: "gǎn" } ] },
+    examples: [ { hv: "公 công", py: "gōng" }, { hv: "古 cổ", py: "gǔ" }, { hv: "高 cao", py: "gāo" }, { hv: "改 cải", py: "gǎi" }, { hv: "感 cảm", py: "gǎn" } ] },
   { from: "tr-", to: "zh-", conf: "mid",
-    examples: [ { hv: "中 trung", py: "zhōng" }, { hv: "直 trực", py: "zhí" }, { hv: "重 trọng", py: "zhòng" }, { hv: "竹 trúc", py: "zhú" }, { hv: "住 trú", py: "zhù" }, { hv: "專 chuyên", py: "zhuān" }, { hv: "追 truy", py: "zhuī" } ] },
+    examples: [ { hv: "中 trung", py: "zhōng" }, { hv: "直 trực", py: "zhí" }, { hv: "重 trọng", py: "zhòng" }, { hv: "竹 trúc", py: "zhú" }, { hv: "住 trú", py: "zhù" }, { hv: "追 truy", py: "zhuī" } ] },
   { from: "đ-", to: "d-", conf: "mid",
     examples: [ { hv: "東 đông", py: "dōng" }, { hv: "道 đạo", py: "dào" }, { hv: "大 đại", py: "dà" }, { hv: "地 địa", py: "dì" }, { hv: "動 động", py: "dòng" }, { hv: "當 đương", py: "dāng" }, { hv: "到 đáo", py: "dào" }, { hv: "都 đô", py: "dōu" } ] },
   { from: "t- / th-", to: "biến thiên (t-, sh-, q-…)", conf: "low",
@@ -125,7 +125,7 @@ const initialRules = [
   { from: "b-", to: "b-", conf: "high", desc: "Giữ nguyên phụ âm — nhóm ổn định nhất trong toàn bảng.",
     examples: [ { hv: "本 bản", py: "běn" }, { hv: "白 bạch", py: "bái" }, { hv: "北 bắc", py: "běi" }, { hv: "半 bán", py: "bàn" }, { hv: "布 bố", py: "bù" }, { hv: "報 báo", py: "bào" } ] },
   { from: "m-", to: "m-", conf: "high", desc: "Giữ nguyên phụ âm mũi môi.",
-    examples: [ { hv: "母 mẫu", py: "mǔ" }, { hv: "木 mộc", py: "mù" }, { hv: "馬 mã", py: "mǎ" }, { hv: "米 mễ", py: "mǐ" }, { hv: "門 môn", py: "mén" }, { hv: "面 diện/mặt", py: "miàn" } ] },
+    examples: [ { hv: "母 mẫu", py: "mǔ" }, { hv: "木 mộc", py: "mù" }, { hv: "馬 mã", py: "mǎ" }, { hv: "米 mễ", py: "mǐ" }, { hv: "門 môn", py: "mén" } ] },
   { from: "l-", to: "l-", conf: "high", desc: "Giữ nguyên phụ âm — ổn định.",
     examples: [ { hv: "老 lão", py: "lǎo" }, { hv: "力 lực", py: "lì" }, { hv: "六 lục", py: "liù" }, { hv: "路 lộ", py: "lù" }, { hv: "立 lập", py: "lì" }, { hv: "利 lợi", py: "lì" } ] },
   { from: "gi-", to: "j-", conf: "high",
@@ -140,18 +140,18 @@ const finalRules = [
   { from: "-ương / -ang", to: "-iang / -ang", conf: "high",
     examples: [ { hv: "江 giang", py: "jiāng" }, { hv: "方 phương", py: "fāng" }, { hv: "長 trường", py: "cháng" }, { hv: "香 hương", py: "xiāng" }, { hv: "想 tưởng", py: "xiǎng" }, { hv: "陽 dương", py: "yáng" }, { hv: "常 thường", py: "cháng" } ] },
   { from: "-oa / -óa / -ỏa", to: "-ua", conf: "high",
-    examples: [ { hv: "花 hoa", py: "huā" }, { hv: "化 hóa", py: "huà" }, { hv: "火 hỏa", py: "huǒ" }, { hv: "過 quá", py: "guò" }, { hv: "果 quả", py: "guǒ" }, { hv: "課 khóa", py: "kè" } ] },
+    examples: [ { hv: "花 hoa", py: "huā" }, { hv: "化 hóa", py: "huà" }, { hv: "火 hỏa", py: "huǒ" }, { hv: "過 quá", py: "guò" }, { hv: "果 quả", py: "guǒ" } ] },
   { from: "-iên / -uyên", to: "-ian / -uan", conf: "high",
-    examples: [ { hv: "天 thiên", py: "tiān" }, { hv: "年 niên", py: "nián" }, { hv: "見 kiến", py: "jiàn" }, { hv: "元 nguyên", py: "yuán" }, { hv: "圓 viên", py: "yuán" }, { hv: "面 diện", py: "miàn" }, { hv: "邊 biên", py: "biān" } ] },
+    examples: [ { hv: "天 thiên", py: "tiān" }, { hv: "年 niên", py: "nián" }, { hv: "見 kiến", py: "jiàn" }, { hv: "元 nguyên", py: "yuán" }, { hv: "面 diện", py: "miàn" }, { hv: "邊 biên", py: "biān" } ] },
   { from: "-am", to: "-an", conf: "mid",
     examples: [ { hv: "南 nam", py: "nán" }, { hv: "三 tam", py: "sān" }, { hv: "談 đàm", py: "tán" }, { hv: "藍 lam", py: "lán" }, { hv: "敢 cảm", py: "gǎn" }, { hv: "含 hàm", py: "hán" } ] },
   { from: "-âm / -im", to: "-in", conf: "mid",
-    examples: [ { hv: "金 kim", py: "jīn" }, { hv: "心 tâm", py: "xīn" }, { hv: "音 âm", py: "yīn" }, { hv: "林 lâm", py: "lín" }, { hv: "深 thâm", py: "shēn" }, { hv: "沈 trầm", py: "chén" } ] },
+    examples: [ { hv: "金 kim", py: "jīn" }, { hv: "心 tâm", py: "xīn" }, { hv: "音 âm", py: "yīn" }, { hv: "林 lâm", py: "lín" } ] },
   { from: "-ông / -ung", to: "-ong", conf: "high",
     examples: [ { hv: "東 đông", py: "dōng" }, { hv: "公 công", py: "gōng" }, { hv: "中 trung", py: "zhōng" }, { hv: "同 đồng", py: "tóng" }, { hv: "紅 hồng", py: "hóng" }, { hv: "工 công", py: "gōng" } ] },
   { from: "-an", to: "-an", conf: "high", desc: "Trường hợp giữ nguyên vần — dễ nhận diện nhất.",
     examples: [ { hv: "安 an", py: "ān" }, { hv: "半 bán", py: "bàn" }, { hv: "反 phản", py: "fǎn" }, { hv: "難 nan", py: "nán" }, { hv: "案 án", py: "àn" }, { hv: "看 khán", py: "kàn" } ] },
-  { from: "-anh / -ăng", to: "-eng", conf: "mid",
+  { from: "-anh / -ăng (và một vài từ -inh ngoại lệ)", to: "-eng", conf: "mid",
     desc: "Khác với -inh/-ênh ở trên — nhóm này lệch sang -eng chứ không phải -ing, dễ nhầm nếu không phân biệt kỹ mặt chữ Hán Việt.",
     examples: [ { hv: "生 sinh", py: "shēng" }, { hv: "更 canh", py: "gēng" }, { hv: "猛 mãnh", py: "měng" }, { hv: "冷 lãnh", py: "lěng" }, { hv: "省 tỉnh", py: "shěng" } ] },
   { from: "-ôn / -uôn", to: "-un / -uan", conf: "mid",
@@ -181,11 +181,11 @@ const falseFriends = [
 const phoneticGroups = [
   { comp: "青", py: "qīng", meaning: "xanh (màu)", derived: [ { hv: "清 (thanh)", py: "qīng", meaning: "trong, sạch" }, { hv: "情 (tình)", py: "qíng", meaning: "tình cảm" }, { hv: "請 (thỉnh)", py: "qǐng", meaning: "mời, xin" }, { hv: "晴 (tình)", py: "qíng", meaning: "trời nắng" }, { hv: "精 (tinh)", py: "jīng", meaning: "tinh, tinh túy" } ] },
   { comp: "馬", py: "mǎ", meaning: "ngựa", derived: [ { hv: "媽 (ma)", py: "mā", meaning: "mẹ" }, { hv: "嗎 (ma)", py: "ma", meaning: "trợ từ hỏi" }, { hv: "罵 (mạ)", py: "mà", meaning: "mắng, chửi" }, { hv: "碼 (mã)", py: "mǎ", meaning: "mã số" } ] },
-  { comp: "方", py: "fāng", meaning: "phương, vuông", derived: [ { hv: "放 (phóng)", py: "fàng", meaning: "thả, đặt" }, { hv: "房 (phòng)", py: "fáng", meaning: "phòng, nhà" }, { hv: "訪 (phóng)", py: "fǎng", meaning: "thăm hỏi" }, { hv: "芳 (phương)", py: "fāng", meaning: "thơm" } ] },
-  { comp: "生", py: "shēng", meaning: "sinh, sống", derived: [ { hv: "星 (tinh)", py: "xīng", meaning: "sao" }, { hv: "姓 (tính)", py: "xìng", meaning: "họ tên" }, { hv: "勝 (thắng)", py: "shèng", meaning: "thắng" } ] },
+  { comp: "方", py: "fāng", meaning: "phương, vuông", derived: [ { hv: "放 (phóng)", py: "fàng", meaning: "thả, đặt" }, { hv: "房 (phòng)", py: "fáng", meaning: "phòng, nhà" }, { hv: "訪 (phỏng)", py: "fǎng", meaning: "thăm hỏi" }, { hv: "芳 (phương)", py: "fāng", meaning: "thơm" } ] },
+  { comp: "生", py: "shēng", meaning: "sinh, sống", derived: [ { hv: "星 (tinh)", py: "xīng", meaning: "sao" }, { hv: "姓 (tính)", py: "xìng", meaning: "họ tên" } ] },
   { comp: "令", py: "lìng", meaning: "lệnh, khiến", derived: [ { hv: "冷 (lãnh)", py: "lěng", meaning: "lạnh" }, { hv: "領 (lĩnh)", py: "lǐng", meaning: "dẫn, cổ áo" }, { hv: "鈴 (linh)", py: "líng", meaning: "cái chuông" } ] },
   { comp: "包", py: "bāo", meaning: "bao, gói", derived: [ { hv: "抱 (bão)", py: "bào", meaning: "ôm" }, { hv: "飽 (bão)", py: "bǎo", meaning: "no" }, { hv: "泡 (bào)", py: "pào", meaning: "ngâm, bọt" } ] },
-  { comp: "交", py: "jiāo", meaning: "giao, trao đổi", derived: [ { hv: "較 (giác)", py: "jiào", meaning: "so sánh" }, { hv: "郊 (giao)", py: "jiāo", meaning: "vùng ngoại ô" }, { hv: "校 (giáo)", py: "xiào", meaning: "trường học" } ] },
+  { comp: "交", py: "jiāo", meaning: "giao, trao đổi", derived: [ { hv: "較 (giảo)", py: "jiào", meaning: "so sánh" }, { hv: "郊 (giao)", py: "jiāo", meaning: "vùng ngoại ô" }, { hv: "校 (hiệu)", py: "xiào", meaning: "trường học" } ] },
   { comp: "京", py: "jīng", meaning: "kinh đô", derived: [ { hv: "鯨 (kình)", py: "jīng", meaning: "cá voi" }, { hv: "景 (cảnh)", py: "jǐng", meaning: "cảnh vật" } ] },
   { comp: "相", py: "xiāng", meaning: "tương, lẫn nhau", derived: [ { hv: "想 (tưởng)", py: "xiǎng", meaning: "nghĩ, tưởng" }, { hv: "箱 (tương)", py: "xiāng", meaning: "hộp, rương" } ] },
   { comp: "由", py: "yóu", meaning: "do, từ", derived: [ { hv: "油 (du)", py: "yóu", meaning: "dầu" }, { hv: "郵 (bưu)", py: "yóu", meaning: "bưu điện" }, { hv: "鈾 (du)", py: "yóu", meaning: "uranium" } ] },
@@ -195,7 +195,7 @@ const phoneticGroups = [
 
 const sandhiRules = [
   { from: "T3 + T3", to: "T2 + T3", conf: "struct", desc: "Quy tắc cứng, xảy ra 100% khi hai âm tiết thanh 3 đứng liền nhau — âm tiết đầu bắt buộc đổi sang thanh 2 khi nói (chữ viết vẫn giữ thanh 3).",
-    examples: [ { hv: "你好 (viết)", py: "níhǎo (nói thật)" }, { hv: "很好 (viết)", py: "génhǎo (nói thật)" }, { hv: "可以 (viết)", py: "kéyǐ (nói thật)" } ] },
+    examples: [ { hv: "你好 (viết)", py: "níhǎo (nói thật)" }, { hv: "很好 (viết)", py: "hénhǎo (nói thật)" }, { hv: "可以 (viết)", py: "kéyǐ (nói thật)" } ] },
   { from: "不 bù + Thanh 4", to: "不 → Thanh 2 (bú)", conf: "struct", desc: "不 chỉ đổi thanh khi từ theo sau là Thanh 4. Với Thanh 1/2/3 thì 不 vẫn giữ Thanh 4 bình thường.",
     examples: [ { hv: "不是 (viết)", py: "búshì (nói thật)" }, { hv: "不對 (viết)", py: "búduì (nói thật)" }, { hv: "不好 (giữ nguyên)", py: "bùhǎo" }, { hv: "不來 (giữ nguyên)", py: "bùlái" } ] },
   { from: "一 yī + Thanh 4", to: "一 → Thanh 2 (yí)", conf: "struct",
@@ -251,7 +251,7 @@ const chengyuList = [
   { hanzi: "畫蛇添足", py: "huà shé tiān zú", hv: "hoạ xà thiêm túc", meaning: "vẽ rắn thêm chân — làm thừa, phản tác dụng" },
   { hanzi: "守株待兔", py: "shǒu zhū dài tù", hv: "thủ chu đãi thố", meaning: "ôm cây chờ thỏ — trông chờ vận may một cách thụ động" },
   { hanzi: "自相矛盾", py: "zì xiāng máo dùn", hv: "tự tương mâu thuẫn", meaning: "tự mâu thuẫn với chính mình — nguồn gốc của từ \"mâu thuẫn\" trong tiếng Việt" },
-  { hanzi: "入鄉隨俗", py: "rù xiāng suí sú", hv: "nhập gia tùy tục", meaning: "đến đâu theo tục lệ ở đó" },
+  { hanzi: "入鄉隨俗", py: "rù xiāng suí sú", hv: "nhập hương tùy tục", meaning: "đến đâu theo tục lệ ở đó — tục ngữ Việt quen dùng hơn ở dạng \"nhập gia tùy tục\" (thay 鄉/hương bằng 家/gia)" },
   { hanzi: "知己知彼", py: "zhī jǐ zhī bǐ", hv: "tri kỷ tri bỉ", meaning: "biết mình biết địch" },
   { hanzi: "有志者事竟成", py: "yǒu zhì zhě shì jìng chéng", hv: "hữu chí giả sự cánh thành", meaning: "có ý chí thì việc gì cũng thành" },
 ];
@@ -316,7 +316,8 @@ export default function HanVietKey() {
 
   const totalRules =
     toneRules.length + initialRules.length + finalRules.length + falseFriends.length +
-    phoneticGroups.length + sandhiRules.length + measureWords.length + minimalPairs.length + chengyuList.length;
+    phoneticGroups.length + sandhiRules.length + measureWords.length + freqGroups.length +
+    minimalPairs.length + chengyuList.length;
 
   return (
     <div style={{ background: "#F7F6F2", fontFamily: "Inter, sans-serif" }}>
