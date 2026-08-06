@@ -200,6 +200,8 @@ const phoneticGroups = [
   { comp: "反", py: "fǎn", meaning: "phản, trái lại", derived: [ { hv: "飯 (phạn)", py: "fàn", meaning: "cơm" }, { hv: "板 (bản)", py: "bǎn", meaning: "tấm ván (mộc bản)" }, { hv: "版 (bản)", py: "bǎn", meaning: "bản in, ấn bản" } ] },
   { comp: "寺", py: "sì", meaning: "chùa, tự", derived: [ { hv: "詩 (thi)", py: "shī", meaning: "thơ" }, { hv: "侍 (thị)", py: "shì", meaning: "hầu hạ, phụng sự" }, { hv: "時 (thời)", py: "shí", meaning: "thời gian" }, { hv: "特 (đặc)", py: "tè", meaning: "đặc biệt" } ] },
   { comp: "古", py: "gǔ", meaning: "xưa, cổ", derived: [ { hv: "姑 (cô)", py: "gū", meaning: "cô, cô gái" }, { hv: "故 (cố)", py: "gù", meaning: "lý do, cố ý" }, { hv: "苦 (khổ)", py: "kǔ", meaning: "khổ, đắng" }, { hv: "固 (cố)", py: "gù", meaning: "kiên cố, vững chắc" } ] },
+  { comp: "每", py: "měi", meaning: "mỗi", derived: [ { hv: "海 (hải)", py: "hǎi", meaning: "biển" }, { hv: "梅 (mai)", py: "méi", meaning: "hoa mai" }, { hv: "悔 (hối)", py: "huǐ", meaning: "hối hận" } ] },
+  { comp: "少", py: "shǎo", meaning: "thiếu, ít", derived: [ { hv: "沙 (sa)", py: "shā", meaning: "cát" }, { hv: "妙 (diệu)", py: "miào", meaning: "kỳ diệu" }, { hv: "抄 (sao)", py: "chāo", meaning: "sao chép" } ] },
 ];
 
 /* ---------- DATA: Biến điệu (tone sandhi) ---------- */
@@ -244,6 +246,9 @@ const measureWords = [
   { hanzi: "雙 / 双", py: "shuāng", loaiTu: "đôi (hai vật đi cùng nhau)", example: "一雙鞋 (một đôi giày)" },
   { hanzi: "次", py: "cì", loaiTu: "lần (số lần thực hiện hành động)", example: "一次機會 (một lần cơ hội)" },
   { hanzi: "種 / 种", py: "zhǒng", loaiTu: "loại, thứ (phân loại chung)", example: "一種方法 (một loại phương pháp)" },
+  { hanzi: "場 / 场", py: "chǎng", loaiTu: "trận, buổi (sự kiện, trận đấu, buổi chiếu)", example: "一場比賽 (một trận thi đấu)" },
+  { hanzi: "塊 / 块", py: "kuài", loaiTu: "khối, miếng (vật dạng cục); khẩu ngữ còn dùng đếm tiền", example: "一塊蛋糕 (một miếng bánh)" },
+  { hanzi: "群", py: "qún", loaiTu: "đàn, bầy, nhóm (tập hợp đông)", example: "一群人 (một nhóm người)" },
 ];
 
 /* ---------- DATA: Từ vựng tần suất (nhóm theo chức năng) ---------- */
@@ -256,6 +261,7 @@ const freqGroups = [
   { label: "Từ để hỏi — khung mọi câu hỏi", words: ["什麼 shénme (gì)", "誰 shéi (ai)", "哪裡 nǎlǐ (đâu)", "為什麼 wèishénme (tại sao)", "怎麼 zěnme (như thế nào)", "什麼時候 shénme shíhou (khi nào)", "多少 duōshao (bao nhiêu)", "幾 jǐ (mấy)"] },
   { label: "Từ chỉ thời gian — mốc thời gian dùng liên tục", words: ["現在 xiànzài (bây giờ)", "今天 jīntiān (hôm nay)", "昨天 zuótiān (hôm qua)", "明天 míngtiān (ngày mai)", "以後 yǐhòu (sau này)", "以前 yǐqián (trước đây)", "已經 yǐjīng (đã)", "還 hái (còn/vẫn)"] },
   { label: "Giới từ & động từ năng nguyện — khung ngữ pháp câu phức", words: ["從 cóng (từ)", "到 dào (đến)", "對 duì (đối với)", "跟 gēn (với/cùng)", "給 gěi (cho)", "可以 kěyǐ (có thể)", "應該 yīnggāi (nên)", "會 huì (sẽ/biết)", "能 néng (có thể/năng lực)"] },
+  { label: "Từ chỉ số lượng & mức độ — bổ nghĩa tính từ, động từ", words: ["一點兒 yìdiǎnr (một chút)", "一些 yìxiē (một vài)", "太 tài (quá)", "非常 fēicháng (cực kỳ)", "比較 bǐjiào (tương đối/khá)", "最 zuì (nhất)"] },
 ];
 
 /* ---------- DATA: Cặp tối thiểu (minimal tone pairs) ---------- */
@@ -273,6 +279,8 @@ const minimalPairs = [
   { base: "fan", forms: [ { hanzi: "翻", py: "fān", meaning: "lật, dịch" }, { hanzi: "煩", py: "fán", meaning: "phiền toái" }, { hanzi: "反", py: "fǎn", meaning: "ngược lại" }, { hanzi: "飯", py: "fàn", meaning: "cơm" } ] },
   { base: "shu", forms: [ { hanzi: "書", py: "shū", meaning: "sách" }, { hanzi: "熟", py: "shú", meaning: "chín, quen" }, { hanzi: "鼠", py: "shǔ", meaning: "con chuột" }, { hanzi: "樹", py: "shù", meaning: "cây" } ] },
   { base: "zhu", forms: [ { hanzi: "豬", py: "zhū", meaning: "con lợn" }, { hanzi: "竹", py: "zhú", meaning: "tre" }, { hanzi: "主", py: "zhǔ", meaning: "chủ" }, { hanzi: "住", py: "zhù", meaning: "ở, sống" } ] },
+  { base: "wu", forms: [ { hanzi: "污", py: "wū", meaning: "dơ bẩn" }, { hanzi: "無", py: "wú", meaning: "không có" }, { hanzi: "五", py: "wǔ", meaning: "số năm" }, { hanzi: "務", py: "wù", meaning: "nhiệm vụ" } ] },
+  { base: "yi", forms: [ { hanzi: "衣", py: "yī", meaning: "áo, quần áo" }, { hanzi: "姨", py: "yí", meaning: "dì, mợ" }, { hanzi: "已", py: "yǐ", meaning: "đã" }, { hanzi: "意", py: "yì", meaning: "ý nghĩa" } ] },
 ];
 
 /* ---------- DATA: Thành ngữ (chengyu ↔ Hán Việt) ---------- */
@@ -293,6 +301,9 @@ const chengyuList = [
   { hanzi: "亡羊補牢", py: "wáng yáng bǔ láo", hv: "vong dương bổ lao", meaning: "mất cừu rồi mới sửa chuồng — muộn còn hơn không" },
   { hanzi: "井底之蛙", py: "jǐng dǐ zhī wā", hv: "tỉnh để chi oa", meaning: "ếch ngồi đáy giếng — tầm nhìn hạn hẹp, tự cho mình biết hết" },
   { hanzi: "對牛彈琴", py: "duì niú tán qín", hv: "đối ngưu đàn cầm", meaning: "đàn gảy tai trâu — nói với người không hiểu/không muốn hiểu, phí công vô ích" },
+  { hanzi: "杯弓蛇影", py: "bēi gōng shé yǐng", hv: "bôi cung xà ảnh", meaning: "bóng cung trong chén tưởng nhầm là rắn — nghi ngờ, sợ hãi vô căn cứ, tự dọa mình" },
+  { hanzi: "望梅止渴", py: "wàng méi zhǐ kě", hv: "vọng mai chỉ khát", meaning: "nhìn mơ mà đỡ khát — tự an ủi bằng hy vọng hão, giải pháp tinh thần không thực chất" },
+  { hanzi: "杯水車薪", py: "bēi shuǐ chē xīn", hv: "bôi thủy xa tân", meaning: "một chén nước cho cả xe củi đang cháy — sự giúp đỡ quá nhỏ so với vấn đề, muối bỏ biển" },
 ];
 
 /* ---------- DATA: Hướng dẫn sử dụng (guide subtab) ---------- */
@@ -322,14 +333,14 @@ const TABS_GUIDE = [
     use: "Luyện tai phân biệt các chữ chỉ khác nhau ở thanh điệu (cùng phụ âm + vần, khác thanh) — ví dụ mā/má/mǎ/mà.",
     when: "Trước khi luyện nói đúng thanh điệu — nên luyện nghe/nhận diện tách biệt từng thanh trước, rồi mới luyện phát âm; cũng dùng để tự kiểm tra khi nghe không rõ ai đó vừa nói thanh mấy.",
     tip: "Nghe từng cặp theo thứ tự 1-2-3-4 nhiều lần để tai quen sự khác biệt, sau đó nghe ngẫu nhiên (xáo trộn thứ tự) để kiểm tra thật sự đã phân biệt được hay chỉ đang đoán theo trình tự." },
-  { n: "7", label: "Xen kẽ", hanzi: "交錯學習",
-    use: "Không phải bảng tra cứu — đây là hướng dẫn phương pháp học: vì sao xen kẽ nhiều kỹ năng (nghe/nói/đọc/viết) trong 1 buổi hiệu quả hơn học khối, kèm mẫu lịch học 25 phút.",
-    when: "Khi lên kế hoạch cho một buổi tự học — dùng mẫu 5 bước (nghe → nhại lại → đọc → viết lại → nói tự do) áp dụng cho MỘT đoạn hội thoại duy nhất.",
-    tip: "Điểm dễ hiểu lầm nhất: xen kẽ nghĩa là cùng MỘT nội dung đi qua nhiều kỹ năng khác nhau, không phải học nhiều chủ đề khác nhau cho cùng một kỹ năng." },
-  { n: "8", label: "Thành ngữ", hanzi: "成語",
+  { n: "7", label: "Thành ngữ", hanzi: "成語",
     use: "Tra các chengyu (thành ngữ 4 chữ) phổ biến cùng âm Hán Việt và nghĩa — nhiều thành ngữ Việt là dịch/mượn trực tiếp từ đây.",
     when: "Muốn nâng cấp văn viết/nói lên mức trang trọng hơn, hoặc muốn hiểu gốc gác một thành ngữ Việt quen thuộc (vd. \"tự tương mâu thuẫn\" → nguồn gốc từ \"mâu thuẫn\" trong tiếng Việt).",
     tip: "Với nền Hán Việt, đây là lớp từ vựng có ROI cao hơn hẳn so với người học phương Tây — nhưng nhớ rằng không phải thành ngữ Việt nào cũng dịch chữ-đối-chữ chính xác từ chengyu gốc (đôi khi một chữ đã bị thay khi truyền vào tiếng Việt), nên vẫn cần đối chiếu cẩn thận." },
+  { n: "8", label: "Xen kẽ", hanzi: "交錯學習",
+    use: "Không phải bảng tra cứu — đây là hướng dẫn phương pháp học: vì sao xen kẽ nhiều kỹ năng (nghe/nói/đọc/viết) trong 1 buổi hiệu quả hơn học khối, kèm mẫu lịch học 25 phút.",
+    when: "Khi lên kế hoạch cho một buổi tự học — dùng mẫu 5 bước (nghe → nhại lại → đọc → viết lại → nói tự do) áp dụng cho MỘT đoạn hội thoại duy nhất.",
+    tip: "Điểm dễ hiểu lầm nhất: xen kẽ nghĩa là cùng MỘT nội dung đi qua nhiều kỹ năng khác nhau, không phải học nhiều chủ đề khác nhau cho cùng một kỹ năng." },
 ];
 
 function GuideTabCard({ n, hanzi, label, use, when, tip }) {
@@ -361,14 +372,18 @@ const TABS = [
   { id: "measure", label: "Lượng từ" },
   { id: "freq", label: "Tần suất" },
   { id: "minimal", label: "Cặp âm" },
-  { id: "interleave", label: "Xen kẽ" },
   { id: "chengyu", label: "Thành ngữ" },
+  { id: "interleave", label: "Xen kẽ" },
 ];
 
 function matchRule(rule, q) {
   if (!q) return true;
   const hay = [rule.from, rule.to, rule.desc || "", ...rule.examples.map((e) => `${e.hv} ${e.py} ${e.note || ""}`)].join(" ").toLowerCase();
   return hay.includes(q.toLowerCase());
+}
+const CONF_ORDER = { struct: 0, high: 1, mid: 2, low: 3 };
+function byConfDesc(rules) {
+  return rules.slice().sort((a, b) => CONF_ORDER[a.conf] - CONF_ORDER[b.conf]);
 }
 function matchFriend(f, q) {
   if (!q) return true;
@@ -399,14 +414,22 @@ function matchChengyu(c, q) {
 
 export default function HanVietKey() {
   const [tab, setTab] = useState("guide");
+  const goToTab = (id) => {
+    setTab(id);
+    // Đợi nội dung tab mới thực sự render xong (2 rAF, qua khỏi lần paint kế
+    // tiếp) rồi mới cuộn — gọi cuộn ngay trong onClick đôi khi chạy trên
+    // chiều cao nội dung CŨ và bị trình duyệt hủy animation giữa chừng khi
+    // nội dung mới (ngắn/dài hơn) vừa thay layout.
+    requestAnimationFrame(() => requestAnimationFrame(() => window.__scrollArticleToTop?.()));
+  };
   const [query, setQuery] = useState("");
 
-  const fTone = useMemo(() => toneRules.filter((r) => matchRule(r, query)), [query]);
-  const fInitial = useMemo(() => initialRules.filter((r) => matchRule(r, query)), [query]);
-  const fFinal = useMemo(() => finalRules.filter((r) => matchRule(r, query)), [query]);
+  const fTone = useMemo(() => byConfDesc(toneRules.filter((r) => matchRule(r, query))), [query]);
+  const fInitial = useMemo(() => byConfDesc(initialRules.filter((r) => matchRule(r, query))), [query]);
+  const fFinal = useMemo(() => byConfDesc(finalRules.filter((r) => matchRule(r, query))), [query]);
   const fFriends = useMemo(() => falseFriends.filter((f) => matchFriend(f, query)), [query]);
   const fPhonetic = useMemo(() => phoneticGroups.filter((g) => matchPhonetic(g, query)), [query]);
-  const fSandhi = useMemo(() => sandhiRules.filter((r) => matchRule(r, query)), [query]);
+  const fSandhi = useMemo(() => byConfDesc(sandhiRules.filter((r) => matchRule(r, query))), [query]);
   const fMeasure = useMemo(() => measureWords.filter((m) => matchMeasure(m, query)), [query]);
   const fFreq = useMemo(() => freqGroups.filter((g) => matchFreqGroup(g, query)), [query]);
   const fPairs = useMemo(() => minimalPairs.filter((p) => matchPair(p, query)), [query]);
@@ -438,7 +461,7 @@ export default function HanVietKey() {
       <nav className="mobile-static" style={{ position: "sticky", top: 0, zIndex: 10, background: "#FCFBF8", borderBottom: "1px solid #E4E1D8" }}>
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap", padding: "9px 20px" }}>
           {TABS.map((t) => (
-            <button key={t.id} onClick={() => { setTab(t.id); window.__scrollArticleToTop?.(); }}
+            <button key={t.id} onClick={() => goToTab(t.id)}
               style={{
                 border: "1px solid " + (tab === t.id ? "#2B3A55" : "#E4E1D8"),
                 background: tab === t.id ? "#2B3A55" : "#fff",
@@ -464,11 +487,11 @@ export default function HanVietKey() {
             <Intro text='"Bảng giải mã" không phải một bài học tuyến tính — đây là 8 tab tra cứu dữ liệu độc lập (chưa tính tab Hướng dẫn này), mỗi tab phục vụ một mục đích khác nhau. Tab này tóm tắt tab nào dùng cho việc gì, khi nào nên mở nó ra, và cách đọc nhãn độ tin cậy.' />
 
             <SectionHeader title="Cách đọc nhãn độ tin cậy" subtitle="Mỗi quy luật trong tab Hán Việt và Biến điệu đều gắn một nhãn màu — đọc đúng nhãn quan trọng hơn nhớ ví dụ" />
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 18px", background: "rgba(43,58,85,0.06)", border: "1px solid rgba(43,58,85,0.25)", borderRadius: "10px", padding: "16px 20px", marginBottom: "14px" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}><ConfPill level="struct" /><span style={{ fontSize: 13, color: "#5C5548" }}>Xảy ra 100% — học thuộc, áp dụng luôn không cần tra (nhập thanh, biến điệu).</span></div>
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}><ConfPill level="high" /><span style={{ fontSize: 13, color: "#5C5548" }}>Đúng phần lớn — dùng để đoán nhanh, nhưng vẫn có ngoại lệ rải rác.</span></div>
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}><ConfPill level="mid" /><span style={{ fontSize: 13, color: "#5C5548" }}>Đúng khoảng một nửa — chỉ nên dùng làm gợi ý đầu tiên, không thay thế tra cứu.</span></div>
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}><ConfPill level="low" /><span style={{ fontSize: 13, color: "#5C5548" }}>Gần như ngẫu nhiên — bắt buộc tra từ điển, đừng đoán rồi dùng luôn.</span></div>
+            <div style={{ display: "grid", gridTemplateColumns: "134px 1fr", rowGap: 12, columnGap: 16, alignItems: "center", background: "rgba(43,58,85,0.06)", border: "1px solid rgba(43,58,85,0.25)", borderRadius: "10px", padding: "16px 20px", marginBottom: "14px" }}>
+              <ConfPill level="struct" /><span style={{ fontSize: 13, color: "#5C5548" }}>Xảy ra 100% — học thuộc, áp dụng luôn không cần tra (nhập thanh, biến điệu).</span>
+              <ConfPill level="high" /><span style={{ fontSize: 13, color: "#5C5548" }}>Đúng phần lớn — dùng để đoán nhanh, nhưng vẫn có ngoại lệ rải rác.</span>
+              <ConfPill level="mid" /><span style={{ fontSize: 13, color: "#5C5548" }}>Đúng khoảng một nửa — chỉ nên dùng làm gợi ý đầu tiên, không thay thế tra cứu.</span>
+              <ConfPill level="low" /><span style={{ fontSize: 13, color: "#5C5548" }}>Gần như ngẫu nhiên — bắt buộc tra từ điển, đừng đoán rồi dùng luôn.</span>
             </div>
 
             <SectionHeader title="8 tab — dùng cho việc gì, khi nào" />
@@ -708,16 +731,27 @@ export default function HanVietKey() {
 
         {(() => {
           const idx = TABS.findIndex((t) => t.id === tab);
+          const prev = idx > 0 ? TABS[idx - 1] : null;
           const next = idx >= 0 && idx < TABS.length - 1 ? TABS[idx + 1] : null;
-          if (!next) return null;
+          if (!prev && !next) return null;
           return (
-            <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 22, paddingTop: 14, borderTop: "1px solid rgba(43,58,85,0.25)" }}>
-              <button
-                onClick={() => { setTab(next.id); window.__scrollArticleToTop?.(); }}
-                style={{ display: "flex", alignItems: "center", gap: 6, padding: "9px 15px", borderRadius: 8, border: "1px solid #2B3A55", background: "rgba(43,58,85,0.06)", color: "#2B3A55", fontFamily: "Inter, sans-serif", fontSize: 13, fontWeight: 600, cursor: "pointer" }}
-              >
-                Tiếp: {next.label} →
-              </button>
+            <div style={{ display: "flex", justifyContent: "space-between", gap: 10, marginTop: 22, paddingTop: 14, borderTop: "1px solid rgba(43,58,85,0.25)" }}>
+              {prev ? (
+                <button
+                  onClick={() => goToTab(prev.id)}
+                  style={{ display: "flex", alignItems: "center", gap: 6, padding: "9px 15px", borderRadius: 8, border: "1px solid #2B3A55", background: "rgba(43,58,85,0.06)", color: "#2B3A55", fontFamily: "Inter, sans-serif", fontSize: 13, fontWeight: 600, cursor: "pointer" }}
+                >
+                  ← Trước: {prev.label}
+                </button>
+              ) : <span />}
+              {next && (
+                <button
+                  onClick={() => goToTab(next.id)}
+                  style={{ display: "flex", alignItems: "center", gap: 6, padding: "9px 15px", borderRadius: 8, border: "1px solid #2B3A55", background: "rgba(43,58,85,0.06)", color: "#2B3A55", fontFamily: "Inter, sans-serif", fontSize: 13, fontWeight: 600, cursor: "pointer" }}
+                >
+                  Tiếp: {next.label} →
+                </button>
+              )}
             </div>
           );
         })()}
