@@ -24,6 +24,7 @@ const exactTitleMap = {
   [normalizeKey('WealthManagement')]: 'Wealth Management',
   [normalizeKey('HolisticLife')]: 'Holistic Life',
   [normalizeKey('MovementManual')]: 'Movement Manual',
+  [normalizeKey('Nutrition')]: 'Nutrition',
   [normalizeKey('ChunkAtlasEN')]: 'Chunk Atlas - EN',
   [normalizeKey('ChunkAtlasCn')]: 'Chunk Atlas - CHI',
   [normalizeKey('HskLearningMethod')]: 'Chinese Learning',
@@ -57,7 +58,8 @@ const targetArticleOrder = {
   ],
   Health: [
     normalizeKey('HolisticLife'),
-    normalizeKey('MovementManual')
+    normalizeKey('MovementManual'),
+    normalizeKey('Nutrition')
   ],
   Language: [
     normalizeKey('ChunkAtlasEN'),
