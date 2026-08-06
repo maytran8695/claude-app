@@ -6,7 +6,7 @@ import { Coffee, GlassWater, Bean, Brain, Thermometer, ChevronDown, X } from "lu
    DINH DƯỠNG THÔNG MINH CHO NGƯỜI BẬN RỘN
    Thực đơn cá nhân duy trì nhiều năm (trên 7 năm) — 1 phút mỗi sáng, đủ đường-đạm-béo,
    hạn chế tối đa hoá chất, tối ưu cho công việc cường độ cao/dễ stress
-   5 tab: Mở đầu · Dừa, ngũ cốc, cacao · Cacao · Đường mía ·
+   5 tab: Nguyên tắc · Dừa ngũ cốc chanh · Cacao · Đường mía ·
           Bảo quản · Kết hợp · Snack
    ============================================================ */
 
@@ -173,8 +173,8 @@ function CompareTable({ rows }) {
    NAVIGATION — 5 tabs
    ============================================================ */
 const PARTS = [
-  { id: 0, num: "0",  short: "Mở đầu",         accent: C.ink,    icon: Coffee },
-  { id: 1, num: "I",  short: "Dừa, ngũ cốc, cacao",  accent: C.teal,   icon: GlassWater },
+  { id: 0, num: "0",  short: "Nguyên tắc",         accent: C.ink,    icon: Coffee },
+  { id: 1, num: "I",  short: "Dừa ngũ cốc chanh",  accent: C.teal,   icon: GlassWater },
   { id: 2, num: "II", short: "Cacao", accent: C.amber, icon: Bean },
   { id: 3, num: "III",short: "Đường mía", accent: C.purple, icon: Brain },
   { id: 4, num: "IV", short: "Bảo quản · Kết hợp · Snack", accent: C.coral, icon: Thermometer },
@@ -189,6 +189,15 @@ export default function App() {
   useEffect(() => { syncSubTabToUrl(part); }, [part]);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const current = PARTS.find((p) => p.id === part);
+
+  // Đợi nội dung tab mới thực sự render xong (2 rAF, qua khỏi lần paint kế
+  // tiếp) rồi mới cuộn — gọi cuộn ngay trong onClick đôi khi chạy trên
+  // chiều cao nội dung CŨ và bị trình duyệt hủy animation giữa chừng khi
+  // nội dung mới (ngắn/dài hơn, nhất là tab IV đã gộp) vừa thay layout.
+  const goToPart = (id) => {
+    setPart(id);
+    requestAnimationFrame(() => requestAnimationFrame(() => window.__scrollArticleToTop?.()));
+  };
 
   return (
     <div style={{ fontFamily: "var(--font-sans)", padding: "18px 14px 104px" }}>
@@ -246,7 +255,7 @@ export default function App() {
           const active = part === p.id;
           const Icon = p.icon;
           return (
-            <button key={p.id} onClick={() => { setPart(p.id); window.__scrollArticleToTop?.(); }} style={{
+            <button key={p.id} onClick={() => goToPart(p.id)} style={{
               display: "flex", alignItems: "center", gap: 9,
               padding: "11px 19px", borderRadius: 12, cursor: "pointer",
               fontSize: 14, fontWeight: 700,
@@ -288,7 +297,7 @@ export default function App() {
             const active = part === p.id;
             const Icon = p.icon;
             return (
-              <button key={p.id} className="nt-md-item" style={{ background: active ? `${p.accent.border}14` : "transparent", borderLeftColor: active ? p.accent.border : "transparent" }} onClick={() => { setPart(p.id); setMobileNavOpen(false); window.__scrollArticleToTop?.(); }}>
+              <button key={p.id} className="nt-md-item" style={{ background: active ? `${p.accent.border}14` : "transparent", borderLeftColor: active ? p.accent.border : "transparent" }} onClick={() => { setMobileNavOpen(false); goToPart(p.id); }}>
                 <Icon size={14} color={active ? p.accent.border : "var(--color-text-tertiary)"} />
                 <span className="nt-md-item-label" style={{ color: active ? p.accent.border : "var(--color-text-primary)" }}>{p.num}. {p.short}</span>
               </button>
@@ -304,7 +313,7 @@ export default function App() {
       {part === 4 && <PartIV />}
 
       <div style={{ display: "flex", justifyContent: "space-between", gap: 10, marginTop: "2rem", paddingTop: "1rem", borderTop: "0.5px solid var(--color-border-tertiary)" }}>
-        <button onClick={() => { setPart(Math.max(0, part - 1)); window.__scrollArticleToTop?.(); }} disabled={part === 0} style={{
+        <button onClick={() => goToPart(Math.max(0, part - 1))} disabled={part === 0} style={{
           fontSize: 12, fontWeight: 600, padding: "9px 14px", borderRadius: 10,
           color: part === 0 ? "var(--color-text-tertiary)" : "var(--color-text-secondary)",
           background: "var(--color-background-primary)",
@@ -313,7 +322,7 @@ export default function App() {
         }}>
           ← {part > 0 ? `${PARTS[part - 1].num}. ${PARTS[part - 1].short}` : ""}
         </button>
-        <button onClick={() => { setPart(Math.min(4, part + 1)); window.__scrollArticleToTop?.(); }} disabled={part === 4} style={{
+        <button onClick={() => goToPart(Math.min(4, part + 1))} disabled={part === 4} style={{
           fontSize: 12, fontWeight: 600, padding: "9px 14px", borderRadius: 10,
           color: part === 4 ? "var(--color-text-tertiary)" : "var(--color-text-secondary)",
           background: "var(--color-background-primary)",
@@ -371,7 +380,7 @@ function Part0() {
       <div style={sectionNum}>BẢN ĐỒ TÀI LIỆU</div>
       <h2 style={h2}>Năm phần, một dòng chảy</h2>
       <div style={card}>
-        <Row label="I · Dừa, ngũ cốc, cacao" value="Công thức 2 ly + dừa + granola" sub="Toàn bộ thực đơn sáng-trưa-chiều, 1 phút chuẩn bị" tone={C.teal} />
+        <Row label="I · Dừa ngũ cốc chanh" value="Công thức 2 ly + dừa + granola" sub="Toàn bộ thực đơn sáng-trưa-chiều, 1 phút chuẩn bị" tone={C.teal} />
         <Row label="II · Cacao" value="Daily Drink, liều lượng, trữ đông" sub="Công thức gốc, cách pha trữ đông cả tuần, myth thường gặp" tone={C.amber} />
         <Row label="III · Đường mía" value="Vì sao và bao nhiêu là đủ" sub="Glucose, carb phức, chống đường huyết dao động" tone={C.purple} />
         <Row label="IV · Bảo quản · Kết hợp · Snack" value="Kẻ thù thầm lặng của dinh dưỡng, cặp đôi nên tránh, và lựa chọn bổ trợ" sub="Ép chậm vs ly tâm, canxi-oxalate, vitamin C-sắt, 5 nhóm snack tốt cho não" tone={C.coral} />
