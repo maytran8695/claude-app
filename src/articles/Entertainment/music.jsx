@@ -12,13 +12,20 @@ const LINE = "#E2E1DA";
 
 const INTRO = "Mỗi bản nhạc là sự cô đặc chất xám, cả về giai điệu, hòa âm, cảm xúc — mà thông qua đó ta có thể du hành tới những vùng đất khác, con người khác, triết lý khác, thế giới quan khác...";
 
+// Link "nghe thử" tự sinh ra khỏi tên tác phẩm + nghệ sĩ (YouTube search)
+// thay vì gán tay từng URL video — luôn hợp lệ, không sợ video bị gỡ/sai ID
+// khi danh sách được mở rộng sau này.
+const artistFromMeta = (meta) => (meta || "").split(" · ")[0];
+const youtubeLink = (title, meta) =>
+  `https://www.youtube.com/results?search_query=${encodeURIComponent(`${title} ${artistFromMeta(meta)}`)}`;
+
 /* ============================================================
    MUSIC
    ============================================================ */
 const MUSIC = [
   {
     t: "I. Cổ điển phương Tây",
-    n: 8,
+    n: 13,
     items: [
       ["Symphony No. 9 (\"Choral\")", "Ludwig van Beethoven · 1824", undefined, "Bản giao hưởng cuối cùng hoàn chỉnh của Beethoven, nổi tiếng với chương cuối \"Ode to Joy\" (Ode an die Freude) phổ thơ Schiller, lần đầu đưa giọng hát vào thể loại giao hưởng. Beethoven sáng tác phần lớn tác phẩm khi đã hoàn toàn điếc, và tương truyền ông chỉ biết buổi công diễn thành công khi được người khác xoay lại để thấy khán giả đứng vỗ tay."],
       ["Requiem in D minor", "Wolfgang Amadeus Mozart · 1791", undefined, "Tác phẩm cầu hồn dang dở, được Mozart sáng tác trong những tháng cuối đời và qua đời trước khi hoàn thành, sau đó được học trò Franz Xaver Süssmayr hoàn tất theo ghi chú của ông. Bầu không khí u tối, trang nghiêm cùng câu chuyện về sự ra đời bí ẩn khiến đây là một trong những tác phẩm cổ điển được yêu thích và diễn giải nhiều nhất."],
@@ -28,11 +35,16 @@ const MUSIC = [
       ["The Well-Tempered Clavier", "Johann Sebastian Bach · 1722 & 1742", undefined, "Hai tập, mỗi tập gồm 24 khúc dạo và fugue viết cho tất cả 24 giọng trưởng-thứ, chứng minh tính khả thi của hệ thống bình quân luật (equal temperament) trong lên dây đàn phím. Tác phẩm được xem là nền tảng kỹ thuật và lý thuyết cho hầu hết âm nhạc phương Tây sau này, thường được gọi là \"Cựu Ước\" của piano."],
       ["Swan Lake", "Pyotr Ilyich Tchaikovsky · 1876", undefined, "Vở ballet kể về công chúa Odette bị phù thủy biến thành thiên nga, chỉ có thể trở lại người thật vào ban đêm, và lời thề tình yêu định mệnh với hoàng tử Siegfried. Dù công diễn đầu tiên không thành công, phần âm nhạc giàu cảm xúc sau này giúp tác phẩm trở thành vở ballet cổ điển được trình diễn nhiều nhất thế giới."],
       ["Symphony No. 5", "Ludwig van Beethoven · 1808", undefined, "Mở đầu bằng bốn nốt nhạc ngắn-ngắn-ngắn-dài nổi tiếng nhất lịch sử âm nhạc, được ví như \"số phận gõ cửa\". Hành trình từ chương đầu u ám đến chương cuối rực rỡ chiến thắng trở thành mô hình tự sự \"vượt qua nghịch cảnh\" ảnh hưởng đến vô số tác phẩm khí nhạc sau này."],
+      ["Canon in D", "Johann Pachelbel · ~1680", undefined, "Bản nhạc cho ba vĩ cầm và bè trầm liên tục lặp lại một chuỗi hợp âm nền trong khi các bè giai điệu đan xen biến tấu phía trên. Gần như vô danh suốt hai thế kỷ, tác phẩm bất ngờ trở nên cực kỳ phổ biến từ thập niên 1970 và ngày nay gắn liền với vô số lễ cưới phương Tây."],
+      ["Für Elise", "Ludwig van Beethoven · sáng tác 1810", undefined, "Bản Bagatelle piano ngắn, giai điệu mở đầu đơn giản nhưng day dứt, thuộc số những tác phẩm cổ điển được nhận diện rộng rãi nhất thế giới. Bản nhạc chỉ được tìm thấy và xuất bản năm 1867, hơn 40 năm sau khi Beethoven qua đời, và danh tính \"Elise\" thực sự vẫn là một bí ẩn chưa có lời giải."],
+      ["Nutcracker — Dance of the Sugar Plum Fairy", "Pyotr Ilyich Tchaikovsky · 1892", undefined, "Trích đoạn nổi tiếng nhất trong vở ballet \"Kẹp Hạt Dẻ\", sử dụng nhạc cụ celesta (khi đó còn rất mới ở Nga) để tạo ra âm sắc lấp lánh, huyền ảo đặc trưng cho nàng tiên Mứt Đường. Vở ballet công diễn vào dịp Giáng sinh gắn liền với văn hóa lễ hội cuối năm ở nhiều nước phương Tây."],
+      ["Moonlight Sonata", "Ludwig van Beethoven · 1801", undefined, "Chương đầu tiên của bản Sonata piano số 14 mở đầu bằng những hợp âm rải chậm rãi, u buồn, khác hẳn cấu trúc sonata truyền thống thường có chương nhanh mở đầu. Beethoven đề tặng tác phẩm cho học trò — cũng là mối tình đơn phương — Nữ bá tước Giulietta Guicciardi."],
+      ["Ave Maria", "Franz Schubert · 1825", undefined, "Nguyên gốc là \"Ellens dritter Gesang\" (Bài ca thứ ba của Ellen), phổ nhạc từ trường ca \"The Lady of the Lake\" của Walter Scott, với lời cầu nguyện gửi Đức Mẹ Maria. Giai điệu về sau thường được trình diễn cùng lời kinh Ave Maria tiếng Latin truyền thống, trở thành một trong những bản thánh ca cổ điển được yêu thích nhất."],
     ],
   },
   {
     t: "II. Đại chúng kinh điển thế kỷ 20",
-    n: 8,
+    n: 12,
     items: [
       ["Abbey Road", "The Beatles · 1969", undefined, "Album phòng thu áp chót của The Beatles, nổi bật với medley liên khúc dài gần 16 phút ở mặt B ghép nhiều đoạn nhạc dang dở thành một tổng thể liền mạch. Bìa album chụp bốn thành viên băng qua vạch kẻ đường Abbey Road trở thành một trong những hình ảnh được nhại lại nhiều nhất lịch sử văn hóa đại chúng."],
       ["The Dark Side of the Moon", "Pink Floyd · 1973", undefined, "Album concept xoay quanh các chủ đề xung đột, thời gian, tiền bạc, cái chết và bệnh tâm thần, kết nối liền mạch không ngắt quãng giữa các bài hát. Với hơn 45 triệu bản bán ra và bìa đĩa hình lăng kính tán sắc mang tính biểu tượng, đây là một trong những album bán chạy nhất mọi thời đại."],
@@ -42,11 +54,15 @@ const MUSIC = [
       ["Like a Rolling Stone", "Bob Dylan · 1965", undefined, "Ca khúc dài bất thường (hơn 6 phút) với lời hát châm biếm sắc bén nhắm vào một nhân vật từng giàu có nay sa cơ, đánh dấu bước chuyển của Dylan từ nhạc dân gian mộc mạc sang rock điện tử. Thường được các tạp chí âm nhạc xếp hạng là một trong những ca khúc vĩ đại nhất mọi thời đại."],
       ["Purple Rain", "Prince · 1984", undefined, "Album kiêm nhạc phim cùng tên, pha trộn rock, funk, pop và âm hưởng phúc âm, với ca khúc chủ đề là bản power ballad mang tính biểu tượng của sự nghiệp Prince. Album giúp ông giành giải Oscar cho nhạc phim hay nhất và củng cố vị thế một trong những nghệ sĩ đa tài nhất lịch sử nhạc pop."],
       ["Rumours", "Fleetwood Mac · 1977", undefined, "Album được sáng tác giữa lúc các thành viên ban nhạc trải qua chia tay, ngoại tình và đổ vỡ hôn nhân nội bộ, biến những xung đột cá nhân thành loạt ca khúc pop-rock giàu cảm xúc. Rumours trở thành một trong những album bán chạy nhất mọi thời đại, minh chứng cho việc biến đau khổ cá nhân thành nghệ thuật tập thể."],
+      ["Hotel California", "Eagles · 1976", undefined, "Ca khúc chủ đề album cùng tên, với đoạn solo guitar kép nổi tiếng khép lại bài hát, mang ca từ ẩn dụ về mặt trái hào nhoáng và cạm bẫy của giấc mơ Mỹ tại California. Đây là một trong những ca khúc được phát trên radio nhiều nhất lịch sử nhạc rock Mỹ."],
+      ["Stairway to Heaven", "Led Zeppelin · 1971", undefined, "Ca khúc dài hơn 8 phút xây dựng dần từ đoạn guitar acoustic mộc mạc đến cao trào rock mãnh liệt, thường được xem là đỉnh cao thể loại rock tiến bộ (progressive rock). Dù chưa từng phát hành dưới dạng đĩa đơn, đây vẫn là một trong những ca khúc rock được yêu cầu phát nhiều nhất trên radio."],
+      ["Respect", "Aretha Franklin · 1967", undefined, "Bản cover từ ca khúc gốc của Otis Redding, được Aretha Franklin viết lại phần điệp khúc đánh vần \"R-E-S-P-E-C-T\" đầy uy lực, biến bài hát thành tuyên ngôn về quyền phụ nữ và quyền công dân da đen giữa thập niên 1960. Ca khúc giúp bà giành hai giải Grammy đầu tiên trong sự nghiệp."],
+      ["Smells Like Teen Spirit", "Nirvana · 1991", undefined, "Ca khúc mở đầu album \"Nevermind\", với riff guitar đơn giản nhưng bùng nổ đưa dòng nhạc grunge từ ngầm underground trở thành hiện tượng đại chúng toàn cầu chỉ trong vài tháng. Ca khúc thường được xem là dấu mốc kết thúc thời kỳ thống trị của nhạc hair metal thập niên 1980."],
     ],
   },
   {
     t: "III. Nhạc phim kinh điển",
-    n: 6,
+    n: 9,
     items: [
       ["Star Wars (Main Theme)", "John Williams · 1977", undefined, "Chủ đề mở đầu hùng tráng với kèn đồng rực rỡ, mở ra cả một vũ trụ điện ảnh và đặt tiêu chuẩn cho nhạc phim sử thi hiện đại. John Williams sử dụng leitmotif — giai điệu riêng cho từng nhân vật/phe phái — xuyên suốt loạt phim, kỹ thuật vay mượn từ nhạc kịch opera Wagner."],
       ["The Good, the Bad and the Ugly (chủ đề)", "Ennio Morricone · 1966", undefined, "Giai điệu huýt sáo và tiếng hú \"ai-ai-ai\" đặc trưng cho dòng phim viễn Tây kiểu Ý (spaghetti western) của đạo diễn Sergio Leone. Cách phối khí phá cách, dùng cả tiếng roi quất và đàn guitar điện, biến bản nhạc thành một trong những chủ đề phim dễ nhận diện nhất lịch sử điện ảnh."],
@@ -54,11 +70,14 @@ const MUSIC = [
       ["My Heart Will Go On", "James Horner (trình bày: Celine Dion) · 1997", undefined, "Ca khúc chủ đề phim Titanic, mở đầu bằng tiếng sáo Ireland (tin whistle) trước khi Celine Dion cất giọng ballad đầy cảm xúc. Ca khúc giành giải Oscar cho nhạc phim hay nhất và trở thành một trong những đĩa đơn bán chạy nhất mọi thời đại."],
       ["The Godfather (chủ đề)", "Nino Rota · 1972", undefined, "Giai điệu kèn trumpet đơn độc, u buồn mở đầu bộ phim về gia tộc mafia Corleone, pha trộn chất nhạc dân gian Ý (đặc biệt là tarantella vùng Sicily) với không khí bi kịch cổ điển. Chủ đề nhạc trở nên gắn liền với hình ảnh thể loại phim xã hội đen đến mức gần như là một quy ước bất thành văn của dòng phim này."],
       ["Cinema Paradiso (chủ đề)", "Ennio Morricone · 1988", undefined, "Giai điệu piano và dây đầy hoài niệm cho bộ phim Ý về tình bạn giữa một cậu bé và người chiếu phim già trong rạp chiếu bóng làng quê. Bản nhạc gợi cảm giác luyến tiếc tuổi thơ và tình yêu điện ảnh, thường được xem là một trong những tác phẩm cảm động nhất của Morricone."],
+      ["Jaws (chủ đề)", "John Williams · 1975", undefined, "Chỉ hai nốt nhạc trầm lặp lại nhanh dần, nhưng đủ để trở thành biểu tượng âm thanh của nỗi sợ hãi trong lịch sử điện ảnh, báo hiệu con cá mập trắng khổng lồ đang tiến đến gần. Sự tối giản đến mức cực đoan của giai điệu là minh chứng cho việc \"ít hơn lại đáng sợ hơn\" trong nhạc phim kinh dị."],
+      ["Married Life (từ phim Up)", "Michael Giacchino · 2009", undefined, "Bản nhạc không lời đi cùng đoạn mở đầu phim hoạt hình \"Up\", kể trọn vẹn cả một cuộc hôn nhân — từ ngày cưới đến lúc người vợ qua đời — chỉ bằng hình ảnh và âm nhạc, không một lời thoại. Đoạn nhạc này thường được nhắc đến như một trong những khoảnh khắc cảm động nhất lịch sử hoạt hình."],
+      ["Circle of Life (từ phim The Lion King)", "Elton John & Tim Rice · 1994", undefined, "Ca khúc mở đầu phim hoạt hình \"Vua Sư Tử\", vang lên cùng cảnh muôn loài động vật tụ hội chứng kiến lễ đăng quang sư tử con Simba trên Tảng Đá Kiêu Hãnh. Kết hợp hợp xướng tiếng Zulu hùng tráng, ca khúc đặt ra tông màu sử thi cho toàn bộ bộ phim ngay từ những giây đầu tiên."],
     ],
   },
   {
     t: "IV. Nhạc Việt kinh điển",
-    n: 6,
+    n: 10,
     items: [
       ["Diễm Xưa", "Trịnh Công Sơn · ~1960", undefined, "Ca khúc viết tặng người con gái tên Diễm mà Trịnh Công Sơn thầm thương, với giai điệu chậm rãi và ca từ mơ hồ, đầy chất thơ về mưa, tình yêu và sự phai nhạt của thời gian. Bản tiếng Nhật do Khánh Ly trình bày từng gây tiếng vang tại Nhật Bản, đưa nhạc Trịnh ra ngoài biên giới Việt Nam."],
       ["Hạ Trắng", "Trịnh Công Sơn", undefined, "Ca khúc lấy cảm hứng từ một mùa hè nóng bức khi Trịnh Công Sơn ốm nặng, mơ thấy hoa trắng rụng đầy sân, để rồi tỉnh dậy sáng tác nên giai điệu đầy chất liêu trai. Ca từ gợi hình ảnh mùa hạ trắng xóa hoa và nắng, trở thành một trong những bản tình ca được yêu thích nhất của nhạc sĩ."],
@@ -66,6 +85,10 @@ const MUSIC = [
       ["Buồn Tàn Thu", "Văn Cao · 1939", undefined, "Một trong những sáng tác đầu tiên của Văn Cao khi mới ngoài đôi mươi, viết về nỗi buồn thiếu nữ chờ đợi người yêu nơi chinh chiến giữa cảnh thu tàn. Ca khúc là một trong những viên gạch nền móng của \"tân nhạc\" Việt Nam — dòng nhạc lãng mạn thoát ly khỏi nhạc cổ truyền, hình thành từ cuối thập niên 1930."],
       ["Thiên Thai", "Văn Cao · 1941", undefined, "Lấy cảm hứng từ tích Lưu Nguyễn lạc vào cõi tiên trong truyện cổ, ca khúc vẽ nên một thế giới thần tiên thơ mộng bằng giai điệu và ca từ giàu chất Đường thi. Với cấu trúc âm nhạc phức tạp hiếm thấy trong tân nhạc thời kỳ đầu, tác phẩm được xem là một đỉnh cao nghệ thuật của dòng nhạc tiền chiến."],
       ["Suối Mơ", "Văn Cao · 1939", undefined, "Ca khúc miêu tả một dòng suối trong rừng thu, nơi có bóng dáng người thiếu nữ mòn mỏi đợi chờ người yêu đi xa không trở lại. Giai điệu nhẹ nhàng, ca từ giàu hình ảnh thiên nhiên là ví dụ tiêu biểu cho phong cách trữ tình lãng mạn của dòng nhạc tiền chiến Việt Nam."],
+      ["Nối Vòng Tay Lớn", "Trịnh Công Sơn · 1968", undefined, "Ca khúc kêu gọi đoàn kết dân tộc \"từ Bắc vô Nam nối liền nắm tay\", trở nên đặc biệt gắn liền với thời khắc lịch sử khi chính Trịnh Công Sơn hát trực tiếp trên đài phát thanh Sài Gòn vào trưa 30/4/1975. Đến nay ca khúc vẫn thường được hát tập thể trong các dịp lễ lớn của thanh niên, sinh viên."],
+      ["Cát Bụi", "Trịnh Công Sơn", undefined, "Ca khúc mang màu sắc triết lý Phật giáo với câu hỏi mở đầu ám ảnh \"Hạt bụi nào hóa kiếp thân tôi, để một mai tôi về làm cát bụi...\", suy ngẫm về kiếp người vô thường. Đây là một trong những ca khúc tiêu biểu nhất cho mảng \"nhạc Trịnh\" viết về thân phận và cõi tạm."],
+      ["Bèo Dạt Mây Trôi", "Dân ca Quan họ Bắc Ninh", undefined, "Làn điệu quan họ cổ truyền vùng Kinh Bắc, thường được hát đối đáp giữa liền anh, liền chị trong các lễ hội, với ca từ ví von thân phận lênh đênh như bèo dạt mây trôi. Dân ca Quan họ Bắc Ninh được UNESCO công nhận là Di sản văn hóa phi vật thể đại diện của nhân loại năm 2009."],
+      ["Lý Cây Đa", "Dân ca Bắc Bộ", undefined, "Một trong những bài lý (làn điệu dân ca ngắn) quen thuộc nhất của vùng đồng bằng Bắc Bộ, với giai điệu vui tươi, giản dị thường được dạy cho trẻ em ngay từ bậc tiểu học. Bài hát khắc họa hình ảnh cây đa, giếng nước, sân đình — biểu tượng quen thuộc của làng quê Việt Nam truyền thống."],
     ],
   },
 ];
@@ -97,6 +120,11 @@ const MOOD_TAGS = {
   "The Well-Tempered Clavier": ["culture", "mindbend"],
   "Swan Lake": ["romance", "sad"],
   "Symphony No. 5": ["motivate", "thrill"],
+  "Canon in D": ["romance", "cozy"],
+  "Für Elise": ["cozy", "solitude"],
+  "Nutcracker — Dance of the Sugar Plum Fairy": ["fun", "heartwarming"],
+  "Moonlight Sonata": ["sad", "solitude"],
+  "Ave Maria": ["heal", "solitude"],
   "Abbey Road": ["cozy", "culture"],
   "The Dark Side of the Moon": ["mindbend", "solitude"],
   "Thriller": ["fun", "thrill"],
@@ -105,18 +133,29 @@ const MOOD_TAGS = {
   "Like a Rolling Stone": ["culture", "motivate"],
   "Purple Rain": ["romance", "sad"],
   "Rumours": ["heartbreak", "sad"],
+  "Hotel California": ["mindbend", "culture"],
+  "Stairway to Heaven": ["motivate", "mindbend"],
+  "Respect": ["motivate", "fun"],
+  "Smells Like Teen Spirit": ["thrill", "motivate"],
   "Star Wars (Main Theme)": ["adventure", "motivate"],
   "The Good, the Bad and the Ugly (chủ đề)": ["adventure", "thrill"],
   "Time (từ phim Inception)": ["thrill", "mindbend"],
   "My Heart Will Go On": ["romance", "heartbreak"],
   "The Godfather (chủ đề)": ["sad", "culture"],
   "Cinema Paradiso (chủ đề)": ["heartwarming", "sad"],
+  "Jaws (chủ đề)": ["eerie", "thrill"],
+  "Married Life (từ phim Up)": ["heartwarming", "sad"],
+  "Circle of Life (từ phim The Lion King)": ["adventure", "motivate"],
   "Diễm Xưa": ["heartbreak", "solitude"],
   "Hạ Trắng": ["sad", "cozy"],
   "Tình Ca": ["culture", "heartwarming"],
   "Buồn Tàn Thu": ["sad", "culture"],
   "Thiên Thai": ["adventure", "culture"],
   "Suối Mơ": ["cozy", "sad"],
+  "Nối Vòng Tay Lớn": ["motivate", "culture"],
+  "Cát Bụi": ["heal", "solitude"],
+  "Bèo Dạt Mây Trôi": ["culture", "cozy"],
+  "Lý Cây Đa": ["culture", "heartwarming"],
 };
 
 /* ============================================================
@@ -128,7 +167,10 @@ function renderItems(items) {
       {items.map(([title, meta, note, summary], i) => (
         <li key={i} style={{ borderLeft: `2px solid ${LINE}`, paddingLeft: 11 }}>
           <div style={{ fontSize: 14.3, lineHeight: 1.42 }}>
-            <span style={{ fontWeight: 600 }}>{title}</span>
+            <span style={{ fontWeight: 600 }}>{title}</span>{" "}
+            <a href={youtubeLink(title, meta)} target="_blank" rel="noopener noreferrer" title="Nghe trên YouTube" style={{ fontSize: 11, color: ACCENT, textDecoration: "none", fontWeight: 700 }}>
+              ↗
+            </a>
             {meta && (
               <span style={{ color: MUTE, fontFamily: SANS, fontSize: 12.3 }}> · {meta}</span>
             )}
@@ -314,7 +356,8 @@ export default function Music() {
                   {m.sub ? ` · ${m.sub}` : ""}
                 </div>
                 <div style={{ fontSize: 14.3 }}>
-                  <span style={{ fontWeight: 600 }}>{m.title}</span>
+                  <span style={{ fontWeight: 600 }}>{m.title}</span>{" "}
+                  <a href={youtubeLink(m.title, m.meta)} target="_blank" rel="noopener noreferrer" title="Nghe trên YouTube" style={{ fontSize: 11, color: ACCENT, textDecoration: "none", fontWeight: 700 }}>↗</a>
                   {m.meta && <span style={{ color: MUTE, fontFamily: SANS, fontSize: 12.3 }}> · {m.meta}</span>}
                 </div>
                 {m.summary && (
@@ -340,7 +383,8 @@ export default function Music() {
                   {m.sub ? ` · ${m.sub}` : ""}
                 </div>
                 <div style={{ fontSize: 14.3 }}>
-                  <span style={{ fontWeight: 600 }}>{m.title}</span>
+                  <span style={{ fontWeight: 600 }}>{m.title}</span>{" "}
+                  <a href={youtubeLink(m.title, m.meta)} target="_blank" rel="noopener noreferrer" title="Nghe trên YouTube" style={{ fontSize: 11, color: ACCENT, textDecoration: "none", fontWeight: 700 }}>↗</a>
                   {m.meta && <span style={{ color: MUTE, fontFamily: SANS, fontSize: 12.3 }}> · {m.meta}</span>}
                 </div>
                 {m.summary && (
