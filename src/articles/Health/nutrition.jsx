@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { getSubTabFromUrl, syncSubTabToUrl } from "../../utils/subTabUrl";
-import { Coffee, GlassWater, Bean, Brain, Thermometer, Shuffle, Apple, ChevronDown, X } from "lucide-react";
+import { Coffee, GlassWater, Bean, Brain, Thermometer, ChevronDown, X } from "lucide-react";
 
 /* ============================================================
    DINH DƯỠNG THÔNG MINH CHO NGƯỜI BẬN RỘN
    Thực đơn cá nhân duy trì nhiều năm (trên 7 năm) — 1 phút mỗi sáng, đủ đường-đạm-béo,
    hạn chế tối đa hoá chất, tối ưu cho công việc cường độ cao/dễ stress
-   7 tab: Mở đầu · Thực đơn ngày · Cacao chuyên sâu · Đường & Não bộ ·
-          Nhiệt-Ánh sáng-Oxy hoá · Kết hợp thực phẩm · Snack bổ trợ
+   5 tab: Mở đầu · Dừa, ngũ cốc, cacao · Cacao · Đường mía ·
+          Bảo quản · Kết hợp · Snack
    ============================================================ */
 
 const C = {
@@ -170,16 +170,14 @@ function CompareTable({ rows }) {
 }
 
 /* ============================================================
-   NAVIGATION — 7 tabs
+   NAVIGATION — 5 tabs
    ============================================================ */
 const PARTS = [
   { id: 0, num: "0",  short: "Mở đầu",         accent: C.ink,    icon: Coffee },
-  { id: 1, num: "I",  short: "Thực đơn ngày",  accent: C.teal,   icon: GlassWater },
-  { id: 2, num: "II", short: "Cacao chuyên sâu", accent: C.amber, icon: Bean },
-  { id: 3, num: "III",short: "Đường & Não bộ", accent: C.purple, icon: Brain },
-  { id: 4, num: "IV", short: "Nhiệt · Sáng · Oxy", accent: C.coral, icon: Thermometer },
-  { id: 5, num: "V",  short: "Kết hợp thực phẩm", accent: C.blue, icon: Shuffle },
-  { id: 6, num: "VI", short: "Snack bổ trợ",   accent: C.rose,   icon: Apple },
+  { id: 1, num: "I",  short: "Dừa, ngũ cốc, cacao",  accent: C.teal,   icon: GlassWater },
+  { id: 2, num: "II", short: "Cacao", accent: C.amber, icon: Bean },
+  { id: 3, num: "III",short: "Đường mía", accent: C.purple, icon: Brain },
+  { id: 4, num: "IV", short: "Bảo quản · Kết hợp · Snack", accent: C.coral, icon: Thermometer },
 ];
 
 export default function App() {
@@ -304,8 +302,6 @@ export default function App() {
       {part === 2 && <PartII />}
       {part === 3 && <PartIII />}
       {part === 4 && <PartIV />}
-      {part === 5 && <PartV />}
-      {part === 6 && <PartVI />}
 
       <div style={{ display: "flex", justifyContent: "space-between", gap: 10, marginTop: "2rem", paddingTop: "1rem", borderTop: "0.5px solid var(--color-border-tertiary)" }}>
         <button onClick={() => { setPart(Math.max(0, part - 1)); window.__scrollArticleToTop?.(); }} disabled={part === 0} style={{
@@ -317,14 +313,14 @@ export default function App() {
         }}>
           ← {part > 0 ? `${PARTS[part - 1].num}. ${PARTS[part - 1].short}` : ""}
         </button>
-        <button onClick={() => { setPart(Math.min(6, part + 1)); window.__scrollArticleToTop?.(); }} disabled={part === 6} style={{
+        <button onClick={() => { setPart(Math.min(4, part + 1)); window.__scrollArticleToTop?.(); }} disabled={part === 4} style={{
           fontSize: 12, fontWeight: 600, padding: "9px 14px", borderRadius: 10,
-          color: part === 6 ? "var(--color-text-tertiary)" : "var(--color-text-secondary)",
+          color: part === 4 ? "var(--color-text-tertiary)" : "var(--color-text-secondary)",
           background: "var(--color-background-primary)",
-          border: `0.5px solid ${part === 6 ? "transparent" : "var(--color-border-tertiary)"}`,
-          cursor: part === 6 ? "default" : "pointer", visibility: part === 6 ? "hidden" : "visible",
+          border: `0.5px solid ${part === 4 ? "transparent" : "var(--color-border-tertiary)"}`,
+          cursor: part === 4 ? "default" : "pointer", visibility: part === 4 ? "hidden" : "visible",
         }}>
-          {part < 6 ? `${PARTS[part + 1].num}. ${PARTS[part + 1].short}` : ""} →
+          {part < 4 ? `${PARTS[part + 1].num}. ${PARTS[part + 1].short}` : ""} →
         </button>
       </div>
     </div>
@@ -372,14 +368,12 @@ function Part0() {
       </Callout>
 
       <div style={sectionNum}>BẢN ĐỒ TÀI LIỆU</div>
-      <h2 style={h2}>Bảy phần, một dòng chảy</h2>
+      <h2 style={h2}>Năm phần, một dòng chảy</h2>
       <div style={card}>
-        <Row label="I · Thực đơn ngày" value="Công thức 2 ly + dừa + granola" sub="Toàn bộ thực đơn sáng-trưa-chiều, 1 phút chuẩn bị" tone={C.teal} />
-        <Row label="II · Cacao chuyên sâu" value="Daily Drink, liều lượng, trữ đông" sub="Công thức gốc, cách pha trữ đông cả tuần, myth thường gặp" tone={C.amber} />
-        <Row label="III · Đường & Não bộ" value="Vì sao và bao nhiêu là đủ" sub="Glucose, carb phức, chống đường huyết dao động" tone={C.purple} />
-        <Row label="IV · Nhiệt · Ánh sáng · Oxy hoá" value="Kẻ thù thầm lặng của dinh dưỡng" sub="Ép chậm vs ly tâm, dầu ăn ôi, bảo quản đúng cách" tone={C.coral} />
-        <Row label="V · Kết hợp thực phẩm" value="Cặp đôi nên và không nên" sub="Canxi-oxalate, vitamin C-sắt, cacao-sữa" tone={C.blue} />
-        <Row label="VI · Snack bổ trợ" value="Khi cần một lựa chọn khác" sub="5 nhóm snack & đồ uống tốt cho não" tone={C.rose} />
+        <Row label="I · Dừa, ngũ cốc, cacao" value="Công thức 2 ly + dừa + granola" sub="Toàn bộ thực đơn sáng-trưa-chiều, 1 phút chuẩn bị" tone={C.teal} />
+        <Row label="II · Cacao" value="Daily Drink, liều lượng, trữ đông" sub="Công thức gốc, cách pha trữ đông cả tuần, myth thường gặp" tone={C.amber} />
+        <Row label="III · Đường mía" value="Vì sao và bao nhiêu là đủ" sub="Glucose, carb phức, chống đường huyết dao động" tone={C.purple} />
+        <Row label="IV · Bảo quản · Kết hợp · Snack" value="Kẻ thù thầm lặng của dinh dưỡng, cặp đôi nên tránh, và lựa chọn bổ trợ" sub="Ép chậm vs ly tâm, canxi-oxalate, vitamin C-sắt, 5 nhóm snack tốt cho não" tone={C.coral} />
       </div>
 
       <Box tone={C.teal} title="Vận động đi kèm" icon="✓">
@@ -639,14 +633,20 @@ function PartIII() {
 }
 
 /* ============================================================
-   TAB IV — NHIỆT · ÁNH SÁNG · OXY HOÁ
+   TAB IV — BẢO QUẢN · KẾT HỢP · SNACK
+   (gộp ba phần cũ: Nhiệt-Ánh sáng-Oxy hoá · Kết hợp thực phẩm · Snack bổ trợ)
    ============================================================ */
 function PartIV() {
   return (
     <div>
       <div style={sectionNum}>PHẦN IV</div>
-      <h2 style={{ ...h2, marginTop: 4 }}>Nhiệt độ, ánh sáng, oxy hoá — kẻ thù thầm lặng của dinh dưỡng</h2>
-      <div style={thesis}>Phần lớn dưỡng chất không mất đi vì "hết hạn", mà vì bị phá huỷ dần bởi ba tác nhân: nhiệt độ, ánh sáng, và oxy. Hiểu ngưỡng chịu đựng của từng nhóm dưỡng chất giúp chọn đúng dụng cụ chế biến và cách bảo quản.</div>
+      <h2 style={{ ...h2, marginTop: 4 }}>Bảo quản, kết hợp thực phẩm & snack bổ trợ</h2>
+      <div style={thesis}>Ba mảnh ghép cuối cùng của thực đơn: cách bảo quản để không mất dinh dưỡng, cách kết hợp thực phẩm để không cản trở hấp thu lẫn nhau, và các lựa chọn bổ trợ khi hai ly chính không đủ hoặc không phù hợp thời điểm.</div>
+
+      <h2 style={{ ...h2, marginTop: "1.5rem" }}>Nhiệt độ, ánh sáng, oxy hoá — kẻ thù thầm lặng của dinh dưỡng</h2>
+      <p style={prose}>
+        Phần lớn dưỡng chất không mất đi vì "hết hạn", mà vì bị phá huỷ dần bởi ba tác nhân: nhiệt độ, ánh sáng, và oxy. Hiểu ngưỡng chịu đựng của từng nhóm dưỡng chất giúp chọn đúng dụng cụ chế biến và cách bảo quản.
+      </p>
 
       <div style={subHead}>Nhiệt độ phá huỷ dinh dưỡng trong hạt ở mức nào?</div>
       <div style={card}>
@@ -718,19 +718,11 @@ function PartIV() {
         "Xếp hạng cách chế biến rau củ quả theo độ giữ dưỡng chất: ăn nguyên > sinh tố > ép chậm > ép ly tâm.",
         "Bảo quản dầu/bơ hạt: lọ thuỷ tinh tối màu, đậy kín, ngăn mát, dùng trong 1–2 tháng.",
       ]} />
-    </div>
-  );
-}
 
-/* ============================================================
-   TAB V — KẾT HỢP THỰC PHẨM
-   ============================================================ */
-function PartV() {
-  return (
-    <div>
-      <div style={sectionNum}>PHẦN V</div>
-      <h2 style={{ ...h2, marginTop: 4 }}>Kết hợp thực phẩm — nên và không nên</h2>
-      <div style={thesis}>Một số cặp thực phẩm bổ trợ hấp thu lẫn nhau, một số cặp lại cản trở nhau. Biết trước giúp sắp xếp bữa ăn/ly uống hợp lý hơn mà không cần loại bỏ hẳn nguyên liệu nào.</div>
+      <h2 style={{ ...h2, marginTop: "2.5rem", paddingTop: "1.5rem", borderTop: "0.5px solid var(--color-border-tertiary)" }}>Kết hợp thực phẩm — nên và không nên</h2>
+      <p style={prose}>
+        Một số cặp thực phẩm bổ trợ hấp thu lẫn nhau, một số cặp lại cản trở nhau. Biết trước giúp sắp xếp bữa ăn/ly uống hợp lý hơn mà không cần loại bỏ hẳn nguyên liệu nào.
+      </p>
 
       <div style={subHead}>Các cặp bổ trợ hoặc trung tính</div>
       <div style={card}>
@@ -761,19 +753,11 @@ function PartV() {
         "Vitamin C giúp tăng hấp thu sắt thực vật — kết hợp cóc/cam/quýt với bữa giàu sắt là hợp lý.",
         "Oxalate trong rau họ cải và cacao cản trở hấp thu canxi — tách thời điểm dùng với nguồn canxi (hạt, chùm ngây, kale).",
       ]} />
-    </div>
-  );
-}
 
-/* ============================================================
-   TAB VI — SNACK BỔ TRỢ
-   ============================================================ */
-function PartVI() {
-  return (
-    <div>
-      <div style={sectionNum}>PHẦN VI</div>
-      <h2 style={{ ...h2, marginTop: 4 }}>Snack & lựa chọn bổ trợ khác</h2>
-      <div style={thesis}>Khi hai ly chính và granola không đủ hoặc không phù hợp thời điểm, đây là các lựa chọn bổ trợ đã dùng qua nhiều năm — không phải để thay thế thực đơn chính, mà để có phương án khi hoàn cảnh thay đổi.</div>
+      <h2 style={{ ...h2, marginTop: "2.5rem", paddingTop: "1.5rem", borderTop: "0.5px solid var(--color-border-tertiary)" }}>Snack & lựa chọn bổ trợ khác</h2>
+      <p style={prose}>
+        Khi hai ly chính và granola không đủ hoặc không phù hợp thời điểm, đây là các lựa chọn bổ trợ đã dùng qua nhiều năm — không phải để thay thế thực đơn chính, mà để có phương án khi hoàn cảnh thay đổi.
+      </p>
 
       <Box tone={C.rose} title="Triết lý chọn snack">
         Mọi lựa chọn dưới đây đều nhắm mô phỏng đủ nhóm chất cần thiết: đường cho não, đạm–béo cho cơ thể, chất chống oxy hoá để hạn chế cơ thể "oxy hoá rỉ sắt". Tốt nhất vẫn là một bữa ăn đàng hoàng, đầy đủ — nhưng khi điều kiện không cho phép, một lựa chọn nhanh-gọn-đủ chất vẫn tốt hơn nhiều so với bỏ bữa hoặc ăn đồ chế biến sẵn tuỳ tiện.
