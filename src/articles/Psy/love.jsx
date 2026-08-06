@@ -582,10 +582,6 @@ export default function LovePhilosophyDeep() {
         }
       `}</style>
       <div style={{ padding: "26px 16px 60px" }}>
-        <div style={{ marginBottom: 16 }}>
-          <h1 style={{ fontSize: 29, lineHeight: 1.16, margin: 0, fontWeight: 600, letterSpacing: "-0.01em" }}>Tình yêu Trong Triết học - Tâm lý - Thực hành</h1>
-        </div>
-
         <nav className="love-desktop-nav mobile-static" style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 28, position: "sticky", top: 0, zIndex: 10, background: PAPER, padding: "10px 0", borderBottom: `1px solid ${LINE}` }}>
           {TABS.map((t) => {
             const Icon = t.icon;

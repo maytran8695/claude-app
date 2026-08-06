@@ -127,10 +127,6 @@ export default function SelfWorthDeep() {
         }
       `}</style>
       <div style={{ padding: "26px 16px 60px" }}>
-        <div style={{ marginBottom: 18 }}>
-          <h1 style={{ fontSize: 27, lineHeight: 1.2, margin: 0, fontWeight: 600 }}>Self-Worth · Self-Love · Self-Confidence</h1>
-        </div>
-
         {/* PRIMARY NAV — 5 ô vuông, chỉ hiện từ 768px trở lên (dưới đó dùng
             thanh trigger + drawer bên dưới) */}
         <div className="swd-primary-nav" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: 8, marginBottom: 22, paddingTop: 10, paddingBottom: 14, borderBottom: `1px solid ${LINE}`, position: "sticky", top: 0, zIndex: 10, background: PAPER }}>
