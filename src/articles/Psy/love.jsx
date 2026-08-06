@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getSubTabFromUrl, syncSubTabToUrl } from "../../utils/subTabUrl";
+import { Heart, Cog, Infinity as InfinityIcon, HeartCrack, ListChecks, ChevronDown, X } from "lucide-react";
 
 const ACCENT = "#4A7C74";
 const TAB_ACCENT = "#356158"; // đậm hơn ACCENT một tone để breadcrumb không chìm vào nền PAPER
@@ -33,11 +34,11 @@ const Eyebrow = ({ children, color = ACCENT, mb = 10 }) => (
 );
 
 const TABS = [
-  { id: "nature", vi: "1 · Bản chất" },
-  { id: "mechanics", vi: "2 · Cơ chế" },
-  { id: "longhaul", vi: "3 · Đường dài" },
-  { id: "broken", vi: "4 · Khi hỏng" },
-  { id: "practice", vi: "5 · ★ Thực hành" },
+  { id: "nature", vi: "1 · Bản chất", icon: Heart },
+  { id: "mechanics", vi: "2 · Cơ chế", icon: Cog },
+  { id: "longhaul", vi: "3 · Đường dài", icon: InfinityIcon },
+  { id: "broken", vi: "4 · Khi hỏng", icon: HeartCrack },
+  { id: "practice", vi: "5 · ★ Thực hành", icon: ListChecks },
 ];
 
 /* ============ PERSPECTIVE DATA (4 lenses merged) ============ */
@@ -520,6 +521,8 @@ export default function LovePhilosophyDeep() {
   useEffect(() => { syncSubTabToUrl(tab); }, [tab]);
   const [lens, setLens] = useState("phil");
   const [pg, setPg] = useState("all");
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const currentTab = TABS.find((t) => t.id === tab);
 
   const showP = (g) => pg === "all" || pg === g;
 
@@ -529,22 +532,110 @@ export default function LovePhilosophyDeep() {
           quá chật trên desktop — nhưng trên màn hẹp (điện thoại) điều đó
           khiến bảng phải cuộn ngang trong chính khung của nó dù trang không
           cuộn ngang. Bỏ minWidth dưới 640px để cột tự co theo màn hình. */}
-      <style>{`@media (max-width: 640px) { .resp-table { min-width: 0 !important; } }`}</style>
+      <style>{`
+        @media (max-width: 640px) { .resp-table { min-width: 0 !important; } }
+        /* Cùng khuôn với holistic_life.jsx: dưới 768px ẩn dải pill nav, thay
+           bằng 1 thanh "đang xem" gọn + drawer trượt từ trái. */
+        .love-mobile-trigger, .love-mobile-backdrop, .love-mobile-drawer { display: none; }
+        @media (max-width: 767px) {
+          .love-desktop-nav { display: none !important; }
+          .love-mobile-trigger {
+            display: flex; width: 100%; align-items: center; gap: 9px;
+            position: sticky; top: 0; z-index: 20;
+            background: ${PAPER}; border-bottom: 1px solid ${LINE};
+            padding: 9px 0; margin-bottom: 20px; border-left: none; border-right: none; border-top: none;
+            cursor: pointer; text-align: left;
+          }
+          .love-mt-box {
+            flex: 1; min-width: 0; display: flex; align-items: center; gap: 9px;
+            border: 1px solid ${LINE}; border-radius: 10px; padding: 8px 11px; background: ${CARD};
+          }
+          .love-mt-icon-box {
+            width: 26px; height: 26px; border-radius: 7px; background: ${TAB_ACCENT}18;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+          }
+          .love-mt-text { flex: 1; min-width: 0; }
+          .love-mt-label { font-family: ${SANS}; font-size: 12px; font-weight: 700; color: ${INK}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          .love-mt-chev { color: ${MUTE}; flex-shrink: 0; transition: transform .2s ease; }
+          .love-mobile-trigger.open .love-mt-chev { transform: rotate(180deg); }
+          .love-mobile-backdrop {
+            display: block; position: fixed; inset: 0; background: rgba(35,31,26,.42);
+            z-index: 198; opacity: 0; pointer-events: none; transition: opacity .2s ease;
+          }
+          .love-mobile-backdrop.show { opacity: 1; pointer-events: auto; }
+          .love-mobile-drawer {
+            display: block; position: fixed; top: 0; bottom: 0; left: 0; width: 82%; max-width: 300px;
+            background: ${CARD}; border-right: 1px solid ${LINE}; z-index: 199; overflow-y: auto;
+            transform: translateX(-100%); transition: transform .25s cubic-bezier(.32,.72,0,1);
+          }
+          .love-mobile-drawer.show { transform: translateX(0); }
+          .love-md-head { padding: 14px; border-bottom: 1px solid ${LINE}; display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+          .love-md-t1 { font-family: ${SANS}; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: ${MUTE}; }
+          .love-md-t2 { font-family: ${SERIF}; font-size: 14px; font-weight: 600; color: ${INK}; margin-top: 3px; }
+          .love-md-close { width: 26px; height: 26px; border-radius: 7px; border: 1px solid ${LINE}; background: ${PAPER}; display: flex; align-items: center; justify-content: center; cursor: pointer; color: ${MUTE}; flex-shrink: 0; }
+          .love-md-item {
+            width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+            background: transparent; border: none; border-left: 3px solid transparent; cursor: pointer; text-align: left;
+          }
+          .love-md-item.active { background: ${TAB_ACCENT}14; border-left-color: ${TAB_ACCENT}; }
+          .love-md-item-label { font-family: ${SANS}; font-size: 12.5px; font-weight: 700; }
+        }
+      `}</style>
       <div style={{ padding: "26px 16px 60px" }}>
         <div style={{ marginBottom: 16 }}>
           <h1 style={{ fontSize: 29, lineHeight: 1.16, margin: 0, fontWeight: 600, letterSpacing: "-0.01em" }}>Tình yêu Trong Triết học - Tâm lý - Thực hành</h1>
         </div>
 
-        <div className="mobile-static" style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 28, position: "sticky", top: 0, zIndex: 10, background: PAPER, padding: "10px 0", borderBottom: `1px solid ${LINE}` }}>
-          {TABS.map((t) => (
-            <button key={t.id} onClick={() => { setTab(t.id); window.__scrollArticleToTop?.(); }}
-              style={{ fontFamily: SANS, fontSize: 14, padding: "11px 20px", borderRadius: 9, cursor: "pointer",
-                border: `1.5px solid ${tab === t.id ? TAB_ACCENT : LINE}`, background: tab === t.id ? TAB_ACCENT : CARD,
-                color: tab === t.id ? "#fff" : "#5A6B66", fontWeight: tab === t.id ? 700 : 600,
-                boxShadow: tab === t.id ? `0 2px 10px ${TAB_ACCENT}33` : "none" }}>
-              {t.vi}
-            </button>
-          ))}
+        <nav className="love-desktop-nav mobile-static" style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 28, position: "sticky", top: 0, zIndex: 10, background: PAPER, padding: "10px 0", borderBottom: `1px solid ${LINE}` }}>
+          {TABS.map((t) => {
+            const Icon = t.icon;
+            const isActive = tab === t.id;
+            return (
+              <button key={t.id} onClick={() => { setTab(t.id); window.__scrollArticleToTop?.(); }}
+                style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: SANS, fontSize: 14, padding: "11px 20px", borderRadius: 9, cursor: "pointer",
+                  border: `1.5px solid ${isActive ? TAB_ACCENT : LINE}`, background: isActive ? TAB_ACCENT : CARD,
+                  color: isActive ? "#fff" : "#5A6B66", fontWeight: isActive ? 700 : 600,
+                  boxShadow: isActive ? `0 2px 10px ${TAB_ACCENT}33` : "none" }}>
+                <Icon size={14} color={isActive ? "#fff" : TAB_ACCENT} />
+                {t.vi}
+              </button>
+            );
+          })}
+        </nav>
+
+        {/* Mobile-only: thanh "đang xem" gọn + drawer trượt từ trái */}
+        <button className={"love-mobile-trigger" + (mobileNavOpen ? " open" : "")} onClick={() => setMobileNavOpen((v) => !v)}>
+          <div className="love-mt-box">
+            <div className="love-mt-icon-box">
+              {currentTab?.icon && <currentTab.icon size={13} color={TAB_ACCENT} />}
+            </div>
+            <div className="love-mt-text">
+              <div className="love-mt-label">{currentTab?.vi}</div>
+            </div>
+            <ChevronDown size={15} className="love-mt-chev" />
+          </div>
+        </button>
+        <div className={"love-mobile-backdrop" + (mobileNavOpen ? " show" : "")} onClick={() => setMobileNavOpen(false)} />
+        <div className={"love-mobile-drawer" + (mobileNavOpen ? " show" : "")}>
+          <div className="love-md-head">
+            <div>
+              <div className="love-md-t1">{TABS.length} mục</div>
+              <div className="love-md-t2">Chọn mục để xem</div>
+            </div>
+            <button className="love-md-close" onClick={() => setMobileNavOpen(false)} aria-label="Đóng"><X size={13} /></button>
+          </div>
+          <div>
+            {TABS.map((t) => {
+              const Icon = t.icon;
+              const isActive = tab === t.id;
+              return (
+                <button key={t.id} className={"love-md-item" + (isActive ? " active" : "")} onClick={() => { setTab(t.id); setMobileNavOpen(false); window.__scrollArticleToTop?.(); }}>
+                  <Icon size={14} color={isActive ? TAB_ACCENT : MUTE} />
+                  <span className="love-md-item-label" style={{ color: isActive ? TAB_ACCENT : INK }}>{t.vi}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* ============ 1 · NATURE ============ */}

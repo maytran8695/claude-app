@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getSubTabFromUrl, syncSubTabToUrl } from "../../utils/subTabUrl";
+import { BookOpen, Search, Sparkles, Users, ListChecks, ChevronDown, X } from "lucide-react";
 
 const ACCENT = "#2D6A62";
 const INK = "#232725";
@@ -30,29 +31,29 @@ const SubHeading = ({ children }) => (
 
 
 const PRIMARY = [
-  { id: "foundations", vi: "Nền tảng lý thuyết", subs: [
+  { id: "foundations", vi: "Nền tảng lý thuyết", icon: BookOpen, subs: [
       { id: "f-define", vi: "Định nghĩa" },
       { id: "f-psy", vi: "Tâm lý học" },
       { id: "f-east", vi: "Đông phương" },
       { id: "f-soc", vi: "Xã hội & Văn hoá" },
       { id: "f-deep", vi: "Chuyên sâu" },
   ]},
-  { id: "diagnose", vi: "Nhận diện", subs: [
+  { id: "diagnose", vi: "Nhận diện", icon: Search, subs: [
       { id: "g-identify", vi: "Fragile vs Secure" },
       { id: "g-dark", vi: "Mặt tối" },
   ]},
-  { id: "confidence", vi: "★ Tự Tin", subs: [
+  { id: "confidence", vi: "★ Tự Tin", icon: Sparkles, subs: [
       { id: "c-core", vi: "Nền tảng" },
       { id: "c-playbook", vi: "Playbook bối cảnh" },
       { id: "c-expert", vi: "Chuyên gia" },
   ]},
-  { id: "situations", vi: "★ Tình huống", subs: [
+  { id: "situations", vi: "★ Tình huống", icon: Users, subs: [
       { id: "s-work", vi: "Công việc" },
       { id: "s-lead", vi: "Lãnh đạo & quản lý" },
       { id: "s-conflict", vi: "Xung đột" },
       { id: "s-social", vi: "Xã hội & cá nhân" },
   ]},
-  { id: "practice", vi: "★ Thực hành", subs: [
+  { id: "practice", vi: "★ Thực hành", icon: ListChecks, subs: [
       { id: "p-start", vi: "Bắt đầu" },
       { id: "p-core", vi: "Bài tập lõi" },
       { id: "p-clinical", vi: "Kỹ thuật nâng cao" },
@@ -67,6 +68,8 @@ export default function SelfWorthDeep() {
   })();
   const [primary, setPrimary] = useState(initialPrimary);
   useEffect(() => { syncSubTabToUrl(primary); }, [primary]);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const currentPrimary = PRIMARY.find((p) => p.id === primary);
 
   return (
     <div style={{ fontFamily: SERIF, background: PAPER, color: INK }}>
@@ -76,29 +79,114 @@ export default function SelfWorthDeep() {
            bảng phải cuộn ngang trong chính khung của nó dù trang không
            cuộn ngang. Bỏ minWidth dưới 640px để cột tự co theo màn hình. */
         @media (max-width: 640px) { .resp-table { min-width: 0 !important; } }
-        /* Sticky chỉ có ích trên desktop (nhiều chỗ); trên mobile 5 ô vuông
-           dính lại khi cuộn chiếm quá nhiều diện tích màn hình nhỏ. */
-        @media (max-width: 767px) { .swd-primary-nav { position: static !important; } }
+        /* Cùng khuôn với holistic_life.jsx: dưới 768px ẩn dải 5 ô nav, thay
+           bằng 1 thanh "đang xem" gọn + drawer trượt từ trái. */
+        .swd-mobile-trigger, .swd-mobile-backdrop, .swd-mobile-drawer { display: none; }
+        @media (max-width: 767px) {
+          .swd-primary-nav { display: none !important; }
+          .swd-mobile-trigger {
+            display: flex; width: 100%; align-items: center; gap: 9px;
+            position: sticky; top: 0; z-index: 20;
+            background: ${PAPER}; border-bottom: 1px solid ${LINE};
+            padding: 9px 0; margin-bottom: 18px; border-left: none; border-right: none; border-top: none;
+            cursor: pointer; text-align: left;
+          }
+          .swd-mt-box {
+            flex: 1; min-width: 0; display: flex; align-items: center; gap: 9px;
+            border: 1px solid ${LINE}; border-radius: 10px; padding: 8px 11px; background: ${CARD};
+          }
+          .swd-mt-icon-box {
+            width: 26px; height: 26px; border-radius: 7px; background: ${ACCENT}18;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+          }
+          .swd-mt-text { flex: 1; min-width: 0; }
+          .swd-mt-label { font-family: ${SANS}; font-size: 12px; font-weight: 700; color: ${INK}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          .swd-mt-chev { color: ${MUTE}; flex-shrink: 0; transition: transform .2s ease; }
+          .swd-mobile-trigger.open .swd-mt-chev { transform: rotate(180deg); }
+          .swd-mobile-backdrop {
+            display: block; position: fixed; inset: 0; background: rgba(35,31,26,.42);
+            z-index: 198; opacity: 0; pointer-events: none; transition: opacity .2s ease;
+          }
+          .swd-mobile-backdrop.show { opacity: 1; pointer-events: auto; }
+          .swd-mobile-drawer {
+            display: block; position: fixed; top: 0; bottom: 0; left: 0; width: 82%; max-width: 300px;
+            background: ${CARD}; border-right: 1px solid ${LINE}; z-index: 199; overflow-y: auto;
+            transform: translateX(-100%); transition: transform .25s cubic-bezier(.32,.72,0,1);
+          }
+          .swd-mobile-drawer.show { transform: translateX(0); }
+          .swd-md-head { padding: 14px; border-bottom: 1px solid ${LINE}; display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+          .swd-md-t1 { font-family: ${SANS}; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: ${MUTE}; }
+          .swd-md-t2 { font-family: ${SERIF}; font-size: 14px; font-weight: 600; color: ${INK}; margin-top: 3px; }
+          .swd-md-close { width: 26px; height: 26px; border-radius: 7px; border: 1px solid ${LINE}; background: ${PAPER}; display: flex; align-items: center; justify-content: center; cursor: pointer; color: ${MUTE}; flex-shrink: 0; }
+          .swd-md-item {
+            width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+            background: transparent; border: none; border-left: 3px solid transparent; cursor: pointer; text-align: left;
+          }
+          .swd-md-item.active { background: ${ACCENT}14; border-left-color: ${ACCENT}; }
+          .swd-md-item-label { font-family: ${SANS}; font-size: 12.5px; font-weight: 700; }
+        }
       `}</style>
       <div style={{ padding: "26px 16px 60px" }}>
         <div style={{ marginBottom: 18 }}>
           <h1 style={{ fontSize: 27, lineHeight: 1.2, margin: 0, fontWeight: 600 }}>Self-Worth · Self-Love · Self-Confidence</h1>
         </div>
 
-        {/* PRIMARY NAV — 5 ô vuông, hiện trực tiếp trên mọi kích thước màn hình */}
+        {/* PRIMARY NAV — 5 ô vuông, chỉ hiện từ 768px trở lên (dưới đó dùng
+            thanh trigger + drawer bên dưới) */}
         <div className="swd-primary-nav" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: 8, marginBottom: 22, paddingTop: 10, paddingBottom: 14, borderBottom: `1px solid ${LINE}`, position: "sticky", top: 0, zIndex: 10, background: PAPER }}>
-          {PRIMARY.map((p) => (
-            <button key={p.id} onClick={() => { setPrimary(p.id); window.__scrollArticleToTop?.(); }}
-              style={{
-                fontFamily: SANS, fontSize: 13, padding: "14px 12px", borderRadius: 8, cursor: "pointer", textAlign: "center",
-                border: `1.5px solid ${primary === p.id ? ACCENT : LINE}`,
-                background: primary === p.id ? ACCENT : CARD,
-                color: primary === p.id ? "#fff" : "#3A403C",
-                fontWeight: primary === p.id ? 700 : 600,
-              }}>
-              {p.vi}
-            </button>
-          ))}
+          {PRIMARY.map((p) => {
+            const Icon = p.icon;
+            const isActive = primary === p.id;
+            return (
+              <button key={p.id} onClick={() => { setPrimary(p.id); window.__scrollArticleToTop?.(); }}
+                style={{
+                  fontFamily: SANS, fontSize: 13, padding: "14px 12px", borderRadius: 8, cursor: "pointer", textAlign: "center",
+                  display: "flex", flexDirection: "column", alignItems: "center", gap: 5,
+                  border: `1.5px solid ${isActive ? ACCENT : LINE}`,
+                  background: isActive ? ACCENT : CARD,
+                  color: isActive ? "#fff" : "#3A403C",
+                  fontWeight: isActive ? 700 : 600,
+                }}>
+                <Icon size={15} color={isActive ? "#fff" : ACCENT} />
+                {p.vi}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Mobile-only: thanh "đang xem" gọn + drawer trượt từ trái */}
+        <button className={"swd-mobile-trigger" + (mobileNavOpen ? " open" : "")} onClick={() => setMobileNavOpen((v) => !v)}>
+          <div className="swd-mt-box">
+            <div className="swd-mt-icon-box">
+              {currentPrimary?.icon && <currentPrimary.icon size={13} color={ACCENT} />}
+            </div>
+            <div className="swd-mt-text">
+              <div className="swd-mt-label">{currentPrimary?.vi}</div>
+            </div>
+            <ChevronDown size={15} className="swd-mt-chev" />
+          </div>
+        </button>
+        <div className={"swd-mobile-backdrop" + (mobileNavOpen ? " show" : "")} onClick={() => setMobileNavOpen(false)} />
+        <div className={"swd-mobile-drawer" + (mobileNavOpen ? " show" : "")}>
+          <div className="swd-md-head">
+            <div>
+              <div className="swd-md-t1">{PRIMARY.length} mục</div>
+              <div className="swd-md-t2">Chọn mục để xem</div>
+            </div>
+            <button className="swd-md-close" onClick={() => setMobileNavOpen(false)} aria-label="Đóng"><X size={13} /></button>
+          </div>
+          <div>
+            {PRIMARY.map((p) => {
+              const Icon = p.icon;
+              const isActive = primary === p.id;
+              return (
+                <button key={p.id} className={"swd-md-item" + (isActive ? " active" : "")} onClick={() => { setPrimary(p.id); setMobileNavOpen(false); window.__scrollArticleToTop?.(); }}>
+                  <Icon size={14} color={isActive ? ACCENT : MUTE} />
+                  <span className="swd-md-item-label" style={{ color: isActive ? ACCENT : INK }}>{p.vi}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
 

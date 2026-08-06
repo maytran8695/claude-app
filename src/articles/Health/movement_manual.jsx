@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getSubTabFromUrl, syncSubTabToUrl } from "../../utils/subTabUrl";
+import { Flag, Compass, Target, Dumbbell, Moon, Activity, RefreshCw, ChevronDown, X } from "lucide-react";
 
 /* ============================================================
    CẨM NANG VẬN ĐỘNG & SỨC KHỎE THỂ CHẤT DÀI HẠN
@@ -156,13 +157,13 @@ function Stat({ value, label, tone = C.teal }) {
    NAVIGATION — 7 tabs
    ============================================================ */
 const PARTS = [
-  { id: 0, num: "0",  short: "Mở đầu",    accent: C.ink },
-  { id: 1, num: "I",  short: "Nguyên lý", accent: C.blue },
-  { id: 2, num: "II", short: "Chọn môn",  accent: C.teal },
-  { id: 3, num: "III",short: "Thực hành", accent: C.amber },
-  { id: 4, num: "IV", short: "Phục hồi & Ngủ", accent: C.purple },
-  { id: 5, num: "V",  short: "Theo dõi",  accent: C.coral },
-  { id: 6, num: "VI", short: "Duy trì",   accent: C.rose },
+  { id: 0, num: "0",  short: "Mở đầu",    accent: C.ink,    icon: Flag },
+  { id: 1, num: "I",  short: "Nguyên lý", accent: C.blue,   icon: Compass },
+  { id: 2, num: "II", short: "Chọn môn",  accent: C.teal,   icon: Target },
+  { id: 3, num: "III",short: "Thực hành", accent: C.amber,  icon: Dumbbell },
+  { id: 4, num: "IV", short: "Phục hồi & Ngủ", accent: C.purple, icon: Moon },
+  { id: 5, num: "V",  short: "Theo dõi",  accent: C.coral,  icon: Activity },
+  { id: 6, num: "VI", short: "Duy trì",   accent: C.rose,   icon: RefreshCw },
 ];
 
 export default function App() {
@@ -172,13 +173,65 @@ export default function App() {
     return !isNaN(n) && PARTS.some((p) => p.id === n) ? n : 0;
   });
   useEffect(() => { syncSubTabToUrl(part); }, [part]);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const current = PARTS.find((p) => p.id === part);
 
   return (
     <div style={{ fontFamily: "var(--font-sans)", padding: "18px 14px 104px" }}>
-      {/* ===== TAB BREADCRUMB — colored boxes at very top ===== */}
-      <div className="mobile-static" style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: "2rem", position: "sticky", top: 0, zIndex: 10, background: "#fff", padding: "10px 0", borderBottom: "1px solid #eee" }}>
+      {/* ===== TAB BREADCRUMB — cùng khuôn với holistic_life.jsx: dải pill
+          màu trên desktop, thu gọn thành 1 thanh "đang xem" + drawer trượt
+          từ trái trên mobile (dưới 768px) để không bị 7 pill xuống dòng
+          chiếm hết chỗ trước khi thấy nội dung. */}
+      <style>{`
+        .mm-mobile-trigger, .mm-mobile-backdrop, .mm-mobile-drawer { display: none; }
+        @media (max-width: 767px) {
+          .mm-desktop-nav { display: none !important; }
+          .mm-mobile-trigger {
+            display: flex; width: 100%; align-items: center; gap: 9px;
+            position: sticky; top: 0; z-index: 20;
+            background: #fff; border-bottom: 1px solid #eee;
+            padding: 9px 0; margin-bottom: 14px; border-left: none; border-right: none; border-top: none;
+            cursor: pointer; text-align: left;
+          }
+          .mm-mt-box {
+            flex: 1; min-width: 0; display: flex; align-items: center; gap: 9px;
+            border: 1px solid #eee; border-radius: 10px; padding: 8px 11px; background: var(--color-background-primary);
+          }
+          .mm-mt-icon-box {
+            width: 26px; height: 26px; border-radius: 7px;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+          }
+          .mm-mt-text { flex: 1; min-width: 0; }
+          .mm-mt-label { font-size: 12px; font-weight: 700; color: var(--color-text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+          .mm-mt-chev { color: var(--color-text-tertiary); flex-shrink: 0; transition: transform .2s ease; }
+          .mm-mobile-trigger.open .mm-mt-chev { transform: rotate(180deg); }
+          .mm-mobile-backdrop {
+            display: block; position: fixed; inset: 0; background: rgba(35,31,26,.42);
+            z-index: 198; opacity: 0; pointer-events: none; transition: opacity .2s ease;
+          }
+          .mm-mobile-backdrop.show { opacity: 1; pointer-events: auto; }
+          .mm-mobile-drawer {
+            display: block; position: fixed; top: 0; bottom: 0; left: 0; width: 82%; max-width: 300px;
+            background: var(--color-background-primary); border-right: 1px solid #eee; z-index: 199; overflow-y: auto;
+            transform: translateX(-100%); transition: transform .25s cubic-bezier(.32,.72,0,1);
+          }
+          .mm-mobile-drawer.show { transform: translateX(0); }
+          .mm-md-head { padding: 14px; border-bottom: 1px solid #eee; display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+          .mm-md-t1 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-tertiary); }
+          .mm-md-t2 { font-size: 14px; font-weight: 600; color: var(--color-text-primary); margin-top: 3px; }
+          .mm-md-close { width: 26px; height: 26px; border-radius: 7px; border: 1px solid #eee; background: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--color-text-tertiary); flex-shrink: 0; }
+          .mm-md-item {
+            width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+            background: transparent; border: none; border-left: 3px solid transparent; cursor: pointer; text-align: left;
+          }
+          .mm-md-item-label { font-size: 12.5px; font-weight: 700; }
+        }
+      `}</style>
+
+      <nav className="mm-desktop-nav mobile-static" style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: "2rem", position: "sticky", top: 0, zIndex: 10, background: "#fff", padding: "10px 0", borderBottom: "1px solid #eee" }}>
         {PARTS.map((p) => {
           const active = part === p.id;
+          const Icon = p.icon;
           return (
             <button key={p.id} onClick={() => { setPart(p.id); window.__scrollArticleToTop?.(); }} style={{
               display: "flex", alignItems: "center", gap: 9,
@@ -190,10 +243,46 @@ export default function App() {
               boxShadow: active ? `0 2px 8px ${p.accent.bg}` : "none",
               transition: "all 0.15s",
             }}>
+              <Icon size={14} color={active ? "#fff" : p.accent.text} />
               {p.short}
             </button>
           );
         })}
+      </nav>
+
+      {/* Mobile-only: thanh "đang xem" gọn + drawer trượt từ trái */}
+      <button className={"mm-mobile-trigger" + (mobileNavOpen ? " open" : "")} onClick={() => setMobileNavOpen((v) => !v)}>
+        <div className="mm-mt-box">
+          <div className="mm-mt-icon-box" style={{ background: current.accent.bg }}>
+            {current.icon && <current.icon size={13} color={current.accent.border} />}
+          </div>
+          <div className="mm-mt-text">
+            <div className="mm-mt-label">{current.num}. {current.short}</div>
+          </div>
+          <ChevronDown size={15} className="mm-mt-chev" />
+        </div>
+      </button>
+      <div className={"mm-mobile-backdrop" + (mobileNavOpen ? " show" : "")} onClick={() => setMobileNavOpen(false)} />
+      <div className={"mm-mobile-drawer" + (mobileNavOpen ? " show" : "")}>
+        <div className="mm-md-head">
+          <div>
+            <div className="mm-md-t1">{PARTS.length} phần</div>
+            <div className="mm-md-t2">Chọn mục để xem</div>
+          </div>
+          <button className="mm-md-close" onClick={() => setMobileNavOpen(false)} aria-label="Đóng"><X size={13} /></button>
+        </div>
+        <div>
+          {PARTS.map((p) => {
+            const active = part === p.id;
+            const Icon = p.icon;
+            return (
+              <button key={p.id} className="mm-md-item" style={{ background: active ? `${p.accent.border}14` : "transparent", borderLeftColor: active ? p.accent.border : "transparent" }} onClick={() => { setPart(p.id); setMobileNavOpen(false); window.__scrollArticleToTop?.(); }}>
+                <Icon size={14} color={active ? p.accent.border : "var(--color-text-tertiary)"} />
+                <span className="mm-md-item-label" style={{ color: active ? p.accent.border : "var(--color-text-primary)" }}>{p.num}. {p.short}</span>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {part === 0 && <Part0 />}
