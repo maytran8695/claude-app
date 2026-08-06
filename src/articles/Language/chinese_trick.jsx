@@ -80,20 +80,72 @@ function SectionHeader({ title, subtitle }) {
   );
 }
 
+/* ---------- Tầng chuyên gia & phản biện ----------
+   Cùng vai trò với ExpertBlock / Block("Tranh cãi · giới hạn") trong
+   holistic_life.jsx: tách phần "giải thích vì sao quy luật đúng" và phần
+   "chỗ tài liệu phổ thông hay nói sai" ra khỏi bảng tra cứu, để bảng tra
+   vẫn gọn mà người đọc kỹ vẫn thấy được nền ngữ âm học lịch sử bên dưới. */
+
+const PLUM = "#6B4670";
+const RUST = "#A34A3C";
+
+function ProfNote({ title, children }) {
+  return (
+    <div style={{ background: "rgba(107,70,112,0.06)", border: `1px solid rgba(107,70,112,0.32)`, borderRadius: "10px", padding: "16px 20px", marginBottom: "14px" }}>
+      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "10.5px", fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: PLUM, marginBottom: "7px" }}>
+        Tầng chuyên gia · 音韻學註
+      </div>
+      {title && (
+        <div style={{ fontFamily: "'Noto Serif SC', serif", fontWeight: 700, fontSize: "14.5px", color: "#22201C", marginBottom: "7px", lineHeight: 1.45 }}>
+          {title}
+        </div>
+      )}
+      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", lineHeight: 1.68, color: "#5C5548" }}>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function Pitfall({ title, children }) {
+  return (
+    <div style={{ background: "rgba(163,74,60,0.05)", border: `1px solid rgba(163,74,60,0.3)`, borderLeft: `4px solid ${RUST}`, borderRadius: "8px", padding: "14px 18px", marginBottom: "14px" }}>
+      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "10.5px", fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: RUST, marginBottom: "6px" }}>
+        Lỗi thường gặp · phản biện
+      </div>
+      {title && (
+        <div style={{ fontFamily: "'Noto Serif SC', serif", fontWeight: 700, fontSize: "14px", color: "#22201C", marginBottom: "6px", lineHeight: 1.45 }}>
+          {title}
+        </div>
+      )}
+      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", lineHeight: 1.68, color: "#5C5548" }}>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/* Chữ Hán chèn giữa dòng văn xuôi của ghi chú — cần font Noto Serif SC để
+   không bị rơi về font hệ thống (dễ hiện dạng chữ Nhật trên máy không có
+   font Trung). */
+function Z({ children }) {
+  return <span style={{ fontFamily: "'Noto Serif SC', serif", fontWeight: 600, color: "#22201C" }}>{children}</span>;
+}
+
 /* ---------- DATA: Hán Việt ↔ Quan Thoại (đã gộp) ---------- */
 
 const toneRules = [
-  { from: "Bình (ngang) — phụ âm đầu vô thanh", to: "Thanh 1 (阴平)", conf: "mid",
-    desc: "Âm tiết có thanh ngang (không dấu) với phụ âm đầu vô thanh (t, th, x, s, ch, tr, h, ph, k/c...) có xu hướng rơi vào Thanh 1.",
+  { from: "Bình (ngang) — phụ âm đầu vô thanh", to: "Thanh 1 (阴平)", conf: "high",
+    desc: "Hệ quả trực tiếp của luật 平分陰陽: bình thanh trung cổ tách đôi theo thanh tính của phụ âm đầu, nhánh vô thanh cho Thanh 1. Dấu NGANG của Hán Việt chính là nhánh đó, nên tương ứng rất đều. Ngoại lệ rải rác tồn tại (một số chữ vay ở lớp khác), nhưng không đủ để hạ độ tin cậy.",
     examples: [ { hv: "天 thiên", py: "tiān" }, { hv: "山 sơn", py: "shān" }, { hv: "心 tâm", py: "xīn" }, { hv: "三 tam", py: "sān" }, { hv: "春 xuân", py: "chūn" }, { hv: "初 sơ", py: "chū" }, { hv: "先 tiên", py: "xiān" }, { hv: "西 tây", py: "xī" }, { hv: "千 thiên", py: "qiān" }, { hv: "多 đa", py: "duō" } ] },
-  { from: "Bình (huyền) — phụ âm đầu hữu thanh/vang", to: "Thanh 2 (阳平)", conf: "mid",
-    desc: "Âm tiết có thanh huyền với phụ âm đầu hữu thanh hoặc âm vang (m, n, ng, nh, l, v, đ, d, gi...) có xu hướng rơi vào Thanh 2.",
-    examples: [ { hv: "同 đồng", py: "tóng" }, { hv: "文 văn", py: "wén" }, { hv: "年 niên", py: "nián" }, { hv: "常 thường", py: "cháng" }, { hv: "田 điền", py: "tián" }, { hv: "龍 long", py: "lóng" }, { hv: "來 lai", py: "lái" }, { hv: "回 hồi", py: "huí" }, { hv: "何 hà", py: "hé" }, { hv: "麻 ma", py: "má" } ] },
-  { from: "Hỏi / Ngã", to: "Thanh 3 hoặc Thanh 4", conf: "low",
-    desc: "Đây là cặp thanh kém tin cậy nhất — chia gần như đôi, không có quy luật thực dụng. Đừng dựa vào đây để đoán, hãy tra từ điển.",
-    examples: [ { hv: "語 ngữ", py: "yǔ", note: "T3" }, { hv: "使 sử", py: "shǐ", note: "T3" }, { hv: "小 tiểu", py: "xiǎo", note: "T3" }, { hv: "老 lão", py: "lǎo", note: "T3" }, { hv: "反 phản", py: "fǎn", note: "T3" }, { hv: "短 đoản", py: "duǎn", note: "T3" }, { hv: "悌 đễ", py: "tì", note: "T4" } ] },
-  { from: "Sắc / Nặng (âm tiết mở)", to: "Thanh 4 (去声)", conf: "mid",
-    desc: "Chỉ áp dụng cho âm tiết KHÔNG kết thúc bằng -p/-t/-c/-ch. Nếu có phụ âm cuối này, xem quy luật Nhập thanh bên dưới thay vì quy luật này.",
+  { from: "Bình (huyền) — phụ âm đầu hữu thanh/vang", to: "Thanh 2 (阳平)", conf: "high",
+    desc: "Nhánh còn lại của 平分陰陽: bình thanh với phụ âm đầu hữu thanh cho Thanh 2. Dấu HUYỀN đồng thời là tín hiệu báo phụ âm Quan Thoại sẽ BẬT HƠI nếu đó là âm tắc — xem ghi chú chuyên gia ở mục Phụ âm đầu.",
+    examples: [ { hv: "同 đồng", py: "tóng" }, { hv: "文 văn", py: "wén" }, { hv: "年 niên", py: "nián" }, { hv: "常 thường", py: "cháng" }, { hv: "田 điền", py: "tián" }, { hv: "龍 long", py: "lóng" }, { hv: "來 lai", py: "lái" }, { hv: "回 hồi", py: "huí" }, { hv: "何 hà", py: "hé" }, { hv: "麻 ma", py: "má" }, { hv: "期 kỳ", py: "qī", note: "T1 ngoại lệ" } ] },
+  { from: "Hỏi / Ngã", to: "Thanh 3 (上声)", conf: "high",
+    desc: "Cả hai dấu này đều đi từ THƯỢNG THANH (上聲) của Hán ngữ trung cổ, mà thượng thanh vào Quan Thoại giữ nguyên thành Thanh 3 ở đại đa số trường hợp — dấu hỏi gần như tuyệt đối, dấu ngã đa số. Thiểu số rơi sang Thanh 4 nằm gọn trong một nhóm có quy luật riêng (濁上變去), xem ghi chú chuyên gia bên dưới.",
+    examples: [ { hv: "好 hảo", py: "hǎo", note: "T3" }, { hv: "小 tiểu", py: "xiǎo", note: "T3" }, { hv: "水 thủy", py: "shuǐ", note: "T3" }, { hv: "反 phản", py: "fǎn", note: "T3" }, { hv: "短 đoản", py: "duǎn", note: "T3" }, { hv: "我 ngã", py: "wǒ", note: "T3" }, { hv: "五 ngũ", py: "wǔ", note: "T3" }, { hv: "有 hữu", py: "yǒu", note: "T3" }, { hv: "馬 mã", py: "mǎ", note: "T3" }, { hv: "老 lão", py: "lǎo", note: "T3" }, { hv: "語 ngữ", py: "yǔ", note: "T3" }, { hv: "技 kỹ", py: "jì", note: "T4 ngoại lệ" }, { hv: "士 sĩ", py: "shì", note: "T4 ngoại lệ" } ] },
+  { from: "Sắc / Nặng (âm tiết mở)", to: "Thanh 4 (去声)", conf: "high",
+    desc: "KHỨ THANH (去聲) là thanh duy nhất trong bốn thanh trung cổ KHÔNG tách đôi khi đi vào Quan Thoại, nên tương ứng gần như một-một. Chỉ áp dụng cho âm tiết KHÔNG kết thúc bằng -p/-t/-c/-ch; nếu có phụ âm cuối này, xem quy luật Nhập thanh bên dưới thay vì quy luật này.",
     examples: [ { hv: "意 ý", py: "yì" }, { hv: "志 chí", py: "zhì" }, { hv: "貴 quý", py: "guì" }, { hv: "愛 ái", py: "ài" }, { hv: "路 lộ", py: "lù" }, { hv: "在 tại", py: "zài" }, { hv: "自 tự", py: "zì" }, { hv: "見 kiến", py: "jiàn" } ] },
   { from: "Nhập thanh (kết thúc -p/-t/-c/-ch)", to: "Âm tiết mở, thanh không đoán được", conf: "struct",
     desc: "Quy luật CHẮC CHẮN nhất trong toàn bộ hệ thống: mọi âm Hán Việt kết thúc bằng -p, -t, -c, -ch đều tương ứng với âm tiết Quan Thoại không có phụ âm cuối.",
@@ -142,14 +194,17 @@ const finalRules = [
     examples: [ { hv: "京 kinh", py: "jīng" }, { hv: "兵 binh", py: "bīng" }, { hv: "定 định", py: "dìng" }, { hv: "病 bệnh", py: "bìng" }, { hv: "聽 thính", py: "tīng" }, { hv: "命 mệnh", py: "mìng" }, { hv: "領 lĩnh", py: "lǐng" } ] },
   { from: "-ương / -ang", to: "-iang / -ang", conf: "high",
     examples: [ { hv: "江 giang", py: "jiāng" }, { hv: "方 phương", py: "fāng" }, { hv: "長 trường", py: "cháng" }, { hv: "香 hương", py: "xiāng" }, { hv: "想 tưởng", py: "xiǎng" }, { hv: "陽 dương", py: "yáng" }, { hv: "常 thường", py: "cháng" } ] },
-  { from: "-oa / -óa / -ỏa", to: "-ua", conf: "high",
-    examples: [ { hv: "花 hoa", py: "huā" }, { hv: "化 hóa", py: "huà" }, { hv: "火 hỏa", py: "huǒ" }, { hv: "過 quá", py: "guò" }, { hv: "果 quả", py: "guǒ" } ] },
+  { from: "-oa / -óa / -ỏa", to: "-ua HOẶC -uo", conf: "high",
+    desc: "Phải tách hai nhánh, đừng đoán bừa một bên: chữ thuộc GIẢ NHIẾP (假攝) cho -ua, chữ thuộc QUẢ NHIẾP (果攝) cho -uo. Cùng vần Hán Việt nhưng khác nguồn trung cổ nên khác kết quả.",
+    examples: [ { hv: "花 hoa", py: "huā", note: "-ua" }, { hv: "化 hóa", py: "huà", note: "-ua" }, { hv: "華 hoa", py: "huá", note: "-ua" }, { hv: "火 hỏa", py: "huǒ", note: "-uo" }, { hv: "過 quá", py: "guò", note: "-uo" }, { hv: "果 quả", py: "guǒ", note: "-uo" }, { hv: "禍 họa", py: "huò", note: "-uo" } ] },
   { from: "-iên / -uyên", to: "-ian / -uan", conf: "high",
     examples: [ { hv: "天 thiên", py: "tiān" }, { hv: "年 niên", py: "nián" }, { hv: "見 kiến", py: "jiàn" }, { hv: "元 nguyên", py: "yuán" }, { hv: "面 diện", py: "miàn" }, { hv: "邊 biên", py: "biān" } ] },
-  { from: "-am", to: "-an", conf: "mid",
+  { from: "-am / -ăm", to: "-an", conf: "struct",
+    desc: "Quan Thoại đã mất SẠCH phụ âm cuối -m (nhập hết vào -n) từ khoảng đời Minh, nên không tồn tại một âm tiết Quan Thoại nào kết thúc bằng -m. Đây là quy luật tuyệt đối thứ hai của bảng, sau quy luật nhập thanh.",
     examples: [ { hv: "南 nam", py: "nán" }, { hv: "三 tam", py: "sān" }, { hv: "談 đàm", py: "tán" }, { hv: "藍 lam", py: "lán" }, { hv: "敢 cảm", py: "gǎn" }, { hv: "含 hàm", py: "hán" } ] },
-  { from: "-âm / -im", to: "-in", conf: "mid",
-    examples: [ { hv: "金 kim", py: "jīn" }, { hv: "心 tâm", py: "xīn" }, { hv: "音 âm", py: "yīn" }, { hv: "林 lâm", py: "lín" } ] },
+  { from: "-âm / -im", to: "-in", conf: "struct",
+    desc: "Cùng một hiện tượng mất -m như trên, chỉ khác vần chính. Tiếng Việt còn giữ nguyên -m nên người Việt rất dễ đọc thừa phụ âm cuối này khi nói tiếng Trung.",
+    examples: [ { hv: "金 kim", py: "jīn" }, { hv: "心 tâm", py: "xīn" }, { hv: "音 âm", py: "yīn" }, { hv: "林 lâm", py: "lín" }, { hv: "今 kim", py: "jīn" }, { hv: "飲 ẩm", py: "yǐn" } ] },
   { from: "-ông / -ung", to: "-ong", conf: "high",
     examples: [ { hv: "東 đông", py: "dōng" }, { hv: "公 công", py: "gōng" }, { hv: "中 trung", py: "zhōng" }, { hv: "同 đồng", py: "tóng" }, { hv: "紅 hồng", py: "hóng" }, { hv: "工 công", py: "gōng" } ] },
   { from: "-an", to: "-an", conf: "high", desc: "Trường hợp giữ nguyên vần — dễ nhận diện nhất.",
@@ -160,7 +215,7 @@ const finalRules = [
   { from: "-ôn / -uôn", to: "-un / -uan", conf: "mid",
     examples: [ { hv: "存 tồn", py: "cún" }, { hv: "尊 tôn", py: "zūn" }, { hv: "論 luận", py: "lùn" }, { hv: "村 thôn", py: "cūn" } ] },
   { from: "-at (nhập thanh)", to: "-a", conf: "high", desc: "Nhánh cụ thể của quy luật nhập thanh — dễ nhớ vì kết quả rất gọn.",
-    examples: [ { hv: "八 bát", py: "bā" }, { hv: "達 đạt", py: "dá" }, { hv: "發 phát", py: "fā" }, { hv: "殺 sát", py: "shā" }, { hv: "法 phạt", py: "fá" } ] },
+    examples: [ { hv: "八 bát", py: "bā" }, { hv: "達 đạt", py: "dá" }, { hv: "發 phát", py: "fā" }, { hv: "殺 sát", py: "shā" }, { hv: "罰 phạt", py: "fá" } ] },
   { from: "-p / -t / -c / -ch", to: "âm tiết mở (không phụ âm cuối)", conf: "struct",
     desc: "Quy luật nền tảng nhất của toàn hệ thống — nếu chỉ nhớ một điều, hãy nhớ điều này.",
     examples: [ { hv: "國 quốc", py: "guó" }, { hv: "學 học", py: "xué" }, { hv: "十 thập", py: "shí" }, { hv: "一 nhất", py: "yī" }, { hv: "六 lục", py: "liù" }, { hv: "八 bát", py: "bā" }, { hv: "百 bách", py: "bǎi" }, { hv: "力 lực", py: "lì" }, { hv: "月 nguyệt", py: "yuè" }, { hv: "北 bắc", py: "běi" } ] },
@@ -196,7 +251,7 @@ const phoneticGroups = [
   { comp: "交", py: "jiāo", meaning: "giao, trao đổi", derived: [ { hv: "較 (giảo)", py: "jiào", meaning: "so sánh" }, { hv: "郊 (giao)", py: "jiāo", meaning: "vùng ngoại ô" }, { hv: "校 (hiệu)", py: "xiào", meaning: "trường học" } ] },
   { comp: "京", py: "jīng", meaning: "kinh đô", derived: [ { hv: "鯨 (kình)", py: "jīng", meaning: "cá voi" }, { hv: "景 (cảnh)", py: "jǐng", meaning: "cảnh vật" } ] },
   { comp: "相", py: "xiāng", meaning: "tương, lẫn nhau", derived: [ { hv: "想 (tưởng)", py: "xiǎng", meaning: "nghĩ, tưởng" }, { hv: "箱 (tương)", py: "xiāng", meaning: "hộp, rương" } ] },
-  { comp: "由", py: "yóu", meaning: "do, từ", derived: [ { hv: "油 (du)", py: "yóu", meaning: "dầu" }, { hv: "郵 (bưu)", py: "yóu", meaning: "bưu điện" }, { hv: "鈾 (du)", py: "yóu", meaning: "uranium" } ] },
+  { comp: "由", py: "yóu", meaning: "do, từ", derived: [ { hv: "油 (du)", py: "yóu", meaning: "dầu" }, { hv: "鈾 (du)", py: "yóu", meaning: "uranium" }, { hv: "邮 (bưu)", py: "yóu", meaning: "bưu điện — CHỈ bản giản thể mới là hình thanh; bản phồn thể 郵 là hội ý (垂+邑), không chứa 由" }, { hv: "宙 (trụ)", py: "zhòu", meaning: "vũ trụ — cùng bộ 由 nhưng âm đã lệch hẳn" } ] },
   { comp: "反", py: "fǎn", meaning: "phản, trái lại", derived: [ { hv: "飯 (phạn)", py: "fàn", meaning: "cơm" }, { hv: "板 (bản)", py: "bǎn", meaning: "tấm ván (mộc bản)" }, { hv: "版 (bản)", py: "bǎn", meaning: "bản in, ấn bản" } ] },
   { comp: "寺", py: "sì", meaning: "chùa, tự", derived: [ { hv: "詩 (thi)", py: "shī", meaning: "thơ" }, { hv: "侍 (thị)", py: "shì", meaning: "hầu hạ, phụng sự" }, { hv: "時 (thời)", py: "shí", meaning: "thời gian" }, { hv: "特 (đặc)", py: "tè", meaning: "đặc biệt" } ] },
   { comp: "古", py: "gǔ", meaning: "xưa, cổ", derived: [ { hv: "姑 (cô)", py: "gū", meaning: "cô, cô gái" }, { hv: "故 (cố)", py: "gù", meaning: "lý do, cố ý" }, { hv: "苦 (khổ)", py: "kǔ", meaning: "khổ, đắng" }, { hv: "固 (cố)", py: "gù", meaning: "kiên cố, vững chắc" } ] },
@@ -209,6 +264,9 @@ const phoneticGroups = [
 const sandhiRules = [
   { from: "T3 + T3", to: "T2 + T3", conf: "struct", desc: "Quy tắc cứng, xảy ra 100% khi hai âm tiết thanh 3 đứng liền nhau — âm tiết đầu bắt buộc đổi sang thanh 2 khi nói (chữ viết vẫn giữ thanh 3).",
     examples: [ { hv: "你好 (viết)", py: "níhǎo (nói thật)" }, { hv: "很好 (viết)", py: "hénhǎo (nói thật)" }, { hv: "可以 (viết)", py: "kéyǐ (nói thật)" } ] },
+  { from: "T3 + T1/T2/T4/thanh nhẹ", to: "BÁN TAM THANH (半三聲) — chỉ xuống, KHÔNG lên", conf: "struct",
+    desc: "Quy tắc bị bỏ sót nhiều nhất, nhưng lại chi phối ĐA SỐ lần Thanh 3 xuất hiện: Thanh 3 chỉ đọc đầy đủ đường cong xuống-rồi-lên khi đứng một mình hoặc ở cuối câu. Trong mọi vị trí khác (trước T1/T2/T4/thanh nhẹ) nó chỉ còn nửa đầu — hạ thấp giọng rồi dừng, không vống lên. Người Việt học tiếng Trung thường cố \"lên\" ở mọi Thanh 3, đây là nguyên nhân số một khiến câu nói nghe nặng và chậm bất thường.",
+    examples: [ { hv: "老師 (T3+T1)", py: "lǎo đọc nửa — chỉ hạ giọng" }, { hv: "好人 (T3+T2)", py: "hǎo đọc nửa" }, { hv: "很大 (T3+T4)", py: "hěn đọc nửa" }, { hv: "我的 (T3+nhẹ)", py: "wǒ đọc nửa" }, { hv: "很好 (T3+T3)", py: "→ đổi hẳn sang T2, xem quy tắc trên" }, { hv: "你好嗎? 好。(đứng cuối)", py: "hǎo đọc ĐẦY ĐỦ xuống-lên" } ] },
   { from: "不 bù + Thanh 4", to: "不 → Thanh 2 (bú)", conf: "struct", desc: "不 chỉ đổi thanh khi từ theo sau là Thanh 4. Với Thanh 1/2/3 thì 不 vẫn giữ Thanh 4 bình thường.",
     examples: [ { hv: "不是 (viết)", py: "búshì (nói thật)" }, { hv: "不對 (viết)", py: "búduì (nói thật)" }, { hv: "不好 (giữ nguyên)", py: "bùhǎo" }, { hv: "不來 (giữ nguyên)", py: "bùlái" } ] },
   { from: "一 yī + Thanh 4", to: "一 → Thanh 2 (yí)", conf: "struct",
@@ -220,6 +278,9 @@ const sandhiRules = [
   { from: "3 âm tiết Thanh 3 liền nhau", to: "Phụ thuộc cách ghép từ: 1+2 hoặc 2+1", conf: "high",
     desc: "Khi có 3 âm tiết Thanh 3 liên tiếp, quy tắc T3+T3→T2+T3 áp dụng theo CẶP gắn kết chặt hơn về nghĩa/ngữ pháp trước, rồi lan tiếp nếu còn cặp Thanh 3 mới xuất hiện.",
     examples: [ { hv: "我很好 (viết, cấu trúc 1+2: 我 / 很好)", py: "wǒ hénhǎo (nói thật — chỉ cặp 2 sau đổi)" }, { hv: "展覽館 (viết, cấu trúc 2+1: 展覽 / 館)", py: "zhánlánguǎn (nói thật — cả 2 âm đầu đều đổi)" } ] },
+  { from: "不 / 一 kẹp giữa (V-不-V, V-一-V)", to: "Rơi xuống thanh nhẹ", conf: "struct",
+    desc: "Khi 不 hoặc 一 bị kẹp giữa hai thành phần lặp lại của cùng một động từ/tính từ, nó mất hẳn thanh điệu và đọc lướt — không áp quy tắc bú/yí/yì ở trên nữa. Đây là chỗ quy tắc 不+T4→bú bị hiểu máy móc thành sai.",
+    examples: [ { hv: "對不起", py: "duìbuqǐ — KHÔNG phải duìbúqǐ" }, { hv: "看不見", py: "kànbujiàn" }, { hv: "好不好", py: "hǎobuhǎo" }, { hv: "看一看", py: "kànyikàn" } ] },
   { from: "Thanh nhẹ (輕聲) ở hư từ", to: "Mất trọng âm + thanh gốc, đọc lướt nhẹ", conf: "struct",
     desc: "Một nhóm hư từ ngữ pháp cố định luôn đọc thanh nhẹ (không dấu, ngắn, nhẹ hơn hẳn âm trước nó), bất kể thanh gốc trên chữ viết là gì — không có ngoại lệ với nhóm này.",
     examples: [ { hv: "的 de (trợ từ sở hữu)", py: "thanh nhẹ" }, { hv: "了 le (trợ từ hoàn thành)", py: "thanh nhẹ" }, { hv: "嗎 ma (trợ từ hỏi)", py: "thanh nhẹ" }, { hv: "呢 ne (trợ từ hỏi)", py: "thanh nhẹ" }, { hv: "們 men (số nhiều)", py: "thanh nhẹ" }, { hv: "著 zhe (trợ từ tiếp diễn)", py: "thanh nhẹ" } ] },
@@ -312,7 +373,7 @@ const TABS_GUIDE = [
   { n: "1", label: "Hán Việt", hanzi: "漢越音鑰匙",
     use: "Suy đoán pinyin/âm Hán Việt của một chữ mới dựa trên 3 lớp quy luật ngữ âm (thanh điệu → phụ âm đầu → vần) và tra cạm bẫy nghĩa (từ giả Hán Việt).",
     when: "Gặp một chữ Hán chưa học nhưng đã biết âm Hán Việt của nó, và muốn đoán nhanh cách đọc Quan Thoại trước khi tra từ điển; hoặc khi dùng một từ mượn Hán Việt và nghi ngờ nghĩa tiếng Trung hiện đại đã lệch.",
-    tip: "Luôn đọc cột \"độ tin cậy\" trước khi tin: quy luật Nhập thanh và biến điệu (nhãn \"Quy tắc cố định\") gần như tuyệt đối, còn thanh điệu Hỏi/Ngã (\"Thấp\") chỉ mang tính tham khảo — với nhóm này bắt buộc tra từ điển, đừng đoán rồi dùng luôn." },
+    tip: "Luôn đọc cột \"độ tin cậy\" trước khi tin. Hai nhãn \"Quy tắc cố định\" (mất nhập thanh và mất phụ âm cuối -m) là tuyệt đối, dùng được ngay. Hai nhóm còn nhãn \"Thấp\" (t-/th- và x-) mới là nhóm bắt buộc tra từ điển. Đọc kèm các khối \"Tầng chuyên gia\" trong tab — chúng chỉ ra cách tách các dòng \"Trung bình\" thành quy luật chắc chắn bằng dấu thanh." },
   { n: "2", label: "Biểu âm", hanzi: "諧聲部件",
     use: "Nhận diện các \"bộ phận biểu âm\" (phonetic components) xuất hiện lặp lại trong nhiều chữ Hán, để đoán âm đọc của chữ mới mà không cần học thuộc từng chữ riêng lẻ.",
     when: "Đang học chữ Hán mới và nhận ra nó có một bộ phận quen mắt (vd. 青, 交, 生...) — kiểm tra xem các chữ cùng bộ phận đó có phát âm gần giống nhau không.",
@@ -515,22 +576,132 @@ export default function HanVietKey() {
               Mỗi tab dữ liệu (trừ "Xen kẽ" và tab Hướng dẫn này) đều có chung một ô tìm kiếm ở đầu trang — gõ chữ Hán, âm Hán Việt, hoặc pinyin để lọc ngay trong tab đang mở. Ô tìm kiếm không lọc chéo giữa các tab, nên khi đổi tab hãy kiểm tra lại từ khóa vẫn còn phù hợp.
             </div>
 
-            <SectionHeader title="Lưu ý về độ chính xác nội dung" />
-            <div style={{ fontSize: "13px", lineHeight: 1.7, color: "#5C5548", background: "#EDE6D8", borderRadius: "8px", padding: "14px 18px" }}>
-              Nội dung trong các tab dữ liệu đã được rà soát theo ngữ âm học lịch sử tiếng Hán và từ vựng Hán Việt: đã sửa một số ví dụ bị xếp sai nhóm quy luật (âm tiết nhập thanh bị gán nhầm cùng nhóm hỏi/ngã, "qu-"/"gi-" bị gán nhầm vào nhóm "c-/k-"...), một vài âm Hán Việt bị ghi sai (較 = giảo chứ không phải giác trong nghĩa "so sánh"; 校 = hiệu chứ không phải giáo trong nghĩa "trường học"; 訪 = phỏng chứ không phải phóng), và một lỗi hiển thị khiến tổng số mục ở đầu trang từng bị đếm thiếu. Dù vậy, đây vẫn là bảng quy luật thống kê — với các nhãn "Trung bình"/"Thấp", luôn đối chiếu từ điển trước khi dùng trong văn bản chính thức.
+            <SectionHeader title="Ghi chú bình duyệt" subtitle="Kết quả đợt thẩm định nội dung theo ngữ âm học lịch sử Hán ngữ — áp cho toàn bộ tab" />
+
+            <div style={{ background: "rgba(107,70,112,0.06)", border: "1px solid rgba(107,70,112,0.32)", borderRadius: "10px", padding: "16px 20px", marginBottom: "14px" }}>
+              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "10.5px", fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: PLUM, marginBottom: "9px" }}>
+                A · Những chỗ đã được đính chính
+              </div>
+              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", lineHeight: 1.7, color: "#5C5548" }}>
+                <div style={{ marginBottom: 6 }}><b>1. Quy luật Hỏi/Ngã bị đánh giá sai nghiêm trọng.</b> Bản trước ghi “chia gần như đôi giữa T3 và T4, không có quy luật thực dụng”, nhãn <i>Thấp</i>. Điều này không đúng: hỏi/ngã đều từ <Z>上聲</Z> và cho <b>Thanh 3</b> ở đại đa số trường hợp. Đã đổi nhãn sang <i>Cao</i>, viết lại mô tả và thay ví dụ để phản ánh đúng tỷ lệ; nhóm ngoại lệ T4 được giải thích bằng luật <Z>濁上變去</Z>.</div>
+                <div style={{ marginBottom: 6 }}><b>2. Cả lớp thanh điệu bị đánh giá thấp hơn thực tế.</b> Bản trước mô tả thanh điệu là “lớp kém tin cậy nhất trong ba lớp”. Kết luận thẩm định ngược lại: đây là lớp CÓ HỆ THỐNG NHẤT, vì bốn dấu Hán Việt ánh xạ gần một-một vào bốn thanh trung cổ, và cả ba biến đổi thanh điệu của Quan Thoại đều đã được mô tả đầy đủ trong ngữ âm học lịch sử. Lớp thật sự lộn xộn là lớp <i>phụ âm đầu</i> (t-/th- và x-). Đã nâng Sắc/Nặng và hai quy luật bình thanh từ <i>Trung bình</i> lên <i>Cao</i>.</div>
+                <div style={{ marginBottom: 6 }}><b>3. Hai quy luật vần -m bị xếp nhầm hạng.</b> Quan Thoại mất sạch phụ âm cuối -m, không tồn tại ngoại lệ. Đã nâng <i>-am</i> và <i>-âm/-im</i> từ <i>Trung bình</i> lên <i>Quy tắc cố định</i>.</div>
+                <div style={{ marginBottom: 6 }}><b>4. Vần -oa mô tả thiếu một nhánh.</b> Bản trước ghi “-oa → -ua” nhưng ba trên năm ví dụ của chính nó lại cho -uo (<Z>火 huǒ · 過 guò · 果 guǒ</Z>). Đã tách thành hai nhánh theo nhiếp (假攝 → -ua, 果攝 → -uo).</div>
+                <div style={{ marginBottom: 6 }}><b>5. Gán sai mặt chữ.</b> Mục “-at → -a” ghi <Z>法 phạt / fá</Z>; thực tế 法 đọc <i>pháp/fǎ</i>, còn chữ cho âm <i>phạt/fá</i> là <Z>罰</Z>. Đã sửa.</div>
+                <div style={{ marginBottom: 6 }}><b>6. Sai về tự nguyên.</b> Mục biểu âm <Z>由</Z> liệt kê <Z>郵</Z> phồn thể là chữ phái sinh; nhưng 郵 là chữ hội ý (垂+邑), không chứa 由 — chỉ bản giản thể <Z>邮</Z> mới là hình thanh. Đã thay và chú thích.</div>
+                <div><b>7. Thiếu quy tắc biến điệu quan trọng nhất.</b> Bảng biến điệu không có <b>bán tam thanh</b> (半三聲), trong khi đây mới là dạng đọc của đa số Thanh 3 trong dòng nói. Đã bổ sung, cùng quy tắc 不/一 rơi thanh nhẹ khi kẹp giữa (<Z>對不起</Z> duìbuqǐ).</div>
+              </div>
+            </div>
+
+            <div style={{ background: "rgba(163,74,60,0.05)", border: "1px solid rgba(163,74,60,0.3)", borderLeft: `4px solid ${RUST}`, borderRadius: "10px", padding: "16px 20px", marginBottom: "14px" }}>
+              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "10.5px", fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: RUST, marginBottom: "9px" }}>
+                B · Giới hạn còn lại — đọc trước khi tin bảng
+              </div>
+              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", lineHeight: 1.7, color: "#5C5548" }}>
+                <div style={{ marginBottom: 6 }}><b>(1) Đây là quy luật THỐNG KÊ, trừ hai mục có nhãn “Quy tắc cố định”.</b> Nhãn Cao ≈ đúng phần lớn nhưng vẫn có ngoại lệ rải rác; Trung bình ≈ chỉ nên dùng làm phỏng đoán đầu tiên. Không mục nào ở đây thay thế được từ điển khi bạn cần độ chính xác cho văn bản chính thức.</div>
+                <div style={{ marginBottom: 6 }}><b>(2) Chiều suy luận chỉ đi một chiều an toàn.</b> Bảng dùng để đi từ <i>âm Hán Việt đã biết</i> → đoán âm Quan Thoại. Đi ngược lại (nghe tiếng Trung rồi suy ra chữ Hán/âm Hán Việt) kém tin cậy hơn nhiều, vì Quan Thoại đã mất nhiều đối lập mà tiếng Việt còn giữ — rất nhiều chữ khác nhau nay trùng âm hoàn toàn.</div>
+                <div style={{ marginBottom: 6 }}><b>(3) Chữ đa âm không được xử lý.</b> Bảng ngầm giả định mỗi chữ một âm. Thực tế nhiều chữ thông dụng có nhiều âm đọc theo nghĩa (<Z>行 xíng/háng · 長 cháng/zhǎng · 重 zhòng/chóng · 樂 lè/yuè</Z>), và âm Hán Việt cũng vậy (hành/hàng, trường/trưởng, trọng/trùng, lạc/nhạc). Khi một chữ có vẻ “phá quy luật”, khả năng cao là bạn đang đối chiếu nhầm cặp âm.</div>
+                <div style={{ marginBottom: 6 }}><b>(4) Nguồn vay không thuần nhất.</b> Ngoài lớp Hán Việt tiêu chuẩn (thế kỷ 8–10), tiếng Việt còn có lớp Hán cổ vay sớm hơn (mùa/vụ, buồng/phòng, gần/cận) và lớp Hán Việt Việt hoá muộn. Bảng chỉ áp cho lớp tiêu chuẩn; áp vào từ thuần Việt gốc Hán cổ sẽ ra kết quả sai.</div>
+                <div><b>(5) Chuẩn tham chiếu là Phổ thông thoại đại lục.</b> Thanh điệu, biến điệu và một số âm đọc có khác biệt hệ thống với chuẩn Đài Loan (國語) — ví dụ <Z>期</Z> đọc qī ở đại lục nhưng qí ở Đài Loan, <Z>星期</Z> cũng khác. Nếu bạn học theo giáo trình Đài Loan, đối chiếu lại thanh điệu trước khi dùng.</div>
+              </div>
+            </div>
+
+            <div style={{ fontSize: "12.5px", lineHeight: 1.7, color: "#8B7F6E", background: "#EDE6D8", borderRadius: "8px", padding: "13px 18px", fontStyle: "italic" }}>
+              Phương pháp thẩm định: đối chiếu từng quy luật với hệ thống thanh mẫu/vận mẫu Hán trung cổ (theo khung Thiết vận) và ba biến đổi lớn của Quan Thoại (平分陰陽 · 濁上變去 · 入派三聲), rồi kiểm chứng lại bằng chính tập ví dụ mà bảng đưa ra — nhiều lỗi phát hiện ở trên lộ ra chính vì ví dụ tự mâu thuẫn với quy luật được phát biểu. Các con số thống kê về chữ hình thanh trích từ Chu Hữu Quang (周有光, 1978). Tài liệu này phục vụ mục đích học tập; với nghiên cứu học thuật cần tra cứu trực tiếp vận thư và từ điển chuyên ngành.
             </div>
           </>
         )}
 
         {tab === "hv" && (
           <>
-            <Intro text="Ba lớp quy luật đầu (thanh điệu/phụ âm/vần) mang tính thống kê xu hướng — riêng lớp Từ giả Hán Việt không phải quy luật âm mà là cạm bẫy ngữ nghĩa." />
-            <SectionHeader title="1. Thanh điệu" subtitle="Độ tin cậy thấp nhất trong ba lớp — chỉ tham khảo" />
+            <Intro text="Ba lớp quy luật đầu (thanh điệu/phụ âm/vần) không phải mẹo ghi nhớ tuỳ tiện, mà là hệ quả có thể chứng minh của việc tiếng Việt và Quan Thoại cùng thừa kế một hệ thống mẹ — Hán ngữ trung cổ. Riêng lớp Từ giả Hán Việt không phải quy luật âm mà là cạm bẫy ngữ nghĩa." />
+
+            {!query && (
+              <ProfNote title="Vì sao bảng này hoạt động: bốn dấu Hán Việt CHÍNH LÀ bốn thanh Hán trung cổ">
+                Âm Hán Việt là một lớp vay mượn có hệ thống từ Hán ngữ trung cổ (khoảng thế kỷ 8–10), và nó bảo tồn hệ bốn thanh <Z>平·上·去·入</Z> gần như nguyên vẹn:{" "}
+                <b>ngang/huyền</b> = bình thanh, <b>hỏi/ngã</b> = thượng thanh, <b>sắc/nặng ở âm tiết mở</b> = khứ thanh, <b>sắc/nặng ở âm tiết đóng (-p/-t/-c/-ch)</b> = nhập thanh.
+                Trong mỗi cặp, dấu thứ nhất ứng với phụ âm đầu VÔ THANH, dấu thứ hai ứng với phụ âm đầu HỮU THANH của tiếng Hán cổ.
+                {" "}Quan Thoại sau đó chỉ làm đúng ba việc với hệ đó: <Z>平分陰陽</Z> (bình thanh tách đôi theo thanh tính phụ âm → T1/T2),{" "}
+                <Z>濁上變去</Z> (thượng thanh có phụ âm hữu thanh tắc chuyển sang khứ thanh → T4), và <Z>入派三聲</Z> (nhập thanh mất phụ âm cuối rồi phân tán).
+                {" "}Vì vậy suy từ dấu Hán Việt sang thanh Quan Thoại là một phép SUY DẪN có căn cứ, không phải trùng hợp — và cũng vì vậy mà chỗ nào Quan Thoại đã biến đổi thì chỗ đó mới sinh ngoại lệ.
+              </ProfNote>
+            )}
+
+            <SectionHeader title="1. Thanh điệu" subtitle="Đã hiệu chỉnh: lớp này tin cậy hơn nhiều so với cách trình bày phổ thông" />
             {fTone.map((r, i) => <RuleCard key={i} rule={r} />)}
-            <SectionHeader title="2. Phụ âm đầu" subtitle="nh-→r- và ng-→y- là hai quy luật mạnh nhất" />
+
+            {!query && (
+              <>
+                <Pitfall title="Đính chính: “Hỏi/Ngã chia gần như đôi giữa T3 và T4” là một tuyên bố SAI">
+                  Đây là chỗ nhiều tài liệu mẹo tiếng Trung cho người Việt nói sai, và bản trước của bảng này cũng mắc.
+                  Sự thật: hỏi và ngã đều từ <Z>上聲</Z>, mà thượng thanh vào Quan Thoại phần lớn GIỮ NGUYÊN thành Thanh 3.
+                  Kiểm chứng nhanh bằng chính các chữ thông dụng nhất: <Z>好 hǎo · 小 xiǎo · 水 shuǐ · 手 shǒu · 火 huǒ · 我 wǒ · 五 wǔ · 有 yǒu · 馬 mǎ · 買 mǎi · 老 lǎo · 女 nǚ · 米 mǐ · 語 yǔ · 兩 liǎng</Z> — toàn bộ đều T3.
+                  {" "}Nhóm rơi sang T4 là <i>thiểu số có quy luật</i>, không phải ngẫu nhiên: đó là các chữ mà phụ âm đầu tiếng Hán cổ là âm TẮC HỮU THANH, bị luật <Z>濁上變去</Z> đẩy sang khứ thanh —{" "}
+                  <Z>技 jì · 士 shì · 舅 jiù · 抱 bào · 悌 tì</Z>. Cách dùng đúng: mặc định đoán T3; chỉ nghi ngờ T4 khi chữ đó mang dấu ngã VÀ phụ âm đầu Quan Thoại là âm tắc không bật hơi (b/d/g/j/zh/z).
+                </Pitfall>
+
+                <ProfNote title="Nhập thanh KHÔNG hoàn toàn bất khả đoán — khoảng hai phần ba số chữ vẫn suy được">
+                  Bảng ghi “thanh không đoán được” là đúng với <i>một phần</i> nhập thanh thôi. Thực tế Quan Thoại phân phối nhập thanh theo thanh tính của phụ âm đầu cổ, và dấu Hán Việt để lộ chính thông tin đó:
+                  <div style={{ marginTop: 8, paddingLeft: 2 }}>
+                    <div style={{ marginBottom: 5 }}>▸ <b>Dấu NẶNG + phụ âm vang (m, n, ng, nh, l, v, d)</b> → gần như luôn <b>Thanh 4</b>:{" "}
+                      <Z>月 yuè · 日 rì · 六 liù · 力 lì · 木 mù · 肉 ròu · 物 wù · 落 luò · 業 yè · 熱 rè · 立 lì · 玉 yù</Z>.</div>
+                    <div style={{ marginBottom: 5 }}>▸ <b>Dấu NẶNG + phụ âm tắc/xát (b, đ, t, th, tr, c, h, ph, x)</b> → gần như luôn <b>Thanh 2</b>:{" "}
+                      <Z>十 shí · 學 xué · 白 bái · 直 zhí · 讀 dú · 集 jí · 習 xí · 服 fú · 食 shí · 石 shí · 別 bié · 局 jú</Z>.</div>
+                    <div>▸ <b>Dấu SẮC</b> (phụ âm đầu cổ vô thanh) → đây mới là nhóm thật sự phân tán đủ bốn thanh:{" "}
+                      <Z>一 yī</Z>(T1) · <Z>國 guó</Z>(T2) · <Z>百 bǎi</Z>(T3) · <Z>各 gè</Z>(T4). Nhóm này bắt buộc tra.</div>
+                  </div>
+                  <div style={{ marginTop: 8 }}>Nói cách khác: gặp âm nhập thanh mang dấu nặng thì bạn đã biết thanh Quan Thoại rồi; chỉ dấu sắc mới cần từ điển.</div>
+                </ProfNote>
+              </>
+            )}
+
+            <SectionHeader title="2. Phụ âm đầu" subtitle="nh-→r-, ng-→zero, v-→w-, ph-→f- là bốn quy luật mạnh nhất" />
             {fInitial.map((r, i) => <RuleCard key={i} rule={r} />)}
-            <SectionHeader title="3. Vần / âm cuối" subtitle="Quy luật nhập thanh (-p/-t/-c/-ch) gần như tuyệt đối" />
+
+            {!query && (
+              <>
+                <ProfNote title="Một quy luật duy nhất giải thích cùng lúc năm dòng phụ âm đang bị xếp “Trung bình”">
+                  Các mục b-, đ-, tr-, c/k-, qu-, t- bị đánh giá “Trung bình” không phải vì chúng hỗn loạn, mà vì bảng đang gộp hai nhóm nguồn khác nhau vào một dòng.
+                  Tách ra bằng <b>dấu thanh</b> là hết mơ hồ. Quy luật gốc là <Z>濁音清化</Z> kèm nguyên tắc <Z>平送仄不送</Z>: các phụ âm tắc HỮU THANH của tiếng Hán cổ đều mất tính hữu thanh, nhưng ở BÌNH THANH thì hoá thành âm BẬT HƠI, ở các thanh còn lại thì thành âm không bật hơi.
+                  Mà bình thanh + phụ âm hữu thanh trong tiếng Việt chính là <b>dấu huyền</b>. Do đó:
+                  <div style={{ marginTop: 8, paddingLeft: 2 }}>
+                    <div style={{ marginBottom: 4 }}>▸ <b>b- + huyền → p-</b>: <Z>平 píng · 皮 pí · 朋 péng · 盤 pán</Z> (còn <Z>白 bái · 北 běi · 半 bàn</Z> giữ b-)</div>
+                    <div style={{ marginBottom: 4 }}>▸ <b>đ- + huyền → t-</b>: <Z>同 tóng · 頭 tóu · 田 tián · 堂 táng</Z> (còn <Z>東 dōng · 道 dào · 大 dà</Z> giữ d-)</div>
+                    <div style={{ marginBottom: 4 }}>▸ <b>tr- + huyền → ch-</b>: <Z>長 cháng · 茶 chá · 陳 chén · 蟲 chóng · 池 chí</Z> (còn <Z>中 zhōng · 竹 zhú · 重 zhòng</Z> giữ zh-)</div>
+                    <div style={{ marginBottom: 4 }}>▸ <b>c/k/qu- + huyền → k-/q-</b>: <Z>求 qiú · 期 qī · 強 qiáng · 權 quán · 群 qún · 狂 kuáng</Z> (còn <Z>金 jīn · 公 gōng · 光 guāng</Z> giữ j-/g-)</div>
+                    <div>▸ <b>t- + huyền → c-/q-</b>: <Z>才 cái · 財 cái · 從 cóng · 錢 qián · 前 qián</Z> (còn <Z>在 zài · 自 zì · 走 zǒu</Z> giữ z-)</div>
+                  </div>
+                  <div style={{ marginTop: 8 }}>
+                    Học một câu là đủ dùng cho cả năm dòng: <b>“Dấu huyền trên phụ âm tắc ⇒ Quan Thoại bật hơi.”</b> Đây là lượng thông tin lớn nhất mà một người Việt có thể rút ra từ vốn Hán Việt sẵn có.
+                  </div>
+                </ProfNote>
+
+                <Pitfall title="Ba chỗ mô tả phụ âm đầu trong bảng còn chưa đủ chính xác">
+                  <div style={{ marginBottom: 6 }}>
+                    <b>1. “ng- → y-” chỉ đúng một nửa.</b> Bản chất là phụ âm <Z>疑</Z> (ng-) BIẾN MẤT hoàn toàn, để lại âm tiết không phụ âm đầu. Chữ cái <i>y</i> và <i>w</i> trong pinyin chỉ là quy ước CHÍNH TẢ để viết âm tiết bắt đầu bằng i-/u-, không phải hai phụ âm khác nhau. Vì thế ng- cho ra <i>y-</i> trước i/ü (<Z>言 yán · 魚 yú · 業 yè</Z>) nhưng cho ra <i>w-</i> trước u/o/a (<Z>我 wǒ · 五 wǔ · 外 wài</Z>), và cho ra zero thật sự trước a (<Z>岸 àn</Z>).
+                  </div>
+                  <div style={{ marginBottom: 6 }}>
+                    <b>2. “v- → w-” có một nhóm trừ.</b> Nhóm <Z>微</Z> chuyển đều sang w- (<Z>文 wén · 問 wèn · 萬 wàn · 武 wǔ · 務 wù</Z>), nhưng nhóm <Z>云</Z> lại cho y-: <Z>雲 yún · 遠 yuǎn · 永 yǒng · 越 yuè</Z>. Cùng viết v- trong Hán Việt, khác kết quả.
+                  </div>
+                  <div>
+                    <b>3. “nh- → r-” trừ một nhóm nhỏ rất thông dụng.</b> Phụ âm <Z>日</Z> đứng trước vần <i>-i</i> cổ không cho r- mà cho <b>er</b>: <Z>二 èr · 兒 ér · 耳 ěr</Z>. Ba chữ này nằm trong nhóm tần suất cao nhất nên đáng nhớ riêng.
+                  </div>
+                </Pitfall>
+              </>
+            )}
+
+            <SectionHeader title="3. Vần / âm cuối" subtitle="Hai quy luật tuyệt đối: mất nhập thanh (-p/-t/-c/-ch) và mất -m" />
             {fFinal.map((r, i) => <RuleCard key={i} rule={r} />)}
+
+            {!query && (
+              <ProfNote title="Cách kiểm tra nhanh một suy đoán vần: Quan Thoại chỉ còn đúng hai phụ âm cuối">
+                Toàn bộ hệ phụ âm cuối phong phú của Hán trung cổ (-p, -t, -k, -m, -n, -ng) vào Quan Thoại hiện đại chỉ còn lại <b>-n</b> và <b>-ng</b>.
+                Hệ quả kiểm tra chéo rất mạnh: nếu bạn suy ra một âm tiết Quan Thoại kết thúc bằng -m, -p, -t, -c thì <i>chắc chắn</i> đã suy sai, không cần tra cũng biết.
+                {" "}Tiếng Việt ngược lại giữ gần như trọn vẹn hệ đó, nên người Việt có lợi thế đọc thơ Đường đúng vần hơn người bản ngữ Bắc Kinh — nhưng lại rất dễ mang thói quen đóng âm tiết (-m, -p, -t) vào tiếng Trung khi nói.
+                Đây là lỗi phát âm dai dẳng nhất của người Việt và nên được sửa sớm: âm tiết Quan Thoại hoặc mở, hoặc kết bằng -n/-ng, không có lựa chọn thứ ba.
+              </ProfNote>
+            )}
+
             <SectionHeader title="4. Từ giả Hán Việt" subtitle="Âm giống nhau nhưng nghĩa đã lệch qua nhiều thế kỷ" />
             {fFriends.map((f, i) => (
               <div key={i} style={{ background: "rgba(43,58,85,0.06)", border: "1px solid rgba(43,58,85,0.25)", borderLeft: "4px solid #2B3A55", borderRadius: "8px", padding: "16px 20px", marginBottom: "14px" }}>
@@ -543,13 +714,49 @@ export default function HanVietKey() {
                 <div style={{ fontSize: "12.5px", lineHeight: 1.6, color: "#3E6259", fontStyle: "italic" }}>{f.correct}</div>
               </div>
             ))}
+            {!query && (
+              <ProfNote title="Vì sao nghĩa lệch: người Việt không mượn sai, mà mượn ĐÚNG một tiếng Trung đã không còn tồn tại">
+                Gần như mọi mục ở trên đều không phải lỗi dịch, mà là hệ quả của việc hai ngôn ngữ tách nhau rồi biến đổi độc lập.
+                Tiếng Việt vay mượn và <b>đóng băng</b> nghĩa của thời điểm vay (thường là văn ngôn đời Đường–Tống), trong khi tiếng Trung tiếp tục trôi.
+                {" "}<Z>便宜</Z> vốn nghĩa “thuận tiện” đúng như tiếng Việt hiểu, rồi mới trượt sang “rẻ” trong Quan Thoại hiện đại.{" "}
+                <Z>丈夫</Z> vốn là “người đàn ông trưởng thành, đấng nam nhi”, tiếng Việt giữ nghĩa đó, tiếng Trung thu hẹp lại thành “chồng”.{" "}
+                <Z>手段</Z> vốn trung tính là “cách làm”, tiếng Việt mới là bên thêm sắc thái xấu vào.
+                <div style={{ marginTop: 8 }}>
+                  Hệ quả thực dụng cho người học: khi một từ Hán Việt và từ Trung hiện đại lệch nhau, <b>đừng mặc định bên nào sai</b> — hãy giả định tiếng Việt đang giữ nghĩa CỔ hơn và tiếng Trung đã chuyên biệt hoá. Cách đoán này đúng ở đa số trường hợp và giúp nhớ cặp nghĩa lâu hơn nhiều so với học thuộc từng cặp rời rạc.
+                </div>
+              </ProfNote>
+            )}
             {fTone.length + fInitial.length + fFinal.length + fFriends.length === 0 && <Empty />}
           </>
         )}
 
         {tab === "phonetic" && (
           <>
-            <Intro text="~80% chữ Hán là hình thanh tự: nửa biểu nghĩa + nửa biểu âm. Học các bộ phận biểu âm phổ biến giúp đoán ÂM ĐỌC của chữ mới, không cần học thuộc riêng lẻ." />
+            <Intro text="~80% chữ Hán là hình thanh tự: nửa biểu nghĩa + nửa biểu âm. Học các bộ phận biểu âm phổ biến giúp thu hẹp phỏng đoán ÂM ĐỌC của chữ mới, không cần học thuộc riêng lẻ." />
+
+            {!query && (
+              <Pitfall title="Con số “80% là hình thanh” đúng, nhưng suy ra “đoán được 80% âm đọc” thì SAI">
+                Hai con số này thường bị gộp làm một và đó là hiểu lầm phổ biến nhất về chữ Hán.
+                Đúng là khoảng 80–82% chữ Hán có cấu tạo hình thanh, nhưng thống kê kinh điển của Chu Hữu Quang (周有光, 1978) trên chữ Hán hiện đại cho thấy chỉ khoảng <b>39%</b> chữ hình thanh có bộ biểu âm cho ra đúng âm đọc hiện đại <i>kể cả thanh điệu</i>; nới lỏng điều kiện (bỏ qua thanh điệu, chấp nhận âm gần) thì mới lên khoảng hai phần ba.
+                <div style={{ marginTop: 8 }}>
+                  Lý do có tính lịch sử chứ không phải do chữ viết kém: bộ biểu âm được chọn để ghi âm đọc của <b>tiếng Hán thượng cổ/trung cổ</b>, rồi ngữ âm trôi suốt hai nghìn năm trong khi mặt chữ đứng yên. Cặp <Z>江 jiāng</Z> và bộ biểu âm <Z>工 gōng</Z> từng vần với nhau, nay thì không.
+                </div>
+                <div style={{ marginTop: 8 }}>
+                  <b>Cách dùng đúng</b>: coi bộ biểu âm là công cụ THU HẸP và MÓC NHỚ, không phải công cụ dự đoán. Gặp chữ lạ có bộ <Z>青</Z>, kết luận hợp lý là “nhiều khả năng vần -ing, phụ âm đầu q- hoặc j-, thanh chưa rõ” — đủ để nhớ nhanh và tra đúng, nhưng chưa đủ để phát âm ngay.
+                </div>
+              </Pitfall>
+            )}
+
+            {!query && (
+              <ProfNote title="Ba dấu hiệu cho biết một bộ biểu âm có đáng tin hay không">
+                <div style={{ marginBottom: 5 }}>▸ <b>Vị trí.</b> Bộ biểu âm nằm bên PHẢI hoặc BÊN DƯỚI thì độ tin cậy cao hơn hẳn (<Z>清 qīng · 情 qíng · 請 qǐng</Z>), vì đó là bố cục hình thanh chuẩn. Khi phần biểu âm nằm bên trái thì thường chữ đó có cấu tạo bất thường và nên nghi ngờ.</div>
+                <div style={{ marginBottom: 5 }}>▸ <b>Độ phức tạp.</b> Bộ biểu âm càng nhiều nét, khả năng nó thật sự là biểu âm càng cao — các thành phần đơn giản (<Z>口 · 日 · 一</Z>) thường là bộ biểu NGHĨA.</div>
+                <div style={{ marginBottom: 8 }}>▸ <b>Bản giản thể vs phồn thể.</b> Đợt giản hoá 1956 đôi khi TẠO RA tính biểu âm mà bản phồn thể không có: <Z>郵</Z> (hội ý, không chứa 由) được giản hoá thành <Z>邮</Z> = 由 + 阝, lúc này 由 mới thành biểu âm thật. Ngược lại cũng có trường hợp giản hoá phá mất manh mối âm. Vì vậy khi phân tích tự dạng, phải nói rõ đang nói về bản nào.</div>
+                <div>
+                  Ghi chú thẩm định: mục <Z>由</Z> trong bảng dưới đây đã được sửa theo đúng điểm thứ ba — bản trước liệt kê <Z>郵</Z> phồn thể là chữ phái sinh của 由, điều này không đúng về mặt tự nguyên.
+                </div>
+              </ProfNote>
+            )}
             {fPhonetic.length === 0 && <Empty />}
             {fPhonetic.map((g, i) => (
               <div key={i} style={{ background: "rgba(43,58,85,0.06)", border: "1px solid rgba(43,58,85,0.25)", borderRadius: "10px", padding: "18px 20px", marginBottom: "14px" }}>
@@ -575,14 +782,62 @@ export default function HanVietKey() {
         {tab === "sandhi" && (
           <>
             <Intro text="Khác với các quy luật thống kê ở tab đầu — biến điệu là QUY TẮC CỐ ĐỊNH, xảy ra 100% mỗi lần. Học một lần, dùng suốt đời." />
+
+            {!query && (
+              <Pitfall title="Quy tắc quan trọng nhất của Thanh 3 lại là quy tắc hay bị bỏ sót nhất">
+                Hầu hết tài liệu chỉ dạy “T3 + T3 → T2 + T3” rồi dừng, khiến người học tưởng mọi Thanh 3 còn lại đều đọc đầy đủ đường cong xuống-rồi-lên.
+                Thực tế ngược lại: <b>Thanh 3 đầy đủ là trường hợp HIẾM</b>, chỉ xuất hiện khi chữ đứng một mình hoặc ở cuối ngữ đoạn.
+                Trong dòng nói bình thường, đa số Thanh 3 được đọc dưới dạng <b>bán tam thanh</b> (半三聲) — chỉ hạ giọng xuống thấp rồi dừng, bỏ hẳn phần vống lên.
+                <div style={{ marginTop: 8 }}>
+                  Đây là lỗi phát âm khiến người Việt nghe “nặng” và chậm nhất, hơn cả lỗi phụ âm. Quy tắc bán tam thanh đã được bổ sung vào bảng bên dưới sau đợt thẩm định này.
+                </div>
+              </Pitfall>
+            )}
+
             {fSandhi.length === 0 && <Empty />}
             {fSandhi.map((r, i) => <RuleCard key={i} rule={r} />)}
+
+            {!query && (
+              <ProfNote title="Biến điệu là quy tắc của LỜI NÓI, không phải của chữ viết — và không ghi vào pinyin chuẩn">
+                Một hiểu lầm hay gặp: học viên thấy ghi “níhǎo” rồi tưởng cách viết pinyin chuẩn của <Z>你好</Z> là như vậy.
+                Không phải. Quy phạm chính tả pinyin (<i>GB/T 16159</i>) yêu cầu ghi <b>thanh gốc</b>: <Z>你好</Z> luôn viết là <i>nǐ hǎo</i>, <Z>不是</Z> luôn viết là <i>bù shì</i>.
+                Các dạng níhǎo/búshì trong bảng này là ký hiệu MÔ TẢ cách đọc, dùng để luyện miệng, không dùng khi viết bài hay gõ văn bản.
+                <div style={{ marginTop: 8 }}>
+                  Hai ngoại lệ được quy phạm cho phép ghi theo thanh đã biến: <Z>一</Z> và <Z>不</Z> trong nhiều từ điển giáo khoa vẫn được chú theo âm thực tế (yí dìng, bú shì) để tiện dạy — nên nếu bạn thấy tài liệu ghi khác nhau ở đúng hai chữ này thì cả hai đều không sai.
+                </div>
+              </ProfNote>
+            )}
           </>
         )}
 
         {tab === "measure" && (
           <>
             <Intro text="Tiếng Việt có sẵn hệ thống loại từ (cái, con, quyển, chiếc...) — bạn chỉ cần map lại sang lượng từ tiếng Trung, không phải học khái niệm này từ đầu như người phương Tây." />
+
+            {!query && (
+              <Pitfall title="Hai lỗi ngữ pháp lượng từ mà bảng tra một cột không cảnh báo được">
+                <div style={{ marginBottom: 7 }}>
+                  <b>1. “Hai” trước lượng từ phải là <Z>兩</Z>, không phải <Z>二</Z>.</b> Đây là lỗi gần như 100% người mới học mắc.
+                  Dùng <Z>兩</Z> khi ĐẾM vật: <Z>兩個人 · 兩本書 · 兩杯水</Z>. Dùng <Z>二</Z> khi đọc SỐ, số thứ tự, và trong số nhiều chữ số:{" "}
+                  <Z>十二 · 第二 · 二十 · 二零二五年</Z>. Nói <Z>二個人</Z> là sai ngữ pháp, không phải chỉ “nghe lạ”.
+                </div>
+                <div>
+                  <b>2. Lượng từ kéo theo biến điệu của <Z>一</Z>.</b> Vì <Z>一</Z> đổi thanh theo thanh của âm ĐI SAU, mà âm đi sau ở đây chính là lượng từ, nên cùng chữ <Z>一</Z> sẽ đọc khác nhau tuỳ lượng từ:{" "}
+                  <Z>一個</Z> → yí gè (個 là T4), <Z>一本</Z> → yì běn (本 là T3), <Z>一杯</Z> → yì bēi (杯 là T1). Học lượng từ mà không gắn kèm biến điệu thì nói ra vẫn sai.
+                </div>
+              </Pitfall>
+            )}
+
+            {!query && (
+              <ProfNote title="Lợi thế của người Việt ở đây là thật, nhưng có một chỗ không map được">
+                Tiếng Việt và tiếng Trung cùng thuộc vùng ngôn ngữ có hệ loại từ bắt buộc, nên trực giác “phải có một từ giữa số và danh từ” đã có sẵn — đây là lợi thế thật so với người học nói tiếng Anh.
+                Nhưng có một điểm bất đối xứng cần biết: tiếng Trung dùng lượng từ cả cho <b>ĐỘNG TỪ</b> (動量詞), điều tiếng Việt không có tương ứng chặt chẽ.{" "}
+                <Z>次 · 遍 · 下 · 趟</Z> đếm số LẦN của hành động và đứng SAU động từ: <Z>看一次</Z> (xem một lần), <Z>說一遍</Z> (nói lại một lượt trọn vẹn), <Z>等一下</Z> (chờ một chút).
+                <div style={{ marginTop: 8 }}>
+                  Phân biệt tinh: <Z>次</Z> đếm lần lặp lại nói chung, còn <Z>遍</Z> nhấn mạnh “trọn vẹn từ đầu đến cuối” — <Z>看了三次</Z> là xem ba lần (có thể xem dở), <Z>看了三遍</Z> là xem trọn ba lượt. Đây là chỗ người Việt hay dùng lẫn vì tiếng Việt gộp cả hai vào chữ “lần”.
+                </div>
+              </ProfNote>
+            )}
             {fMeasure.length === 0 && <Empty />}
             {fMeasure.map((m, i) => (
               <div key={i} style={{ background: "rgba(43,58,85,0.06)", border: "1px solid rgba(43,58,85,0.25)", borderRadius: "10px", padding: "14px 20px", marginBottom: "10px", display: "flex", alignItems: "center", flexWrap: "wrap", gap: "14px" }}>
@@ -615,6 +870,17 @@ export default function HanVietKey() {
         {tab === "minimal" && (
           <>
             <Intro text="Trước khi luyện nói đúng thanh điệu, hãy luyện tai NHẬN DIỆN riêng biệt các thanh — dùng các bộ cặp tối thiểu (chỉ khác thanh điệu) này để tự kiểm tra." />
+
+            {!query && (
+              <ProfNote title="Vì sao người Việt nghe thanh điệu tiếng Trung khó hơn dự đoán, dù tiếng Việt cũng có thanh">
+                Trực giác thông thường cho rằng người có tiếng mẹ đẻ nhiều thanh sẽ học thanh tiếng Trung dễ. Điều này chỉ đúng một phần, và phần không đúng mới là phần gây lỗi dai dẳng.
+                Tiếng Việt phân biệt thanh chủ yếu bằng <b>chất giọng</b> (thanh hầu, hơi thở, giọng kẹt — như ở hỏi/ngã/nặng), còn Quan Thoại phân biệt gần như thuần bằng <b>đường nét cao độ</b> (contour).
+                Người Việt do đó có xu hướng nghe/tái tạo thanh Trung qua bộ lọc chất giọng của mình: Thanh 3 bị đọc thành giọng kẹt kiểu dấu ngã, Thanh 4 bị đọc gằn như dấu nặng.
+                <div style={{ marginTop: 8 }}>
+                  <b>Hệ quả luyện tập</b>: đừng chỉ nghe rồi nhại. Hãy luyện theo cặp có tương phản gây nhầm nhất với người Việt — <b>T2 vs T3</b> (cả hai đều “đi lên” ở tai người Việt) và <b>T1 vs T4</b> (cả hai đều không có chất giọng đặc trưng để bám). Các bộ <Z>mā/má/mǎ/mà</Z> và <Z>shū/shú/shǔ/shù</Z> bên dưới nên được nghe xáo trộn thứ tự, vì nghe theo đúng thứ tự 1-2-3-4 sẽ tạo ảo giác phân biệt được trong khi thực chất đang đếm.
+                </div>
+              </ProfNote>
+            )}
             {fPairs.length === 0 && <Empty />}
             {fPairs.map((p, i) => (
               <div key={i} style={{ background: "rgba(43,58,85,0.06)", border: "1px solid rgba(43,58,85,0.25)", borderRadius: "10px", padding: "16px 20px", marginBottom: "14px" }}>
@@ -715,6 +981,20 @@ export default function HanVietKey() {
         {tab === "chengyu" && (
           <>
             <Intro text="Nhiều thành ngữ tiếng Việt là dịch/mượn trực tiếp từ chengyu (成语) cổ điển. Với nền Hán Việt, đây là lớp từ vựng 'sang trọng' có ROI cao hơn hẳn so với người học phương Tây." />
+
+            {!query && (
+              <Pitfall title="Lợi thế Hán Việt ở đây có mặt trái: nó tạo ra ba kiểu lỗi mà người phương Tây không mắc">
+                <div style={{ marginBottom: 6 }}>
+                  <b>1. Suy ngược từ âm Hán Việt ra chữ Hán sai.</b> Biết “nhập gia tùy tục” không cho phép suy ra chữ Hán, vì bản Trung là <Z>入鄉隨俗</Z> (鄉/hương) chứ không phải 家/gia. Tương tự, nhiều thành ngữ Việt đã thay chữ, đảo chữ hoặc rút gọn so với bản gốc. Âm Hán Việt giúp HIỂU, không đủ để VIẾT.
+                </div>
+                <div style={{ marginBottom: 6 }}>
+                  <b>2. Dùng đúng nghĩa nhưng sai ngữ vực.</b> Chengyu trong tiếng Trung hiện đại thuộc văn phong trang trọng/văn viết. Người Việt do quen dùng thành ngữ trong khẩu ngữ hằng ngày nên hay chèn chengyu vào hội thoại thường, tạo cảm giác lên gân hoặc sách vở. Nói chuyện phiếm mà dùng <Z>杯水車薪</Z> thì nghe như đang đọc xã luận.
+                </div>
+                <div>
+                  <b>3. Dùng đúng ngữ vực nhưng sai chức năng ngữ pháp.</b> Chengyu không phải khối bất động — mỗi cái có vai trò cú pháp cố định (làm vị ngữ, định ngữ, trạng ngữ...). <Z>自相矛盾</Z> làm vị ngữ (<Z>他的話自相矛盾</Z>), không thể bê nguyên vào vị trí danh từ. Học chengyu nên học kèm một câu mẫu, đừng học rời.
+                </div>
+              </Pitfall>
+            )}
             {fChengyu.length === 0 && <Empty />}
             {fChengyu.map((c, i) => (
               <div key={i} style={{ background: "rgba(43,58,85,0.06)", border: "1px solid rgba(43,58,85,0.25)", borderRadius: "10px", padding: "16px 20px", marginBottom: "12px" }}>
