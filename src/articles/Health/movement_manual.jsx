@@ -176,6 +176,15 @@ export default function App() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const current = PARTS.find((p) => p.id === part);
 
+  // Đợi nội dung tab mới thực sự render xong (2 rAF, qua khỏi lần paint kế
+  // tiếp) rồi mới cuộn — gọi cuộn ngay trong onClick đôi khi chạy trên
+  // chiều cao nội dung CŨ và bị trình duyệt hủy animation giữa chừng khi
+  // nội dung mới (ngắn/dài hơn) vừa thay layout.
+  const goToPart = (id) => {
+    setPart(id);
+    requestAnimationFrame(() => requestAnimationFrame(() => window.__scrollArticleToTop?.()));
+  };
+
   return (
     <div style={{ fontFamily: "var(--font-sans)", padding: "18px 14px 104px" }}>
       {/* ===== TAB BREADCRUMB — cùng khuôn với holistic_life.jsx: dải pill
@@ -233,7 +242,7 @@ export default function App() {
           const active = part === p.id;
           const Icon = p.icon;
           return (
-            <button key={p.id} onClick={() => { setPart(p.id); window.__scrollArticleToTop?.(); }} style={{
+            <button key={p.id} onClick={() => goToPart(p.id)} style={{
               display: "flex", alignItems: "center", gap: 9,
               padding: "11px 19px", borderRadius: 12, cursor: "pointer",
               fontSize: 14, fontWeight: 700,
@@ -276,7 +285,7 @@ export default function App() {
             const active = part === p.id;
             const Icon = p.icon;
             return (
-              <button key={p.id} className="mm-md-item" style={{ background: active ? `${p.accent.border}14` : "transparent", borderLeftColor: active ? p.accent.border : "transparent" }} onClick={() => { setPart(p.id); setMobileNavOpen(false); window.__scrollArticleToTop?.(); }}>
+              <button key={p.id} className="mm-md-item" style={{ background: active ? `${p.accent.border}14` : "transparent", borderLeftColor: active ? p.accent.border : "transparent" }} onClick={() => { setMobileNavOpen(false); goToPart(p.id); }}>
                 <Icon size={14} color={active ? p.accent.border : "var(--color-text-tertiary)"} />
                 <span className="mm-md-item-label" style={{ color: active ? p.accent.border : "var(--color-text-primary)" }}>{p.num}. {p.short}</span>
               </button>
@@ -298,7 +307,7 @@ export default function App() {
           "về đầu trang / xuống cuối trang" (fixed bottom-right, ~44px mỗi
           nút) che mất khi cuộn hết trang trên mobile. */}
       <div style={{ display: "flex", justifyContent: "space-between", gap: 10, marginTop: "2rem", paddingTop: "1rem", borderTop: "0.5px solid var(--color-border-tertiary)" }}>
-        <button onClick={() => { setPart(Math.max(0, part - 1)); window.__scrollArticleToTop?.(); }} disabled={part === 0} style={{
+        <button onClick={() => goToPart(Math.max(0, part - 1))} disabled={part === 0} style={{
           fontSize: 12, fontWeight: 600, padding: "9px 14px", borderRadius: 10,
           color: part === 0 ? "var(--color-text-tertiary)" : "var(--color-text-secondary)",
           background: "var(--color-background-primary)",
@@ -307,7 +316,7 @@ export default function App() {
         }}>
           ← {part > 0 ? `${PARTS[part - 1].num}. ${PARTS[part - 1].short}` : ""}
         </button>
-        <button onClick={() => { setPart(Math.min(6, part + 1)); window.__scrollArticleToTop?.(); }} disabled={part === 6} style={{
+        <button onClick={() => goToPart(Math.min(6, part + 1))} disabled={part === 6} style={{
           fontSize: 12, fontWeight: 600, padding: "9px 14px", borderRadius: 10,
           color: part === 6 ? "var(--color-text-tertiary)" : "var(--color-text-secondary)",
           background: "var(--color-background-primary)",
