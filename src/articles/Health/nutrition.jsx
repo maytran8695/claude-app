@@ -4,7 +4,7 @@ import { Coffee, GlassWater, Bean, Brain, Thermometer, Shuffle, Apple, ChevronDo
 
 /* ============================================================
    DINH DƯỠNG THÔNG MINH CHO NGƯỜI BẬN RỘN
-   Thực đơn cá nhân duy trì >5 năm — 1 phút mỗi sáng, đủ đường-đạm-béo,
+   Thực đơn cá nhân duy trì nhiều năm (trên 7 năm) — 1 phút mỗi sáng, đủ đường-đạm-béo,
    hạn chế tối đa hoá chất, tối ưu cho công việc cường độ cao/dễ stress
    7 tab: Mở đầu · Thực đơn ngày · Cacao chuyên sâu · Đường & Não bộ ·
           Nhiệt-Ánh sáng-Oxy hoá · Kết hợp thực phẩm · Snack bổ trợ
@@ -340,7 +340,7 @@ function Part0() {
       <div style={{ fontSize: 11, letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--color-text-tertiary)", marginBottom: 6 }}>Cẩm nang cá nhân hoá</div>
       <h1 style={{ fontSize: 24, fontWeight: 700, color: "var(--color-text-primary)", margin: "0 0 8px", lineHeight: 1.25 }}>Dinh dưỡng thông minh cho người bận rộn</h1>
       <p style={{ fontSize: 14, color: "var(--color-text-secondary)", lineHeight: 1.65, marginBottom: "1.75rem" }}>
-        Thực đơn cá nhân đã duy trì hơn 5 năm, cho người công việc cường độ cao, dễ stress, khó ngủ, không có nhiều thời gian chuẩn bị. Mục tiêu: nạp đủ dinh dưỡng đa chất theo khuyến nghị, hạn chế tối đa hoá chất (phân thuốc, chất bảo quản), và tốn ít nhất thời gian chuẩn bị mỗi ngày — lý tưởng là chỉ 1 phút.
+        Thực đơn cá nhân đã duy trì nhiều năm (trên 7 năm), cho người công việc cường độ cao, dễ stress, khó ngủ, không có nhiều thời gian chuẩn bị. Mục tiêu: nạp đủ dinh dưỡng đa chất theo khuyến nghị, hạn chế tối đa hoá chất (phân thuốc, chất bảo quản), và tốn ít nhất thời gian chuẩn bị mỗi ngày — lý tưởng là chỉ 1 phút.
       </p>
 
       <div style={sectionNum}>MỞ ĐẦU</div>
@@ -351,23 +351,25 @@ function Part0() {
 
       <Box tone={C.rose} title="Disclaimer" icon="⚠">
         <div style={{ marginBottom: 8 }}>
-          Toàn bộ nội dung trong tài liệu này là trải nghiệm và nhận định cá nhân, không phải tư vấn y khoa hay dinh dưỡng chuyên môn. Vui lòng tự kiểm chứng (fact-check) và tham khảo ý kiến bác sĩ/chuyên gia dinh dưỡng trước khi áp dụng, đặc biệt nếu đang có bệnh lý nền.
+          Toàn bộ nội dung là trải nghiệm và nhận định cá nhân, không phải tư vấn y khoa hay dinh dưỡng chuyên môn. Vui lòng tự kiểm chứng (fact-check) và tham khảo ý kiến bác sĩ/chuyên gia dinh dưỡng trước khi áp dụng, đặc biệt nếu đang có bệnh lý nền.
         </div>
         <div style={{ marginBottom: 8 }}>
-          <strong>Kiểm soát nguồn nguyên liệu đầu vào là điều kiện bắt buộc, không phải tuỳ chọn.</strong> Mọi công thức trong tài liệu chỉ đúng về thành phần dinh dưỡng nếu nguyên liệu sạch: tự trồng, mua trực tiếp từ nơi canh tác quen biết, hoặc có chứng nhận hữu cơ đáng tin (chuẩn Âu/Mỹ/Nhật — không phải nhãn "hữu cơ" tự dán, hàng giả/nhái chứng nhận). Cùng một công thức đúng tỷ lệ dinh dưỡng, nếu nguyên liệu tồn dư nhiều thuốc bảo vệ thực vật và chất bảo quản thì kết quả còn độc hại hơn không dùng. Nguyên tắc xuyên suốt tài liệu: <strong>thà thiếu chất dinh dưỡng còn hơn thừa chất độc tố.</strong>
+          <strong>Đây là thực phẩm bổ sung — không thay thế bữa chính.</strong> Các ly/công thức trong tài liệu bổ trợ thêm vi chất bên cạnh ba bữa ăn chính trong ngày, không phải để ăn thay cơm. Cần cân đối lượng dùng so với khẩu phần bữa chính đã có trong ngày, để tổng năng lượng và vi chất cộng dồn từ cả hai nguồn (bữa chính + phần bổ sung) không vượt quá khuyến nghị RDA — không cộng dồn tuỳ tiện.
+        </div>
+        <div style={{ marginBottom: 8 }}>
+          <strong>Kiểm soát nguồn nguyên liệu đầu vào là điều kiện bắt buộc, không phải tuỳ chọn.</strong> Mọi công thức chỉ đúng về thành phần dinh dưỡng nếu nguyên liệu sạch: tự trồng, mua trực tiếp từ nơi canh tác quen biết, hoặc có chứng nhận hữu cơ đáng tin (chuẩn Âu/Mỹ/Nhật — không phải nhãn "hữu cơ" tự dán, hàng giả/nhái chứng nhận). Cùng một công thức đúng tỷ lệ dinh dưỡng, nếu nguyên liệu tồn dư nhiều thuốc bảo vệ thực vật và chất bảo quản thì kết quả còn độc hại hơn không dùng. Nguyên tắc xuyên suốt tài liệu: <strong>thà thiếu chất dinh dưỡng còn hơn thừa chất độc tố.</strong>
+        </div>
+        <div style={{ marginBottom: 8 }}>
+          Nội dung hướng đến <strong>thực phẩm bổ sung dạng tự nhiên</strong>, phù hợp với người công sở bận rộn cần nạp đủ vi chất trong ít thời gian chuẩn bị. Với ai sắp xếp được thời gian, phương án ưu tiên hơn vẫn là wholefoods hữu cơ — tự trồng, tự nấu, "soil to table", nấu xong ăn liền — thay vì các công thức pha chế nhanh trong tài liệu này.
         </div>
         <div>
-          Nội dung này hướng đến <strong>thực phẩm bổ sung dạng tự nhiên</strong>, phù hợp với người công sở bận rộn cần nạp đủ vi chất trong ít thời gian chuẩn bị. Với ai sắp xếp được thời gian, phương án ưu tiên hơn vẫn là wholefoods hữu cơ — tự trồng, tự nấu, "soil to table", nấu xong ăn liền — thay vì các công thức pha chế nhanh trong tài liệu này.
+          Mỗi người thể trạng, cường độ vận động và nhu cầu năng lượng khác nhau — liều lượng trong tài liệu là khung tham khảo, cần tự điều chỉnh (tailor) theo nhu cầu thật của cơ thể mình. Người ít năng lượng hơn nên giảm tỷ trọng khẩu phần, nếu không sẽ dễ đầy bụng khó tiêu.
         </div>
       </Box>
 
       <Callout tone={C.ink} kicker="Nguyên tắc trung tâm — CÂN BẰNG">
         Không quá nhiều, không quá ít. Một nguyên liệu tốt dùng liên tục mỗi ngày vẫn có thể gây hại (dùng liên tục cacao-gừng-quế nhiều sẽ thấy người nóng, nổi mụn — đó là hậu quả bên ngoài của việc đã quá liều). Ngược lại, thói quen là "lãi kép": một ly nước tốn một phút mỗi sáng, duy trì đều suốt nhiều năm, tích luỹ thành khác biệt lớn. Vì vậy: dùng nguyên liệu "không khuyến nghị liên tục" thì cách ngày, dừng vài ngày–vài tuần, hoặc giảm liều — tự cảm nhận cơ thể là thước đo cuối cùng, không có công thức chung cho tất cả mọi người.
       </Callout>
-
-      <p style={prose}>
-        Mỗi người có thể trạng, cường độ vận động và nhu cầu năng lượng khác nhau — nội dung trong tài liệu này dựa trên các nguyên lý dinh dưỡng cơ bản, cần tự điều chỉnh (tailor) theo nhu cầu thật của cơ thể mình. Người dùng ít năng lượng hơn nên cân nhắc lại tỷ trọng khẩu phần, nếu không sẽ dễ đầy bụng khó tiêu.
-      </p>
 
       <div style={sectionNum}>BẢN ĐỒ TÀI LIỆU</div>
       <h2 style={h2}>Bảy phần, một dòng chảy</h2>
@@ -386,6 +388,7 @@ function Part0() {
 
       <Remember items={[
         "Nguyên tắc duy nhất cần nhớ: CÂN BẰNG — không nguyên liệu nào nên dùng liên tục vô hạn định, kể cả nguyên liệu tốt.",
+        "Đây là thực phẩm bổ sung, không thay thế bữa chính — cân đối liều lượng với khẩu phần bữa chính để tổng vi chất trong ngày phù hợp RDA.",
         "Thói quen nhỏ (1 phút/ngày) duy trì đều đặn nhiều năm quan trọng hơn một chế độ ăn hoàn hảo nhưng không bền được.",
         "Không có công thức chung cho mọi cơ thể — tài liệu này là khung tham khảo, tự điều chỉnh theo cảm nhận và cường độ vận động của bản thân.",
       ]} />
@@ -481,7 +484,7 @@ function PartI() {
       </div>
 
       <Callout tone={C.coral} kicker="Bối cảnh thực tế — thực đơn không tĩnh">
-        Thực đơn này đã duy trì hơn 5 năm, nhưng không cố định tuyệt đối — có giai đoạn chủ yếu chỉ nấu sữa hạt, có giai đoạn ép rau củ quả đa dạng, có giai đoạn gần như chỉ dùng granola. Vì cường độ công việc cao dễ khiến lơi lỏng kế hoạch, mục tiêu thực tế là duy trì trên 50% kế hoạch đề ra chứ không phải 100% mọi ngày — và khi phải ăn ngoài nhiều, stress, thiếu ngủ kéo dài, cơ thể sẽ báo hiệu rõ (nóng trong, nổi mụn) để biết đường điều chỉnh lại.
+        Thực đơn này đã duy trì nhiều năm (trên 7 năm), nhưng không cố định tuyệt đối — có giai đoạn chủ yếu chỉ nấu sữa hạt, có giai đoạn ép rau củ quả đa dạng, có giai đoạn gần như chỉ dùng granola. Vì cường độ công việc cao dễ khiến lơi lỏng kế hoạch, mục tiêu thực tế là duy trì trên 50% kế hoạch đề ra chứ không phải 100% mọi ngày — và khi phải ăn ngoài nhiều, stress, thiếu ngủ kéo dài, cơ thể sẽ báo hiệu rõ (nóng trong, nổi mụn) để biết đường điều chỉnh lại.
       </Callout>
 
       <Remember items={[
