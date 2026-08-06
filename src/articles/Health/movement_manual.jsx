@@ -405,12 +405,16 @@ function PartI() {
 
       <h2 style={h2}><span style={sectionNumInline}>1.2</span>Tải trọng tập luyện: biến số quan trọng nhất</h2>
       <p style={prose}>
-        "Tải trọng" (training load) là tổng stress một buổi/tuần đặt lên cơ thể — kết hợp <strong>khối lượng</strong> (bao lâu, bao xa) và <strong>cường độ</strong> (mạnh đến đâu). Đây là yếu tố dự đoán chấn thương mạnh nhất, hơn cả kỹ thuật hay giày dép. Nguyên tắc vàng: <strong>không tăng quá ~10% mỗi tuần</strong>. Gân, dây chằng, đĩa đệm thích nghi chậm hơn cơ và tim — tăng nhanh nghĩa là cơ "chịu được" nhưng mô liên kết chưa theo kịp, và đó là lúc chấn thương xảy ra.
+        "Tải trọng" (training load) là tổng stress một buổi/tuần đặt lên cơ thể — kết hợp <strong>khối lượng</strong> (bao lâu, bao xa) và <strong>cường độ</strong> (mạnh đến đâu). Nguyên lý chung được đồng thuận rộng: tăng tải quá nhanh so với khả năng thích nghi của mô liên kết (gân, dây chằng, đĩa đệm — vốn thích nghi chậm hơn cơ và tim) là một cơ chế chấn thương thật. "Quy tắc 10%/tuần" là cách phổ biến nhất để vận hành nguyên lý đó thành con số dễ nhớ.
       </p>
+      <Box tone={C.ink} title="Phản biện chuyên gia — quy tắc 10% yếu hơn nhiều so với độ phổ biến của nó" icon="⚠">
+        Đây là điều đáng biết: bản thân "quy tắc 10%" chưa từng được kiểm chứng bằng thử nghiệm đối chứng, và dữ liệu quan sát thực tế không ủng hộ nó tốt như lời đồn. Nhóm nghiên cứu của Rasmus Nielsen (Aarhus University) rà soát 10 bộ dữ liệu khác nhau và không tìm thấy mối liên hệ giữa việc tăng tải "từ từ" và nguy cơ chấn thương thấp hơn; một nghiên cứu trên hơn 5.000 người chạy bộ cho thấy theo dõi % tăng khối lượng tuần dự đoán chấn thương không tốt hơn đoán ngẫu nhiên. Mô hình "tỷ lệ tải cấp/mạn" (ACWR) phổ biến trong thể thao chuyên nghiệp cũng bị phê bình nặng về mặt thống kê (Impellizzeri và cộng sự, 2020): do cách tính, tỷ lệ này có "coupling toán học" khiến ngay cả khi thay dữ liệu tải mạn tính bằng số NGẪU NHIÊN, kết quả dự đoán chấn thương vẫn tương tự — dấu hiệu cho thấy một phần mối liên hệ quan sát được là giả tạo (artefact) từ cách tính, không phải quy luật sinh lý. Kết luận thực dụng: 10%/tuần vẫn là một điểm khởi đầu AN TOÀN và dễ nhớ hơn là tăng đột ngột — nhưng đừng coi nó như định luật vật lý; tín hiệu cơ thể thực tế (đau nhức bất thường, mệt kéo dài, ngủ kém) đáng tin hơn con số phần trăm.
+      </Box>
       <MistakeBox items={[
         { wrong: "Nghỉ dài rồi quay lại mức cũ.", fix: "Sau 2+ tuần nghỉ, mô liên kết mất thích nghi. Quay lại từ 50–60%, tăng dần." },
         { wrong: "Chỉ đếm thời gian, bỏ qua cường độ.", fix: "30 phút chạy nhanh tải cao hơn nhiều 30 phút đi bộ. Tính cả hai chiều." },
         { wrong: "Tăng đồng thời khối lượng lẫn cường độ.", fix: "Chỉ tăng một biến mỗi lần." },
+        { wrong: "Tin tuyệt đối vào % tăng tải mà bỏ qua tín hiệu cơ thể.", fix: "Quy tắc 10% là kim chỉ nam thô, không phải ngưỡng an toàn được chứng minh — một tuần '12%' nhưng ngủ tốt, không đau có thể an toàn hơn '9%' kèm mệt mỏi bất thường." },
       ]} />
 
       <h2 style={h2}><span style={sectionNumInline}>1.3</span>Vùng cường độ: không phải cứ mệt hơn là tốt hơn</h2>
@@ -422,6 +426,9 @@ function PartI() {
       <p style={prose}>
         Vùng bị hiểu lầm nhiều nhất là <strong>Zone 2</strong> — đủ thấp để nói chuyện, đủ cao để tạo thích nghi. Đây là nơi xây "động cơ aerobic": mật độ ty thể, khả năng đốt mỡ, mạng mao mạch. Mô hình 80/20 (Seiler) cho thấy nền tảng bền vững đến từ <em>khối lượng lớn cường độ thấp</em> cộng <em>lượng nhỏ cường độ cao</em> — không phải từ việc luôn tập mức trung bình-nặng.
       </p>
+      <Box tone={C.ink} title="Phản biện chuyên gia — 80/20 được đo trên ai?" icon="⚠">
+        Phần lớn dữ liệu ủng hộ 80/20 đến từ nhật ký tập luyện của vận động viên sức bền ưu tú (chèo thuyền, chạy đường dài, đạp xe chuyên nghiệp) — nhóm có 10–20+ giờ tập/tuần suốt nhiều năm, khác hoàn toàn hồ sơ của người bận rộn tập 3–5 giờ/tuần. Cũng có tranh luận học thuật thật: khi phân loại cường độ đủ chặt chẽ, nhiều nghiên cứu quan sát vận động viên ưu tú thực ra cho thấy phân bố "hình tháp" (pyramidal — phần lớn ở Zone 1, một phần vừa ở Zone 2, rất ít ở Zone cao) hơn là "phân cực" (polarized) đúng nghĩa như mô hình 80/20 mô tả. Tin tốt: một số thử nghiệm ngẫu nhiên trên người chạy nghiệp dư (không chỉ elite) cũng cho thấy lợi ích thật của phân bố lệch về cường độ thấp — nên nguyên lý cốt lõi (đừng tập lúc nào cũng ở mức trung bình-nặng) vẫn đáng tin, chỉ nên coi tỷ lệ "80/20" chính xác là ước lượng thô, không phải công thức cứng cần theo sát từng phần trăm.
+      </Box>
       <Box tone={C.amber} title="Zone 1 có thay được Zone 2 không?" icon="?">
         Được, nhưng khác chức năng. Zone 1 (đi bộ, HR ~100, cadence 110–120) là phục hồi chủ động — gần như không tích mệt, dùng hàng ngày. Nhưng <em>không đủ kích thích</em> để xây nền tảng aerobic như Zone 2. Điểm ít người biết: Zone 2 vẫn tạo tải lên hệ giao cảm và tích mệt nếu lặp mỗi ngày — nó không phải "vùng nghỉ". Với người bận rộn: Zone 1 hàng ngày để duy trì, xen vài buổi Zone 2/tuần để thực sự tiến bộ.
       </Box>
@@ -443,7 +450,7 @@ function PartI() {
         </div>
       </div>
       <Box tone={C.teal} title="Trụ cột thứ ba bị đánh giá thấp: kiểm soát thần kinh-cơ">
-        Đây là năng lực cơ thể cảm nhận vị trí của chính nó trong không gian (proprioception) và điều phối cơ để phản ứng kịp thời — nền tảng của thăng bằng, phối hợp, và phản xạ giữ thăng bằng khi mất đà. Nó tích hợp tín hiệu từ cơ-khớp, tai trong (tiền đình), và thị giác; tất cả suy giảm theo tuổi nếu không được thử thách. Một bài <em>test</em> đơn giản phản ánh năng lực này: khả năng đứng một chân — nghiên cứu cho thấy người trung niên trở lên không giữ được thăng bằng một chân 10 giây có nguy cơ tử vong cao hơn rõ rệt trong các năm theo dõi tiếp theo (đứng một chân là thước đo, không phải bản thân mục tiêu). Mục 1.5 đào sâu cách rèn năng lực này.
+        Đây là năng lực cơ thể cảm nhận vị trí của chính nó trong không gian (proprioception) và điều phối cơ để phản ứng kịp thời — nền tảng của thăng bằng, phối hợp, và phản xạ giữ thăng bằng khi mất đà. Nó tích hợp tín hiệu từ cơ-khớp, tai trong (tiền đình), và thị giác; tất cả suy giảm theo tuổi nếu không được thử thách. Một bài <em>test</em> đơn giản phản ánh năng lực này: khả năng đứng một chân — nghiên cứu quan sát cho thấy người trung niên trở lên không giữ được thăng bằng một chân 10 giây có tỷ lệ tử vong cao hơn rõ rệt trong các năm theo dõi tiếp theo. <strong>Đọc số liệu này cẩn thận:</strong> đây là dữ liệu quan sát (observational), không phải thử nghiệm can thiệp — hoàn toàn có thể một phần mối liên hệ đến từ nhân quả ngược (người đã suy yếu do bệnh nền/tuổi tác vừa mất thăng bằng vừa có nguy cơ tử vong cao hơn, chứ tự bản thân việc đứng một chân kém không "gây ra" tử vong). Test này nên được đọc như một <em>chỉ dấu sức khỏe tổng thể</em> hữu ích, không phải bằng chứng nhân quả rằng luyện đứng một chân sẽ kéo dài tuổi thọ — dù luyện thăng bằng vẫn có giá trị độc lập rõ ràng cho việc chống ngã (xem 1.5). Mục 1.5 đào sâu cách rèn năng lực này.
       </Box>
 
       <h2 style={h2}><span style={sectionNumInline}>1.5</span>Đào sâu: hệ thần kinh-cơ hoạt động và suy giảm thế nào</h2>
@@ -464,7 +471,7 @@ function PartI() {
         <Row label="Phản ứng (reactive)" value="Phục hồi sau khi bị mất đà đột ngột" sub="Bước cứu khi trượt chân — quan trọng nhất chống ngã" tone={C.coral} />
       </div>
       <Box tone={C.coral} title="Thăng bằng phản ứng — loại quan trọng nhất và bị bỏ quên nhất">
-        Hầu hết người tập thăng bằng chỉ tập loại tĩnh (đứng một chân) và bỏ qua loại <em>phản ứng</em> — khả năng phục hồi sau khi bị mất đà đột ngột. Nhưng chính loại phản ứng mới quyết định bạn có ngã thật hay không khi trượt chân ngoài đời. Nghiên cứu về "perturbation-based balance training" (tập với nhiễu loạn có chủ đích) cho thấy hiệu quả giảm ngã ấn tượng — tới 50–75% trong điều kiện thí nghiệm — vượt xa tập thăng bằng tĩnh thông thường. Cách rèn tại nhà an toàn: tập bước phản ứng có kiểm soát (nhờ người nhẹ đẩy vai từ nhiều hướng, tập bước cứu), đi trên bề mặt không ổn định (thảm mềm), thay đổi hướng đột ngột khi đi bộ.
+        Hầu hết người tập thăng bằng chỉ tập loại tĩnh (đứng một chân) và bỏ qua loại <em>phản ứng</em> — khả năng phục hồi sau khi bị mất đà đột ngột. Nhưng chính loại phản ứng mới quyết định bạn có ngã thật hay không khi trượt chân ngoài đời. Một phân tích tổng hợp gần đây (25 thử nghiệm ngẫu nhiên có đối chứng, ~2.660 người cao tuổi) cho thấy "perturbation-based balance training" (tập với nhiễu loạn có chủ đích) giảm tỷ lệ ngã thực tế khoảng 23%, giảm số người từng ngã ít nhất một lần khoảng 17%, và giảm ngã gây chấn thương khoảng 24% — độ tin cậy bằng chứng ở mức thấp-vừa, không phải "chắc chắn". Con số ấn tượng hơn (giảm tới ~58%) chỉ áp dụng cho <em>ngã trong điều kiện thí nghiệm có kiểm soát</em> (đo phản xạ bước cứu trong phòng lab), không phải ngã ngoài đời thực — cần phân biệt rõ hai loại số liệu này khi đọc quảng cáo về phương pháp tập thăng bằng. Dù vậy, đây vẫn là loại bài tập có bằng chứng tốt nhất cho mục tiêu chống ngã, rõ rệt hơn tập thăng bằng tĩnh đơn thuần. Cách rèn tại nhà an toàn: tập bước phản ứng có kiểm soát (nhờ người nhẹ đẩy vai từ nhiều hướng, tập bước cứu), đi trên bề mặt không ổn định (thảm mềm), thay đổi hướng đột ngột khi đi bộ.
       </Box>
 
       <div style={subHead}>Power & tốc độ sinh lực — mảng suy giảm nhanh nhất theo tuổi</div>
@@ -1070,7 +1077,7 @@ function PartVI() {
 
       <h2 style={h2}><span style={sectionNumInline}>6.5</span>Vận động & sức khỏe tinh thần</h2>
       <p style={prose}>
-        Vận động có hiệu quả điều trị thực với trầm cảm và lo âu — tổng quan lớn (~80.000 người) cho SMD −0.61 với trầm cảm và −0.47 với lo âu, tương đương hoặc hơn một số thuốc trong so sánh trực tiếp, dù cơ chế khác. Cơ chế: kích thích BDNF (tạo neuron ở hồi hải mã), điều hòa trục stress HPA, giảm viêm thần kinh.
+        Vận động có hiệu quả điều trị thực với trầm cảm và lo âu. Umbrella review của Singh và cộng sự (British Journal of Sports Medicine, 2023 — tổng hợp 97 tổng quan hệ thống, hơn 1.000 thử nghiệm) ghi nhận hiệu quả mức vừa: SMD trung vị −0.43 với trầm cảm, −0.42 với lo âu, và −0.60 với đau khổ tâm lý (psychological distress) nói chung so với chăm sóc thông thường — mức này tương đương hoặc nhỉnh hơn một số so sánh trực tiếp với thuốc/liệu pháp tâm lý trong cùng tổng quan, dù thiết kế nghiên cứu gốc (không mù được với vận động) khiến việc so sánh trực tiếp giữa các loại can thiệp cần thận trọng hơn so với so sánh thuốc-thuốc. Cơ chế đề xuất: kích thích BDNF (tạo neuron ở hồi hải mã), điều hòa trục stress HPA, giảm viêm thần kinh.
       </p>
       <Box tone={C.coral} title="Nghịch lý cần thành thật">
         Chính triệu chứng trầm cảm (mất động lực, anhedonia) làm giảm khả năng bắt đầu vận động — thứ được kỳ vọng điều trị nó. Đây không phải "lười". Với trầm cảm nhẹ-vừa, vận động là can thiệp hiệu quả; với trầm cảm nặng, thường cần ổn định bằng điều trị khác trước để có đủ năng lượng nền. Vận động là công cụ hỗ trợ mạnh, không thay thế điều trị khi triệu chứng ở mức lâm sàng.
@@ -1086,6 +1093,17 @@ function PartVI() {
         Nếu kéo dài trên 2 tuần và ảnh hưởng rõ chức năng sống: mất hứng thú với hầu hết hoạt động từng thích, thay đổi rõ giấc ngủ/khẩu vị, khó tập trung, cảm giác vô vọng/vô giá trị dai dẳng, hoặc bất kỳ ý nghĩ nào về việc không muốn tồn tại — đây là lúc nói chuyện với chuyên gia sức khỏe tâm thần. Nếu bạn đang trải qua điều này, mình có thể giúp tìm nguồn hỗ trợ phù hợp.
       </Box>
 
+      <h2 style={h2}><span style={sectionNumInline}>6.6</span>Đọc phản biện: giới hạn thật của tài liệu này</h2>
+      <p style={prose}>
+        Một chuyên gia khoa học thể thao đọc tài liệu này sẽ khen phần khung tư duy (tải trọng–phục hồi–duy trì) nhưng sẽ chỉ ra vài điểm cần thận trọng — đáng biết trước khi áp dụng máy móc.
+      </p>
+      <MistakeBox items={[
+        { wrong: "Coi mọi con số trong tài liệu (10%, 80/20, ngưỡng zone) như luật vật lý cá nhân hóa cho bạn.", fix: "Đây là ước lượng trung bình từ nghiên cứu quần thể (thường trên vận động viên) — cơ thể bạn có thể lệch đáng kể. Dùng làm điểm khởi đầu, điều chỉnh theo phản hồi thực tế của chính bạn, không theo đúng con số." },
+        { wrong: "Tin rằng theo dõi càng nhiều số liệu (HRV, zone, %tải) càng an toàn hơn.", fix: "Bằng chứng cho thấy nhiều mô hình định lượng tải phổ biến (ACWR, quy tắc 10%) có nền tảng thống kê yếu hơn vẻ ngoài khoa học của chúng — đừng để việc theo dõi số liệu thay thế việc lắng nghe cơ thể." },
+        { wrong: "Áp dụng khuyến nghị chung cho LDH mà không có chẩn đoán hình ảnh/thăm khám cụ thể.", fix: "Mức độ, vị trí thoát vị và triệu chứng thần kinh khác nhau rất nhiều giữa các ca — điều an toàn cho người này có thể nguy hiểm cho người khác. Tài liệu này là khung tham khảo, không phải phác đồ cá nhân hóa." },
+        { wrong: "Đọc một thống kê ấn tượng (ví dụ '% giảm nguy cơ') và coi đó là sự thật tuyệt đối, cố định.", fix: "Phần lớn số liệu 'ấn tượng' trong khoa học thể thao đến từ một nghiên cứu/phân tích cụ thể, thường bị làm tròn hoặc trích dẫn lại qua nhiều lớp — con số thật thường khiêm tốn và có khoảng tin cậy rộng hơn tiêu đề truyền thông." },
+      ]} />
+
       <Callout tone={C.coral} kicker="Mệnh lệnh — lần cuối, và quan trọng nhất">
         Toàn bộ sáu phần của tài liệu này quy về một hành động: bắt đầu, và tiếp tục. Không có kiến thức nào ở đây thay được việc bạn thực sự đứng dậy và vận động, hôm nay và ngày mai và tuần sau. Hãy chọn liều nhỏ nhất bạn chắc chắn làm được, làm nó đều đặn, và để sự bền bỉ — không phải sự hoàn hảo — tạo ra kết quả. Đó là toàn bộ giá trị của tài liệu này, và nó chỉ hiện ra khi bạn thực hành.
       </Callout>
@@ -1095,6 +1113,7 @@ function PartVI() {
         "Ba trụ cột tuổi thọ: VO2max, sức mạnh cơ, kiểm soát thần kinh-cơ — chạm cả ba.",
         "Người quá tải: loại bỏ quyết định. Lịch cố định, đồ để sẵn, bài mặc định thuộc lòng.",
         "Vận động–giấc ngủ–tinh thần là một hệ thống; 'tách rời tâm lý' quyết định chất lượng phục hồi.",
+        "Số liệu trong tài liệu là ước lượng quần thể, không phải luật cá nhân hóa — cơ thể bạn và phản hồi thực tế luôn có tiếng nói cuối cùng.",
       ]} />
     </div>
   );

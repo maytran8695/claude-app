@@ -23,7 +23,7 @@ const exactTitleMap = {
   [normalizeKey('MacroQuarterlyReview')]: 'Macro Quarterly Review',
   [normalizeKey('WealthManagement')]: 'Wealth Management',
   [normalizeKey('HolisticLife')]: 'Holistic Life',
-  [normalizeKey('MovementManual')]: 'Movement Manual',
+  [normalizeKey('MovementManual')]: 'Movement',
   [normalizeKey('Nutrition')]: 'Nutrition',
   [normalizeKey('MentalHealth')]: 'Mental Health',
   [normalizeKey('ChunkAtlasEN')]: 'Chunk Atlas - EN',

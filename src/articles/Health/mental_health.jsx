@@ -593,6 +593,9 @@ function PartIII() {
         "Hít vào mũi 4 giây → giữ 7 giây → thở ra miệng (có tiếng vù) 8 giây.",
         "Lặp lại 4 chu kỳ. Không nên lạm dụng quá nhiều lần/ngày lúc mới tập vì có thể gây choáng nhẹ.",
       ]} note="Bác sĩ Andrew Weil phổ biến kỹ thuật này cho mất ngủ và lo âu trước khi ngủ — tỷ lệ hít-giữ-thở dài kích hoạt mạnh hệ phó giao cảm." />
+      <Box tone={C.ink} title="Phản biện chuyên gia — thở không an toàn tuyệt đối với mọi người" icon="⚠">
+        Ba kỹ thuật trên an toàn với đa số người khỏe mạnh, nhưng có vài chống chỉ định thực tế thường bị bỏ qua trong nội dung phổ biến về thở. Người có <strong>rối loạn hoảng loạn mà cơn hoảng loạn khởi phát từ cảm giác khó thở/nghẹt thở</strong> đôi khi thấy các bài tập chú ý mạnh vào hơi thở (đặc biệt giữ hơi) làm tăng lo âu thay vì giảm — nên bắt đầu rất nhẹ, dừng ngay nếu thấy hoảng hơn. Người có bệnh tim mạch chưa kiểm soát (loạn nhịp, huyết áp không ổn định), hen suyễn đang cơn cấp, hoặc đang mang thai nên hỏi ý kiến bác sĩ trước khi tập các kỹ thuật giữ hơi kéo dài (box breathing, 4-7-8). Dấu hiệu cần dừng ngay: chóng mặt mạnh, ngón tay/môi tê ran (dấu hiệu tăng thông khí quá mức), hoặc cảm giác hoảng loạn tăng thay vì giảm.
+      </Box>
 
       <h2 style={h2}><span style={sectionNumInline}>3.2</span>Viết — công cụ xử lý cảm xúc rẻ nhất</h2>
       <div style={subHead}>Thought record (CBT) — khi có một suy nghĩ ám ảnh</div>
@@ -608,6 +611,9 @@ function PartIII() {
       </Box>
       <Box tone={C.rose} title="Nhật ký biết ơn — 3 điều mỗi tối" icon="✓">
         Nghiên cứu của Robert Emmons và Michael McCullough cho thấy ghi lại đều đặn 3 điều biết ơn (cụ thể, không lặp lại) cải thiện tâm trạng và chất lượng giấc ngủ sau vài tuần. Điểm quan trọng: cụ thể hóa "vì sao" điều đó đáng biết ơn có tác dụng mạnh hơn liệt kê chung chung — "bạn A nhắn hỏi thăm đúng lúc mình mệt" mạnh hơn "có bạn tốt".
+      </Box>
+      <Box tone={C.ink} title="Phản biện chuyên gia — cả hai kỹ thuật viết trên đều yếu hơn phiên bản phổ biến trên mạng" icon="⚠">
+        Hai kỹ thuật này minh họa đúng vấn đề "khủng hoảng nhân rộng" (replication crisis) trong tâm lý học tích cực mà một nhà nghiên cứu nghiêm túc sẽ nhắc bạn. Với viết biểu cảm: các phân tích tổng hợp gần đây cho hiệu quả trung bình khiêm tốn hơn nhiều so với các nghiên cứu đầu tiên của Pennebaker (thập niên 1980-90) — một số thử nghiệm lặp lại không tìm thấy cải thiện sức khỏe thể chất rõ rệt, dù hiệu quả tâm lý (giảm gánh nặng cảm xúc chủ quan) vẫn khá ổn định. Với nhật ký biết ơn: hiệu quả có thật nhưng nhỏ và không đồng đều giữa các nghiên cứu — một số thử nghiệm đối chứng tốt hơn (so với nhóm viết về việc trung tính, thay vì không viết gì) cho kết quả khiêm tốn hơn nhiều so với các bài báo phổ biến hay trích dẫn. Không có nghĩa là hai kỹ thuật này vô dụng — chúng rẻ, an toàn, đáng thử — chỉ là đừng kỳ vọng chúng "chữa" được vấn đề tâm lý nghiêm trọng, và đừng ngạc nhiên nếu bản thân không thấy hiệu quả rõ như quảng cáo.
       </Box>
 
       <h2 style={h2}><span style={sectionNumInline}>3.3</span>Cognitive defusion (ACT) — tạo khoảng cách với suy nghĩ</h2>
@@ -688,6 +694,9 @@ function PartIV() {
       </p>
       <Box tone={C.coral} title="TIPP — kỹ năng DBT hạ nhiệt sinh lý nhanh nhất khi cảm xúc quá tải">
         <strong>T</strong>emperature: dội nước lạnh lên mặt hoặc cầm đá lạnh vài giây — kích hoạt phản xạ lặn (dive reflex), hạ nhịp tim nhanh chóng qua đường sinh lý, không cần "nghĩ đúng" gì cả. <strong>I</strong>ntense exercise: vận động mạnh ngắn (nhảy tại chỗ, chạy cầu thang) để tiêu hao adrenaline dư thừa. <strong>P</strong>aced breathing: thở ra dài hơn hít vào (như 4-7-8 ở Phần III). <strong>P</strong>aired muscle relaxation: gồng rồi thả lỏng từng nhóm cơ. Bốn kỹ năng này tác động trực tiếp lên sinh lý — dùng khi cảm xúc đã quá mạnh để bất kỳ kỹ thuật "nghĩ lại" nào có tác dụng.
+      </Box>
+      <Box tone={C.ink} title="Lưu ý an toàn cho riêng kỹ năng 'T'" icon="⚠">
+        Phản xạ lặn do nước lạnh gây chậm nhịp tim (bradycardia) đột ngột — đúng cơ chế khiến nó hiệu quả, nhưng cũng là lý do người có bệnh tim mạch (đặc biệt rối loạn nhịp tim đã biết) nên hỏi bác sĩ trước khi dùng nước đá áp mặt, và không nên dùng nước quá lạnh/ngâm mặt kéo dài. Với đa số người khỏe mạnh, dội nước mát vài giây là an toàn — đây chỉ là lưu ý cho nhóm có bệnh nền tim mạch, không phải lý do tránh kỹ thuật này nói chung.
       </Box>
 
       <h2 style={h2}><span style={sectionNumInline}>4.2</span>Sang chấn (trauma) — hiểu cơ chế, không tự điều trị</h2>
@@ -843,6 +852,19 @@ function PartVI() {
         Tài liệu này khép lại vòng tròn mở ra từ Phần I: giấc ngủ kém làm giảm khả năng điều hòa cảm xúc ngày hôm sau (hạch hạnh nhân phản ứng mạnh hơn ~60% với kích thích tiêu cực khi thiếu ngủ theo các nghiên cứu hình ảnh não); vận động đều đặn là một trong những công cụ chống trầm cảm có bằng chứng mạnh nhất (2.3); dinh dưỡng ảnh hưởng trực tiếp đến hệ vi sinh đường ruột, vốn giao tiếp hai chiều với não qua trục ruột-não. Vận động–giấc ngủ–dinh dưỡng–tinh thần là một hệ thống duy nhất; "tách rời tâm lý ra khỏi cơ thể" là một sự giản lược sai lầm, dù tiện lợi. Đọc tài liệu này cùng Movement Manual và Nutrition không phải trùng lặp — đó chính là cách nhìn đúng.
       </p>
 
+      <h2 style={h2}><span style={sectionNumInline}>6.6</span>Đọc phản biện: giới hạn thật của tài liệu này</h2>
+      <p style={prose}>
+        Một nhà tâm lý học lâm sàng đọc tài liệu này sẽ đồng tình với phần lớn khung khái niệm, nhưng sẽ chỉ ra vài điểm mù đáng biết trước khi áp dụng.
+      </p>
+      <Box tone={C.ink} title="Phản biện chuyên gia — các khung trị liệu ở đây phần lớn có gốc phương Tây, cá nhân chủ nghĩa" icon="⚠">
+        CBT, ACT, DBT và phần lớn nghiên cứu được trích dẫn xuyên suốt tài liệu đến từ bối cảnh học thuật Mỹ/Tây Âu, xây trên giả định văn hóa cá nhân chủ nghĩa: "giá trị của riêng bạn", "ranh giới cá nhân", "ưu tiên nhu cầu bản thân". Trong bối cảnh Việt Nam — nơi bản sắc thường gắn chặt với gia đình/tập thể hơn, và một số kỹ thuật (ví dụ "nói thẳng nhu cầu bản thân" trong giao tiếp bất bạo động, hay values clarification tập trung cá nhân) có thể va chạm với chuẩn mực hiếu thảo, giữ thể diện gia đình, hoặc trách nhiệm tập thể — áp dụng nguyên xi đôi khi tạo thêm xung đột thay vì giảm. Hướng điều chỉnh hợp lý: giữ nguyên lý cốt lõi (điều hòa cảm xúc, ranh giới lành mạnh) nhưng diễn đạt và thực hành theo cách phù hợp với mối quan hệ gia đình/tập thể của bạn, thay vì áp dụng máy móc ngôn ngữ "cá nhân là trên hết" từ tài liệu gốc phương Tây. Nghiên cứu liệu pháp xuyên văn hóa (cultural adaptation of psychotherapy) cho thấy các phiên bản trị liệu được điều chỉnh phù hợp văn hóa hiệu quả hơn rõ rệt so với áp dụng nguyên bản.
+      </Box>
+      <MistakeBox items={[
+        { wrong: "Coi mọi thuật ngữ/nhãn (rối loạn lo âu, trầm cảm, ADHD...) đọc được trên mạng là chẩn đoán của bản thân.", fix: "Các khái niệm trong tài liệu là công cụ tự hiểu, không phải tiêu chuẩn chẩn đoán — tự dán nhãn sai có thể khiến bạn bỏ lỡ vấn đề thật hoặc lo âu về vấn đề không có." },
+        { wrong: "Áp dụng một kỹ thuật (ví dụ cognitive defusion) cho mọi loại đau khổ, kể cả khi nó không phù hợp.", fix: "Đau khổ vì mất mát cần được đau, không cần 'defuse' ngay; công cụ điều hòa cảm xúc dùng sai lúc có thể trở thành né tránh cảm xúc cần thiết phải trải qua." },
+        { wrong: "Tin rằng vì tài liệu trích nhiều tên nhà nghiên cứu/số liệu nên mọi câu đều chắc chắn đúng.", fix: "Như đã lưu ý ở một số box riêng (polyvagal, viết biểu cảm, nhật ký biết ơn), tâm lý học có tỷ lệ không nhân rộng được cao hơn nhiều ngành khoa học khác — giữ tinh thần hoài nghi lành mạnh, đặc biệt với hiệu ứng nghe 'quá đẹp'." },
+      ]} />
+
       <Callout tone={C.coral} kicker="Mệnh lệnh cuối cùng — nhắc lại lần nữa">
         Không kỹ thuật nào trong sáu phần trên có tác dụng nếu chỉ nằm trên trang giấy. Chọn một công cụ nhỏ nhất có thể bắt đầu hôm nay — một chu kỳ thở dài sinh lý trước khi đọc tiếp trang khác, một tin nhắn hỏi thăm người bạn lâu không liên lạc. Sức khỏe tinh thần bền vững không phải đích đến một lần đạt được rồi thôi — nó là một tập hợp thói quen nhỏ, lặp lại, được bảo trì suốt đời.
       </Callout>
@@ -852,6 +874,7 @@ function PartVI() {
         "Mối quan hệ chất lượng là khoản đầu tư sinh lời nhất cho sức khỏe tinh thần dài hạn, và cần được duy trì đều đặn dù nhỏ.",
         "Tự trắc ẩn — không phải tự phê phán hay tự dễ dãi — là nền tảng cho khả năng phục hồi thực sự.",
         "Vận động, giấc ngủ, dinh dưỡng và tinh thần là một hệ thống — chăm một phần mà bỏ các phần khác không bền vững.",
+        "Các khung trị liệu trong tài liệu gốc phương Tây, cá nhân chủ nghĩa — điều chỉnh cách diễn đạt/thực hành cho phù hợp bối cảnh gia đình, tập thể của riêng bạn.",
       ]} />
     </div>
   );
