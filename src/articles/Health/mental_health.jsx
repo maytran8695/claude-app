@@ -395,6 +395,9 @@ function PartI() {
       <p style={prose}>
         Khung liên quan — <strong>lý thuyết đa phế vị (polyvagal theory)</strong> của Stephen Porges — mô tả một "thang" ba trạng thái hệ thần kinh tự chủ: <em>ventral vagal</em> (an toàn, kết nối xã hội, đây là nơi window of tolerance nằm), <em>sympathetic</em> (chiến-hoặc-chạy, hyperarousal), và <em>dorsal vagal</em> (đông cứng/sập nguồn khi mối đe dọa cảm thấy không thể thoát, hypoarousal). Nhận diện mình đang ở nấc nào là bước đầu tiên để chọn đúng công cụ điều hòa — kỹ thuật hạ nhiệt hyperarousal (thở chậm) khác hoàn toàn kỹ thuật kích hoạt lại từ hypoarousal (vận động, cảm giác cơ thể).
       </p>
+      <Box tone={C.ink} title="Lưu ý về độ tin cậy khoa học" icon="⚠">
+        Window of tolerance và polyvagal theory là hai khung khái niệm rất hữu ích trong thực hành lâm sàng — chúng cho một ngôn ngữ đơn giản để mô tả trải nghiệm mà nhiều người thấy đúng với bản thân. Nhưng về mặt học thuật, polyvagal theory đang gây tranh cãi thực sự: một bài phản biện năm 2025 (Grossman và cộng sự, ký tên bởi 38 nhà nghiên cứu) cho rằng một số cơ chế sinh lý cụ thể của lý thuyết (đặc biệt vai trò của "dorsal vagal" trong phản ứng đông cứng ở người) chưa có bằng chứng thần kinh học vững chắc; Porges đã phản hồi lại. Cách dùng an toàn: coi đây là ẩn dụ hữu ích để tự quan sát trạng thái bản thân, không coi là sự thật sinh lý đã được chứng minh tuyệt đối.
+      </Box>
       <Box tone={C.amber} title="Vì sao 'chỉ cần bình tĩnh lại' thường không có tác dụng?" icon="?">
         Yêu cầu bằng lời nói tác động lên vỏ não trước trán (prefrontal cortex) — nhưng khi hyperarousal, chính vùng này đang bị "offline" tạm thời để nhường quyền cho hệ viền (limbic) phản ứng nhanh. Cần tác động qua đường cơ thể trước (thở, cảm giác, vận động) để đưa hệ thần kinh về vùng điều hòa, rồi tư duy bằng lời mới hoạt động trở lại hiệu quả. Đây là lý do các kỹ thuật ở Phần III luôn bắt đầu từ cơ thể, không bắt đầu từ "cố nghĩ khác đi".
       </Box>
@@ -416,7 +419,7 @@ function PartI() {
         </div>
       </div>
       <Box tone={C.teal} title="Trụ cột thứ ba bị đánh giá thấp: kết nối xã hội">
-        Meta-phân tích của Julianne Holt-Lunstad (2015, hơn 3 triệu người) cho thấy cô đơn mạn tính và cô lập xã hội làm tăng nguy cơ tử vong sớm ở mức tương đương hút khoảng 15 điếu thuốc/ngày — cao hơn cả béo phì hay ít vận động. Nghiên cứu Harvard Study of Adult Development, theo dõi hai nhóm người hơn 80 năm, kết luận: chất lượng các mối quan hệ gắn bó là yếu tố dự đoán mạnh nhất cho hạnh phúc và sức khỏe ở tuổi già — mạnh hơn cả tiền bạc, danh tiếng hay chỉ số IQ. Kết nối xã hội không phải "điều tốt nên có" — nó là một nhu cầu sinh học, ngang hàng giấc ngủ hay dinh dưỡng.
+        Meta-phân tích của Julianne Holt-Lunstad (2015, tổng hợp 70 nghiên cứu, hơn 3,4 triệu người) cho thấy cô đơn làm tăng nguy cơ tử vong sớm khoảng 26%, cô lập xã hội khách quan khoảng 29% — độ lớn tác động được chính nhóm nghiên cứu đối chiếu là <em>xấp xỉ</em> mức độ hại của hút khoảng 15 điếu thuốc/ngày (một phép so sánh độ lớn hiệu ứng giữa các nghiên cứu, không phải một thử nghiệm đối chứng trực tiếp so sánh hai yếu tố). Dù con số chính xác cần đọc thận trọng, kết luận chung khá vững: thiếu kết nối xã hội gây hại sinh học thực sự, không chỉ là cảm giác khó chịu. Nghiên cứu Harvard Study of Adult Development, theo dõi hai nhóm người hơn 80 năm, củng cố thêm: chất lượng các mối quan hệ gắn bó là yếu tố dự đoán mạnh cho hạnh phúc và sức khỏe ở tuổi già. Kết nối xã hội không phải "điều tốt nên có" — nó là một nhu cầu sinh học, ngang hàng giấc ngủ hay dinh dưỡng.
       </Box>
 
       <h2 style={h2}><span style={sectionNumInline}>1.5</span>Đào sâu: vòng lặp suy nghĩ–cảm xúc–hành vi và cách não thay đổi</h2>
@@ -445,6 +448,14 @@ function PartI() {
       <p style={prose}>
         Nhà tâm lý học Susan Nolen-Hoeksema phân biệt hai kiểu "nghĩ về vấn đề" trông giống nhau nhưng hiệu quả trái ngược. <strong>Rumination</strong> là lặp đi lặp lại câu hỏi "tại sao mình lại thế này" mà không tiến tới hành động — càng nghĩ càng tệ hơn, và là yếu tố nguy cơ mạnh cho trầm cảm. <strong>Reflection</strong> là suy ngẫm có định hướng giải quyết vấn đề: "chuyện gì đã xảy ra, mình học được gì, bước tiếp theo là gì". Dấu hiệu phân biệt đơn giản: sau 10–15 phút, bạn cảm thấy rõ ràng hơn hay mắc kẹt hơn? Nếu mắc kẹt, đó là rumination — cần một hành động ngắt mạch (Phần III), không phải nghĩ thêm.
       </p>
+      <Box tone={C.purple} title="Liệu pháp siêu nhận thức — vấn đề không phải nội dung lo âu, mà là niềm tin về việc lo âu">
+        Nhà tâm lý học Adrian Wells lập luận: điều duy trì rumination/lo âu mạn tính không phải nội dung suy nghĩ cụ thể, mà là những <strong>niềm tin siêu nhận thức (metacognitive beliefs)</strong> về chính hành vi suy nghĩ đó — ví dụ "mình phải lo mới kiểm soát được tình huống" (niềm tin tích cực về lo âu) hoặc "mình không tài nào dừng nghĩ được" (niềm tin tiêu cực về mất kiểm soát). Can thiệp hiệu quả nhắm vào các niềm tin này và vào "kiểm soát chú ý" (khả năng chủ động dời sự chú ý), không phải tranh luận với từng suy nghĩ như CBT truyền thống. Kỹ thuật thực dụng nhất từ trường phái này: <strong>worry time</strong> — hẹn cố định 15 phút/ngày để lo; khi ý nghĩ lo âu nổi lên ngoài khung giờ đó, ghi lại một dòng rồi hoãn nó tới "giờ lo", thay vì xử lý ngay.
+      </Box>
+
+      <div style={subHead}>Emotional granularity — vốn từ cảm xúc càng chính xác, điều hòa càng tốt</div>
+      <p style={prose}>
+        Nhà tâm lý học thần kinh Lisa Feldman Barrett lập luận (thuyết "constructed emotion") rằng não bộ không "nhận diện" một cảm xúc có sẵn, mà <em>kiến tạo</em> nó theo thời gian thực từ tín hiệu nội cảm thụ (interoception — nhịp tim, hơi thở, độ căng cơ...) kết hợp với khái niệm ngôn ngữ đã học được. Hệ quả thực dụng: người có <strong>emotional granularity</strong> cao — phân biệt tinh vi được "bực" khác "thất vọng" khác "quá tải" khác "tủi thân", thay vì gộp chung "thấy tệ" — có xu hướng điều hòa cảm xúc tốt hơn, vì mỗi từ chính xác gợi ý một hướng ứng phó khác nhau. Đây là điểm còn tranh luận học thuật thật sự (thuyết "cảm xúc cơ bản phổ quát" của Paul Ekman vẫn có nhiều người ủng hộ, đối lập với hướng kiến tạo của Feldman Barrett) — nhưng ở mức ứng dụng, việc mở rộng vốn từ cảm xúc và luyện chú ý cảm giác cơ thể (một bài <em>body scan</em> ngắn 2–3 phút) là kỹ năng có ích bất kể lý thuyết nền nào đúng hơn.
+      </p>
 
       <div style={subHead}>Tái định giá vượt trội hơn kìm nén</div>
       <p style={prose}>
@@ -462,6 +473,8 @@ function PartI() {
         "Cảm xúc khó chịu là tín hiệu, không phải lỗi hệ thống — mục tiêu là điều hòa, không phải triệt tiêu.",
         "Rối loạn điều hòa có hai hướng: hyperarousal (quá kích) và hypoarousal (tê liệt) — cần công cụ khác nhau cho mỗi hướng.",
         "Suy nghĩ tự động là đòn bẩy dễ can thiệp nhất trong vòng lặp suy nghĩ-cảm xúc-hành vi.",
+        "Không phải nội dung lo âu mà niềm tin về việc lo âu ('phải lo mới an toàn') mới là thứ duy trì nó — đó là điều metacognitive therapy nhắm tới.",
+        "Vốn từ cảm xúc càng chính xác (bực ≠ thất vọng ≠ quá tải), điều hòa càng dễ — đây là kỹ năng luyện được.",
         "Kết nối xã hội là nhu cầu sinh học, không phải tùy chọn — và là trụ cột rẻ nhất, hiệu quả nhất để đầu tư khi bận rộn.",
       ]} />
     </div>
@@ -508,9 +521,13 @@ function PartII() {
         Marsha Linehan phát triển DBT ban đầu cho người có cảm xúc cường độ rất cao, dễ bộc phát. Bốn nhóm kỹ năng: chánh niệm, chịu đựng đau khổ cấp tính (distress tolerance — cho khoảnh khắc khủng hoảng, xem TIPP ở Phần IV), điều hòa cảm xúc, hiệu quả giữa các cá nhân. Khác CBT/ACT ở chỗ tập trung vào <em>kỹ năng hành động ngay</em> khi cảm xúc đã ở cường độ áp đảo — lúc mà "suy nghĩ lại cho hợp lý" chưa khả thi.
       </Box>
 
+      <Box tone={C.ink} title="Điều quan trọng hơn cả việc chọn đúng trường phái">
+        Meta-phân tích của Bruce Wampold (295 nghiên cứu, hơn 30.000 bệnh nhân) cho thấy <strong>liên minh trị liệu</strong> — mức độ tin cậy và hợp tác giữa bạn và nhà trị liệu — dự đoán kết quả điều trị mạnh và ổn định ngang nhau ở mọi trường phái (CBT, phân tâm, trải nghiệm...), có hay không dùng cẩm nang trị liệu. Đây là bằng chứng cho quan điểm "common factors": phần lớn hiệu quả trị liệu đến từ các yếu tố chung (mối quan hệ, kỳ vọng, một khung giải thích hợp lý, một quy trình nhất quán) hơn là từ kỹ thuật đặc thù của từng trường phái. Hệ quả thực dụng: nếu cân nhắc tìm chuyên gia, việc chọn được người bạn cảm thấy <em>hợp và tin tưởng được</em> quan trọng không kém — thậm chí hơn — việc chọn đúng "trường phái nghe có vẻ khoa học nhất".
+      </Box>
+
       <h2 style={h2}><span style={sectionNumInline}>2.3</span>Vận động như liệu pháp — bằng chứng đáng chú ý</h2>
       <p style={prose}>
-        Nhiều phân tích tổng hợp (bao gồm một nghiên cứu lớn công bố trên BMJ năm 2023 tổng hợp hàng trăm thử nghiệm) cho thấy vận động thể chất đều đặn có hiệu quả với trầm cảm nhẹ-vừa <strong>tương đương liệu pháp tâm lý và có thể so sánh được với thuốc</strong> trong nhiều trường hợp — đặc biệt các hình thức có yếu tố cường độ (chạy, tập kháng lực) hoặc mang tính xã hội (thể thao đồng đội, yoga nhóm). Cơ chế: tăng BDNF (yếu tố dưỡng thần kinh, thúc đẩy tạo neuron mới ở hồi hải mã), điều hòa cortisol, tăng endorphin, và với thể thao nhóm — cộng thêm hiệu ứng kết nối xã hội. Đây là lý do Movement Manual (tài liệu song hành) không chỉ nói về thể chất — vận động là một trong những công cụ tâm lý mạnh nhất, chi phí thấp nhất.
+        Network meta-analysis lớn của Noetel và cộng sự (BMJ, 2024 — tổng hợp 218 thử nghiệm ngẫu nhiên có đối chứng, 14.170 người tham gia) kết luận: một số hình thức vận động — đặc biệt đi bộ/chạy nhanh, yoga, và tập kháng lực — nên được xem là <strong>lựa chọn điều trị cốt lõi cho trầm cảm ngang hàng liệu pháp tâm lý và thuốc</strong>, không chỉ là "hỗ trợ thêm". Yoga và tập kháng lực còn được dung nạp tốt hơn (ít tác dụng phụ, ít bỏ giữa chừng) so với nhiều hướng điều trị khác trong cùng phân tích. Cơ chế đề xuất: tăng BDNF (yếu tố dưỡng thần kinh, thúc đẩy tạo neuron mới ở hồi hải mã), điều hòa cortisol, tăng endorphin, và với thể thao nhóm — cộng thêm hiệu ứng kết nối xã hội. Đây là lý do Movement Manual (tài liệu song hành) không chỉ nói về thể chất — vận động là một trong những công cụ tâm lý có bằng chứng mạnh nhất, chi phí thấp nhất.
       </p>
 
       <h2 style={h2}><span style={sectionNumInline}>2.4</span>Sáng tạo & trạng thái dòng chảy (flow)</h2>
@@ -530,6 +547,10 @@ function PartII() {
         { wrong: "Chỉ dựa vào một công cụ duy nhất cho mọi tình huống.", fix: "Phối hợp: nhận thức cho lo âu về công việc, kết nối xã hội cho cô đơn, vận động cho tâm trạng chung." },
       ]} />
 
+      <Box tone={C.amber} title="Kỹ năng meta: nhận diện giả khoa học trong thị trường 'chữa lành'" icon="⚠">
+        Thị trường chăm sóc tinh thần thu hút không ít tuyên bố phóng đại hoặc chưa kiểm chứng — từ "chấn thương tế bào cần giải phóng bằng liệu pháp X" đến các bài test tính cách được quảng cáo "khoa học" nhưng thiếu độ tin cậy đo lường. Bốn câu hỏi lọc nhanh, áp dụng được cho bất kỳ tuyên bố nào trong lĩnh vực này: Tuyên bố có được hội chuyên môn uy tín (WHO, APA, hội tâm lý/tâm thần quốc gia) công nhận không? Có thử nghiệm đối chứng ngẫu nhiên (RCT) hay chỉ có lời chứng thực cá nhân? Có giải thích MỘT cơ chế cho MỌI vấn đề không (dấu hiệu cảnh báo phổ biến)? Có bán kèm sản phẩm/khóa học đắt tiền ngay sau khi đưa ra "chẩn đoán" không? Một tuyên bố hợp lý có thể sai một vài câu hỏi trên (ví dụ ACT khi mới ra đời cũng ít RCT), nhưng sai cả bốn là tín hiệu rủi ro rất cao.
+      </Box>
+
       <BusyLens>
         Với quỹ thời gian hạn hẹp, thứ tự ưu tiên hợp lý: (1) vận động — vì bạn có thể đã tập rồi, chỉ cần nhận ra nó cũng là công cụ tâm lý; (2) một kỹ thuật thở/chánh niệm 5 phút mỗi ngày — chi phí thời gian thấp nhất trong mọi công cụ; (3) một cuộc trò chuyện chất lượng mỗi tuần với người thân thiết — kết nối xã hội không cần nhiều nhưng cần đều; (4) cân nhắc trị liệu chuyên nghiệp nếu có ngân sách — không phải vì "bệnh nặng" mà vì một chuyên gia rút ngắn đáng kể thời gian tự mò mẫm.
       </BusyLens>
@@ -537,6 +558,7 @@ function PartII() {
       <Remember items={[
         "Chín công cụ chính không loại trừ nhau — phối hợp 2-4 công cụ tùy giai đoạn cuộc sống là bình thường.",
         "CBT sửa nội dung suy nghĩ, ACT thay đổi quan hệ với suy nghĩ, DBT skills xử lý khoảnh khắc cảm xúc quá mạnh.",
+        "Liên minh trị liệu (mối quan hệ với chuyên gia) dự đoán kết quả mạnh ngang các kỹ thuật đặc thù — chọn người hợp quan trọng như chọn đúng trường phái.",
         "Vận động là công cụ tâm lý có bằng chứng mạnh, chi phí thấp — không chỉ là chuyện thể chất.",
         "Thuốc tâm thần là công cụ y khoa hợp lệ cho ca vừa-nặng, quyết định bởi bác sĩ, không phải 'đường tắt' đáng xấu hổ.",
       ]} />
@@ -593,7 +615,12 @@ function PartIII() {
         Thay vì chất vấn suy nghĩ (CBT), kỹ thuật này thay đổi quan hệ với nó. Ví dụ đơn giản: thay vì nghĩ <em>"mình là kẻ thất bại"</em>, chèn thêm một lớp quan sát: <em>"mình đang có suy nghĩ rằng mình là kẻ thất bại"</em> — hoặc xa hơn: <em>"mình nhận thấy mình đang có suy nghĩ rằng..."</em>. Câu chữ giống nhau nhưng vị trí quan sát thay đổi hoàn toàn: từ "hòa tan trong suy nghĩ" sang "quan sát suy nghĩ như một sự kiện tinh thần đi qua" — nó xuất hiện, không nhất thiết là sự thật, và sẽ trôi qua.
       </p>
 
-      <h2 style={h2}><span style={sectionNumInline}>3.4</span>Grounding 5-4-3-2-1 — khi suy nghĩ đua quá nhanh</h2>
+      <h2 style={h2}><span style={sectionNumInline}>3.4</span>Worry time — gom lo âu lan man vào một khung giờ</h2>
+      <p style={prose}>
+        Kỹ thuật từ liệu pháp siêu nhận thức (1.5): chọn một khung 15 phút cố định mỗi ngày (không sát giờ ngủ) làm "giờ lo". Cả ngày, khi một ý nghĩ lo âu nổi lên ngoài khung giờ đó, chỉ ghi lại một dòng ngắn ("lo về deadline dự án Y") rồi tự nhắc "để dành cho giờ lo" và quay lại việc đang làm. Đến giờ lo, đọc lại danh sách và thực sự dành thời gian nghĩ về từng mục. Hiệu quả không đến từ việc "không lo nữa" mà từ việc <em>giới hạn phạm vi</em> — phần lớn người thực hành nhận ra khi đến giờ lo, nhiều mục trong danh sách không còn thấy cấp bách như lúc mới ghi.
+      </p>
+
+      <h2 style={h2}><span style={sectionNumInline}>3.5</span>Grounding 5-4-3-2-1 — khi suy nghĩ đua quá nhanh</h2>
       <div style={card}>
         <Li tone={C.coral}><strong>5</strong> điều bạn nhìn thấy — gọi tên thành lời.</Li>
         <Li tone={C.coral}><strong>4</strong> điều bạn chạm được/cảm nhận qua da.</Li>
@@ -603,12 +630,12 @@ function PartIII() {
       </div>
       <p style={prose}>Kỹ thuật này kéo sự chú ý từ vòng lặp suy nghĩ (thường về quá khứ/tương lai) về giác quan hiện tại — cách nhanh nhất để thoát rumination hoặc lo âu leo thang mà không cần phân tích gì thêm.</p>
 
-      <h2 style={h2}><span style={sectionNumInline}>3.5</span>Làm rõ giá trị bản thân (values clarification — ACT)</h2>
+      <h2 style={h2}><span style={sectionNumInline}>3.6</span>Làm rõ giá trị bản thân (values clarification — ACT)</h2>
       <p style={prose}>
         Khác mục tiêu (có thể đạt được rồi xong), giá trị là <em>hướng đi liên tục</em> — ví dụ "trở thành người cha/mẹ hiện diện" là giá trị, "đưa con đi chơi cuối tuần này" là hành động cụ thể theo giá trị đó. Bài tập đơn giản: viết ra 3–5 lĩnh vực quan trọng nhất (quan hệ, sức khỏe, công việc, sáng tạo, cộng đồng...), với mỗi lĩnh vực tự hỏi "mình muốn là kiểu người thế nào ở đây" thay vì "mình muốn đạt được gì". Khi lo âu/trì hoãn kéo dài, quay lại danh sách này để chọn một hành động nhỏ theo đúng giá trị — đây là cách ACT "hành động dù cảm xúc chưa sẵn sàng".
       </p>
 
-      <h2 style={h2}><span style={sectionNumInline}>3.6</span>Kiến trúc một ngày cân bằng tinh thần</h2>
+      <h2 style={h2}><span style={sectionNumInline}>3.7</span>Kiến trúc một ngày cân bằng tinh thần</h2>
       <StepBlock title="Buổi sáng — đặt nền" time="5–10 phút" tone={C.blue} items={[
         "Tránh chạm điện thoại/email trong 10–15 phút đầu sau khi thức — tránh kích hoạt hệ thần kinh giao cảm ngay lập tức.",
         "1–2 chu kỳ thở dài sinh lý hoặc 5 phút chánh niệm ngắn.",
@@ -652,7 +679,7 @@ function PartIV() {
       <div style={thesis}>Phần này khác các phần trước — không phải để tối ưu, mà để nhận diện đúng lúc hệ thần kinh vượt ngưỡng tự điều hòa và cần can thiệp mạnh hơn hoặc chuyên môn y tế.</div>
 
       <Callout tone={C.coral} kicker="Đọc trước khi đọc tiếp">
-        Nội dung dưới đây mang tính giáo dục, không phải công cụ chẩn đoán hay điều trị. Nếu bạn hoặc người quen đang có ý nghĩ tự hại, hãy tìm hỗ trợ y tế ngay: gọi cấp cứu 115, đến khoa cấp cứu bệnh viện gần nhất, hoặc đến trực tiếp một cơ sở tâm thần (ví dụ Viện Sức khỏe Tâm thần – Bệnh viện Bạch Mai, Bệnh viện Tâm thần Trung ương 1/2, Bệnh viện Tâm thần TP.HCM). Không ở một mình — gọi ngay cho người thân tin cậy trong lúc chờ hỗ trợ.
+        Nội dung dưới đây mang tính giáo dục, không phải công cụ chẩn đoán hay điều trị. Nếu bạn hoặc người quen đang có ý nghĩ tự hại, hãy tìm hỗ trợ ngay: gọi cấp cứu <strong>115</strong>, đường dây nóng Tư vấn & Hỗ trợ tâm lý – phòng chống tự tử <strong>1900 6233</strong> (theo công bố của ngành y tế; nếu số không phản hồi, tìm kiếm "đường dây nóng sức khỏe tâm thần" để có số cập nhật, vì các dịch vụ này đôi khi thay đổi), hoặc đến trực tiếp khoa cấp cứu/cơ sở tâm thần gần nhất (ví dụ Viện Sức khỏe Tâm thần – Bệnh viện Bạch Mai, Bệnh viện Tâm thần Trung ương 1/2, Bệnh viện Tâm thần TP.HCM). Không ở một mình — gọi ngay cho người thân tin cậy trong lúc chờ hỗ trợ.
       </Callout>
 
       <h2 style={h2}><span style={sectionNumInline}>4.1</span>Cơn hoảng loạn (panic attack) — xử lý ngay trong khoảnh khắc</h2>
@@ -672,6 +699,9 @@ function PartIV() {
       <p style={prose}>
         Nhà tâm lý học Christina Maslach định nghĩa burnout qua ba chiều: <strong>kiệt sức cảm xúc</strong> (cạn năng lượng), <strong>hoài nghi/mất kết nối</strong> (dửng dưng, cynicism với công việc/người xung quanh), và <strong>giảm cảm nhận hiệu quả cá nhân</strong> (thấy mình làm gì cũng không đủ tốt). Khác trầm cảm lâm sàng ở chỗ burnout thường gắn chặt với một bối cảnh cụ thể (công việc) và có thể cải thiện đáng kể khi bối cảnh đó thay đổi — nhưng nếu để kéo dài, burnout là yếu tố nguy cơ dẫn tới trầm cảm thực sự. Dấu hiệu sớm dễ bỏ qua: mất hứng thú với việc từng yêu thích, cần nhiều thời gian hơn để hồi sức sau một ngày làm việc bình thường, cáu gắt bất thường với người thân.
       </p>
+      <Box tone={C.amber} title="Vì sao cùng khối lượng công việc, người kiệt sức người không — mô hình JD-R">
+        Mô hình Job Demands–Resources (Demerouti, Bakker) giải thích burnout không đơn thuần bằng "làm nhiều giờ", mà bằng tỷ lệ giữa <strong>đòi hỏi công việc</strong> (áp lực thời gian, đòi hỏi cảm xúc, xung đột) và <strong>nguồn lực công việc</strong> (quyền tự chủ, hỗ trợ từ đồng nghiệp/quản lý, phản hồi rõ ràng, cơ hội phát triển). Đòi hỏi cao dự đoán mạnh nhất chiều kiệt sức cảm xúc; nguồn lực thấp dự đoán mạnh nhất chiều hoài nghi/mất kết nối. Hệ quả thực dụng: hai người cùng số giờ làm việc có thể có nguy cơ burnout rất khác nhau tùy mức tự chủ và hỗ trợ họ có — nghĩa là giải pháp không chỉ là "làm ít lại" mà còn có thể là "tăng nguồn lực" (xin thêm quyền quyết định, chủ động tìm hỗ trợ, phản hồi rõ hơn từ quản lý).
+      </Box>
 
       <h2 style={h2}><span style={sectionNumInline}>4.4</span>Khi nào cần chuyên gia — dấu hiệu không nên tự xử lý một mình</h2>
       <div style={card}>
@@ -697,6 +727,7 @@ function PartIV() {
       <Remember items={[
         "TIPP (nhiệt độ, vận động mạnh, thở nhịp, giãn cơ) là bộ công cụ nhanh nhất cho khoảnh khắc quá tải cấp tính.",
         "Burnout khác trầm cảm — gắn với bối cảnh cụ thể, nhưng có thể tiến triển thành trầm cảm nếu bỏ qua.",
+        "Burnout phụ thuộc tỷ lệ đòi hỏi/nguồn lực công việc (JD-R), không chỉ số giờ làm — tăng nguồn lực đôi khi hiệu quả hơn giảm việc.",
         "Ý nghĩ tự hại ở bất kỳ mức độ nào là lý do đủ để tìm hỗ trợ ngay — không cần chờ 'đủ nghiêm trọng'.",
         "Tìm chuyên gia tâm lý hợp lý như gặp bác sĩ cho bất kỳ vấn đề sức khỏe nào khác — không phải dấu hiệu yếu đuối.",
       ]} />
@@ -796,7 +827,7 @@ function PartVI() {
 
       <h2 style={h2}><span style={sectionNumInline}>6.3</span>Tự trắc ẩn (self-compassion) — thay thế lành mạnh cho tự phê phán</h2>
       <p style={prose}>
-        Nhà nghiên cứu Kristin Neff định nghĩa self-compassion qua ba thành phần: <strong>tử tế với bản thân</strong> (thay vì tự phê phán khắc nghiệt khi thất bại), <strong>nhận ra tính phổ quát của con người</strong> (khó khăn/sai lầm là một phần trải nghiệm chung, không phải riêng mình kém cỏi), và <strong>chánh niệm</strong> (quan sát cảm xúc khó chịu mà không thổi phồng hay chối bỏ). Nghiên cứu cho thấy self-compassion — khác với tự thương hại hay dễ dãi với bản thân — liên quan đến khả năng phục hồi tốt hơn sau thất bại và ít trì hoãn hơn, vì nó giảm nỗi sợ thất bại vốn là nguyên nhân gốc của nhiều hành vi né tránh.
+        Nhà nghiên cứu Kristin Neff định nghĩa self-compassion qua ba thành phần: <strong>tử tế với bản thân</strong> (thay vì tự phê phán khắc nghiệt khi thất bại), <strong>nhận ra tính phổ quát của con người</strong> (khó khăn/sai lầm là một phần trải nghiệm chung, không phải riêng mình kém cỏi), và <strong>chánh niệm</strong> (quan sát cảm xúc khó chịu mà không thổi phồng hay chối bỏ). Thí nghiệm của Juliana Breines và Serena Chen (2012, Đại học Berkeley) cho thấy một phát hiện phản trực giác: sau khi được hướng dẫn viết với giọng tự trắc ẩn về một thất bại/điểm yếu (so với viết trung lập hoặc tự nâng cao lòng tự trọng), người tham gia dành nhiều thời gian ôn bài hơn cho một bài kiểm tra khó sau đó và báo cáo động lực sửa đổi cao hơn — ngược với lo ngại phổ biến rằng "dễ dãi với bản thân sẽ làm mất động lực". Đây là một phát hiện đáng chú ý nhưng đến từ vài thí nghiệm quy mô vừa-nhỏ, nên nên hiểu là một hướng có cơ sở tốt hơn là quy luật tuyệt đối.
       </p>
 
       <h2 style={h2}><span style={sectionNumInline}>6.4</span>Phòng tái phát — giữ được điều đã xây</h2>
