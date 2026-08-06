@@ -91,7 +91,7 @@ const toneRules = [
     examples: [ { hv: "同 đồng", py: "tóng" }, { hv: "文 văn", py: "wén" }, { hv: "年 niên", py: "nián" }, { hv: "常 thường", py: "cháng" }, { hv: "田 điền", py: "tián" }, { hv: "龍 long", py: "lóng" }, { hv: "來 lai", py: "lái" }, { hv: "回 hồi", py: "huí" }, { hv: "何 hà", py: "hé" }, { hv: "麻 ma", py: "má" } ] },
   { from: "Hỏi / Ngã", to: "Thanh 3 hoặc Thanh 4", conf: "low",
     desc: "Đây là cặp thanh kém tin cậy nhất — chia gần như đôi, không có quy luật thực dụng. Đừng dựa vào đây để đoán, hãy tra từ điển.",
-    examples: [ { hv: "語 ngữ", py: "yǔ", note: "T3" }, { hv: "使 sử", py: "shǐ", note: "T3" }, { hv: "小 tiểu", py: "xiǎo", note: "T3" }, { hv: "老 lão", py: "lǎo", note: "T3" }, { hv: "悌 đễ", py: "tì", note: "T4" } ] },
+    examples: [ { hv: "語 ngữ", py: "yǔ", note: "T3" }, { hv: "使 sử", py: "shǐ", note: "T3" }, { hv: "小 tiểu", py: "xiǎo", note: "T3" }, { hv: "老 lão", py: "lǎo", note: "T3" }, { hv: "反 phản", py: "fǎn", note: "T3" }, { hv: "短 đoản", py: "duǎn", note: "T3" }, { hv: "悌 đễ", py: "tì", note: "T4" } ] },
   { from: "Sắc / Nặng (âm tiết mở)", to: "Thanh 4 (去声)", conf: "mid",
     desc: "Chỉ áp dụng cho âm tiết KHÔNG kết thúc bằng -p/-t/-c/-ch. Nếu có phụ âm cuối này, xem quy luật Nhập thanh bên dưới thay vì quy luật này.",
     examples: [ { hv: "意 ý", py: "yì" }, { hv: "志 chí", py: "zhì" }, { hv: "貴 quý", py: "guì" }, { hv: "愛 ái", py: "ài" }, { hv: "路 lộ", py: "lù" }, { hv: "在 tại", py: "zài" }, { hv: "自 tự", py: "zì" }, { hv: "見 kiến", py: "jiàn" } ] },
@@ -132,6 +132,9 @@ const initialRules = [
     examples: [ { hv: "家 gia", py: "jiā" }, { hv: "教 giáo", py: "jiào" }, { hv: "界 giới", py: "jiè" }, { hv: "交 giao", py: "jiāo" }, { hv: "假 giả", py: "jiǎ" }, { hv: "解 giải", py: "jiě" } ] },
   { from: "qu-", to: "gu- / qu- / ju-", conf: "mid", desc: "Nhóm phụ âm mềm hóa môi hóa — phân nhánh theo vần đi sau.",
     examples: [ { hv: "光 quang", py: "guāng" }, { hv: "國 quốc", py: "guó" }, { hv: "官 quan", py: "guān" }, { hv: "權 quyền", py: "quán" }, { hv: "群 quần", py: "qún" }, { hv: "貴 quý", py: "guì" } ] },
+  { from: "x-", to: "biến thiên (sh-, ch-…)", conf: "low",
+    desc: "Chữ Hán Việt bắt đầu bằng x- vốn đã hiếm, và những từ tồn tại lại rơi vào nhiều dòng phụ âm cổ khác nhau — không đủ số lượng để rút ra quy luật, luôn tra riêng từng từ.",
+    examples: [ { hv: "社 xã", py: "shè" }, { hv: "廠 xưởng", py: "chǎng" }, { hv: "處 xử", py: "chǔ" } ] },
 ];
 
 const finalRules = [
@@ -161,6 +164,8 @@ const finalRules = [
   { from: "-p / -t / -c / -ch", to: "âm tiết mở (không phụ âm cuối)", conf: "struct",
     desc: "Quy luật nền tảng nhất của toàn hệ thống — nếu chỉ nhớ một điều, hãy nhớ điều này.",
     examples: [ { hv: "國 quốc", py: "guó" }, { hv: "學 học", py: "xué" }, { hv: "十 thập", py: "shí" }, { hv: "一 nhất", py: "yī" }, { hv: "六 lục", py: "liù" }, { hv: "八 bát", py: "bā" }, { hv: "百 bách", py: "bǎi" }, { hv: "力 lực", py: "lì" }, { hv: "月 nguyệt", py: "yuè" }, { hv: "北 bắc", py: "běi" } ] },
+  { from: "-ê / -ây", to: "-i", conf: "high",
+    examples: [ { hv: "西 tây", py: "xī" }, { hv: "米 mễ", py: "mǐ" }, { hv: "底 để", py: "dǐ" } ] },
 ];
 
 const falseFriends = [
@@ -174,6 +179,9 @@ const falseFriends = [
   { char: "小姐", hv: "tiểu thư", hvMeaning: "Nghĩa tiếng Việt: con gái nhà quyền quý, trang trọng, tích cực", cnMeaning: "Ở đại lục, xiǎojiě trong khẩu ngữ hiện đại có thể mang hàm ý tiêu cực tùy vùng miền/ngữ cảnh", correct: "Gọi phụ nữ trẻ lịch sự ở đại lục nên dùng 女士 (nǚshì); 小姐 vẫn dùng bình thường ở Đài Loan/HK." },
   { char: "便宜", hv: "tiện nghi", hvMeaning: "Nghĩa tiếng Việt: sự thuận tiện, đầy đủ tiện ích", cnMeaning: "Nghĩa thật hiện đại: \"rẻ, giá thấp\" — piányi, từ cực kỳ thông dụng khi mặc cả", correct: "Tiếng Việt giữ nghĩa cổ \"thuận tiện\", tiếng Trung hiện đại đã lệch sang \"rẻ\"." },
   { char: "風流", hv: "phong lưu", hvMeaning: "Nghĩa truyền thống VN: sung túc, nhàn nhã, có phong cách", cnMeaning: "Nghĩa thật hiện đại: đa tình, trăng hoa, lăng nhăng (thường tiêu cực)", correct: "Khen ai \"phong lưu\" kiểu Việt mà dịch thẳng sang 风流 sẽ gây hiểu lầm khá lớn." },
+  { char: "丈夫", hv: "trượng phu", hvMeaning: "Nghĩa tiếng Việt: một người đàn ông đích thực, khí phách (\"làm trai cho đáng nên trai... trượng phu\")", cnMeaning: "Nghĩa thật trong tiếng Trung hiện đại: đơn giản là \"chồng\" — zhàngfu", correct: "Gọi ai đó \"trượng phu\" bằng tiếng Việt là khen khí chất; nói 丈夫 trong câu tiếng Trung chỉ đang nhắc đến người chồng của ai đó." },
+  { char: "手段", hv: "thủ đoạn", hvMeaning: "Nghĩa tiếng Việt: mưu mẹo xấu, cách làm gian trá, luôn mang sắc thái tiêu cực", cnMeaning: "Nghĩa thật trong tiếng Trung: đơn giản là \"biện pháp, cách thức\" (trung tính) — shǒuduàn", correct: "这个手段很有效 (phương pháp này rất hiệu quả) không hàm ý gian trá gì cả — khác hẳn sắc thái nặng nề của \"thủ đoạn\" tiếng Việt." },
+  { char: "認真", hv: "nhận chân", hvMeaning: "Nghĩa tiếng Việt: nhận ra bản chất thật của việc gì đó (\"nhận chân giá trị\", \"nhận chân sự thật\")", cnMeaning: "Nghĩa thật trong tiếng Trung: \"nghiêm túc, cẩn thận, chăm chỉ\" (tính từ/trạng từ chỉ thái độ) — rènzhēn", correct: "认真工作 nghĩa là \"làm việc nghiêm túc/chăm chỉ\", không liên quan đến việc nhận ra bản chất sự vật như trong tiếng Việt." },
 ];
 
 /* ---------- DATA: Bộ biểu âm (phonetic components) ---------- */
@@ -189,6 +197,9 @@ const phoneticGroups = [
   { comp: "京", py: "jīng", meaning: "kinh đô", derived: [ { hv: "鯨 (kình)", py: "jīng", meaning: "cá voi" }, { hv: "景 (cảnh)", py: "jǐng", meaning: "cảnh vật" } ] },
   { comp: "相", py: "xiāng", meaning: "tương, lẫn nhau", derived: [ { hv: "想 (tưởng)", py: "xiǎng", meaning: "nghĩ, tưởng" }, { hv: "箱 (tương)", py: "xiāng", meaning: "hộp, rương" } ] },
   { comp: "由", py: "yóu", meaning: "do, từ", derived: [ { hv: "油 (du)", py: "yóu", meaning: "dầu" }, { hv: "郵 (bưu)", py: "yóu", meaning: "bưu điện" }, { hv: "鈾 (du)", py: "yóu", meaning: "uranium" } ] },
+  { comp: "反", py: "fǎn", meaning: "phản, trái lại", derived: [ { hv: "飯 (phạn)", py: "fàn", meaning: "cơm" }, { hv: "板 (bản)", py: "bǎn", meaning: "tấm ván (mộc bản)" }, { hv: "版 (bản)", py: "bǎn", meaning: "bản in, ấn bản" } ] },
+  { comp: "寺", py: "sì", meaning: "chùa, tự", derived: [ { hv: "詩 (thi)", py: "shī", meaning: "thơ" }, { hv: "侍 (thị)", py: "shì", meaning: "hầu hạ, phụng sự" }, { hv: "時 (thời)", py: "shí", meaning: "thời gian" }, { hv: "特 (đặc)", py: "tè", meaning: "đặc biệt" } ] },
+  { comp: "古", py: "gǔ", meaning: "xưa, cổ", derived: [ { hv: "姑 (cô)", py: "gū", meaning: "cô, cô gái" }, { hv: "故 (cố)", py: "gù", meaning: "lý do, cố ý" }, { hv: "苦 (khổ)", py: "kǔ", meaning: "khổ, đắng" }, { hv: "固 (cố)", py: "gù", meaning: "kiên cố, vững chắc" } ] },
 ];
 
 /* ---------- DATA: Biến điệu (tone sandhi) ---------- */
@@ -204,6 +215,12 @@ const sandhiRules = [
     examples: [ { hv: "一起 (viết)", py: "yìqǐ (nói thật)" }, { hv: "一直 (viết)", py: "yìzhí (nói thật)" }, { hv: "一天 (viết)", py: "yìtiān (nói thật)" } ] },
   { from: "一 yī độc lập / trong số đếm", to: "Giữ Thanh 1 (yī)", conf: "struct", desc: "Khi 一 đứng riêng, ở cuối câu, hoặc trong số đếm/số thứ tự thì KHÔNG đổi thanh.",
     examples: [ { hv: "第一 (giữ nguyên)", py: "dìyī" }, { hv: "十一 (giữ nguyên)", py: "shíyī" }, { hv: "星期一 (giữ nguyên)", py: "xīngqīyī" } ] },
+  { from: "3 âm tiết Thanh 3 liền nhau", to: "Phụ thuộc cách ghép từ: 1+2 hoặc 2+1", conf: "high",
+    desc: "Khi có 3 âm tiết Thanh 3 liên tiếp, quy tắc T3+T3→T2+T3 áp dụng theo CẶP gắn kết chặt hơn về nghĩa/ngữ pháp trước, rồi lan tiếp nếu còn cặp Thanh 3 mới xuất hiện.",
+    examples: [ { hv: "我很好 (viết, cấu trúc 1+2: 我 / 很好)", py: "wǒ hénhǎo (nói thật — chỉ cặp 2 sau đổi)" }, { hv: "展覽館 (viết, cấu trúc 2+1: 展覽 / 館)", py: "zhánlánguǎn (nói thật — cả 2 âm đầu đều đổi)" } ] },
+  { from: "Thanh nhẹ (輕聲) ở hư từ", to: "Mất trọng âm + thanh gốc, đọc lướt nhẹ", conf: "struct",
+    desc: "Một nhóm hư từ ngữ pháp cố định luôn đọc thanh nhẹ (không dấu, ngắn, nhẹ hơn hẳn âm trước nó), bất kể thanh gốc trên chữ viết là gì — không có ngoại lệ với nhóm này.",
+    examples: [ { hv: "的 de (trợ từ sở hữu)", py: "thanh nhẹ" }, { hv: "了 le (trợ từ hoàn thành)", py: "thanh nhẹ" }, { hv: "嗎 ma (trợ từ hỏi)", py: "thanh nhẹ" }, { hv: "呢 ne (trợ từ hỏi)", py: "thanh nhẹ" }, { hv: "們 men (số nhiều)", py: "thanh nhẹ" }, { hv: "著 zhe (trợ từ tiếp diễn)", py: "thanh nhẹ" } ] },
 ];
 
 /* ---------- DATA: Lượng từ (measure words ↔ loại từ Việt) ---------- */
@@ -219,6 +236,14 @@ const measureWords = [
   { hanzi: "件", py: "jiàn", loaiTu: "cái / việc (áo, sự việc)", example: "一件事 (một việc)" },
   { hanzi: "座", py: "zuò", loaiTu: "tòa / ngọn (kết cấu lớn, cố định)", example: "一座山 (một ngọn núi)" },
   { hanzi: "朵", py: "duǒ", loaiTu: "bông (hoa, mây)", example: "一朵花 (một bông hoa)" },
+  { hanzi: "位", py: "wèi", loaiTu: "vị (người, thể hiện lịch sự/tôn kính)", example: "一位客人 (một vị khách)" },
+  { hanzi: "部", py: "bù", loaiTu: "bộ (phim, sách bộ, máy móc)", example: "一部電影 (một bộ phim)" },
+  { hanzi: "家", py: "jiā", loaiTu: "nhà, tiệm (cơ sở kinh doanh)", example: "一家餐廳 (một nhà hàng)" },
+  { hanzi: "顆 / 颗", py: "kē", loaiTu: "hạt, viên (vật nhỏ, tròn)", example: "一顆星 (một vì sao)" },
+  { hanzi: "支", py: "zhī", loaiTu: "cây, điếu (vật dài, thon, cầm tay)", example: "一支筆 (một cây bút)" },
+  { hanzi: "雙 / 双", py: "shuāng", loaiTu: "đôi (hai vật đi cùng nhau)", example: "一雙鞋 (một đôi giày)" },
+  { hanzi: "次", py: "cì", loaiTu: "lần (số lần thực hiện hành động)", example: "一次機會 (một lần cơ hội)" },
+  { hanzi: "種 / 种", py: "zhǒng", loaiTu: "loại, thứ (phân loại chung)", example: "一種方法 (một loại phương pháp)" },
 ];
 
 /* ---------- DATA: Từ vựng tần suất (nhóm theo chức năng) ---------- */
@@ -228,6 +253,9 @@ const freqGroups = [
   { label: "Động từ lõi — xuất hiện trong hầu hết hội thoại", words: ["是 shì (là)", "有 yǒu (có)", "在 zài (ở, đang)", "要 yào (muốn, cần)", "去 qù (đi)", "來 lái (đến)", "說 shuō (nói)", "看 kàn (nhìn/xem)", "知道 zhīdào (biết)", "想 xiǎng (nghĩ/muốn)"] },
   { label: "Trợ từ, liên từ — khung câu", words: ["的 de (của)", "了 le (trợ từ hoàn thành)", "不 bù (không)", "就 jiù (thì, chính là)", "都 dōu (đều)", "也 yě (cũng)", "和 hé (và)", "但是 dànshì (nhưng)"] },
   { label: "Tính từ tần suất cao", words: ["好 hǎo (tốt)", "大 dà (to)", "小 xiǎo (nhỏ)", "多 duō (nhiều)", "少 shǎo (ít)", "很 hěn (rất)"] },
+  { label: "Từ để hỏi — khung mọi câu hỏi", words: ["什麼 shénme (gì)", "誰 shéi (ai)", "哪裡 nǎlǐ (đâu)", "為什麼 wèishénme (tại sao)", "怎麼 zěnme (như thế nào)", "什麼時候 shénme shíhou (khi nào)", "多少 duōshao (bao nhiêu)", "幾 jǐ (mấy)"] },
+  { label: "Từ chỉ thời gian — mốc thời gian dùng liên tục", words: ["現在 xiànzài (bây giờ)", "今天 jīntiān (hôm nay)", "昨天 zuótiān (hôm qua)", "明天 míngtiān (ngày mai)", "以後 yǐhòu (sau này)", "以前 yǐqián (trước đây)", "已經 yǐjīng (đã)", "還 hái (còn/vẫn)"] },
+  { label: "Giới từ & động từ năng nguyện — khung ngữ pháp câu phức", words: ["從 cóng (từ)", "到 dào (đến)", "對 duì (đối với)", "跟 gēn (với/cùng)", "給 gěi (cho)", "可以 kěyǐ (có thể)", "應該 yīnggāi (nên)", "會 huì (sẽ/biết)", "能 néng (có thể/năng lực)"] },
 ];
 
 /* ---------- DATA: Cặp tối thiểu (minimal tone pairs) ---------- */
@@ -241,6 +269,10 @@ const minimalPairs = [
   { base: "ting", forms: [ { hanzi: "聽", py: "tīng", meaning: "nghe" }, { hanzi: "挺", py: "tǐng", meaning: "khá, khá là" } ] },
   { base: "shui", forms: [ { hanzi: "睡", py: "shuì", meaning: "ngủ" }, { hanzi: "水", py: "shuǐ", meaning: "nước" } ] },
   { base: "lei", forms: [ { hanzi: "累", py: "lèi", meaning: "mệt" }, { hanzi: "雷", py: "léi", meaning: "sấm" } ] },
+  { base: "ba", forms: [ { hanzi: "八", py: "bā", meaning: "số tám" }, { hanzi: "拔", py: "bá", meaning: "nhổ" }, { hanzi: "把", py: "bǎ", meaning: "cầm, nắm" }, { hanzi: "爸", py: "bà", meaning: "bố" } ] },
+  { base: "fan", forms: [ { hanzi: "翻", py: "fān", meaning: "lật, dịch" }, { hanzi: "煩", py: "fán", meaning: "phiền toái" }, { hanzi: "反", py: "fǎn", meaning: "ngược lại" }, { hanzi: "飯", py: "fàn", meaning: "cơm" } ] },
+  { base: "shu", forms: [ { hanzi: "書", py: "shū", meaning: "sách" }, { hanzi: "熟", py: "shú", meaning: "chín, quen" }, { hanzi: "鼠", py: "shǔ", meaning: "con chuột" }, { hanzi: "樹", py: "shù", meaning: "cây" } ] },
+  { base: "zhu", forms: [ { hanzi: "豬", py: "zhū", meaning: "con lợn" }, { hanzi: "竹", py: "zhú", meaning: "tre" }, { hanzi: "主", py: "zhǔ", meaning: "chủ" }, { hanzi: "住", py: "zhù", meaning: "ở, sống" } ] },
 ];
 
 /* ---------- DATA: Thành ngữ (chengyu ↔ Hán Việt) ---------- */
@@ -254,6 +286,13 @@ const chengyuList = [
   { hanzi: "入鄉隨俗", py: "rù xiāng suí sú", hv: "nhập hương tùy tục", meaning: "đến đâu theo tục lệ ở đó — tục ngữ Việt quen dùng hơn ở dạng \"nhập gia tùy tục\" (thay 鄉/hương bằng 家/gia)" },
   { hanzi: "知己知彼", py: "zhī jǐ zhī bǐ", hv: "tri kỷ tri bỉ", meaning: "biết mình biết địch" },
   { hanzi: "有志者事竟成", py: "yǒu zhì zhě shì jìng chéng", hv: "hữu chí giả sự cánh thành", meaning: "có ý chí thì việc gì cũng thành" },
+  { hanzi: "塞翁失馬", py: "sài wēng shī mǎ", hv: "tái ông thất mã", meaning: "trong họa có phúc, chưa biết được là may hay rủi — điển tích tái ông mất ngựa" },
+  { hanzi: "刻舟求劍", py: "kè zhōu qiú jiàn", hv: "khắc chu cầu kiếm", meaning: "khắc dấu trên thuyền để tìm kiếm rơi — tư duy máy móc, không chịu thích ứng với thay đổi" },
+  { hanzi: "狐假虎威", py: "hú jiǎ hǔ wēi", hv: "hồ giả hổ uy", meaning: "cáo mượn oai hùm — dựa hơi kẻ khác để bắt nạt người" },
+  { hanzi: "掩耳盜鈴", py: "yǎn ěr dào líng", hv: "yểm nhĩ đạo linh", meaning: "bịt tai đi trộm chuông — tự lừa dối chính mình" },
+  { hanzi: "亡羊補牢", py: "wáng yáng bǔ láo", hv: "vong dương bổ lao", meaning: "mất cừu rồi mới sửa chuồng — muộn còn hơn không" },
+  { hanzi: "井底之蛙", py: "jǐng dǐ zhī wā", hv: "tỉnh để chi oa", meaning: "ếch ngồi đáy giếng — tầm nhìn hạn hẹp, tự cho mình biết hết" },
+  { hanzi: "對牛彈琴", py: "duì niú tán qín", hv: "đối ngưu đàn cầm", meaning: "đàn gảy tai trâu — nói với người không hiểu/không muốn hiểu, phí công vô ích" },
 ];
 
 /* ---------- DATA: Hướng dẫn sử dụng (guide subtab) ---------- */
@@ -605,6 +644,47 @@ export default function HanVietKey() {
               <p style={{ fontSize: "12.5px", lineHeight: 1.6, color: "#8B7F6E", marginTop: "12px", fontStyle: "italic" }}>
                 Điểm mấu chốt: cùng MỘT đoạn nội dung nhưng đi qua 5 kỹ năng khác nhau — không phải 5 nội dung khác nhau cho cùng 1 kỹ năng.
               </p>
+            </div>
+
+            <div style={{ background: "rgba(43,58,85,0.06)", border: "1px solid rgba(43,58,85,0.25)", borderRadius: "10px", padding: "20px 22px", marginBottom: "14px" }}>
+              <div style={{ fontFamily: "'Noto Serif SC', serif", fontWeight: 700, fontSize: "16px", color: "#22201C", marginBottom: "10px" }}>
+                Kết hợp với lặp lại ngắt quãng (spaced repetition)
+              </div>
+              <p style={{ fontSize: "13.5px", lineHeight: 1.7, color: "#5C5548", margin: "0 0 10px" }}>
+                Xen kẽ giải quyết việc học SÂU trong một buổi; lặp lại ngắt quãng giải quyết việc GIỮ LÂU
+                qua nhiều ngày. Theo đường cong quên lãng của Ebbinghaus, kiến thức mới rơi rụng nhanh nhất
+                trong 24 giờ đầu — nên việc ôn lại đúng lúc quan trọng hơn ôn nhiều lần dồn dập một buổi.
+              </p>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+                {[
+                  ["Ngày 1", "Học nội dung mới (theo mẫu xen kẽ ở trên)"],
+                  ["Ngày 2", "Ôn nhanh 5-10 phút (chỉ active recall, không xem lại tài liệu trước)"],
+                  ["Ngày 4", "Ôn lại lần 2"],
+                  ["Ngày 7", "Ôn lại lần 3"],
+                  ["Ngày 15-30", "Ôn lại lần cuối — nếu vẫn nhớ tốt, coi như đã chuyển vào trí nhớ dài hạn"],
+                ].map(([d, text]) => (
+                  <div key={d} style={{ background: "#fff", border: "1px solid rgba(43,58,85,0.2)", borderRadius: "8px", padding: "10px 14px", flex: "1 1 150px" }}>
+                    <div style={{ fontFamily: "'Noto Serif SC', serif", fontWeight: 700, fontSize: "12.5px", color: "#2B3A55", marginBottom: "4px" }}>{d}</div>
+                    <div style={{ fontSize: "12.5px", color: "#5C5548", lineHeight: 1.5 }}>{text}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ background: "rgba(43,58,85,0.06)", border: "1px solid rgba(43,58,85,0.25)", borderRadius: "10px", padding: "20px 22px", marginBottom: "14px" }}>
+              <div style={{ fontFamily: "'Noto Serif SC', serif", fontWeight: 700, fontSize: "16px", color: "#22201C", marginBottom: "12px" }}>
+                3 sai lầm thường gặp khi tự áp dụng xen kẽ
+              </div>
+              {[
+                ["Xen kẽ chủ đề thay vì kỹ năng", "Học từ vựng chủ đề A, rồi chuyển sang ngữ pháp chủ đề B, rồi nghe chủ đề C — đây là học khối trá hình, không phải xen kẽ thật. Xen kẽ đúng nghĩa là GIỮ NGUYÊN một nội dung, đổi CÁCH tương tác với nó."],
+                ["Đổi kỹ năng quá nhanh, chưa kịp căng não", "Xen kẽ có ích vì tạo độ khó vừa đủ — nếu đổi bước sau 30 giây thì chưa kịp thử sức đã bỏ cuộc, không có \"desirable difficulty\" nào để não ghi nhớ sâu hơn."],
+                ["Nhầm cảm giác trôi chảy lúc học với việc đã nhớ lâu", "Học khối (chỉ nghe 30 phút liên tục) luôn cảm thấy dễ và tự tin hơn trong lúc học, nhưng đó là ảo giác — hiệu quả thật chỉ đo được sau vài ngày, khi thử nhớ lại mà không nhìn tài liệu."],
+              ].map(([title, text], i) => (
+                <div key={i} style={{ padding: "10px 0", borderBottom: i < 2 ? "1px dashed rgba(43,58,85,0.25)" : "none" }}>
+                  <div style={{ fontSize: "13.5px", fontWeight: 700, color: "#2B3A55", marginBottom: "4px" }}>{title}</div>
+                  <div style={{ fontSize: "13px", color: "#5C5548", lineHeight: 1.6 }}>{text}</div>
+                </div>
+              ))}
             </div>
           </>
         )}
