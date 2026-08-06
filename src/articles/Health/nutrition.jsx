@@ -75,6 +75,16 @@ function CautionBox({ title = "Lưu ý khi kết hợp", items }) {
   );
 }
 
+/* Góc chuyên gia — tầng cơ chế/khoa học sâu hơn, tách khỏi phần thực đơn cá nhân */
+function ExpertNote({ children }) {
+  return (
+    <div style={{ background: C.purple.soft, border: `1px solid ${C.purple.bg}`, borderRadius: 10, padding: "0.95rem 1.15rem", marginBottom: 12 }}>
+      <div style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: C.purple.mid, marginBottom: 6 }}>🎓 Góc chuyên gia</div>
+      <div style={{ fontSize: 13, color: C.purple.text, lineHeight: 1.68 }}>{children}</div>
+    </div>
+  );
+}
+
 function Remember({ items, title = "Điều cần nhớ" }) {
   return (
     <div style={{ background: "var(--color-background-secondary)", borderRadius: 10, padding: "1rem 1.15rem", margin: "14px 0" }}>
@@ -339,6 +349,18 @@ function Part0() {
         Ai cũng muốn ăn xanh-lành-ngon, nhưng đó là kịch bản lý tưởng. Vì nhiều điều kiện khách quan lẫn chủ quan, việc có được vài món nhanh-gọn-bổ-phù hợp nhất có thể là câu chuyện phải đánh đổi. Nghiên cứu để cân đối giữa các giới hạn đó cũng là một nỗ lực lớn để duy trì sức khoẻ trong hoàn cảnh cho phép — mọi hành động đều đi kèm kết quả, nên hiểu rõ cái mình đánh đổi quan trọng hơn là cố chạy theo một chuẩn hoàn hảo không thực tế.
       </p>
 
+      <Box tone={C.rose} title="Disclaimer" icon="⚠">
+        <div style={{ marginBottom: 8 }}>
+          Toàn bộ nội dung trong tài liệu này là trải nghiệm và nhận định cá nhân, không phải tư vấn y khoa hay dinh dưỡng chuyên môn. Vui lòng tự kiểm chứng (fact-check) và tham khảo ý kiến bác sĩ/chuyên gia dinh dưỡng trước khi áp dụng, đặc biệt nếu đang có bệnh lý nền.
+        </div>
+        <div style={{ marginBottom: 8 }}>
+          <strong>Kiểm soát nguồn nguyên liệu đầu vào là điều kiện bắt buộc, không phải tuỳ chọn.</strong> Mọi công thức trong tài liệu chỉ đúng về thành phần dinh dưỡng nếu nguyên liệu sạch: tự trồng, mua trực tiếp từ nơi canh tác quen biết, hoặc có chứng nhận hữu cơ đáng tin (chuẩn Âu/Mỹ/Nhật — không phải nhãn "hữu cơ" tự dán, hàng giả/nhái chứng nhận). Cùng một công thức đúng tỷ lệ dinh dưỡng, nếu nguyên liệu tồn dư nhiều thuốc bảo vệ thực vật và chất bảo quản thì kết quả còn độc hại hơn không dùng. Nguyên tắc xuyên suốt tài liệu: <strong>thà thiếu chất dinh dưỡng còn hơn thừa chất độc tố.</strong>
+        </div>
+        <div>
+          Nội dung này hướng đến <strong>thực phẩm bổ sung dạng tự nhiên</strong>, phù hợp với người công sở bận rộn cần nạp đủ vi chất trong ít thời gian chuẩn bị. Với ai sắp xếp được thời gian, phương án ưu tiên hơn vẫn là wholefoods hữu cơ — tự trồng, tự nấu, "soil to table", nấu xong ăn liền — thay vì các công thức pha chế nhanh trong tài liệu này.
+        </div>
+      </Box>
+
       <Callout tone={C.ink} kicker="Nguyên tắc trung tâm — CÂN BẰNG">
         Không quá nhiều, không quá ít. Một nguyên liệu tốt dùng liên tục mỗi ngày vẫn có thể gây hại (dùng liên tục cacao-gừng-quế nhiều sẽ thấy người nóng, nổi mụn — đó là hậu quả bên ngoài của việc đã quá liều). Ngược lại, thói quen là "lãi kép": một ly nước tốn một phút mỗi sáng, duy trì đều suốt nhiều năm, tích luỹ thành khác biệt lớn. Vì vậy: dùng nguyên liệu "không khuyến nghị liên tục" thì cách ngày, dừng vài ngày–vài tuần, hoặc giảm liều — tự cảm nhận cơ thể là thước đo cuối cùng, không có công thức chung cho tất cả mọi người.
       </Callout>
@@ -392,6 +414,10 @@ function PartI() {
         "10ml mật chuối ủ",
       ]} note="Quy đổi: 10g ≈ 1 muỗng canh (table spoon) = 15ml. Xúc nguyên liệu vào ly, mang theo, tới nơi pha nước ấm, ngâm một lúc, khoảng 1 giờ sau thì uống." />
 
+      <ExpertNote>
+        Đậu xanh, đậu đỏ, đậu đen thiếu tương đối axit amin methionine, trong khi mè đen lại giàu methionine nhưng thiếu lysine — kết hợp nhóm đậu và hạt mè trong cùng một ly bổ khuyết cho nhau, cho hồ sơ axit amin gần đủ hơn hẳn so với dùng riêng lẻ (nguyên lý <em>protein complementation</em>). Không cần ăn cùng một bữa tuyệt đối để có hiệu quả này — cơ thể giữ một kho axit amin tự do lưu thông trong khoảng 24 giờ để phối hợp giữa các bữa.
+      </ExpertNote>
+
       <Box tone={C.teal} title="Ly 1 chứa gì và vì sao no lâu">
         Đủ đường–đạm–béo dạng thực vật, hạn chế tối thiểu hoá chất (trừ sâu, bảo quản, chế biến nhiều lớp) nhờ ngũ cốc tự trồng tự rang tự xay, các thành phần còn lại mua từ nơi canh tác/chế biến hữu cơ uy tín. Công việc trí óc cường độ cao và vận động đều mỗi ngày cần lượng năng lượng không nhỏ — ly này thay thế bữa sáng dạng tinh bột nhanh (bún, mỳ, bánh mỳ) vốn chỉ no được khoảng 1 giờ. Người dùng ít năng lượng hơn nên giảm tỷ trọng để tránh đầy bụng khó tiêu.
       </Box>
@@ -404,10 +430,37 @@ function PartI() {
       ]} note="Mùa nào có khế thì có thể thay quất. Lưu ý nếu ngâm khế với đường: ngâm đúng cách mới tốt, ngâm sai dễ mốc và tích luỹ độc chất — nguyên liệu tươi vẫn là lựa chọn an toàn hơn khi chưa chắc chắn về cách ngâm." />
 
       <div style={subHead}>Luân phiên & bổ trợ</div>
-      <Recipe title="Dừa xiêm nguyên trái" tone={C.amber} items={[
-        "3 quả/tuần, cách ngày, uống ngay kèm cơm dừa vừa chặt",
-        "Mùa hè dùng đều; mùa đông giảm tần suất vì dễ lạnh bụng",
-      ]} note="Một trong số ít loại quả mua ngoài mà gần như không lo phân thuốc, trong khi chất lượng dinh dưỡng rất cao." />
+
+      <p style={prose}>
+        Lời khuyên phổ biến là ăn một quả táo hoặc bơ mỗi ngày. Nhưng ở Việt Nam, táo và bơ thường rơi vào một trong ba tình huống: hàng organic giá quá cao, không đúng mùa, hoặc rẻ nhưng tồn dư phân thuốc nhiều. Sau nhiều năm tìm kiếm, lựa chọn thay thế ổn định nhất là <strong>dừa xiêm</strong> — một trong số ít loại quả mua ngoài chợ mà gần như không lo phân thuốc, nhờ vỏ dày và cách thu hoạch tự nhiên, trong khi giá trị dinh dưỡng vẫn rất cao.
+      </p>
+
+      <Recipe title="Dừa xiêm — thay táo/bơ mỗi ngày" tone={C.amber} items={[
+        "2–3 quả/tuần, mua ngay tại chợ trên đường đi làm, chặt ra từ nguyên quả",
+        "Mang vào công ty, xay lấy nước cùng cơm dừa ngay buổi sáng",
+        "Thể trạng hàn, huyết áp thấp nên hạn chế uống liên tục — cho thêm một xíu bột gừng + đường mía thô để cân bằng lại tính lạnh của nước dừa",
+        "3–4 ngày còn lại trong tuần luân phiên sữa hạt hoặc nước ép rau củ tính nóng (như thơm) để giữ cân bằng, không uống dừa liên tục nhiều ngày liền",
+      ]} note="Bột gừng và đường mía thô dùng loại mua từ nông trại quen (không phải hàng chợ đại trà) để hạn chế thêm phân thuốc từ chính nguyên liệu cân bằng." />
+
+      <ExpertNote>
+        Nước dừa xiêm giàu kali (~250mg/100ml) nhưng rất thấp natri — về thành phần điện giải, nó gần giống một dung dịch bù nước nhẹ, nên hay được dùng bù nước sau vận động nhẹ hoặc ra mồ hôi. Vì thấp natri, nó <em>không thay thế</em> được oresol khi mất nước nặng (tiêu chảy, sốt cao, vận động cường độ cao đổ mồ hôi nhiều) — những trường hợp đó cần bù thêm natri riêng. Người có bệnh thận mạn hoặc đang dùng thuốc giữ kali (một số thuốc huyết áp nhóm ức chế men chuyển, lợi tiểu giữ kali) nên hỏi bác sĩ trước khi uống đều đặn, vì nguy cơ tăng kali máu.
+      </ExpertNote>
+
+      <Callout tone={C.teal} kicker="Nguyên tắc thay thế — BALANCE + FRESH">
+        Cân bằng giữa nóng-lạnh, giữa vitamin-khoáng chất-năng lượng; ưu tiên độ tươi và ít phân thuốc nhất có thể, không nhất thiết phải đắt. Ngưỡng cân bằng tuỳ thể trạng từng người, không có công thức chung — ví dụ hai hôm liền uống sữa hạt béo (tính nóng) thì hôm sau nên uống dừa hoặc ép rau má-thơm để kìm lại; nếu ép thơm liên tục nhiều ngày (tính nóng) thì thêm rau mát vào, hoặc đổi hẳn sang sinh tố xanh. Luân phiên thay đổi để cơ thể được điều hoà cả nhiệt độ lẫn dưỡng chất, tránh thiên lệch quá mức về một hướng — dễ sinh mụn, bốc hoả, cáu gắt nếu thiên nóng, hoặc lạnh lẽo, mệt mỏi, kiệt sức nếu thiên lạnh.
+      </Callout>
+
+      <p style={prose}>
+        Cách luân phiên này đã áp dụng vài năm và khá ổn định (may mắn chưa gặp bệnh lớn — nếu đang có bệnh lý nền thì chế độ ăn cần tham khảo ý kiến bác sĩ trước). Sau một tháng thử giảm bớt đạm động vật (sáng-trưa chủ yếu ăn xanh, tối mới ăn thịt thoả thích), vẫn còn lấn cấn chưa chuyển hẳn sang ăn xanh hoàn toàn được — mục tiêu tiếp theo là tăng dần tần suất sinh tố xanh vào buổi sáng.
+      </p>
+
+      <Box tone={C.blue} title="Máy xay cầm tay — dùng khi đi làm/du lịch">
+        Xay đồ mềm ổn, chưa thử với rau; xay các loại hạt cần khoảng 3 lần xay mới mịn. Mua để tiện mang theo khi đi làm hoặc du lịch, dùng thay cho máy xay đứng khi không có sẵn. Công thức hay xay: thanh long, cơm dừa, ít granola, một xíu gừng, nước dừa xiêm.
+      </Box>
+
+      <p style={prose}>
+        Mục tiêu chung vẫn là tận dụng lợi thế của xứ nhiệt đới nhiều trái cây, theo tiêu chí ngon-lành-bổ-rẻ, dành cho người bận/lười vẫn duy trì được đều đặn.
+      </p>
 
       <Recipe title="Nước ép/nước mía bổ trợ" tone={C.purple} items={[
         "2 ly/tuần: thơm, cóc, cà chua, cà rốt — nhóm quả/củ ít bị phun thuốc nhất",
@@ -433,7 +486,8 @@ function PartI() {
 
       <Remember items={[
         "Hai ly mỗi ngày là xương sống: ly sáng giàu năng lượng (ngũ cốc-cacao-mật chuối), ly trưa/chiều giàu vitamin C (quất-đường mía).",
-        "Dừa xiêm và nước ép rau củ quả là lựa chọn luân phiên, không phải bắt buộc mỗi ngày.",
+        "Dừa xiêm thay táo/bơ mỗi ngày — ít phân thuốc, luân phiên với sữa hạt/nước ép, không uống liên tục nhiều ngày liền.",
+        "Nguyên tắc BALANCE + FRESH: luân phiên nóng-lạnh theo cảm nhận cơ thể, ưu tiên tươi và ít phân thuốc hơn là chạy theo một loại quả 'chuẩn'.",
         "Granola là phương án dự phòng khi cần một bữa thay thế nhanh, không phải bữa ăn chính.",
       ]} />
     </div>
@@ -458,6 +512,10 @@ function PartII() {
         "Hạt chia — một nhúm nhỏ, bổ sung chất xơ cho khẩu phần",
         "Ngũ cốc 5 loại đậu — 2–3 muỗng canh, lượng tuỳ khẩu vị vì mùi ngũ cốc đậm sẽ lấn vị ngon của ly nước",
       ]} note="Cacao là chất chống oxy hoá mạnh (polyphenol/flavonoid), giàu magie — khoáng an thần tự nhiên nhiều nhất trong thực vật — và giàu chất béo tốt." />
+
+      <ExpertNote>
+        Flavanol trong cacao (đặc biệt epicatechin) có sinh khả dụng thấp và biến thiên lớn giữa người với người, phần lớn do khác biệt hệ vi sinh đường ruột — nhiều tác dụng tim mạch được cho là đến từ các hợp chất trung gian do vi khuẩn ruột chuyển hoá flavanol thành (như valerolactone), chứ không phải flavanol nguyên bản hấp thu thẳng. Cacao cũng chứa theobromine — một methylxanthine họ hàng với caffeine, tác dụng kích thích nhẹ hơn nhưng kéo dài hơn trong cơ thể — nên dùng liều cao vào buổi tối có thể ảnh hưởng giấc ngủ dù không "tỉnh táo ngay" như cà phê.
+      </ExpertNote>
 
       <Box tone={C.amber} title="Ngũ cốc tự làm — ba điểm cần để ý">
         Ngâm hoặc rang trước khi xay để phá lớp vỏ hạt, tránh lớp vỏ cản trở hấp thu dinh dưỡng. Bảo quản trong hũ thuỷ tinh đậy kín, tránh ánh sáng UV — vì hạt đã xay thành bột nên diện tích tiếp xúc với oxy tăng lên nhiều, dễ oxy hoá và mối mọt hơn dạng hạt nguyên. Có thể chỉnh tỷ lệ từng loại đậu theo nhu cầu thể trạng hoặc điều kiện sinh hoạt từng giai đoạn — ví dụ nhiều đậu xanh hơn để mát người, hoặc thêm hạt sen để dễ ngủ hơn.
@@ -521,6 +579,10 @@ function PartIII() {
         { wrong: "Đường hấp thu nhanh → tăng đường huyết đột ngột.", fix: "Cơ thể tiết insulin để điều chỉnh, khiến đường huyết tụt nhanh sau đó — dao động mạnh về glucose dễ gây mệt, uể oải, khó tập trung." },
         { wrong: "Ăn nhiều đường mỗi ngày, kéo dài.", fix: "Làm tăng nguy cơ kháng insulin, tiểu đường type 2, béo bụng, sâu răng." },
       ]} />
+
+      <ExpertNote>
+        Chỉ số đường huyết (GI) đo tốc độ tăng đường huyết của một loại thực phẩm riêng lẻ, nhưng tải đường huyết (glycemic load — GL) tính thêm cả lượng carb thực tế trong khẩu phần ăn, nên phản ánh đúng bữa ăn thật hơn GI đơn thuần. Ngoài glucose, não còn dùng được thể ceton (ketone bodies) làm nhiên liệu thay thế một phần khi nhịn ăn kéo dài hoặc theo chế độ low-carb kéo dài (sau vài ngày thích nghi) — đây là cơ chế tiến hoá để não vẫn hoạt động khi thiếu glucose. Điều này không có nghĩa ăn kiêng cực đoan tốt hơn cho hiệu suất trí óc ngắn hạn: giai đoạn chuyển đổi sang đốt ceton ("keto flu") thường đi kèm giảm hiệu suất tạm thời vài ngày đến vài tuần.
+      </ExpertNote>
 
       <div style={subHead}>Tác động của nhiệt độ lên đường khi nấu</div>
       <div style={card}>
@@ -621,6 +683,10 @@ function PartIV() {
         Quá trình ôi thiu của chất béo diễn ra theo ba giai đoạn: khởi phát, lan truyền, và kết thúc — tạo ra các hợp chất gây hại. Ba yếu tố chính đẩy nhanh quá trình này là <strong>nhiệt độ, oxy, và ánh sáng</strong>.
       </p>
 
+      <ExpertNote>
+        Về mặt hoá sinh, dầu "ôi" là kết quả của peroxy hoá lipid (lipid peroxidation) — axit béo chưa bão hoà phản ứng với oxy tạo gốc tự do, sinh ra các sản phẩm thứ cấp như malondialdehyde (MDA), một chỉ dấu stress oxy hoá hay dùng trong nghiên cứu. Riêng phản ứng Maillard (giữa đường khử và axit amin khi gia nhiệt cao, như khi rang/nướng) tạo hương vị thơm ngon nhưng cũng sinh AGEs (advanced glycation end-products) — nạp nhiều AGEs qua thời gian dài có liên hệ với viêm mãn tính và lão hoá mạch máu trong một số nghiên cứu dịch tễ, dù bằng chứng nhân quả trực tiếp trên người vẫn còn đang tranh luận.
+      </ExpertNote>
+
       <div style={subHead}>Tác động của ánh sáng</div>
       <div style={card}>
         <Row label="Ánh sáng mặt trời (UV)" value="Tác nhân gây hại mạnh nhất" sub="Phá huỷ vitamin và lipid" tone={C.coral} />
@@ -677,6 +743,10 @@ function PartV() {
         { wrong: "Nguồn canxi (hạt, chùm ngây, kale) & rau họ cải hoặc cacao dùng gần thời gian nhau.", fix: "Oxalate trong rau họ cải và cacao sẽ làm giảm hấp thụ canxi — nên tách thời điểm dùng ra một chút thay vì ăn/uống cùng lúc." },
       ]} />
 
+      <ExpertNote>
+        Về cơ chế, oxalate liên kết với canxi tạo phức calci oxalat không tan trong ruột, làm giảm hấp thu canxi — và ở người có cơ địa dễ sỏi thận, oxalate hấp thu dư từ ruột còn làm tăng nguy cơ sỏi thận calci oxalat, nên nhóm này cần chú ý cả oxalate từ cacao, rau bina, củ dền chứ không chỉ rau họ cải. Về sắt: sắt heme (từ thịt/cá/gia cầm) hấp thu hiệu quả hơn hẳn (khoảng 15–35%) so với sắt non-heme từ thực vật (chỉ 2–20%), và ít bị cản trở bởi phytate, tanin, canxi hơn — đây là lý do người ăn chay/thuần chay cần chú ý nhiều hơn đến việc kết hợp vitamin C với bữa giàu sắt thực vật.
+      </ExpertNote>
+
       <div style={subHead}>Nguồn bổ sung canxi thực vật</div>
       <Recipe title="Nhóm thực phẩm giàu canxi" tone={C.blue} items={[
         "Các loại hạt: hạnh nhân, chia, mè đen, hạt bí — ăn vặt dạng đã rang, hoặc nấu chín thành sữa hạt",
@@ -719,6 +789,10 @@ function PartVI() {
       <p style={prose}>
         Hành trình ăn uống lành mạnh bắt đầu từ nhiều năm trước với sinh tố/nước ép rau củ tươi, granola và sữa hạt nấu thủ công. Sau khi nhận thấy mức độ tồn dư thuốc bảo vệ thực vật đáng lo ngại ở nhiều loại rau củ quả (kể cả mua tại siêu thị), máy ép dần ít được dùng hơn. Sữa hạt vẫn duy trì, nhưng từ khi tối ưu được công thức ba ly chỉ tốn khoảng 1 phút chuẩn bị, tần suất nấu sữa hạt giảm dần. Việc chuyển trọ nhiều lần khiến lịch sinh hoạt thay đổi liên tục, nên giữ được một công thức tối giản, pha nhanh, ổn định qua mọi hoàn cảnh sống là yếu tố giúp duy trì thói quen này nhiều năm liền — quan trọng hơn việc lựa chọn nguyên liệu "lý tưởng nhất" trên lý thuyết.
       </p>
+
+      <ExpertNote>
+        Các cơ quan quản lý an toàn thực phẩm (EPA, EFSA...) đánh giá rủi ro tồn dư thuốc bảo vệ thực vật bằng khái niệm ADI (Acceptable Daily Intake) — liều tối đa ước tính có thể nạp mỗi ngày suốt đời mà không gây hại, vốn đã có biên độ an toàn lớn (thường gấp 100 lần so với liều bắt đầu thấy tác dụng phụ trên động vật thí nghiệm). Rửa kỹ, gọt vỏ, hoặc chần sơ giúp giảm đáng kể — không phải tuyệt đối — tồn dư bề mặt ở nhiều nhóm rau củ quả. Đồng thời, khái niệm hormesis (đáp ứng thích nghi có lợi với stress liều thấp) giải thích vì sao nhiều hợp chất thực vật "độc nhẹ" như polyphenol lại có lợi ở liều thấp — nhưng nguyên tắc này không áp dụng cho hoá chất tổng hợp như thuốc trừ sâu, nơi quan hệ liều–đáp ứng thường có hại tuyến tính hơn là hình chữ U.
+      </ExpertNote>
 
       <Callout tone={C.ink} kicker="Giới hạn cần thừa nhận">
         Các nguyên liệu mua ngoài trong thực đơn này chưa phải 100% an toàn tuyệt đối, dù chọn từ nguồn uy tín — đó là niềm tin dựa trên uy tín người bán, không phải kiểm định trực tiếp. Nhưng trong điều kiện sống ở thành phố, đây là mức tối ưu thực tế có thể làm được. Đánh đổi và ưu tiên là điều không tránh khỏi — quan trọng là biết mình đang đánh đổi gì, và hành động nào cũng có kết quả kèm theo.
