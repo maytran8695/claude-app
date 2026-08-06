@@ -249,9 +249,13 @@ export default function TextAnnotationLayer({ articleId, containerRef, enabled, 
       </button>
 
       {panelOpen && (
+        // Mobile (< sm): neo cả left lẫn right (right-24 + w-80 cố định sẽ
+        // tràn ra ngoài màn hình trên hầu hết điện thoại, vì 96px+320px đã
+        // vượt quá bề ngang màn hình) — để trình duyệt tự co giãn chiều rộng.
+        // Từ sm trở lên mới quay lại vị trí/khổ cố định cạnh nút 📝.
         <div
           style={{ maxHeight: "calc(100vh - 116px)" }}
-          className="fixed bottom-20 right-24 md:bottom-24 md:right-28 z-290 w-80 overflow-y-auto rounded-xl border border-slate-200 bg-white shadow-xl p-3"
+          className="fixed left-3 right-3 sm:left-auto sm:right-24 bottom-20 md:bottom-24 md:right-28 z-290 w-auto sm:w-80 overflow-y-auto rounded-xl border border-slate-200 bg-white shadow-xl p-3"
         >
           <div className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide mb-2">
             {notes.length} ghi chú trong bài này

@@ -174,7 +174,7 @@ export default function App() {
   useEffect(() => { syncSubTabToUrl(part); }, [part]);
 
   return (
-    <div style={{ fontFamily: "var(--font-sans)", padding: "18px 14px 40px" }}>
+    <div style={{ fontFamily: "var(--font-sans)", padding: "18px 14px 104px" }}>
       {/* ===== TAB BREADCRUMB — colored boxes at very top ===== */}
       <div className="mobile-static" style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: "2rem", position: "sticky", top: 0, zIndex: 10, background: "#fff", padding: "10px 0", borderBottom: "1px solid #eee" }}>
         {PARTS.map((p) => {
@@ -204,12 +204,28 @@ export default function App() {
       {part === 5 && <PartV />}
       {part === 6 && <PartVI />}
 
-      <div style={{ display: "flex", justifyContent: "space-between", marginTop: "2rem", paddingTop: "1rem", borderTop: "0.5px solid var(--color-border-tertiary)" }}>
-        <button onClick={() => { setPart(Math.max(0, part - 1)); window.__scrollArticleToTop?.(); }} disabled={part === 0} style={{ fontSize: 12, color: part === 0 ? "var(--color-text-tertiary)" : "var(--color-text-secondary)", background: "none", border: "none", cursor: part === 0 ? "default" : "pointer" }}>
-          {part > 0 ? `← ${PARTS[part - 1].num}. ${PARTS[part - 1].short}` : ""}
+      {/* Nav phần trước/sau: bo tròn dạng pill + chừa khoảng trống bên dưới
+          (padding-bottom 104px của container cha) để không bị cụm nút nổi
+          "về đầu trang / xuống cuối trang" (fixed bottom-right, ~44px mỗi
+          nút) che mất khi cuộn hết trang trên mobile. */}
+      <div style={{ display: "flex", justifyContent: "space-between", gap: 10, marginTop: "2rem", paddingTop: "1rem", borderTop: "0.5px solid var(--color-border-tertiary)" }}>
+        <button onClick={() => { setPart(Math.max(0, part - 1)); window.__scrollArticleToTop?.(); }} disabled={part === 0} style={{
+          fontSize: 12, fontWeight: 600, padding: "9px 14px", borderRadius: 10,
+          color: part === 0 ? "var(--color-text-tertiary)" : "var(--color-text-secondary)",
+          background: "var(--color-background-primary)",
+          border: `0.5px solid ${part === 0 ? "transparent" : "var(--color-border-tertiary)"}`,
+          cursor: part === 0 ? "default" : "pointer", visibility: part === 0 ? "hidden" : "visible",
+        }}>
+          ← {part > 0 ? `${PARTS[part - 1].num}. ${PARTS[part - 1].short}` : ""}
         </button>
-        <button onClick={() => { setPart(Math.min(6, part + 1)); window.__scrollArticleToTop?.(); }} disabled={part === 6} style={{ fontSize: 12, color: part === 6 ? "var(--color-text-tertiary)" : "var(--color-text-secondary)", background: "none", border: "none", cursor: part === 6 ? "default" : "pointer" }}>
-          {part < 6 ? `${PARTS[part + 1].num}. ${PARTS[part + 1].short} →` : ""}
+        <button onClick={() => { setPart(Math.min(6, part + 1)); window.__scrollArticleToTop?.(); }} disabled={part === 6} style={{
+          fontSize: 12, fontWeight: 600, padding: "9px 14px", borderRadius: 10,
+          color: part === 6 ? "var(--color-text-tertiary)" : "var(--color-text-secondary)",
+          background: "var(--color-background-primary)",
+          border: `0.5px solid ${part === 6 ? "transparent" : "var(--color-border-tertiary)"}`,
+          cursor: part === 6 ? "default" : "pointer", visibility: part === 6 ? "hidden" : "visible",
+        }}>
+          {part < 6 ? `${PARTS[part + 1].num}. ${PARTS[part + 1].short}` : ""} →
         </button>
       </div>
     </div>

@@ -11,7 +11,7 @@ export default function ChunkQuiz() {
       `}</style>
 
       <h1 style={{ fontFamily: serif, color: INK, fontSize: 32, lineHeight: 1.15, margin: "0 0 28px" }}>
-        Chunk Atlas Quiz
+        Chunk Atlas Quiz — English
       </h1>
 
       <a
@@ -31,7 +31,7 @@ export default function ChunkQuiz() {
           textDecoration: "none",
         }}
       >
-        Open Chunk Atlas Quiz ↗
+        Open Chunk Atlas Quiz — English ↗
       </a>
     </div>
   );
