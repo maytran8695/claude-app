@@ -35,7 +35,9 @@ const exactTitleMap = {
   [normalizeKey('ChunkQuizChi')]: 'Chunk Quiz - CHI',
   [normalizeKey('SelfWorthDeep')]: 'Self Worth',
   [normalizeKey('Film')]: 'Film',
-  [normalizeKey('Book')]: 'Book'
+  [normalizeKey('Book')]: 'Book',
+  [normalizeKey('Painting')]: 'Painting',
+  [normalizeKey('Music')]: 'Music'
 };
 
 // Thứ tự sắp xếp các Danh mục lớn
@@ -69,7 +71,9 @@ const targetArticleOrder = {
   ],
   Entertainment: [
     normalizeKey('Film'),
-    normalizeKey('Book')
+    normalizeKey('Book'),
+    normalizeKey('Painting'),
+    normalizeKey('Music')
   ],
   Cert: [
     normalizeKey('CBAP'),
