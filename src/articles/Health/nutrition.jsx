@@ -356,6 +356,9 @@ function Part0() {
 
       <Box tone={C.rose} title="Disclaimer" icon="⚠">
         <div style={{ marginBottom: 8 }}>
+          Các ghi chú trong tài liệu này được viết vào năm 2026 — kiến thức dinh dưỡng có thể cập nhật theo thời gian, nên vẫn cần tự kiểm chứng lại khi đọc.
+        </div>
+        <div style={{ marginBottom: 8 }}>
           Toàn bộ nội dung là trải nghiệm và nhận định cá nhân, không phải tư vấn y khoa hay dinh dưỡng chuyên môn. Vui lòng tự kiểm chứng (fact-check) và tham khảo ý kiến bác sĩ/chuyên gia dinh dưỡng trước khi áp dụng, đặc biệt nếu đang có bệnh lý nền.
         </div>
         <div style={{ marginBottom: 8 }}>
@@ -513,7 +516,7 @@ function PartII() {
         "Đường mía thô — vài cục nhỏ, cân nhắc liều nếu đang có vấn đề đường huyết",
         "Kỷ tử 10g — nhiều lợi ích nhưng cũng nhiều rủi ro tồn dư thuốc trừ sâu, có thể cân nhắc bỏ qua nếu không tìm được nguồn tin cậy",
         "Hạt chia — một nhúm nhỏ, bổ sung chất xơ cho khẩu phần",
-        "Ngũ cốc 5 loại đậu — 2–3 muỗng canh, lượng tuỳ khẩu vị vì mùi ngũ cốc đậm sẽ lấn vị ngon của ly nước",
+        "Ngũ cốc 5 loại đậu — 2–3 muỗng canh, lượng tuỳ khẩu vị vì mùi ngũ cốc đậm sẽ lấn vị ngon của ly nước. Cân nhắc là không nên trộn ngũ cốc vào ly này mà hãy uống riêng — trộn vào sẽ dở tệ :)))",
       ]} note="Cacao là chất chống oxy hoá mạnh (polyphenol/flavonoid), giàu magie — khoáng an thần tự nhiên nhiều nhất trong thực vật — và giàu chất béo tốt." />
 
       <ExpertNote>
