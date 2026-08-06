@@ -372,6 +372,10 @@ function Part0() {
         </div>
       </Box>
 
+      <Box tone={C.amber} title="Ăn uống là một phúc lành" icon="✦">
+        Tài liệu này chỉ giải quyết vấn đề dinh dưỡng cho người bận rộn, không có nhiều thời gian chuẩn bị — không phải khuôn mẫu lý tưởng cho mọi bữa ăn. Khi có điều kiện, những bữa ăn chỉn chu, thậm chí fine dining, vẫn nên được ưu tiên hơn các công thức pha nhanh trong tài liệu. Ăn uống là một phúc lành, cần được tận hưởng bằng tất cả giác quan — nhìn, ngửi, nếm, cảm nhận kết cấu — và trải nghiệm trọn vẹn trong tinh thần thoải mái, vui vẻ, giữa một không khí dễ chịu, chứ không chỉ là nạp đủ chỉ số dinh dưỡng.
+      </Box>
+
       <Callout tone={C.ink} kicker="Nguyên tắc trung tâm — CÂN BẰNG" bold={false}>
         <div style={{ marginBottom: 10 }}>
           <strong>Không quá nhiều, không quá ít.</strong> Một nguyên liệu tốt dùng liên tục mỗi ngày vẫn có thể gây hại — dùng liên tục cacao-gừng-quế nhiều sẽ thấy người nóng, nổi mụn, đó là hậu quả bên ngoài của việc đã quá liều.
