@@ -50,11 +50,11 @@ function Box({ tone = C.teal, title, children, icon }) {
   );
 }
 
-function Callout({ tone = C.ink, children, kicker }) {
+function Callout({ tone = C.ink, children, kicker, bold = true }) {
   return (
     <div style={{ background: tone.soft, border: `1px solid ${tone.bg}`, borderLeft: `4px solid ${tone.border}`, borderRadius: 10, padding: "1rem 1.15rem", marginBottom: 14 }}>
       {kicker && <div style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: tone.mid, marginBottom: 6 }}>{kicker}</div>}
-      <div style={{ fontSize: 15, fontWeight: 600, color: tone.text, lineHeight: 1.55 }}>{children}</div>
+      <div style={{ fontSize: 15, fontWeight: bold ? 600 : 400, color: tone.text, lineHeight: 1.6 }}>{children}</div>
     </div>
   );
 }
@@ -345,13 +345,13 @@ function Part0() {
       <div style={{ fontSize: 11, letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--color-text-tertiary)", marginBottom: 6 }}>Cẩm nang cá nhân hoá</div>
       <h1 style={{ fontSize: 24, fontWeight: 700, color: "var(--color-text-primary)", margin: "0 0 8px", lineHeight: 1.25 }}>Dinh dưỡng thông minh cho người bận rộn</h1>
       <p style={{ fontSize: 14, color: "var(--color-text-secondary)", lineHeight: 1.65, marginBottom: "1.75rem" }}>
-        Thực đơn cá nhân đã duy trì nhiều năm (trên 7 năm), cho người công việc cường độ cao, dễ stress, khó ngủ, không có nhiều thời gian chuẩn bị. Mục tiêu: nạp đủ dinh dưỡng đa chất theo khuyến nghị, hạn chế tối đa hoá chất (phân thuốc, chất bảo quản), và tốn ít nhất thời gian chuẩn bị mỗi ngày — lý tưởng là chỉ 1 phút.
+        Thực đơn cá nhân đã duy trì <strong>nhiều năm (trên 7 năm)</strong>, cho người công việc cường độ cao, dễ stress, khó ngủ, không có nhiều thời gian chuẩn bị. Mục tiêu: nạp đủ dinh dưỡng đa chất theo khuyến nghị, <strong>hạn chế tối đa hoá chất</strong> (phân thuốc, chất bảo quản), và tốn ít nhất thời gian chuẩn bị mỗi ngày — lý tưởng là <strong>chỉ 1 phút</strong>.
       </p>
 
       <div style={sectionNum}>MỞ ĐẦU</div>
       <h2 style={{ ...h2, marginTop: 4 }}>Đọc phần này một lần, trước tất cả</h2>
       <p style={prose}>
-        Ai cũng muốn ăn xanh-lành-ngon, nhưng đó là kịch bản lý tưởng. Vì nhiều điều kiện khách quan lẫn chủ quan, việc có được vài món nhanh-gọn-bổ-phù hợp nhất có thể là câu chuyện phải đánh đổi. Nghiên cứu để cân đối giữa các giới hạn đó cũng là một nỗ lực lớn để duy trì sức khoẻ trong hoàn cảnh cho phép — mọi hành động đều đi kèm kết quả, nên hiểu rõ cái mình đánh đổi quan trọng hơn là cố chạy theo một chuẩn hoàn hảo không thực tế.
+        Ai cũng muốn ăn xanh-lành-ngon, nhưng đó là kịch bản lý tưởng. Vì nhiều điều kiện khách quan lẫn chủ quan, việc có được vài món nhanh-gọn-bổ-phù hợp nhất có thể là câu chuyện phải <strong>đánh đổi</strong>. Nghiên cứu để cân đối giữa các giới hạn đó cũng là một nỗ lực lớn để duy trì sức khoẻ trong hoàn cảnh cho phép — mọi hành động đều đi kèm kết quả, nên <strong>hiểu rõ cái mình đánh đổi</strong> quan trọng hơn là cố chạy theo một chuẩn hoàn hảo không thực tế.
       </p>
 
       <Box tone={C.rose} title="Disclaimer" icon="⚠">
@@ -372,12 +372,23 @@ function Part0() {
         </div>
       </Box>
 
-      <Callout tone={C.ink} kicker="Nguyên tắc trung tâm — CÂN BẰNG">
-        Không quá nhiều, không quá ít. Một nguyên liệu tốt dùng liên tục mỗi ngày vẫn có thể gây hại (dùng liên tục cacao-gừng-quế nhiều sẽ thấy người nóng, nổi mụn — đó là hậu quả bên ngoài của việc đã quá liều). Ngược lại, thói quen là "lãi kép": một ly nước tốn một phút mỗi sáng, duy trì đều suốt nhiều năm, tích luỹ thành khác biệt lớn. Mỗi người thể trạng, cường độ vận động và nhu cầu năng lượng khác nhau — người ít năng lượng hơn nên giảm tỷ trọng khẩu phần để tránh đầy bụng khó tiêu. Vì vậy: dùng nguyên liệu "không khuyến nghị liên tục" thì cách ngày, dừng vài ngày–vài tuần, hoặc giảm liều — tự cảm nhận cơ thể là thước đo cuối cùng, không có công thức chung cho tất cả mọi người.
+      <Callout tone={C.ink} kicker="Nguyên tắc trung tâm — CÂN BẰNG" bold={false}>
+        <div style={{ marginBottom: 10 }}>
+          <strong>Không quá nhiều, không quá ít.</strong> Một nguyên liệu tốt dùng liên tục mỗi ngày vẫn có thể gây hại — dùng liên tục cacao-gừng-quế nhiều sẽ thấy người nóng, nổi mụn, đó là hậu quả bên ngoài của việc đã quá liều.
+        </div>
+        <div style={{ marginBottom: 10 }}>
+          Ngược lại, thói quen là <strong>"lãi kép"</strong>: một ly nước tốn một phút mỗi sáng, duy trì đều suốt nhiều năm, tích luỹ thành khác biệt lớn.
+        </div>
+        <div style={{ marginBottom: 10 }}>
+          Mỗi người thể trạng, cường độ vận động và nhu cầu năng lượng khác nhau — người ít năng lượng hơn nên giảm tỷ trọng khẩu phần để tránh đầy bụng khó tiêu.
+        </div>
+        <div>
+          Vì vậy: dùng nguyên liệu "không khuyến nghị liên tục" thì cách ngày, dừng vài ngày–vài tuần, hoặc giảm liều — <strong>tự cảm nhận cơ thể là thước đo cuối cùng</strong>, không có công thức chung cho tất cả mọi người.
+        </div>
       </Callout>
 
       <Box tone={C.teal} title="Vận động đi kèm" icon="✓">
-        Song song với ăn uống: ~1.5 lít nước/ngày, đi bộ 2km chia 3 đợt (sáng/chiều/tối), duy trì cầu lông. Tạm dừng leo núi và đạp xe trong giai đoạn chưa sắp xếp được thời gian. (Thực đơn vận động chi tiết sẽ ở một tài liệu riêng.)
+        Song song với ăn uống: <strong>~1.5 lít nước/ngày</strong>, đi bộ <strong>2km chia 3 đợt</strong> (sáng/chiều/tối), duy trì cầu lông. Tạm dừng leo núi và đạp xe trong giai đoạn chưa sắp xếp được thời gian. (Thực đơn vận động chi tiết sẽ ở một tài liệu riêng.)
       </Box>
 
       <div style={sectionNum}>BẢN ĐỒ TÀI LIỆU</div>
