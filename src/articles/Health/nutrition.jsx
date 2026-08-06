@@ -350,22 +350,23 @@ function Part0() {
           Toàn bộ nội dung là trải nghiệm và nhận định cá nhân, không phải tư vấn y khoa hay dinh dưỡng chuyên môn. Vui lòng tự kiểm chứng (fact-check) và tham khảo ý kiến bác sĩ/chuyên gia dinh dưỡng trước khi áp dụng, đặc biệt nếu đang có bệnh lý nền.
         </div>
         <div style={{ marginBottom: 8 }}>
-          <strong>Đây là thực phẩm bổ sung — không thay thế bữa chính.</strong> Các ly/công thức trong tài liệu bổ trợ thêm vi chất bên cạnh ba bữa ăn chính trong ngày, không phải để ăn thay cơm. Cần cân đối lượng dùng so với khẩu phần bữa chính đã có trong ngày, để tổng năng lượng và vi chất cộng dồn từ cả hai nguồn (bữa chính + phần bổ sung) không vượt quá khuyến nghị RDA — không cộng dồn tuỳ tiện.
+          <strong>Đây là thực phẩm bổ sung — không thay thế bữa chính.</strong> Các ly/công thức trong tài liệu bổ trợ thêm vi chất bên cạnh ba bữa ăn chính trong ngày, không phải để ăn thay cơm. Cần cân đối lượng dùng so với khẩu phần bữa chính đã có, để tổng năng lượng và vi chất cộng dồn từ cả hai nguồn (bữa chính + phần bổ sung) không vượt quá khuyến nghị RDA — không cộng dồn tuỳ tiện.
         </div>
         <div style={{ marginBottom: 8 }}>
           <strong>Kiểm soát nguồn nguyên liệu đầu vào là điều kiện bắt buộc, không phải tuỳ chọn.</strong> Mọi công thức chỉ đúng về thành phần dinh dưỡng nếu nguyên liệu sạch: tự trồng, mua trực tiếp từ nơi canh tác quen biết, hoặc có chứng nhận hữu cơ đáng tin (chuẩn Âu/Mỹ/Nhật — không phải nhãn "hữu cơ" tự dán, hàng giả/nhái chứng nhận). Cùng một công thức đúng tỷ lệ dinh dưỡng, nếu nguyên liệu tồn dư nhiều thuốc bảo vệ thực vật và chất bảo quản thì kết quả còn độc hại hơn không dùng. Nguyên tắc xuyên suốt tài liệu: <strong>thà thiếu chất dinh dưỡng còn hơn thừa chất độc tố.</strong>
         </div>
-        <div style={{ marginBottom: 8 }}>
-          Nội dung hướng đến <strong>thực phẩm bổ sung dạng tự nhiên</strong>, phù hợp với người công sở bận rộn cần nạp đủ vi chất trong ít thời gian chuẩn bị. Với ai sắp xếp được thời gian, phương án ưu tiên hơn vẫn là wholefoods hữu cơ — tự trồng, tự nấu, "soil to table", nấu xong ăn liền — thay vì các công thức pha chế nhanh trong tài liệu này.
-        </div>
         <div>
-          Mỗi người thể trạng, cường độ vận động và nhu cầu năng lượng khác nhau — liều lượng trong tài liệu là khung tham khảo, cần tự điều chỉnh (tailor) theo nhu cầu thật của cơ thể mình. Người ít năng lượng hơn nên giảm tỷ trọng khẩu phần, nếu không sẽ dễ đầy bụng khó tiêu.
+          Nội dung hướng đến <strong>thực phẩm bổ sung dạng tự nhiên</strong>, phù hợp với người công sở bận rộn cần nạp đủ vi chất trong ít thời gian chuẩn bị. Với ai sắp xếp được thời gian, phương án ưu tiên hơn vẫn là wholefoods hữu cơ — tự trồng, tự nấu, "soil to table", nấu xong ăn liền — thay vì các công thức pha chế nhanh trong tài liệu này.
         </div>
       </Box>
 
       <Callout tone={C.ink} kicker="Nguyên tắc trung tâm — CÂN BẰNG">
-        Không quá nhiều, không quá ít. Một nguyên liệu tốt dùng liên tục mỗi ngày vẫn có thể gây hại (dùng liên tục cacao-gừng-quế nhiều sẽ thấy người nóng, nổi mụn — đó là hậu quả bên ngoài của việc đã quá liều). Ngược lại, thói quen là "lãi kép": một ly nước tốn một phút mỗi sáng, duy trì đều suốt nhiều năm, tích luỹ thành khác biệt lớn. Vì vậy: dùng nguyên liệu "không khuyến nghị liên tục" thì cách ngày, dừng vài ngày–vài tuần, hoặc giảm liều — tự cảm nhận cơ thể là thước đo cuối cùng, không có công thức chung cho tất cả mọi người.
+        Không quá nhiều, không quá ít. Một nguyên liệu tốt dùng liên tục mỗi ngày vẫn có thể gây hại (dùng liên tục cacao-gừng-quế nhiều sẽ thấy người nóng, nổi mụn — đó là hậu quả bên ngoài của việc đã quá liều). Ngược lại, thói quen là "lãi kép": một ly nước tốn một phút mỗi sáng, duy trì đều suốt nhiều năm, tích luỹ thành khác biệt lớn. Mỗi người thể trạng, cường độ vận động và nhu cầu năng lượng khác nhau — người ít năng lượng hơn nên giảm tỷ trọng khẩu phần để tránh đầy bụng khó tiêu. Vì vậy: dùng nguyên liệu "không khuyến nghị liên tục" thì cách ngày, dừng vài ngày–vài tuần, hoặc giảm liều — tự cảm nhận cơ thể là thước đo cuối cùng, không có công thức chung cho tất cả mọi người.
       </Callout>
+
+      <Box tone={C.teal} title="Vận động đi kèm" icon="✓">
+        Song song với ăn uống: ~1.5 lít nước/ngày, đi bộ 2km chia 3 đợt (sáng/chiều/tối), duy trì cầu lông. Tạm dừng leo núi và đạp xe trong giai đoạn chưa sắp xếp được thời gian. (Thực đơn vận động chi tiết sẽ ở một tài liệu riêng.)
+      </Box>
 
       <div style={sectionNum}>BẢN ĐỒ TÀI LIỆU</div>
       <h2 style={h2}>Năm phần, một dòng chảy</h2>
@@ -375,10 +376,6 @@ function Part0() {
         <Row label="III · Đường mía" value="Vì sao và bao nhiêu là đủ" sub="Glucose, carb phức, chống đường huyết dao động" tone={C.purple} />
         <Row label="IV · Bảo quản · Kết hợp · Snack" value="Kẻ thù thầm lặng của dinh dưỡng, cặp đôi nên tránh, và lựa chọn bổ trợ" sub="Ép chậm vs ly tâm, canxi-oxalate, vitamin C-sắt, 5 nhóm snack tốt cho não" tone={C.coral} />
       </div>
-
-      <Box tone={C.teal} title="Vận động đi kèm" icon="✓">
-        Song song với ăn uống: ~1.5 lít nước/ngày, đi bộ 2km chia 3 đợt (sáng/chiều/tối), duy trì cầu lông. Tạm dừng leo núi và đạp xe trong giai đoạn chưa sắp xếp được thời gian. (Thực đơn vận động chi tiết sẽ ở một tài liệu riêng.)
-      </Box>
 
       <Remember items={[
         "Nguyên tắc duy nhất cần nhớ: CÂN BẰNG — không nguyên liệu nào nên dùng liên tục vô hạn định, kể cả nguyên liệu tốt.",
